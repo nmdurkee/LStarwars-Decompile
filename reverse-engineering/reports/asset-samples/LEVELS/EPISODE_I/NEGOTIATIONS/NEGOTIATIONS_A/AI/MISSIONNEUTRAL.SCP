@@ -1,0 +1,86 @@
+//BlockadeRunner_B
+//CloudCityEscapeA
+state Base
+{
+	Conditions
+	{
+		if OffScreenTimer > 5 goto Kill
+		if Random < 0.2 goto ChooseNewLocator
+		if AlwaysTrue == 1 goto Talking
+	}
+	Actions
+	{
+		SetSide "neutral"
+	}
+}
+
+state ResetToTalk
+{
+	Conditions
+	{
+		if OffScreenTimer > 5 goto Kill
+	}
+	Actions
+	{
+		KeepWeaponOut "FALSE"	
+		SetSide "neutral"
+		SetState "Talking"
+	}
+}
+
+state Talking
+{
+	Conditions
+	{
+		if OffScreenTimer > 5 goto Kill		
+		if Timer > 10 and
+		if Random < 0.5 goto Talking
+		
+		if Timer > 10 goto ChooseNewLocator
+	}
+	Actions
+	{	
+		ResetTimer "mintime=0" "maxtime=5"
+		Idle
+	}
+}
+
+state ChooseNewLocator
+{
+	Conditions
+	{
+		if OffScreenTimer > 5 goto Kill	
+		if GotLocator == 1 goto GoToLocator
+		if AlwaysTrue == 1 goto Talking
+	}
+	Actions
+	{	
+		GetLocatorFromSet "name=MissionSpawn" "random"
+	}
+}
+
+state GoToLocator
+{
+	Conditions
+	{
+		if OffScreenTimer > 5 goto Kill	
+		if CannotReachDestination == 1 goto ChooseNewLocator
+		if PathBlocked == 1 goto ChooseNewLocator
+	}
+	Actions
+	{	
+		GoToLocator "Walk"
+		SetState "Talking"
+	}
+}
+
+state Kill
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		Kill
+	}
+}

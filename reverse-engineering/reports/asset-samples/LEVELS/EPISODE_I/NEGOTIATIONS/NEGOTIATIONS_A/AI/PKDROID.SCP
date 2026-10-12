@@ -1,0 +1,25 @@
+state Base {
+	Conditions {
+		if Message "PKDroidsStarted" == 1 goto Update
+		if EitherPlayerInTriggerArea "PKDROIDS" == 1 goto StartPKDroids
+	}
+	Actions {	
+	}
+}
+
+state StartPKDroids {
+	Conditions {
+	}
+	Actions {	
+		SetMessage "name=PKDroidsStarted" "value=1"
+		SetState "Update"
+	}
+}
+
+state Update {
+	Conditions {
+	}
+	Actions {	
+		FollowPath "WALK"
+	}
+}

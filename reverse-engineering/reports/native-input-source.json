@@ -1,0 +1,80 @@
+{
+  "updated": "2026-10-12T19:25:49.091Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "name": "input",
+  "files": [
+    "input/ControllerInput.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6d7d80",
+      "method": "ControllerInput.MapDefaultXbox",
+      "coverage": "built-in wired/wireless Xbox mapping, zero smoothing; excludes remapping and device APIs",
+      "sourceFile": "input/ControllerInput.cs"
+    },
+    {
+      "address": "0x6d4880",
+      "method": "ControllerInput.CircleToSquare",
+      "coverage": "scalar transform with explicit float32 stores; rare unsampled x87 boundary differences remain unexcluded",
+      "sourceFile": "input/ControllerInput.cs"
+    },
+    {
+      "address": "0x4f40a0",
+      "method": "ControllerInput.ScaledAxis",
+      "coverage": "whole per-axis arithmetic on signed byte axes including inverted-Y128; valid thresholds0..127",
+      "sourceFile": "input/ControllerInput.cs"
+    },
+    {
+      "address": "0x4f4110",
+      "method": "ControllerInput.Deadzone",
+      "coverage": "both branches on bounded signed byte axes and thresholds0..127; original helper uses custom register ABI",
+      "sourceFile": "input/ControllerInput.cs"
+    },
+    {
+      "address": "0x4f4280",
+      "method": "ControllerInput.DirectionResponse",
+      "coverage": "original five-row step response, including infinite inputs; NaN excluded",
+      "sourceFile": "input/ControllerInput.cs"
+    },
+    {
+      "address": "0x4f4370",
+      "method": "ControllerInput.ProcessPad",
+      "coverage": "whole132-byte state projection, finite bias/frame and non-NaN ramps; valid deadzones; device loading excluded",
+      "sourceFile": "input/ControllerInput.cs"
+    },
+    {
+      "address": "0x54b3d0",
+      "method": "ControllerInput.MovementAngle",
+      "coverage": "whole arithmetic selection after explicit socket resolution, returns unwrapped uint32",
+      "sourceFile": "input/ControllerInput.cs"
+    }
+  ],
+  "evidence": [
+    "reports/native-controller-state.json",
+    "reports/native-input-emulation.json",
+    "reports/native-motion-emulation.json",
+    "reports/native-stick-emulation.json"
+  ],
+  "managedVerification": "Included in combined17-source library and verifier; compiled-source execution pending Windows process-creation access.",
+  "fixtureFiles": [
+    "native-controller-state-vectors.json",
+    "native-input-vectors.json",
+    "native-movement-angle-vectors.json",
+    "native-stick-vectors.json"
+  ],
+  "limits": [
+    "No XInput API, VR input, Unity project, device enumeration or user mapping overrides.",
+    "Generic pad image and gameplay movement-angle structure are different records; do not interpret pad+0x26 as an angle in the132-byte generic pad.",
+    "C# arithmetic is not yet differential-executed; native vs independent Python results are separate evidence."
+  ],
+  "nativePadStateVerification": {
+    "cases": 804638,
+    "mismatches": 0,
+    "failures": 0
+  },
+  "review": {
+    "method": "Independent source/assembly review",
+    "fixed": "Finite frame/ramp values can overflow to negative infinity; preserve response0 and allow persistent infinite ramps.50native regression cases pass.",
+    "otherFindings": []
+  }
+}

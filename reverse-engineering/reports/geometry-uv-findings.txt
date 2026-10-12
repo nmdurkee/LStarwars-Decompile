@@ -1,0 +1,37 @@
+ORIGINAL PC MATERIAL UV TIMING AND LEGACY LOADER FOLLOW-UP
+
+Native UV contract
+Original evaluator 0x5dfbd0 consumes the linked material animation sets at global 0x973fa8. Each 16-byte set stores display scene pointer +0, count +4, u32 material-index table +8 and next +12. The display scene stores material pointers at +0x50. Only membership-listed materials are processed. All 1,864 authored memberships are decoded; the selected authored records contain all observed nonzero mode fields. Their relevant bytes reduce to 537 unique configurations.
+
+Global time at 0x97add0 is float32 and advances by float32 delta before evaluating materials, including when the list is empty. Either material byte +0x7b or +0x7c equal to exactly 1 skips the entire material. Other nonzero values do not have this effect. Each of four layers has i32 handle at +0x1c0+4*layer; -1 skips that layer without touching its offsets. Any other handle is active. Offsets are float2 at +0x1d0+8*layer. Each 20-byte animation record at +0x1f8+20*layer stores modeU/modeV bytes, two padding bytes, amplitudeU/amplitudeV floats, then frequencyU/frequencyV floats.
+
+For an active layer:
+Mode 2: value=f32(oldOffset + frequency*delta); offset=f32(value - trunc(value)). The original helper 0x5b7cc0 calls 0x6e6b90 and truncates toward zero. Negative fractions remain negative. The cross-version source's NuFloor label must not be interpreted as mathematical floor for this PC routine.
+Mode 3: angle=trunc(frequency*timeAfter*65536); index=(angle >> 1)&32767; offset=f32(nativeSineTable[index]*amplitude).
+Mode 4: angle=trunc(frequency*timeAfter*-65536); index=((16384-angle)>>1)&32767; offset=f32(nativeSineTable[index]*amplitude). The minus sign in the original constant at 0x753230 matters for quantized negative-time/frequency boundary behavior; the sine constant at 0x7516b0 is positive 65536.
+Any other mode: offset=0. This includes 0,1,5,127,128 and255 tested explicitly. There is no mode128 flag stripping or hidden oscillation in this evaluator. All44 authored mode128 records are membership-listed and their affected layer handle is0, so they take this default branch.
+
+The sine table is the exact 32,768-float table produced by original initializer0x5bdd50 and its original sine helper. Existing animation evidence retained it at references/native-animation-sine-table.f32, SHA-256 8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b. Table initialization angular step comes from original double at0x7640a8. No ideal host sine replacement is used in the UV native comparison.
+
+Validation
+Reusable tools/geometry-uv-programs.mjs exports decodeUVMaterial and evaluateUVMaterial, and builds reports/geometry-uv-programs.json with source/material memberships, raw records, mode128 examples and expected sequential updates. tools/geometry-uv-native.py executes original0x5dfbd0, original rounding helpers and original UV setter0x601210. Only critical-section calls are intercepted. All537 authored configurations plus81 synthetic boundary configurations, three time sequences each: 1,854 sequences,9,270 original evaluator ticks,83,430 scalar comparisons. Zero numerical differences.83,376 float-bit matches; the remaining54 are signed-zero representations normalized by JSON, with zero numerical difference. Positive/negative frequency and delta, linear boundary wrapping, sine/cosine, inactive handles, and exact disable-byte values are covered.
+
+Public wrapper and one-shot reset
+Original0x601330 multiplies its input delta by global float0x80bac4 (default1), calls the evaluator, then calls0x6012a0 with the unscaled delta. The latter accumulates independent time at0x28571e8. If global0x80e9e4 is nonzero it walks registered display scenes at0x9739bc/count0x9739b8 and clears all four material UV offsets only when the owning scene header, reached through display scene+0x78, has a nonzero word at+0x158. It then clears0x80e9e4. Eight original-wrapper cases verify speeds0,0.5,1,-2 with reset off/on, both scene marker values, both clocks and offset effects. All pass. This establishes the native contract; it does not reconstruct who requests resets or schedules frames during gameplay.
+
+Legacy material investigation
+Two carriers use NU20version1 and628-byte material records: CHARS/DROIDTRIFIGHTER/DROIDTRIFIGHTER_PC.GSC has27 records; CHARS/VULTUREDROID/VULTUREDROID_PC.GSC has19. Both have newer NU20version2 GHG companions with708-byte materials. No padding conversion has been inferred.
+Original loader0x5ef1d0 accepts versions0..2. It calls original pointer relocation0x4f4f40, sets scene+0x1f4 to1 when version<2, fills texture platform handles via0x602370, then calls material texture fixup0x5eedf0. A bounded original-code trace on both GSCs and both GHG companions stops exactly at this fixup entry. All material pointers are unchanged except field-relative relocation, and no material allocation occurs. Legacy records retain their original628-byte stride. This path therefore provides no628-to708 expansion before current-layout material access.
+Static original fixup0x5eedf0 unconditionally reads material+0x298/+0x29c and writes the refcount at+0x2c0. Native preparation0x601030 also writes+0x2bc. These offsets extend beyond a628-byte record and can touch following serialized data. Current mesh preparation0x602550 likewise uses current mesh offsets. The ordinary PC load path is not a valid demonstrated converter for these two older carriers. This is not a claim that every possible alternate path ignores them, nor proof that they are unused in every game configuration. Their46 materials remain raw-preserved/viewable but excluded from current-layout native feature and uniform calls.
+
+Reproduce from workspace root
+python reverse-engineering/tools/geometry-legacy-loader-native.py
+node reverse-engineering/tools/geometry-uv-programs.mjs
+python reverse-engineering/tools/geometry-uv-native.py
+node reverse-engineering/tools/geometry-material-parameters.mjs
+
+Authoritative machine-readable reports: geometry-legacy-loader-native.json, geometry-uv-programs.json, geometry-uv-native-validation.json. Original pseudocode is under decompiled/corpus-expanded; original UV disassembly is geometry-uv-native-assembly.txt. Existing glTF geometry was not regenerated and retains its approximate materials. No Unity work was added.
+
+Recovered caller and portable source
+Original platform completion4fd050 supplies previous platform delta0x297dbfc to601330 and ATS scheduler5d34a0 before measuring/replacing that delta. The main game loop492b40 separately caps world delta0x925018. These clocks must not be conflated. Original scene registration5ded80 prepends scene+8c UV membership set into global973fa8, and5dee40 removes it; registration order therefore affects linked-set evaluation order. This list insertion/removal was verified with original instructions in geometry-visibility-native-validation.json.
+MaterialUv.cs under reconstructed/geometry provides a compiled dependency-free C# projection of5dfbd0/601330/6012a0, with caller-owned scene and clock state. Its console differential harness also compiles, but ordinary Windows execution is denied (independently reproduced by root). Compiled-source runtime equivalence is pending, not claimed. geometry-recovered-source.json records hashes, coverage boundaries and the separate existing native/model validation; geometry-recovered-uv-check.py accepts optional --harness and --assembly paths for normal combined-build reproduction when execution is available.

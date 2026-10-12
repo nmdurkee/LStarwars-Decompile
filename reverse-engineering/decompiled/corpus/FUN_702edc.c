@@ -1,0 +1,35 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_8dba402bb7d22455a765fa1be408776d0f2383442396bc16910bcc92f9a08d40
+ * Entry: 0x702edc; label: DName::DName
+ */
+
+/* Library Function - Single Match
+    public: __thiscall DName::DName(class DName const &)
+   
+   Library: Visual Studio 2005 Release */
+
+void __thiscall DName::DName(DName *this,DName *param_1)
+
+{
+  uint uVar1;
+  
+  *(uint *)(this + 4) =
+       *(uint *)(this + 4) ^ ((*(int *)(param_1 + 4) << 0x1c) >> 0x1c ^ *(uint *)(this + 4)) & 0xf;
+  uVar1 = (*(uint *)(param_1 + 4) ^ *(uint *)(this + 4)) & 0x10 ^ *(uint *)(this + 4);
+  *(uint *)(this + 4) = uVar1;
+  uVar1 = (*(uint *)(param_1 + 4) ^ uVar1) & 0x20 ^ uVar1;
+  *(uint *)(this + 4) = uVar1;
+  uVar1 = (*(uint *)(param_1 + 4) ^ uVar1) & 0x40 ^ uVar1;
+  *(uint *)(this + 4) = uVar1;
+  uVar1 = (*(uint *)(param_1 + 4) ^ uVar1) & 0x80 ^ uVar1;
+  *(uint *)(this + 4) = uVar1;
+  *(undefined4 *)this = *(undefined4 *)param_1;
+  *(uint *)(this + 4) = *(uint *)(this + 4) ^ (uVar1 ^ *(uint *)(param_1 + 4)) & 0x100;
+  uVar1 = (*(uint *)(param_1 + 4) ^ *(uint *)(this + 4)) & 0x200 ^ *(uint *)(this + 4);
+  *(uint *)(this + 4) = uVar1;
+  uVar1 = (*(uint *)(param_1 + 4) ^ uVar1) & 0x400 ^ uVar1;
+  *(uint *)(this + 4) = uVar1;
+  *(uint *)(this + 4) = (*(uint *)(param_1 + 4) ^ uVar1) & 0x800 ^ uVar1;
+  return;
+}
+

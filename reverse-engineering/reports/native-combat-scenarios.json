@@ -1,0 +1,190 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "steps": [
+    {
+      "name": "SetHitPoints5",
+      "expected": {
+        "hp": 5,
+        "maximum": 5,
+        "deathState": 0
+      },
+      "actual": {
+        "hp": 5,
+        "maximum": 5,
+        "shield": 0,
+        "deathState": 0,
+        "protection": 0.0
+      },
+      "return": 1
+    },
+    {
+      "name": "TakeDamage2",
+      "expected": {
+        "hp": 3,
+        "protection": 0.4000000059604645
+      },
+      "actual": {
+        "hp": 3,
+        "maximum": 5,
+        "shield": 0,
+        "deathState": 0,
+        "protection": 0.4000000059604645
+      },
+      "return": 1
+    },
+    {
+      "name": "Immediate second damage is protected",
+      "expected": {
+        "hp": 3,
+        "protection": 0.4000000059604645
+      },
+      "actual": {
+        "hp": 3,
+        "maximum": 5,
+        "shield": 0,
+        "deathState": 0,
+        "protection": 0.4000000059604645
+      },
+      "return": 1
+    },
+    {
+      "name": "Player opponent attacker bypasses protection",
+      "expected": {
+        "hp": 2,
+        "protection": 0.4000000059604645
+      },
+      "actual": {
+        "hp": 2,
+        "maximum": 5,
+        "shield": 0,
+        "deathState": 0,
+        "protection": 0.4000000059604645
+      },
+      "return": 1
+    },
+    {
+      "name": "SetShieldHitPoints default",
+      "expected": {
+        "hp": 2,
+        "shield": 6
+      },
+      "actual": {
+        "hp": 2,
+        "maximum": 5,
+        "shield": 6,
+        "deathState": 0,
+        "protection": 0.4000000059604645
+      },
+      "return": 1
+    },
+    {
+      "name": "Unflagged script damage reaches active shield with zero damage",
+      "expected": {
+        "hp": 2,
+        "shield": 6
+      },
+      "actual": {
+        "hp": 2,
+        "maximum": 5,
+        "shield": 6,
+        "deathState": 0,
+        "protection": 0.4000000059604645
+      },
+      "return": 1
+    },
+    {
+      "name": "Original shield hit lowers shield health",
+      "expected": {
+        "hp": 2,
+        "shield": 4
+      },
+      "actual": {
+        "hp": 2,
+        "maximum": 5,
+        "shield": 4,
+        "deathState": 0,
+        "protection": 0.4000000059604645
+      },
+      "return": 0
+    },
+    {
+      "name": "Set one health before lethal group hit",
+      "expected": {
+        "hp": 1,
+        "maximum": 1
+      },
+      "actual": {
+        "hp": 1,
+        "maximum": 1,
+        "shield": 4,
+        "deathState": 0,
+        "protection": 0.0
+      },
+      "return": 1
+    },
+    {
+      "name": "TakeDamage set1 executes native lethal cleanup",
+      "expected": {
+        "hp": 0,
+        "deathState": 2
+      },
+      "actual": {
+        "hp": 0,
+        "maximum": 1,
+        "shield": 4,
+        "deathState": 2,
+        "protection": 0.0
+      },
+      "return": 1
+    },
+    {
+      "name": "Setting health alone does not revive dead state",
+      "expected": {
+        "hp": 4,
+        "maximum": 4,
+        "deathState": 2
+      },
+      "actual": {
+        "hp": 4,
+        "maximum": 4,
+        "shield": 4,
+        "deathState": 2,
+        "protection": 0.0
+      },
+      "return": 1
+    },
+    {
+      "name": "Dead target rejects subsequent scripted damage",
+      "expected": {
+        "hp": 4,
+        "deathState": 2
+      },
+      "actual": {
+        "hp": 4,
+        "maximum": 4,
+        "shield": 4,
+        "deathState": 2,
+        "protection": 0.0
+      },
+      "return": 1
+    }
+  ],
+  "mismatches": [],
+  "failures": [],
+  "scope": "One persistent synthetic NPC world. All command, hit, protection and death functions execute unchanged. Only media/rumble/alert boundaries inherited from fixture are intercepted; no final hit or death callback replacement.",
+  "functions": [
+    "0x44b150",
+    "0x44b290",
+    "0x44fd10",
+    "0x438230",
+    "0x433be0",
+    "0x414ab0",
+    "0x437770",
+    "0x4364e0"
+  ],
+  "limits": [
+    "A programmed command sequence, not a complete original SCP scheduler or a live level.",
+    "No-parts character flag0x2000000 selects original no-debris branch.",
+    "No populated AI, game scripts, player death/stud drops or graphics/audio APIs."
+  ]
+}

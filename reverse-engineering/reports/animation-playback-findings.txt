@@ -1,0 +1,174 @@
+PC character animation playback reconstruction
+
+The isolated original executable now agrees byte-for-byte with an independent
+finite Python reconstruction in 34,000 synthetic cases: 18,000 UpdateAnimTimer
+(0x62e760) cases and 16,000 complete UpdateAnimPacket (0x62e9b0) cases. Every one
+of the 72 packet bytes is checked, including untouched bytes. No original callee
+or callback was replaced and no live game process was started.
+
+Authored verification adds 2,911 AN3 end-frame comparisons through the original
+0x5ca470 and 7,200 consecutive playback frames using native-loaded Qui-Gon
+definitions and actual ANI headers. All 44,111 comparisons have zero mismatches.
+The native anim_start handler 0x585760 and its original parser/name-lookup callees
+processed all 58 authored Qui-Gon blocks in first-load mode 0x20. It produced 57
+definitions; swipeBehind has no action directive and the native handler skips
+it. This is retained as source evidence, not repaired. Effect-allocation mode
+0x40 and the full character configuration dispatcher are outside this fixture.
+
+Portable source is reconstructed/animation/AnimationPlayback.cs. It compiles as
+dependency-free AnyCPU C# alongside CharacterContexts.cs and RespawnState.cs.
+The managed differential harness now has 102,788 prepared oracle cases including
+16,000 full packet records. Managed execution remains PENDING because Windows
+denies launching the new managed harness. No compiled behavioral pass is claimed.
+The original native/Python comparisons above are completed independently.
+
+Packet layout (object embeds this packet at +8):
+  +00 current time f32; +04 previous time f32
+  +08 blend elapsed f32; +0c blend duration f32
+  +10 source clip time f32; +14 target clip time f32
+  +18..2f preserved unknowns
+  +30 flags byte; +31 blending byte
+  +32 source action i16; +34 target action i16
+  +36 current action i16; +38 previous action i16; +3a requested action i16
+  +3c source reversed; +3d target reversed; +3e current reversed
+  +3f..41 preserved unknowns; +42 overlay action i16 (-1 absent)
+  +44 preserved unknown f32
+
+CORRECTION to earlier prose: +32 is SOURCE and +34 is TARGET. Accordingly,
+object+3a is source and object+3c target. AnimPlaying 0x62f150 with arguments
+(packet, action, 1, 0) accepts the current/target action, not the source action.
+CharacterContexts.PlayingTimeOffset parameter labels and death-readiness text
+have been corrected; offsets and positional call behavior were already correct.
+
+Packet flags: 01 finished,02 looped,04 changed,08 reverse-time playback,
+10 paused,20 zero frame step,40 blend finished,80 force restart. Flags are cleared
+per update except values explicitly produced by that update. Old pause applies
+only to the normal single-clip timer branch. Previous time captures current time
+or the blend target time before the update. A zero frame step exits with flag20.
+
+Blends use the minimum of source blend-out and destination blend-in when both
+exceed this update's blend step. Looped clips with equal FPS and equal end frame
+start the target at the source phase; others start at1 or the end for backwards
+playback. A zero blend-in destination interrupts immediately. Blend mode1 can
+interrupt using source or target according to which half of the blend elapsed.
+The PC unconditionally overwrites the interrupted source reverse choice with
+the current reverse flag; this oddity is preserved. Blend completion copies the
+target ID/time/reverse state to current. Overlay animation has separate source
+and target timers; loop/finished events come only from the target.
+
+Timer definitions (native76-byte animdata records): flags+4 (bit2 cycle,
+bit80 can play backwards), action i16+8, blend-in/out+10/+14, FPS+18,
+movement reference+1c, maximum FPS+20. If reference>0, rate becomes
+float32((movement/reference)*FPS), with native intermediate precision, then a
+same-sign nonzero maximum clamps it. The ordinary caller passes absolute motion
+into the timer. Frame delta is frameStep/30*rate, optionally reversed and scaled
+by backwardsMultiplier. Loop range is1..endFrame with span(endFrame-1); endpoint
+<=1 collapses to1. Noncycling clips clamp and emit finished when events enabled.
+Requested backwards direction changes the reverse state at loop boundaries.
+ANI4/ANI5 endFrame is u16(header+0a)+u16(header+0e); legacy is firstfloat32.
+
+PC arithmetic is material: x87 precision control is64 significand bits. A
+division rounded to64 bits followed by multiplication can change which side of
+a float32 midpoint is reached. Three original cases differed by one float32 bit
+with ordinary double/algebraic reassociation. The integer-based helper now
+reproduces the intermediate rounding. It is a finite arithmetic subset, not a
+general x87 emulator. The shared FiniteX87.Dot3PlusConstant facade additionally
+supports the geometry worker's left-associative plane math with cancellation.
+
+Orchestration boundary (0x418ca0, observed native source/assembly):
+  object+40 = object+3e and object+7f0 = object+7ee before selection.
+  Unless object API flags+1f8 bit40000 is set, invoke characterData+1c callback.
+  Apply action override +3ee/+3f0 including sentinel233/context28 condition.
+  Missing model and selected death/fade states return before playback.
+  Select movement speed from pad+28/+34 or movement projected onto facing;
+    special character configuration and context45 modify this selection/rate.
+  Call 62e9b0(model, object+8, dt*30*rate, signedMovement, dt*rate,
+    gameCharacterData.backwardsFactor).
+  Changed action95 has additional random phase treatment.
+  Then AutoWeaponOnOff58dd90 and AddFootSteps58bc60 execute.
+This wrapper and its callback/effect dependencies are NOT implemented or claimed
+as covered by UpdatePacket. Context selection and resolved clip construction are
+host adapters. AnimationPacket.FromObject/CopyToObject bridge the existing
+PcObjectImage context module; PlaybackClip.FromDefinition accepts recovered raw
+definition/header bytes. Neither adapter guesses callback ordering or time.
+
+The timer's PC calling convention is unusual: AX carries action ID and EDI the
+model pointer, while remaining arguments are on the stack. Pseudocode alone
+omits these inputs. The NativeX86 fixture explicitly seeds those registers.
+
+Limits: finite ordinary metadata, valid clip references, bounded loop counts;
+no NaNs, invalid pointers, extreme ranges or signed-zero corner-case equivalence
+claim. Deterministic authored request schedules are test fixtures, not recovered
+player/AI choices. Skeletal pose interpolation/export is separately verified in
+the earlier animation reports; playback does not itself evaluate/render poses.
+
+Reproduce native evidence:
+  python tools/animation-playback-native-verify.py
+  python tools/animation-playback-authored-verify.py
+  python tools/animation-playback-evidence.py
+Compile only:
+  reconstructed/animation/build.ps1 -CompileOnly
+Run managed differential later when ordinary execution is available:
+  reconstructed/animation/build.ps1
+
+All-character binding follow-up
+
+The original text preprocessor54be70, line/token parsers, animation handler585760
+and its callees processed all3,197 cataloged blocks across342 configurations.
+The scan also replays all160 preceding same-file bsa_default directives through
+original584d50. Native589410 clears parser globals before each file invocation,
+so BSA default starts off. First-load allocation mode20 and animation count0 are
+fixture inputs; permanent effect allocation mode40 and inherited definition
+replacement remain outside this scan. Definitions retain all76 raw bytes, source
+hash/line, native consumed source boundary, and exact action ID/name.
+
+There are3,004 emitted definitions and193 native skips:168 lack an action and25
+use action names absent from the PC registry. No fixture failures remain. Three
+catalog blocks without an explicit anim_end consume through a later block's
+anim_end; this native boundary is recorded, not silently repaired.
+
+2,700 emitted definitions have the requested local AN3. The original common
+animation callback55b260 was independently compared across3,004 definitions plus
+a null-table case, with zero mismatches. Its pinned40-entry table at7f2228 checks
+both action ID and case-insensitive exact name;236 further definitions redirect
+to existing COMMONANIMS files. Redirect clears definition BSA bit8. There is no
+arbitrary same-name lookup across character folders.
+
+The68 remaining local AN3 misses classify as:
+ 44: DARTHPLAGUEIS configuration, only local TXT and no model/clip files; its
+     registration is explicitly commented out in CHARS.TXT.
+  3: valid same-action definitions elsewhere in the same source (two Han Solo
+     configs use shared ride_generic_new_blasterchar; Watto has force_choke).
+  1: Watto throw has an explicitly enabled, already decoded local BSA.
+  3: Watto slide/ride_landspeeder/ride have local BSA, but the source defaults
+     and block directives leave BSA disabled. Existence is not AN3 substitution.
+  2: WEIRDO1/2 request highjumpland; the shipped local name is HIGHJUMP_LAND.AN3.
+     Native redirect does not normalize punctuation. The candidate is retained.
+ 15: requested local asset absent, with no verified redirect or same-action
+     alternative. Other characters' similarly named clips are not substituted.
+
+The alternate table855f6c begins with a null pointer in the pinned image. Original
+callback execution against every residual definition confirms no match/no writes
+(68 cases). Native401100 with its constructor loop empty sets7f39e4=1 in5 tested
+initial states;42e160 chooses the40-entry table for nonzero7f39e4, and the empty
+table for zero. Full42e160 initialization and unforeseen indirect mutations are
+not claimed as verified.
+
+The actual game-specific variant keyword is413b70 (registered at7f1724). Fifty
+original cases, including every observed spelling, known variants and unknowns,
+confirm it only changes gameCharacter+116 for recognized names; all1024 fixture
+bytes are checked. It does not load assets or redirect paths. Another160 original
+cases verify BSA-default flag changes while preserving unrelated bits. Combined
+binding-helper verification is283 cases, zero mismatches.
+
+Playback plus binding evidence now totals47,399 independent comparisons with zero
+mismatches, in addition to the3,197 inventoried native animation-block executions
+and160 source-default replays. These numbers do not imply managed execution or a
+whole character-loader reconstruction. Core portable source and its14 mapped
+native entrypoints are unchanged by this inventory follow-up.
+
+Reproduce follow-up:
+  python tools/animation-playback-catalog-native.py
+  python tools/animation-playback-common-native.py
+  python tools/animation-playback-binding-audit.py
+  python tools/animation-playback-evidence.py

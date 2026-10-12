@@ -1,0 +1,105 @@
+PC SCRIPT DISPATCH AND RUNTIME CONTRACT
+
+146472 original-code checks passed with no mismatches.
+
+lookup:
+SCP names compare case-insensitively. The game table precedes the built-in table and its first matching entry wins. A null function can still have a valid named definition (PreviousResult).
+  reverse-engineering/decompiled/corpus-expanded/FUN_512ea0.c:14 — if (DAT_00922224 != (undefined **)0x0) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_512f00.c:15 — if (DAT_00922228 != (undefined **)0x0) {
+
+scpConditionRecords:
+{"+0x08":"float constant operand","+0x0c":"comparison byte: == < > <= >= !=","+0x0d":"variable index","+0x0e":"flags: bit0 chains next condition with AND; bit2 selects packet variable; bit3 dynamic cached operand","+0x14":"argument pointer","+0x18":"initializer result","+0x1c":"definition pointer","+0x24":"target state","+0x28":"optional second condition operand"}
+  reverse-engineering/decompiled/corpus-expanded/FUN_52b3f0.c:58 — (*DAT_00922218 <= *DAT_00922214 + 0x2cU)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_514140.c:45 — pcVar1 = *(code **)(*(int *)(iVar6 + 0x1c) + 8);
+  reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c:56 — switch(*(undefined1 *)(iVar4 + 0xc)) {
+
+scpConditionFlow:
+Bit0 at condition+0x0e joins the next condition with AND. An unmarked passing final record is returned; a failing member skips the remainder of its marked group. Unchained groups are ordered alternatives. PreviousResult has a null handler and reuses the preceding float result.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c:25 — fVar5 = (float10)(*pcVar1)(param_1,iVar3,param_3,*(undefined4 *)(iVar4 + 0x14),
+  reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c:63 — return iVar4;
+
+scpActionRecords:
+{"+0x00":"next linked action","+0x08":"argument string pointer array","+0x0c":"argument count","+0x10":"definition pointer"}
+  reverse-engineering/decompiled/corpus-expanded/FUN_52b9c0.c:67 — (*DAT_00922218 <= *DAT_00922214 + 0x14U)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:147 — FUN_0053db30(iVar6,param_3);
+
+scpActionFlow:
+Packet+0x24 timer increments by delta each update. Handler return zero retains current action for another frame; nonzero advances within the same update. Packet+0x50 bit0 marks the first call of an action; the dispatcher clears it before calling the handler and passes firstCall=1.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:27 — param_4[9] = (int)((float)param_4[9] + param_5);
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:150 — iVar6 = (**(code **)(*(int *)(iVar6 + 0x10) + 4))
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:153 — if (iVar6 == 0) break;
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:180 — FUN_005145a0(puVar3,puVar3[0x2f]);
+
+parserUnknownName:
+Missing SCP action or condition lookup takes the error-report path and continues parsing; the relevant 0x512850/0x512860/0x512870 routines in this PC build are return stubs. Unbound source names are preserved exactly and not silently assigned a similarly spelled handler.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52b9c0.c:61 — iVar1 = FUN_00512f00();
+  reverse-engineering/decompiled/corpus-expanded/FUN_512850.c:10 — return;
+  reverse-engineering/decompiled/corpus-expanded/FUN_512860.c:10 — return;
+  reverse-engineering/decompiled/corpus-expanded/FUN_512870.c:10 — return;
+
+gitKinds:
+Kind0 gizmo, kind1 condition, kind2 action; the output callback is separate from the process callback.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:24 — iVar6 = (*(code *)(&PTR_FUN_00805518)[(uint)param_2[3] * 3])(param_1,param_2,param_3);
+
+gitPredicates:
+{"lookup":"Case insensitive; game table wins over built-in, first name entry wins; unknown returnsNULL. PreviousResult has a real table entry withNULL handler.","All":"All parent output checks nonzero; true for zero parents.","Any":"At least one parent output nonzero; false for zero parents.","None":"No parent output nonzero; true for zero parents.","Sum":"At least threshold parent outputs nonzero; for zero parents true only for zero threshold. Counts booleans, not magnitudes.","Exactly":"Number of nonzero parent outputs equals threshold.","Loop":"Requires all parent outputs, or totalParents-loopSkip when flag0x400 is set. Successful predicate then propagates/reset-walks children; this side effect excluded by zero-child fixtures."}
+  reverse-engineering/decompiled/corpus-expanded/FUN_59db00.c:48 — switch(*pcVar2) {
+
+gitScheduler:
+An active node (flags+0x0a bit0) invokes its kind process callback. Success clears active and sets 0x802, activates each child, and recursively processes a child whose generation byte+8 differs, or whose parent is a condition node. Tick generation, condition monitoring, Loop reset traversal and timer propagation now have bounded original-PC checks in gameplay-git-runtime-contract.json. NuSpecial visibility/reversal and saved graph state are now verified in gameplay-reconstruction.json; other physical types remain open.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:21 — if ((param_2[10] & 1) == 0) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:33 — uVar5 = uVar2 & 0xfffe | 0x802;
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:98 — FUN_0059e090(param_1,*(undefined4 *)(*(int *)(param_2 + 0x14) + iVar6 * 4),param_3);
+
+gitActions:
+After parent outputs pass, the action node walks records at node+0x0c in order. Each record has next+0, argumentArray+4, count+8, definition+0xc; non-null definition+4 receives (flow,node,argumentArray,count).
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f8d0.c:32 — FUN_0059e030(param_1,param_2);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e030.c:17 — (*pcVar2)(param_1,param_2,puVar1[1],puVar1[2]);
+
+Unresolved names in relevant native tables:
+scp-condition: GotLocatorInGroup (4 source uses; full paths/lines in JSON)
+scp-condition: ObstacleFinished (8 source uses; full paths/lines in JSON)
+scp-action: SetVisbility (10 source uses; full paths/lines in JSON)
+scp-action: AddLocatorGroup (27 source uses; full paths/lines in JSON)
+scp-action: SetDefensive (37 source uses; full paths/lines in JSON)
+scp-condition: DoorOpened (6 source uses; full paths/lines in JSON)
+scp-condition: DoorOpenedByPlayer (4 source uses; full paths/lines in JSON)
+scp-action: LockDoor (10 source uses; full paths/lines in JSON)
+scp-action: CloseDoor (4 source uses; full paths/lines in JSON)
+scp-action: UnLockDoor (14 source uses; full paths/lines in JSON)
+scp-action: OpenDoor (10 source uses; full paths/lines in JSON)
+scp-action: ResetTime (5 source uses; full paths/lines in JSON)
+scp-condition: JustComeFromE (1 source uses; full paths/lines in JSON)
+scp-action: SetPlayType (5 source uses; full paths/lines in JSON)
+scp-action: FollowSpline (5 source uses; full paths/lines in JSON)
+scp-action: ActivateGadget (7 source uses; full paths/lines in JSON)
+scp-action: MakeExplosion (1 source uses; full paths/lines in JSON)
+scp-action: FollowSock (2 source uses; full paths/lines in JSON)
+scp-condition: GadgetActive (3 source uses; full paths/lines in JSON)
+scp-condition: PreviousMessage (1 source uses; full paths/lines in JSON)
+scp-condition: ObstacleChainPhase (4 source uses; full paths/lines in JSON)
+scp-action: GoToOrign (2 source uses; full paths/lines in JSON)
+scp-condition: DoorClosed (2 source uses; full paths/lines in JSON)
+scp-action: GoToLoc (1 source uses; full paths/lines in JSON)
+scp-action: DisableObstacle (2 source uses; full paths/lines in JSON)
+scp-action: Wander (1 source uses; full paths/lines in JSON)
+scp-action: SXetGravityHeight (1 source uses; full paths/lines in JSON)
+scp-action: SetObstacleChainPhase (13 source uses; full paths/lines in JSON)
+scp-condition: lowupBlownup (1 source uses; full paths/lines in JSON)
+scp-action: SetMesssage (1 source uses; full paths/lines in JSON)
+scp-action: GetLocatorFromGroup (11 source uses; full paths/lines in JSON)
+scp-action: EngageTurret (3 source uses; full paths/lines in JSON)
+scp-condition: HothBattleWaveCreature (5 source uses; full paths/lines in JSON)
+scp-condition: ObstaclePlaying (2 source uses; full paths/lines in JSON)
+scp-action: if (1 source uses; full paths/lines in JSON)
+scp-action: ObstacleTriggerSet (7 source uses; full paths/lines in JSON)
+scp-action: AddLocatorSet (5 source uses; full paths/lines in JSON)
+scp-action: ThrowThermal (1 source uses; full paths/lines in JSON)
+
+Catalog parser warnings: 241; {"Unclosed quote":148,"Unclosed block":8,"Unmatched end directive":82,"Unmatched closing brace":3}.
+All warnings and unbound uses are retained in gameplay-dispatch-contract.json.
+
+Inter-script transitions have bounded native verification; full gameplay action behavior and dynamic condition operands remain open. See gameplay-command-semantic-coverage.json for every shipped command name.
+GIT timer/random callbacks, monitored conditions and Loop resets are verified separately; NuSpecial callbacks and saved graph-state restoration are verified in gameplay-reconstruction.json; other physical types and source Collapse loading remain open.
+Broad adjacent-pointer scan candidates are retained separately from registered dispatch proof.
+Malformed or obsolete-looking source lines are not rewritten.

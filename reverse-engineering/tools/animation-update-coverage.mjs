@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises';import path from 'node:path';
+const root=path.resolve('reverse-engineering/reports'),file=path.join(root,'animation-coverage-summary.json'),summary=JSON.parse(await fs.readFile(file,'utf8'));
+for(const name of['animation-scene-preview','animation-scene-preview-validation','animation-scene-state-export'])summary.summaries[name]=JSON.parse(await fs.readFile(path.join(root,name+'.json'),'utf8')).totals;
+for(const name of['animation-scene-pose-native-verification','animation-scene-state-native-verification']){const r=JSON.parse(await fs.readFile(path.join(root,name+'.json'),'utf8'));summary.verified[name]={mismatches:r.mismatches,failures:r.failures.length,samples:r.samples,...(r.matrixScalars?{matrixScalars:r.matrixScalars,maxAbsoluteError:r.maxAbsoluteError,maxNormalizedError:r.maxNormalizedError}:{tracks:r.tracks})};}
+summary.generated=new Date().toISOString();await fs.writeFile(file,JSON.stringify(summary,null,2));console.log(summary.summaries['animation-scene-preview-validation']);

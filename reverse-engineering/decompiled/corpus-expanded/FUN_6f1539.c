@@ -1,0 +1,36 @@
+/* Ghidra pseudocode, not original source.
+ * ev_97f9900fcd0ba7492838edfd98b0150dba956191b40272664bd26bb1f92bea67
+ * Entry: 0x6f1539; label: ___heap_select
+ * Boundary hypotheses: reports/native-boundary-seeds.json.
+ */
+
+/* Library Function - Single Match
+    ___heap_select
+   
+   Library: Visual Studio 2005 Release */
+
+undefined4 ___heap_select(void)
+
+{
+  int iVar1;
+  uint local_c;
+  int local_8;
+  
+  local_8 = 0;
+  local_c = 0;
+  iVar1 = __get_osplatform(&local_8);
+  if (iVar1 != 0) {
+                    /* WARNING: Subroutine does not return */
+    __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);
+  }
+  iVar1 = __get_winmajor(&local_c);
+  if (iVar1 != 0) {
+                    /* WARNING: Subroutine does not return */
+    __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);
+  }
+  if ((local_8 == 2) && (4 < local_c)) {
+    return 1;
+  }
+  return 3;
+}
+

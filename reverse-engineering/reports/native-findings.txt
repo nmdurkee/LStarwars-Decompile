@@ -1,0 +1,107 @@
+NATIVE CODE FINDINGS — LEGO STAR WARS: THE COMPLETE SAGA (PC)
+Date: 2026-10-12
+Scope: static reverse engineering of the supplied executable. No game execution or runtime validation.
+All addresses below are virtual addresses in the unpacked analysis copy, image base 0x00400000.
+OBSERVED means directly supported by bytes, imports, disassembly, or shipped text. INFERENCE means an interpretation requiring further validation. UNRESOLVED marks an open question.
+
+1. Executable identity and analysis provenance
+OBSERVED: The supplied executable is PE32 x86, native code; its CLR directory is absent. Imports include Direct3D 9, DirectInput 8, XInput1_3 and Bink32. Embedded build/source strings reference LEGOStarWarsSaga.pdb, nu2api.saga, nucore/nufile.c, nucore/nupad.cpp and nu3d/nucamera_gen.c. The PDB itself was not present.
+INFERENCE: These strings and interfaces identify the Nu2-era PC engine family. They do not expose an original source tree or prove every linked module's identity.
+
+Original: Lego Star Wars Saga/LEGOStarWarsSaga.exe
+SHA-256: 085688e73561c61f4619fcf1f3006c56425ca365e80ea5fc0175bab334cec671
+Analysis copy: reverse-engineering/binary/LEGOStarWarsSaga.packed.exe.unpacked.exe
+SHA-256: 6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+The original .text section had near-maximal byte entropy and a .bind entry wrapper. Steamless 3.1.0.5 identified SteamStub 2.1 x86 and produced a separate unpacked copy; the original's hash remained unchanged. See binary-provenance.json and unpack.log.
+
+REA 6.4.0 / Ghidra 12.1.4 recognized 7,624 procedures, 194 external procedures and 41 thunks in the analysis copy. These are analysis counts, not recovered original source functions or a completeness measure.
+Evidence: rea/002-overview.result.json, ev_f584de0b71e57f05c7ed043d671bf8c56a8d165eeadef371d7a7d41639618428.
+
+2. Script command associations and camera path
+OBSERVED: Data at 0x007f7618 contains the adjacent values {0x00756354, 0x004509d0, 1}; the first points to "CameraCut". Function 0x004509d0 parses the same camera parameters found in shipped SCP scripts.
+INFERENCE, strong: 0x004509d0 is the CameraCut command handler. The data association and matching parameters support this; runtime dispatch was not traced.
+
+Observed flow:
+ shipped CameraCut parameters
+   -> 0x004509d0: parse parameters, resolve target/locator/object, construct camera settings
+   -> 0x00577880: write camera descriptor and position/target state
+   -> 0x00577790: write timing/blend state and reset tracking fields
+
+The parser recognizes Reset, use_current_campos, start_time=, end_time=infinite, end_time=, blend_in_time=, blend_out_time=, tgt_locator=, tgt_character=, tgt_obj=, cam_locator=, range=, roty=, rotx=, FollowTgt, dcampos_x/y/z=, campos_x/y/z=, tgtpos_x/y/z= and no_borders.
+0x00577880 writes a descriptor at 0x009514f0, a position triple at 0x009518fc/0x00951900/0x00951904 and a target triple at 0x00951908/0x0095190c/0x00951910. Optional target-tracking pointer fields appear at 0x00951920/0x00951924. Their full structures and lifetime are unresolved.
+
+Files: decompiled/camera-cut.c, camera-cut-state.c, camera-timing.c.
+Evidence:
+  rea/004-camera-cut.result.json
+    ev_4e96dd5d3ce0e9409c65e7feb28b257dbc14d95b09cc41eb7e967f91619c9d86
+  rea/013-camera-cut-state.result.json
+    ev_a15cfc0c75286367d728e200eb91ac6d7c67b3da56f05fa63365a2aee7c5bdc8
+  rea/017-camera-timing.result.json
+    ev_b93162f417ce769d18c418ca0f4e32c22833544a379c82d303174eb029042845
+
+0x0044d210 parses mul=, time= and speed= with apparent defaults 1, 0 and 1, then calls 0x00549bb0 with the camera pointer at PTR_DAT_008021b4. Its association with CameraShake is supported by the candidate command table and parameters. See decompiled/camera-shake.c and rea/005-camera-shake.result.json. Units and waveform remain unresolved.
+
+Concrete script counterpart: NEGOTIATIONS_C/AI/DROIDEKA.SCP includes a CameraCut targeting Droideka_1, position parameters 5/0/-19, duration 7, blend 0.5 and FollowTgt. Exact path/line citations are in asset-findings.txt.
+
+UNRESOLVED: Regular gameplay follow-camera update, projection/frustum handling, camera-relative movement, camera-dependent visibility and script timing behavior when a cinematic camera is ignored. Identifying a CameraCut handler does not establish that all camera behavior is isolated there.
+
+3. Controller hardware polling and internal layout
+OBSERVED: XInput1_3 import ordinals are resolved by Ghidra as GetCapabilities (4), GetState (2) and SetState (3). The GetState thunk is 0x00740a64; a call at 0x006d7584 belongs to 0x006d74e0. The function uses pad indices 0–3 when the device-kind field equals 6, calls XInputGetState, and lazily queries capabilities. It also contains a DirectInput branch.
+
+In the XInput branch, the output staging buffer has these byte offsets:
+ Offset       Physical input          Stored representation
+ 0x40–0x43   A, B, X, Y              one byte per button, 0 or 1
+ 0x44–0x45   left/right shoulder     one byte per button, 0 or 1
+ 0x46–0x47   Back, Start             one byte per button, 0 or 1
+ 0x48–0x49   left/right stick click  one byte per button, 0 or 1
+ 0xc0–0xc3   up, right, down, left   one byte per direction, 0 or 1
+ 0x00        left stick X            signed 16-bit
+ 0x02        left stick Y            signed 16-bit, inverted
+ 0x06        right stick X           signed 16-bit
+ 0x08        right stick Y           signed 16-bit, inverted
+ 0x0c–0x0e   left/right trigger      16-bit values, incoming byte shifted left 7
+The trigger fields are at 0x0c and 0x0e, not every byte in that range.
+The Y paths change -32768 to -32767 before negation. Each stick pair then passes through 0x006d4880.
+Button naming uses the official XINPUT_GAMEPAD bit-mask specification:
+https://learn.microsoft.com/en-us/windows/win32/api/xinput/ns-xinput-xinput_gamepad
+
+Evidence: rea/016-controller-poll.result.json,
+ ev_09cb75761c9a4fd5cfd40fddd48bea44f2ed8c961afae57ce686f0d39c64d1bb.
+Related import/caller evidence: rea/006-input-procedures.result.json and rea/012-getstate-procedures.result.json.
+Code: decompiled/controller-poll.c.
+
+0x006d9df0 participates in device initialization/enumeration; it references Saitek P2600/P2900 names as well as XInput and DirectInput paths. Code: controller-init.c. Evidence: rea/018-controller-init.result.json, ev_fed85fc65eb4cc84aa29189fd3c7f4ad563bc8921c7bc70185b870b2b5354397.
+
+UNRESOLVED: The exact stick-filter/deadzone formula. Ghidra's pseudocode for 0x006d4880 loses x87 floating-point calculations and cannot be translated literally. Both pseudocode and 115 assembly lines were retained in stick-filter.c and stick-filter.asm.txt. Assembly shows squared-magnitude work and scaling/clamping, but no exact formula is asserted here.
+Evidence: rea/019-stick-filter.result.json,
+ ev_0755810926ff77a89e2dcd186a76c69177137871e250c85cd6e95818c3300974.
+
+4. Hardware-to-gameplay input mapping — partially traced
+Observed call relationships:
+ 0x006dae50 -> 0x006daa40 -> 0x006d74e0 (poll)
+                           -> 0x006d7d80 (mapping)
+ 0x006d8760 -> 0x006d74e0 (other consumer)
+
+0x006daa40 polls and invokes the mapping routine, returning input values/flags through output parameters. 0x006d7d80 switches on mapping types, including digital reads from staging-buffer + 0x40 + index and positive/negative analog-axis cases. Fields at object + 0x6568 and + 0x67e4 participate in threshold/configuration handling; complete object layouts are not recovered.
+0x006d8760 iterates device slots and updates state. Its role beyond that observation is not yet proven.
+Files: input-read-wrapper.c, input-mapping.c, input-state-processing.c.
+Evidence:
+  rea/021-input-state-processing.result.json
+    ev_aa5a90d7ceee514e62e8f1c6c9a7fcfde4f37be693de665e18130d92a5509643
+  rea/022-input-read-wrapper.result.json
+    ev_ea595d4ca5e235950ff013117e04d5105894c54ff2f4b0acc6da209a028a10bb
+  rea/024-input-mapping.result.json
+    ev_d758c225e481529418ca2d1c01afd9ab5f4b7c4670d93fad0ee41d08f14df24e
+  rea/025-game-input-callers.result.json
+    ev_40cab4fba8e8faa5e85d8d3101e44b79852b723f923d26cbf9d4b7c95853f3b0
+
+The extracted localization declares logical actions SPECIAL, TAG, JUMP, ACTION and TOGGLELEFT/TOGGLERIGHT. BUTTONS_360.TXT defines display glyphs, not a gameplay binding table. Physical staging-buffer offsets above must not be presented as those logical actions.
+UNRESOLVED: Default binding tables, action enums, configurable remapping, analog thresholds, per-frame edges and mapping to character movement/action calls. The immediate next native probe is 0x006dae50 and the construction of the mapping configuration read by 0x006d7d80.
+
+5. Coverage and interpretation limits
+The unpacked-byte scan produced 1,057 candidate name/function records; 227 addresses matched recognized procedure entries and 830 did not. These are candidates, not 1,057 confirmed commands. See dispatch-correlated.json and unpacked-pe/dispatch-candidates.json. The older dispatch-candidates.json at the reports root used the packed input; prefer the unpacked results.
+A ResetGameCamera candidate at 0x0044d300 could not be decompiled because this session had no recognized procedure there (rea/003-reset-camera.result.json). Empty Ghidra xrefs for CameraCut do not prove it is unused; the raw data association exists.
+Ghidra inferred inconsistent return types between some callers/callees, including the polling wrapper. Missing types, x87 handling and calling conventions require assembly review before treating pseudocode as executable logic.
+All decompiled/*.c files are analysis pseudocode with synthetic names, not original source code or a buildable C/C++ project. No patches to the supplied executable were made; only the separate unpacked analysis copy was analyzed.
+The static findings have not been checked against a running game. Rendering, physics, collision, navigation, AI scheduling, saves, audio dispatch and the bulk of gameplay code remain outside the completed native scope.
+The REA bundle's "unknowns" counter is a tool-record field, not a statement that this investigation has no unknowns. Use the explicit UNRESOLVED items in these reports.

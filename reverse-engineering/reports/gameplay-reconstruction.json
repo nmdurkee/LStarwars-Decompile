@@ -1,0 +1,435 @@
+{
+  "generatedAt": "2026-10-12T19:38:45.969Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original-PC GIT state and physical callback contracts plus portable C# reconstruction of bounded established behavior.",
+  "contracts": {
+    "save": {
+      "description": "0x59f3b0 clears exactly 0x144 bytes, sets word 0 to 1, then saves five 512-bit planes for node flags 1, 0x100, 2, 0x20 and 0x400. Each plane is 16 little-endian uint32 words. Node i uses word i>>5 and bit i&31. No native bound check is present in this loop; the reconstruction rejects more than 512 nodes for save/restore.",
+      "bytes": 324,
+      "planes": [
+        {
+          "offset": 4,
+          "mask": "0x1"
+        },
+        {
+          "offset": 68,
+          "mask": "0x100"
+        },
+        {
+          "offset": 132,
+          "mask": "0x2"
+        },
+        {
+          "offset": 196,
+          "mask": "0x20"
+        },
+        {
+          "offset": 260,
+          "mask": "0x400"
+        }
+      ],
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f3b0.c",
+          "line": 16,
+          "excerpt": "_memset(param_2,0,0x144);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f3b0.c",
+          "line": 28,
+          "excerpt": "param_2[iVar1 + 0x11] = param_2[iVar1 + 0x11] | uVar2;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f3b0.c",
+          "line": 37,
+          "excerpt": "param_2[iVar1 + 0x41] = param_2[iVar1 + 0x41] | uVar2;"
+        }
+      ]
+    },
+    "restore": {
+      "description": "With nonzero saved word 0, 0x59f4e0 resets flow/node tick generations and restores flags 1, 2, 0x20 and 0x400. The saved monitor plane (0x100) is not read: the existing runtime 0x100 value survives. Other flags remain as before restoration. Non-Loop reset stamps remain unchanged. Loop nodes recompute their return-input count; their restored 0x400 value is independent of that count. These are graph-state rules, not the complete level or save-file restore pipeline.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c",
+          "line": 21,
+          "excerpt": "FUN_0059f2a0(param_1);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c",
+          "line": 27,
+          "excerpt": "pcVar6[8] = '\\0';"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c",
+          "line": 82,
+          "excerpt": "uVar4 = (byte)((param_2[iVar3 + 1] & uVar5) != 0 ^ (byte)uVar4) & 1 ^ uVar4;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c",
+          "line": 84,
+          "excerpt": "uVar4 = (byte)(((param_2[iVar3 + 0x21] & uVar5) != 0) * '\\x02' ^ (byte)uVar4) & 2 ^ uVar4;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c",
+          "line": 86,
+          "excerpt": "uVar4 = (byte)(((param_2[iVar3 + 0x31] & uVar5) != 0) * ' ' ^ (byte)uVar4) & 0x20 ^ uVar4;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c",
+          "line": 89,
+          "excerpt": "((ushort)((param_2[iVar3 + 0x41] & uVar5) != 0) * 0x400 ^ uVar4) & 0x400 ^ uVar4;"
+        }
+      ]
+    },
+    "callbackOrder": {
+      "description": "0x55a250 activation first makes the gizmo visible when activating, then calls its activation callback. 0x55a2b0 visibility first deactivates when hiding, then calls visibility. 0x55b0e0 is a reversal wrapper: query reverse callback with mode 3 or 7; only on true, mutate with mode 2 or 6. Mode 6 also applies visibility=!reversed through 0x55a2b0. A no-change query does not repair mismatched visibility.",
+      "runtimeSlots": {
+        "activate": "0x54",
+        "reverse": "0x58",
+        "visibility": "0x5c"
+      },
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_55a250.c",
+          "line": 19,
+          "excerpt": "(*pcVar2)(param_2,1);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_55a2b0.c",
+          "line": 18,
+          "excerpt": "(*pcVar1)(param_2,0);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_55b0e0.c",
+          "line": 21,
+          "excerpt": "((iVar2 = (*pcVar1)(param_2,param_3,uVar3 | 1), iVar2 != 0 &&"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_55b0e0.c",
+          "line": 24,
+          "excerpt": "FUN_0055a2b0(param_1,param_2,param_3 == 0,1);"
+        }
+      ]
+    },
+    "special": {
+      "description": "The actual NuSpecial registration 0x5ae8e0 binds activation 0x5ae450, reversal 0x5ae4a0 and visibility 0x5ae520. Object+0x20 points to GameAnimSet; byte+0x24 has reversed flag 1 and active flag 2. Activating jumps to start then plays +1; deactivating stops. Reverse query compares flag 1; mutation plays -1 or +1 and changes only that flag. Visibility passes to GameAnimSet, then the actual scene-instance visibility function. The fixture included one static instance, its bounds state, and an animation control record; no callback was replaced.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5ae8e0.c",
+          "line": 45,
+          "excerpt": "_DAT_0095e0a8 = FUN_005ae4a0;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5ae450.c",
+          "line": 14,
+          "excerpt": "FUN_005a1230(*(undefined4 *)(iVar1 + 0x20));"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5ae4a0.c",
+          "line": 19,
+          "excerpt": "if ((param_3 & 1) != 0) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5ae4a0.c",
+          "line": 23,
+          "excerpt": "FUN_005a1030(*(undefined4 *)(iVar1 + 0x20),0xbf800000,1);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5ae520.c",
+          "line": 11,
+          "excerpt": "FUN_005a15e0();"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5a15e0.c",
+          "line": 15,
+          "excerpt": "FUN_005cfc00(puVar1 + 1,param_2);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5cfc00.c",
+          "line": 27,
+          "excerpt": "*puVar1 = *puVar1 & 0xfffffdff;"
+        }
+      ]
+    },
+    "monitor": {
+      "description": "0x59df70 requests reversal on the first false parent output and forward activation if all outputs are true. Node flag 0x80 additionally couples visibility. This PC routine reuses the first output-index byte for every parent rather than advancing through the index array. Real GizRandom outputs and NuSpecial callbacks verified all 16 binary index/output combinations. The portable core deliberately preserves this behavior.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59df70.c",
+          "line": 19,
+          "excerpt": "(param_1,iVar2,**(undefined1 **)(unaff_ESI + 0x18));"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59df70.c",
+          "line": 27,
+          "excerpt": "FUN_0055b0e0(*param_1,**(undefined4 **)(piVar1[2] + iVar3 * 4),1,unaff_ESI[10] >> 7,1);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59df70.c",
+          "line": 39,
+          "excerpt": "FUN_0055b0e0(*param_1,**(undefined4 **)(piVar1[2] + iVar3 * 4),0,unaff_ESI[10] >> 7,1);"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "scp": {
+      "checks": 1899,
+      "mismatches": 0,
+      "contract": "reverse-engineering/reports/gameplay-scp-transition-contract.json"
+    },
+    "native": {
+      "checks": 540,
+      "mismatches": 0,
+      "report": "reverse-engineering/reports/gameplay-git-state-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-git-state-verify.py"
+    },
+    "portable": {
+      "status": "Compiled successfully; differential execution pending."
+    },
+    "message": {
+      "checks": 2638,
+      "mismatches": 0,
+      "shippedOccurrences": 1678,
+      "originalSchedulerChains": 34,
+      "report": "reverse-engineering/reports/gameplay-message-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-message-verify.py",
+      "adapters": [
+        {
+          "address": "0x6e69ef",
+          "kind": "CRT string-format adapter",
+          "scope": "Only %s or %s%s, ASCII fixtures and bounded output <32 bytes. Does not model CRT locale, allocator or OS imports."
+        }
+      ]
+    },
+    "state-command": {
+      "checks": 1271,
+      "mismatches": 0,
+      "shippedOccurrences": 95,
+      "report": "reverse-engineering/reports/gameplay-state-command-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-state-command-verify.py",
+      "adapters": [
+        {
+          "global": "0x923904",
+          "scope": "Fixture callback maps supplied names to an existing actor pointer or null. Character/alias resolution policy is not recovered here."
+        }
+      ]
+    },
+    "visibility": {
+      "checks": 2179,
+      "mismatches": 0,
+      "shippedOccurrences": 1899,
+      "report": "reverse-engineering/reports/gameplay-visibility-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-visibility-verify.py",
+      "method": "Unmodified PC scene/gizmo command functions, original scene/type/name lookup, native visibility wrapper and real NuSpecial animation/scene callbacks. Code hooks observe arguments only; no function replacement. Synthetic finite registries and scene records."
+    },
+    "compact-condition": {
+      "checks": 9096,
+      "mismatches": 0,
+      "shippedOccurrences": 1888,
+      "originalShippedComparisons": 1879,
+      "comparisonOmissions": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/AI_POD.SCP",
+          "line": 25,
+          "text": "if AlwaysTrue == 1 gotoUpdate",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/DROIDEKA.SCP",
+          "line": 81,
+          "text": "if OpponentRange < shootrange goto Engage",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/DROIDEKA.SCP",
+          "line": 91,
+          "text": "if OpponentRange > shootrange goto Guard",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/AI/BLOCK.SCP",
+          "line": 6,
+          "text": "if OpponentRange < shootrange goto Engage",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/AI/BLOCK.SCP",
+          "line": 18,
+          "text": "if OpponentRange > shootrange goto Base",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/SCRIPTS/NATIVE.SCP",
+          "line": 89,
+          "text": "if OpponentRange < JavelinRange goto GunFight",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/SCRIPTS/NATIVE.SCP",
+          "line": 100,
+          "text": "if OpponentRange < FistFightRange goto FistFight",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/SCRIPTS/NATIVE.SCP",
+          "line": 111,
+          "text": "if OpponentRange > JavelinRange goto StopFistFight",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        },
+        {
+          "source": "reverse-engineering/extracted/SCRIPTS/NATIVE.SCP",
+          "line": 124,
+          "text": "if OpponentRange > JavelinRange goto GunFight",
+          "reason": "Symbolic or malformed RHS/control text; body/initializer tested, source expression/loader binding not guessed."
+        }
+      ],
+      "report": "reverse-engineering/reports/gameplay-compact-condition-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-compact-conditions-verify.py",
+      "adapters": [
+        {
+          "global": "0x923904",
+          "scope": "Named-character callback in OffScreenTimer initializer maps fixture names to actor references; runtime alias resolution and reference lifetime remain external."
+        }
+      ]
+    }
+  },
+  "reconstruction": {
+    "namespace": "Recovered.Gameplay",
+    "language": "C# 5 compatible, dependency-free core",
+    "sources": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+        "sha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/SpecialGizmo.cs",
+        "sha256": "f85727001fc11901c294af5e10fd2d1c3f8780ee53c6b2481e2d76ded5244fef"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+        "sha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/Messages.cs",
+        "sha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/StateControl.cs",
+        "sha256": "5d3989cf50ad8a89c58dae6d9a51d5a4cbaed12724bcb3290a38e2685f3e6781"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/Visibility.cs",
+        "sha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/CompactConditions.cs",
+        "sha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
+      }
+    ],
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "harness": "reverse-engineering/tools/gameplay-portable-verify.cs",
+    "expectedFixtureGenerator": "reverse-engineering/tools/gameplay-portable-fixtures.py",
+    "expectedFixtures": "reverse-engineering/reports/gameplay-portable-fixtures.json",
+    "implemented": [
+      "SCP resolved state/reference scheduling with explicit condition and creature-effect adapters",
+      "SCP evaluated-operand Idle/ResetTimer and SetState commands (compiled comparison pending)",
+      "Graph tick generation and recursive scheduling",
+      "All/Any/None/Sum/Loop/Exactly conditions and monitored output",
+      "Loop startup return-input count, descendant resets and cleanup barriers",
+      "Timer activation/countdown and shared 16-bit random state",
+      "GizRandom cumulative selection with x87-equivalent integer percentile boundaries",
+      "TurnOnFlowBox active-bit updates",
+      "324-byte graph bit planes and asymmetric restore",
+      "Gizmo activation/visibility/reversal callback ordering",
+      "NuSpecial flags and animation command forwarding",
+      "See gameplay-message-contract.json: registry",
+      "See gameplay-message-contract.json: Message",
+      "See gameplay-message-contract.json: SetMessage",
+      "See gameplay-message-contract.json: SetAIMessage",
+      "See gameplay-message-contract.json: CopyMessage",
+      "See gameplay-message-contract.json: operands",
+      "See gameplay-message-contract.json: puzzleLink",
+      "See gameplay-state-command-contract.json: entry",
+      "See gameplay-state-command-contract.json: set",
+      "See gameplay-state-command-contract.json: actors",
+      "See gameplay-state-command-contract.json: binding",
+      "See gameplay-state-command-contract.json: timing",
+      "See gameplay-visibility-contract.json: sceneCommands",
+      "See gameplay-visibility-contract.json: sceneLookup",
+      "See gameplay-visibility-contract.json: sceneFlags",
+      "See gameplay-visibility-contract.json: gizmoGit",
+      "See gameplay-visibility-contract.json: gizmoScript",
+      "See gameplay-visibility-contract.json: callback",
+      "See gameplay-compact-condition-contract.json: GotOpponent",
+      "See gameplay-compact-condition-contract.json: OpponentRange",
+      "See gameplay-compact-condition-contract.json: OffScreenTimer",
+      "See gameplay-compact-condition-contract.json: FreePlay",
+      "See gameplay-compact-condition-contract.json: NumInSetAlive",
+      "See gameplay-compact-condition-contract.json: AlwaysTrue"
+    ],
+    "adapters": [
+      "GIT text parsing, source Collapse flattening and name binding must construct the runtime graph.",
+      "Physical output callbacks and ISceneAnimation provide animation/renderer/collision integration; no Unity or graphics dependency is included.",
+      "Frame delta, mode flag, callback lifetimes and shared QRAND ownership come from the host.",
+      "Host constructs registry capacity and initial free-record value bits and owns its lifetime. No recovered level-load/reset policy is invented.",
+      "Host binds ScriptDefinition.ParameterNames and packet values from source loader.",
+      "SCP condition comparisons and graph activation remain separate scheduler integrations; native bounded chain fixtures verify the connection.",
+      "StateControlContext.Self/Actors are a host projection of creature weak reference and native world object registry.",
+      "ResolveCharacter is the explicit native 0x923904 callback boundary; player aliases, dynamic names and character attachment are not invented.",
+      "ScriptMachine.Bind supplies the previously reconstructed state binding and explicit condition-bank/script-bound adapters.",
+      "Host constructs scene/type/object registries in native runtime order.",
+      "Scene record flags are a portable data projection; host propagates them to its actual renderer/scene.",
+      "Type-specific physical behavior is represented by GizmoCallbacks; only real NuSpecial native paths were included in these fixtures.",
+      "ConditionCreature is an explicit projection of script-creature reference/range fields; host maintains their values and lifetime.",
+      "ConditionActorReference/ConditionObject project the weak-reference chain and off-screen timer field. Named resolution remains a host callback.",
+      "ConditionWorld.FreePlayValue and ReadAliveCount supply original global inputs without inventing population/update logic or count-table allocation size.",
+      "ScriptPacket.SetId projects byte+0xb0 and is populated separately by the host.",
+      "General SCP expression/variable binding and malformed source parsing remain outside these six reader bodies."
+    ],
+    "intentionalHostGuards": [
+      "Save/restore rejects more than 512 nodes; native code lacks that bound check.",
+      "A configurable operation budget aborts malformed/non-yielding cyclic graphs rather than hanging.",
+      "Missing shared random state and invalid saved buffer sizes fail explicitly.",
+      "Reject embedded NUL/non-ASCII text rather than approximate native extended-byte case folding.",
+      "Reject already-prefixed names longer than 31 characters rather than reproduce stack overflow.",
+      "Throw on GIT missing registry/name/capacity instead of native failed-lookup dereference.",
+      "Reject nonfinite or int32-overflow group conversion inputs outside native fixture domain.",
+      "Reject selected group actors without a packet/base script instead of reproducing an invalid dereference.",
+      "Direct gizmo lookup at typeIndex==typeCount throws instead of reproducing a native table overread. Command FindType cannot produce that index.",
+      "ASCII token domain; dynamic fallback function is not simulated.",
+      "NumInSetAlive rejects direct selector values outside initializer output0..16/-1; myset still allows any packet byte through its read adapter.",
+      "Required world/count adapters fail explicitly when absent instead of dereferencing unavailable memory.",
+      "Initializer text accepts non-NUL ASCII; extended-byte case folding and signaling NaN payload behavior are outside this source domain."
+    ],
+    "notClaims": [
+      "This is handwritten reconstruction, not the original developer source.",
+      "It is a reusable tested subsystem, not a buildable complete game.",
+      "Public cross-build source was used only as a search aid; PC bytes/call paths and original-PC fixtures establish the reported rules."
+    ]
+  },
+  "remaining": [
+    "Saved-state tests use at most the 512 nodes representable by each 16-word bit plane; larger counts are not treated as safe native input.",
+    "Physical fixtures exercise NuSpecial with one static scene instance and animation control; other gizmo types, skinned-instance visibility and renderer/collision refresh remain outside this suite.",
+    "Native loader name rebinding is invoked only on empty/previously bound synthetic lists; shipped text loading and editor Collapse flattening remain open.",
+    "Portable random timer arithmetic uses binary64 intermediates before binary32 storage; exact agreement is tested on the captured seeds/durations, not every possible floating-point input.",
+    "Physical gizmo types beyond NuSpecial and their renderer/physics behavior remain adapters or future reconstruction.",
+    "ASCII names only; embedded NUL and overlong names already containing msg_ are excluded because original sprintf lacks a bound on that branch.",
+    "GIT SetAIMessage requires a valid registry, name and available record. Original handler dereferences a failed lookup; portable source will explicitly reject that invalid input.",
+    "Registry lifecycle/allocation/reset and inter-level message persistence are not established by these isolated fixtures.",
+    "Native reference fixtures are not a compiled C# differential pass.",
+    "Synthetically resolved script/state lists, not runtime source attachment or whole-level reachability.",
+    "Selected group records are required to have a valid packet and base-script pointer; original group path lacks the self-path null checks.",
+    "Numeric group fixtures are finite values within int32 conversion range; NaN/infinity/overflow are excluded.",
+    "Compiled C# differential execution remains pending.",
+    "Synthetic category labels for authored type= arguments use NuSpecial callbacks to validate command dispatch; distinct GizForce/GizObstacle/etc physical implementations are not validated.",
+    "Dynamic scene fallback global 0x97388c is zero; external named fallback function 0x5c1300 remains outside scope.",
+    "Static scene and dynamic scene branches are tested separately, with at most three name entries, first duplicate match and current scene binding.",
+    "Compiled C# differential execution pending.",
+    "World global updates, reference lifetime, range computation, off-screen timer accumulation and alive-count population are external input contracts, not recovered by these readers.",
+    "Literal NumInSetAlive initializer admits 1..16 or myset; myset reads an unchecked byte index. Fixtures use a synthetic 256-byte backing region and do not assert the actual global count-table allocation size.",
+    "All scalar reader checks compare values at the float32 storage boundary used by the native SCP evaluator; signaling NaN payload behavior is excluded.",
+    "Eight symbolic comparison RHS occurrences and one malformed gotoUpdate occurrence retain separate source/loader gaps; their condition bodies were still exercised.",
+    "Compiled C# differential execution pending."
+  ]
+}

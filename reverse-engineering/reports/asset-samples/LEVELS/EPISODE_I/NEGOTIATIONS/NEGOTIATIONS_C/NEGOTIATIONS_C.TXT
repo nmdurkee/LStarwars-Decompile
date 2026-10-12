@@ -1,0 +1,585 @@
+max_obstacles 96
+max_obstacle_objects 320
+max_buildits 12
+max_buildit_objects 200
+
+max_timers 12
+
+max_blowups 32
+
+max_force 128                      // allocate space for this many forces.
+max_force_objects 256             // allocate space for this many special objects in the force system
+
+maxgizmoblowuptypes 64
+maxgizmoblowups 128
+
+max_gizspecials 220
+
+max_pushblocks 4
+max_pushblock_endpos 6
+
+max_ter_platforms 256
+
+mipmapmode 3
+metal
+
+fix_strobing_anims
+
+default_sfx_start
+	sfx_default "LegoForm"
+	sfx_default_form "LegoForm"
+	sfx_default_switch "NegB_ServoArm"
+	sfx_default_null
+default_sfx_end
+
+blobshadow_alpha 80   // alpha value of blob shadow in level (0-255, 255   darkest)
+blobshadow_fadenear 5  // distance blob shadow starts fading out
+blobshadow_fadefar 10  // distance blob shadow finishes fading out
+
+forcesfx_start
+	forcename "form14" processsfx "LegoForm" completesfx "LegoClicks" returnsfx "LegoClicks"
+	forcename "polySurface14142" processsfx "LegoForm" completesfx "LegoClicks" returnsfx "None"
+	forcename "polySurface14125" processsfx "LegoForm" completesfx "LegoClicks" returnsfx "None"
+	forcename "car1" processsfx "LegoForm" completesfx "LegoClicks" returnsfx "None"
+	forcename "lrg_box_01" processsfx "None" completesfx "ForceObjBig" returnsfx "ForceObjBig"
+	forcename "sml_box_02" processsfx "None" completesfx "ForceObjSmall" returnsfx "ForceObjSmall"
+	forcename "sml_box_03" processsfx "None" completesfx "ForceObjSmall" returnsfx "ForceObjSmall"
+	forcename "lrg_box_02" processsfx "None" completesfx "ForceObjBig" returnsfx "ForceObjBig"
+	forcename "sml_box_06" processsfx "None" completesfx "ForceObjSmall" returnsfx "ForceObjSmall"
+	forcename "sml_box_05" processsfx "None" completesfx "ForceObjSmall" returnsfx "ForceObjSmall"
+	forcename "sml_box_04" processsfx "None" completesfx "ForceObjSmall" returnsfx "ForceObjSmall"
+	forcename "car_bit1" processsfx "LegoShakeLp" completesfx "None" returnsfx "None
+	forcename "car_bit" processsfx "LegoShakeLp" completesfx "None" returnsfx "None"
+forcesfx_end
+
+force//name "magnet_switch" pro//cesssfx "NegC_MagnetCoil" comple//tesfx "NegC_MagnetCoilS" ret//urnsfx "None"
+
+rippleeffects_start
+	texture_name "ripple2"
+	effect_type "FORCEFIELD"
+	start_colour_r 0
+	start_colour_g 0
+	start_colour_b 128
+	start_colour_a 255
+	end_colour_r 20
+	end_colour_g 20
+	end_colour_b 30
+	end_colour_a 0
+	life 0.2
+	start_radius 0.0
+	end_radius 0.2
+rippleeffects_end
+
+settings_start 1
+	farclip 218
+	nearclip 0.021
+
+	backr 0
+	backg 0
+	backb 0
+
+
+settings_end
+
+////////////////////////////////////////////
+
+
+obstacle_start
+	name "pad_gate1"
+	type door
+	obj "pad_gate1"
+	range 0.2
+	check_ground
+	sfx_open "SwPPad"
+obstacle_end
+
+
+
+obstacle_start
+	name "pad_gate2"
+	type door
+	obj "pad_gate2"
+	range 0.2
+	check_ground
+	sfx_open "SwPPad"
+obstacle_end
+
+////
+
+obstacle_start
+	name "gate_switches"
+	type gadget
+	chain 1,1
+	obj "pad_gate1"
+	obj "pad_gate2"
+	obj "pad_gate1b"
+	obj "pad_gate2b"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 1,2
+	obj "pad_gate1c"
+	obj "pad_gate2c"
+obstacle_end
+
+
+obstacle_start
+	name "gate_door"
+	type door
+	obj "gate"
+	obj "red_light_on18",no_collision
+	obj "red_light_off10",no_collision
+	obj "green_light_on18",no_collision
+	obj "green_light_off10",no_collision
+	obj "red_light_on17",no_collision
+	obj "red_light_off9",no_collision
+	obj "green_light_on17",no_collision
+	obj "green_light_off9",no_collision
+
+
+	cDONEINSCRIPTNOWamera_spline "deka_look"
+
+	cam_start_time 0.0
+	cam_end_time 5.5
+	cam_blend_in_time 0.0
+	cam_blend_out_time 1.5
+	range 1.5
+	door_close_delay 1.0
+	locked
+	sfx "FFieldOff"
+obstacle_end
+
+
+doortrigger_start
+	door "gate_door"
+	trigger "pad_gate1"
+	trigger "pad_gate2"
+doortrigger_end
+
+///////////////////////
+
+obstacle_start
+	name "tc14_pan1"
+	type door	
+	obj "tc14_static1"
+	obj "tc14_pic1"
+	range 1.2
+	sfx_open "DPanelAct"
+	sfx_close "DPanelDis"
+obstacle_end
+
+obstacle_start
+	name "door_08"
+	droid
+	type door
+	lock_spline "tc14_door_lineup1"
+	lock interface
+	protocol
+	locked
+	obj "mtt1_flap",shove
+	obj "mtt1_flap_col"
+	obj "tc_red_light_on",no_collision
+	obj "tc_red_light_off",no_collision
+	obj "tc_green_light_on",no_collision
+	obj "tc_green_light_off",no_collision
+	range 1.2
+	dooranim_waitoff
+	buildup
+	sfx "NegC_MTT_DoorO"
+obstacle_end
+
+
+///////////////////////////hangar/////////////
+
+obstacle_start
+	type gadget
+	name "test_mag"
+	magnet_spline "magnet_01"
+	range 10
+	obj "magnet_switch",trigger
+	obj "magnet_top"
+	obj "magnet_coil"
+	obj "magnet_ball_1"
+	obj "magnet_ball_2"
+	sf//x_open "NegC_MagnetCoilH"
+	s//fx_animating "NegC_MagnetCoil"
+	sf//x_close "NegC_MagnetCoilS"
+obstacle_end
+
+obstacle_start
+	type gadget
+	obj "crane_lever",trigger
+	obj "crane"
+	sfx_animating "NegC_HangPlat"
+	reset_anims
+obstacle_end
+
+///////conv/////////////////
+
+obstacle_start
+	type gadget
+	name "belt_trigger"
+	obj "belt_trigger",anim_trigger
+
+	obj "brick2"
+	obj "brick3"
+	obj "brick4"
+	obj "brick5"
+	obj "brick6"
+	obj "brick7"
+	obj "cog1"
+	obj "cog2"
+	sfx_animating "NegC_Conveyor"
+	reset_anims
+	
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 3,1
+	obj "brick2"
+	obj "brick3"
+	obj "brick4"
+	obj "brick5"
+	obj "brick6"
+	obj "brick7"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 3,2
+	obj "brick2_blow"
+	obj "brick3_blow"
+	obj "brick4_blow"
+	obj "brick5_blow"
+	obj "brick6_blow"
+	obj "brick7_blow"
+obstacle_end
+
+blowup_start
+	force_name "brick2_blow"
+	deb_name "explo_01"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	magnitude 2.0
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "brick3_blow"
+	deb_name "explo_01"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	magnitude 2.0
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "brick4_blow"
+	deb_name "explo_01"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	magnitude 2.0
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "brick5_blow"
+	deb_name "explo_01"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	magnitude 2.0
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "brick6_blow"
+	deb_name "explo_01"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	magnitude 2.0
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "brick7_blow"
+	deb_name "explo_01"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	obj "orange_flat_1x1"
+	obj "orange_brick_1x1"
+	magnitude 2.0
+	sfx "Explode1"
+blowup_end
+
+
+///////////bonus/room/door////////
+
+obstacle_start
+
+	type door	
+	obj "r2_static1"
+	obj "r2_pic1"
+	range 1.2
+	sfx_open "DPanelAct"
+	sfx_close "DPanelDis"
+obstacle_end
+
+obstacle_start
+	name "door_bonus"
+	type door
+	lock_spline "r2_door_lineup"
+	lock interface
+
+	locked
+
+	obj "r2_red_light_on1",no_collision
+	obj "r2_green_light_on1",no_collision
+
+	obj "bonus_door"
+	obj "red_light_on2",no_collision
+	obj "red_light_off2",no_collision
+	obj "green_light_on2",no_collision
+	obj "green_light_off2",no_collision
+	stay_open
+	sfx_open "DoorOpen"
+obstacle_end
+
+
+
+////////////leftpod///////////////////////////////////
+
+obstacle_start
+	name "pad_1"
+	type door
+	obj "pod_button1"
+	range 0.4
+	check_ground
+	sfx "SwPPad"
+obstacle_end
+
+obstacle_start
+	name "pod_door1n"
+	type door
+	obj "pod_door1"
+	range 1.5
+	locked
+	
+obstacle_end
+
+doortrigger_start
+	door "pod_door1n"
+	trigger "pad_1"
+doortrigger_end
+
+//////////////////////////////////////////////
+
+obstacle_start
+	name "lift_plat"
+	type door
+	obj "pod_lift1"
+	obj "pod_lift2",no_collision
+	obj "pod_lift2_shadow",no_collision
+	range 0.2
+	check_ground
+	sfx "SwPPad"
+obstacle_end
+
+////////////////rightpod/////////////////////////////////
+
+obstacle_start
+	name "pad_2"
+	type door
+	obj "pod_button2"
+	range 0.4
+	check_ground
+	sfx "SwPPad"
+obstacle_end
+
+obstacle_start
+	name "pod_door2n"
+	type door
+	obj "pod_door2"
+	range 1.5
+	locked
+	
+obstacle_end
+
+doortrigger_start
+	door "pod_door2n"
+	trigger "pad_2"
+doortrigger_end
+
+//////////////////////////////////////////////
+
+obstacle_start
+	name "mini_pad_1"
+	type door
+	obj "mini_button1"
+	sfx_open "SwPPad"
+	range 0.2
+	check_ground
+obstacle_end
+
+obstacle_start
+	name "mini_pad_2"
+	type door
+	obj "mini_button2"
+	sfx_open "SwPPad"
+	range 0.2
+	check_ground
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 2,1
+	obj "mini_button1"
+	obj "mini_button1b"
+	obj "mini_button2"
+	obj "mini_button2b"
+	sfx_open "SwPPad"
+	obj "pod_ring"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 2,2
+	obj "mini_button1c"
+	obj "mini_button2c"
+	sfx_open "SwPPad"
+	obj "pod_ringb"
+obstacle_end
+
+obstacle_start
+	name "mini_door"
+	type door
+	obj "mini_tube"
+	range 1.5
+	locked
+obstacle_end
+
+doortrigger_start
+	door "mini_door"
+	trigger "mini_pad_1"
+	trigger "mini_pad_2"
+doortrigger_end
+
+//////////////////////////////////////////////
+
+sock_start 00
+	campos_seek 5
+	cam_blend_time 2.0
+	cam_x_offset 0.0
+	cam_y_offset 1.4
+	cam_z_offset -3.0
+	offset_blend_x_ratio 0.5
+	offset_blend_y_ratio 1
+	offset_blend_z_ratio 0.85
+	y_limits
+sock_end
+
+sock_start 01
+	campos_seek 5
+	cam_blend_time 1.5
+	cam_y_offset 0.8
+	offset_blend_y_ratio 1
+	y_limits
+sock_end
+
+sock_start 02
+	campos_seek 5
+	cam_blend_time 1.0
+	cam_dist_ratio 0.2
+sock_end
+
+sock_start 03
+	campos_seek 5
+	cam_blend_time 2.0
+	cam_x_offset 0.0
+	cam_y_offset 2.4
+	cam_z_offset -3.0
+	offset_blend_x_ratio 0.2
+	offset_blend_y_ratio 0.5
+	offset_blend_z_ratio 1.0
+	y_limits
+sock_end
+
+sock_start 04
+	campos_seek 5
+	cam_blend_time 2.0
+	cam_y_offset 2.0
+	offset_blend_y_ratio 1.0
+	y_limits
+sock_end
+
+////////////////////////////////////////////////////
+
+door_start
+	spline "door_to_hangar"
+	level "negotiations_c"
+	cam_spline "vent_cam"
+	cam_blend_time 2.25
+	cam_wait 0.25
+door_end
+
+door_start
+	spline "door_from_hangar"
+	level "negotiations_a"
+door_end
+
+door_start
+	spline "door_mtt1"
+	level "failedneg_outro"
+	level_freeplay "negotiations_status"
+door_end
+
+door_start
+	spline "door_from_bonus"
+	level "negotiations_c"
+door_end
+
+door_start
+	spline "door_to_bonus"
+	level "negotiations_c"
+door_end
+
+//////
+
+zipup_start
+	spline "zipup_1"
+zipup_end 

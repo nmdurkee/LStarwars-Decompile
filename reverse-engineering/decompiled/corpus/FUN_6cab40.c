@@ -1,0 +1,51 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_defa56967bea180293c2bb16677406271af3ce5a827b3a721aa49801cdb81f39
+ * Entry: 0x6cab40; label: FUN_006cab40
+ */
+
+void FUN_006cab40(undefined4 param_1,int *param_2,undefined4 param_3)
+
+{
+  undefined4 *puVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined1 auStack_b4 [4];
+  float local_b0;
+  float fStack_ac;
+  float fStack_a8;
+  undefined1 auStack_98 [132];
+  uint local_14;
+  
+  local_14 = DAT_00829570 ^ (uint)auStack_b4;
+  puVar1 = (undefined4 *)FUN_00633440(0x1c,1);
+  if (puVar1 != (undefined4 *)0x0) {
+    *puVar1 = &PTR_FUN_0076f800;
+    puVar1[2] = param_2;
+    puVar1[3] = param_3;
+    (**(code **)(*param_2 + 4))(param_3,DAT_02973ab8,&local_b0,0);
+    uVar2 = FUN_006267f0(puVar1,&DAT_0081f9a0,&LAB_006caac0,param_2[4]);
+    puVar1[1] = uVar2;
+    FUN_00618e10(param_1,uVar2);
+    FUN_004f2740(auStack_98,&DAT_0076bd70,(double)local_b0);
+    iVar3 = FUN_00626250(puVar1,&DAT_0081f9a0,&LAB_006caac0,FUN_006b98a0,FUN_006c3b00,2,
+                         &DAT_0076fe44,auStack_98);
+    puVar1[4] = iVar3;
+    *(undefined1 *)(iVar3 + 0x10) = 1;
+    FUN_0061ee00(puVar1[1],puVar1[4]);
+    FUN_004f2740(auStack_98,&DAT_0076bd70,(double)fStack_ac);
+    iVar3 = FUN_00626250(puVar1,&DAT_0081f9a0,&LAB_006caac0,FUN_006b98a0,FUN_006c3b00,2,
+                         &DAT_0076fe40,auStack_98);
+    puVar1[5] = iVar3;
+    *(undefined1 *)(iVar3 + 0x10) = 2;
+    FUN_0061ee00(puVar1[1],puVar1[5]);
+    FUN_004f2740(auStack_98,&DAT_0076bd70,(double)fStack_a8);
+    iVar3 = FUN_00626250(puVar1,&DAT_0081f9a0,&LAB_006caac0,FUN_006b98a0,FUN_006c3b00,2,
+                         &DAT_0076fe3c,auStack_98);
+    puVar1[6] = iVar3;
+    *(undefined1 *)(iVar3 + 0x10) = 3;
+    FUN_0061ee00(puVar1[1],puVar1[6]);
+  }
+  __security_check_cookie(local_14 ^ (uint)auStack_b4);
+  return;
+}
+

@@ -1,0 +1,39 @@
+PC STARTUP AND FRAME FLOW
+
+0x4011e0 Windows/platform startup
+  Calls platform initialization with LUCASARTS\LEGOSTARWARSSAGA.
+  Embedded source assertion pcbatman.cpp reflects shared engine code; it does not change the target identity.
+  Evidence: decompiled/corpus-expanded/FUN_4011e0.c
+
+0x4c9fb0 Global content catalog initialization
+  Loads badwords.txt, music.txt, Audio.cfg, movies.txt, chars.txt, levels.txt, areas.txt, episodes.txt and (in a guarded branch) cutscenes.txt.
+  Initializes memory arenas and callback tables; layouts and every callback role remain only partly interpreted.
+  Evidence: decompiled/corpus-expanded/FUN_4c9fb0.c
+
+0x492b40 Main game/area transition and frame loop
+  Mounts Episode_I.dat through Episode_VI.dat via 0x4fc2b0.
+  Passes global pointer 0x802c54 through world update and teardown calls.
+  Inner frame flow calls 0x491d50 with the world pointer and local state pointer.
+  Reads delta from 0x4fd050 into 0x925018, conditionally capped by 0x925054 when 0x951be0 is zero.
+  Initializes a frame from 0x92501c; this is not proof of a permanently fixed timestep.
+  Calls 0x571b40, 0x5a8200 and 0x57cec0 on the transition/cleanup path; all their side effects are not reconstructed.
+  Evidence: decompiled/corpus-expanded/FUN_492b40.c
+
+0x491d50 World/frame update dispatcher; bounded control flow verified
+  384 original dispatcher call-order cases and 9600 own-state assertions match; all direct subsystem callees are explicit no-op adapters.
+  The original takes a world pointer AND a separate output/state pointer; Ghidra conflates the second parameter.
+  Pause/force/override/cutscene/audio/level-flag branches have synthetic native fixtures. Positive timers subtract delta without clamping at zero.
+  No complete world-frame, live subsystem, menu, populated player or level-transition equivalence is claimed.
+  9024 additional player/menu/transition/native-state cases and 42176 assertions pass; see native-frame-branches.json. Only the two transition state helpers execute as original subsystem callees there.
+  Evidence: decompiled/corpus-expanded/FUN_491d50.c
+
+GLOBAL CATALOGS
+stuff\text\badwords.txt -> 0x4fe390
+audio\music.txt -> 0x548a70
+Audio\Audio.cfg -> 0x6521b0
+movies\movies.txt -> 0x5b2380
+chars\chars.txt -> 0x6307c0
+levels\levels.txt -> 0x5788f0
+levels\areas.txt -> 0x572b00
+levels\episodes.txt -> 0x59b360
+cut\cutscenes.txt -> 0x57a870

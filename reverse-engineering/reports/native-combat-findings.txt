@@ -1,0 +1,30 @@
+COMBAT SOURCE RECONSTRUCTION
+
+Original-PC cases executed: 24497. Expected-state comparisons: 23969, zero mismatches. 528 reference cases await compiled comparison.
+Initial C# subset: 14,553 comparisons passed. Extended 22,537-case C# comparison is blocked by Windows process-creation Access denied, reproduced after integration.
+
+- Health is stored as one byte but general health arithmetic and HitPoints read it signed; shield arithmetic reads unsigned.
+- TakeDamage uses case-insensitive substring tokens and set=1..16 to scan active objects at stride0x10d8. All69 parsed authored combat uses execute in command fixtures.
+- SetHitPoints default is a sentinel fallback, not an unconditional reset token; a prior numeric value survives a later default token.
+- Invincibility is checked after entering the positive shield-damage branch; its flicker timer still resets even if the damage becomes0.
+- The original hit probe flag prevents the tested lethal effects but does not prevent nonlethal health mutation.
+- Incoming player hits can bypass an existing post-hit timer; NPC/null/inactive attacker paths differ.
+- Damage=-1 bypasses ordinary player invincibility in the bounded general-hit fixture and classifies as lethal.
+- Message values are loaded from the native record+0x28 before FTOL; Ghidra omitted that FPU load in the C listing.
+- With nonnull numeric parameter context, the native param substring branch passes the start of the word param into integer conversion; tested param0, param3 and prefixPaRaM99 all select slot0.
+- Currency deduction precedes cheat/timer suppression of the returned spawn quantity; suppression does not restore the deducted wallet value.
+- Heart-drop decisions use signed current-health bytes, unsigned maximum-health bytes and original QRAND; no-health cases do not advance RNG.
+- In one native command/hit/death sequence, SetHitPoints restored health after death but retained deathState=2; health assignment alone does not revive the NPC.
+
+SOURCE
+reconstructed/combat/CombatRules.cs
+reconstructed/combat/CombatHitGuards.cs
+reconstructed/combat/CombatEconomy.cs
+See native-combat-contract.json for exact addresses, evidence and bounds.
+
+REMAINING
+- Full combat orchestration, special level/vehicle cases, populated AI/scripts, actual debris/pickup spawning and live feedback remain incomplete. Currency deduction and heart-drop decisions have bounded native checks.
+- The TakeDamage call site pushes six arguments; the trailing context1 argument is preserved by the adapter without claiming its meaning inside every callee.
+- The named-character resolver and final damage dispatch are fixture adapters in command suites. The message suite also intercepts only CRT sprintf for bounded %s formatting; original list lookup and numeric conversion execute.
+- Portable C# object classes project established fields; they do not reconstruct full original C++ class layouts.
+- Build success alone is not behavior equivalence.

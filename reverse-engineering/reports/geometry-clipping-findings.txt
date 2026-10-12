@@ -1,0 +1,112 @@
+Original PC frustum, portal-room and portal-polygon predicates
+
+Verified original binary SHA256:
+6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+Reports: geometry-clipping-native-validation.json and
+geometry-portal-native-validation.json. Reproduction tools have corresponding
+geometry-clipping-native.py and geometry-portal-native.py names.
+
+Observed AABB predicate, original 0x5d69a0
+Inputs are pointers to center/extent float3 and a far-limit override float.
+The original consumes prepared outer planes at 0x963fa0, secondary/scissor planes
+at 0x963fe0, near/far planes at 0x964020, and absolute plane matrices at 0x964070
+and 0x9640b0. A nonzero far override temporarily changes 0x964050 using two
+separately rounded operations: savedFarConstant-cameraFar, then plus override.
+Camera far is 0x973734. Original code restores the saved constant before returning.
+
+Six center-to-plane distances are compared with projected AABB half extents.
+Any distance<-radius returns 0. Tangency is accepted. If any of the first four
+outer distances is<radius, a second four-plane comparison determines whether
+side clipping is needed. Return 2 means a secondary distance<its radius;
+otherwise return 1. Near/far overlap alone does not cause return 2. The original
+absolute-matrix fourth-column handling differs between the outer and secondary
+sets; the implementation preserves that distinction instead of assuming a
+generic library AABB-frustum test.
+
+The original plane producer 0x5d5500 was executed for six authored CU2 camera
+world transforms from EPISODE5ENDING_A plus three explicit synthetic cameras.
+View inversion is a float32-rounded NumPy fixture operation, not verified
+native camera construction. The only substituted producer callee is external
+D3DXMatrixMultiply wrapper 0x5c1240, implemented by an explicit scalar matrix
+product. Near/far/aperture selections are fixture inputs. The predicate itself
+executes original instructions without math or return-value replacement.
+
+82,204 frustum comparisons pass: 2,279 authored bounds sampled from all six
+episodes (including all 928 Negotiations_A bounds), nine camera states, four far
+overrides, plus 160 synthetic tangency/overlap/negative-override cases. The complete
+336-byte plane block is checked for byte-exact restoration in 82,044 authored
+bound cases; there are zero restoration failures. Results: 54,058 outside,
+26,826 accepted without side clipping, 1,320 side-clipped.
+
+Observed room containment, original 0x5d9220
+EAX points to a 24-byte room; ECX points to float3. Room+4 points to float4 plane
+equations; room+0x0e is their unsigned-byte count. Every outward plane must have
+float32-rounded dot(normal,point)+constant<=0. A zero-plane room accepts any
+point. 18,721 comparisons cover every one of 403 authored rooms using source
+object centers, portal vertices with normal perturbations and camera positions.
+All results match. Full source plane/point/native-result fixtures are retained
+in geometry-clipping-room-fixtures.json.
+
+Observed portal facing and polygon clip predicate, original 0x5d9ce0
+EAX is owning GSNH, DX current room; stack arguments are portal, clip-context,
+target room. Room array is GSNH+0x78, room stride 24, priority byte+0x14. Portal
+plane is+0x00, vertices pointer+0x10, signed16 vertex count+0x14, front room+0x16,
+back room+0x18. Clip context has plane pointer+0x80 and signed16 count+0x9c.
+When current priority<target priority, the camera-plane distance rejects a
+current back room on the negative side, or a current front room on the positive
+side. Equal priorities skip facing rejection. Camera position comes from
+0x971894/0x971898/0x97189c. Zero distance is accepted.
+
+Every vertex is tested against each clipping plane. A plane with every vertex
+strictly negative rejects 0; all nonnegative vertex-plane results return 1;
+otherwise return 2. No clip planes returns 1. Zero vertices with a nonempty
+plane array returns 0. The caller checks portal active flag before this helper.
+All 326 authored portals pass 40,470 cases, including both directions, source and
+controlled priorities, nine world clip volumes, local tangency/bisector volumes,
+and 0..9 vertex-count boundaries. Results: 16,705 rejected, 17,119 fully inside,
+6,646 partially clipped. One authored PURSUIT_INTRO portal links room 0 to itself;
+its priorities are a single shared room field, not two independently mutable
+values. Fixtures respect this aliasing.
+
+Floating-point evidence and recovered source
+Original x87 instructions round each dot result to float32 before comparison.
+The isolated PC harness uses control word 0x037f (nearest-even,64-bit significand).
+Authored tiny normal components demonstrate why double intermediates are
+insufficient: a PURSUIT portal-center facing dot becomes approximately
+-1.0304257447302234e-15 natively while a straightforward double expression is 0.
+Failed exploratory double results are preserved separately. The successful
+model uses exact software 64-significand operations from tools/animation-x87.py.
+Clipping.cs reuses the equivalent shared FiniteX87 source facade in
+reconstructed/animation/AnimationPlayback.cs. The geometry source compiles with
+Framework csc; ordinary managed binary execution remains denied by Windows.
+Native/model validation does not establish compiled managed equivalence.
+
+Build from reconstructed/geometry in PowerShell:
+  & 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe' /nologo /target:library /out:Recovered.Geometry.dll .\MaterialUv.cs .\SceneSubmission.cs .\Clipping.cs ..\animation\AnimationPlayback.cs ..\animation\CharacterContexts.cs
+This source-only dependency adds no external assembly or package. Each native
+address/method/source-file mapping is in geometry-recovered-source.json.
+
+Observed integration and remaining limits
+0x5f5830 obtains a visibility context through 0x5f3c80 before scene submission.
+0x5f5380 calls the recovered AABB predicate. 0x5f3c80 selects grid visibility,
+enabled portal evaluation 0x5eeb30, or tree evaluation 0x5d8fb0. Portal evaluation
+selects a room through 0x5d92b0 then invokes recursive 0x5ee940. The recursive
+routine guards cycles/depth, marks room flag 4, and calls 0x5d9ce0 for active portals.
+These static edges are preserved in geometry-render-integration.json.
+
+Room selection priorities, child clipping-volume construction, recursive
+visibility propagation, grid/tree production and shadow CPU paths are still
+separate gaps. The source predicates consume prepared planes and finite bounded
+arrays. They are not a complete visibility system or renderer. No original GPU
+pixels, graphics device behavior, or live camera system equivalence is asserted.
+
+Room-selection follow-up
+geometry-room-selection-findings.txt documents the exact0x5d92b0 scan ordering,
+old-candidate priorities,first-shared-portal side and six-slot native stack bound.
+12,869 authored point choices across all403 rooms/326 portals plus2,427 synthetic
+and null cases pass.1,200 original0x5eeb30 entry cases verify selection-point
+override,stores,flag clearing and recursive-call arguments with explicit
+peripheral adapters. PortalSelection.cs and its ordinary harness compile;
+15,296 managed cases are prepared,execution pending. Room selection is now
+recovered within that bound. Child volumes,recursive visibility propagation,
+camera/grid/tree production,shadow/GHG packets and GPU equivalence remain gaps.

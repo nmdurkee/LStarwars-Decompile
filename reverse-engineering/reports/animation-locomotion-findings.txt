@@ -1,0 +1,190 @@
+PC CHARACTER LOCOMOTION CONTRACTS
+================================
+
+Scope and evidence
+------------------
+This report describes recovered PC input-speed selection, selected character
+tuning, gravity/jump math, velocity smoothing, and collision-origin prediction.
+It does not claim a complete replacement of the directional controller, contacts,
+animation-driven motion, vehicles, or the game's context state machine.
+
+Binary: binary/LEGOStarWarsSaga.packed.exe.unpacked.exe
+SHA256: 6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+
+The pinned OpenSaga source suggested names and intent; the contracts below were
+checked against this PC binary's pseudocode, original instructions and isolated
+execution. Android structure offsets and behavior were not copied blindly.
+No game process or operating-system API was executed by these tests.
+
+Machine-readable contract: animation-locomotion-contract.json. It records original
+PC addresses, decompiler evidence IDs and pseudocode file hashes. All cited native
+functions are available under decompiled/corpus/FUN_<address>.c.
+
+Validated PC behavior
+---------------------
+MovePlayer is 0x416190. The PC object points to character data at +0x54; that data
+points to game-character tuning at +0x24. The gamepad pointer is object+0xca4.
+Position is object+0x5c/60/64, velocity +0x68/6c/70. These are PC offsets.
+
+For player analog input, x=rawX-127.5 and z=127.5-rawY. A separate high-level radial
+dead zone zeros both if x*x+z*z<1806.25 (radius42.5 raw-byte units). This is distinct
+from the lower-level pad dead zone16 documented by the input investigation.
+Held D-pad directions override analog input; each axis becomes -127.5,0,+127.5.
+If opposites are held, left wins right and down wins up.
+
+The native function normalizes by float32(2/255), recovers an angle via the native
+atan table, rotates a vector whose length is max(abs(x),abs(z)), then measures its
+XZ length. Speed bands are: below0.2 zero; below0.5 tiptoe; below0.8 walk; otherwise
+run. Game-character+0x90 bit8 suppresses the tiptoe band. A model-flag/low-health
+branch forces walk for nonzero input. The tested restricted fixture uses player
+index=-1 and current HP<=2; other native branches remain documented in code.
+
+Every one of the 65,536 possible raw analog byte pairs and another528 D-pad/flag
+cases selected the exact expected float32 speed. These tests execute MovePlayer
+through an existing context59 early return after input processing, before movement
+dispatch. This isolates the input contract without claiming full locomotion.
+
+MovePlayer_DIRECTIONAL is 0x4ac620. Its ordinary requested speed is the controlled
+character's run_speed multiplied by gamepad.speed/operator.run_speed. Its ordinary
+horizontal target uses native sin/cos of the movement yaw. Character, surface,
+animation, vehicle and context modifiers are extensive; the whole dispatcher has
+not been emulated. Camera-relative angle handling is covered separately by
+native-input-camera.txt and native-input-camera.json.
+
+Velocity approach uses 0x54fb40:
+  alpha=min(float32(dt*rate),1)
+  vNext=v+alpha*(target-v)
+The character keyword acceleration supplies a rate (1/second), usually modified
+by context/surface friction. It is proportional velocity approach, not a constant
+physical acceleration or a fixed-distance MoveTowards operation.
+
+ApplyGravity is 0x4abac0. In the ordinary nonhovering branch, ground flags0 or2
+integrate vy+=gravity*dt. With zero hover height, ground bit0 sets vy=0. Other
+contexts and flags can suppress or change integration. An explicit gravity pointer
+overrides the tuning scalar, but it does not bypass the function's early guards.
+The bounded checks cover both explicit and configured gravity, three ordinary
+ground states and a no-update flag state. Hovering/submerged/suit branches are
+outside this verified subset.
+
+For context0/action5 with Jump held, hold variant2 freezes vy=0; variant3 uses
+gravity=-1. If a held ordinary ascent crosses vy<=0 and hover_time>0, the PC function
+sets vy=0, timer=hover_time*(player?1:1.5), variant2; otherwise it selects variant3.
+Release clears the timer and exits variant2. The PC path does not contain the
+Android TouchControls multiplier suggested by the source reference.
+
+StartJump is 0x561ba0. It copies jump_speed to vertical velocity, clears ground flags
+and counters, sets the runtime jump-held bit, resets animation state and initializes
+the jump context/sequence when the configured context is enabled. Tests execute
+the original animation-reset callee. Synthetic sound-table entries use -1, taking
+the original no-sound branch; audio playback is not replaced or emulated.
+
+The complex jump-state function0x562570 consumes tuning+0x38 for second-jump branches.
+The actual PC keyword is jump_2_speed. It is NOT jump_speed_double. The latter
+appears in source text and remains explicitly unresolved; similarly named fields
+have not been conflated. Full second-jump eligibility and animation/audio effects
+are not covered by the bounded movement tests.
+
+Jump-height assistance, 0x561ca0:
+  remaining=targetHeight-(collisionMinY-jumpStartHeight)
+  targetVy=sqrt(-2*air_gravity*remaining), if remaining>0
+It applies the target if forced or if greater than current vy; forced nonpositive
+remaining sets vy=0. Contextual assistance means a simple ballistic height estimate
+is not claimed to predict every live jump.
+
+GameObjectOrigin0x55d2b0 ordinarily predicts a collision center using position plus
+previousVelocity*dt, adding (bottom+top)*scale/2 to Y. The separate TerrainPlayer
+consumer0x416d60 forms actual displacement=velocity*dt, resolves collision, then
+commits resolved velocity and position. Terrain/nav consumers and moving-platform
+behavior are investigated separately in the gameplay-terrain reports.
+
+Time and physical dimensions
+----------------------------
+FRAMETIME is global0x925018. Initialization0x428b90 sets it to1/60 or1/50 according to
+a region flag; default timestep0x92501c is1/60 and maximum0x925054 is0.1. The gameplay
+loop0x492b40 obtains a frame-end delta and conditionally clamps it. These are not
+evidence of an always-fixed simulation timestep.
+
+TerrainPlayer0x416d60 multiplies velocity by delta time, and removes the scaled
+character-bottom offset when committing the resolved position. Position, terrain,
+navigation and scene coordinates use the same source units. Thus speeds are source
+scene-units/second and air_gravity is scene-units/second^2. A source-unit-to-meter
+conversion has not been established and should remain an explicit porting choice.
+
+Scalar tuning and exact parsing
+--------------------------------
+animation-locomotion-tuning.json and .csv cover all342 cataloged character text
+records, applying only the ten verified scalar handlers in the native-confirmed
+load-pass order. There are1,831 assignments, with exact source path/line/text and
+assignment history retained. Missing values are not replaced with guessed defaults.
+Constructor defaults and later script/runtime overrides remain separate concerns.
+
+Keyword                 PC handler  Game-character offset
+tiptoe_speed             0x5876c0    +0x14
+walk_speed               0x5876e0    +0x18
+run_speed                0x587700    +0x1c
+backwards_factor         0x587720    +0x20
+air_gravity              0x587740    +0x24
+jump_speed               0x587760    +0x2c
+jump_2_speed             0x587780    +0x38
+acceleration             0x5877a0    +0x44
+hover_time               0x5891d0    +0x48 (absolute value)
+jump_move_speed_scale    0x5871c0    +0x84
+
+Each handler is correlated with the actual PC keyword dispatch table and executed
+through the original GetFloat0x4f8100, GetWord0x4f7fb0 and decimal converter0x4f28e0.
+The decimal converter accepts an optional minus, decimal digits and optional dot.
+It stops at any other character; plus signs and exponent notation are not accepted.
+GetWord handles leading spaces before the converter receives its token.
+
+Every multiplication by10, subsequent digit addition and final division stores
+float32. The separate multiplication store matters for long decimal inputs; a
+plain language float parser or fused arithmetic is not generally equivalent.
+Original instruction evidence is animation-locomotion-parser-assembly.txt. The
+reusable implementation is tools/animation-locomotion-number.mjs.
+
+Falumpaset has three tokens ending ___3.887. The original parser accepts their
+numeric prefixes: tiptoe/walk0.75 and run float32(2.85). These are preserved with
+numericPrefixAccepted annotations rather than discarded or silently corrected.
+There are zero unresolved numeric warnings for the selected tuning fields.
+
+Example: Qui-Gon's configured tiptoe/walk/run are approximately0.153867/0.6/1.2,
+jump_speed2.3, jump_2_speed3, air_gravity-6, approach rate10. The JSON retains the
+exact float32 values. Its separate jump_speed_double text is not substituted for
+jump_2_speed. Across load passes,464 instances of legacy lookalike/unmapped motion
+keywords are retained for further investigation, not silently assumed effective.
+
+Native verification and reproduction
+------------------------------------
+animation-locomotion-native-verification.json:
+  Player speed bands                  66,064 cases
+  Ordinary gravity/grounded behavior    3,000 cases
+  Held-jump apex branches                 144 cases
+  Velocity smoothing                   2,000 cases
+  Predicted collision origins          2,000 cases
+  Jump-height assistance               1,000 cases
+  StartJump initialization                132 cases
+  Total                               74,340 cases, zero mismatches/failures
+
+animation-locomotion-parser-native-verification.json:
+  Decimal parser                        5,156 cases (139 observed tokens,
+                                        17 edge cases,5,000 deterministic probes)
+  Complete scalar setter call chains    1,831 cases
+  Total                                 6,987 cases, zero mismatches/failures
+
+Combined:81,327 passing original-function cases. Parser/setter comparisons are
+bit-exact. Movement comparisons record their numerical tolerances and maxima;
+the only nonzero final movement error is at most9.5367431640625e-7 in square-root
+jump assistance. This is bounded synthetic-state evidence, not a live-game test.
+
+An initial broad decimal-parser precision test exposed missing intermediate
+float32 multiplication stores in the reproduction. Its932 long-number mismatches
+are preserved in animation-locomotion-parser-rounding-diagnostic.json. No observed
+tuning assignment differed, and the corrected final test passes all6,987 cases.
+
+From the workspace root:
+  python reverse-engineering/tools/animation-locomotion-native-verify.py
+  python reverse-engineering/tools/animation-locomotion-parser-native-verify.py
+  node reverse-engineering/tools/animation-locomotion-report.mjs
+
+The builder additionally checks every JavaScript-decoded observed token against
+the original parser's saved float32 bytes before writing tuning outputs.

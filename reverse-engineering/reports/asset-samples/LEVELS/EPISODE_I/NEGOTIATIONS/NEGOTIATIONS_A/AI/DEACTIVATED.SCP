@@ -1,0 +1,51 @@
+state Base {
+	Conditions {
+		if ObstacleAtEnd "obstacle22" == 1 goto NormalUpdate
+		if AlwaysTrue == 1 goto WaitToBeActivated
+	}
+	Actions {
+	}
+}
+
+state WaitToBeActivated {
+	Conditions {
+		if ObstacleAtEnd "obstacle22" == 1 goto BeenActivated
+	}
+	Actions {
+		SetSide "neutral"
+		DontPush
+		SetInvulnerable
+		OverrideAnimation "from=idle" "to=powereddownidle"
+	}
+}
+
+state BeenActivated {
+	Conditions {
+		if GotOpponent == 1 goto NormalUpdate
+		if Timer > 10 goto NormalUpdate
+		if NearestPlayerRange < 2 goto NormalUpdate
+	}
+	Actions {
+		SetSide "baddie"
+		DontPush "false"
+		SetInvulnerable "FALSE"
+		OverrideAnimation "reset"
+		ResetTimer
+		FollowPlayer "run"
+	}
+}
+
+state NormalUpdate {
+	ReferenceScript {
+		Script=Chatting
+		Source=Global
+		ReturnState=NormalUpdate
+		Conditions {
+		}
+	}
+	Conditions {
+	}
+	Actions {
+		GoToOrigin "waittime=10"
+	}
+}

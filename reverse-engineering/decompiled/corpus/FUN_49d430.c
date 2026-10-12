@@ -1,0 +1,37 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_f6f29f3a3b14d12541c710eb91fc3c5282bb00f37b38cc241e06611dc1b7516b
+ * Entry: 0x49d430; label: FUN_0049d430
+ */
+
+void FUN_0049d430(undefined1 param_1,undefined1 param_2)
+
+{
+  int unaff_ESI;
+  undefined4 uVar1;
+  undefined4 uVar2;
+  
+  if (((*(uint *)(unaff_ESI + 0x1f8) & 0x40000) == 0) || (*(char *)(unaff_ESI + 0x280) == -1)) {
+    if ((*(uint *)(*(int *)(unaff_ESI + 0x54) + 4) & 0x2000) == 0) {
+      uVar1 = **(undefined4 **)(unaff_ESI + 0xca4);
+      uVar2 = 2;
+    }
+    else {
+      uVar1 = **(undefined4 **)(unaff_ESI + 0xca4);
+      uVar2 = 1;
+    }
+    FUN_0054a8d0(uVar1,uVar2,0);
+    *(uint *)(unaff_ESI + 0xeec) = *(uint *)(unaff_ESI + 0xeec) | 0x800;
+    *(undefined1 *)(unaff_ESI + 0xe3f) = param_1;
+    *(undefined1 *)(unaff_ESI + 0xe30) = param_2;
+    if ((*(byte *)(*(int *)(*(int *)(unaff_ESI + 0x54) + 0x24) + 0x98) & 2) != 0) {
+      FUN_0058d8e0();
+    }
+    if (((*(int *)(unaff_ESI + 0x7f4) != 0) &&
+        (*(char *)(*(int *)(unaff_ESI + 0x7f4) + 8) == '\x02')) &&
+       (*(char *)(unaff_ESI + 0x7f8) != '\0')) {
+      *(char *)(unaff_ESI + 0x7f8) = *(char *)(unaff_ESI + 0x7f8) + -1;
+    }
+  }
+  return;
+}
+

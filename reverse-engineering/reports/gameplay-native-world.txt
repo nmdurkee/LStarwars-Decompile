@@ -1,0 +1,76 @@
+PC NAVIGATION AND TERRAIN CONTRACTS
+
+Terrain checks: 7942; mismatches: 0.
+Navigation checks: 862743; mismatches: 0.
+
+navigation.nextHop: For base route selector255, route[current][destination] is an ordinal into the current point adjacency array, not a destination point ID. 255 means no route. The selected connection yields its opposite endpoint; direction0 means endpoint0 is current, otherwise direction1. Same-point cells are sentinels.
+  reverse-engineering/decompiled/corpus-expanded/FUN_51be90.c:35 — iVar3 = *(int *)(*(int *)(in_EAX + 0x158) + 0x7c);
+  reverse-engineering/decompiled/corpus-expanded/FUN_51be90.c:41 — uVar7 = (uint)*(byte *)(*(int *)(*(int *)(*(int *)(in_EAX + 0x158) + 0x84) + uVar10 * 4) + uVar9);
+
+navigation.distance: 0x51a890 follows the same adjacency choices and accumulates connection+0x18 as float32. Same source/destination returns0; missing matrix, missing hop or excluded connection route-mask intersection returns FLT_MAX. Two cached destinations/distances sit on each point. A repeated immediate connection terminates with the accumulated distance; the shipped base matrices were also exhaustively checked for longer cycles and missing continuations.
+  reverse-engineering/decompiled/corpus-expanded/FUN_51a890.c:145 — local_1c = *(float *)(iVar4 + 0x18) + local_1c;
+  reverse-engineering/decompiled/corpus-expanded/FUN_51a890.c:36 — return (float10)3.4028235e+38;
+
+navigation.routeBuild: 0x524cb0 recursively searches available adjacent connections and accumulates 3D distance; directed flag0x40000000 excludes traversal and nonzero requested route masks require intersection. 0x524f30 picks a strictly smaller neighbor cost and writes its adjacency ordinal, initialized to255.
+  reverse-engineering/decompiled/corpus-expanded/FUN_524cb0.c:42 — if (((*(uint *)(iVar3 + uVar4 * 4) & 0x40000000) == 0) &&
+  reverse-engineering/decompiled/corpus-expanded/FUN_524f30.c:31 — *(undefined1 *)(uVar7 + *(int *)(param_4 + uVar5 * 4)) = 0xff;
+
+navigation.dynamicNodes: 0x51af40 refreshes a special-attached point through 0x5b30a0, updates its world Y range, and recomputes connection horizontal distance and heading. Unavailable special nodes set directional connection flag0x10000000. Excessive span sets0x08000000. These native branches are recovered statically; the whole dynamic update is not emulated here.
+  reverse-engineering/decompiled/corpus-expanded/FUN_51af40.c:86 — FUN_005b30a0(pfVar1,param_3 + 0x4c,uVar8);
+  reverse-engineering/decompiled/corpus-expanded/FUN_51af40.c:52 — *puVar4 = *puVar4 | 0x10000000;
+  reverse-engineering/decompiled/corpus-expanded/FUN_51af40.c:32 — uVar9 = uVar5 & 0x80000007;
+
+navigation.bounds: Path bounds test0x5173b0 is inclusive in XYZ. TER, AI and scene transforms use the same native coordinates; no conversion to meters has been established.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5173b0.c:10 — if ((((*(float *)(param_1 + 0x90) <= *param_2) && (*(float *)(param_1 + 0x94) <= param_2[1])) &&
+
+terrain.platformBinding: Runtime terrain objects are56 bytes and platform records108 bytes. A kind1 source platform index is remapped through scene INID when that array exists. The remapped index is matched against NU2 specialObject+0xc0 (boundsIndex). The matrix pointer is special+0xc4 when valid, otherwise special+0x40. Platform+0x68 points to special+0xb8 flags; flag2 on that special controls participation for NU2 platforms. Runtime platform indices are reassigned sequentially by successful loader binding, so original source platformIndex and runtime platform ordinal are separate identities.
+  reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c:462 — _DAT_0292fc5c = *puVar22;
+  reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c:464 — _DAT_0292fc5c = *(ushort *)(*(int *)(param_6 + 0x5c) + (uint)_DAT_0292fc5c * 2);
+  reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c:512 — if (*(uint *)(iVar18 + 0xc0) == uVar14) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c:513 — iVar8 = *(int *)(iVar18 + 0xc4);
+  reverse-engineering/decompiled/corpus-expanded/FUN_66cc60.c:264 — else if ((*puVar6 & 2) != 0) goto LAB_0066d130;
+
+terrain.transform: worldPoint[k]=x*M[k]+y*M[4+k]+z*M[8+k]+M[12+k]. Homogeneous w=0 excludes translation, including in-place output.
+  reverse-engineering/decompiled/corpus-expanded/FUN_66cc60.c:229 — *pfVar1 = *(float *)(*(int *)(piVar9[0x1a] + 0x40 + iVar8) + 0x30);
+  reverse-engineering/decompiled/corpus-expanded/FUN_66da90.c:76 — FUN_005c03e0(&local_50,&local_50,*(undefined4 *)(iVar7 + 0x40));
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b30a0.c:39 — *param_1 = param_3[8] * param_2[2] + *param_2 * *param_3 + param_3[4] * param_2[1] + param_3[0xc];
+
+terrain.triangles: PC tests a second triangle only when its stored normalY at face+0x58 is below65536. First triangle uses points at +0x18,+0x24,+0x30 and normal+0x48; the second uses point+0x3c and normal+0x54. Exported static triangle order is p1,p2,p3 and p2,p4,p3; original properties remain attached through source byte offsets.
+  reverse-engineering/decompiled/corpus-expanded/FUN_674490.c:48 — param_5 = param_1 / (param_1 - param_2);
+  reverse-engineering/decompiled/corpus-expanded/FUN_674490.c:74 — if (*(float *)(iVar4 + 0x58) < 65536.0) {
+
+terrain.broadphase: 0x675240 converts the query start/end to a terrain object local translation before plane-distance tests, then calls0x674490 for faces that can intersect. Zero-radius interior triangle tests were executed on2114 actual TER faces from267 files. Full ellipsoid edges/vertices, wall strips and dynamic broadphase remain outside these fixtures.
+  reverse-engineering/decompiled/corpus-expanded/FUN_675240.c:56 — *(float *)(iVar8 + 0x70) =
+  reverse-engineering/decompiled/corpus-expanded/FUN_675240.c:102 — (iVar7 = FUN_00674490(local_18,fVar3,local_1c,local_20,iVar7), iVar8 = DAT_0292186c,
+
+terrain.response: out=v+n*(-dot(v,n)+0.0003). Variant0x678010 scales only the added Y term by global0x2947c00.
+  reverse-engineering/decompiled/corpus-expanded/FUN_68f940.c:77 — fVar3 = param_6 * param_7 + (float)param_1[1];
+  reverse-engineering/decompiled/corpus-expanded/FUN_68f940.c:65 — puVar7[0x19] = (uint)local_10;
+  reverse-engineering/decompiled/corpus-expanded/FUN_677fb0.c:12 — fVar1 = -param_2[2] * param_1[2] + -*param_2 * *param_1 + -param_2[1] * param_1[1] + 0.0003;
+  reverse-engineering/decompiled/corpus-expanded/FUN_678010.c:16 — param_3[1] = param_1[1] * fVar1 * _DAT_02947c00 + param_2[1];
+  reverse-engineering/decompiled/corpus-expanded/FUN_6786f0.c:70 — case 0:
+
+terrain.characterCommit: Full terrain path copies position+(0,characterBottom*scale,0), forms movement=velocity*frameDelta, calls0x68f940, then commits correctedVelocity=correctedMovement/frameDelta and correctedPosition with the bottom offset removed. Supporting platform ID is written to object+0x27e. Simplified/AI and bypass paths directly integrate position+=velocity*frameDelta and can clamp Y against a shadow floor.
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:247 — local_1b4 = *(float *)(param_1 + 0xa8) * *(float *)(param_1 + 0xff0) +
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:359 — FUN_0068f940(&local_1b8,&local_1c4,param_1 + 0x1050,local_1d4,local_1e4,
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:392 — local_1e4 = 1.0 / _DAT_00925018;
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:394 — *(float *)(param_1 + 0x5c) = local_1b8;
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:521 — *(float *)(param_1 + 0x68) * _DAT_00925018 + *(float *)(param_1 + 0x5c);
+
+terrain.platformRotationCarry: After a platform contact,0x416d60 obtains prior/current matrices via0x67fb50, transforms a forward direction with both, computes the angle delta and adds it to three character headings.
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:402 — FUN_0067fb50((int)*(short *)(param_1 + 0x27e),&local_1e0,&local_1d8);
+  reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c:411 — iVar14 = FUN_005be5b0(uVar13,uVar12);
+  reverse-engineering/decompiled/corpus-expanded/FUN_67fb50.c:11 — *param_2 = *(int *)(DAT_0292fc68 + 0x68) + param_1 * 0x6c;
+
+terrain.platformPositionCarry: 0x68ee40 computes a carried-position proposal. Translation-only case adds current minus prior translation (Y divided by collision stretch). Transformed case restores world foot Y, subtracts prior translation, applies inverse prior3x3 then current matrix, and converts back to query Y. A vertical support probe and further collision logic decide acceptance; no-hit fixtures retain the original position. 400 original-helper cases verified proposals for translation/Y rotation/nonuniform scale, no-hit rejection and arena restoration.
+  reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c:96 — FUN_005b5b90(&DAT_0292fdd0,iVar12);
+  reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c:97 — _DAT_02921874 =
+  reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c:108 — FUN_005c03e0(&DAT_02921874,&DAT_02921874,&DAT_0292fdd0);
+  reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c:140 — FUN_00678f60(&local_28);
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b5b90.c:34 — fVar1 = 1.0 / fVar1;
+
+Remaining limits:
+No complete full-scene movement/collision game runtime has been recreated.
+Static collider binding and proposed platform carry transforms are verified; live support/contact acceptance, deformation and edge/capsule sweep behavior need more checks.
+AI base routes are verified; special subroute/mask choices and dynamic traversal flags need live-path fixtures.
+Source-assisted names are hypotheses unless byte layout or PC native behavior is cited. OpenSaga is an Android x86 cross-build reference.

@@ -1,0 +1,134 @@
+Recovered.Gameplay
+==================
+
+FlowRuntime.cs, SpecialGizmo.cs, ScriptRuntime.cs, Messages.cs, StateControl.cs, Visibility.cs and CompactConditions.cs
+are handwritten, dependency-free C# reconstructions
+of bounded behavior established from the original PC code. They are not original
+developer source and do not form a complete game. All compile with C# 5.
+
+Build from the workspace (PowerShell):
+  & 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' /nologo /target:library '/out:reverse-engineering\reconstructed\gameplay\Recovered.Gameplay.dll' '.\reverse-engineering\reconstructed\gameplay\FlowRuntime.cs' '.\reverse-engineering\reconstructed\gameplay\SpecialGizmo.cs' '.\reverse-engineering\reconstructed\gameplay\ScriptRuntime.cs' '.\reverse-engineering\reconstructed\gameplay\Messages.cs' '.\reverse-engineering\reconstructed\gameplay\StateControl.cs' '.\reverse-engineering\reconstructed\gameplay\Visibility.cs' '.\reverse-engineering\reconstructed\gameplay\CompactConditions.cs'
+
+The core can also be compiled with a modern C# compiler or included as source in a
+later Unity project. It has no Unity API dependency and launches no game or process.
+
+Integration boundaries
+----------------------
+1. Construct FlowGraph.Nodes in native runtime order. FlowInput.Node and Children
+   are array indices. The source catalog's editor IDs and Collapse groups must first
+   be resolved by a separate loader. This reconstruction does not flatten Collapse.
+2. Bind physical objects using GizmoCallbacks. Missing registered callbacks are null.
+   Bind linked action commands in their original order; null action entries are skipped.
+3. Share one QRandom instance wherever the PC QRAND state is shared. The audio RNG is
+   a different generator and must not be substituted here.
+4. Call Initialize(null) for a new graph or Initialize(savedWords) for graph state.
+   Save() returns 81 words (324 bytes); serialize little-endian if storing that format.
+   The saved 0x100 monitor plane is intentionally not restored by Initialize.
+5. Update each unique FlowTimer once using the host's frame delta, then Tick() the
+   graph for the ordering used by the differential fixtures. The host owns frame
+   timing, mode selection, entity lifetimes and the complete level update order.
+6. SpecialGizmo forwards native-equivalent commands to ISceneAnimation. The host must
+   implement playback, special-object visibility and downstream renderer/collision
+   refresh. The tested physical fixture covers one static instance; it is not a full
+   implementation of GameAnimSet, skinned instances or every gizmo type.
+
+Faithfulness and explicit limits
+--------------------------------
+- Generation and reset stamps wrap at 8 bits.
+- A completed timer flow-node activation is separate from its delayed true output.
+- Loop reset walks deactivate eligible gizmos without clearing node completion flags.
+- Monitor preserves the PC behavior of using the first output index for every parent.
+- Reversal first queries the callback; an unchanged reverse state does not repair
+  visibility. Hiding calls deactivation before visibility, and activating shows first.
+- GizRandom percentile boundaries use an integer expression verified against every
+  original 16-bit RNG seed. Randomized timer float rounding is checked on the captured
+  seeds/durations; exhaustive agreement for all binary32 durations is not claimed.
+- Save/restore rejects graphs above the native format's 512-node capacity.
+- MaxOperations is a host guard for non-yielding/malformed cycles, not a native rule.
+- String matching is intended for the shipped ASCII command/name domain.
+
+Evidence and reproducible differential harness
+-----------------------------------------------
+  reports/gameplay-git-runtime-contract.json
+  reports/gameplay-git-state-tests.json
+  reports/gameplay-reconstruction.json
+  reports/gameplay-portable-tests.json (when the compiled verifier has executed)
+
+Native expected outputs are captured by tools/gameplay-portable-fixtures.py.
+tools/gameplay-portable-verify.cs is the test executable only; its JSON reader needs
+System.Web.Extensions, but that dependency is not present in the reconstructed core.
+Its Main accepts expected-fixture JSON path and output-report JSON path. The parent
+build can invoke GameplayPortableVerify.Main inside a combined verifier.
+
+SCP state-machine projection
+----------------------------
+ScriptRuntime.cs reconstructs resolved state/action/reference scheduling, four-deep
+interrupt priority and unwinding, parameter override masks, deferred SetState, and
+numeric Idle/ResetTimer forms. ScriptEnvironment supplies creature scratch resets,
+animation-entry handling, condition-bank setup and script-binding side effects.
+Condition evaluators and arbitrary game command handlers remain external adapters.
+Idle/ResetTimer factory arguments are already-evaluated operands; this source does
+not implement the native expression parser or accept every raw mixed argument form.
+The 1,899 original-PC checks are in gameplay-scp-transition-tests.json. Source files
+compile, but compiled differential execution remains pending due to Windows denying
+new managed test executables. Do not report native-reference checks as compiled tests.
+
+All 434 shipped SCP/GIT command names are classified separately in
+reports/gameplay-command-semantic-coverage.json/.csv. Dispatch bindings alone are
+not semantic implementations.
+
+Named message and state-control commands
+---------------------------------------
+Messages.cs implements shared named float records and the Message, SetMessage,
+CopyMessage and SetAIMessage commands. Host code supplies registry capacity and
+initial free-record value bits, plus source parameter names. Native record lookup
+does not clear reused values. Packet numeric operands preserve the original
+param-substring-to-slot-zero behavior and decimal-prefix parsing.
+
+StateControl.cs implements SetScriptState self/group selection and immediate
+base-script binding. StateControlContext supplies the world actor list and an
+explicit named-character resolver. Valid group actors must have script packets.
+Rebinding clears reference depth and reloads base-script defaults; it does not
+apply character parameter overrides. Self rebind can execute the target first
+action in the same scheduler update.
+
+Native checks: gameplay-message-tests.json (2,638), gameplay-state-command-tests.json
+(1,271). Both have zero mismatches on their bounded original-PC fixtures.
+The message fixture adapts only CRT %s/%s%s formatting; state fixtures adapt named
+character lookup when used. They do not establish registry lifetime or actor aliases.
+
+Compiled comparison harnesses (public Main methods, two JSON-path arguments):
+  tools/gameplay-message-portable-verify.cs: GameplayMessageVerify
+  tools/gameplay-state-command-portable-verify.cs: GameplayStateCommandVerify
+Expected fixtures: reports/gameplay-message-native-fixtures.json and
+reports/gameplay-state-command-native-fixtures.json. They compile successfully,
+but managed execution is still pending; no compiled differential pass is claimed.
+
+Visibility.cs implements scene SetVisibility (SCP/GIT), GizmoSetVisibility (SCP)
+and SetGizmoVisibility (GIT). Current scene/type/instance registries and physical
+callbacks are supplied by the host. Static/dynamic flag changes and name/type
+lookup order follow bounded original PC fixtures; distinct physical gizmo types
+remain callback adapters. Native suite gameplay-visibility-tests.json passes
+2,179 checks, including all 1,899 authored uses. The associated managed harness
+is tools/gameplay-visibility-portable-verify.cs, GameplayVisibilityVerify.Main,
+with reports/gameplay-visibility-native-fixtures.json as its first argument.
+
+CompactConditions.cs supplies GotOpponent, OpponentRange, OffScreenTimer,
+FreePlay, NumInSetAlive and AlwaysTrue, plus their three initializers. Host code
+provides script-creature fields, references, world globals and a byte-index alive
+count reader. The code does not infer target liveness, timer units, range updates,
+or count storage/population. ScriptPacket.SetId projects native byte+0xb0.
+
+AlwaysTrue returns its initialized numeric value; null/empty initializer text
+defaults to 1. FreePlay converts the signed global value instead of normalizing
+it to a boolean. A failed OffScreenTimer named binding falls back to self.
+
+Native evidence: reports/gameplay-compact-condition-tests.json, 9,096 checks.
+All 1,888 authored body/initializer occurrences were exercised, with 1,879 original
+literal comparisons. Eight symbolic RHS references and one malformed gotoUpdate
+line remain separately documented source/loader gaps.
+
+Compiled harness: tools/gameplay-compact-condition-portable-verify.cs, public
+GameplayCompactConditionVerify.Main. Its first argument is
+reports/gameplay-compact-condition-native-fixtures.json; second is the desired
+JSON comparison output path. Compilation passed; managed execution is pending.

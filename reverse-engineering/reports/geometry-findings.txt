@@ -1,0 +1,82 @@
+GEOMETRY, TEXTURES AND RENDER DATA — LEGO STAR WARS TCS PC
+
+Scope and evidence
+All 1,477 extracted GSC/GHG carriers parsed with bounded reads; no originals modified or game process executed. Primary format references are BrickBench commit 3d149673e1f70dc04425ff30fcc00ec2194d2743 and OpenSaga commit ab97911d162d896d8f4b20e9df8e7d23a2f81557. Cross-version source meaning is labelled reference-derived; actual PC byte ranges, links, counts and finite values are checked. Isolated original PC instructions independently validate ATS timing/compiler/RNG, current-layout material feature emission and uniform formulas, face-on transform uploads, animated material UV timing, legacy loader behavior and PC texture filename selection. This is reverse-engineered data and viewable interchange output, not a finished game recreation.
+
+Coverage
+reports/geometry-scene-data-index.json is the all-carrier structural index: 153,367 mesh records; 1,367 billboard packets / 14,314 billboard faces; 49,155 material records; 31,406 allocated embedded textures; 5,249 named splines / 72,880 points; 112,147 bounds; 403 portal rooms / 326 portals; 49,272 named object records. All 1,477 files parsed, zero errors.
+reports/geometry-finalized-gsc.json is the authoritative final GSC export index. All 789 GSCs exported to exports/geometry/<source path without extension>/scene.gltf + geometry.bin + source-metadata.json. 131,496/131,496 mesh records, 1,295 billboard packets, 20,504,967 unique exported triangles, 27,072/27,072 embedded texture allocations. Triangle count counts unique mesh primitives, not instanced draws. Khronos glTF Validator 2.0.0-dev.3.10: zero errors, zero warnings, 76,339 informational findings (unused library resources and default matrices). Earlier geometry-batch-gsc.json is historical; it predates repairs and must not be used for final failure counts.
+The animation agent exports all 688 GHG character rigs/layers/skins/morphs/animations under exports/characters/assets; its animation-character-batch.json is authoritative for character coverage. Two thermal detonator carriers contain rigs but no render mesh/layer data.
+
+Texture and font recovery
+exports/geometry/textures stores 15,305 unique embedded DDS files by SHA-256 with PNG previews. Raw DDS files retain original mipmaps, cube faces and floating point values. 301 standalone DDS images, 2 FNT fonts and 2 RAW carriers are indexed by geometry-fonts-images.json (305 inputs, zero errors). Both FNT glyph records, Unicode maps and atlas DDS/PNG are exported. RAW byte order remains unconfirmed: both RGBA and BGRA candidate previews are explicitly labelled; dimensions inferred from corresponding DDS dimensions and exact byte length. Original PC initialization paths for both basenames select their _PC.dds companions, proven with the original filename builder; these paths do not consume RAW (geometry-raw-loader-evidence.json).
+All 15,608 DDS preview paths were independently audited: Pillow 12.2.0 matched 15,603 pixel-for-pixel; the 5 unsupported float DDS were matched pixel-for-pixel by a separate NumPy decoder. Zero differences and zero errors. PNGs represent the first face/base mip. Float previews use clamped linear 8-bit values, not tone-mapped HDR equivalence. Sources: geometry-images-independent.json, geometry-images-float-independent.json. BC color expansion uses bit replication and integer floor interpolation; original rounding discrepancies were repaired and the entire audit repeated.
+
+Rendering metadata and texture programs
+geometry-material-data-index.json covers every 49,155 material with raw bytes, SHA-256, parsed parameters and reference-derived feature labels. 49,109 current 708-byte material records and 46 legacy 628-byte records. Blend modes: 33,749 none, 13,668 alpha-over, 1,193 additive, 524 fixed-alpha-test, 14 reverse-subtract, 7 unknown. The glTF PBR approximation does not reproduce these shader modes exactly.
+Original PC material contracts are documented in geometry-material-findings.txt and geometry-material-shader-map.json. All 49,109 current-layout materials were surveyed through original feature builder 0x749570 across four profiles and color/shadow contexts: 170,936 calls, 3,792 unique ordered variants, zero errors. All 29 recovered uniform formulas pass 1,424,161 checks / 4,567,137 scalar comparisons against original binder 0x742730. All 100 original shader semantics, 15 sampler bindings and template references for 68 emitted macro names are retained. RTTI identifies HLSLShaderBuilder and ShaderManagerHLSL exactly. The 46 legacy materials are preserved but excluded from current-layout native shader calls: the ordinary native loader was traced and does not expand their 628-byte records before current-layout fixup. Canonical pass assumptions and inactive nonfinite candidate uniforms are explicit; native pixel equivalence is not asserted.
+geometry-scene-runtime.json and exports/geometry/scene-runtime retain all 32,601 texture descriptors (31,406 allocated + 1,195 empty), opaque serialized checksums and fields; 400 texture animations and 4,026 frame references; 387 named ATS joins plus 13 empty stored program names; zero missing nonempty program names and zero sequence range errors. All 239 negative allocation widths correspond to matching absolute descriptor width plus a DDS cubemap flag.
+Render state decoder recovers per-instance visibility flags, fade distance pairs, portal override bits, per-clip item counts, squared LOD thresholds and far clip ranges, and 1,864 animated-material memberships. Every decoded LOD instance group count matches the bounds count. These serialized values do not simulate gameplay visibility changes. FDNS is fade-range data. SALI state animation belongs to the animation-scene decoder. DYNO/TREF/VBIB bytes are preserved exactly; unspecified runtime/cache fields are not guessed.
+31 ATS programs are compiled into documented i16 bytecode, source-labelled instruction records and 235 simulation scenarios under exports/geometry/texture-programs. The recovered subset covers all commands in these authored programs. Native entry points compiler 0x5d26d0 and evaluator 0x5d2d10: 58 Rate/Wait compiler operand checks and 188 scenarios / 225,600 evaluator ticks pass against the decoder. The integer-parser hook supplies authored arguments. Minimum-bound scenarios bypass RNG through a hook; 141 seeded scenarios execute the original XOR Park-Miller RNG and match complete texture events, final PC and final RNG state. Live multi-program global RNG scheduling/frame timing is not reproduced. Mask/signal interruption and repeat/goto/frame sequencing are tested. See geometry-texture-native-validation.json and geometry-texture-programs.json.
+
+Original animated UV evaluator 0x5dfbd0 is now decoded and verified for all 1,864 authored memberships / 537 distinct configurations plus 81 edge configurations: 9,270 native ticks / 83,430 scalar checks, zero numeric differences. Mode 128 writes zero for an active layer; linear wrapping subtracts truncation toward zero and preserves negative fractions. Eight native wrapper cases also validate scaled time and one-shot offset reset. See geometry-uv-findings.txt and geometry-uv-native-validation.json. glTF does not implement these dynamic material contracts.
+
+Layout anchors for future work
+NU20 begins at u32(file+0)+4. PNTR and GSNH are relative pointers at NU20+0x18 and +0x1c. Relative pointer targets are field address plus signed i32. Saved unused runtime pointer values can be invalid and must not be followed blindly.
+Current mesh packets are 56 bytes: primitive type +0, strip index/triangle count +4, stride u16 +8, eight-byte joint palette +0x0a, base vertex +0x14, vertex count +0x18, first index +0x1c, IB +0x20, VB +0x24, shape count +0x28, shape offsets relptr +0x2c, dynamic vertices +0x34. Two legacy vehicle GSCs use 100-byte mesh and 628-byte material records. Their vertex stride/index offsets differ and are handled explicitly.
+Display items are 16 bytes: type +0, flags +1, field-relative resource pointer +4. Recovered types: 0x80 material, 0x82 mesh, 0x83 matrix, 0x8e end, 0x8f billboard. Material association is scoped through static lists and model records; it is not inferred by carrying one material globally across unrelated lists.
+Special objects are 208 bytes: initial matrix +0, draw matrix +64, bounds center +128, extent +144, model relptr +0xb0, name relptr +0xb4, flags +0xb8, bounds index +0xc0, IABL relptr +0xc4. Named nodes carry sourceAddress/sourceModel/boundsIndex in extras for joins. Scene animation replaces the linear transform and adds original draw-matrix translation; see animation agent evidence.
+17 source affine matrices required two-node TRS factorization for glTF. NumPy SVD A=U diag(s) Vt retains proper rotations, signed scale and original matrix in extras. Max absolute reconstruction error 1.913e-11; relative 4.687e-15. geometry-affine-factorization.json maps original parent and residual basis child. No source positions were discarded. An animated consumer replacing the full native matrix must neutralize that residual basis rotation in its separate animated output.
+Billboard packets contain 6 vertices per face, 32 bytes per vertex: center float3, BGRA color, UV float2, corner float2. glTF previews expand into fixed XY planes. Original dedicated face-on shader 0x769e98, material selector 0x608000 and transform callback 0x5fda20 now have documented camera-facing center/corner transform, U flip, doubled alpha, tint and fog formulas. Twelve original-code cases / 60 constant uploads pass; see geometry-billboard-shaders.json. This dedicated path is separate from the generic HLSL template.
+PORT room stride is 24 bytes for these PC files (not 20). Bounds, plane/point/object references and portal links are validated. Spline NTBL packed offsets are resolved and all 5,249 names are present. Dynamic INID indices and source bounding-box IDs support the gameplay agent's TER platform attachment joins.
+
+Validation and visual inspection
+geometry-boundary-checks.json rejects all 11 deliberate corrupt in-memory cases: malformed header/pointer/texture/buffer counts and invalid vertices/indices; source and in-memory original hashes remain unchanged. Full glTF validation covers every GSC. Representative independent software renders show a coherent Negotiations map, textured Qui-Gon bind and jump poses, and both legacy vehicle formats. The animation agent's Negotiations door pair independently renders closed at t=0 and separated cleanly at t=1, preserving geometry and UVs (geometry-animated-door-t0.png / -t1.png). These previews inspect interchange geometry, not native light/shadow fidelity.
+
+Reproduction (run from workspace root)
+node reverse-engineering/tools/geometry-batch.mjs --kind=gsc --resume
+node reverse-engineering/tools/geometry-finalize.mjs
+python reverse-engineering/tools/geometry-affine-repair.py
+node reverse-engineering/tools/geometry-revalidate.mjs
+node reverse-engineering/tools/geometry-metadata.mjs
+node reverse-engineering/tools/geometry-material-details.mjs
+node reverse-engineering/tools/geometry-fonts-images.mjs
+python reverse-engineering/tools/geometry-verify-images.py
+python reverse-engineering/tools/geometry-verify-float-images.py
+node reverse-engineering/tools/geometry-texture-programs.mjs
+python reverse-engineering/tools/geometry-texture-native-check.py
+node reverse-engineering/tools/geometry-scene-runtime.mjs
+The exportGeometry(input,out,sharedTextureDirectory) API is in geometry-export.mjs. parseNu2/decodeMesh/declaration are in geometry-nu2.mjs. The Khronos validator dependency is local in tools/geometry-validation; Python checks require Pillow, NumPy and Unicorn as documented by their scripts. Re-running the exporter before affine repair regenerates source matrices; run finalization and affine repair/revalidation to restore standards-compliant final transforms.
+
+Remaining semantic gaps
+See geometry-remaining-gaps.json. Current glTFs are exhaustive viewable asset libraries with approximate materials. Visibility/puzzle state, LOD selection, dynamic material time, original lighting/shadows/reflections/refraction, camera-facing billboards, target-platform optimization and gameplay are not implemented. Full original material records, shader template, textures and runtime metadata are retained for reconstruction. Original template, exact RTTI names, current-layout feature emissions and material uniform binding formulas are documented and validated separately in geometry-material-findings.txt. Remaining live state, legacy preprocessing and GPU pixel comparison gaps are explicit; shader equivalence is not asserted merely because a glTF validates.
+
+Frame/render and portable source follow-up
+geometry-render-integration.json now maps55 original PC functions and47 direct edges from world-scene production through display-list queues, callbacks, material/mesh binding and device submission.255 isolated native assertions verify queue order,536-byte view snapshots,24-slot producer/consumer snapshot, packet interpreter controls,12 matrix normalization/restoration cases and192 mesh submission cases. No GPU pixels are compared.
+geometry-visibility-findings.txt adds the assembly-confirmed world+0x13c -> GSNH+0x110 scene bridge, registration and signed sort ordering, original visibility/LOD/fade consumption, clip-bit-to-command control patching, and named-special dispatch.2,025 native assertions pass, including432 normal-scene cases and48 wrapper/special dispatch cases. Geometric frustum and portal evaluation are explicit external oracles; full shadow and GHG/dynamic-packet consumers remain partial.
+reconstructed/geometry/MaterialUv.cs and SceneSubmission.cs are buildable dependency-free C# under Recovered.Geometry. They provide bounded CPU projections, with exact native-address/method coverage in geometry-recovered-source.json. Compilation succeeded, including the parent's combined library. Ordinary generated harness execution returns OS Access denied, independently reproduced; compiled C# differential equivalence remains pending. Prior JS/Python/original-x86 results are not misreported as compiled-source validation. No ACL or security settings were changed, and no Unity runtime was added.
+
+Prepared-plane clipping follow-up
+geometry-clipping-findings.txt and the two native validation reports close the
+previously supplied frustum oracle at its CPU predicate boundary:82,204 original
+frustum cases and18,721 room-containment cases pass. All403 rooms are covered.
+40,470 original portal-facing/polygon tests cover all326 portals. Original
+plane-block restoration passes82,044 checks. Shared exact64-significand x87
+arithmetic preserves authored near-plane behavior that double arithmetic loses.
+Clipping.cs provides bounded prepared-plane frustum,room containment and portal
+classification source. It shares the recovered FiniteX87 arithmetic source,
+compiles successfully,and has explicit sourceFile/native-address mappings.
+Compiled runtime comparison remains pending OS denial. Camera production,
+room selection,child volumes,recursive/grid/tree visibility propagation and
+full shadow/GHG packet generation remain gaps; GPU equivalence is unclaimed.
+
+Room-selection follow-up
+geometry-room-selection-findings.txt documents the exact0x5d92b0 scan ordering,
+old-candidate priorities,first-shared-portal side and six-slot native stack bound.
+12,869 authored point choices across all403 rooms/326 portals plus2,427 synthetic
+and null cases pass.1,200 original0x5eeb30 entry cases verify selection-point
+override,stores,flag clearing and recursive-call arguments with explicit
+peripheral adapters. PortalSelection.cs and its ordinary harness compile;
+15,296 managed cases are prepared,execution pending. Room selection is now
+recovered within that bound. Child volumes,recursive visibility propagation,
+camera/grid/tree production,shadow/GHG packets and GPU equivalence remain gaps.

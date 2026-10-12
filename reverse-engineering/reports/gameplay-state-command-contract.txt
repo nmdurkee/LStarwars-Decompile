@@ -1,0 +1,46 @@
+PC SETSCRIPTSTATE CONTRACT
+
+1271 checks, zero mismatches; all 95 shipped command occurrences.
+Unmodified 0x445740 plus original token matching, packet number resolver, float truncation, ordered state lookup, and 0x514640 binding. Synthetic actors/packets/source-state lists. Named-character resolution alone uses an explicit callback adapter; self and group cases require no replacement call.
+
+entry
+SetScriptState 0x445740 always completes. Only a first-call invocation scans tokens. The default actor is creature+0xd0. Within each argument, character= is checked before set= and state=, case-insensitively as a substring. Last recognized values win. A character token invokes global callback 0x923904 when present, replacing the current target even when the callback returns null; without that callback, the prior/default target is retained.
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:22 if (param_6 != 0) {
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:24 if ((param_3 != 0) && (*(int *)(param_3 + 0xd0) != 0)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:29 iVar2 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar4 * 4),"character=");
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:46 else if (DAT_00923904 != (code *)0x0) {
+
+set
+set= is evaluated through numeric helper 0x5147c0, then truncated toward zero. Integers outside 0..16 become zero. Zero selects the self/named-target path; values 1..16 select every matching group actor. The group path is independent of the named target. Thus set=17, set=-1 and set=0.9 all use the default/named target, while set=2.99 chooses group 2.
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:39 FUN_005147c0(param_2,iVar2 + 4);
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:40 local_8 = FUN_006e6b90();
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:41 if (((int)local_8 < 0) || (0x10 < (int)local_8)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:52 if (local_8 == 0) {
+
+actors
+Group iteration uses global array 0x93d504 with count 0x93d500 and stride 0x10d8. Actor flags at +0x1fc must contain both 1 and 0x1000, and byte+0x378 must equal the selected group. Each actor stores its script packet at +4. The self/named path checks actor, packet and base script for null; the selected group path dereferences packet/base script without those checks.
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:63 piVar5 = (int *)(DAT_0093d504 + 4);
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:65 if ((((piVar5[0x7e] & 1U) != 0) && ((piVar5[0x7e] & 0x1000U) != 0)) &&
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:66 ((*(byte *)(piVar5 + 0xdd) == local_8 &&
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:73 piVar5 = piVar5 + 0x436;
+
+binding
+Look up the target state in packet.BaseScript, not the current referenced script. Lookup takes the first case-insensitive name match. A missing state does nothing. A match clears reference depth to zero and immediately calls original binder 0x514640 with the base script, target state and no character configuration. This reloads all four script-default parameters, selects the target first action, clears pending/blocked/timed-state fields, and keeps the packet timer. Character tuning overrides are not used by this command.
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:54 (*piVar5 != 0)) && (iVar4 = FUN_00512fc0(local_4,*piVar5), iVar4 != 0)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:55 *(undefined4 *)(*(int *)(iVar3 + 4) + 100) = 0;
+reverse-engineering/decompiled/corpus-expanded/FUN_445740.c:57 FUN_00514640(param_1,puVar1,puVar1,0,0,0,0,*puVar1,iVar4);
+reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:39 piVar5 = (int *)(param_8 + 0x1c);
+
+timing
+Immediate rebind can execute the new first action during the same 0x52cc90 update when the command targets its own packet. A native chain using SetScriptState then target ResetTimer confirms this. A different actor is rebound immediately but its target action executes when that actor is subsequently updated; the command does not directly run another actor scheduler.
+reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:152 *(undefined4 *)(iVar6 + 0xc),uVar5,param_5);
+reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:88 puVar3[3] = 0;
+reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:86 FUN_00514550();
+
+Core and comparison harness compile with installed C# 5 compiler. Managed execution/differential comparison pending because Windows denies new managed executables.
+Matching state names are lexical candidates across shipped scripts, not proof that a selected runtime character has that base script. Native fixtures intentionally supply resolved script lists and test binding behavior.
+
+Synthetically resolved script/state lists, not runtime source attachment or whole-level reachability.
+Selected group records are required to have a valid packet and base-script pointer; original group path lacks the self-path null checks.
+Numeric group fixtures are finite values within int32 conversion range; NaN/infinity/overflow are excluded.
+Compiled C# differential execution remains pending.

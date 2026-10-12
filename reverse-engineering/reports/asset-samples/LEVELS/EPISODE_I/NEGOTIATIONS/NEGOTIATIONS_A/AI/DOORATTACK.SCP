@@ -1,0 +1,43 @@
+state Base {
+	Conditions {
+		if ForceComplete "force1" == 1 goto NormalUpdate
+		if AlwaysTrue == 1 goto WaitForForceDoor
+	}
+	Actions {
+	}
+}
+
+state WaitForForceDoor {
+	Conditions {
+		if ForceComplete "force1" == 1 goto ForceDoorOpened
+	}
+	Actions {
+	}
+}
+
+state ForceDoorOpened {
+	Conditions {
+		if GotOpponent == 1 goto NormalUpdate
+		if Timer > 10 goto NormalUpdate
+		if NearestPlayerRange < 2 goto NormalUpdate
+	}
+	Actions {
+		ResetTimer
+		FollowPlayer "run"
+	}
+}
+
+state NormalUpdate {
+	ReferenceScript {
+		Script=Chatting
+		Source=Global
+		ReturnState=NormalUpdate
+		Conditions {
+		}
+	}
+	Conditions {
+	}
+	Actions {
+		GoToOrigin "waittime=10"
+	}
+}

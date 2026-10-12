@@ -1,0 +1,68 @@
+{
+  "generatedBy": "gameplay-native-contract-verify.py",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Unicorn x86-32 executes original checksum, completion callback, CRC table generator, name hash and group picker. Synthetic memory; no OS APIs, game launch, save search, or user saves. No native function replacements.",
+  "functions": [
+    "0x50b970",
+    "0x428b80",
+    "0x650280",
+    "0x650430",
+    "0x650d10",
+    "0x5b9e10"
+  ],
+  "tests": 1774,
+  "categories": {
+    "save-checksum": 130,
+    "save-trailer-completion": 7,
+    "audio-crc-table": 256,
+    "audio-name-hash": 1135,
+    "audio-group-sequential": 23,
+    "audio-group-sequential-cursor": 23,
+    "audio-group-random": 100,
+    "audio-group-rng-state": 100
+  },
+  "mismatches": 0,
+  "errors": [],
+  "audioHashExamples": [
+    {
+      "name": "MenuSelect",
+      "hash": "0x9dfb43aa",
+      "bucket": 170
+    },
+    {
+      "name": "MenuBack",
+      "hash": "0x3086e45e",
+      "bucket": 94
+    },
+    {
+      "name": "MenuMove",
+      "hash": "0x641ad679",
+      "bucket": 121
+    },
+    {
+      "name": "MenuNoEntry",
+      "hash": "0xd5731e11",
+      "bucket": 17
+    },
+    {
+      "name": "SwChar",
+      "hash": "0x1e87b271",
+      "bucket": 113
+    }
+  ],
+  "groupRandomExamples": [
+    1599,
+    400,
+    37,
+    141,
+    1599,
+    37,
+    1599,
+    12
+  ],
+  "limits": [
+    "Does not emulate filesystem framing or native save-state machine.",
+    "Audio mixer, 3D attenuation, floating-point random pitch/volume and live playback are outside these isolated checks.",
+    "ASCII audio config names only; non-ASCII hashing is not generalized."
+  ]
+}

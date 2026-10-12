@@ -1,0 +1,81 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_89d123adc6bf396b2f6b4ec3563e25957edd0c204114ec20eecbaddaafaf9a77
+ * Entry: 0x6f4bc0; label: _strcmp
+ */
+
+/* Library Function - Single Match
+    _strcmp
+   
+   Library: Visual Studio 2005 Release */
+
+int __cdecl _strcmp(char *_Str1,char *_Str2)
+
+{
+  undefined2 uVar1;
+  undefined4 uVar2;
+  byte bVar3;
+  byte bVar4;
+  bool bVar5;
+  
+  if (((uint)_Str1 & 3) != 0) {
+    if (((uint)_Str1 & 1) != 0) {
+      bVar4 = *_Str1;
+      _Str1 = _Str1 + 1;
+      bVar5 = bVar4 < (byte)*_Str2;
+      if (bVar4 != *_Str2) goto LAB_006f4c04;
+      _Str2 = _Str2 + 1;
+      if (bVar4 == 0) {
+        return 0;
+      }
+      if (((uint)_Str1 & 2) == 0) goto LAB_006f4bd0;
+    }
+    uVar1 = *(undefined2 *)_Str1;
+    _Str1 = _Str1 + 2;
+    bVar4 = (byte)uVar1;
+    bVar5 = bVar4 < (byte)*_Str2;
+    if (bVar4 != *_Str2) goto LAB_006f4c04;
+    if (bVar4 == 0) {
+      return 0;
+    }
+    bVar4 = (byte)((ushort)uVar1 >> 8);
+    bVar5 = bVar4 < (byte)_Str2[1];
+    if (bVar4 != _Str2[1]) goto LAB_006f4c04;
+    if (bVar4 == 0) {
+      return 0;
+    }
+    _Str2 = _Str2 + 2;
+  }
+LAB_006f4bd0:
+  while( true ) {
+    uVar2 = *(undefined4 *)_Str1;
+    bVar4 = (byte)uVar2;
+    bVar5 = bVar4 < (byte)*_Str2;
+    if (bVar4 != *_Str2) break;
+    if (bVar4 == 0) {
+      return 0;
+    }
+    bVar4 = (byte)((uint)uVar2 >> 8);
+    bVar5 = bVar4 < (byte)_Str2[1];
+    if (bVar4 != _Str2[1]) break;
+    if (bVar4 == 0) {
+      return 0;
+    }
+    bVar4 = (byte)((uint)uVar2 >> 0x10);
+    bVar5 = bVar4 < (byte)_Str2[2];
+    if (bVar4 != _Str2[2]) break;
+    bVar3 = (byte)((uint)uVar2 >> 0x18);
+    if (bVar4 == 0) {
+      return 0;
+    }
+    bVar5 = bVar3 < (byte)_Str2[3];
+    if (bVar3 != _Str2[3]) break;
+    _Str2 = _Str2 + 4;
+    _Str1 = _Str1 + 4;
+    if (bVar3 == 0) {
+      return 0;
+    }
+  }
+LAB_006f4c04:
+  return (uint)bVar5 * -2 + 1;
+}
+

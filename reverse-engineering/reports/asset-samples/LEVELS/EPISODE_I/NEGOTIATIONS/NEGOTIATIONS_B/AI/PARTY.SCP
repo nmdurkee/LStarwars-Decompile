@@ -1,0 +1,51 @@
+state Base {
+	Conditions {
+		if FreePlay == 1 goto UpdateJedi
+		if CategoryIs "Jedi" == 1 goto UpdateJedi
+		if AlwaysTrue == 1 goto UpdateNonJedi		
+	}
+	Actions {	
+	}
+}
+
+state UpdateNonJedi {
+	ReferenceScript {
+		Script=GeneralParty
+		Source=Global
+		ReturnState=UpdateNonJedi
+		Conditions {
+		}
+	}
+	Conditions {
+	}
+	Actions {	
+		FollowPlayer "1"
+	}
+}
+
+state UpdateJedi {
+	ReferenceScript {
+		Script=GeneralParty
+		Source=Global
+		ReturnState=UpdateJedi
+		Conditions {
+			if OpponentIsAThreat == 1
+		}
+	}
+	Conditions {
+		if EitherPlayerOnForcePlatform "force8" == 1 goto UseForceOnTrolley
+	}
+	Actions {	
+		FollowPlayer "1"
+	}
+}
+
+state UseForceOnTrolley {
+	Conditions {
+		if EitherPlayerOnForcePlatform "force8" == 0 goto UpdateJedi
+	}
+	Actions {	
+		GoToLocator "name" "Use_Trolley"
+		UseForce "force8"
+	}
+}

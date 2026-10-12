@@ -1,0 +1,122 @@
+REMAINING GAMEPLAY COMMAND PRIORITIES
+
+Refreshed from the semantic ledger after six compact conditions and the externally owned bounded Kill contract. No new native implementation or execution occurs in this prioritization refresh.
+
+{"boundedContractNames": 25, "catalogNames": 434, "missingNativeBindingNames": 38, "missingNativeBindingSourceUses": 227, "nativeBoundButUncontractedNames": 371, "remainingSameSpellingDifferentHandlerGroups": 6, "sameSpellingDifferentHandlerGroups": 7, "sharedHandlerClusters": 3, "sharedHandlerSourceUses": 506, "top20MissingBindings": 0, "top20SourceUses": 5218, "uncontractedNames": 409, "uncontractedSourceUses": 11937}
+
+TOP 20 BY SHIPPED USE COUNT
+ 1. CreateCreatures [scp-action] 653 uses | 0x456c10 | initializer -
+ 2. CnxController [scp-action] 534 uses | 0x44d900 | initializer -
+ 3. GoToLocator [scp-action] 516 uses | 0x536700 | initializer -
+ 4. EitherPlayerInTriggerArea [scp-condition] 386 uses | 0x515070 | initializer 0x52d160
+ 5. FollowPlayer [scp-action] 325 uses | 0x452570 | initializer -
+ 6. ActivateEffect [git-action] 277 uses | 0x464360 | initializer -
+ 7. EngageOpponent [scp-action] 263 uses | 0x447f00 | initializer -
+ 8. SetLocator [scp-action] 222 uses | 0x445cf0 | initializer -
+ 9. PlaySpecial [git-action] 219 uses | 0x465720 | initializer -
+10. FacePlayer [scp-action] 210 uses | 0x515ca0 | initializer -
+11. SnapToLocator [scp-action] 186 uses | 0x446060 | initializer -
+12. ObstacleAtEnd [scp-condition] 178 uses | 0x440940 | initializer 0x4408b0
+13. DontPush [scp-action] 177 uses | 0x4497b0 | initializer -
+14. InTriggerArea [scp-condition] 165 uses | 0x514bd0 | initializer 0x52d0b0
+15. GotLocator [scp-condition] 157 uses | 0x514ae0 | initializer -
+16. SetSide [scp-action] 156 uses | 0x444940 | initializer -
+17. KeepWeaponOut [scp-action] 154 uses | 0x44ef00 | initializer -
+18. ObstacleAtStart [scp-condition] 153 uses | 0x440910 | initializer 0x4408b0
+19. SetInvulnerable [scp-action] 145 uses | 0x449440 | initializer -
+20. CameraCut [scp-action] 142 uses | 0x4509d0 | initializer -
+
+EXACT SHARED HANDLERS
+0x440940: ObstacleAtEnd [scp-condition] 0x440940 178 uses (dispatch-only; init 0x4408b0); SpecialAtEnd [scp-condition] 0x440940 6 uses (dispatch-only; init 0x4408e0)
+0x44ea70: PlayObstacle [scp-action] 0x44ea70 105 uses (dispatch-only; init -); PlayGizObstacle [scp-action] 0x44ea70 57 uses (dispatch-only; init -)
+0x440910: ObstacleAtStart [scp-condition] 0x440910 153 uses (dispatch-only; init 0x4408b0); SpecialAtStart [scp-condition] 0x440910 7 uses (dispatch-only; init 0x4408e0)
+
+SAME SPELLING, DIFFERENT HANDLERS
+playobstacle: PlayObstacle [scp-action] 0x44ea70 105 uses (dispatch-only; init -); PlayObstacle [git-action] 0x465590 139 uses (dispatch-only; init -)
+enablesock: EnableSock [scp-action] 0x44ce00 55 uses (dispatch-only; init -); EnableSock [git-action] 0x465cc0 9 uses (dispatch-only; init -)
+helpwithtriggers: HelpWithTriggers [scp-condition] 0x442d10 18 uses (dispatch-only; init -); HelpWithTriggers [scp-action] 0x452a60 5 uses (dispatch-only; init -)
+completelevel: CompleteLevel [scp-action] 0x455e90 4 uses (dispatch-only; init -); CompleteLevel [git-action] 0x465340 15 uses (dispatch-only; init -)
+playcutscene: PlayCutScene [scp-action] 0x44d320 16 uses (dispatch-only; init -); PlayCutscene [git-action] 0x465a80 2 uses (dispatch-only; init -)
+gotonewlevel: GoToNewLevel [scp-action] 0x455fb0 1 uses (dispatch-only; init -); GoToNewLevel [git-action] 0x465430 6 uses (dispatch-only; init -)
+setvisibility: SetVisibility [scp-action] 0x44cd40 144 uses (bounded-native-contract; init -); SetVisibility [git-action] 0x464480 1077 uses (bounded-native-contract; init -)
+
+SHARED CONDITION INITIALIZER CANDIDATES
+0x52d160: EitherPlayerInTriggerArea [scp-condition] 0x515070 386 uses (dispatch-only; init 0x52d160); PlayerInTriggerArea [scp-condition] 0x514fb0 141 uses (dispatch-only; init 0x52d160); Player2InTriggerArea [scp-condition] 0x515010 1 uses (dispatch-only; init 0x52d160)
+0x441f90: NumInSetAlive [scp-condition] 0x442000 355 uses (bounded-native-contract; init 0x441f90); IsSetAlive [scp-condition] 0x441fd0 7 uses (dispatch-only; init 0x441f90)
+0x4408b0: ObstacleAtStart [scp-condition] 0x440910 153 uses (dispatch-only; init 0x4408b0); ObstacleAtEnd [scp-condition] 0x440940 178 uses (dispatch-only; init 0x4408b0)
+0x4418c0: PlayerOnObject [scp-condition] 0x441910 73 uses (dispatch-only; init 0x4418c0); OnObject [scp-condition] 0x441b00 28 uses (dispatch-only; init 0x4418c0); EitherPlayerOnObject [scp-condition] 0x441970 6 uses (dispatch-only; init 0x4418c0)
+0x52d070: LocatorRangeXZ [scp-condition] 0x514a50 39 uses (dispatch-only; init 0x52d070); LocatorRange [scp-condition] 0x514a00 61 uses (dispatch-only; init 0x52d070); LocatorRangeY [scp-condition] 0x514aa0 4 uses (dispatch-only; init 0x52d070)
+0x440c00: CategoryIs [scp-condition] 0x440c30 65 uses (dispatch-only; init 0x440c00); PlayerCategoryIs [scp-condition] 0x440c70 14 uses (dispatch-only; init 0x440c00)
+0x440ff0: EitherPlayerUsingForce [scp-condition] 0x441070 6 uses (dispatch-only; init 0x440ff0); PlayerUsingForce [scp-condition] 0x441050 41 uses (dispatch-only; init 0x440ff0); ForceBeingUsed [scp-condition] 0x441300 24 uses (dispatch-only; init 0x440ff0)
+0x443a00: GizmoOutput0 [scp-condition] 0x443a30 54 uses (dispatch-only; init 0x443a00); GizmoOutput2 [scp-condition] 0x443ab0 10 uses (dispatch-only; init 0x443a00); GizmoOutput1 [scp-condition] 0x443a70 5 uses (dispatch-only; init 0x443a00)
+0x4410b0: EitherPlayerOnForcePlatform [scp-condition] 0x441200 5 uses (dispatch-only; init 0x4410b0); PlayerOnForcePlatform [scp-condition] 0x441180 38 uses (dispatch-only; init 0x4410b0); OnForcePlatform [scp-condition] 0x4410f0 12 uses (dispatch-only; init 0x4410b0)
+0x441570: ForceComplete [scp-condition] 0x4415a0 29 uses (dispatch-only; init 0x441570); ForceFinished [scp-condition] 0x4415c0 2 uses (dispatch-only; init 0x441570)
+0x52d1e0: OpponentToLocator [scp-condition] 0x5154e0 6 uses (dispatch-only; init 0x52d1e0); OpponentToLocatorY [scp-condition] 0x515580 12 uses (dispatch-only; init 0x52d1e0); OpponentToLocatorXZ [scp-condition] 0x515530 11 uses (dispatch-only; init 0x52d1e0)
+0x442a20: HintAvailable [scp-condition] 0x442a40 12 uses (dispatch-only; init 0x442a20); HintComplete [scp-condition] 0x442a60 8 uses (dispatch-only; init 0x442a20)
+0x442060: InContext [scp-condition] 0x442180 16 uses (dispatch-only; init 0x442060); OpponentContext [scp-condition] 0x4421b0 2 uses (dispatch-only; init 0x442060)
+0x440f10: EitherPlayerIs [scp-condition] 0x440f30 15 uses (dispatch-only; init 0x440f10); Player1Is [scp-condition] 0x440f60 1 uses (dispatch-only; init 0x440f10); Player2Is [scp-condition] 0x440f80 1 uses (dispatch-only; init 0x440f10)
+0x52d200: NearestPlayerToLocator [scp-condition] 0x515620 12 uses (dispatch-only; init 0x52d200); PlayerToLocator [scp-condition] 0x5155c0 4 uses (dispatch-only; init 0x52d200)
+0x4408e0: SpecialAtStart [scp-condition] 0x440910 7 uses (dispatch-only; init 0x4408e0); SpecialAtEnd [scp-condition] 0x440940 6 uses (dispatch-only; init 0x4408e0)
+0x4409b0: ObstacleOpenedByEitherPlayer [scp-condition] 0x440a00 2 uses (dispatch-only; init 0x4409b0); ObstacleOpenedByPlayer [scp-condition] 0x4409e0 5 uses (dispatch-only; init 0x4409b0); ObstacleLockedShut [scp-condition] 0x440970 1 uses (dispatch-only; init 0x4409b0)
+
+SUGGESTED REMAINING BATCHES
+Trigger mask family: 3 names / 528 uses
+Observed shared initializer 0x52d160 links all three conditions. Check bit-index/shift ABI and both player slots before extending to the global trigger updater.
+Gizmo endpoint and playback cluster: 8 names / 864 uses
+Three exact shared handlers and established registry/animation callback boundaries provide reuse. Distinct obstacle versus special initializers must remain explicit.
+Locator, movement and opponent controllers: 7 names / 2256 uses
+High aggregate use, but deeper runtime dependencies. Split lookup/argument contracts from motion, navigation and target-lifecycle effects.
+Spawn lifecycle: 1 names / 653 uses
+CreateCreatures remains uncontracted. Kill has an externally owned bounded dispatch contract; downstream death and parts effects remain open.
+
+ALL NAMES WITHOUT A NATIVE BINDING
+SetDefensive [scp-action] 37 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/DARTHMAUL.SCP:160
+AddLocatorGroup [scp-action] 27 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/LEVEL1.SCP:16
+UnLockDoor [scp-action] 14 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP:18
+SetObstacleChainPhase [scp-action] 13 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_CANNON1.SCP:13
+GetLocatorFromGroup [scp-action] 11 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/ATAT.SCP:201
+SetVisbility [scp-action] 10 uses | reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP:43
+LockDoor [scp-action] 10 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP:7
+OpenDoor [scp-action] 10 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP:19
+ObstacleFinished [scp-condition] 8 uses | reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP:28
+ActivateGadget [scp-action] 7 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/CRASHPOD.SCP:25
+ObstacleTriggerSet [scp-action] 7 uses | reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/AI/LEVEL.SCP:33
+DoorOpened [scp-condition] 6 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP:27
+ResetTime [scp-action] 5 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_A/AI/NOTUSEDANYMORE_BLASTER.SCP:48
+SetPlayType [scp-action] 5 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/POD.SCP:5
+FollowSpline [scp-action] 5 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/POD.SCP:21
+HothBattleWaveCreature [scp-condition] 5 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP:11
+AddLocatorSet [scp-action] 5 uses | reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP:25
+GotLocatorInGroup [scp-condition] 4 uses | reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/AI/LAUNCH_TIE.SCP:3
+DoorOpenedByPlayer [scp-condition] 4 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP:28
+CloseDoor [scp-action] 4 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP:8
+ObstacleChainPhase [scp-condition] 4 uses | reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_A/AI/LEVEL1.SCP:12
+GadgetActive [scp-condition] 3 uses | reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL3.SCP:23
+EngageTurret [scp-action] 3 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/PROBE.SCP:79
+FollowSock [scp-action] 2 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/POD.SCP:41
+GoToOrign [scp-action] 2 uses | reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_B/AI/CLONERIDER.SCP:31
+DoorClosed [scp-condition] 2 uses | reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP:31
+DisableObstacle [scp-action] 2 uses | reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_D/AI/LEVEL3.SCP:23
+ObstaclePlaying [scp-condition] 2 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/AI/PARTY.SCP:102
+JustComeFromE [scp-condition] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_C/AI/LEVEL.SCP:7
+MakeExplosion [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/CRASHPOD.SCP:26
+PreviousMessage [scp-condition] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/LEVEL1.SCP:5
+GoToLoc [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/USEDJAWA.SCP:169
+Wander [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_D/AI/TUSKEN_SNIPER.SCP:64
+SXetGravityHeight [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_D/AI/ATTACK_TIE.SCP:7
+lowupBlownup [scp-condition] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/LEVEL2.SCP:37
+SetMesssage [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/ATAT.SCP:55
+if [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/LEVEL2.SCP:33
+ThrowThermal [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/AI_BOBA.SCP:128
+
+COMPLETED SINCE ORIGINAL PRIORITIZATION
+Six compact conditions: 1,888 uses, gameplay-compact-condition-contract.json.
+Kill: 202 uses, 6,920 external combat comparisons; native-combat-kill.json. These checks are excluded from gameplay totals. Downstream death/parts behavior remains external.
+
+LIMITS
+A use count measures preserved authored occurrences, including alternate files; it is not execution frequency or gameplay importance.
+A native binding does not establish semantics, and a shared function address does not establish identical initializer behavior.
+Pseudocode line/callee counts are only review heuristics. Indirect calls, allocator effects, character lifetime, global setup and rendering can dominate actual work.
+Unbound names require native parser/loader and source-reachability review; no automatic typo substitutions are authorized or applied.
+
+Full source references, native table addresses and retained inspection evidence are in gameplay-next-command-priorities.json.

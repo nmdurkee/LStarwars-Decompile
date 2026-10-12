@@ -1,0 +1,64 @@
+PC NAMED MESSAGE CONTRACT
+
+2638 checks, zero mismatches; 1678 shipped occurrences and 34 original SCP scheduler chains.
+Original PC message registry, condition initializer/reader, SCP SetMessage/CopyMessage, GIT SetAIMessage, numeric resolver and string/list helpers. Synthetic preallocated linked records and script packet; only CRT sprintf %s/%s%s is adapted. Original binary bytes are unchanged.
+
+registry
+The shared registry is global 0x95df4c. Records are linked with next+0, previous+4, a 32-byte name at +8, and a float value at +0x28. Registry free-list head/tail are +8/+12 and active-list head/tail +16/+20. A non-null cached third argument is returned directly when the registry is non-null. Lookup adds msg_ unless a case-insensitive occurrence of msg_ appears anywhere in the supplied name. Unprefixed names longer than 26 bytes are rejected. Active records are scanned in order, case-insensitively, before transferring the first free record to the active tail. Transfer does not zero the record value. Exhaustion returns null.
+Native disassembly establishes the returned cached-pointer path, which Ghidra typed void. Original literal at 0x805d48 is msg_. The already-prefixed sprintf branch lacks a name-length check; fixtures exclude its overflow domain, and the portable API rejects >31 characters.
+reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c:23 iVar1 = FUN_004f8a70(param_2,&DAT_00805d48);
+reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c:27 if (0x1f < iVar1 + 1 + iVar2) {
+reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c:38 iVar3 = FUN_004f8b80(local_24,iVar2 + 8,0x20);
+reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c:47 FUN_004f1310(iVar1,iVar2);
+
+Message
+The condition initializer resolves/creates its name in the shared registry when its first argument, name pointer and global registry are nonzero. The condition reads the current float at its bound record+0x28, or zero for a null record. It reads the live value each evaluation. It does not dequeue notifications or use the packet blocked-message mask.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_442480.c:12 if (((param_2 != 0) && (param_1 != 0)) && (DAT_0095df4c != 0)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_4424b0.c:13 return (float10)*(float *)(in_stack_00000014 + 0x28);
+
+SetMessage
+Always completes (returns 1). Only first-call, non-null-registry, positive-argument-count calls scan arguments. Each argument is searched case-insensitively, in name=, value=, increment=, decrement= priority. Matches can begin inside a longer token. Last matching name and numeric amount win; increment/decrement set mode +1/-1, while value= does not reset an earlier mode. Default amount and mode are zero. A valid name lookup is set, incremented or decremented as a float32 value. Failed lookup is ignored.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c:23 if (((param_6 != 0) && (DAT_0095df4c != 0)) && (0 < param_5)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c:25 iVar1 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar3 * 4),"name=");
+reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c:27 iVar1 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar3 * 4),"value=");
+reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c:34 iVar2 = -1;
+reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c:54 *(float *)(iVar3 + 0x28) = *(float *)(iVar3 + 0x28) - local_8;
+
+SetAIMessage
+GIT updates the same shared registry. It searches Name and Val without the equals sign, then skips the key plus one separator byte. Increment/decrement use their equals-suffixed keys. Token order and persistent operation mode match SetMessage. Numeric operands use the decimal-prefix parser directly, without SCP packet parameter lookup. This handler has no first-call guard and no failed-lookup guard.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c:24 iVar1 = FUN_004f8a70(*(undefined4 *)(param_3 + iVar4 * 4),&DAT_00758a60);
+reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c:42 fVar5 = (float10)FUN_004f28e0(iVar1 + 1 + iVar2);
+reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c:32 fVar5 = (float10)FUN_004f28e0(iVar1 + 10);
+reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c:54 iVar4 = FUN_005aac00(DAT_0095df4c,local_4,0);
+
+CopyMessage
+On first call with a non-null registry and positive argument count, scan from= before to= inside each token; last matched source/destination names win. Resolve/create source first, then destination even if source lookup failed. If both resolve, copy all 32 value bits. Negative zero and quiet-NaN payload fixtures confirm a bit copy. Newly created source records retain their free-list values. The action always returns 1.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c:21 if (((in_stack_00000018 != 0) && (DAT_0095df4c != 0)) && (0 < in_stack_00000014)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c:23 iVar1 = FUN_004f8a70(*(undefined4 *)(in_stack_00000010 + iVar3 * 4),"from=");
+reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c:36 iVar3 = FUN_005aac00(DAT_0095df4c,local_4,0);
+reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c:39 *(undefined4 *)(iVar2 + 0x28) = *(undefined4 *)(iVar3 + 0x28);
+
+operands
+SCP numeric operands first search the entire token for param, case-insensitively. The PC passes the beginning of that match to its integer parser, so param0, param3 and prefixPaRaM99 all resolve to packet parameter 0. Without such a match, ordered case-insensitive script parameter names map to the four packet values. Otherwise parse an optional minus and decimal digits/dot, stopping at the first other character; leading plus, whitespace and exponent notation are not accepted. Digit multiplication, digit addition, decimal divisor multiplication and final division store float32 values.
+The slot-zero result is confirmed by 40 direct operand fixtures here and independently by the root combat-command fixture. No general expression evaluator is implied.
+reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c:20 iVar1 = FUN_004f8a70(param_2,"param");
+reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c:39 uVar2 = FUN_004f29a0(iVar1);
+reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c:33 iVar1 = iVar1 + 8;
+reverse-engineering/decompiled/corpus-expanded/FUN_4f28e0.c:19 if (cVar1 == '-') {
+
+puzzleLink
+For all 34 authored GIT SetAIMessage occurrences, isolated original-PC tests construct a bound Message condition, perform the graph command, then call the original SCP scheduler 0x52cc90. The expected state is entered after the shared value update. This proves the command-to-record-to-condition-to-state contract on the controlled fixtures, not the reachability of those graph nodes or whole-level completion.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c:26 *(undefined4 *)(iVar4 + 0x18));
+reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:33 if ((iVar4 != 0) && (iVar4 = FUN_0052c880(param_1,iVar2 + 0x1c,param_3,puVar3), iVar4 == 0)) {
+
+Core library and message comparison harness compiled with installed C# 5 compiler. Execution/differential comparison pending; root reports Windows denial of newly generated managed executables.
+
+ASCII names only; embedded NUL and overlong names already containing msg_ are excluded because original sprintf lacks a bound on that branch.
+GIT SetAIMessage requires a valid registry, name and available record. Original handler dereferences a failed lookup; portable source will explicitly reject that invalid input.
+Registry lifecycle/allocation/reset and inter-level message persistence are not established by these isolated fixtures.
+Native reference fixtures are not a compiled C# differential pass.

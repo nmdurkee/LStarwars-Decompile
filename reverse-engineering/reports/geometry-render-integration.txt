@@ -1,0 +1,137 @@
+ORIGINAL PC FRAME, DISPLAY LIST AND DRAW SUBMISSION INTEGRATION
+
+This connects previously recovered assets/materials to original CPU rendering
+calls. Descriptive names are reconstructed, not original symbols. Evidence:
+geometry-render-integration.json records function addresses, file hashes,
+decompiler evidence IDs, direct edges and fields. No game/GPU process ran.
+
+Frame timing and production
+Outer loop0x492b40 conditionally invokes world update0x491d50 and render
+production0x4927f0. The latter eventually calls0x5f3950 twice and0x5f39e0 to
+finalize view contexts. Each calls0x5efff0, records its bucket ID, then copies
+536 bytes from0x9718a0 to0x9640f0 + contextCount*536; count is0x95fbb8.
+A nested-capture mode stores the bucket ID in an owning capture structure and
+puts -1 in the normal context. The exact copy and nested cases are native-tested.
+
+0x5efff0 collects eligible linked36-byte sort records from0x973ecc and a dynamic
+tail list. A bucket has count+0, pointer array+4 and inline16-byte tail item+8.
+The bucket is recorded in producer slots at0x973ed4. 0x5f0d70 prepares dirty
+material lists and copies24 producer pointers into consumer slots0x973f34.
+Sort-record fields, scene dirty flags and material enable bitsets are cataloged
+in JSON. We have not reconstructed all game-object/GHG submissions or culling.
+
+Platform completion0x4fd050 calls UV wrapper0x601330, ATS scheduler0x5d34a0 and
+parameter timer0x5ddc80 with the PREVIOUS float platform delta at0x297dbfc.
+It then calls0x60b5b0 ->0x60aff0, measures/replaces the platform delta, and
+returns it. The outer loop stores/caps world delta at0x925018 independently.
+Thus a future UV consumer must not silently substitute the capped game delta.
+Scene animation0x5f4b90 belongs to update and is not itself draw submission.
+
+Playback and callback dispatch
+0x60aff0 loops536-byte contexts, establishes clear/pass/target state, and calls
+0x5f02e0 for each nonnegative bucket ID. That plays sorted scene-list pointers
+in their prepared order, then the inline tail. 0x6033d0 invokes0x5e0f90 with
+the current table pointer at0x80e794. Selection0x603aa0 chooses49-entry table
+0x80e6d0 (selector0) or0x80e798 (selector1); pass names remain unassigned.
+
+The native interpreter uses16-byte items. Byte+1 is control:0 skips/advances,
+1 jumps to pointer+4,3 dispatches and advances,4 returns. Byte+0 is the opcode;
+for control3 it selects callback[(opcode-0x80)], ignores a null callback, and
+passes item+4 as the sole argument. Native producers use0x84/control4 and
+0x8d/control1. Serialized opcode labels alone do not define termination.
+Invalid control values loop in native code; bounded tools must reject them.
+
+Primary callbacks include0x80->608000 material,0x82/8b/98->607880 mesh,
+0x83->5fd6b0 matrix,0x8f->5fd9f0 billboard mesh,0x90->5fda20 billboard transform.
+The secondary table changes material to6083d0 and matrix to5fd940 and suppresses
+several other callbacks. All49 entries of both exact tables are preserved.
+
+Material608000 looks up signed16 shader index at material+0x1f4 using741620,
+sets current material0x2854c20, invokes uniform binder742730 and shader setter
+741640, supplies declaration material+0x2bc, and invokes state helper601360.
+The secondary callback uses shader index+0x1f6. Dedicated debris/face-on branches
+are selected from flags+0x1f0, consistent with earlier shader findings. This
+connects prior material feature/uniform tests to the actual playback callback.
+
+Mesh and matrix consumption
+607880 requires nonnull packet, current shader and nonzero vertex count.
+For kind6 it binds vertex stream0 from packet+0x24, u16 stride+8, index buffer
+at+0x20, and submits (primitiveType5, baseVertex+0x14, minimum0,
+vertexCount+0x18, startIndex+0x1c, primitiveCount+4) through6e48e0.
+Kind12 is triangle list count/3;13 triangle strip count-2 guarded count>2;
+14 line list count/2;15 line strip count-1;17 triangle fan count-2 guarded;
+18 point list count with point size temporarily32 then1. Immediate data starts
+packet+56, stride24. Those guards/counts/arguments are original-x86 validated.
+The dynamic deformer buffer branch is retained as a static observation only.
+
+Primary matrix callback5fd6b0 treats slots+0x2c/+0x3c as extra metadata.
+It uploads associated fog/alpha state, temporarily normalizes those slots to
+0/1 for semantic0x11 world-matrix upload, then restores original source bytes.
+Twelve native cases verify normalized upload and exact source restoration.
+An unqualified direct matrix upload would miss this native packet convention.
+
+6e48e0 and6e49b0 call device vtable slots+0x148/+0x14c. Their argument layouts
+match documented IDirect3DDevice9 DrawIndexedPrimitive/DrawPrimitiveUP methods.
+This API identification is an inference from slot/signature; direct observed
+offsets and arguments are preserved in JSON. Microsoft primary references:
+https://learn.microsoft.com/en-us/windows/win32/api/d3d9/nf-d3d9-idirect3ddevice9-drawindexedprimitive
+https://learn.microsoft.com/en-us/windows/win32/api/d3d9/nf-d3d9-idirect3ddevice9-drawprimitiveup
+
+Completion and limits
+0x5dfab0 flips global and scene list parity bit0x8000, resets material/list
+state through5ddd10, clears owning header+0x44, queue index and used flags.
+5fd450 separately alternates transient arenas and checks usage capacity.
+60aff0 ends through6dfd40->6e41a0; the latter calls device slot+0x44 with four
+null arguments and handles lost-device HRESULTs. This matches D3D9 Present:
+https://learn.microsoft.com/en-us/windows/win32/api/d3d9/nf-d3d9-idirect3ddevice9-present
+Optional5dece0/5ded40 write a debug HTML display-list log;5decd0/6d3420 are empty.
+
+255 bounded original-x86 assertions pass: callback/control flow, table selection,
+bucket order, context copies/nested captures,24-slot snapshot,12 matrix cases,
+192 mesh cases. GPU endpoints, allocation producer and locks are intercepted
+as explicitly recorded; no pixels, full-frame replay or device behavior is
+claimed. Run python reverse-engineering/tools/geometry-render-native.py then
+python reverse-engineering/tools/geometry-render-evidence.py from workspace.
+
+Portable UV source
+reconstructed/geometry/MaterialUv.cs is dependency-free C# under
+Recovered.Geometry, separate from harness/Program.cs. Both compile with the
+installed Framework compiler. Ordinary harness execution returns OS Access
+denied, independently reproduced by root; its compiled differential comparison
+is pending. No security settings were changed. The independent prior UV
+native contract checks remain valid. geometry-recovered-source.json records
+build status, hashes, explicit execution limitation and reproducible commands.
+
+Visibility/submission extension
+The graph now includes55 functions/47 direct edges. World-scene rendering
+connects4927f0 ->55f650/57d0a0 ->601df0 ->5f5830;601df0's GSNH+110 dereference
+is assembly-confirmed despite missing pseudocode arguments. Normal consumer
+5f5380 and named-special dispatch are independently exercised in2,025 native
+assertions. See geometry-visibility-findings.txt for exact LOD/portal/fade,
+registration and special matrix semantics, including NaN edge cases. The C#
+SceneSubmission.cs module compiles but its managed execution remains pending.
+
+Prepared-plane clipping follow-up
+geometry-clipping-findings.txt and the two native validation reports close the
+previously supplied frustum oracle at its CPU predicate boundary:82,204 original
+frustum cases and18,721 room-containment cases pass. All403 rooms are covered.
+40,470 original portal-facing/polygon tests cover all326 portals. Original
+plane-block restoration passes82,044 checks. Shared exact64-significand x87
+arithmetic preserves authored near-plane behavior that double arithmetic loses.
+Clipping.cs provides bounded prepared-plane frustum,room containment and portal
+classification source. It shares the recovered FiniteX87 arithmetic source,
+compiles successfully,and has explicit sourceFile/native-address mappings.
+Compiled runtime comparison remains pending OS denial. Camera production,
+room selection,child volumes,recursive/grid/tree visibility propagation and
+full shadow/GHG packet generation remain gaps; GPU equivalence is unclaimed.
+
+Room-selection follow-up
+geometry-room-selection-findings.txt documents the exact0x5d92b0 scan ordering,
+old-candidate priorities,first-shared-portal side and six-slot native stack bound.
+12,869 authored point choices across all403 rooms/326 portals plus2,427 synthetic
+and null cases pass.1,200 original0x5eeb30 entry cases verify selection-point
+override,stores,flag clearing and recursive-call arguments with explicit
+peripheral adapters. PortalSelection.cs and its ordinary harness compile;
+15,296 managed cases are prepared,execution pending. Room selection is now
+recovered within that bound. Child volumes,recursive visibility propagation,
+camera/grid/tree production,shadow/GHG packets and GPU equivalence remain gaps.

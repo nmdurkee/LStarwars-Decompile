@@ -1,0 +1,16 @@
+/* Ghidra pseudocode, not original source.
+ * ev_55c3fafd2bb47b4484afc45519bee328d1122611dc21b8ef391b43f817c8682b
+ * Entry: 0x56d6b0; label: FUN_0056d6b0
+ * Boundary hypotheses: reports/native-boundary-seeds.json.
+ */
+
+void FUN_0056d6b0(undefined4 param_1,undefined4 *param_2)
+
+{
+  if (param_2 != (undefined4 *)0x0) {
+    *param_2 = 0xffffffff;
+    param_2[1] = 0xffffffff;
+  }
+  return;
+}
+

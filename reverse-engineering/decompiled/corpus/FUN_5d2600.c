@@ -1,0 +1,24 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_7d8e2999f2f8a3752dbaff0aac6d4e5497e59d04af9d3c1072d39c32106cee2b
+ * Entry: 0x5d2600; label: FUN_005d2600
+ */
+
+void FUN_005d2600(undefined4 param_1)
+
+{
+  int iVar1;
+  undefined2 uVar2;
+  undefined2 uVar3;
+  
+  uVar2 = FUN_005d1d70();
+  uVar3 = FUN_004f9e70(param_1);
+  iVar1 = DAT_00971580;
+  *(undefined2 *)(DAT_00971580 + 0x1ba + *(short *)(DAT_00971580 + 0x1b4) * 2) = 0xf;
+  *(short *)(iVar1 + 0x1b4) = *(short *)(iVar1 + 0x1b4) + 1;
+  *(undefined2 *)(iVar1 + 0x1ba + *(short *)(iVar1 + 0x1b4) * 2) = uVar2;
+  *(short *)(iVar1 + 0x1b4) = *(short *)(iVar1 + 0x1b4) + 1;
+  *(undefined2 *)(iVar1 + 0x1ba + *(short *)(iVar1 + 0x1b4) * 2) = uVar3;
+  *(short *)(iVar1 + 0x1b4) = *(short *)(iVar1 + 0x1b4) + 1;
+  return;
+}
+

@@ -1,0 +1,146 @@
+//Negotiations_A
+state Base {
+	Conditions {
+		if MissionMode == 1 goto Start
+	}
+	Actions {	
+	}
+}
+
+
+state Start {
+	Conditions {
+	}
+	Actions {	
+		SetMessage "name=NumMissionBaddies" "value=8"
+		SetMessage "name=DoneFirstBit" "value=1"
+		
+		//Lock exits to b and c
+		//
+		//!!!!DONE IN FLOW!!!!
+		//
+		
+		//Create target
+		CreateCreatures "locator=MissionTarget" "type=QuiGonJinn" "script=MissionTarget"
+		
+		//Create creatures at start.
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=PKDroid" "script=MissionNeutral" "addtoset=1"
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=PKDroid" "script=MissionNeutral" "addtoset=1"
+		
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+
+
+		SetState "Update"
+	}
+}
+
+state Update {
+	Conditions {
+		if NumInSetAlive "1" < 4 goto SpawnNeutral
+		
+		if Timer > 0 and
+		if Message "NumMissionBaddies" > 0 and
+		if NumInSetAlive "2" < 8 goto SpawnBaddie
+		
+		if Message "NumMissionBaddies" < 1 and
+		if NumInSetAlive "2" == 0 goto ResetBaddieSpawn
+	}
+	Actions {	
+	}
+}
+
+state SpawnNeutral {
+	Conditions {
+	}
+	Actions {	
+		CreateCreatures "mingroupsize 1" "maxgroupsize 3" "locator_set=MissionSpawn" "max_range_to_player=10" "type=PKDroid" "script=MissionNeutral" "addtoset=1" "off_screen"
+		SetState "Update"
+	}
+}
+
+state SpawnBaddie
+{
+	Conditions
+	{
+		if EitherPlayerInTriggerArea "Mission1" == 1 goto SpawnBaddie1
+		if EitherPlayerInTriggerArea "Mission2" == 1 goto SpawnBaddie2
+		if EitherPlayerInTriggerArea "Mission3" == 1 goto SpawnBaddie3
+		if AlwaysTrue == 1 goto defaultSpawnBaddie
+	}
+	Actions
+	{
+	}
+}
+
+state SpawnBaddie1
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		CreateCreatures "locator_set=Mission1" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		SetMessage "name=NumMissionBaddies" "decrement=1"
+		Idle "mintime=1" "maxtime=2"
+		SetState "Update"
+	}
+}
+
+state SpawnBaddie2
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		CreateCreatures "locator_set=Mission2" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		SetMessage "name=NumMissionBaddies" "decrement=1"
+		Idle "mintime=1" "maxtime=2"
+		SetState "Update"
+	}
+}
+
+state SpawnBaddie3
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		CreateCreatures "locator_set=Mission3" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2"
+		SetMessage "name=NumMissionBaddies" "decrement=1"
+		Idle "mintime=1" "maxtime=2"
+		SetState "Update"
+	}
+}
+
+state defaultSpawnBaddie
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		CreateCreatures "locator_set=MissionSpawn" "max_range_to_player=10" "type=Battledroid" "script=MissionBaddie" "addtoset=2" "off_screen"
+		SetMessage "name=NumMissionBaddies" "decrement=1"
+		SetState "Update"
+	}
+}
+
+state ResetBaddieSpawn
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		SetMessage "name=NumMissionBaddies" "value=8"
+		ResetTimer "mintime=-4" "maxtime=-2"
+		SetState "Update"
+	}
+}

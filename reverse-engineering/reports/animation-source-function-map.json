@@ -1,0 +1,307 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappingMethod": "Explicit reviewed native function entrypoint to public C# method, not string scanning for hexadecimal constants.",
+  "primaryNativeEntryPoints": 18,
+  "records": [
+    {
+      "nativeAddress": "0x55e300",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.SelectStartPositionPointer",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "whole helper with adapter-provided start-table pointers",
+      "nativeEvidenceReport": "reports/animation-respawn-native-verification.json",
+      "limits": [
+        "0x93d5a0 table:8 rows,stride16,pointer+0,heading+12"
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x41b420",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.ResetWithoutMoves",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "bounded resetMoves=0 branch/common tail",
+      "nativeEvidenceReport": "reports/animation-portable-native-cases.json",
+      "limits": [
+        "Full resetMoves=1 portable routine is not implemented."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62f150",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.PlayingTimeOffset",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "whole pointer-selection semantics represented by packet-relative offset",
+      "nativeEvidenceReport": "reports/animation-portable-native-cases.json",
+      "limits": [
+        "Returns-1 instead of native null; no animation time advancement."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62e040",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.DurationSeconds",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "scalar sub-contract after model/header resolution",
+      "nativeEvidenceReport": "reports/animation-portable-native-cases.json",
+      "limits": [
+        "Native model/header lookup and global blend-out side effect excluded."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x49c080",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.AdvanceHitContext",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "bounded contexts21/90/95 through pre-KillParts frontier0x49c1c1",
+      "nativeEvidenceReport": "reports/animation-portable-native-cases.json",
+      "limits": [
+        "Arcade global0x93b324=0; side effects/debris/cleanup/pickups excluded.",
+        "No DieGround96 branch claimed."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x4a54b0",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.SelectMovementAnimation",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "whole selection with resolved clip/suit inputs",
+      "nativeEvidenceReport": "reports/animation-context-native-verification.json",
+      "limits": [
+        "Does not load character/model assets or advance animation."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x4a7360",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.SelectJumpAnimation",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "whole selection with supplied dt/fallDelay",
+      "nativeEvidenceReport": "reports/animation-context-native-verification.json",
+      "limits": [
+        "Does not advance animation or perform collision."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x58dfa0",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.SelectBlockAnimation",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "whole selector for PC registry-exact block IDs26/27/28",
+      "nativeEvidenceReport": "reports/animation-context-native-verification.json",
+      "limits": [
+        "0x54fa60 RNG inlined; caller owns RNG state."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62e650",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.ResetAnimationPacket",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "whole packet state helper",
+      "nativeEvidenceReport": "reports/animation-portable-native-cases.json",
+      "limits": [
+        "Operates on packet embedded at PC object+8."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x49e2b0",
+      "csharpMethod": "Recovered.Animation.CharacterContexts.StartBlockJump",
+      "source": "reconstructed/animation/CharacterContexts.cs",
+      "sourceSha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35",
+      "coverage": "all object writes; audio adapter excluded",
+      "nativeEvidenceReport": "reports/animation-context-native-verification.json",
+      "limits": [
+        "Native oracle executes original audio no-sound branch."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x41af70",
+      "csharpMethod": "Recovered.Animation.RespawnState.ResetMovesWithoutClips",
+      "source": "reconstructed/animation/RespawnState.cs",
+      "sourceSha256": "22614fcbe1aaef492906bbbaee42ab6e7813ed7aeead74256234d65ce1474e6f",
+      "coverage": "whole function within absent-clip/no-suit/no-companion branch",
+      "nativeEvidenceReport": "reports/animation-reset-moves-native-verification.json",
+      "limits": [
+        "Valid96-byte PC pad state and optional16-byte coin state.",
+        "No clips loaded; no suit or companion.",
+        "RNG/global tuning supplied; original vectors v000 andv010 are fixed."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x5ca470",
+      "csharpMethod": "Recovered.Animation.AnimationPlayback.EndFrame",
+      "source": "reconstructed/animation/AnimationPlayback.cs",
+      "sourceSha256": "9574e919af03eb213e80de215b30cc05969c12ba53f687bf37b7250b7accb7b1",
+      "coverage": "whole valid header helper with supplied byte image",
+      "nativeEvidenceReport": "reports/animation-playback-authored-verification.json",
+      "limits": [
+        "ANI4/ANI5 u16 frame count plus first frame; legacy first float.",
+        "Host resolves source pointers; truncated headers rejected."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62e760",
+      "csharpMethod": "Recovered.Animation.AnimationPlayback.UpdateTimer",
+      "source": "reconstructed/animation/AnimationPlayback.cs",
+      "sourceSha256": "9574e919af03eb213e80de215b30cc05969c12ba53f687bf37b7250b7accb7b1",
+      "coverage": "whole finite timer with adapter-resolved clip/header",
+      "nativeEvidenceReport": "reports/animation-playback-native-verification.json",
+      "limits": [
+        "No NaN/infinite metadata or extreme loop iteration counts.",
+        "x87 intermediate rounding reconstructed explicitly; C# behavioral check pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62e9b0",
+      "csharpMethod": "Recovered.Animation.AnimationPlayback.UpdatePacket",
+      "source": "reconstructed/animation/AnimationPlayback.cs",
+      "sourceSha256": "9574e919af03eb213e80de215b30cc05969c12ba53f687bf37b7250b7accb7b1",
+      "coverage": "whole finite72-byte packet state helper with resolved clip table",
+      "nativeEvidenceReport": "reports/animation-playback-native-verification.json",
+      "limits": [
+        "Caller context selection, callbacks, speed selection, weapon/footstep effects remain external.",
+        "Frame step in30Hz units; blend step inseconds.",
+        "No whole animation system or game-loop equivalence claimed."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x415050",
+      "csharpMethod": "Recovered.Animation.IdleScheduling.SelectBaseIdleAction",
+      "source": "reconstructed/animation/IdleScheduling.cs",
+      "sourceSha256": "e02dc106f6fdba74ef981dfb3e52ab46bc4333c5a3534d871b003a04c5f56aa3",
+      "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+      "nativeEvidenceReport": "reports/animation-idle-native-verification.json",
+      "limits": [
+        "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+        "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+        "Original RNG and duration global side effects preserved; managed differential execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x4150d0",
+      "csharpMethod": "Recovered.Animation.IdleScheduling.ResetIdleSchedule",
+      "source": "reconstructed/animation/IdleScheduling.cs",
+      "sourceSha256": "e02dc106f6fdba74ef981dfb3e52ab46bc4333c5a3534d871b003a04c5f56aa3",
+      "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+      "nativeEvidenceReport": "reports/animation-idle-native-verification.json",
+      "limits": [
+        "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+        "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+        "Original RNG and duration global side effects preserved; managed differential execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x4151c0",
+      "csharpMethod": "Recovered.Animation.IdleScheduling.ChooseIdleVariation",
+      "source": "reconstructed/animation/IdleScheduling.cs",
+      "sourceSha256": "e02dc106f6fdba74ef981dfb3e52ab46bc4333c5a3534d871b003a04c5f56aa3",
+      "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+      "nativeEvidenceReport": "reports/animation-idle-native-verification.json",
+      "limits": [
+        "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+        "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+        "Original RNG and duration global side effects preserved; managed differential execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x415370",
+      "csharpMethod": "Recovered.Animation.IdleScheduling.FinalizeIdleSelection",
+      "source": "reconstructed/animation/IdleScheduling.cs",
+      "sourceSha256": "e02dc106f6fdba74ef981dfb3e52ab46bc4333c5a3534d871b003a04c5f56aa3",
+      "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+      "nativeEvidenceReport": "reports/animation-idle-native-verification.json",
+      "limits": [
+        "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+        "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+        "Original RNG and duration global side effects preserved; managed differential execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    }
+  ],
+  "inlinedSupportingFunctions": {
+    "0x58dfa0": [
+      "0x54fa60"
+    ],
+    "0x41af70": [
+      "0x4148a0",
+      "0x55e4e0",
+      "0x589f60",
+      "0x4a4ca0",
+      "0x54fa60",
+      "0x415050 absent-clip branch",
+      "0x4150d0 absent-clip branch",
+      "0x62e650",
+      "0x55ccd0",
+      "0x570a60",
+      "0x4988b0 immediate/no-suit branch"
+    ],
+    "0x4150d0": [
+      "0x54fa60",
+      "0x62e040 start/end/subtract zero branch",
+      "0x5ca470"
+    ],
+    "0x4151c0": [
+      "0x54fa60",
+      "0x62e040 start/end/subtract zero branch",
+      "0x5ca470",
+      "0x4150d0"
+    ],
+    "0x415370": [
+      "0x415050",
+      "0x4150d0",
+      "0x4151c0"
+    ],
+    "0x62e9b0": [
+      "0x62e760",
+      "0x5ca470",
+      "0x62e650 packet-relative reset"
+    ]
+  },
+  "portableOracleCases": {
+    "contextAndAnimation": 20052,
+    "resetMovesFullByteImages": 1200,
+    "spawnPointerSelection": 65536,
+    "total": 116540,
+    "playbackPackets": 16000,
+    "idleScheduling": 13752
+  },
+  "nativeOnlyAdditionalEvidence": {
+    "fullResetMoves1": 1000,
+    "report": "reports/animation-respawn-native-verification.json",
+    "scope": "Selected-field predictive assertions, empty-world paths, not implemented as full portable method.",
+    "authoredPlayback": {
+      "report": "reports/animation-playback-authored-verification.json",
+      "scope": "Original authored header/config loader and deterministic playback fixture; no managed equivalence claim."
+    }
+  },
+  "build": {
+    "script": "reconstructed/animation/build.ps1",
+    "compileOnlyArgument": "-CompileOnly",
+    "compiler": "Windows .NET Framework4 csc.exe",
+    "platform": "AnyCPU",
+    "lastCompile": "passed",
+    "execution": "pending OS restriction; no ACL/security changes"
+  },
+  "limitations": [
+    "Compiled behavioral verification must run before claiming C# equivalence.",
+    "Finite valid fixtures only, with all branch exclusions retained above.",
+    "Native full resetMoves=1 source remains a dependency-ledger/fixture, not a partial field-copy implementation presented as complete."
+  ]
+}

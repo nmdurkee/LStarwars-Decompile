@@ -1,0 +1,37 @@
+RECOVERED PC ANALOG-STICK TRANSFORM
+Function: 0x006d4880, unpacked PC executable SHA256 6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+
+Status: assembly reconstruction corroborated by isolated emulation of original machine code and original callees, not by running the game.
+
+The input polling function 0x006d74e0 calls this on each signed-int16 stick pair after Y inversion. The operation stretches radial input toward square corners, with a small 32767/32768 scale factor and signed saturation. It is not the later gameplay deadzone filter.
+
+Let f32 round to IEEE float32, trunc round toward zero, x/y be signed int16 input:
+  maximum = max(abs(x), abs(y))
+  magnitude = f32(sqrt(f32(x*x + y*y)))
+  ratio = maximum != 0 ? f32(32767 / maximum) : 1
+  scale = f32(f32(ratio * magnitude) / 32768)
+  output_x = trunc(clamp(f32(x * scale), -32767, 32767))
+  output_y = trunc(clamp(f32(y * scale), -32767, 32767))
+
+Observed constants:
+  0x00764140 f64: 32767
+  0x00759758 f64: 1/32768
+  0x007758d0 f64: -32767
+  0x007758c8 f32: -32767
+  0x007758c4 f32: 32767
+
+Examples established by emulation:
+  (0, 0)             -> (0, 0)
+  (1, 0)             -> (0, 0)
+  (32767, 0)         -> (32766, 0)
+  (16384, 16384)     -> (23169, 23169)
+  (10000, 20000)     -> (11179, 22359)
+  (-32768, -32768)   -> (-32767, -32767)
+
+Verification: tools/native-stick-emulate.py maps original PE sections into Unicorn x86-32, initializes the x87 control word to 0x037f, restores CPU context per call, supplies only an isolated stack/data buffer and executes the original function and its math callees. There are no replacement math hooks, Win32 API implementations or game-process launches. The emulated routine matched the formula on 10,009 deterministic vectors, including zero, signed endpoints, diagonals and 10,000 pseudorandom pairs. Full evidence: reports/native-stick-emulation.json; original assembly: decompiled/stick-filter.asm.txt.
+
+Limit: this is a sampled corroboration, not exhaustive proof over all 2^32 input pairs or every possible x87 control mode. The reconstruction preserves explicit float32 stores using host-double intermediates; x87 extended precision may create rare rounding differences outside the sampled cases. Native gameplay deadzone, device mapping and action consumption remain separate questions.
+
+Reproduce from SW: python reverse-engineering/tools/native-stick-emulate.py
+Local dependencies: tools/python-packages, Unicorn 2.1.4 and Capstone 5.0.9.
+Primary tool documentation: https://www.unicorn-engine.org/docs/tutorial.html

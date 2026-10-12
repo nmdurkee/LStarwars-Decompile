@@ -1,0 +1,49 @@
+//BlockadeRunner_B
+state Base {
+	Conditions {
+		if GotOpponent == 1 goto Fight
+		if Timer > 4 goto Wander
+	}
+	Actions {
+		//Sets the side to baddie in case any neutrals want to use this script
+		SetSide "baddie"
+		ReleaseLocator
+		KeepWeaponOut
+		BreakFormation
+		ResetTimer
+		FollowPlayer "RUN"
+	}
+}
+
+state Wander {
+	Conditions {
+		if GotOpponent == 1 goto Fight
+		if OffScreenTimer > 5 goto Kill
+	}
+	Actions {
+		KeepWeaponOut "FALSE"
+		;FollowPath "Walk"
+		FollowPlayer "Walk"
+	}
+}
+
+state Fight {
+	Conditions {
+		if GotOpponent == 0 goto Wander
+	}
+	Actions {
+		EngageOpponent "goalrange 1.5" "firerange 3"
+	}
+}
+
+state Kill
+{
+	Conditions
+	{
+	}
+	Actions
+	{
+		SetMessage "name=NumMissionBaddies" "increment=1"
+		Kill
+	}
+}

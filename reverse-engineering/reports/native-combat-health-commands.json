@@ -1,0 +1,50 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original PC command/condition functions with original string matching, decimal conversion and float-to-integer truncation. Synthetic character/actor state; no OS calls. TakeDamage dispatch alone records its final hit-handler boundary separately.",
+  "contracts": {
+    "HitPoints_signed_byte_and_actor_resolution": {
+      "cases": 515,
+      "mismatches": 0,
+      "examples": []
+    },
+    "SetHitPoints_defaults_truncation_and_maximum": {
+      "cases": 84,
+      "mismatches": 0,
+      "examples": []
+    },
+    "SetShieldHitPoints_defaults_and_truncation": {
+      "cases": 52,
+      "mismatches": 0,
+      "examples": []
+    },
+    "TakeDamage_command_hit_dispatch": {
+      "cases": 72,
+      "mismatches": 0,
+      "examples": [],
+      "hook": "Original final0x438230 boundary records all six arguments and returns1; actual damage separately verified by native-combat-hit.py."
+    },
+    "TakeDamage_set_selection_and_order": {
+      "cases": 288,
+      "mismatches": 0,
+      "examples": [],
+      "hook": "Only downstream hit handler0x438230 is intercepted to record dispatch; original set scan executes unchanged."
+    },
+    "all_authored_combat_command_forms": {
+      "cases": 69,
+      "mismatches": 0,
+      "examples": []
+    }
+  },
+  "failures": [],
+  "totals": {
+    "cases": 1080,
+    "mismatches": 0,
+    "failures": 0
+  },
+  "limits": [
+    "Numeric literal and default paths are covered; messageval lookup, dynamic variables and live named-character resolution remain outside these fixtures.",
+    "Signed health bytes above127 are deliberately tested as representation boundaries, not asserted normal gameplay values.",
+    "The separate TakeDamage dispatch suite hooks only its downstream hit call; no claim of end-to-end gameplay execution.",
+    "TakeDamage set= selection is verified with bounded pools, active/inactive entries, selectors0..16, invalid selectors, token order and all69 authored combat command instances."
+  ]
+}

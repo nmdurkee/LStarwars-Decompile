@@ -1,0 +1,592 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_05a50d78b1ac39cbc8ac7a43523eae9528fc8f40ae743077c5c3f4eab8d21813\",\"subject\":{\"name\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\",\"digest\":{\"sha256\":\"6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb\"},\"format\":\"pe\",\"architecture\":\"x86\",\"local_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\"},\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"analysis_profile\":{\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"parameters\":{\"upstream_analysis_profile\":{\"provider\":{\"id\":\"ghidra\",\"name\":\"Ghidra\",\"version\":\"12.1.4\"},\"parameters\":{\"target_kind\":\"executable\",\"target_format\":\"pe\",\"executable_role\":\"application\",\"managed\":false,\"native_aot_metadata\":{\"contract_revision\":\"rtr-9.1-x64-pe-read-only-v3\",\"source_bytes\":134217728,\"work_units\":67108864,\"working_memory_bytes\":67108864,\"report_bytes\":4194304},\"architecture\":\"x86\",\"available_architectures\":[\"x86\"],\"import_mode\":\"ephemeral-source-immutable\",\"annotation_policy\":\"atomic-function-entry-metadata-v1\",\"load_image_observations\":\"source-mappings-entry-context-v2\",\"function_body_evidence\":\"complete-inclusive-ranges-v1\",\"function_references\":\"complete-body-and-entry-reference-manager-v2\",\"string_inventory_evidence\":\"defined-data-coverage-v1\",\"location_resolution\":\"explicit-address-exact-entry-symbol-first-v3\",\"instruction_flow_evidence\":\"decoded-return-pcode-v1\",\"function_boundary_observations\":\"ghidra-terminal-call-limitations-v1\",\"no_return_repair\":\"disabled-windows-p0\",\"process_launch\":\"official-headless-script-v1\",\"jump_table_evidence\":\"typed-case-default-blocks-v1\",\"decompiler_jump_loads\":true,\"loader\":\"auto-from-header\",\"language_id\":\"auto-from-header\",\"compiler_spec_id\":\"auto-default\",\"analyzer_preset\":\"ghidra-default\",\"analysis_seeds\":{\"format\":\"rea-ghidra-seeds-v1\",\"path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"configured_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"sha256\":\"ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24\",\"entries\":{\"function\":1046,\"code\":0,\"label\":0}}},\"digest\":\"d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d\"},\"workflow_revision\":2},\"digest\":\"87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971\"},\"predicate_type\":\"rea.analysis\",\"operation\":\"batch_decompile\",\"parameters\":{\"addresses\":[\"0x6e6950\",\"0x6e69d0\",\"0x6e69ef\",\"0x6e6aa0\",\"0x6e6abd\",\"0x6e6adc\",\"0x6e6b18\",\"0x6e6b90\",\"0x6e6bc6\",\"0x6e6c40\",\"0x6e6d60\",\"0x6e6d90\",\"0x6e70f5\",\"0x6e71dd\",\"0x6e7213\",\"0x6e7219\",\"0x6e725d\",\"0x6e7281\",\"0x6e72c2\",\"0x6e74a2\",\"0x6e74ac\",\"0x6e74f2\",\"0x6e7570\",\"0x6e7633\",\"0x6e7689\",\"0x6e76c1\",\"0x6e7805\",\"0x6e78dc\",\"0x6e7955\",\"0x6e79f1\",\"0x6e7a93\",\"0x6e7aa9\"]},\"raw_result\":null,\"normalized_result\":{\"items\":[{\"address\":\"0x6e6950\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6950\",\"name\":\"_memset\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _memset\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Debug, Visual Studio 2005 Release, Visual Studio 2008 Debug, Visual\\r\\n   Studio 2008 Release */\\r\\n\\r\\nvoid * __cdecl _memset(void *_Dst,int _Val,size_t _Size)\\r\\n\\r\\n{\\r\\n  uint uVar1;\\r\\n  void *pvVar2;\\r\\n  uint uVar3;\\r\\n  size_t sVar4;\\r\\n  uint *puVar5;\\r\\n  \\r\\n  if (_Size == 0) {\\r\\n    return _Dst;\\r\\n  }\\r\\n  uVar1 = _Val & 0xff;\\r\\n  if ((((char)_Val == '\\\\0') && (0xff < _Size)) && (DAT_029a9c48 != 0)) {\\r\\n    pvVar2 = (void *)__VEC_memzero();\\r\\n    return pvVar2;\\r\\n  }\\r\\n  puVar5 = _Dst;\\r\\n  if (3 < _Size) {\\r\\n    uVar3 = -(int)_Dst & 3;\\r\\n    sVar4 = _Size;\\r\\n    if (uVar3 != 0) {\\r\\n      sVar4 = _Size - uVar3;\\r\\n      do {\\r\\n        *(char *)puVar5 = (char)_Val;\\r\\n        puVar5 = (uint *)((int)puVar5 + 1);\\r\\n        uVar3 = uVar3 - 1;\\r\\n      } while (uVar3 != 0);\\r\\n    }\\r\\n    uVar1 = uVar1 * 0x1010101;\\r\\n    _Size = sVar4 & 3;\\r\\n    uVar3 = sVar4 >> 2;\\r\\n    if (uVar3 != 0) {\\r\\n      for (; uVar3 != 0; uVar3 = uVar3 - 1) {\\r\\n        *puVar5 = uVar1;\\r\\n        puVar5 = puVar5 + 1;\\r\\n      }\\r\\n      if (_Size == 0) {\\r\\n        return _Dst;\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  do {\\r\\n    *(char *)puVar5 = (char)uVar1;\\r\\n    puVar5 = (uint *)((int)puVar5 + 1);\\r\\n    _Size = _Size - 1;\\r\\n  } while (_Size != 0);\\r\\n  return _Dst;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e69d0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e69d0\",\"name\":\"__allshl\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __allshl\\r\\n   \\r\\n   Library: Visual Studio */\\r\\n\\r\\nlonglong __allshl(void)\\r\\n\\r\\n{\\r\\n  uint in_EAX;\\r\\n  byte in_CL;\\r\\n  int in_EDX;\\r\\n  \\r\\n  if (0x3f < in_CL) {\\r\\n    return 0;\\r\\n  }\\r\\n  if (in_CL < 0x20) {\\r\\n    return CONCAT44(in_EDX << (in_CL & 0x1f) | in_EAX >> 0x20 - (in_CL & 0x1f),\\r\\n                    in_EAX << (in_CL & 0x1f));\\r\\n  }\\r\\n  return (ulonglong)(in_EAX << (in_CL & 0x1f)) << 0x20;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e69ef\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e69ef\",\"name\":\"_sprintf\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _sprintf\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl _sprintf(char *_Dest,char *_Format,...)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  int iVar2;\\r\\n  FILE local_24;\\r\\n  \\r\\n  if ((_Format == (char *)0x0) || (_Dest == (char *)0x0)) {\\r\\n    puVar1 = (undefined4 *)FUN_006ead5f();\\r\\n    *puVar1 = 0x16;\\r\\n    FUN_006e9fc2(0,0,0,0,0);\\r\\n    iVar2 = -1;\\r\\n  }\\r\\n  else {\\r\\n    local_24._base = _Dest;\\r\\n    local_24._ptr = _Dest;\\r\\n    local_24._cnt = 0x7fffffff;\\r\\n    local_24._flag = 0x42;\\r\\n    iVar2 = FUN_006eef05(&local_24,_Format,0,&stack0x0000000c);\\r\\n    local_24._cnt = local_24._cnt + -1;\\r\\n    if (local_24._cnt < 0) {\\r\\n      __flsbuf(0,&local_24);\\r\\n    }\\r\\n    else {\\r\\n      *local_24._ptr = '\\\\0';\\r\\n    }\\r\\n  }\\r\\n  return iVar2;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6aa0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6aa0\",\"name\":\"__sprintf_s_l\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __sprintf_s_l\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\\r\\n\\r\\nint __cdecl __sprintf_s_l(char *_DstBuf,size_t _DstSize,char *_Format,_locale_t _Locale,...)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  \\r\\n  iVar1 = __vsprintf_s_l(_DstBuf,_DstSize,_Format,_Locale,&stack0x00000014);\\r\\n  return iVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6abd\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6abd\",\"name\":\"__snprintf_s\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __snprintf_s\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __snprintf_s(char *_DstBuf,size_t _SizeInBytes,size_t _MaxCount,char *_Format,...)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  \\r\\n  iVar1 = __vsnprintf_s_l(_DstBuf,_SizeInBytes,_MaxCount,_Format,(_locale_t)0x0,&stack0x00000014);\\r\\n  return iVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6adc\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6adc\",\"name\":\"__snprintf_s_l\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __snprintf_s_l\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl\\r\\n__snprintf_s_l(char *_DstBuf,size_t _DstSize,size_t _MaxCount,char *_Format,_locale_t _Locale,...)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  \\r\\n  iVar1 = __vsnprintf_s_l(_DstBuf,_DstSize,_MaxCount,_Format,_Locale,&stack0x00000018);\\r\\n  return iVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6b18\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6b18\",\"name\":\"FUN_006e6b18\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e6b18(char *param_1,size_t param_2,char *param_3,_locale_t param_4)\\r\\n\\r\\n{\\r\\n  FID_conflict___vsnprintf_c_l(param_1,param_2,param_3,param_4,&stack0x00000014);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6b90\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6b90\",\"name\":\"FUN_006e6b90\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nulonglong FUN_006e6b90(void)\\r\\n\\r\\n{\\r\\n  ulonglong uVar1;\\r\\n  uint uVar2;\\r\\n  undefined4 in_EDX;\\r\\n  float fVar3;\\r\\n  float10 in_ST0;\\r\\n  uint uStack_20;\\r\\n  float fStack_1c;\\r\\n  \\r\\n  if (DAT_029a9c48 == 0) {\\r\\n    uVar1 = (ulonglong)ROUND(in_ST0);\\r\\n    uStack_20 = (uint)uVar1;\\r\\n    fStack_1c = (float)(uVar1 >> 0x20);\\r\\n    fVar3 = (float)in_ST0;\\r\\n    if ((uStack_20 != 0) || (fVar3 = fStack_1c, (uVar1 & 0x7fffffff00000000) != 0)) {\\r\\n      if ((int)fVar3 < 0) {\\r\\n        uVar1 = uVar1 + (0x80000000 < (uint)-(float)(in_ST0 - (float10)(longlong)uVar1));\\r\\n      }\\r\\n      else {\\r\\n        uVar2 = (uint)(0x80000000 < (uint)(float)(in_ST0 - (float10)(longlong)uVar1));\\r\\n        uVar1 = CONCAT44((int)fStack_1c - (uint)(uStack_20 < uVar2),uStack_20 - uVar2);\\r\\n      }\\r\\n    }\\r\\n    return uVar1;\\r\\n  }\\r\\n  return CONCAT44(in_EDX,(int)in_ST0);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6bc6\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6bc6\",\"name\":\"FUN_006e6bc6\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nulonglong FUN_006e6bc6(void)\\r\\n\\r\\n{\\r\\n  ulonglong uVar1;\\r\\n  uint uVar2;\\r\\n  float fVar3;\\r\\n  float10 in_ST0;\\r\\n  undefined4 local_20;\\r\\n  undefined4 uStack_1c;\\r\\n  \\r\\n  uVar1 = (ulonglong)ROUND(in_ST0);\\r\\n  local_20 = (uint)uVar1;\\r\\n  uStack_1c = (float)(uVar1 >> 0x20);\\r\\n  fVar3 = (float)in_ST0;\\r\\n  if ((local_20 != 0) || (fVar3 = uStack_1c, (uVar1 & 0x7fffffff00000000) != 0)) {\\r\\n    if ((int)fVar3 < 0) {\\r\\n      uVar1 = uVar1 + (0x80000000 < (uint)-(float)(in_ST0 - (float10)(longlong)uVar1));\\r\\n    }\\r\\n    else {\\r\\n      uVar2 = (uint)(0x80000000 < (uint)(float)(in_ST0 - (float10)(longlong)uVar1));\\r\\n      uVar1 = CONCAT44((int)uStack_1c - (uint)(local_20 < uVar2),local_20 - uVar2);\\r\\n    }\\r\\n  }\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6c40\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6c40\",\"name\":\"FUN_006e6c40\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nfloat10 FUN_006e6c40(double param_1,undefined2 param_2)\\r\\n\\r\\n{\\r\\n  uint uVar1;\\r\\n  uint uVar2;\\r\\n  int iVar3;\\r\\n  ushort in_FPUControlWord;\\r\\n  float10 fVar4;\\r\\n  double dVar5;\\r\\n  ulonglong uVar6;\\r\\n  undefined4 uVar7;\\r\\n  undefined8 uVar8;\\r\\n  \\r\\n  if ((DAT_029a9c44 != 0) && ((MXCSR & 0x1f80) == 0x1f80 && (in_FPUControlWord & 0x7f) == 0x7f)) {\\r\\n    uVar2 = (uint)((ulonglong)param_1 >> 0x20);\\r\\n    uVar1 = uVar2 >> 0x14;\\r\\n    uVar6 = (ulonglong)(0x433 - (uVar2 >> 0x14 & 0x7ff));\\r\\n    if ((uVar1 & 0x800) == 0) {\\r\\n      dVar5 = (double)(((ulonglong)param_1 >> uVar6) << uVar6);\\r\\n      if (uVar1 < 0x3ff) {\\r\\n        return (float10)(double)(-(ulonglong)(0.0 < param_1) & 0x3ff0000000000000);\\r\\n      }\\r\\n      if (uVar1 < 0x433) {\\r\\n        return (float10)(dVar5 + (double)(-(ulonglong)(dVar5 < param_1) & 0x3ff0000000000000));\\r\\n      }\\r\\n    }\\r\\n    else {\\r\\n      if (uVar1 < 0xbff) {\\r\\n        return (float10)-0.0;\\r\\n      }\\r\\n      if (uVar1 < 0xc33) {\\r\\n        return (float10)(double)(((ulonglong)param_1 >> uVar6) << uVar6);\\r\\n      }\\r\\n    }\\r\\n    if (NAN(param_1)) {\\r\\n      ___libm_error_support(&param_1,&param_1,&param_1,0x3ec);\\r\\n    }\\r\\n    return (float10)(double)CONCAT26(param_1._6_2_,param_1._0_6_);\\r\\n  }\\r\\n  uVar2 = __ctrlfp(DAT_00829ab0,0xffff);\\r\\n  if ((param_1._6_2_ & 0x7ff0) == 0x7ff0) {\\r\\n    iVar3 = __sptype();\\r\\n    if (0 < iVar3) {\\r\\n      if (iVar3 < 3) {\\r\\n        __ctrlfp(uVar2,0xffff);\\r\\n        return (float10)(double)CONCAT26(param_1._6_2_,param_1._0_6_);\\r\\n      }\\r\\n      if (iVar3 == 3) {\\r\\n        fVar4 = (float10)__handle_qnan1();\\r\\n        return fVar4;\\r\\n      }\\r\\n    }\\r\\n    dVar5 = (double)CONCAT26(param_1._6_2_,param_1._0_6_) + 1.0;\\r\\n    uVar8 = CONCAT26(param_1._6_2_,param_1._0_6_);\\r\\n    uVar7 = 8;\\r\\n  }\\r\\n  else {\\r\\n    fVar4 = (float10)__frnd((int)param_1._0_6_,(int)(CONCAT26(param_1._6_2_,param_1._0_6_) >> 0x20))\\r\\n    ;\\r\\n    dVar5 = (double)fVar4;\\r\\n    if (((double)CONCAT26(param_1._6_2_,param_1._0_6_) == dVar5) || ((uVar2 & 0x20) != 0)) {\\r\\n      __ctrlfp(uVar2,0xffff);\\r\\n      return (float10)dVar5;\\r\\n    }\\r\\n    uVar8 = CONCAT26(param_1._6_2_,param_1._0_6_);\\r\\n    uVar7 = 0x10;\\r\\n  }\\r\\n  fVar4 = (float10)__except1(uVar7,0xc,uVar8,dVar5,uVar2);\\r\\n  return fVar4;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6d60\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6d60\",\"name\":\"__alloca_probe\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: This is an inlined function */\\r\\n/* Library Function - Single Match\\r\\n    __chkstk\\r\\n   \\r\\n   Library: Visual Studio */\\r\\n\\r\\nvoid __alloca_probe(void)\\r\\n\\r\\n{\\r\\n  undefined1 *in_EAX;\\r\\n  undefined4 *puVar1;\\r\\n  undefined4 *puVar2;\\r\\n  undefined4 unaff_retaddr;\\r\\n  undefined1 auStack_4 [4];\\r\\n  \\r\\n  puVar2 = (undefined4 *)((int)&stack0x00000000 - (int)in_EAX & ~-(uint)(&stack0x00000000 < in_EAX))\\r\\n  ;\\r\\n  for (puVar1 = (undefined4 *)((uint)auStack_4 & 0xfffff000); puVar2 < puVar1;\\r\\n      puVar1 = puVar1 + -0x400) {\\r\\n  }\\r\\n  *puVar2 = unaff_retaddr;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e6d90\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e6d90\",\"name\":\"_memcpy\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _memcpy\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Debug, Visual Studio 2005 Release, Visual Studio 2008 Debug, Visual\\r\\n   Studio 2008 Release */\\r\\n\\r\\nvoid * __cdecl _memcpy(void *_Dst,void *_Src,size_t _Size)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  uint uVar2;\\r\\n  uint uVar3;\\r\\n  undefined4 *puVar4;\\r\\n  undefined4 *puVar5;\\r\\n  \\r\\n  if ((_Src < _Dst) && (_Dst < (void *)(_Size + (int)_Src))) {\\r\\n    puVar4 = (undefined4 *)((_Size - 4) + (int)_Src);\\r\\n    puVar5 = (undefined4 *)((_Size - 4) + (int)_Dst);\\r\\n    if (((uint)puVar5 & 3) == 0) {\\r\\n      uVar2 = _Size >> 2;\\r\\n      uVar3 = _Size & 3;\\r\\n      if (7 < uVar2) {\\r\\n        for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n          *puVar5 = *puVar4;\\r\\n          puVar4 = puVar4 + -1;\\r\\n          puVar5 = puVar5 + -1;\\r\\n        }\\r\\n        switch(uVar3) {\\r\\n        case 0:\\r\\n          return _Dst;\\r\\n        case 2:\\r\\n          goto switchD_006e6f73_caseD_2;\\r\\n        case 3:\\r\\n          goto switchD_006e6f73_caseD_3;\\r\\n        }\\r\\n        goto switchD_006e6f73_caseD_1;\\r\\n      }\\r\\n    }\\r\\n    else {\\r\\n      switch(_Size) {\\r\\n      case 0:\\r\\n        goto switchD_006e6f73_caseD_0;\\r\\n      case 1:\\r\\n        goto switchD_006e6f73_caseD_1;\\r\\n      case 2:\\r\\n        goto switchD_006e6f73_caseD_2;\\r\\n      case 3:\\r\\n        goto switchD_006e6f73_caseD_3;\\r\\n      default:\\r\\n        uVar2 = _Size - ((uint)puVar5 & 3);\\r\\n        switch((uint)puVar5 & 3) {\\r\\n        case 1:\\r\\n          uVar3 = uVar2 & 3;\\r\\n          *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\\r\\n          puVar4 = (undefined4 *)((int)puVar4 + -1);\\r\\n          uVar2 = uVar2 >> 2;\\r\\n          puVar5 = (undefined4 *)((int)puVar5 - 1);\\r\\n          if (7 < uVar2) {\\r\\n            for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n              *puVar5 = *puVar4;\\r\\n              puVar4 = puVar4 + -1;\\r\\n              puVar5 = puVar5 + -1;\\r\\n            }\\r\\n            switch(uVar3) {\\r\\n            case 0:\\r\\n              return _Dst;\\r\\n            case 2:\\r\\n              goto switchD_006e6f73_caseD_2;\\r\\n            case 3:\\r\\n              goto switchD_006e6f73_caseD_3;\\r\\n            }\\r\\n            goto switchD_006e6f73_caseD_1;\\r\\n          }\\r\\n          break;\\r\\n        case 2:\\r\\n          uVar3 = uVar2 & 3;\\r\\n          *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\\r\\n          uVar2 = uVar2 >> 2;\\r\\n          *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\\r\\n          puVar4 = (undefined4 *)((int)puVar4 + -2);\\r\\n          puVar5 = (undefined4 *)((int)puVar5 - 2);\\r\\n          if (7 < uVar2) {\\r\\n            for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n              *puVar5 = *puVar4;\\r\\n              puVar4 = puVar4 + -1;\\r\\n              puVar5 = puVar5 + -1;\\r\\n            }\\r\\n            switch(uVar3) {\\r\\n            case 0:\\r\\n              return _Dst;\\r\\n            case 2:\\r\\n              goto switchD_006e6f73_caseD_2;\\r\\n            case 3:\\r\\n              goto switchD_006e6f73_caseD_3;\\r\\n            }\\r\\n            goto switchD_006e6f73_caseD_1;\\r\\n          }\\r\\n          break;\\r\\n        case 3:\\r\\n          uVar3 = uVar2 & 3;\\r\\n          *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\\r\\n          *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\\r\\n          uVar2 = uVar2 >> 2;\\r\\n          *(undefined1 *)((int)puVar5 + 1) = *(undefined1 *)((int)puVar4 + 1);\\r\\n          puVar4 = (undefined4 *)((int)puVar4 + -3);\\r\\n          puVar5 = (undefined4 *)((int)puVar5 - 3);\\r\\n          if (7 < uVar2) {\\r\\n            for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n              *puVar5 = *puVar4;\\r\\n              puVar4 = puVar4 + -1;\\r\\n              puVar5 = puVar5 + -1;\\r\\n            }\\r\\n            switch(uVar3) {\\r\\n            case 0:\\r\\n              return _Dst;\\r\\n            case 2:\\r\\n              goto switchD_006e6f73_caseD_2;\\r\\n            case 3:\\r\\n              goto switchD_006e6f73_caseD_3;\\r\\n            }\\r\\n            goto switchD_006e6f73_caseD_1;\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n    switch(uVar2) {\\r\\n    case 7:\\r\\n      puVar5[7 - uVar2] = puVar4[7 - uVar2];\\r\\n    case 6:\\r\\n      puVar5[6 - uVar2] = puVar4[6 - uVar2];\\r\\n    case 5:\\r\\n      puVar5[5 - uVar2] = puVar4[5 - uVar2];\\r\\n    case 4:\\r\\n      puVar5[4 - uVar2] = puVar4[4 - uVar2];\\r\\n    case 3:\\r\\n      puVar5[3 - uVar2] = puVar4[3 - uVar2];\\r\\n    case 2:\\r\\n      puVar5[2 - uVar2] = puVar4[2 - uVar2];\\r\\n    case 1:\\r\\n      puVar5[1 - uVar2] = puVar4[1 - uVar2];\\r\\n      puVar4 = puVar4 + -uVar2;\\r\\n      puVar5 = puVar5 + -uVar2;\\r\\n    }\\r\\n    switch(uVar3) {\\r\\n    case 1:\\r\\nswitchD_006e6f73_caseD_1:\\r\\n      *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\\r\\n      return _Dst;\\r\\n    case 2:\\r\\nswitchD_006e6f73_caseD_2:\\r\\n      *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\\r\\n      *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\\r\\n      return _Dst;\\r\\n    case 3:\\r\\nswitchD_006e6f73_caseD_3:\\r\\n      *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\\r\\n      *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\\r\\n      *(undefined1 *)((int)puVar5 + 1) = *(undefined1 *)((int)puVar4 + 1);\\r\\n      return _Dst;\\r\\n    }\\r\\nswitchD_006e6f73_caseD_0:\\r\\n    return _Dst;\\r\\n  }\\r\\n  if (((0xff < _Size) && (DAT_029a9c48 != 0)) && (((uint)_Dst & 0xf) == ((uint)_Src & 0xf))) {\\r\\n    pvVar1 = (void *)__VEC_memcpy();\\r\\n    return pvVar1;\\r\\n  }\\r\\n  puVar4 = _Dst;\\r\\n  if (((uint)_Dst & 3) == 0) {\\r\\n    uVar2 = _Size >> 2;\\r\\n    uVar3 = _Size & 3;\\r\\n    if (7 < uVar2) {\\r\\n      for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n        *puVar4 = *(undefined4 *)_Src;\\r\\n        _Src = (undefined4 *)((int)_Src + 4);\\r\\n        puVar4 = puVar4 + 1;\\r\\n      }\\r\\n      switch(uVar3) {\\r\\n      case 0:\\r\\n        return _Dst;\\r\\n      case 2:\\r\\n        goto switchD_006e6dec_caseD_2;\\r\\n      case 3:\\r\\n        goto switchD_006e6dec_caseD_3;\\r\\n      }\\r\\n      goto switchD_006e6dec_caseD_1;\\r\\n    }\\r\\n  }\\r\\n  else {\\r\\n    switch(_Size) {\\r\\n    case 0:\\r\\n      goto switchD_006e6dec_caseD_0;\\r\\n    case 1:\\r\\n      goto switchD_006e6dec_caseD_1;\\r\\n    case 2:\\r\\n      goto switchD_006e6dec_caseD_2;\\r\\n    case 3:\\r\\n      goto switchD_006e6dec_caseD_3;\\r\\n    default:\\r\\n      uVar2 = (_Size - 4) + ((uint)_Dst & 3);\\r\\n      switch((uint)_Dst & 3) {\\r\\n      case 1:\\r\\n        uVar3 = uVar2 & 3;\\r\\n        *(undefined1 *)_Dst = *(undefined1 *)_Src;\\r\\n        *(undefined1 *)((int)_Dst + 1) = *(undefined1 *)((int)_Src + 1);\\r\\n        uVar2 = uVar2 >> 2;\\r\\n        *(undefined1 *)((int)_Dst + 2) = *(undefined1 *)((int)_Src + 2);\\r\\n        _Src = (void *)((int)_Src + 3);\\r\\n        puVar4 = (undefined4 *)((int)_Dst + 3);\\r\\n        if (7 < uVar2) {\\r\\n          for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n            *puVar4 = *(undefined4 *)_Src;\\r\\n            _Src = (undefined4 *)((int)_Src + 4);\\r\\n            puVar4 = puVar4 + 1;\\r\\n          }\\r\\n          switch(uVar3) {\\r\\n          case 0:\\r\\n            return _Dst;\\r\\n          case 2:\\r\\n            goto switchD_006e6dec_caseD_2;\\r\\n          case 3:\\r\\n            goto switchD_006e6dec_caseD_3;\\r\\n          }\\r\\n          goto switchD_006e6dec_caseD_1;\\r\\n        }\\r\\n        break;\\r\\n      case 2:\\r\\n        uVar3 = uVar2 & 3;\\r\\n        *(undefined1 *)_Dst = *(undefined1 *)_Src;\\r\\n        uVar2 = uVar2 >> 2;\\r\\n        *(undefined1 *)((int)_Dst + 1) = *(undefined1 *)((int)_Src + 1);\\r\\n        _Src = (void *)((int)_Src + 2);\\r\\n        puVar4 = (undefined4 *)((int)_Dst + 2);\\r\\n        if (7 < uVar2) {\\r\\n          for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n            *puVar4 = *(undefined4 *)_Src;\\r\\n            _Src = (undefined4 *)((int)_Src + 4);\\r\\n            puVar4 = puVar4 + 1;\\r\\n          }\\r\\n          switch(uVar3) {\\r\\n          case 0:\\r\\n            return _Dst;\\r\\n          case 2:\\r\\n            goto switchD_006e6dec_caseD_2;\\r\\n          case 3:\\r\\n            goto switchD_006e6dec_caseD_3;\\r\\n          }\\r\\n          goto switchD_006e6dec_caseD_1;\\r\\n        }\\r\\n        break;\\r\\n      case 3:\\r\\n        uVar3 = uVar2 & 3;\\r\\n        *(undefined1 *)_Dst = *(undefined1 *)_Src;\\r\\n        _Src = (void *)((int)_Src + 1);\\r\\n        uVar2 = uVar2 >> 2;\\r\\n        puVar4 = (undefined4 *)((int)_Dst + 1);\\r\\n        if (7 < uVar2) {\\r\\n          for (; uVar2 != 0; uVar2 = uVar2 - 1) {\\r\\n            *puVar4 = *(undefined4 *)_Src;\\r\\n            _Src = (undefined4 *)((int)_Src + 4);\\r\\n            puVar4 = puVar4 + 1;\\r\\n          }\\r\\n          switch(uVar3) {\\r\\n          case 0:\\r\\n            return _Dst;\\r\\n          case 2:\\r\\n            goto switchD_006e6dec_caseD_2;\\r\\n          case 3:\\r\\n            goto switchD_006e6dec_caseD_3;\\r\\n          }\\r\\n          goto switchD_006e6dec_caseD_1;\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  switch(uVar2) {\\r\\n  case 7:\\r\\n    puVar4[uVar2 - 7] = *(undefined4 *)((int)_Src + (uVar2 - 7) * 4);\\r\\n  case 6:\\r\\n    puVar4[uVar2 - 6] = *(undefined4 *)((int)_Src + (uVar2 - 6) * 4);\\r\\n  case 5:\\r\\n    puVar4[uVar2 - 5] = *(undefined4 *)((int)_Src + (uVar2 - 5) * 4);\\r\\n  case 4:\\r\\n    puVar4[uVar2 - 4] = *(undefined4 *)((int)_Src + (uVar2 - 4) * 4);\\r\\n  case 3:\\r\\n    puVar4[uVar2 - 3] = *(undefined4 *)((int)_Src + (uVar2 - 3) * 4);\\r\\n  case 2:\\r\\n    puVar4[uVar2 - 2] = *(undefined4 *)((int)_Src + (uVar2 - 2) * 4);\\r\\n  case 1:\\r\\n    puVar4[uVar2 - 1] = *(undefined4 *)((int)_Src + (uVar2 - 1) * 4);\\r\\n    _Src = (void *)((int)_Src + uVar2 * 4);\\r\\n    puVar4 = puVar4 + uVar2;\\r\\n  }\\r\\n  switch(uVar3) {\\r\\n  case 1:\\r\\nswitchD_006e6dec_caseD_1:\\r\\n    *(undefined1 *)puVar4 = *(undefined1 *)_Src;\\r\\n    return _Dst;\\r\\n  case 2:\\r\\nswitchD_006e6dec_caseD_2:\\r\\n    *(undefined1 *)puVar4 = *(undefined1 *)_Src;\\r\\n    *(undefined1 *)((int)puVar4 + 1) = *(undefined1 *)((int)_Src + 1);\\r\\n    return _Dst;\\r\\n  case 3:\\r\\nswitchD_006e6dec_caseD_3:\\r\\n    *(undefined1 *)puVar4 = *(undefined1 *)_Src;\\r\\n    *(undefined1 *)((int)puVar4 + 1) = *(undefined1 *)((int)_Src + 1);\\r\\n    *(undefined1 *)((int)puVar4 + 2) = *(undefined1 *)((int)_Src + 2);\\r\\n    return _Dst;\\r\\n  }\\r\\nswitchD_006e6dec_caseD_0:\\r\\n  return _Dst;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e70f5\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e70f5\",\"name\":\"FUN_006e70f5\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006e70f5(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  uint uVar1;\\r\\n  undefined4 *_Memory;\\r\\n  undefined4 *puVar2;\\r\\n  size_t sVar3;\\r\\n  size_t sVar4;\\r\\n  void *pvVar5;\\r\\n  undefined4 uVar6;\\r\\n  \\r\\n  _Memory = (undefined4 *)FUN_006f01bc(DAT_029a9c54);\\r\\n  puVar2 = (undefined4 *)FUN_006f01bc(DAT_029a9c50);\\r\\n  if (_Memory <= puVar2) {\\r\\n    uVar1 = ((int)puVar2 - (int)_Memory) + 4;\\r\\n    if (3 < uVar1) {\\r\\n      sVar3 = __msize(_Memory);\\r\\n      if (sVar3 < uVar1) {\\r\\n        sVar4 = 0x800;\\r\\n        if (sVar3 < 0x800) {\\r\\n          sVar4 = sVar3;\\r\\n        }\\r\\n        if ((sVar4 + sVar3 < sVar3) ||\\r\\n           (pvVar5 = __realloc_crt(_Memory,sVar4 + sVar3), pvVar5 == (void *)0x0)) {\\r\\n          if (sVar3 + 0x10 < sVar3) {\\r\\n            return 0;\\r\\n          }\\r\\n          pvVar5 = __realloc_crt(_Memory,sVar3 + 0x10);\\r\\n          if (pvVar5 == (void *)0x0) {\\r\\n            return 0;\\r\\n          }\\r\\n        }\\r\\n        puVar2 = (undefined4 *)((int)pvVar5 + ((int)puVar2 - (int)_Memory >> 2) * 4);\\r\\n        DAT_029a9c54 = FUN_006f0145(pvVar5);\\r\\n      }\\r\\n      uVar6 = FUN_006f0145(param_1);\\r\\n      *puVar2 = uVar6;\\r\\n      DAT_029a9c50 = FUN_006f0145(puVar2 + 1);\\r\\n      return param_1;\\r\\n    }\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e71dd\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e71dd\",\"name\":\"__onexit\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Single Match\\r\\n    __onexit\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\n_onexit_t __cdecl __onexit(_onexit_t _Func)\\r\\n\\r\\n{\\r\\n  _onexit_t p_Var1;\\r\\n  \\r\\n  FUN_006ebdf8();\\r\\n  p_Var1 = (_onexit_t)FUN_006e70f5(_Func);\\r\\n  FUN_006e7213();\\r\\n  return p_Var1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7213\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7213\",\"name\":\"FUN_006e7213\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e7213(void)\\r\\n\\r\\n{\\r\\n  FUN_006ebe01();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7219\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7219\",\"name\":\"_atexit\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _atexit\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl _atexit(_func_4879 *param_1)\\r\\n\\r\\n{\\r\\n  _onexit_t p_Var1;\\r\\n  \\r\\n  p_Var1 = __onexit((_onexit_t)param_1);\\r\\n  return (p_Var1 != (_onexit_t)0x0) - 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e725d\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e725d\",\"name\":\"fast_error_exit\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _fast_error_exit\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __cdecl fast_error_exit(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  if (DAT_0297c190 == 1) {\\r\\n    __FF_MSGBANNER();\\r\\n  }\\r\\n  FUN_006f09f8(param_1);\\r\\n  ___crtExitProcess(0xff);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7281\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7281\",\"name\":\"check_managed_app\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Removing unreachable block (ram,0x006e72bf) */\\r\\n/* Library Function - Single Match\\r\\n    _check_managed_app\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nundefined4 __cdecl check_managed_app(void)\\r\\n\\r\\n{\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e72c2\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e72c2\",\"name\":\"___tmainCRTStartup\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n/* Library Function - Single Match\\r\\n    ___tmainCRTStartup\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint ___tmainCRTStartup(void)\\r\\n\\r\\n{\\r\\n  HANDLE pvVar1;\\r\\n  LPOSVERSIONINFOA lpVersionInformation;\\r\\n  BOOL BVar2;\\r\\n  int iVar3;\\r\\n  undefined4 uVar4;\\r\\n  uint uVar5;\\r\\n  DWORD DVar6;\\r\\n  SIZE_T dwBytes;\\r\\n  _STARTUPINFOA local_74;\\r\\n  DWORD local_2c;\\r\\n  DWORD local_28;\\r\\n  DWORD local_24;\\r\\n  int local_20;\\r\\n  undefined4 uStack_c;\\r\\n  undefined4 local_8;\\r\\n  \\r\\n  uStack_c = 0x6e72ce;\\r\\n  local_8 = 0;\\r\\n  GetStartupInfoA(&local_74);\\r\\n  local_8 = 0xfffffffe;\\r\\n  dwBytes = 0x94;\\r\\n  DVar6 = 0;\\r\\n  pvVar1 = GetProcessHeap();\\r\\n  lpVersionInformation = HeapAlloc(pvVar1,DVar6,dwBytes);\\r\\n  if (lpVersionInformation == (LPOSVERSIONINFOA)0x0) {\\r\\n    fast_error_exit(0x12);\\r\\n  }\\r\\n  else {\\r\\n    lpVersionInformation->dwOSVersionInfoSize = 0x94;\\r\\n    BVar2 = GetVersionExA(lpVersionInformation);\\r\\n    DVar6 = 0;\\r\\n    if (BVar2 != 0) {\\r\\n      local_24 = lpVersionInformation->dwPlatformId;\\r\\n      local_28 = lpVersionInformation->dwMajorVersion;\\r\\n      local_2c = lpVersionInformation->dwMinorVersion;\\r\\n      uVar5 = lpVersionInformation->dwBuildNumber & 0x7fff;\\r\\n      pvVar1 = GetProcessHeap();\\r\\n      HeapFree(pvVar1,DVar6,lpVersionInformation);\\r\\n      if (local_24 != 2) {\\r\\n        uVar5 = uVar5 | 0x8000;\\r\\n      }\\r\\n      _DAT_0297c1bc = local_28 * 0x100 + local_2c;\\r\\n      DAT_0297c1b4 = local_24;\\r\\n      DAT_0297c1c0 = local_28;\\r\\n      _DAT_0297c1c4 = local_2c;\\r\\n      _DAT_0297c1b8 = uVar5;\\r\\n      local_24 = check_managed_app();\\r\\n      iVar3 = __heap_init();\\r\\n      if (iVar3 == 0) {\\r\\n        fast_error_exit(0x1c);\\r\\n      }\\r\\n      iVar3 = __mtinit();\\r\\n      if (iVar3 == 0) {\\r\\n        fast_error_exit(0x10);\\r\\n      }\\r\\n      __RTC_Initialize();\\r\\n      local_8 = 1;\\r\\n      iVar3 = __ioinit();\\r\\n      if (iVar3 < 0) {\\r\\n        __amsg_exit(0x1b);\\r\\n      }\\r\\n      DAT_029aac84 = GetCommandLineA();\\r\\n      DAT_0297c188 = ___crtGetEnvironmentStringsA();\\r\\n      iVar3 = __setargv();\\r\\n      if (iVar3 < 0) {\\r\\n        __amsg_exit(8);\\r\\n      }\\r\\n      iVar3 = __setenvp();\\r\\n      if (iVar3 < 0) {\\r\\n        __amsg_exit(9);\\r\\n      }\\r\\n      iVar3 = __cinit(1);\\r\\n      if (iVar3 != 0) {\\r\\n        __amsg_exit(iVar3);\\r\\n      }\\r\\n      uVar4 = __wincmdln();\\r\\n      if (((byte)local_74.dwFlags & 1) == 0) {\\r\\n        local_74.wShowWindow = 10;\\r\\n      }\\r\\n      local_20 = FUN_006de0e0(0x400000,0,uVar4,local_74.wShowWindow);\\r\\n      if (local_24 != 0) {\\r\\n        __cexit();\\r\\n        return local_20;\\r\\n      }\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n      _exit(local_20);\\r\\n    }\\r\\n    pvVar1 = GetProcessHeap();\\r\\n    HeapFree(pvVar1,DVar6,lpVersionInformation);\\r\\n  }\\r\\n  return 0xff;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e74a2\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e74a2\",\"name\":\"entry\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid entry(void)\\r\\n\\r\\n{\\r\\n  ___security_init_cookie();\\r\\n  ___tmainCRTStartup();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e74ac\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e74ac\",\"name\":\"_V6_HeapAlloc\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Single Match\\r\\n    _V6_HeapAlloc\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nundefined4 _V6_HeapAlloc(uint param_1)\\r\\n\\r\\n{\\r\\n  undefined4 local_20;\\r\\n  \\r\\n  local_20 = 0;\\r\\n  if (param_1 <= DAT_029a9b18) {\\r\\n    __lock(4);\\r\\n    local_20 = ___sbh_alloc_block(param_1);\\r\\n    FUN_006e74f2();\\r\\n  }\\r\\n  return local_20;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e74f2\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e74f2\",\"name\":\"FUN_006e74f2\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e74f2(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(4);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7570\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7570\",\"name\":\"_malloc\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _malloc\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid * __cdecl _malloc(size_t _Size)\\r\\n\\r\\n{\\r\\n  LPVOID pvVar1;\\r\\n  int iVar2;\\r\\n  undefined4 *puVar3;\\r\\n  size_t sVar4;\\r\\n  uint dwBytes;\\r\\n  \\r\\n  if (0xffffffe0 < _Size) {\\r\\n    __callnewh(_Size);\\r\\n    puVar3 = (undefined4 *)FUN_006ead5f();\\r\\n    *puVar3 = 0xc;\\r\\n    return (void *)0x0;\\r\\n  }\\r\\n  do {\\r\\n    if (DAT_0297c974 == (HANDLE)0x0) {\\r\\n      __FF_MSGBANNER();\\r\\n      FUN_006f09f8(0x1e);\\r\\n      ___crtExitProcess(0xff);\\r\\n    }\\r\\n    if (DAT_029a9b28 == 1) {\\r\\n      dwBytes = _Size;\\r\\n      if (_Size == 0) {\\r\\n        dwBytes = 1;\\r\\n      }\\r\\nLAB_006e75e1:\\r\\n      pvVar1 = HeapAlloc(DAT_0297c974,0,dwBytes);\\r\\n    }\\r\\n    else if ((DAT_029a9b28 != 3) || (pvVar1 = (LPVOID)_V6_HeapAlloc(_Size), pvVar1 == (LPVOID)0x0))\\r\\n    {\\r\\n      sVar4 = _Size;\\r\\n      if (_Size == 0) {\\r\\n        sVar4 = 1;\\r\\n      }\\r\\n      dwBytes = sVar4 + 0xf & 0xfffffff0;\\r\\n      goto LAB_006e75e1;\\r\\n    }\\r\\n    if (pvVar1 != (LPVOID)0x0) {\\r\\n      return pvVar1;\\r\\n    }\\r\\n    if (DAT_0297cad0 == 0) {\\r\\n      puVar3 = (undefined4 *)FUN_006ead5f();\\r\\n      *puVar3 = 0xc;\\r\\n      goto LAB_006e760f;\\r\\n    }\\r\\n    iVar2 = __callnewh(_Size);\\r\\n    if (iVar2 == 0) {\\r\\nLAB_006e760f:\\r\\n      puVar3 = (undefined4 *)FUN_006ead5f();\\r\\n      *puVar3 = 0xc;\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n  } while( true );\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7633\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7633\",\"name\":\"_free\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Single Match\\r\\n    _free\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __cdecl _free(void *_Memory)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  BOOL BVar2;\\r\\n  undefined4 *puVar3;\\r\\n  DWORD DVar4;\\r\\n  undefined4 uVar5;\\r\\n  \\r\\n  if (_Memory != (void *)0x0) {\\r\\n    if (DAT_029a9b28 == 3) {\\r\\n      __lock(4);\\r\\n      iVar1 = thunk_FUN_006f19ca(_Memory);\\r\\n      if (iVar1 != 0) {\\r\\n        ___sbh_free_block(iVar1,_Memory);\\r\\n      }\\r\\n      FUN_006e7689();\\r\\n      if (iVar1 != 0) {\\r\\n        return;\\r\\n      }\\r\\n    }\\r\\n    BVar2 = HeapFree(DAT_0297c974,0,_Memory);\\r\\n    if (BVar2 == 0) {\\r\\n      puVar3 = (undefined4 *)FUN_006ead5f();\\r\\n      DVar4 = GetLastError();\\r\\n      uVar5 = FUN_006ead24(DVar4);\\r\\n      *puVar3 = uVar5;\\r\\n    }\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7689\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7689\",\"name\":\"FUN_006e7689\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e7689(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(4);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e76c1\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e76c1\",\"name\":\"_realloc\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Single Match\\r\\n    _realloc\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid * __cdecl _realloc(void *_Memory,size_t _NewSize)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  int iVar2;\\r\\n  uint uVar3;\\r\\n  undefined4 *puVar4;\\r\\n  DWORD DVar5;\\r\\n  undefined4 uVar6;\\r\\n  LPVOID pvVar7;\\r\\n  int local_24;\\r\\n  void *local_20;\\r\\n  \\r\\n  if (_Memory == (void *)0x0) {\\r\\n    pvVar1 = _malloc(_NewSize);\\r\\n    return pvVar1;\\r\\n  }\\r\\n  if (_NewSize == 0) {\\r\\n    _free(_Memory);\\r\\n    return (void *)0x0;\\r\\n  }\\r\\n  if (DAT_029a9b28 == 3) {\\r\\n    do {\\r\\n      local_20 = (void *)0x0;\\r\\n      if (0xffffffe0 < _NewSize) goto LAB_006e789a;\\r\\n      __lock(4);\\r\\n      local_24 = thunk_FUN_006f19ca(_Memory);\\r\\n      if (local_24 != 0) {\\r\\n        if (_NewSize <= DAT_029a9b18) {\\r\\n          iVar2 = ___sbh_resize_block(local_24,_Memory,_NewSize);\\r\\n          if (iVar2 == 0) {\\r\\n            local_20 = (void *)___sbh_alloc_block(_NewSize);\\r\\n            if (local_20 != (void *)0x0) {\\r\\n              uVar3 = *(int *)((int)_Memory + -4) - 1;\\r\\n              if (_NewSize <= uVar3) {\\r\\n                uVar3 = _NewSize;\\r\\n              }\\r\\n              _memcpy(local_20,_Memory,uVar3);\\r\\n              local_24 = thunk_FUN_006f19ca(_Memory);\\r\\n              ___sbh_free_block(local_24,_Memory);\\r\\n            }\\r\\n          }\\r\\n          else {\\r\\n            local_20 = _Memory;\\r\\n          }\\r\\n        }\\r\\n        if (local_20 == (void *)0x0) {\\r\\n          if (_NewSize == 0) {\\r\\n            _NewSize = 1;\\r\\n          }\\r\\n          _NewSize = _NewSize + 0xf & 0xfffffff0;\\r\\n          local_20 = HeapAlloc(DAT_0297c974,0,_NewSize);\\r\\n          if (local_20 != (LPVOID)0x0) {\\r\\n            uVar3 = *(int *)((int)_Memory + -4) - 1;\\r\\n            if (_NewSize <= uVar3) {\\r\\n              uVar3 = _NewSize;\\r\\n            }\\r\\n            _memcpy(local_20,_Memory,uVar3);\\r\\n            ___sbh_free_block(local_24,_Memory);\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n      FUN_006e7805();\\r\\n      if (local_24 == 0) {\\r\\n        if (_NewSize == 0) {\\r\\n          _NewSize = 1;\\r\\n        }\\r\\n        _NewSize = _NewSize + 0xf & 0xfffffff0;\\r\\n        local_20 = HeapReAlloc(DAT_0297c974,0,_Memory,_NewSize);\\r\\n      }\\r\\n      if (local_20 != (void *)0x0) {\\r\\n        return local_20;\\r\\n      }\\r\\n      if (DAT_0297cad0 == 0) {\\r\\n        puVar4 = (undefined4 *)FUN_006ead5f();\\r\\n        if (local_24 != 0) {\\r\\n          *puVar4 = 0xc;\\r\\n          return (void *)0x0;\\r\\n        }\\r\\n        goto LAB_006e78c7;\\r\\n      }\\r\\n      iVar2 = __callnewh(_NewSize);\\r\\n    } while (iVar2 != 0);\\r\\n    puVar4 = (undefined4 *)FUN_006ead5f();\\r\\n    if (local_24 != 0) goto LAB_006e78a6;\\r\\n  }\\r\\n  else {\\r\\n    do {\\r\\n      if (0xffffffe0 < _NewSize) goto LAB_006e789a;\\r\\n      if (_NewSize == 0) {\\r\\n        _NewSize = 1;\\r\\n      }\\r\\n      pvVar7 = HeapReAlloc(DAT_0297c974,0,_Memory,_NewSize);\\r\\n      if (pvVar7 != (LPVOID)0x0) {\\r\\n        return pvVar7;\\r\\n      }\\r\\n      if (DAT_0297cad0 == 0) {\\r\\n        puVar4 = (undefined4 *)FUN_006ead5f();\\r\\nLAB_006e78c7:\\r\\n        DVar5 = GetLastError();\\r\\n        uVar6 = FUN_006ead24(DVar5);\\r\\n        *puVar4 = uVar6;\\r\\n        return (void *)0x0;\\r\\n      }\\r\\n      iVar2 = __callnewh(_NewSize);\\r\\n    } while (iVar2 != 0);\\r\\n    puVar4 = (undefined4 *)FUN_006ead5f();\\r\\n  }\\r\\n  DVar5 = GetLastError();\\r\\n  uVar6 = FUN_006ead24(DVar5);\\r\\n  *puVar4 = uVar6;\\r\\n  return (void *)0x0;\\r\\nLAB_006e789a:\\r\\n  __callnewh(_NewSize);\\r\\n  puVar4 = (undefined4 *)FUN_006ead5f();\\r\\nLAB_006e78a6:\\r\\n  *puVar4 = 0xc;\\r\\n  return (void *)0x0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7805\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7805\",\"name\":\"FUN_006e7805\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e7805(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(4);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e78dc\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e78dc\",\"name\":\"FUN_006e78dc\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid * FUN_006e78dc(void *param_1,uint param_2,uint param_3)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  void *pvVar2;\\r\\n  size_t sVar3;\\r\\n  \\r\\n  sVar3 = 0;\\r\\n  if ((param_2 == 0) || (param_3 <= 0xffffffe0 / param_2)) {\\r\\n    param_2 = param_2 * param_3;\\r\\n    if (param_1 != (void *)0x0) {\\r\\n      sVar3 = __msize(param_1);\\r\\n    }\\r\\n    pvVar2 = _realloc(param_1,param_2);\\r\\n    if ((pvVar2 != (void *)0x0) && (sVar3 < param_2)) {\\r\\n      _memset((void *)(sVar3 + (int)pvVar2),0,param_2 - sVar3);\\r\\n    }\\r\\n  }\\r\\n  else {\\r\\n    puVar1 = (undefined4 *)FUN_006ead5f();\\r\\n    *puVar1 = 0xc;\\r\\n    FUN_006e9fc2(0,0,0,0,0);\\r\\n    pvVar2 = (void *)0x0;\\r\\n  }\\r\\n  return pvVar2;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7955\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7955\",\"name\":\"FID_conflict:_wprintf\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Multiple Matches With Different Base Names\\r\\n    _printf\\r\\n    _wprintf\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl FID_conflict__wprintf(char *_Format,...)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  int iVar2;\\r\\n  int iVar3;\\r\\n  int iVar4;\\r\\n  \\r\\n  if (_Format == (char *)0x0) {\\r\\n    puVar1 = (undefined4 *)FUN_006ead5f();\\r\\n    *puVar1 = 0x16;\\r\\n    FUN_006e9fc2(0,0,0,0,0);\\r\\n    iVar2 = -1;\\r\\n  }\\r\\n  else {\\r\\n    iVar3 = FUN_006e81d7();\\r\\n    FUN_006e82ea(1,iVar3 + 0x20);\\r\\n    iVar3 = FUN_006e81d7();\\r\\n    iVar3 = __stbuf((FILE *)(iVar3 + 0x20));\\r\\n    iVar4 = FUN_006e81d7(_Format,0,&stack0x00000008);\\r\\n    iVar2 = FUN_006eef05(iVar4 + 0x20);\\r\\n    iVar4 = FUN_006e81d7();\\r\\n    __ftbuf(iVar3,(FILE *)(iVar4 + 0x20));\\r\\n    FUN_006e79f1();\\r\\n  }\\r\\n  return iVar2;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e79f1\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e79f1\",\"name\":\"FUN_006e79f1\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e79f1(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  \\r\\n  iVar1 = FUN_006e81d7();\\r\\n  FUN_006e834e(1,iVar1 + 0x20);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7a93\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7a93\",\"name\":\"FUN_006e7a93\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nbool FUN_006e7a93(void)\\r\\n\\r\\n{\\r\\n  return DAT_0297c194 == (DAT_00829570 | 1);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e7aa9\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e7aa9\",\"name\":\"__vsprintf_l\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __vsprintf_l\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __vsprintf_l(char *_DstBuf,char *_Format,_locale_t param_3,va_list _ArgList)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  int iVar2;\\r\\n  FILE local_24;\\r\\n  \\r\\n  if ((_Format == (char *)0x0) || (_DstBuf == (char *)0x0)) {\\r\\n    puVar1 = (undefined4 *)FUN_006ead5f();\\r\\n    *puVar1 = 0x16;\\r\\n    FUN_006e9fc2(0,0,0,0,0);\\r\\n    iVar2 = -1;\\r\\n  }\\r\\n  else {\\r\\n    local_24._base = _DstBuf;\\r\\n    local_24._ptr = _DstBuf;\\r\\n    local_24._cnt = 0x7fffffff;\\r\\n    local_24._flag = 0x42;\\r\\n    iVar2 = FUN_006eef05(&local_24,_Format,param_3,_ArgList);\\r\\n    local_24._cnt = local_24._cnt + -1;\\r\\n    if (local_24._cnt < 0) {\\r\\n      __flsbuf(0,&local_24);\\r\\n    }\\r\\n    else {\\r\\n      *local_24._ptr = '\\\\0';\\r\\n    }\\r\\n  }\\r\\n  return iVar2;\\r\\n}\\r\\n\\r\\n\"}],\"total\":32,\"succeeded\":32,\"failed\":0},\"confidence\":\"derived\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Derived by an REA composed workflow.\"],\"locations\":[{\"kind\":\"address\",\"address\":\"0x6e6950\"},{\"kind\":\"address\",\"address\":\"0x6e69d0\"},{\"kind\":\"address\",\"address\":\"0x6e69ef\"},{\"kind\":\"address\",\"address\":\"0x6e6aa0\"},{\"kind\":\"address\",\"address\":\"0x6e6abd\"},{\"kind\":\"address\",\"address\":\"0x6e6adc\"},{\"kind\":\"address\",\"address\":\"0x6e6b18\"},{\"kind\":\"address\",\"address\":\"0x6e6b90\"},{\"kind\":\"address\",\"address\":\"0x6e6bc6\"},{\"kind\":\"address\",\"address\":\"0x6e6c40\"},{\"kind\":\"address\",\"address\":\"0x6e6d60\"},{\"kind\":\"address\",\"address\":\"0x6e6d90\"},{\"kind\":\"address\",\"address\":\"0x6e70f5\"},{\"kind\":\"address\",\"address\":\"0x6e71dd\"},{\"kind\":\"address\",\"address\":\"0x6e7213\"},{\"kind\":\"address\",\"address\":\"0x6e7219\"},{\"kind\":\"address\",\"address\":\"0x6e725d\"},{\"kind\":\"address\",\"address\":\"0x6e7281\"},{\"kind\":\"address\",\"address\":\"0x6e72c2\"},{\"kind\":\"address\",\"address\":\"0x6e74a2\"},{\"kind\":\"address\",\"address\":\"0x6e74ac\"},{\"kind\":\"address\",\"address\":\"0x6e74f2\"},{\"kind\":\"address\",\"address\":\"0x6e7570\"},{\"kind\":\"address\",\"address\":\"0x6e7633\"},{\"kind\":\"address\",\"address\":\"0x6e7689\"},{\"kind\":\"address\",\"address\":\"0x6e76c1\"},{\"kind\":\"address\",\"address\":\"0x6e7805\"},{\"kind\":\"address\",\"address\":\"0x6e78dc\"},{\"kind\":\"address\",\"address\":\"0x6e7955\"},{\"kind\":\"address\",\"address\":\"0x6e79f1\"},{\"kind\":\"address\",\"address\":\"0x6e7a93\"},{\"kind\":\"address\",\"address\":\"0x6e7aa9\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_05a50d78b1ac39cbc8ac7a43523eae9528fc8f40ae743077c5c3f4eab8d21813",
+    "subject": {
+      "name": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe",
+      "digest": {
+        "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb"
+      },
+      "format": "pe",
+      "architecture": "x86",
+      "local_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe"
+    },
+    "provider": {
+      "id": "rea-workflow",
+      "name": "REA composed investigation workflow",
+      "version": "1"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "parameters": {
+        "upstream_analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "pe",
+            "executable_role": "application",
+            "managed": false,
+            "native_aot_metadata": {
+              "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+              "source_bytes": 134217728,
+              "work_units": 67108864,
+              "working_memory_bytes": 67108864,
+              "report_bytes": 4194304
+            },
+            "architecture": "x86",
+            "available_architectures": [
+              "x86"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "function_boundary_observations": "ghidra-terminal-call-limitations-v1",
+            "no_return_repair": "disabled-windows-p0",
+            "process_launch": "official-headless-script-v1",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "auto-from-header",
+            "language_id": "auto-from-header",
+            "compiler_spec_id": "auto-default",
+            "analyzer_preset": "ghidra-default",
+            "analysis_seeds": {
+              "format": "rea-ghidra-seeds-v1",
+              "path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "configured_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "sha256": "ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24",
+              "entries": {
+                "function": 1046,
+                "code": 0,
+                "label": 0
+              }
+            }
+          },
+          "digest": "d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d"
+        },
+        "workflow_revision": 2
+      },
+      "digest": "87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971"
+    },
+    "predicate_type": "rea.analysis",
+    "operation": "batch_decompile",
+    "parameters": {
+      "addresses": [
+        "0x6e6950",
+        "0x6e69d0",
+        "0x6e69ef",
+        "0x6e6aa0",
+        "0x6e6abd",
+        "0x6e6adc",
+        "0x6e6b18",
+        "0x6e6b90",
+        "0x6e6bc6",
+        "0x6e6c40",
+        "0x6e6d60",
+        "0x6e6d90",
+        "0x6e70f5",
+        "0x6e71dd",
+        "0x6e7213",
+        "0x6e7219",
+        "0x6e725d",
+        "0x6e7281",
+        "0x6e72c2",
+        "0x6e74a2",
+        "0x6e74ac",
+        "0x6e74f2",
+        "0x6e7570",
+        "0x6e7633",
+        "0x6e7689",
+        "0x6e76c1",
+        "0x6e7805",
+        "0x6e78dc",
+        "0x6e7955",
+        "0x6e79f1",
+        "0x6e7a93",
+        "0x6e7aa9"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "items": [
+        {
+          "address": "0x6e6950",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6950",
+            "name": "_memset"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _memset\r\n   \r\n   Libraries: Visual Studio 2005 Debug, Visual Studio 2005 Release, Visual Studio 2008 Debug, Visual\r\n   Studio 2008 Release */\r\n\r\nvoid * __cdecl _memset(void *_Dst,int _Val,size_t _Size)\r\n\r\n{\r\n  uint uVar1;\r\n  void *pvVar2;\r\n  uint uVar3;\r\n  size_t sVar4;\r\n  uint *puVar5;\r\n  \r\n  if (_Size == 0) {\r\n    return _Dst;\r\n  }\r\n  uVar1 = _Val & 0xff;\r\n  if ((((char)_Val == '\\0') && (0xff < _Size)) && (DAT_029a9c48 != 0)) {\r\n    pvVar2 = (void *)__VEC_memzero();\r\n    return pvVar2;\r\n  }\r\n  puVar5 = _Dst;\r\n  if (3 < _Size) {\r\n    uVar3 = -(int)_Dst & 3;\r\n    sVar4 = _Size;\r\n    if (uVar3 != 0) {\r\n      sVar4 = _Size - uVar3;\r\n      do {\r\n        *(char *)puVar5 = (char)_Val;\r\n        puVar5 = (uint *)((int)puVar5 + 1);\r\n        uVar3 = uVar3 - 1;\r\n      } while (uVar3 != 0);\r\n    }\r\n    uVar1 = uVar1 * 0x1010101;\r\n    _Size = sVar4 & 3;\r\n    uVar3 = sVar4 >> 2;\r\n    if (uVar3 != 0) {\r\n      for (; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n        *puVar5 = uVar1;\r\n        puVar5 = puVar5 + 1;\r\n      }\r\n      if (_Size == 0) {\r\n        return _Dst;\r\n      }\r\n    }\r\n  }\r\n  do {\r\n    *(char *)puVar5 = (char)uVar1;\r\n    puVar5 = (uint *)((int)puVar5 + 1);\r\n    _Size = _Size - 1;\r\n  } while (_Size != 0);\r\n  return _Dst;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e69d0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e69d0",
+            "name": "__allshl"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __allshl\r\n   \r\n   Library: Visual Studio */\r\n\r\nlonglong __allshl(void)\r\n\r\n{\r\n  uint in_EAX;\r\n  byte in_CL;\r\n  int in_EDX;\r\n  \r\n  if (0x3f < in_CL) {\r\n    return 0;\r\n  }\r\n  if (in_CL < 0x20) {\r\n    return CONCAT44(in_EDX << (in_CL & 0x1f) | in_EAX >> 0x20 - (in_CL & 0x1f),\r\n                    in_EAX << (in_CL & 0x1f));\r\n  }\r\n  return (ulonglong)(in_EAX << (in_CL & 0x1f)) << 0x20;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e69ef",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e69ef",
+            "name": "_sprintf"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _sprintf\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl _sprintf(char *_Dest,char *_Format,...)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  FILE local_24;\r\n  \r\n  if ((_Format == (char *)0x0) || (_Dest == (char *)0x0)) {\r\n    puVar1 = (undefined4 *)FUN_006ead5f();\r\n    *puVar1 = 0x16;\r\n    FUN_006e9fc2(0,0,0,0,0);\r\n    iVar2 = -1;\r\n  }\r\n  else {\r\n    local_24._base = _Dest;\r\n    local_24._ptr = _Dest;\r\n    local_24._cnt = 0x7fffffff;\r\n    local_24._flag = 0x42;\r\n    iVar2 = FUN_006eef05(&local_24,_Format,0,&stack0x0000000c);\r\n    local_24._cnt = local_24._cnt + -1;\r\n    if (local_24._cnt < 0) {\r\n      __flsbuf(0,&local_24);\r\n    }\r\n    else {\r\n      *local_24._ptr = '\\0';\r\n    }\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6aa0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6aa0",
+            "name": "__sprintf_s_l"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __sprintf_s_l\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\r\n\r\nint __cdecl __sprintf_s_l(char *_DstBuf,size_t _DstSize,char *_Format,_locale_t _Locale,...)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = __vsprintf_s_l(_DstBuf,_DstSize,_Format,_Locale,&stack0x00000014);\r\n  return iVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6abd",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6abd",
+            "name": "__snprintf_s"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __snprintf_s\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __snprintf_s(char *_DstBuf,size_t _SizeInBytes,size_t _MaxCount,char *_Format,...)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = __vsnprintf_s_l(_DstBuf,_SizeInBytes,_MaxCount,_Format,(_locale_t)0x0,&stack0x00000014);\r\n  return iVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6adc",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6adc",
+            "name": "__snprintf_s_l"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __snprintf_s_l\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl\r\n__snprintf_s_l(char *_DstBuf,size_t _DstSize,size_t _MaxCount,char *_Format,_locale_t _Locale,...)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = __vsnprintf_s_l(_DstBuf,_DstSize,_MaxCount,_Format,_Locale,&stack0x00000018);\r\n  return iVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6b18",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6b18",
+            "name": "FUN_006e6b18"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e6b18(char *param_1,size_t param_2,char *param_3,_locale_t param_4)\r\n\r\n{\r\n  FID_conflict___vsnprintf_c_l(param_1,param_2,param_3,param_4,&stack0x00000014);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6b90",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6b90",
+            "name": "FUN_006e6b90"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nulonglong FUN_006e6b90(void)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  uint uVar2;\r\n  undefined4 in_EDX;\r\n  float fVar3;\r\n  float10 in_ST0;\r\n  uint uStack_20;\r\n  float fStack_1c;\r\n  \r\n  if (DAT_029a9c48 == 0) {\r\n    uVar1 = (ulonglong)ROUND(in_ST0);\r\n    uStack_20 = (uint)uVar1;\r\n    fStack_1c = (float)(uVar1 >> 0x20);\r\n    fVar3 = (float)in_ST0;\r\n    if ((uStack_20 != 0) || (fVar3 = fStack_1c, (uVar1 & 0x7fffffff00000000) != 0)) {\r\n      if ((int)fVar3 < 0) {\r\n        uVar1 = uVar1 + (0x80000000 < (uint)-(float)(in_ST0 - (float10)(longlong)uVar1));\r\n      }\r\n      else {\r\n        uVar2 = (uint)(0x80000000 < (uint)(float)(in_ST0 - (float10)(longlong)uVar1));\r\n        uVar1 = CONCAT44((int)fStack_1c - (uint)(uStack_20 < uVar2),uStack_20 - uVar2);\r\n      }\r\n    }\r\n    return uVar1;\r\n  }\r\n  return CONCAT44(in_EDX,(int)in_ST0);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6bc6",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6bc6",
+            "name": "FUN_006e6bc6"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nulonglong FUN_006e6bc6(void)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  uint uVar2;\r\n  float fVar3;\r\n  float10 in_ST0;\r\n  undefined4 local_20;\r\n  undefined4 uStack_1c;\r\n  \r\n  uVar1 = (ulonglong)ROUND(in_ST0);\r\n  local_20 = (uint)uVar1;\r\n  uStack_1c = (float)(uVar1 >> 0x20);\r\n  fVar3 = (float)in_ST0;\r\n  if ((local_20 != 0) || (fVar3 = uStack_1c, (uVar1 & 0x7fffffff00000000) != 0)) {\r\n    if ((int)fVar3 < 0) {\r\n      uVar1 = uVar1 + (0x80000000 < (uint)-(float)(in_ST0 - (float10)(longlong)uVar1));\r\n    }\r\n    else {\r\n      uVar2 = (uint)(0x80000000 < (uint)(float)(in_ST0 - (float10)(longlong)uVar1));\r\n      uVar1 = CONCAT44((int)uStack_1c - (uint)(local_20 < uVar2),local_20 - uVar2);\r\n    }\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6c40",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6c40",
+            "name": "FUN_006e6c40"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nfloat10 FUN_006e6c40(double param_1,undefined2 param_2)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  ushort in_FPUControlWord;\r\n  float10 fVar4;\r\n  double dVar5;\r\n  ulonglong uVar6;\r\n  undefined4 uVar7;\r\n  undefined8 uVar8;\r\n  \r\n  if ((DAT_029a9c44 != 0) && ((MXCSR & 0x1f80) == 0x1f80 && (in_FPUControlWord & 0x7f) == 0x7f)) {\r\n    uVar2 = (uint)((ulonglong)param_1 >> 0x20);\r\n    uVar1 = uVar2 >> 0x14;\r\n    uVar6 = (ulonglong)(0x433 - (uVar2 >> 0x14 & 0x7ff));\r\n    if ((uVar1 & 0x800) == 0) {\r\n      dVar5 = (double)(((ulonglong)param_1 >> uVar6) << uVar6);\r\n      if (uVar1 < 0x3ff) {\r\n        return (float10)(double)(-(ulonglong)(0.0 < param_1) & 0x3ff0000000000000);\r\n      }\r\n      if (uVar1 < 0x433) {\r\n        return (float10)(dVar5 + (double)(-(ulonglong)(dVar5 < param_1) & 0x3ff0000000000000));\r\n      }\r\n    }\r\n    else {\r\n      if (uVar1 < 0xbff) {\r\n        return (float10)-0.0;\r\n      }\r\n      if (uVar1 < 0xc33) {\r\n        return (float10)(double)(((ulonglong)param_1 >> uVar6) << uVar6);\r\n      }\r\n    }\r\n    if (NAN(param_1)) {\r\n      ___libm_error_support(&param_1,&param_1,&param_1,0x3ec);\r\n    }\r\n    return (float10)(double)CONCAT26(param_1._6_2_,param_1._0_6_);\r\n  }\r\n  uVar2 = __ctrlfp(DAT_00829ab0,0xffff);\r\n  if ((param_1._6_2_ & 0x7ff0) == 0x7ff0) {\r\n    iVar3 = __sptype();\r\n    if (0 < iVar3) {\r\n      if (iVar3 < 3) {\r\n        __ctrlfp(uVar2,0xffff);\r\n        return (float10)(double)CONCAT26(param_1._6_2_,param_1._0_6_);\r\n      }\r\n      if (iVar3 == 3) {\r\n        fVar4 = (float10)__handle_qnan1();\r\n        return fVar4;\r\n      }\r\n    }\r\n    dVar5 = (double)CONCAT26(param_1._6_2_,param_1._0_6_) + 1.0;\r\n    uVar8 = CONCAT26(param_1._6_2_,param_1._0_6_);\r\n    uVar7 = 8;\r\n  }\r\n  else {\r\n    fVar4 = (float10)__frnd((int)param_1._0_6_,(int)(CONCAT26(param_1._6_2_,param_1._0_6_) >> 0x20))\r\n    ;\r\n    dVar5 = (double)fVar4;\r\n    if (((double)CONCAT26(param_1._6_2_,param_1._0_6_) == dVar5) || ((uVar2 & 0x20) != 0)) {\r\n      __ctrlfp(uVar2,0xffff);\r\n      return (float10)dVar5;\r\n    }\r\n    uVar8 = CONCAT26(param_1._6_2_,param_1._0_6_);\r\n    uVar7 = 0x10;\r\n  }\r\n  fVar4 = (float10)__except1(uVar7,0xc,uVar8,dVar5,uVar2);\r\n  return fVar4;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6d60",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6d60",
+            "name": "__alloca_probe"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: This is an inlined function */\r\n/* Library Function - Single Match\r\n    __chkstk\r\n   \r\n   Library: Visual Studio */\r\n\r\nvoid __alloca_probe(void)\r\n\r\n{\r\n  undefined1 *in_EAX;\r\n  undefined4 *puVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 unaff_retaddr;\r\n  undefined1 auStack_4 [4];\r\n  \r\n  puVar2 = (undefined4 *)((int)&stack0x00000000 - (int)in_EAX & ~-(uint)(&stack0x00000000 < in_EAX))\r\n  ;\r\n  for (puVar1 = (undefined4 *)((uint)auStack_4 & 0xfffff000); puVar2 < puVar1;\r\n      puVar1 = puVar1 + -0x400) {\r\n  }\r\n  *puVar2 = unaff_retaddr;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e6d90",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e6d90",
+            "name": "_memcpy"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _memcpy\r\n   \r\n   Libraries: Visual Studio 2005 Debug, Visual Studio 2005 Release, Visual Studio 2008 Debug, Visual\r\n   Studio 2008 Release */\r\n\r\nvoid * __cdecl _memcpy(void *_Dst,void *_Src,size_t _Size)\r\n\r\n{\r\n  void *pvVar1;\r\n  uint uVar2;\r\n  uint uVar3;\r\n  undefined4 *puVar4;\r\n  undefined4 *puVar5;\r\n  \r\n  if ((_Src < _Dst) && (_Dst < (void *)(_Size + (int)_Src))) {\r\n    puVar4 = (undefined4 *)((_Size - 4) + (int)_Src);\r\n    puVar5 = (undefined4 *)((_Size - 4) + (int)_Dst);\r\n    if (((uint)puVar5 & 3) == 0) {\r\n      uVar2 = _Size >> 2;\r\n      uVar3 = _Size & 3;\r\n      if (7 < uVar2) {\r\n        for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n          *puVar5 = *puVar4;\r\n          puVar4 = puVar4 + -1;\r\n          puVar5 = puVar5 + -1;\r\n        }\r\n        switch(uVar3) {\r\n        case 0:\r\n          return _Dst;\r\n        case 2:\r\n          goto switchD_006e6f73_caseD_2;\r\n        case 3:\r\n          goto switchD_006e6f73_caseD_3;\r\n        }\r\n        goto switchD_006e6f73_caseD_1;\r\n      }\r\n    }\r\n    else {\r\n      switch(_Size) {\r\n      case 0:\r\n        goto switchD_006e6f73_caseD_0;\r\n      case 1:\r\n        goto switchD_006e6f73_caseD_1;\r\n      case 2:\r\n        goto switchD_006e6f73_caseD_2;\r\n      case 3:\r\n        goto switchD_006e6f73_caseD_3;\r\n      default:\r\n        uVar2 = _Size - ((uint)puVar5 & 3);\r\n        switch((uint)puVar5 & 3) {\r\n        case 1:\r\n          uVar3 = uVar2 & 3;\r\n          *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\r\n          puVar4 = (undefined4 *)((int)puVar4 + -1);\r\n          uVar2 = uVar2 >> 2;\r\n          puVar5 = (undefined4 *)((int)puVar5 - 1);\r\n          if (7 < uVar2) {\r\n            for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n              *puVar5 = *puVar4;\r\n              puVar4 = puVar4 + -1;\r\n              puVar5 = puVar5 + -1;\r\n            }\r\n            switch(uVar3) {\r\n            case 0:\r\n              return _Dst;\r\n            case 2:\r\n              goto switchD_006e6f73_caseD_2;\r\n            case 3:\r\n              goto switchD_006e6f73_caseD_3;\r\n            }\r\n            goto switchD_006e6f73_caseD_1;\r\n          }\r\n          break;\r\n        case 2:\r\n          uVar3 = uVar2 & 3;\r\n          *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\r\n          uVar2 = uVar2 >> 2;\r\n          *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\r\n          puVar4 = (undefined4 *)((int)puVar4 + -2);\r\n          puVar5 = (undefined4 *)((int)puVar5 - 2);\r\n          if (7 < uVar2) {\r\n            for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n              *puVar5 = *puVar4;\r\n              puVar4 = puVar4 + -1;\r\n              puVar5 = puVar5 + -1;\r\n            }\r\n            switch(uVar3) {\r\n            case 0:\r\n              return _Dst;\r\n            case 2:\r\n              goto switchD_006e6f73_caseD_2;\r\n            case 3:\r\n              goto switchD_006e6f73_caseD_3;\r\n            }\r\n            goto switchD_006e6f73_caseD_1;\r\n          }\r\n          break;\r\n        case 3:\r\n          uVar3 = uVar2 & 3;\r\n          *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\r\n          *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\r\n          uVar2 = uVar2 >> 2;\r\n          *(undefined1 *)((int)puVar5 + 1) = *(undefined1 *)((int)puVar4 + 1);\r\n          puVar4 = (undefined4 *)((int)puVar4 + -3);\r\n          puVar5 = (undefined4 *)((int)puVar5 - 3);\r\n          if (7 < uVar2) {\r\n            for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n              *puVar5 = *puVar4;\r\n              puVar4 = puVar4 + -1;\r\n              puVar5 = puVar5 + -1;\r\n            }\r\n            switch(uVar3) {\r\n            case 0:\r\n              return _Dst;\r\n            case 2:\r\n              goto switchD_006e6f73_caseD_2;\r\n            case 3:\r\n              goto switchD_006e6f73_caseD_3;\r\n            }\r\n            goto switchD_006e6f73_caseD_1;\r\n          }\r\n        }\r\n      }\r\n    }\r\n    switch(uVar2) {\r\n    case 7:\r\n      puVar5[7 - uVar2] = puVar4[7 - uVar2];\r\n    case 6:\r\n      puVar5[6 - uVar2] = puVar4[6 - uVar2];\r\n    case 5:\r\n      puVar5[5 - uVar2] = puVar4[5 - uVar2];\r\n    case 4:\r\n      puVar5[4 - uVar2] = puVar4[4 - uVar2];\r\n    case 3:\r\n      puVar5[3 - uVar2] = puVar4[3 - uVar2];\r\n    case 2:\r\n      puVar5[2 - uVar2] = puVar4[2 - uVar2];\r\n    case 1:\r\n      puVar5[1 - uVar2] = puVar4[1 - uVar2];\r\n      puVar4 = puVar4 + -uVar2;\r\n      puVar5 = puVar5 + -uVar2;\r\n    }\r\n    switch(uVar3) {\r\n    case 1:\r\nswitchD_006e6f73_caseD_1:\r\n      *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\r\n      return _Dst;\r\n    case 2:\r\nswitchD_006e6f73_caseD_2:\r\n      *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\r\n      *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\r\n      return _Dst;\r\n    case 3:\r\nswitchD_006e6f73_caseD_3:\r\n      *(undefined1 *)((int)puVar5 + 3) = *(undefined1 *)((int)puVar4 + 3);\r\n      *(undefined1 *)((int)puVar5 + 2) = *(undefined1 *)((int)puVar4 + 2);\r\n      *(undefined1 *)((int)puVar5 + 1) = *(undefined1 *)((int)puVar4 + 1);\r\n      return _Dst;\r\n    }\r\nswitchD_006e6f73_caseD_0:\r\n    return _Dst;\r\n  }\r\n  if (((0xff < _Size) && (DAT_029a9c48 != 0)) && (((uint)_Dst & 0xf) == ((uint)_Src & 0xf))) {\r\n    pvVar1 = (void *)__VEC_memcpy();\r\n    return pvVar1;\r\n  }\r\n  puVar4 = _Dst;\r\n  if (((uint)_Dst & 3) == 0) {\r\n    uVar2 = _Size >> 2;\r\n    uVar3 = _Size & 3;\r\n    if (7 < uVar2) {\r\n      for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n        *puVar4 = *(undefined4 *)_Src;\r\n        _Src = (undefined4 *)((int)_Src + 4);\r\n        puVar4 = puVar4 + 1;\r\n      }\r\n      switch(uVar3) {\r\n      case 0:\r\n        return _Dst;\r\n      case 2:\r\n        goto switchD_006e6dec_caseD_2;\r\n      case 3:\r\n        goto switchD_006e6dec_caseD_3;\r\n      }\r\n      goto switchD_006e6dec_caseD_1;\r\n    }\r\n  }\r\n  else {\r\n    switch(_Size) {\r\n    case 0:\r\n      goto switchD_006e6dec_caseD_0;\r\n    case 1:\r\n      goto switchD_006e6dec_caseD_1;\r\n    case 2:\r\n      goto switchD_006e6dec_caseD_2;\r\n    case 3:\r\n      goto switchD_006e6dec_caseD_3;\r\n    default:\r\n      uVar2 = (_Size - 4) + ((uint)_Dst & 3);\r\n      switch((uint)_Dst & 3) {\r\n      case 1:\r\n        uVar3 = uVar2 & 3;\r\n        *(undefined1 *)_Dst = *(undefined1 *)_Src;\r\n        *(undefined1 *)((int)_Dst + 1) = *(undefined1 *)((int)_Src + 1);\r\n        uVar2 = uVar2 >> 2;\r\n        *(undefined1 *)((int)_Dst + 2) = *(undefined1 *)((int)_Src + 2);\r\n        _Src = (void *)((int)_Src + 3);\r\n        puVar4 = (undefined4 *)((int)_Dst + 3);\r\n        if (7 < uVar2) {\r\n          for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n            *puVar4 = *(undefined4 *)_Src;\r\n            _Src = (undefined4 *)((int)_Src + 4);\r\n            puVar4 = puVar4 + 1;\r\n          }\r\n          switch(uVar3) {\r\n          case 0:\r\n            return _Dst;\r\n          case 2:\r\n            goto switchD_006e6dec_caseD_2;\r\n          case 3:\r\n            goto switchD_006e6dec_caseD_3;\r\n          }\r\n          goto switchD_006e6dec_caseD_1;\r\n        }\r\n        break;\r\n      case 2:\r\n        uVar3 = uVar2 & 3;\r\n        *(undefined1 *)_Dst = *(undefined1 *)_Src;\r\n        uVar2 = uVar2 >> 2;\r\n        *(undefined1 *)((int)_Dst + 1) = *(undefined1 *)((int)_Src + 1);\r\n        _Src = (void *)((int)_Src + 2);\r\n        puVar4 = (undefined4 *)((int)_Dst + 2);\r\n        if (7 < uVar2) {\r\n          for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n            *puVar4 = *(undefined4 *)_Src;\r\n            _Src = (undefined4 *)((int)_Src + 4);\r\n            puVar4 = puVar4 + 1;\r\n          }\r\n          switch(uVar3) {\r\n          case 0:\r\n            return _Dst;\r\n          case 2:\r\n            goto switchD_006e6dec_caseD_2;\r\n          case 3:\r\n            goto switchD_006e6dec_caseD_3;\r\n          }\r\n          goto switchD_006e6dec_caseD_1;\r\n        }\r\n        break;\r\n      case 3:\r\n        uVar3 = uVar2 & 3;\r\n        *(undefined1 *)_Dst = *(undefined1 *)_Src;\r\n        _Src = (void *)((int)_Src + 1);\r\n        uVar2 = uVar2 >> 2;\r\n        puVar4 = (undefined4 *)((int)_Dst + 1);\r\n        if (7 < uVar2) {\r\n          for (; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n            *puVar4 = *(undefined4 *)_Src;\r\n            _Src = (undefined4 *)((int)_Src + 4);\r\n            puVar4 = puVar4 + 1;\r\n          }\r\n          switch(uVar3) {\r\n          case 0:\r\n            return _Dst;\r\n          case 2:\r\n            goto switchD_006e6dec_caseD_2;\r\n          case 3:\r\n            goto switchD_006e6dec_caseD_3;\r\n          }\r\n          goto switchD_006e6dec_caseD_1;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  switch(uVar2) {\r\n  case 7:\r\n    puVar4[uVar2 - 7] = *(undefined4 *)((int)_Src + (uVar2 - 7) * 4);\r\n  case 6:\r\n    puVar4[uVar2 - 6] = *(undefined4 *)((int)_Src + (uVar2 - 6) * 4);\r\n  case 5:\r\n    puVar4[uVar2 - 5] = *(undefined4 *)((int)_Src + (uVar2 - 5) * 4);\r\n  case 4:\r\n    puVar4[uVar2 - 4] = *(undefined4 *)((int)_Src + (uVar2 - 4) * 4);\r\n  case 3:\r\n    puVar4[uVar2 - 3] = *(undefined4 *)((int)_Src + (uVar2 - 3) * 4);\r\n  case 2:\r\n    puVar4[uVar2 - 2] = *(undefined4 *)((int)_Src + (uVar2 - 2) * 4);\r\n  case 1:\r\n    puVar4[uVar2 - 1] = *(undefined4 *)((int)_Src + (uVar2 - 1) * 4);\r\n    _Src = (void *)((int)_Src + uVar2 * 4);\r\n    puVar4 = puVar4 + uVar2;\r\n  }\r\n  switch(uVar3) {\r\n  case 1:\r\nswitchD_006e6dec_caseD_1:\r\n    *(undefined1 *)puVar4 = *(undefined1 *)_Src;\r\n    return _Dst;\r\n  case 2:\r\nswitchD_006e6dec_caseD_2:\r\n    *(undefined1 *)puVar4 = *(undefined1 *)_Src;\r\n    *(undefined1 *)((int)puVar4 + 1) = *(undefined1 *)((int)_Src + 1);\r\n    return _Dst;\r\n  case 3:\r\nswitchD_006e6dec_caseD_3:\r\n    *(undefined1 *)puVar4 = *(undefined1 *)_Src;\r\n    *(undefined1 *)((int)puVar4 + 1) = *(undefined1 *)((int)_Src + 1);\r\n    *(undefined1 *)((int)puVar4 + 2) = *(undefined1 *)((int)_Src + 2);\r\n    return _Dst;\r\n  }\r\nswitchD_006e6dec_caseD_0:\r\n  return _Dst;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e70f5",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e70f5",
+            "name": "FUN_006e70f5"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006e70f5(undefined4 param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  undefined4 *_Memory;\r\n  undefined4 *puVar2;\r\n  size_t sVar3;\r\n  size_t sVar4;\r\n  void *pvVar5;\r\n  undefined4 uVar6;\r\n  \r\n  _Memory = (undefined4 *)FUN_006f01bc(DAT_029a9c54);\r\n  puVar2 = (undefined4 *)FUN_006f01bc(DAT_029a9c50);\r\n  if (_Memory <= puVar2) {\r\n    uVar1 = ((int)puVar2 - (int)_Memory) + 4;\r\n    if (3 < uVar1) {\r\n      sVar3 = __msize(_Memory);\r\n      if (sVar3 < uVar1) {\r\n        sVar4 = 0x800;\r\n        if (sVar3 < 0x800) {\r\n          sVar4 = sVar3;\r\n        }\r\n        if ((sVar4 + sVar3 < sVar3) ||\r\n           (pvVar5 = __realloc_crt(_Memory,sVar4 + sVar3), pvVar5 == (void *)0x0)) {\r\n          if (sVar3 + 0x10 < sVar3) {\r\n            return 0;\r\n          }\r\n          pvVar5 = __realloc_crt(_Memory,sVar3 + 0x10);\r\n          if (pvVar5 == (void *)0x0) {\r\n            return 0;\r\n          }\r\n        }\r\n        puVar2 = (undefined4 *)((int)pvVar5 + ((int)puVar2 - (int)_Memory >> 2) * 4);\r\n        DAT_029a9c54 = FUN_006f0145(pvVar5);\r\n      }\r\n      uVar6 = FUN_006f0145(param_1);\r\n      *puVar2 = uVar6;\r\n      DAT_029a9c50 = FUN_006f0145(puVar2 + 1);\r\n      return param_1;\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e71dd",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e71dd",
+            "name": "__onexit"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Single Match\r\n    __onexit\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\n_onexit_t __cdecl __onexit(_onexit_t _Func)\r\n\r\n{\r\n  _onexit_t p_Var1;\r\n  \r\n  FUN_006ebdf8();\r\n  p_Var1 = (_onexit_t)FUN_006e70f5(_Func);\r\n  FUN_006e7213();\r\n  return p_Var1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7213",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7213",
+            "name": "FUN_006e7213"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e7213(void)\r\n\r\n{\r\n  FUN_006ebe01();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7219",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7219",
+            "name": "_atexit"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _atexit\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl _atexit(_func_4879 *param_1)\r\n\r\n{\r\n  _onexit_t p_Var1;\r\n  \r\n  p_Var1 = __onexit((_onexit_t)param_1);\r\n  return (p_Var1 != (_onexit_t)0x0) - 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e725d",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e725d",
+            "name": "fast_error_exit"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _fast_error_exit\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __cdecl fast_error_exit(undefined4 param_1)\r\n\r\n{\r\n  if (DAT_0297c190 == 1) {\r\n    __FF_MSGBANNER();\r\n  }\r\n  FUN_006f09f8(param_1);\r\n  ___crtExitProcess(0xff);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7281",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7281",
+            "name": "check_managed_app"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Removing unreachable block (ram,0x006e72bf) */\r\n/* Library Function - Single Match\r\n    _check_managed_app\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nundefined4 __cdecl check_managed_app(void)\r\n\r\n{\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e72c2",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e72c2",
+            "name": "___tmainCRTStartup"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* Library Function - Single Match\r\n    ___tmainCRTStartup\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint ___tmainCRTStartup(void)\r\n\r\n{\r\n  HANDLE pvVar1;\r\n  LPOSVERSIONINFOA lpVersionInformation;\r\n  BOOL BVar2;\r\n  int iVar3;\r\n  undefined4 uVar4;\r\n  uint uVar5;\r\n  DWORD DVar6;\r\n  SIZE_T dwBytes;\r\n  _STARTUPINFOA local_74;\r\n  DWORD local_2c;\r\n  DWORD local_28;\r\n  DWORD local_24;\r\n  int local_20;\r\n  undefined4 uStack_c;\r\n  undefined4 local_8;\r\n  \r\n  uStack_c = 0x6e72ce;\r\n  local_8 = 0;\r\n  GetStartupInfoA(&local_74);\r\n  local_8 = 0xfffffffe;\r\n  dwBytes = 0x94;\r\n  DVar6 = 0;\r\n  pvVar1 = GetProcessHeap();\r\n  lpVersionInformation = HeapAlloc(pvVar1,DVar6,dwBytes);\r\n  if (lpVersionInformation == (LPOSVERSIONINFOA)0x0) {\r\n    fast_error_exit(0x12);\r\n  }\r\n  else {\r\n    lpVersionInformation->dwOSVersionInfoSize = 0x94;\r\n    BVar2 = GetVersionExA(lpVersionInformation);\r\n    DVar6 = 0;\r\n    if (BVar2 != 0) {\r\n      local_24 = lpVersionInformation->dwPlatformId;\r\n      local_28 = lpVersionInformation->dwMajorVersion;\r\n      local_2c = lpVersionInformation->dwMinorVersion;\r\n      uVar5 = lpVersionInformation->dwBuildNumber & 0x7fff;\r\n      pvVar1 = GetProcessHeap();\r\n      HeapFree(pvVar1,DVar6,lpVersionInformation);\r\n      if (local_24 != 2) {\r\n        uVar5 = uVar5 | 0x8000;\r\n      }\r\n      _DAT_0297c1bc = local_28 * 0x100 + local_2c;\r\n      DAT_0297c1b4 = local_24;\r\n      DAT_0297c1c0 = local_28;\r\n      _DAT_0297c1c4 = local_2c;\r\n      _DAT_0297c1b8 = uVar5;\r\n      local_24 = check_managed_app();\r\n      iVar3 = __heap_init();\r\n      if (iVar3 == 0) {\r\n        fast_error_exit(0x1c);\r\n      }\r\n      iVar3 = __mtinit();\r\n      if (iVar3 == 0) {\r\n        fast_error_exit(0x10);\r\n      }\r\n      __RTC_Initialize();\r\n      local_8 = 1;\r\n      iVar3 = __ioinit();\r\n      if (iVar3 < 0) {\r\n        __amsg_exit(0x1b);\r\n      }\r\n      DAT_029aac84 = GetCommandLineA();\r\n      DAT_0297c188 = ___crtGetEnvironmentStringsA();\r\n      iVar3 = __setargv();\r\n      if (iVar3 < 0) {\r\n        __amsg_exit(8);\r\n      }\r\n      iVar3 = __setenvp();\r\n      if (iVar3 < 0) {\r\n        __amsg_exit(9);\r\n      }\r\n      iVar3 = __cinit(1);\r\n      if (iVar3 != 0) {\r\n        __amsg_exit(iVar3);\r\n      }\r\n      uVar4 = __wincmdln();\r\n      if (((byte)local_74.dwFlags & 1) == 0) {\r\n        local_74.wShowWindow = 10;\r\n      }\r\n      local_20 = FUN_006de0e0(0x400000,0,uVar4,local_74.wShowWindow);\r\n      if (local_24 != 0) {\r\n        __cexit();\r\n        return local_20;\r\n      }\r\n                    /* WARNING: Subroutine does not return */\r\n      _exit(local_20);\r\n    }\r\n    pvVar1 = GetProcessHeap();\r\n    HeapFree(pvVar1,DVar6,lpVersionInformation);\r\n  }\r\n  return 0xff;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e74a2",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e74a2",
+            "name": "entry"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid entry(void)\r\n\r\n{\r\n  ___security_init_cookie();\r\n  ___tmainCRTStartup();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e74ac",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e74ac",
+            "name": "_V6_HeapAlloc"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Single Match\r\n    _V6_HeapAlloc\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nundefined4 _V6_HeapAlloc(uint param_1)\r\n\r\n{\r\n  undefined4 local_20;\r\n  \r\n  local_20 = 0;\r\n  if (param_1 <= DAT_029a9b18) {\r\n    __lock(4);\r\n    local_20 = ___sbh_alloc_block(param_1);\r\n    FUN_006e74f2();\r\n  }\r\n  return local_20;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e74f2",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e74f2",
+            "name": "FUN_006e74f2"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e74f2(void)\r\n\r\n{\r\n  FUN_006f179a(4);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7570",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7570",
+            "name": "_malloc"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _malloc\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid * __cdecl _malloc(size_t _Size)\r\n\r\n{\r\n  LPVOID pvVar1;\r\n  int iVar2;\r\n  undefined4 *puVar3;\r\n  size_t sVar4;\r\n  uint dwBytes;\r\n  \r\n  if (0xffffffe0 < _Size) {\r\n    __callnewh(_Size);\r\n    puVar3 = (undefined4 *)FUN_006ead5f();\r\n    *puVar3 = 0xc;\r\n    return (void *)0x0;\r\n  }\r\n  do {\r\n    if (DAT_0297c974 == (HANDLE)0x0) {\r\n      __FF_MSGBANNER();\r\n      FUN_006f09f8(0x1e);\r\n      ___crtExitProcess(0xff);\r\n    }\r\n    if (DAT_029a9b28 == 1) {\r\n      dwBytes = _Size;\r\n      if (_Size == 0) {\r\n        dwBytes = 1;\r\n      }\r\nLAB_006e75e1:\r\n      pvVar1 = HeapAlloc(DAT_0297c974,0,dwBytes);\r\n    }\r\n    else if ((DAT_029a9b28 != 3) || (pvVar1 = (LPVOID)_V6_HeapAlloc(_Size), pvVar1 == (LPVOID)0x0))\r\n    {\r\n      sVar4 = _Size;\r\n      if (_Size == 0) {\r\n        sVar4 = 1;\r\n      }\r\n      dwBytes = sVar4 + 0xf & 0xfffffff0;\r\n      goto LAB_006e75e1;\r\n    }\r\n    if (pvVar1 != (LPVOID)0x0) {\r\n      return pvVar1;\r\n    }\r\n    if (DAT_0297cad0 == 0) {\r\n      puVar3 = (undefined4 *)FUN_006ead5f();\r\n      *puVar3 = 0xc;\r\n      goto LAB_006e760f;\r\n    }\r\n    iVar2 = __callnewh(_Size);\r\n    if (iVar2 == 0) {\r\nLAB_006e760f:\r\n      puVar3 = (undefined4 *)FUN_006ead5f();\r\n      *puVar3 = 0xc;\r\n      return (void *)0x0;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7633",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7633",
+            "name": "_free"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Single Match\r\n    _free\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __cdecl _free(void *_Memory)\r\n\r\n{\r\n  int iVar1;\r\n  BOOL BVar2;\r\n  undefined4 *puVar3;\r\n  DWORD DVar4;\r\n  undefined4 uVar5;\r\n  \r\n  if (_Memory != (void *)0x0) {\r\n    if (DAT_029a9b28 == 3) {\r\n      __lock(4);\r\n      iVar1 = thunk_FUN_006f19ca(_Memory);\r\n      if (iVar1 != 0) {\r\n        ___sbh_free_block(iVar1,_Memory);\r\n      }\r\n      FUN_006e7689();\r\n      if (iVar1 != 0) {\r\n        return;\r\n      }\r\n    }\r\n    BVar2 = HeapFree(DAT_0297c974,0,_Memory);\r\n    if (BVar2 == 0) {\r\n      puVar3 = (undefined4 *)FUN_006ead5f();\r\n      DVar4 = GetLastError();\r\n      uVar5 = FUN_006ead24(DVar4);\r\n      *puVar3 = uVar5;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7689",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7689",
+            "name": "FUN_006e7689"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e7689(void)\r\n\r\n{\r\n  FUN_006f179a(4);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e76c1",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e76c1",
+            "name": "_realloc"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Single Match\r\n    _realloc\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid * __cdecl _realloc(void *_Memory,size_t _NewSize)\r\n\r\n{\r\n  void *pvVar1;\r\n  int iVar2;\r\n  uint uVar3;\r\n  undefined4 *puVar4;\r\n  DWORD DVar5;\r\n  undefined4 uVar6;\r\n  LPVOID pvVar7;\r\n  int local_24;\r\n  void *local_20;\r\n  \r\n  if (_Memory == (void *)0x0) {\r\n    pvVar1 = _malloc(_NewSize);\r\n    return pvVar1;\r\n  }\r\n  if (_NewSize == 0) {\r\n    _free(_Memory);\r\n    return (void *)0x0;\r\n  }\r\n  if (DAT_029a9b28 == 3) {\r\n    do {\r\n      local_20 = (void *)0x0;\r\n      if (0xffffffe0 < _NewSize) goto LAB_006e789a;\r\n      __lock(4);\r\n      local_24 = thunk_FUN_006f19ca(_Memory);\r\n      if (local_24 != 0) {\r\n        if (_NewSize <= DAT_029a9b18) {\r\n          iVar2 = ___sbh_resize_block(local_24,_Memory,_NewSize);\r\n          if (iVar2 == 0) {\r\n            local_20 = (void *)___sbh_alloc_block(_NewSize);\r\n            if (local_20 != (void *)0x0) {\r\n              uVar3 = *(int *)((int)_Memory + -4) - 1;\r\n              if (_NewSize <= uVar3) {\r\n                uVar3 = _NewSize;\r\n              }\r\n              _memcpy(local_20,_Memory,uVar3);\r\n              local_24 = thunk_FUN_006f19ca(_Memory);\r\n              ___sbh_free_block(local_24,_Memory);\r\n            }\r\n          }\r\n          else {\r\n            local_20 = _Memory;\r\n          }\r\n        }\r\n        if (local_20 == (void *)0x0) {\r\n          if (_NewSize == 0) {\r\n            _NewSize = 1;\r\n          }\r\n          _NewSize = _NewSize + 0xf & 0xfffffff0;\r\n          local_20 = HeapAlloc(DAT_0297c974,0,_NewSize);\r\n          if (local_20 != (LPVOID)0x0) {\r\n            uVar3 = *(int *)((int)_Memory + -4) - 1;\r\n            if (_NewSize <= uVar3) {\r\n              uVar3 = _NewSize;\r\n            }\r\n            _memcpy(local_20,_Memory,uVar3);\r\n            ___sbh_free_block(local_24,_Memory);\r\n          }\r\n        }\r\n      }\r\n      FUN_006e7805();\r\n      if (local_24 == 0) {\r\n        if (_NewSize == 0) {\r\n          _NewSize = 1;\r\n        }\r\n        _NewSize = _NewSize + 0xf & 0xfffffff0;\r\n        local_20 = HeapReAlloc(DAT_0297c974,0,_Memory,_NewSize);\r\n      }\r\n      if (local_20 != (void *)0x0) {\r\n        return local_20;\r\n      }\r\n      if (DAT_0297cad0 == 0) {\r\n        puVar4 = (undefined4 *)FUN_006ead5f();\r\n        if (local_24 != 0) {\r\n          *puVar4 = 0xc;\r\n          return (void *)0x0;\r\n        }\r\n        goto LAB_006e78c7;\r\n      }\r\n      iVar2 = __callnewh(_NewSize);\r\n    } while (iVar2 != 0);\r\n    puVar4 = (undefined4 *)FUN_006ead5f();\r\n    if (local_24 != 0) goto LAB_006e78a6;\r\n  }\r\n  else {\r\n    do {\r\n      if (0xffffffe0 < _NewSize) goto LAB_006e789a;\r\n      if (_NewSize == 0) {\r\n        _NewSize = 1;\r\n      }\r\n      pvVar7 = HeapReAlloc(DAT_0297c974,0,_Memory,_NewSize);\r\n      if (pvVar7 != (LPVOID)0x0) {\r\n        return pvVar7;\r\n      }\r\n      if (DAT_0297cad0 == 0) {\r\n        puVar4 = (undefined4 *)FUN_006ead5f();\r\nLAB_006e78c7:\r\n        DVar5 = GetLastError();\r\n        uVar6 = FUN_006ead24(DVar5);\r\n        *puVar4 = uVar6;\r\n        return (void *)0x0;\r\n      }\r\n      iVar2 = __callnewh(_NewSize);\r\n    } while (iVar2 != 0);\r\n    puVar4 = (undefined4 *)FUN_006ead5f();\r\n  }\r\n  DVar5 = GetLastError();\r\n  uVar6 = FUN_006ead24(DVar5);\r\n  *puVar4 = uVar6;\r\n  return (void *)0x0;\r\nLAB_006e789a:\r\n  __callnewh(_NewSize);\r\n  puVar4 = (undefined4 *)FUN_006ead5f();\r\nLAB_006e78a6:\r\n  *puVar4 = 0xc;\r\n  return (void *)0x0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7805",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7805",
+            "name": "FUN_006e7805"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e7805(void)\r\n\r\n{\r\n  FUN_006f179a(4);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e78dc",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e78dc",
+            "name": "FUN_006e78dc"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid * FUN_006e78dc(void *param_1,uint param_2,uint param_3)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  void *pvVar2;\r\n  size_t sVar3;\r\n  \r\n  sVar3 = 0;\r\n  if ((param_2 == 0) || (param_3 <= 0xffffffe0 / param_2)) {\r\n    param_2 = param_2 * param_3;\r\n    if (param_1 != (void *)0x0) {\r\n      sVar3 = __msize(param_1);\r\n    }\r\n    pvVar2 = _realloc(param_1,param_2);\r\n    if ((pvVar2 != (void *)0x0) && (sVar3 < param_2)) {\r\n      _memset((void *)(sVar3 + (int)pvVar2),0,param_2 - sVar3);\r\n    }\r\n  }\r\n  else {\r\n    puVar1 = (undefined4 *)FUN_006ead5f();\r\n    *puVar1 = 0xc;\r\n    FUN_006e9fc2(0,0,0,0,0);\r\n    pvVar2 = (void *)0x0;\r\n  }\r\n  return pvVar2;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7955",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7955",
+            "name": "FID_conflict:_wprintf"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Multiple Matches With Different Base Names\r\n    _printf\r\n    _wprintf\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl FID_conflict__wprintf(char *_Format,...)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  if (_Format == (char *)0x0) {\r\n    puVar1 = (undefined4 *)FUN_006ead5f();\r\n    *puVar1 = 0x16;\r\n    FUN_006e9fc2(0,0,0,0,0);\r\n    iVar2 = -1;\r\n  }\r\n  else {\r\n    iVar3 = FUN_006e81d7();\r\n    FUN_006e82ea(1,iVar3 + 0x20);\r\n    iVar3 = FUN_006e81d7();\r\n    iVar3 = __stbuf((FILE *)(iVar3 + 0x20));\r\n    iVar4 = FUN_006e81d7(_Format,0,&stack0x00000008);\r\n    iVar2 = FUN_006eef05(iVar4 + 0x20);\r\n    iVar4 = FUN_006e81d7();\r\n    __ftbuf(iVar3,(FILE *)(iVar4 + 0x20));\r\n    FUN_006e79f1();\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e79f1",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e79f1",
+            "name": "FUN_006e79f1"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e79f1(void)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = FUN_006e81d7();\r\n  FUN_006e834e(1,iVar1 + 0x20);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7a93",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7a93",
+            "name": "FUN_006e7a93"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nbool FUN_006e7a93(void)\r\n\r\n{\r\n  return DAT_0297c194 == (DAT_00829570 | 1);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e7aa9",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e7aa9",
+            "name": "__vsprintf_l"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __vsprintf_l\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __vsprintf_l(char *_DstBuf,char *_Format,_locale_t param_3,va_list _ArgList)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  FILE local_24;\r\n  \r\n  if ((_Format == (char *)0x0) || (_DstBuf == (char *)0x0)) {\r\n    puVar1 = (undefined4 *)FUN_006ead5f();\r\n    *puVar1 = 0x16;\r\n    FUN_006e9fc2(0,0,0,0,0);\r\n    iVar2 = -1;\r\n  }\r\n  else {\r\n    local_24._base = _DstBuf;\r\n    local_24._ptr = _DstBuf;\r\n    local_24._cnt = 0x7fffffff;\r\n    local_24._flag = 0x42;\r\n    iVar2 = FUN_006eef05(&local_24,_Format,param_3,_ArgList);\r\n    local_24._cnt = local_24._cnt + -1;\r\n    if (local_24._cnt < 0) {\r\n      __flsbuf(0,&local_24);\r\n    }\r\n    else {\r\n      *local_24._ptr = '\\0';\r\n    }\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n"
+        }
+      ],
+      "total": 32,
+      "succeeded": 32,
+      "failed": 0
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Derived by an REA composed workflow."
+    ],
+    "locations": [
+      {
+        "kind": "address",
+        "address": "0x6e6950"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e69d0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e69ef"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6aa0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6abd"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6adc"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6b18"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6b90"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6bc6"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6c40"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6d60"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e6d90"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e70f5"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e71dd"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7213"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7219"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e725d"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7281"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e72c2"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e74a2"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e74ac"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e74f2"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7570"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7633"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7689"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e76c1"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7805"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e78dc"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7955"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e79f1"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7a93"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e7aa9"
+      }
+    ],
+    "evidence_links": []
+  }
+}

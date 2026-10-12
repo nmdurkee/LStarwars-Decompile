@@ -1,0 +1,67 @@
+Original PC numeric parser 0x4f28e0; Capstone disassembly, not source code.
+Binary SHA256: 6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+Separate float32 product stores at0x4f2929/0x4f2975 precede integer digit addition.
+
+004f28e0  83ec08               sub esp, 8
+004f28e3  d9ee                 fldz 
+004f28e5  8b44240c             mov eax, dword ptr [esp + 0xc]
+004f28e9  8a08                 mov cl, byte ptr [eax]
+004f28eb  d91c24               fstp dword ptr [esp]
+004f28ee  d9e8                 fld1 
+004f28f0  83c001               add eax, 1
+004f28f3  80f92d               cmp cl, 0x2d
+004f28f6  d95c2404             fstp dword ptr [esp + 4]
+004f28fa  750f                 jne 0x4f290b
+004f28fc  d90568177500         fld dword ptr [0x751768]
+004f2902  8a08                 mov cl, byte ptr [eax]
+004f2904  d95c2404             fstp dword ptr [esp + 4]
+004f2908  83c001               add eax, 1
+004f290b  80f930               cmp cl, 0x30
+004f290e  dd05f81b7500         fld qword ptr [0x751bf8]
+004f2914  7c2e                 jl 0x4f2944
+004f2916  80f939               cmp cl, 0x39
+004f2919  7f29                 jg 0x4f2944
+004f291b  d90424               fld dword ptr [esp]
+004f291e  0fbec9               movsx ecx, cl
+004f2921  d8c9                 fmul st(1)
+004f2923  83e930               sub ecx, 0x30
+004f2926  83c001               add eax, 1
+004f2929  d95c240c             fstp dword ptr [esp + 0xc]
+004f292d  d944240c             fld dword ptr [esp + 0xc]
+004f2931  894c240c             mov dword ptr [esp + 0xc], ecx
+004f2935  da44240c             fiadd dword ptr [esp + 0xc]
+004f2939  8a48ff               mov cl, byte ptr [eax - 1]
+004f293c  80f930               cmp cl, 0x30
+004f293f  d91c24               fstp dword ptr [esp]
+004f2942  7dd2                 jge 0x4f2916
+004f2944  80f92e               cmp cl, 0x2e
+004f2947  7541                 jne 0x4f298a
+004f2949  8a08                 mov cl, byte ptr [eax]
+004f294b  83c001               add eax, 1
+004f294e  80f930               cmp cl, 0x30
+004f2951  7c37                 jl 0x4f298a
+004f2953  80f939               cmp cl, 0x39
+004f2956  7f32                 jg 0x4f298a
+004f2958  d9442404             fld dword ptr [esp + 4]
+004f295c  0fbed1               movsx edx, cl
+004f295f  8a08                 mov cl, byte ptr [eax]
+004f2961  d8c9                 fmul st(1)
+004f2963  83ea30               sub edx, 0x30
+004f2966  83c001               add eax, 1
+004f2969  80f930               cmp cl, 0x30
+004f296c  d95c2404             fstp dword ptr [esp + 4]
+004f2970  d90424               fld dword ptr [esp]
+004f2973  d8c9                 fmul st(1)
+004f2975  d95c240c             fstp dword ptr [esp + 0xc]
+004f2979  d944240c             fld dword ptr [esp + 0xc]
+004f297d  8954240c             mov dword ptr [esp + 0xc], edx
+004f2981  da44240c             fiadd dword ptr [esp + 0xc]
+004f2985  d91c24               fstp dword ptr [esp]
+004f2988  7dc9                 jge 0x4f2953
+004f298a  ddd8                 fstp st(0)
+004f298c  d90424               fld dword ptr [esp]
+004f298f  d8742404             fdiv dword ptr [esp + 4]
+004f2993  d95c240c             fstp dword ptr [esp + 0xc]
+004f2997  d944240c             fld dword ptr [esp + 0xc]
+004f299b  83c408               add esp, 8
+004f299e  c3                   ret 

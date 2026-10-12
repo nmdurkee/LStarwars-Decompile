@@ -1,0 +1,181 @@
+{
+  "task": "Recover as much of the supplied LEGO Star Wars: The Complete Saga PC game as feasible; reverse engineering only.",
+  "updated": "2026-10-12T19:48:59.804Z",
+  "originalGame": "../Lego Star Wars Saga",
+  "originalsMutable": false,
+  "tracks": [
+    {
+      "name": "Archive recovery and codec",
+      "status": "answered-for-all-supplied-archives",
+      "coverage": {
+        "files": 12459,
+        "expandedBytes": 9692364695,
+        "byteComparison": "all-files-pass",
+        "nativeCodecCases": 51,
+        "nativePathCases": 12459
+      },
+      "evidence": [
+        "reports/archive-format.txt",
+        "reports/archive-codec-validation.json",
+        "reports/native-archive-emulation.json",
+        "reports/native-archive-paths.json"
+      ]
+    },
+    {
+      "name": "Geometry, textures and materials",
+      "status": "data-recovered-render-semantics-partial",
+      "coverage": "1477 carriers decoded;789 level glTFs and688 character glTFs;all validators0errors0warnings;15608DDS previews independently matched",
+      "evidence": [
+        "reports/geometry-findings.txt",
+        "reports/geometry-finalized-gsc.json",
+        "reports/geometry-remaining-gaps.json",
+        "reports/geometry-material-native-programs.json",
+        "reports/geometry-material-uniform-native.json",
+        "reports/geometry-billboard-shaders.json"
+      ]
+    },
+    {
+      "name": "Skeletons, skin, morphs, cutscene and scene animation",
+      "status": "data-recovered-runtime-orchestration-partial",
+      "coverage": "2911AN3,2340BSA,688GHG,205CU2,78ANM,789scene carriers;185animated scene previews;native differential checks",
+      "evidence": [
+        "reports/animation-findings.txt",
+        "reports/animation-coverage-summary.json",
+        "reports/animation-scene-preview-validation.json"
+      ]
+    },
+    {
+      "name": "Collision, navigation, objects and gameplay text",
+      "status": "data-recovered-gameplay-semantics-partial",
+      "coverage": "173AI2,269TER,251GIZ including2zero placeholders and1truncated backup;31archive extension coverage catalog",
+      "evidence": [
+        "reports/gameplay-findings.txt",
+        "reports/gameplay-coverage.json",
+        "reports/gameplay-validation.json",
+        "reports/gameplay-navigation-native-tests.json",
+        "reports/gameplay-native-index.json",
+        "reports/gameplay-native-world.json"
+      ]
+    },
+    {
+      "name": "Native code corpus",
+      "status": "recognized-procedures-exported-semantic-analysis-partial",
+      "coverage": {
+        "expandedExported": 14656,
+        "expandedExpected": 14656,
+        "expandedFailed": 0,
+        "supplementalExported": 26,
+        "supplementalFailed": 0,
+        "distinctEntriesAcrossProfiles": 14697,
+        "rttiTypes": 120,
+        "vftables": 114,
+        "slotCandidates": 932
+      },
+      "evidence": [
+        "reports/native-expanded-corpus-index.json",
+        "reports/native-boundary-seeds.json",
+        "reports/native-expanded-session-recovery.json",
+        "reports/native-catalog.json",
+        "reports/native-rtti.json",
+        "reports/native-architecture.json",
+        "reports/native-supplemental-plan.json",
+        "reports/native-supplemental-corpus-index.json"
+      ]
+    },
+    {
+      "name": "Controller and camera",
+      "status": "core-contract-verified-special-modes-partial",
+      "evidence": [
+        "reports/native-input-camera.txt",
+        "reports/native-input-emulation.json",
+        "reports/native-motion-emulation.json",
+        "reports/native-controller-state.json",
+        "reports/native-input-source.json"
+      ],
+      "coverage": "804638 new full-pad/deadzone/overflow cases pass; portable input sources compile. Main camera runtime remains partial."
+    },
+    {
+      "name": "Rendering source and bytecode",
+      "status": "source-and-bounded-material-contracts-recovered-live-rendering-partial",
+      "coverage": "158575 bytes original Nu2 HLSL;38 shader allocations/35 unique bytecodes;49109 current materials native-tested;46 legacy preprocessing records remain separate",
+      "evidence": [
+        "reports/native-shader-source.json",
+        "reports/native-render-catalog.json",
+        "exports/shaders/nu2-embedded-template.hlsl"
+      ]
+    },
+    {
+      "name": "Save, audio and script dispatch",
+      "status": "bounded-native-contracts-verified-full-orchestration-partial",
+      "evidence": [
+        "reports/gameplay-native-save-audio.txt",
+        "reports/gameplay-audio-compiled-tests.json",
+        "reports/gameplay-dispatch-native-tests.json"
+      ]
+    },
+    {
+      "name": "Locomotion and collision runtime",
+      "status": "bounded-native-contracts-verified-full-context-and-contact-semantics-partial",
+      "evidence": [
+        "reports/animation-locomotion-findings.txt",
+        "reports/animation-locomotion-contract.json",
+        "reports/animation-locomotion-native-verification.json",
+        "reports/animation-locomotion-parser-native-verification.json",
+        "reports/gameplay-native-world.json",
+        "reports/gameplay-terrain-native-tests.json",
+        "reports/gameplay-terrain-platform-tests.json"
+      ],
+      "coverage": {
+        "locomotionCases": 81327,
+        "tuningAssignments": 1831,
+        "characterTextRecords": 342
+      }
+    },
+    {
+      "name": "Unity and Quest implementation",
+      "status": "outside-current-task",
+      "coverage": "Current instruction is reverse engineering only; no project created"
+    },
+    {
+      "name": "Portable recovered source",
+      "status": "bounded-fragments-game-incomplete",
+      "evidence": [
+        "reconstructed/source-manifest.json",
+        "reports/source-completion.json",
+        "reports/reconstructed-build.json",
+        "reports/reconstructed-execution-status.json"
+      ],
+      "coverage": "122native entries mapped into21core C#files; full game remains incomplete."
+    },
+    {
+      "name": "Combat and economy",
+      "status": "bounded-native-contracts-portable-source-partial",
+      "evidence": [
+        "reports/native-combat-contract.json",
+        "reports/native-combat-economy.json",
+        "reports/native-combat-scenarios.json"
+      ]
+    },
+    {
+      "name": "Character contexts and reset",
+      "status": "bounded-native-contracts-portable-source-partial",
+      "evidence": [
+        "reports/animation-source-function-map.json",
+        "reports/animation-portable-findings.txt",
+        "reports/animation-reset-moves-native-verification.json"
+      ]
+    },
+    {
+      "name": "World frame dispatcher",
+      "status": "bounded-control-flow-subsystems-adapted",
+      "coverage": "384 base dispatcher cases/9600 assertions plus9024branch/helper cases/42176assertions; most subsystem calls remain explicit adapters.",
+      "evidence": [
+        "reports/native-frame-dispatch.json",
+        "reports/native-frame-branches.json",
+        "reports/native-frame-source.json"
+      ]
+    }
+  ],
+  "completionRule": "Carrier/file coverage and pseudocode availability do not establish complete game semantics. Preserve explicit gaps; no original C++ source or complete gameplay reconstruction claimed.",
+  "finalSourceVerification": "reports/verification-full.json:all8originalsourcehashesunchanged"
+}

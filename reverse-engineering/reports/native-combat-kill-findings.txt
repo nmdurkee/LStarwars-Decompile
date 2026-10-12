@@ -1,0 +1,21 @@
+KILL COMMAND RECOVERY
+
+Original entry:0x445230. 7064 native comparisons, zero mismatches/failures.
+All202authored uses replayed in four documented synthetic states.
+
+Portable code: reconstructed/combat/KillCommand.cs.
+Compiled verifier: reconstructed/combat/KillDifferential.cs; execution pending Windows program-launch denial.
+
+Selection, token precedence, embedded NULs, weak references, flags and ordered dispatch
+are covered. Single-target flags need not satisfy pool selection predicates.
+all_ai overrides set selection; all_ai_except remains sticky across all_ai.
+respawn_at_origin remains sticky across later respawn tokens.
+Instruction evidence rejects NaN spawn timers for every check_if_dead path.
+
+- Standalone command with valid script and allocated contiguous actor pool. Malformed tokens without required separators are outside bounds.
+- Name/reference lookup callbacks are explicit fixture adapters, not reconstructed world binding.
+- Parts and death cleanup are captured dispatches; no downstream death, FX, audio, stud or body-part behavior is asserted.
+- Numeric evaluator has original PC finite literal/parameter execution; portable command uses an explicit numeric service.
+- Instruction audit corrects misleading pseudocode: single and pool paths all reject unordered NaN spawn timers when check_if_dead is enabled.
+- Authored commands execute against documented synthetic world bindings, not their live levels.
+- Managed opponent and pool references assume stable canonical bindings during service callbacks; callback mutation of native weak slots or pool membership is outside the contract.

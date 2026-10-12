@@ -1,0 +1,60 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_967bc49bfb89c9289ebafb6996ca9c72d569b4a48639dbecd20a21d28d62ec51
+ * Entry: 0x44ff40; label: FUN_0044ff40
+ */
+
+undefined4
+FUN_0044ff40(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int param_5,int param_6)
+
+{
+  int iVar1;
+  int *piVar2;
+  undefined4 *puVar3;
+  int iVar4;
+  int iVar5;
+  undefined4 local_4;
+  
+  iVar5 = 0;
+  iVar4 = 0;
+  local_4 = 0;
+  if (param_6 != 0) {
+    if (((param_3 != 0) && (piVar2 = *(int **)(param_3 + 0xd0), piVar2 != (int *)0x0)) &&
+       (*piVar2 != 0)) {
+      iVar4 = *piVar2;
+    }
+    if (param_5 != 0) {
+      if (0 < param_5) {
+        do {
+          iVar1 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar5 * 4),"character=");
+          if (iVar1 == 0) {
+            iVar1 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar5 * 4),"tag_to=");
+            if (iVar1 != 0) {
+              if ((DAT_00923904 == (code *)0x0) ||
+                 (puVar3 = (undefined4 *)(*DAT_00923904)(param_1,iVar1 + 7),
+                 puVar3 == (undefined4 *)0x0)) {
+                local_4 = 0;
+              }
+              else {
+                local_4 = *puVar3;
+              }
+            }
+          }
+          else if ((DAT_00923904 == (code *)0x0) ||
+                  (piVar2 = (int *)(*DAT_00923904)(param_1,iVar1 + 10), piVar2 == (int *)0x0)) {
+            iVar4 = 0;
+          }
+          else {
+            iVar4 = *piVar2;
+          }
+          iVar5 = iVar5 + 1;
+        } while (iVar5 < param_5);
+      }
+      if (iVar4 != 0) {
+        FUN_00487ca0(iVar4,local_4,0);
+        FUN_0055e410();
+      }
+    }
+  }
+  return 1;
+}
+

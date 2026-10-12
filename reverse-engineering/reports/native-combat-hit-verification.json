@@ -1,0 +1,87 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original ObjHitObj0x438230 with original health, protection, context cleanup, RNG, no-script lookup and hit-reaction callees. Synthetic bounded state. Only media/rumble/alert boundaries intercepted.",
+  "contracts": {
+    "ordinary_health_and_probe": {
+      "cases": 260,
+      "mismatches": 0,
+      "examples": [],
+      "fixture": "Null attacker; normal context/action; active collidable target; no armor, level exceptions or scripts; media hooks only. lethal paths use original probe argument1."
+    },
+    "early_target_guards": {
+      "cases": 31,
+      "mismatches": 0,
+      "examples": []
+    },
+    "post_hit_protection_and_instant_kill": {
+      "cases": 28,
+      "mismatches": 0,
+      "examples": []
+    },
+    "damage_type_restrictions": {
+      "cases": 432,
+      "mismatches": 0,
+      "examples": []
+    }
+  },
+  "failures": [],
+  "boundaryHooks": [
+    {
+      "address": "0x4399e0",
+      "role": "AlertSurroundingCreatures",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x547930",
+      "role": "GameAudio_PlaySfx",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x681e90",
+      "role": "PlayIndexedSfx",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x681f40",
+      "role": "PlayNamedSfx",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54a8a0",
+      "role": "NewBuzz",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54a850",
+      "role": "NewRumble",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54aae0",
+      "role": "TakeHitRumble",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54aa70",
+      "role": "AttackerHitRumble",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54aa10",
+      "role": "KillRumble",
+      "behavior": "record call and return0"
+    }
+  ],
+  "totals": {
+    "cases": 751,
+    "mismatches": 0,
+    "failures": 0
+  },
+  "limits": [
+    "Lethal paths use the original probe flag; full death effects, dismemberment, rescue and respawn are not validated.",
+    "Probe mode is not pure: nonlethal damage and attempt flags can still mutate state.",
+    "No script definitions are attached; native script-name lookup takes its no-script branch.",
+    "Specific level, vehicle, special context and attacker interactions remain outside this fixture set.",
+    "Audio/rumble and neighborhood alerts are boundary hooks, not live playback."
+  ]
+}

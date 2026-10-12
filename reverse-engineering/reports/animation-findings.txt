@@ -1,0 +1,149 @@
+LEGO Star Wars: The Complete Saga PC — animation and hierarchy recovery
+Analysis date: 2026-10-12
+
+Scope and evidence
+------------------
+The tools read extracted local assets and write separate evidence/interchange files. Original game files are unchanged. No game process, OS imports, or gameplay were executed for the native comparisons: isolated original x86 functions were run in Unicorn 2.1.4. The unpacked target SHA-256 is 6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb.
+
+OpenSaga commit ab97911d162d896d8f4b20e9df8e7d23a2f81557 supplied useful cross-version structure/function hypotheses. It is an Android reconstruction, not this PC game's original source. Actual PC pointer extents, numeric values, original-code comparisons, and PC Ghidra evidence distinguish validated decoding from reference-assisted behavior. BrickBench supplied scene/display/material structures. Source copies are under references/opensaga-source and tools/gameplay-brickbench-reference.
+
+Concrete outputs
+----------------
+* 2,911 AN3 carriers: 2,910 ANI4 and one pointer-block-wrapped ANI5. All decoded, 4,024,095 scalar constants/key samples. Exports: exports/animation/<source path>.json.
+* 688 GHG hierarchies: 12,342 joints. All bound-checked; parent order is topological. World-bind times inverse-bind identity worst error is 2.113e-7. Render-layer and rigid/smooth handle links are preserved.
+* 2,340 BSA legacy morph carriers: all decoded; 1,719 dynamic curves, 12,139 keys including 76 unmarked terminal keys. All lookup-mask indexed key times agree with stored times exactly.
+* 688 character glTF exports, 0 Khronos validator errors and 0 warnings after edge-case repair and final targeted rebuilds. 11,794 compatible same-directory clip instances; 8,009 morph target instances; 1,980,884 smooth-skinned and 2,744,190 rigid vertices. 72 fixed-plane billboard preview primitives recovered in 18 carriers. Exports: exports/characters/assets/<source path without .GHG>/character.gltf with companion binaries, metadata and validation results.
+* 205 CU2 cutscene carriers: 975 cameras, 5,958 rigid objects, 1,965 character records, 2,422 effect/other locators, 12,494 embedded animation streams (11,788 ANI4 and 706 legacy), 2,794 state tracks and 9,100 state keys. All decoded without pointer/shape/key-order failures. Exports: exports/cutscenes/<source path>.json.
+* 78 ANM object configuration files: 707 parameters linking scene-object names to particle effects, sounds, positions, angles and bounce settings. 4 version-4 LE files, 72 version-6 LE files, 2 version-6 BE files. Every file consumed exactly; no tail bytes.
+* 789 GSC carriers checked for ALA3/IABL: 16,127 non-null animation streams, 11,374 null slots, 19,838 instance-animation records and 19,838 exact named-object pointer bindings. All decode without warnings. Exports: exports/animation-scenes/<source path>.json.
+* 185 animated scene glTF previews: 19,780 bound objects, 15,006 source clips, 773,001 sampled poses. All 185 pass Khronos validation with zero errors/warnings. Exports: exports/animated-scenes/<source path without .GSC>/animated.gltf. Original base scenes are unchanged.
+* SALI visibility/state tracks: 301 tracks, 650 keys and 311 bindings across 25 GSC, including 58 state-only objects. All parsed; all 8,636 isolated native state-evaluation samples match exactly. Exports: exports/animation-scene-states/<source path>.json.
+
+Native validation
+-----------------
+reports/animation-native-verification.json: original 0x5cc0d0 scalar joint player and original float-to-int helper evaluated every AN3 carrier at four bounded frame times (duplicates removed). 11,632 poses / 2,902,734 scalars; zero mismatches/failures. Maximum absolute error 4.93e-6 under tolerance 2e-5*max(1,abs(expected)). Inactive translation/rotation channels become zero, inactive scale becomes one.
+
+reports/animation-cutscene-native-verification.json: original generic scalar extractor 0x5ce350 and helpers 0x5ca830/0x6e6b90 evaluated all 11,788 embedded ANI4 streams, every node, four bounded times. 197,819 node samples / 1,762,006 scalar comparisons; zero mismatches/failures. Type 10 requires exact uint32 equality (3,300 bit comparisons). Numeric tolerance includes quantizer scale/minimum magnitude to account for cancellation in offset curves; maximum absolute difference is 0.0034225. This is numerical agreement under the stated tolerance, not bit-identical float arithmetic.
+
+reports/animation-legacy-native-verification.json: original 0x5c9c40 time clamp plus 0x5c9520 cubic evaluator evaluated all 3,046 legacy animations (2,340 BSA + 706 CU2), 4,524 dynamic curves at 18,096 samples. Zero mismatches/failures; maximum absolute error 9.21e-8. Known byte-popcount lookup table was initialized in scratch memory. Original end-frame clamp is duration-0.01.
+
+Initial diagnostic runs are retained. Native execution exposed two important errors before the final exports: packed type-10 values must retain raw float bits (including NaN/-1 sentinel bit patterns), and 91 legacy curves contain one terminal key omitted from the lookup masks. The terminal-key audit independently found exactly n or n+1 stored keys for every curve. Affected morph clips in 70 character models were rebuilt and revalidated.
+
+reports/animation-scene-native-verification.json: original generic scalar extractor evaluated all 16,127 scene ANI4/ANI5 streams, 64,508 node samples / 580,572 scalars. Zero mismatches/failures under the same offset-aware tolerance; maximum absolute error 0.0001159. All 789 scene carriers were checked.
+
+Native procedures and evidence
+------------------------------
+* 0x5ca320: ANI4 pointer relocation, reports/rea/702-animation-native.result.json, ev_efbbac128c39dbd48e6bd065e6466d7b76db2e549de287096ae724c7f1d026ec.
+* 0x5cc0d0: scalar joint player, reports/rea/717-animation-native.result.json, ev_d7b00c24b1530bb15b489feb3d286a4260e7998155b44fec4be5f565d209e8ec.
+* 0x5e9d90: pose matrix evaluator, reports/rea/718-animation-native.result.json, ev_ba893e32541a1472dd4309bb2b75b5e21d2f870a2f2647937bb04f33dab3ae1c. Static PC code corroborates joint flags, parent-scale compensation, bind orientation and Z-basis conversion; matrix output itself was not exhaustively emulated.
+* 0x5c9520: legacy cubic evaluator, reports/rea/720-animation-native.result.json, ev_0e0a845de80dbcd71feaaeb927f17d21e9bc4d773da9ae24351461ec45cf9a9e.
+* 0x5ce350: generic scalar extractor, decompiled/corpus/FUN_5ce350.c, ev_16752497ebe96469e4b3deeac467b7e56d3adcbbd74f32adb05b8515faa59936.
+* 0x5ca830: packed 16-bit endpoint / 12-bit weight interpolation, decompiled/corpus/FUN_5ca830.c, ev_58a5325186d3cd5df394779674731c2ac26ad2d4ec877fc6396ce44c5c65b6b5.
+* 0x5ea390: scene matrix application of generic channels; rotations are Euler and translations flip Z. See decompiled/corpus/FUN_5ea390.c.
+Additional query provenance is indexed in reports/animation-native-evidence.json.
+
+ANI4 / ANI5 decoding schema
+--------------------------
+ANI4 magic is little-endian 0x414e4934. Header bytes 4/6/8/10/12/14 are u16 nodeCount/keyCount/keyStride/frameCount/curveCount/firstFrame. Byte 16 is end-frame control; byte 17 is the constant-table index bias; byte 19 is a raw format/control flag. Offset 20 u16 nextBlock is zero in the decoded assets. Offset 22 and the remaining reserved header bytes are retained, not guessed. Float minimum/scale are at 28/32. Pointer fields at 36/40/44/48/52/56 address scale-min pairs, constants, curve types, packed keys, node flags and extra data.
+
+Standalone ANI4 pointers are offsets from animation start; a 32-byte name follows the 60-byte header. Embedded CU2/GSC streams usually have no name and begin their constants at byte 60. ANI5 scene records use signed pointers relative to each pointer field. The one AN3 ANI5 wrapper has a pointer-fixup table: first u32=172, actual animation starts at +4, and seven relocation entries are decoded. No original bytes are modified.
+
+Types are u16[nodeCount*curveCount], followed by one interpolation-mask byte per channel. Mask bit 0 suppresses the fractional interpolation within the current key interval. Packed key frame k lies at firstFrame+k*(frameCount-1)/(keyCount-1). Constant type >=16 selects pool[type-16+constantIndex] and applies global scale/minimum.
+
+Type 6 stores one 8-bit endpoint and four packed 6-bit weights in a 32-bit word. Current and next endpoint are separated by keyStride; value=(a+(b-a)*weight/63)*scale+minimum. Type 7 stores a u16 endpoint and four 12-bit weights distributed across the next three u16 words (the fourth weight uses their high nibbles); denominator 4095, stride 8. Type 8 indexes signed-i16 constants using one byte per quarter; it is discrete. Type 10 indexes two signed-i16 words, reconstructs the original 32 bits, and places those bits in a float output slot. It is used for integer control values such as layer masks; rawBits is authoritative, and nonfinite float views are null in JSON. Do not numerically interpolate or discard those sentinels.
+
+Scene ANI5 often has byte+19=1, yet its actual scene matrix consumer treats rotation channels as Euler radians (e.g. values near pi/2). Cross-version flag names alone are not sufficient to call those channels quaternions. Scene exports explicitly retain the byte and use the observed consumer's interpretation.
+
+GHG hierarchy and skin schema
+-----------------------------
+u32(file+0)+4 gives the NU20 header. Its +28 relative pointer gives GSNH payload. All consumed signed relative pointers are range checked. GSNH+0x168 is joint count; +0x16c/+0x170/+0x174 point to 96-byte joints, local bind matrices, inverse bind matrices. A joint's first 64 bytes are animation bind orientation; +0x4c name pointer, +0x50 parent byte (255 root), +0x51 flags. Matrices use row vectors/row-major storage; local*parent=world. This same flat storage represents the transposed column-vector convention in glTF.
+
+GSNH+0x180/+0x184 identify 80-byte points-of-interest records; the +64 word is retained as unknown, not dereferenced as a name. GSNH+0x190/+0x194 identify 20-byte layer records: name, per-joint rigid-handle array, smooth handle, alternate rigid array and alternate smooth handle. Each 12-byte handle's +8 relative pointer targets a 208-byte display-special object, linked to model commands/materials.
+
+Mesh descriptor+0x0a stores an 8-byte bone palette, 255 sentinels. Vertex joint bytes index this palette. First three stored byte weights are meaningful; fourth weight/joint bytes are 255 padding/sentinel in this corpus. All 1,980,884 skinned vertices have valid active palette references. First three weights are normalized for glTF. Rigid mesh vertices are joint-local and use identity inverse binds; smooth vertices use the recovered inverse bind matrices. Per-joint translation/parent-scale-compensation helper nodes preserve the evaluator's scale-cancellation ordering.
+
+Mesh+0x28 is morph count; +0x2c points to a relative-pointer table of XYZ deltas, vertexCount*12 bytes each. Null morph pointers mean zero delta. BSA curve index/layer index associations are source-assisted; original gameplay enables and morph names remain separate.
+
+Legacy BSA / embedded legacy schema
+----------------------------------
+Standalone wrapper is version=2, saved pointer base, saved header pointer. Header: duration f32, nodeCount u16, curveCount u16, chunkCount u16, reserved u16, pointers to curve entries/types/node flags. Constants are float32 curve entries. Dynamic entries point to a 12-byte descriptor containing key-mask, chunk-key-offset and key-data pointers.
+
+Masks are u32 per 32-frame chunk; offsets are u16 cumulative popcounts. Type 1 keys are (frame, reciprocalSpan, value, tangent) float32. Type 2 begins with tangentScale/valueScale float32, followed by (value i16,tangent i8,time u8); source frame=time+1. Both evaluate cubic Hermite with tangents multiplied by segment duration. Some terminal interpolation keys are intentionally not present in masks; stored extent up to the key-mask array establishes whether there is one extra terminal key. All such keys are retained with unmarkedTerminal=true.
+
+CU2 and ANM schema
+------------------
+CU2 observed versions: 0x204,0x205,0x207. Header +4/+40 saved bases distinguish data and animation pointer domains; +8 is duration; +12 string table; +16/+20/+24/+28/+36 point to camera/rigid/character/locator/trigger systems. +56 flags are zero in this corpus. Header and unknown record tails remain raw hex.
+
+Camera records are 80 bytes, rigid records 92, character records 100, locator records 100, locator types 12. Names are one-based offsets into the string table. State tracks have u16 count, pointers to float frame times and u8 values; order and bounds checked.
+
+Character +0x44 is the actor control track, +0x48 is skeletal joint animation (the reference's misleading member name is face_animation), +0x4c is morph/deformer animation. Character control channels from the reference consumer: 0..2 translation, 3..5 Euler rotation, 6 visibility, 7 external animation selection, 8 blend time, 9 playback rate, 10 animation start frame, 11 raw integer layer mask. Optional missing channels fall back to record/config values. Runtime clip substitution/blending and callbacks are not reproduced.
+
+reports/animation-cutscene-character-links.json retains model candidates based on exact case-insensitive filename, then directory fallback. It finds candidates for 1,950 of 1,965 actor records; 1,739 have a matching skeletal node count. All alternatives and 15 unmatched records remain explicit. These are candidate links, not proof of runtime selection.
+
+ANM files are object-attached effect/sound/bounce configuration, not skeletal animation. Version/count prefix is followed by 20-byte object name, counts, two unknown integers and two unknown floats; effects have 16-byte name, interval, flags, vec3 position, two i16 angles; sounds have name, flags, scalar value, position; bounce has impulse/spring/damping. Version 4 interval conversion follows the reference loader; original values are retained. Endianness is determined from the version, and every parsed file ends exactly at EOF.
+
+GSC ALA3 / IABL schema
+---------------------
+GSNH+0x48 and +0x4a are u16 instance and animation-table counts. +0x4c points to 96-byte IABL records; +0x54 to relative animation pointer table (null entries are valid). IABL fields: matrix[16], timeFactor, firstFrame, interval, localTime, flags, parameter, previousEvaluationTime, animationIndex u16, specialObjectIndex u16. Flags bits0..4 name playing/backwards/waiting/repeating/oscillate per reference; packed end-frame lookup index is u16(+0x52)>>6. Special object+0xc4 is a signed relative pointer to the instance record, not a plain integer index. Both index and pointer links agree across all 19,838 bindings.
+
+Tools and reproduction
+----------------------
+Run from the workspace directory, with Node available:
+  node reverse-engineering/tools/animation-export.mjs
+  node reverse-engineering/tools/animation-export-bsa.mjs
+  node reverse-engineering/tools/animation-character-batch.mjs
+  node reverse-engineering/tools/animation-cutscene-export.mjs
+  node reverse-engineering/tools/animation-cutscene-links.mjs
+  node reverse-engineering/tools/animation-scene-export.mjs
+Native comparisons use local tools/python-packages:
+  python reverse-engineering/tools/animation-native-verify.py
+  python reverse-engineering/tools/animation-cutscene-native-verify.py
+  python reverse-engineering/tools/animation-legacy-native-verify.py
+  python reverse-engineering/tools/animation-scene-native-verify.py
+
+Material/texture/display decoding belongs to tools/geometry-*.mjs and its reports. Character exports include source SHA-256s and per-file validator results. A separate software renderer independently read Qui-Gon's exported glTF, binary, PNG, skins and animation; bind/JUMP previews are reports/geometry-quigon-bind-preview.png and reports/geometry-quigon-jump-preview.png. They show coherent textured articulated geometry, but are not a comparison against the original running game.
+
+Remaining limits
+----------------
+These are recovered data, original-code validation and interchange previews, not a finished Unity port. Character pose evaluation uses continuous trigonometry; the newer scene preview evaluator below uses the original PC sine table and quantized angle conversion. glTF samples curves at source frames/key boundaries. Character layer assembly is a documented heuristic; every layer remains separately selectable. Character clip fps uses explicit local fpsec when present, otherwise source-assisted 30 fps; inherited config timing is not fully integrated. Runtime animation blending, procedural joints, visibility/LOD choices, material/shader animation, camera-facing billboard behavior, cutscene playback control, actor substitution and scene triggers remain separate. Zero glTF errors proves structural interchange validity, not complete game equivalence.
+
+Animated scene previews and native pose validation (additional pass)
+-----------------------------------------------------------------
+exports/animated-scenes contains 185 separate animated.gltf previews referencing the finalized base geometry buffers and texture PNGs. All original exports/geometry scenes remain unchanged. This attaches 19,780 exact special-object bindings to 15,006 distinct source motion clips, with 773,001 source-frame/key-boundary pose samples and 16,922,740 animation-buffer bytes. Source animation streams with no bound rendered object remain in the lossless decoded sidecars; null slots are not invented as animations. The remaining 58 IABL objects are state-only and are covered by SALI below. reports/animation-scene-preview.json records every source, clip, binding and omission; reports/animation-scene-preview-validation.json records all glTF validation results.
+
+Each scene has a first clip named "All decoded motions (synchronised preview)" and individual ALA3 clips. Starting every motion together at 30 frames/second is an inspection convention, not recovered gameplay timing. Script-controlled start/stop/wait/repeat logic, timeFactor and visibility are preserved as metadata and not executed by the preview. Unselected objects retain their first decoded pose. The base bind scene is available separately at the report's baseGeometry path.
+
+PC scene update is 0x5f4b90, decompiled/corpus/FUN_5f4b90.c (ev_d2450bc109eaeb7c56e41eff2a553a3360ea1f4e9492b44c9e06060604e12c53). It calls 0x5ea390 to form the animation matrix, copies that matrix into IABL and adds the special object's draw-matrix translation (+0x70/+0x74/+0x78 in the special). It does not multiply by the full original object matrix. Native 0x5ea390 extracts nine scalar channels at externalFrame-1; flag bit0 enables Euler rotation, bit3 enables row scaling, and translation is applied regardless of the character translation-active flag. Elements 2,6,8,9,11,14 are negated for the Z-basis conversion. Consequently the raw ANI5 format byte=1 is not a quaternion declaration in this consumer.
+
+0x5b5300 builds the XYZ Euler basis using a 32768-entry sine table, with truncation of angleRadians*10430.3779296875 and ((angle>>1)&32767) table addressing. Original initializer 0x5bdd50 and its original math callees were run in isolation, recovering references/native-animation-sine-table.f32 (SHA256 8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b). The table differs from ideal sin() by at most 1.773e-7. No game or OS API was launched. Exact native constants and initialization provenance are in reports/animation-scene-trig-native.json; relevant disassembly is in reports/animation-scene-pose-native-assembly.txt.
+
+A full pose comparison initially exposed 20 near-pi rotation discrepancies in repeated Pursuit scene data. The original type-6 decoder uses the stored constant 0.015873020514845848 at 0x764540, rather than exact 1/63. The packed scene sampler now uses that value and observed float32 intermediate staging. The initial diagnostic is retained in reports/animation-scene-pose-native-initial-rounding-diagnostic.json. This changes preview evaluation precision; the decoded value tables remain mathematical key reconstructions with the previously declared scalar tolerance.
+
+reports/animation-scene-pose-native-verification.json compares original 0x5ea390 and original callees against 48,381 reconstructed poses from all 16,127 nonnull scene streams, 774,096 matrix components. Final result: zero mismatches or execution failures; maximum absolute component error 0.00006103515625. This is a bounded time sample, not an exhaustive runtime comparison. Quaternion interpolation between exported glTF samples can differ from native per-frame Euler/LUT evaluation.
+
+The geometry agent independently read and rasterized the exported glTF, animation binary, geometry binary and texture PNGs. reports/geometry-animated-door-t0.png and reports/geometry-animated-door-t1.png show the Negotiations circular door closed and sliding apart, with coherent geometry/UVs. reports/geometry-animated-door-crop.gltf is the reproducible crop. Render camera auto-fit changes across poses; these images verify interchange assembly, not original game timing or lighting.
+
+SALI scene visibility/state animation
+-------------------------------------
+All 789 GSC were checked; 25 contain nonempty SALI tables. The geometry agent's separate 1477-carrier scan found no nonempty GHG SALI tables. exports/animation-scene-states contains 301 decoded tracks, 650 float-time/byte-value keys and 311 exact instance bindings, including 58 state-only objects without a transform animation. Every range and sorted time sequence passed; no parser warnings or failures.
+
+GSNH+0x1e0 is a signed relative pointer to the first 12-byte state record. The list's count/version words precede it by 8/4 bytes; all nonempty observed lists are version2. Records contain keyCount u16, endFrame u16, signed relative pointer to float32 key times, signed relative pointer to byte values. IABL flags>>22 gives a one-based state index, zero absent. Flags bits14..21 cache the current key index. The previous endFrameLookupIndex field in raw scene exports names this same packed index; it is retained for compatibility, not a separate array.
+
+Native StateAnimEvaluate2 at 0x5da480 (decompiled/corpus/FUN_5da480.c, ev_a87feee7af7695e4faccb8ecb31a4746b5bfe0fd365f07d7c1fa60b5e2b82015) selects the last key at or before the current local frame, clamping to the first/last key. It returns whether the value changed and updates the cached index. Native scene update clears special+0xb8 bit1 for zero and sets it for nonzero; transition-to-zero also skips that object's transform evaluation. This recovers discrete visibility semantics, while source gameplay trigger/state-machine behavior remains separate.
+
+reports/animation-scene-state-native-verification.json executes the original evaluator across all 301 tracks at/before/after key boundaries and midpoints, with forward/backward/out-of-range cached indices. All 8,636 samples exactly match index, state byte and changed return value, with zero mismatches/failures. Standard glTF has no core visibility channel, so the decoded tracks remain explicit sidecars instead of substituting arbitrary zero scales.
+
+Additional reproduction commands, from workspace root:
+  python reverse-engineering/tools/animation-scene-pose-native-verify.py --trig-only
+  node reverse-engineering/tools/animation-scene-pose-cases.mjs
+  python reverse-engineering/tools/animation-scene-pose-native-verify.py
+  node reverse-engineering/tools/animation-scene-preview.mjs
+  node reverse-engineering/tools/animation-scene-preview-validate.mjs
+  node reverse-engineering/tools/animation-scene-state-export.mjs
+  python reverse-engineering/tools/animation-scene-state-native-verify.py
+
+
+PC LOCOMOTION AND CHARACTER CONTEXT FOLLOW-UP
+=============================================
+
+Separate durable reports now cover PC locomotion and context contracts beyond the decoded animation assets. animation-locomotion-findings.txt records81,327 passing isolated original-function cases and1,831 verified scalar tuning assignments across342 catalog records. animation-context-findings.txt adds the exact100-context/233-action/32-alias registries, explicit action bindings, block/hold/combat-jump transitions and animation-selection contracts, with21,859 additional passing native cases. These bounded tests do not claim complete live locomotion/combat equivalence. Machine-readable evidence, source-line provenance, raw instruction hashes and reproducible tools are named in those reports. Existing animation/scene exports remain unchanged.

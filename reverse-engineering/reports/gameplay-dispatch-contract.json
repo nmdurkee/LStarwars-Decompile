@@ -1,0 +1,4255 @@
+{
+  "generatedAt": "2026-10-12T18:48:48.213Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Recovered PC dispatch, bounded original-code script execution, exact unbound source-name ledger and parser warnings. All addresses are this PC analysis image.",
+  "counts": {
+    "scp-condition": {
+      "names": 177,
+      "uses": 6919,
+      "statuses": {
+        "pc-dispatch-bound": 164,
+        "no-binding-in-relevant-native-tables": 12,
+        "multiple-pc-dispatch-bindings": 1
+      },
+      "unboundNames": [
+        "GotLocatorInGroup",
+        "ObstacleFinished",
+        "DoorOpened",
+        "DoorOpenedByPlayer",
+        "JustComeFromE",
+        "GadgetActive",
+        "PreviousMessage",
+        "ObstacleChainPhase",
+        "DoorClosed",
+        "lowupBlownup",
+        "HothBattleWaveCreature",
+        "ObstaclePlaying"
+      ]
+    },
+    "scp-action": {
+      "names": 237,
+      "uses": 11284,
+      "statuses": {
+        "pc-dispatch-bound": 208,
+        "multiple-pc-dispatch-bindings": 3,
+        "no-binding-in-relevant-native-tables": 26
+      },
+      "unboundNames": [
+        "SetVisbility",
+        "AddLocatorGroup",
+        "SetDefensive",
+        "LockDoor",
+        "CloseDoor",
+        "UnLockDoor",
+        "OpenDoor",
+        "ResetTime",
+        "SetPlayType",
+        "FollowSpline",
+        "ActivateGadget",
+        "MakeExplosion",
+        "FollowSock",
+        "GoToOrign",
+        "GoToLoc",
+        "DisableObstacle",
+        "Wander",
+        "SXetGravityHeight",
+        "SetObstacleChainPhase",
+        "SetMesssage",
+        "GetLocatorFromGroup",
+        "EngageTurret",
+        "if",
+        "ObstacleTriggerSet",
+        "AddLocatorSet",
+        "ThrowThermal"
+      ]
+    },
+    "scp-other-token": {
+      "names": 43,
+      "uses": 789,
+      "statuses": {
+        "grammar-or-gizmo-type-not-dispatch-classified": 43
+      },
+      "unboundNames": [
+        "613",
+        "CreateCreatures",
+        "EitherPlayerInTriggerArea",
+        "Script",
+        "Source",
+        "ReturnState",
+        "Message",
+        "SetMessage",
+        "Activate",
+        "CategoryIs",
+        "InTriggerArea",
+        "GoToLocator",
+        "GotLocator",
+        "ObstacleAtEnd",
+        "Been",
+        "IAm",
+        "DontUseShadowTerrain",
+        "PlayerOnObject",
+        "PlayerInTriggerArea",
+        "SetVisibility",
+        "InMiniCut",
+        "PARAM",
+        "StuckTime",
+        "ObstacleOpenedByPlayer",
+        ",",
+        "PlayGizObstacle",
+        "GizmoSetVisibility",
+        "TakenOver",
+        "state",
+        "Phase",
+        "Update",
+        "Conditions",
+        "Minicut",
+        "4:",
+        "1:",
+        "0:",
+        "2-3:",
+        "4-6:",
+        "--",
+        "10:",
+        "20:",
+        "iXf",
+        "3:"
+      ]
+    },
+    "git-gizmo-type": {
+      "names": 21,
+      "uses": 9757,
+      "statuses": {
+        "grammar-or-gizmo-type-not-dispatch-classified": 21
+      },
+      "unboundNames": [
+        "blowup",
+        "NuSpecial",
+        "GizObstacle",
+        "MiniCut",
+        "GizTimer",
+        "Spinner",
+        "Message",
+        "GizTurret",
+        "GizBuildit",
+        "Lever",
+        "GizForce",
+        "PushBlocks",
+        "ZipUp",
+        "GizmoPickup",
+        "Panel",
+        "Tube",
+        "Teleport",
+        "Torp Machine",
+        "HatMachine",
+        "Door",
+        "GizRandom"
+      ]
+    },
+    "git-condition-type": {
+      "names": 6,
+      "uses": 933,
+      "statuses": {
+        "pc-enum-and-predicate-verified": 6
+      },
+      "unboundNames": []
+    },
+    "git-condition-directive": {
+      "names": 1,
+      "uses": 139,
+      "statuses": {
+        "grammar-or-gizmo-type-not-dispatch-classified": 1
+      },
+      "unboundNames": [
+        "MonitorInputs"
+      ]
+    },
+    "git-action": {
+      "names": 20,
+      "uses": 2633,
+      "statuses": {
+        "pc-dispatch-bound": 20
+      },
+      "unboundNames": []
+    }
+  },
+  "verification": {
+    "scpTransitions": {
+      "checks": 1899,
+      "mismatches": 0
+    },
+    "lookupAndGit": {
+      "checks": 2955,
+      "mismatches": 0
+    },
+    "scpRuntime": {
+      "checks": 303,
+      "mismatches": 0
+    },
+    "gitRuntime": {
+      "checks": 141315,
+      "mismatches": 0,
+      "contract": "reverse-engineering/reports/gameplay-git-runtime-contract.json"
+    }
+  },
+  "contracts": {
+    "lookup": {
+      "description": "SCP names compare case-insensitively. The game table precedes the built-in table and its first matching entry wins. A null function can still have a valid named definition (PreviousResult).",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_512ea0.c",
+          "line": 14,
+          "excerpt": "if (DAT_00922224 != (undefined **)0x0) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_512f00.c",
+          "line": 15,
+          "excerpt": "if (DAT_00922228 != (undefined **)0x0) {"
+        }
+      ],
+      "nativeVerification": "reports/gameplay-dispatch-native-tests.json"
+    },
+    "scpConditionRecords": {
+      "bytes": 44,
+      "fields": {
+        "+0x08": "float constant operand",
+        "+0x0c": "comparison byte: == < > <= >= !=",
+        "+0x0d": "variable index",
+        "+0x0e": "flags: bit0 chains next condition with AND; bit2 selects packet variable; bit3 dynamic cached operand",
+        "+0x14": "argument pointer",
+        "+0x18": "initializer result",
+        "+0x1c": "definition pointer",
+        "+0x24": "target state",
+        "+0x28": "optional second condition operand"
+      },
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52b3f0.c",
+          "line": 58,
+          "excerpt": "(*DAT_00922218 <= *DAT_00922214 + 0x2cU)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_514140.c",
+          "line": 45,
+          "excerpt": "pcVar1 = *(code **)(*(int *)(iVar6 + 0x1c) + 8);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c",
+          "line": 56,
+          "excerpt": "switch(*(undefined1 *)(iVar4 + 0xc)) {"
+        }
+      ]
+    },
+    "scpConditionFlow": {
+      "description": "Bit0 at condition+0x0e joins the next condition with AND. An unmarked passing final record is returned; a failing member skips the remainder of its marked group. Unchained groups are ordered alternatives. PreviousResult has a null handler and reuses the preceding float result.",
+      "callback": "float handler(system, packet, creature, argument, initializerResult)",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c",
+          "line": 25,
+          "excerpt": "fVar5 = (float10)(*pcVar1)(param_1,iVar3,param_3,*(undefined4 *)(iVar4 + 0x14),"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c",
+          "line": 63,
+          "excerpt": "return iVar4;"
+        }
+      ],
+      "nativeVerification": "reports/gameplay-scp-runtime-tests.json"
+    },
+    "scpActionRecords": {
+      "bytes": 20,
+      "fields": {
+        "+0x00": "next linked action",
+        "+0x08": "argument string pointer array",
+        "+0x0c": "argument count",
+        "+0x10": "definition pointer"
+      },
+      "definitionThirdWord": "For actions, low byte causes 0x53db30 animation override handling on first call; for conditions the third word is an initializer callback, not the same field meaning.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52b9c0.c",
+          "line": 67,
+          "excerpt": "(*DAT_00922218 <= *DAT_00922214 + 0x14U)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c",
+          "line": 147,
+          "excerpt": "FUN_0053db30(iVar6,param_3);"
+        }
+      ]
+    },
+    "scpActionFlow": {
+      "description": "Packet+0x24 timer increments by delta each update. Handler return zero retains current action for another frame; nonzero advances within the same update. Packet+0x50 bit0 marks the first call of an action; the dispatcher clears it before calling the handler and passes firstCall=1.",
+      "callback": "int handler(system, packet, creature, argumentArray, argumentCount, firstCall, frameDelta)",
+      "stateFlow": "Packet+0x04 is script; +0x08 current state; +0x0c current action; +0x10 pending state. Update also handles reference-script interrupts and timed state changes. State entry, named SetState, timed transitions, ordered reference interrupts and stack unwinding now have bounded original-PC checks in gameplay-scp-transition-contract.json.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c",
+          "line": 27,
+          "excerpt": "param_4[9] = (int)((float)param_4[9] + param_5);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c",
+          "line": 150,
+          "excerpt": "iVar6 = (**(code **)(*(int *)(iVar6 + 0x10) + 4))"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c",
+          "line": 153,
+          "excerpt": "if (iVar6 == 0) break;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c",
+          "line": 180,
+          "excerpt": "FUN_005145a0(puVar3,puVar3[0x2f]);"
+        }
+      ],
+      "nativeVerification": "reports/gameplay-scp-runtime-tests.json"
+    },
+    "parserUnknownName": {
+      "description": "Missing SCP action or condition lookup takes the error-report path and continues parsing; the relevant 0x512850/0x512860/0x512870 routines in this PC build are return stubs. Unbound source names are preserved exactly and not silently assigned a similarly spelled handler.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52b9c0.c",
+          "line": 61,
+          "excerpt": "iVar1 = FUN_00512f00();"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_512850.c",
+          "line": 10,
+          "excerpt": "return;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_512860.c",
+          "line": 10,
+          "excerpt": "return;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_512870.c",
+          "line": 10,
+          "excerpt": "return;"
+        }
+      ]
+    },
+    "gitKinds": {
+      "tableVa": "0x805518",
+      "stride": 12,
+      "rows": [
+        {
+          "kind": 0,
+          "process": "0x59f800",
+          "output": "0x59d930"
+        },
+        {
+          "kind": 1,
+          "process": "0x59db00",
+          "output": "0x59ddd0"
+        },
+        {
+          "kind": 2,
+          "process": "0x59f8d0",
+          "output": "0x59e080"
+        }
+      ],
+      "description": "Kind0 gizmo, kind1 condition, kind2 action; the output callback is separate from the process callback.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c",
+          "line": 24,
+          "excerpt": "iVar6 = (*(code *)(&PTR_FUN_00805518)[(uint)param_2[3] * 3])(param_1,param_2,param_3);"
+        }
+      ]
+    },
+    "gitPredicates": {
+      "tableVa": "0x805538",
+      "stride": 12,
+      "enum": [
+        {
+          "code": 0,
+          "name": "All",
+          "parameterLoader": null
+        },
+        {
+          "code": 1,
+          "name": "Any",
+          "parameterLoader": null
+        },
+        {
+          "code": 2,
+          "name": "None",
+          "parameterLoader": null
+        },
+        {
+          "code": 3,
+          "name": "Sum",
+          "parameterLoader": "0x59ec90"
+        },
+        {
+          "code": 4,
+          "name": "loop",
+          "parameterLoader": null
+        },
+        {
+          "code": 5,
+          "name": "exactly",
+          "parameterLoader": "0x59ec90"
+        }
+      ],
+      "rules": {
+        "lookup": "Case insensitive; game table wins over built-in, first name entry wins; unknown returnsNULL. PreviousResult has a real table entry withNULL handler.",
+        "All": "All parent output checks nonzero; true for zero parents.",
+        "Any": "At least one parent output nonzero; false for zero parents.",
+        "None": "No parent output nonzero; true for zero parents.",
+        "Sum": "At least threshold parent outputs nonzero; for zero parents true only for zero threshold. Counts booleans, not magnitudes.",
+        "Exactly": "Number of nonzero parent outputs equals threshold.",
+        "Loop": "Requires all parent outputs, or totalParents-loopSkip when flag0x400 is set. Successful predicate then propagates/reset-walks children; this side effect excluded by zero-child fixtures."
+      },
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59db00.c",
+          "line": 48,
+          "excerpt": "switch(*pcVar2) {"
+        }
+      ],
+      "nativeVerification": "reports/gameplay-dispatch-native-tests.json"
+    },
+    "gitScheduler": {
+      "description": "An active node (flags+0x0a bit0) invokes its kind process callback. Success clears active and sets 0x802, activates each child, and recursively processes a child whose generation byte+8 differs, or whose parent is a condition node. Tick generation, condition monitoring, Loop reset traversal and timer propagation now have bounded original-PC checks in gameplay-git-runtime-contract.json. NuSpecial visibility/reversal and saved graph state are now verified in gameplay-reconstruction.json; other physical types remain open.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c",
+          "line": 21,
+          "excerpt": "if ((param_2[10] & 1) == 0) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c",
+          "line": 33,
+          "excerpt": "uVar5 = uVar2 & 0xfffe | 0x802;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c",
+          "line": 98,
+          "excerpt": "FUN_0059e090(param_1,*(undefined4 *)(*(int *)(param_2 + 0x14) + iVar6 * 4),param_3);"
+        }
+      ]
+    },
+    "gitActions": {
+      "description": "After parent outputs pass, the action node walks records at node+0x0c in order. Each record has next+0, argumentArray+4, count+8, definition+0xc; non-null definition+4 receives (flow,node,argumentArray,count).",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59f8d0.c",
+          "line": 32,
+          "excerpt": "FUN_0059e030(param_1,param_2);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_59e030.c",
+          "line": 17,
+          "excerpt": "(*pcVar2)(param_1,param_2,puVar1[1],puVar1[2]);"
+        }
+      ]
+    }
+  },
+  "unresolvedBindings": [
+    {
+      "kind": "scp-condition",
+      "name": "GotLocatorInGroup",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/AI/LAUNCH_TIE.SCP",
+          "line": 3,
+          "state": "Base",
+          "text": "if GotLocatorInGroup \"TieSpawn\" == 1 goto Spawned",
+          "args": [
+            "TieSpawn",
+            "1",
+            "goto",
+            "Spawned"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/AI/LAUNCH_TIE.SCP",
+          "line": 3,
+          "state": "Base",
+          "text": "if GotLocatorInGroup \"TieSpawn\" == 1 goto Spawned",
+          "args": [
+            "TieSpawn",
+            "1",
+            "goto",
+            "Spawned"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/AI/LAUNCH_TIE.SCP",
+          "line": 3,
+          "state": "Base",
+          "text": "if GotLocatorInGroup \"TieSpawn\" == 1 goto Spawned",
+          "args": [
+            "TieSpawn",
+            "1",
+            "goto",
+            "Spawned"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/LAUNCH_TIE.SCP",
+          "line": 3,
+          "state": "Base",
+          "text": "if GotLocatorInGroup \"TieSpawn\" == 1 goto Spawned",
+          "args": [
+            "TieSpawn",
+            "1",
+            "goto",
+            "Spawned"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ObstacleFinished",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP",
+          "line": 28,
+          "state": "NotYetBuilt",
+          "text": "if ObstacleFinished \"atst_end\" == 1 goto CreateATST",
+          "args": [
+            "atst_end",
+            "1",
+            "goto",
+            "CreateATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL2.SCP",
+          "line": 16,
+          "state": "NotYetBuilt",
+          "text": "if ObstacleFinished \"Flyer_end\" == 1 goto CreateATST",
+          "args": [
+            "Flyer_end",
+            "1",
+            "goto",
+            "CreateATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL.SCP",
+          "line": 28,
+          "state": "NotYetBuilt",
+          "text": "if ObstacleFinished \"atst_end\" == 1 goto CreateATST",
+          "args": [
+            "atst_end",
+            "1",
+            "goto",
+            "CreateATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL2.SCP",
+          "line": 16,
+          "state": "NotYetBuilt",
+          "text": "if ObstacleFinished \"Flyer_end\" == 1 goto CreateATST",
+          "args": [
+            "Flyer_end",
+            "1",
+            "goto",
+            "CreateATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_B/AI/LEVEL1.SCP",
+          "line": 29,
+          "state": "Update",
+          "text": "if ObstacleFinished \"obstacle6\" == 1 and",
+          "args": [
+            "obstacle6",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_B/AI/LEVEL2.SCP",
+          "line": 28,
+          "state": "Update",
+          "text": "if ObstacleFinished \"obstacle7\" == 1 and",
+          "args": [
+            "obstacle7",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_B/AI/LEVEL.SCP",
+          "line": 31,
+          "state": "Update",
+          "text": "if ObstacleFinished \"disco_floor\" == 1 goto DiscoFloorOpen",
+          "args": [
+            "disco_floor",
+            "1",
+            "goto",
+            "DiscoFloorOpen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_B/AI/LEVEL1.SCP",
+          "line": 12,
+          "state": "DiscoOff",
+          "text": "if ObstacleFinished \"exit\" == 1 and",
+          "args": [
+            "exit",
+            "1",
+            "and"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetVisbility",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP",
+          "line": 43,
+          "state": "CreateATST",
+          "text": "SetVisbility \"atst_end2\" \"FALSE\"",
+          "args": [
+            "atst_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP",
+          "line": 55,
+          "state": "Finished",
+          "text": "SetVisbility \"atst_end2\" \"FALSE\"",
+          "args": [
+            "atst_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL2.SCP",
+          "line": 31,
+          "state": "CreateATST",
+          "text": "SetVisbility \"Flyer_end2\" \"FALSE\"",
+          "args": [
+            "Flyer_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL2.SCP",
+          "line": 43,
+          "state": "Finished",
+          "text": "SetVisbility \"Flyer_end2\" \"FALSE\"",
+          "args": [
+            "Flyer_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL.SCP",
+          "line": 43,
+          "state": "CreateATST",
+          "text": "SetVisbility \"atst_end2\" \"FALSE\"",
+          "args": [
+            "atst_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL.SCP",
+          "line": 55,
+          "state": "Finished",
+          "text": "SetVisbility \"atst_end2\" \"FALSE\"",
+          "args": [
+            "atst_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL2.SCP",
+          "line": 31,
+          "state": "CreateATST",
+          "text": "SetVisbility \"Flyer_end2\" \"FALSE\"",
+          "args": [
+            "Flyer_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL2.SCP",
+          "line": 43,
+          "state": "Finished",
+          "text": "SetVisbility \"Flyer_end2\" \"FALSE\"",
+          "args": [
+            "Flyer_end2",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/AI/LEVEL2.SCP",
+          "line": 21,
+          "state": "Start",
+          "text": "SetVisbility \"stop_bounty\" \"FALSE\"",
+          "args": [
+            "stop_bounty",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_B/AI/LEVEL.SCP",
+          "line": 29,
+          "state": "Base",
+          "text": "SetVisbility \"Trailer_Ramp\" \"FALSE\"",
+          "args": [
+            "Trailer_Ramp",
+            "FALSE"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "AddLocatorGroup",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/LEVEL1.SCP",
+          "line": 16,
+          "state": "Start",
+          "text": "AddLocatorGroup \"name=MissionSpawn\"",
+          "args": [
+            "name=MissionSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_C/AI/LEVEL1.SCP",
+          "line": 16,
+          "state": "Start",
+          "text": "AddLocatorGroup \"name=MissionSpawn\"",
+          "args": [
+            "name=MissionSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/FACTORY/FACTORY_F/AI/LEVEL1.SCP",
+          "line": 16,
+          "state": "Start",
+          "text": "AddLocatorGroup \"name=MissionSpawn\"",
+          "args": [
+            "name=MissionSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/TEMPLE/TEMPLE_A/AI/LEVEL.SCP",
+          "line": 23,
+          "state": "Start",
+          "text": "AddLocatorGroup \"name=MissionSpawn\"",
+          "args": [
+            "name=MissionSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARRESCUE/DEATHSTARRESCUE_A/AI/LEVEL.SCP",
+          "line": 19,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=idle\"",
+          "args": [
+            "name=idle"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_C/AI/LEVEL.SCP",
+          "line": 6,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=Walk\"",
+          "args": [
+            "name=Walk"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_C/AI/LEVEL.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=bar\"",
+          "args": [
+            "name=bar"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_C/AI/LEVEL.SCP",
+          "line": 9,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=ForceBackWait\"",
+          "args": [
+            "name=ForceBackWait"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_D/AI/LEVEL.SCP",
+          "line": 13,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=spawn\"",
+          "args": [
+            "name=spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_D/AI/LEVEL.SCP",
+          "line": 14,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=back\"",
+          "args": [
+            "name=back"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_D/AI/LEVEL.SCP",
+          "line": 27,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=BatSpawn\"",
+          "args": [
+            "name=BatSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL.SCP",
+          "line": 24,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=StartBat\"",
+          "args": [
+            "name=StartBat"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL.SCP",
+          "line": 25,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=EndBat\"",
+          "args": [
+            "name=EndBat"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL1.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=snake\"",
+          "args": [
+            "name=snake"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_D/AI/LEVEL.SCP",
+          "line": 5,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=spawn\"",
+          "args": [
+            "name=spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/AI/LEVEL.SCP",
+          "line": 35,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=talk\"",
+          "args": [
+            "name=talk"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/LEVEL.SCP",
+          "line": 48,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=Sid_Sniper\"",
+          "args": [
+            "name=Sid_Sniper"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/LEVEL.SCP",
+          "line": 49,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=Side_Spawn\"",
+          "args": [
+            "name=Side_Spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/LEVEL.SCP",
+          "line": 50,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=Spawn_Door\"",
+          "args": [
+            "name=Spawn_Door"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/LEVEL.SCP",
+          "line": 51,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=boba_fight\"",
+          "args": [
+            "name=boba_fight"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_B/AI/LEVEL.SCP",
+          "line": 17,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=WatchDisco\"",
+          "args": [
+            "name=WatchDisco"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_B/AI/LEVEL.SCP",
+          "line": 18,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=DiscoTile\"",
+          "args": [
+            "name=DiscoTile"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_B/AI/LEVEL.SCP",
+          "line": 19,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=Safe_Loc\"",
+          "args": [
+            "name=Safe_Loc"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=LockIn1Spawn\"",
+          "args": [
+            "name=LockIn1Spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 8,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=LockIn2Spawn\"",
+          "args": [
+            "name=LockIn2Spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 9,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=LockIn3Spawn\"",
+          "args": [
+            "name=LockIn3Spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 10,
+          "state": "Base",
+          "text": "AddLocatorGroup \"name=LockIn4Spawn\"",
+          "args": [
+            "name=LockIn4Spawn"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetDefensive",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/DARTHMAUL.SCP",
+          "line": 160,
+          "state": "Exit",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 6,
+          "state": "Base",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
+          "line": 37,
+          "state": "Base",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 11,
+          "state": "Base",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 139,
+          "state": "Phase2_Start",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 160,
+          "state": "Phase2_SelectNextPlatform",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 170,
+          "state": "Phase2_GoToPlatform1",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 205,
+          "state": "Phase2_GoToPlatform2",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 240,
+          "state": "Phase2_GoToPlatform3",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 347,
+          "state": "Phase3_NormalAttack",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 363,
+          "state": "Phase3_StartForceAttack",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 379,
+          "state": "Phase3_ForceAttackObiWan",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 394,
+          "state": "Phase3_FinalForceAttackFreeplay",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/AI/DOOKU.SCP",
+          "line": 29,
+          "state": "GotoWait1",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/AI/DOOKU.SCP",
+          "line": 40,
+          "state": "Wait1",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/AI/DOOKU.SCP",
+          "line": 50,
+          "state": "GotoWait2",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/AI/DOOKU.SCP",
+          "line": 15,
+          "state": "Base",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/AI/DOOKU.SCP",
+          "line": 29,
+          "state": "NormalIntroComplete",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/AI/DOOKU.SCP",
+          "line": 72,
+          "state": "FreePlayIntro2",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/AI/PARTY.SCP",
+          "line": 67,
+          "state": "Disabled",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/FACTORY/FACTORY_G/AI/OBIWAN.SCP",
+          "line": 6,
+          "state": "Base",
+          "text": "SetDefensive \"False\"",
+          "args": [
+            "False"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/GRIEVOUS/GRIEVOUS_A/AI/GRIEVOUS.SCP",
+          "line": 11,
+          "state": "Base",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/BLOCKADERUNNER/BLOCKADERUNNER_B/AI/AI_VADER.SCP",
+          "line": 25,
+          "state": "Base",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_VADER.SCP",
+          "line": 31,
+          "state": "Base",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_VADER.SCP",
+          "line": 113,
+          "state": "LostHitPoints",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_VADER.SCP",
+          "line": 198,
+          "state": "StartChoking",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_VADER.SCP",
+          "line": 210,
+          "state": "StopChoking",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_C/AI/AI_VADER.SCP",
+          "line": 17,
+          "state": "Base",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_C/AI/AI_VADER.SCP",
+          "line": 345,
+          "state": "MainEncounter_DamagedBySteam",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_C/AI/AI_VADER.SCP",
+          "line": 348,
+          "state": "MainEncounter_DamagedBySteam",
+          "text": "SetDefensive",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 34,
+          "state": "Base",
+          "text": "SetDefensive \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 135,
+          "state": "Throne_Fight",
+          "text": "SetDefensive \"TRUE\"",
+          "args": [
+            "TRUE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 278,
+          "state": "EFloor_Fight",
+          "text": "SetDefensive \"TRUE\"",
+          "args": [
+            "TRUE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 393,
+          "state": "LiftLower_Fight",
+          "text": "SetDefensive \"TRUE\"",
+          "args": [
+            "TRUE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 510,
+          "state": "LiftUpper_Fight",
+          "text": "SetDefensive \"TRUE\"",
+          "args": [
+            "TRUE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 568,
+          "state": "Centre_Wait",
+          "text": "SetDefensive \"TRUE\"",
+          "args": [
+            "TRUE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 581,
+          "state": "Centre_Fight",
+          "text": "SetDefensive \"TRUE\"",
+          "args": [
+            "TRUE"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "DoorOpened",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 27,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpened \"a16\" == 1 and",
+          "args": [
+            "a16",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 31,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpened \"a17\" == 1 and",
+          "args": [
+            "a17",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 35,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpened \"a2\" == 1 and",
+          "args": [
+            "a2",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 39,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpened \"a3\" == 1 and",
+          "args": [
+            "a3",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/TAUNWE.SCP",
+          "line": 51,
+          "state": "GoToCorridorDoor",
+          "text": "if DoorOpened \"r4_door1\" == 1 and",
+          "args": [
+            "r4_door1",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_D/AI/LUMINARA.SCP",
+          "line": 12,
+          "state": "WaitToBeMet",
+          "text": "if DoorOpened \"pad_gate\" == 1 goto BeenMet",
+          "args": [
+            "pad_gate",
+            "1",
+            "goto",
+            "BeenMet"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "DoorOpenedByPlayer",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 28,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpenedByPlayer \"a12\" == 1 goto RunTopRightToBottomRight",
+          "args": [
+            "a12",
+            "1",
+            "goto",
+            "RunTopRightToBottomRight"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 32,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpenedByPlayer \"a13\" == 1 goto RunTopLeftToBottomLeft",
+          "args": [
+            "a13",
+            "1",
+            "goto",
+            "RunTopLeftToBottomLeft"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 36,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpenedByPlayer \"a5\" == 1 goto RunBottomRightToTopRight",
+          "args": [
+            "a5",
+            "1",
+            "goto",
+            "RunBottomRightToTopRight"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/JEDI.SCP",
+          "line": 40,
+          "state": "UpdateBonusRoom",
+          "text": "if DoorOpenedByPlayer \"a4\" == 1 goto RunBottomLeftToTopLeft",
+          "args": [
+            "a4",
+            "1",
+            "goto",
+            "RunBottomLeftToTopLeft"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "LockDoor",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "LockDoor \"door_5\"",
+          "args": [
+            "door_5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL2.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "LockDoor \"door_7\"",
+          "args": [
+            "door_7"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/VADER/VADER_B/AI/LEVEL.SCP",
+          "line": 11,
+          "state": "Base",
+          "text": "LockDoor \"door_1\"",
+          "args": [
+            "door_1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/AI/LEVEL1.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "LockDoor \"tie_doors\"",
+          "args": [
+            "tie_doors"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/AI/LEVEL1.SCP",
+          "line": 141,
+          "state": "UpdateRandom",
+          "text": "LockDoor \"tie_doors\"",
+          "args": [
+            "tie_doors"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 23,
+          "state": "Update",
+          "text": "LockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 45,
+          "state": "LiftDeparting",
+          "text": "LockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 26,
+          "state": "Update",
+          "text": "LockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 48,
+          "state": "LiftDeparting",
+          "text": "LockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_D/AI/STORM_PHONE.SCP",
+          "line": 64,
+          "state": "BeenKilled",
+          "text": "LockDoor \"ventcover\"",
+          "args": [
+            "ventcover"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "CloseDoor",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP",
+          "line": 8,
+          "state": "Base",
+          "text": "CloseDoor \"door_5\"",
+          "args": [
+            "door_5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL2.SCP",
+          "line": 8,
+          "state": "Base",
+          "text": "CloseDoor \"door_7\"",
+          "args": [
+            "door_7"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/VADER/VADER_B/AI/LEVEL.SCP",
+          "line": 12,
+          "state": "Base",
+          "text": "CloseDoor \"door_1\"",
+          "args": [
+            "door_1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/AI/LEVEL1.SCP",
+          "line": 142,
+          "state": "UpdateRandom",
+          "text": "CloseDoor \"tie_doors\"",
+          "args": [
+            "tie_doors"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "UnLockDoor",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP",
+          "line": 18,
+          "state": "OpenLeftDoor",
+          "text": "UnLockDoor \"door_5\"",
+          "args": [
+            "door_5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL2.SCP",
+          "line": 18,
+          "state": "OpenRightDoor",
+          "text": "UnLockDoor \"door_7\"",
+          "args": [
+            "door_7"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 40,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"landslide\"",
+          "args": [
+            "landslide"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 41,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"slide01\"",
+          "args": [
+            "slide01"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 42,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"slide02\"",
+          "args": [
+            "slide02"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 43,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"slide03\"",
+          "args": [
+            "slide03"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 61,
+          "state": "DropStartPlatforms",
+          "text": "UnlockDoor \"path_enter\"",
+          "args": [
+            "path_enter"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 76,
+          "state": "StartDroidekas",
+          "text": "UnLockDoor \"pad1\"",
+          "args": [
+            "pad1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 78,
+          "state": "StartDroidekas",
+          "text": "UnLockDoor \"pad2\"",
+          "args": [
+            "pad2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 35,
+          "state": "OpenLift",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 54,
+          "state": "NormalDoor",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 38,
+          "state": "OpenLift",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 57,
+          "state": "NormalDoor",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_B/AI/LEVEL.SCP",
+          "line": 37,
+          "state": "OpenBigDoor",
+          "text": "UnLockDoor \"bigdoor\"",
+          "args": [
+            "bigdoor"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "OpenDoor",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP",
+          "line": 19,
+          "state": "OpenLeftDoor",
+          "text": "OpenDoor \"door_5\" \"stayopen\"",
+          "args": [
+            "door_5",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL2.SCP",
+          "line": 19,
+          "state": "OpenRightDoor",
+          "text": "OpenDoor \"door_7\" \"stayopen\"",
+          "args": [
+            "door_7",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 62,
+          "state": "DropStartPlatforms",
+          "text": "OpenDoor \"path_enter\" \"stayopen\"",
+          "args": [
+            "path_enter",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 77,
+          "state": "StartDroidekas",
+          "text": "OpenDoor \"pad1\" \"stayopen\"",
+          "args": [
+            "pad1",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 79,
+          "state": "StartDroidekas",
+          "text": "OpenDoor \"pad2\" \"stayopen\"",
+          "args": [
+            "pad2",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 36,
+          "state": "OpenLift",
+          "text": "OpenDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 39,
+          "state": "OpenLift",
+          "text": "OpenDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_B/AI/LEVEL.SCP",
+          "line": 38,
+          "state": "OpenBigDoor",
+          "text": "OpenDoor \"bigdoor\" \"stayopen\"",
+          "args": [
+            "bigdoor",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_D/AI/STORM_PHONE.SCP",
+          "line": 63,
+          "state": "BeenKilled",
+          "text": "OpenDoor \"ventcover\" \"stayopen\"",
+          "args": [
+            "ventcover",
+            "stayopen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_B/AI/LEVEL.SCP",
+          "line": 45,
+          "state": "TestOpenDisco",
+          "text": "OpenDoor \"disco_floor\" \"stayopen\"",
+          "args": [
+            "disco_floor",
+            "stayopen"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "ResetTime",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_A/AI/NOTUSEDANYMORE_BLASTER.SCP",
+          "line": 48,
+          "state": "BlastWayOut",
+          "text": "ResetTime",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_A/AI/NOTUSEDANYMORE_FREEPLAY.SCP",
+          "line": 49,
+          "state": "BlastWayOut",
+          "text": "ResetTime",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_B/AI/NOTUSEDANYMORE_BLASTER.SCP",
+          "line": 28,
+          "state": "BlastWayOut",
+          "text": "ResetTime",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_B/AI/NOTUSEDANYMORE_FREEPLAY.SCP",
+          "line": 29,
+          "state": "BlastWayOut",
+          "text": "ResetTime",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_C/AI/LEVEL.SCP",
+          "line": 86,
+          "state": "SpawnATST",
+          "text": "ResetTime \"maxtime=10\"",
+          "args": [
+            "maxtime=10"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "JustComeFromE",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_C/AI/LEVEL.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "if JustComeFromE == 1 goto Update",
+          "args": [
+            "1",
+            "goto",
+            "Update"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetPlayType",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/POD.SCP",
+          "line": 5,
+          "state": "Base",
+          "text": "SetPlayType \"in\"",
+          "args": [
+            "in"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/PODSTART.SCP",
+          "line": 6,
+          "state": "Base",
+          "text": "SetPlayType \"in\"",
+          "args": [
+            "in"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/CRASHPOD.SCP",
+          "line": 5,
+          "state": "Base",
+          "text": "SetPlayType \"in\"",
+          "args": [
+            "in"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/POD.SCP",
+          "line": 6,
+          "state": "Base",
+          "text": "SetPlayType \"in\"",
+          "args": [
+            "in"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/POD.SCP",
+          "line": 5,
+          "state": "Base",
+          "text": "SetPlayType \"in\"",
+          "args": [
+            "in"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "FollowSpline",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/POD.SCP",
+          "line": 21,
+          "state": "Fly",
+          "text": "FollowSpline",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/PODSTART.SCP",
+          "line": 22,
+          "state": "Race",
+          "text": "FollowSpline",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/CRASHPOD.SCP",
+          "line": 17,
+          "state": "Fly",
+          "text": "FollowSpline",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/POD.SCP",
+          "line": 23,
+          "state": "Fly",
+          "text": "FollowSpline",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/POD.SCP",
+          "line": 22,
+          "state": "Fly",
+          "text": "FollowSpline",
+          "args": []
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "ActivateGadget",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/CRASHPOD.SCP",
+          "line": 25,
+          "state": "Die",
+          "text": "ActivateGadget \"collapsing_mush\"",
+          "args": [
+            "collapsing_mush"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/AI/NOTUSED_FREEPLAY_RESCUEE.SCP",
+          "line": 57,
+          "state": "PadmeClawed_RescuePhase",
+          "text": "ActivateGadget \"pillar1a\"",
+          "args": [
+            "pillar1a"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/AI/NOTUSED_FREEPLAY_RESCUEE.SCP",
+          "line": 66,
+          "state": "PadmeClawed_CanWinchDown",
+          "text": "ActivateGadget \"pillar1ba\"",
+          "args": [
+            "pillar1ba"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/AI/NOTUSED_FREEPLAY_RESCUEE.SCP",
+          "line": 114,
+          "state": "Anakin_RescuePhase",
+          "text": "ActivateGadget \"pillar2a\"",
+          "args": [
+            "pillar2a"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/AI/NOTUSED_FREEPLAY_RESCUEE.SCP",
+          "line": 123,
+          "state": "Anakin_CanWinchDown",
+          "text": "ActivateGadget \"pillar2ba\"",
+          "args": [
+            "pillar2ba"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/AI/NOTUSED_FREEPLAY_RESCUEE.SCP",
+          "line": 171,
+          "state": "ObiWanKenObi_RescuePhase",
+          "text": "ActivateGadget \"pillar3a\"",
+          "args": [
+            "pillar3a"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/AI/NOTUSED_FREEPLAY_RESCUEE.SCP",
+          "line": 180,
+          "state": "ObiWanKenObi_CanWinchDown",
+          "text": "ActivateGadget \"pillar3ba\"",
+          "args": [
+            "pillar3ba"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "MakeExplosion",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/CRASHPOD.SCP",
+          "line": 26,
+          "state": "Die",
+          "text": "MakeExplosion",
+          "args": []
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "FollowSock",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/POD.SCP",
+          "line": 41,
+          "state": "FallBack",
+          "text": "FollowSock",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/POD.SCP",
+          "line": 40,
+          "state": "FallBack",
+          "text": "FollowSock",
+          "args": []
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "GadgetActive",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL3.SCP",
+          "line": 23,
+          "state": "ShutterNotOpen",
+          "text": "if GadgetActive \"open_shutters\" == 1 goto ShutterOpen",
+          "args": [
+            "open_shutters",
+            "1",
+            "goto",
+            "ShutterOpen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL3.SCP",
+          "line": 41,
+          "state": "ShutterOpen",
+          "text": "if GadgetActive \"open_shutters\" == 0 goto ShutterNotOpen",
+          "args": [
+            "open_shutters",
+            "0",
+            "goto",
+            "ShutterNotOpen"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/VADER/VADER_B/AI/LEVEL.SCP",
+          "line": 19,
+          "state": "WaitForSteamToStart",
+          "text": "if GadgetActive \"coveroff\" == 1 goto SteamOn",
+          "args": [
+            "coveroff",
+            "1",
+            "goto",
+            "SteamOn"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "PreviousMessage",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/LEVEL1.SCP",
+          "line": 5,
+          "state": "Base",
+          "text": "if PreviousMessage != 0 goto DarkRoomFinished",
+          "args": [
+            "!",
+            "0",
+            "goto",
+            "DarkRoomFinished"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ObstacleChainPhase",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_A/AI/LEVEL1.SCP",
+          "line": 12,
+          "state": "Base",
+          "text": "if ObstacleChainPhase \"hook\" == 2 and",
+          "args": [
+            "hook",
+            "2",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/LEVEL1.SCP",
+          "line": 13,
+          "state": "UpdateSpawning",
+          "text": "if ObstacleChainPhase \"chamber\" > 2 goto NoMoreSpawning",
+          "args": [
+            "chamber",
+            ">",
+            "2",
+            "goto",
+            "NoMoreSpawning"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_B/AI/LEVEL.SCP",
+          "line": 25,
+          "state": "Update",
+          "text": "if ObstacleChainPhase \"window\" == 1 goto BlowUpWindow",
+          "args": [
+            "window",
+            "1",
+            "goto",
+            "BlowUpWindow"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/LEVEL1.SCP",
+          "line": 4,
+          "state": "Base",
+          "text": "if ObstacleChainPhase \"lift_move\" == 4 goto Phase1_Lights",
+          "args": [
+            "lift_move",
+            "4",
+            "goto",
+            "Phase1_Lights"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "GoToOrign",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_B/AI/CLONERIDER.SCP",
+          "line": 31,
+          "state": "Update",
+          "text": "GoToOrign",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_D/AI/CLONERIDER.SCP",
+          "line": 31,
+          "state": "Update",
+          "text": "GoToOrign",
+          "args": []
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "DoorClosed",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 31,
+          "state": "OpenLift",
+          "text": "if DoorClosed \"gen_door6\" == 1 goto LiftDeparting",
+          "args": [
+            "gen_door6",
+            "1",
+            "goto",
+            "LiftDeparting"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 34,
+          "state": "OpenLift",
+          "text": "if DoorClosed \"gen_door6\" == 1 goto LiftDeparting",
+          "args": [
+            "gen_door6",
+            "1",
+            "goto",
+            "LiftDeparting"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "GoToLoc",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/USEDJAWA.SCP",
+          "line": 169,
+          "state": "BuyCar",
+          "text": "GoToLoc \"name=used_sale\"",
+          "args": [
+            "name=used_sale"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "DisableObstacle",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_D/AI/LEVEL3.SCP",
+          "line": 23,
+          "state": "Start",
+          "text": "DisableObstacle \"name=R2_door1\"",
+          "args": [
+            "name=R2_door1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/AI/LEVEL1.SCP",
+          "line": 22,
+          "state": "Start",
+          "text": "DisableObstacle \"name=obstacle8\"",
+          "args": [
+            "name=obstacle8"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "Wander",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_D/AI/TUSKEN_SNIPER.SCP",
+          "line": 64,
+          "state": "Wander",
+          "text": "Wander \"walk\"",
+          "args": [
+            "walk"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SXetGravityHeight",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_D/AI/ATTACK_TIE.SCP",
+          "line": 7,
+          "state": "Base",
+          "text": "SXetGravityHeight \"4\"",
+          "args": [
+            "4"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetObstacleChainPhase",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_CANNON1.SCP",
+          "line": 13,
+          "state": "BeenKilled",
+          "text": "SetObstacleChainPhase \"T_cannon_pop2\" \"phase=4\"",
+          "args": [
+            "T_cannon_pop2",
+            "phase=4"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_B/AI/LEVEL.SCP",
+          "line": 36,
+          "state": "BlowUpWindow",
+          "text": "SetObstacleChainPhase \"window\" \"phase=2\"",
+          "args": [
+            "window",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 209,
+          "state": "Throne_Flee",
+          "text": "SetObstacleChainPhase \"slam_part1a\" \"phase=2\"",
+          "args": [
+            "slam_part1a",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 471,
+          "state": "LiftLower_GoToUpper",
+          "text": "SetObstacleChainPhase \"slam_part2a\" \"phase=2\"",
+          "args": [
+            "slam_part2a",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 432,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_chainbits\" \"phase=2\"",
+          "args": [
+            "AT1_chainbits",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 433,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_flow1\" \"phase=2\"",
+          "args": [
+            "AT1_flow1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 434,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_flow2\" \"phase=2\"",
+          "args": [
+            "AT1_flow2",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 435,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_allbits\" \"phase=2\"",
+          "args": [
+            "AT1_allbits",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 779,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_ATflow1\" \"phase=2\"",
+          "args": [
+            "clear4_ATflow1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 780,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_ATflow2\" \"phase=2\"",
+          "args": [
+            "clear4_ATflow2",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 781,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_spin1\" \"phase=2\"",
+          "args": [
+            "clear4_spin1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 782,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_ATbits1\" \"phase=2\"",
+          "args": [
+            "clear4_ATbits1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 783,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_allAT1\" \"phase=2\"",
+          "args": [
+            "clear4_allAT1",
+            "phase=2"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "lowupBlownup",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/LEVEL2.SCP",
+          "line": 37,
+          "state": "WaitBeforeNextWave",
+          "text": "if lowupBlownup \"blowup_exit1\" == 1 goto Finished",
+          "args": [
+            "blowup_exit1",
+            "1",
+            "goto",
+            "Finished"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetMesssage",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/ATAT.SCP",
+          "line": 55,
+          "state": "Update",
+          "text": "SetMesssage \"name=Arrived\" \"value=0\"",
+          "args": [
+            "name=Arrived",
+            "value=0"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "GetLocatorFromGroup",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/ATAT.SCP",
+          "line": 201,
+          "state": "GotoLoc",
+          "text": "GetLocatorFromGroup \"name=atat_dest\" \"next\"",
+          "args": [
+            "name=atat_dest",
+            "next"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/FRIENDLY.SCP",
+          "line": 24,
+          "state": "Init",
+          "text": "GetLocatorFromGroup \"name=command\"",
+          "args": [
+            "name=command"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/FRIENDLY.SCP",
+          "line": 38,
+          "state": "GetLocator",
+          "text": "GetLocatorFromGroup \"name=command\"",
+          "args": [
+            "name=command"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 41,
+          "state": "GetLocator",
+          "text": "GetLocatorFromGroup \"name=attack\" \"random\"",
+          "args": [
+            "name=attack",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 178,
+          "state": "SnapToSpawn",
+          "text": "GetLocatorFromGroup \"name=spawn\" \"random\" \"off_screen_radius=1.0\"",
+          "args": [
+            "name=spawn",
+            "random",
+            "off_screen_radius=1.0"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/AI_EWOK.SCP",
+          "line": 36,
+          "state": "GoToLoc",
+          "text": "GetLocatorFromGroup \"name=ewok\" \"random\"",
+          "args": [
+            "name=ewok",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/AI_EWOK.SCP",
+          "line": 81,
+          "state": "FightOver",
+          "text": "GetLocatorFromGroup \"name=ewok\" \"random\"",
+          "args": [
+            "name=ewok",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/AI_EWOK.SCP",
+          "line": 140,
+          "state": "TakenOverMove",
+          "text": "GetLocatorFromGroup \"name=AtstFight\" \"random\"",
+          "args": [
+            "name=AtstFight",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_D/AI/FINAL_STORM.SCP",
+          "line": 25,
+          "state": "RunToStart",
+          "text": "GetLocatorFromGroup \"name=Final_Run\"",
+          "args": [
+            "name=Final_Run"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/SCRIPTS/JAWA.SCP",
+          "line": 80,
+          "state": "LookForLocator",
+          "text": "GetLocatorFromGroup \"name=Jawa\" \"max_range=14\" \"random\"",
+          "args": [
+            "name=Jawa",
+            "max_range=14",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/SCRIPTS/SPAWNED_WOMPRAT.SCP",
+          "line": 23,
+          "state": "ChooseLocator",
+          "text": "GetLocatorFromGroup \"name=WompRat\" \"random\"",
+          "args": [
+            "name=WompRat",
+            "random"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "EngageTurret",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/PROBE.SCP",
+          "line": 79,
+          "state": "AttackTurret",
+          "text": "EngageTurret \"goalrange 15\" \"firerange 30\" \"fireinterval 0.5\" \"random\"",
+          "args": [
+            "goalrange 15",
+            "firerange 30",
+            "fireinterval 0.5",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDER.SCP",
+          "line": 85,
+          "state": "AttackTurret",
+          "text": "EngageTurret \"goalrange 15\" \"firerange 30\" \"fireinterval 0.5\"",
+          "args": [
+            "goalrange 15",
+            "firerange 30",
+            "fireinterval 0.5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 101,
+          "state": "AttackTurret",
+          "text": "EngageTurret \"goalrange 15\" \"firerange 30\" \"fireinterval 0.5\"",
+          "args": [
+            "goalrange 15",
+            "firerange 30",
+            "fireinterval 0.5"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "HothBattleWaveCreature",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 11,
+          "state": "Base",
+          "text": "if HothBattleWaveCreature == 1 goto SnapToSpawn",
+          "args": [
+            "1",
+            "goto",
+            "SnapToSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 37,
+          "state": "GetLocator",
+          "text": "if HothBattleWaveCreature == 1 goto SnapToSpawn",
+          "args": [
+            "1",
+            "goto",
+            "SnapToSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 64,
+          "state": "GoToLocator",
+          "text": "if HothBattleWaveCreature == 1 goto SnapToSpawn",
+          "args": [
+            "1",
+            "goto",
+            "SnapToSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 119,
+          "state": "Retreat",
+          "text": "if HothBattleWaveCreature == 1 goto SnapToSpawn",
+          "args": [
+            "1",
+            "goto",
+            "SnapToSpawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_E/AI/RIDERSPEEDER.SCP",
+          "line": 139,
+          "state": "Retreat2",
+          "text": "if HothBattleWaveCreature == 1 goto SnapToSpawn",
+          "args": [
+            "1",
+            "goto",
+            "SnapToSpawn"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ObstaclePlaying",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/AI/PARTY.SCP",
+          "line": 102,
+          "state": "UpdateC3PO",
+          "text": "if ObstaclePlaying \"fan_1\" == 1 and",
+          "args": [
+            "fan_1",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/AI/PARTY.SCP",
+          "line": 105,
+          "state": "UpdateC3PO",
+          "text": "if ObstaclePlaying \"fan_2\" == 1 and",
+          "args": [
+            "fan_2",
+            "1",
+            "and"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "if",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/LEVEL2.SCP",
+          "line": 33,
+          "state": "FloorPhase1_Off",
+          "text": "if Message \"ElectricFloor\" == 2 goto FloorFinished",
+          "args": [
+            "Message",
+            "ElectricFloor",
+            "2",
+            "goto",
+            "FloorFinished"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "ObstacleTriggerSet",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/AI/LEVEL.SCP",
+          "line": 33,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=pad1\" \"trigger=pad2\" \"trigger=pad3\" \"trigger=pad4\" \"trigger=pad5\" \"trigger=pad6\" \"obstacle=biglift_down\"",
+          "args": [
+            "trigger=pad1",
+            "trigger=pad2",
+            "trigger=pad3",
+            "trigger=pad4",
+            "trigger=pad5",
+            "trigger=pad6",
+            "obstacle=biglift_down"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/AI/LEVEL.SCP",
+          "line": 36,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=pad1\" \"trigger=pad2\" \"trigger=pad3\" \"trigger=pad4\" \"trigger=pad5\" \"trigger=pad6\" \"obstacle=biglift_up\"",
+          "args": [
+            "trigger=pad1",
+            "trigger=pad2",
+            "trigger=pad3",
+            "trigger=pad4",
+            "trigger=pad5",
+            "trigger=pad6",
+            "obstacle=biglift_up"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/AI/LEVEL.SCP",
+          "line": 37,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=gate1a_pad1\" \"trigger=gate1a_pad2\" \"trigger=gate1a_pad3\" \"trigger=gate1b_pad1\" \"trigger=gate1b_pad2\" \"trigger=gate1b_pad3\" \"check_phase\" \"obstacle=gate1_allpadb\"",
+          "args": [
+            "trigger=gate1a_pad1",
+            "trigger=gate1a_pad2",
+            "trigger=gate1a_pad3",
+            "trigger=gate1b_pad1",
+            "trigger=gate1b_pad2",
+            "trigger=gate1b_pad3",
+            "check_phase",
+            "obstacle=gate1_allpadb"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/AI/LEVEL.SCP",
+          "line": 38,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=gate2a_pad1\" \"trigger=gate2a_pad2\" \"trigger=gate2b_pad1\" \"trigger=gate2b_pad2\" \"trigger=gate2b_pad3\" \"trigger=gate2b_pad4\" \"obstacle=gate2_padcheck\"",
+          "args": [
+            "trigger=gate2a_pad1",
+            "trigger=gate2a_pad2",
+            "trigger=gate2b_pad1",
+            "trigger=gate2b_pad2",
+            "trigger=gate2b_pad3",
+            "trigger=gate2b_pad4",
+            "obstacle=gate2_padcheck"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP",
+          "line": 23,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=ziphook_pad\" \"trigger=drop_build\" \"obstacle=dropzip_02a\"",
+          "args": [
+            "trigger=ziphook_pad",
+            "trigger=drop_build",
+            "obstacle=dropzip_02a"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/JABBASPALACE/JABBASPALACE_B/AI/LEVEL.SCP",
+          "line": 33,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=pad_3\" \"trigger=pad_4\" \"trigger=pad_5\" \"trigger=pad_6\" obstacle=\"prison_gate\"",
+          "args": [
+            "trigger=pad_3",
+            "trigger=pad_4",
+            "trigger=pad_5",
+            "trigger=pad_6",
+            "obstacle",
+            "prison_gate"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/LEVEL.SCP",
+          "line": 45,
+          "state": "Base",
+          "text": "ObstacleTriggerSet \"trigger=pad_1\" \"trigger=pad_2\" \"trigger=pad_3\" \"oXbstacle=\"",
+          "args": [
+            "trigger=pad_1",
+            "trigger=pad_2",
+            "trigger=pad_3",
+            "oXbstacle="
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "AddLocatorSet",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP",
+          "line": 25,
+          "state": "Base",
+          "text": "AddLocatorSet \"name=spawnstart\"",
+          "args": [
+            "name=spawnstart"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP",
+          "line": 26,
+          "state": "Base",
+          "text": "AddLocatorSet \"name=spawn\"",
+          "args": [
+            "name=spawn"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP",
+          "line": 27,
+          "state": "Base",
+          "text": "AddLocatorSet \"name=atstFight\"",
+          "args": [
+            "name=atstFight"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP",
+          "line": 28,
+          "state": "Base",
+          "text": "AddLocatorSet \"name=ewok\"",
+          "args": [
+            "name=ewok"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/AI/LEVEL.SCP",
+          "line": 29,
+          "state": "Base",
+          "text": "AddLocatorSet \"name=caravan_end\"",
+          "args": [
+            "name=caravan_end"
+          ]
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    },
+    {
+      "kind": "scp-action",
+      "name": "ThrowThermal",
+      "uses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SARLACCPIT/SARLACCPIT_A/AI/AI_BOBA.SCP",
+          "line": 128,
+          "state": "ThrowGranade",
+          "text": "ThrowThermal",
+          "args": []
+        }
+      ],
+      "adjacentCandidates": [],
+      "caveat": "No binding in the relevant registered PC table. This is not a claim of source reachability, invalidity, or a substitute spelling."
+    }
+  ],
+  "parserWarnings": {
+    "total": 241,
+    "byProblem": {
+      "Unclosed quote": 148,
+      "Unclosed block": 8,
+      "Unmatched end directive": 82,
+      "Unmatched closing brace": 3
+    },
+    "items": [
+      {
+        "source": "reverse-engineering/extracted/CHARS/BUZZDROID/BUZZDROID.TXT",
+        "line": 36,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/BUZZDROID/BUZZDROID.TXT",
+        "line": 42,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/BUZZDROID/BUZZDROID.TXT",
+        "line": 51,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/CAPTAINTARPALS/CAPTAINTARPALS.TXT",
+        "line": 109,
+        "problem": "Unclosed block",
+        "kind": "anim"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/CLONE/CLONE.TXT",
+        "line": 252,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/JARJARBINKS/JARJARBINKS.TXT",
+        "line": 137,
+        "problem": "Unclosed block",
+        "kind": "anim"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/KAMINOANDROID/KAMINOANDROID.TXT",
+        "line": 37,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/WEIRDO/BENKENOBI.TXT",
+        "line": 424,
+        "problem": "Unclosed block",
+        "kind": "anim"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/WEIRDO/WEIRDO1.TXT",
+        "line": 306,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/WEIRDO/WEIRDO2.TXT",
+        "line": 306,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/CHARS/ZAMWESELL/ZAMWESELL.TXT",
+        "line": 104,
+        "problem": "Unmatched end directive",
+        "expected": "anim"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/ANAKINSFLIGHT_A.TXT",
+        "line": 1633,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/ANAKINSFLIGHT_A.TXT",
+        "line": 1634,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/ANAKINSFLIGHT_B.TXT",
+        "line": 1677,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/ANAKINSFLIGHT_B.TXT",
+        "line": 1678,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.TXT",
+        "line": 1634,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.TXT",
+        "line": 1635,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/AREAS.TXT",
+        "line": 402,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
+        "line": 53,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
+        "line": 135,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
+        "line": 218,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
+        "line": 300,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
+        "line": 378,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/PKDROID.SCP",
+        "line": 1,
+        "problem": "Unclosed block",
+        "kind": "state"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/NEGOTIATIONS_C.TXT",
+        "line": 51,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/LEVEL.SCP",
+        "line": 76,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_B/RETAKE_B.TXT",
+        "line": 1750,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_B/RETAKE_B.TXT",
+        "line": 1751,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/RETAKE_G.TXT",
+        "line": 24,
+        "problem": "Unmatched end directive",
+        "expected": "door"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/DOOKU_B.TXT",
+        "line": 117,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/DOOKU_B.TXT",
+        "line": 176,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 254,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 261,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 269,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 276,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 284,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 291,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 299,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 306,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 314,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/DOOKU_C.TXT",
+        "line": 321,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/JEDI_B.TXT",
+        "line": 285,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/JEDI/JEDI_B/JEDI_B.TXT",
+        "line": 297,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 152,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 160,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 168,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 179,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 190,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 201,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 211,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 221,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 231,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 241,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 251,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 261,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 271,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 281,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 291,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 301,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 311,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 321,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 331,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 341,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 469,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 478,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 486,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 628,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 1022,
+        "problem": "Unmatched end directive",
+        "expected": "blowup"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/KAMINO_C.TXT",
+        "line": 1059,
+        "problem": "Unmatched end directive",
+        "expected": "blowup"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL1.SCP",
+        "line": 132,
+        "problem": "Unclosed block",
+        "kind": "state"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL1.SCP",
+        "line": 183,
+        "problem": "Unclosed block",
+        "kind": "state"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL1.SCP",
+        "line": 234,
+        "problem": "Unclosed block",
+        "kind": "state"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/KAMINO_D.TXT",
+        "line": 711,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/ATTACK.SCP",
+        "line": 13,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/KAMINO_E.TXT",
+        "line": 271,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/PURSUIT/PURSUIT_A/AI/AI_ZAM_LOCATORVERSION.SCP",
+        "line": 149,
+        "problem": "Unmatched closing brace"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/ANEWHOPE/ANEWHOPE_A/ANEWHOPE_A.TXT",
+        "line": 1756,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/CRUISER/CRUISER_B/CRUISER_B.TXT",
+        "line": 185,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/CRUISER/CRUISER_B/CRUISER_B.TXT",
+        "line": 191,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/CRUISER/CRUISER_E/CRUISER_E.TXT",
+        "line": 220,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/CRUISER/CRUISER_E/CRUISER_E.TXT",
+        "line": 347,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_A/AI/LEVEL.SCP",
+        "line": 72,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_B/AI/LANDING.SCP",
+        "line": 131,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/TEMPLE/TEMPLE_B/AI/TRAININGBALLS.SCP",
+        "line": 13,
+        "problem": "Unmatched closing brace"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/TEMPLE/TEMPLE_C/TEMPLE_C.TXT",
+        "line": 313,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/DEATHSTARBATTLE_A.TXT",
+        "line": 1630,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/DEATHSTARBATTLE_A.TXT",
+        "line": 1631,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/DEATHSTARBATTLE_B.TXT",
+        "line": 2603,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/DEATHSTARBATTLE_B.TXT",
+        "line": 2604,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/DEATHSTARBATTLE_B.TXT",
+        "line": 2632,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_B/DEATHSTARBATTLE_B.TXT",
+        "line": 2633,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_B/AI/LEVEL.SCP",
+        "line": 41,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_C/AI/MELEEATTACK.SCP",
+        "line": 24,
+        "problem": "Unmatched closing brace"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/MOSEISLEY_A.TXT",
+        "line": 974,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/MOSEISLEY_A.TXT",
+        "line": 1002,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_A/TATOOINE_A.TXT",
+        "line": 474,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_A/TATOOINE_A.TXT",
+        "line": 482,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_A/TATOOINE_A.TXT",
+        "line": 494,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_A/TATOOINE_A.TXT",
+        "line": 1782,
+        "problem": "Unmatched end directive",
+        "expected": "buildit"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_A/TATOOINE_A.TXT",
+        "line": 1861,
+        "problem": "Unmatched end directive",
+        "expected": "buildit"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 948,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 1660,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 1717,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 1773,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 1829,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 2256,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 2264,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B.TXT",
+        "line": 2269,
+        "problem": "Unmatched end directive",
+        "expected": "blowup"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 897,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 1428,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 1434,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 1442,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 1448,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 1456,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_B/TATOOINE_B2302.TXT",
+        "line": 1462,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_D/TATOOINE_D.TXT",
+        "line": 1156,
+        "problem": "Unmatched end directive",
+        "expected": "buildit"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_E/TATOOINE_E.TXT",
+        "line": 638,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_E/TATOOINE_E.TXT",
+        "line": 651,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_E/TATOOINE_E.TXT",
+        "line": 826,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_E/TATOOINE_E.TXT",
+        "line": 882,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_E/TATOOINE_E.TXT",
+        "line": 893,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_E/TATOOINE_E.TXT",
+        "line": 915,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_A/ASTEROIDCHASE_A.TXT",
+        "line": 226,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_A/ASTEROIDCHASE_A.TXT",
+        "line": 227,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_B/ASTEROIDCHASE_B.TXT",
+        "line": 145,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_B/ASTEROIDCHASE_B.TXT",
+        "line": 146,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_C/ASTEROIDCHASE_C.TXT",
+        "line": 142,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/ASTEROIDCHASE/ASTEROIDCHASE_C/ASTEROIDCHASE_C.TXT",
+        "line": 143,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYESCAPE/CLOUDCITYESCAPE_C/CLOUDCITYESCAPE_C.TXT",
+        "line": 207,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYESCAPE/CLOUDCITYESCAPE_C/CLOUDCITYESCAPE_C.TXT",
+        "line": 330,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/CLOUDCITYTRAP_A.TXT",
+        "line": 486,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/CLOUDCITYTRAP_A.TXT",
+        "line": 491,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5VEHICLEBONUS/E5VEHICLEBONUS_A/E5VEHICLEBONUS_A.TXT",
+        "line": 174,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5VEHICLEBONUS/E5VEHICLEBONUS_A/E5VEHICLEBONUS_A.TXT",
+        "line": 175,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_A/AI/LEVEL1.SCP",
+        "line": 18,
+        "problem": "Unclosed block",
+        "kind": "state"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_A/HOTHBATTLE_A.TXT",
+        "line": 211,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_A/HOTHBATTLE_A.TXT",
+        "line": 212,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_C/HOTHBATTLE_C.TXT",
+        "line": 425,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHBATTLE/HOTHBATTLE_C/HOTHBATTLE_C.TXT",
+        "line": 426,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 815,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 832,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 846,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 860,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 874,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 888,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 902,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 916,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 930,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 944,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 958,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 972,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 986,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 1000,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 1014,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_A/HOTHESCAPE_A.TXT",
+        "line": 1028,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 934,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 945,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 959,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 973,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 987,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1001,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1015,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1029,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1043,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1057,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1071,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1085,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1099,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1113,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1127,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1141,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1155,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1169,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1183,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1197,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1211,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 1225,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_B/HOTHESCAPE_B.TXT",
+        "line": 682,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1217,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1235,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1249,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1264,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1278,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1292,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1306,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1320,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1334,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1348,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/HOTHESCAPE/HOTHESCAPE_C/HOTHESCAPE_C.TXT",
+        "line": 1362,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_B/DEATHSTAR2BATTLE_B.TXT",
+        "line": 1108,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_B/DEATHSTAR2BATTLE_B.TXT",
+        "line": 1109,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_C/AI/LEVEL1.SCP",
+        "line": 22,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_C/DEATHSTAR2BATTLE_C.TXT",
+        "line": 852,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_C/DEATHSTAR2BATTLE_C.TXT",
+        "line": 853,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_D/DEATHSTAR2BATTLE_D.TXT",
+        "line": 778,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_D/DEATHSTAR2BATTLE_D.TXT",
+        "line": 779,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/EMPERORFIGHT_A.TXT",
+        "line": 1833,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/EMPERORFIGHT_A.TXT",
+        "line": 1838,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/EMPERORFIGHT_A.TXT",
+        "line": 1206,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/EMPERORFIGHT_A.TXT",
+        "line": 1443,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_B/EMPERORFIGHT_B.TXT",
+        "line": 250,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_B/EMPERORFIGHT_B.TXT",
+        "line": 254,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_B/EMPERORFIGHT_B.TXT",
+        "line": 608,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_B/EMPERORFIGHT_B.TXT",
+        "line": 609,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/ENDORBATTLE_A.TXT",
+        "line": 1266,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/ENDORBATTLE_A.TXT",
+        "line": 1271,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/ENDORBATTLE_A.TXT",
+        "line": 1406,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_A/ENDORBATTLE_A.TXT",
+        "line": 1412,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/ENDORBATTLE_B.TXT",
+        "line": 1279,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/ENDORBATTLE_B.TXT",
+        "line": 1319,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/ENDORBATTLE_B.TXT",
+        "line": 1323,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/ENDORBATTLE_B.TXT",
+        "line": 1330,
+        "problem": "Unmatched end directive",
+        "expected": "blowup"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_B/ENDORBATTLE_B.TXT",
+        "line": 1346,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/ENDORBATTLE_C.TXT",
+        "line": 853,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_C/ENDORBATTLE_C.TXT",
+        "line": 888,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_D/ENDORBATTLE_D.TXT",
+        "line": 981,
+        "problem": "Unmatched end directive",
+        "expected": "obstacle"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/SPEEDERCHASE_A.TXT",
+        "line": 948,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 348,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 353,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 361,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 366,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 531,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 537,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 616,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 621,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 627,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 632,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 821,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 826,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 832,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 837,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1158,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1164,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1169,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1175,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1180,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1463,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1468,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1474,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/LEVELS.TXT",
+        "line": 1479,
+        "problem": "Unclosed quote"
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/MAP/MAP/MAP.TXT",
+        "line": 980,
+        "problem": "Unclosed quote"
+      }
+    ],
+    "interpretation": "Warnings come from the source-preserving catalog parser, not the native engine. Original source lines are preserved; malformed quotes, duplicate/legacy directives and permissive native parsing can differ."
+  },
+  "remaining": [
+    "Inter-script transitions have bounded native verification; full gameplay action behavior and dynamic condition operands remain open. See gameplay-command-semantic-coverage.json for every shipped command name.",
+    "GIT timer/random callbacks, monitored conditions and Loop resets are verified separately; NuSpecial callbacks and saved graph-state restoration are verified in gameplay-reconstruction.json; other physical types and source Collapse loading remain open.",
+    "Broad adjacent-pointer scan candidates are retained separately from registered dispatch proof.",
+    "Malformed or obsolete-looking source lines are not rewritten."
+  ]
+}

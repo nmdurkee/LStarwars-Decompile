@@ -1,0 +1,38 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original PC x86 functions with actual decoded TER triangles and synthetic in-memory query state. No game, OS API, callback replacement, or original modification.",
+  "checks": 7942,
+  "categories": {
+    "real-ter-triangle-ray-hit": 2114,
+    "real-ter-triangle-ray-fraction": 2114,
+    "real-ter-triangle-normal": 2114,
+    "affine-point": 400,
+    "homogeneous-direction-no-translation": 400,
+    "surface-deflection": 200,
+    "surface-deflection-scaled-y": 200,
+    "unobstructed-position-commit": 200,
+    "unobstructed-ground-flag": 200
+  },
+  "mismatches": 0,
+  "errors": [],
+  "terrainCarriersSampled": 267,
+  "functions": [
+    "0x674490",
+    "0x5b30a0",
+    "0x5c03e0",
+    "0x677fb0",
+    "0x678010",
+    "0x6786f0"
+  ],
+  "contracts": {
+    "triangle": "Interior front-to-back zero-radius ray hits first triangles; no edge/capsule or second-triangle assertion. Triangles are sampled from every terrain carrier containing usable faces.",
+    "transform": "worldPoint[k]=x*M[k]+y*M[4+k]+z*M[8+k]+M[12+k]. Homogeneous w=0 excludes translation, including in-place output.",
+    "slide": "out=v+n*(-dot(v,n)+0.0003). Variant0x678010 scales only the added Y term by global0x2947c00.",
+    "unobstructed": "Position becomes (queryPosition+queryMovement), with Y multiplied by vertical stretch then radius*stretch removed. Ground-contact flag clears."
+  },
+  "limits": [
+    "These are bounded triangle, transform, deflection and no-hit response checks. Full swept ellipsoid broadphase/edge handling/moving-platform contacts remain incompletely tested.",
+    "Runtime query fixtures are constructed from decoded TER fields; original file-loader execution is not implied.",
+    "Native coordinates are preserved; no physical meter scale established."
+  ]
+}

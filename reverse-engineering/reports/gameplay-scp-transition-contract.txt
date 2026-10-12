@@ -1,0 +1,83 @@
+PC SCP STATE AND INTERRUPT CONTRACT
+
+1899 original-PC checks passed; zero mismatches.
+
+order
+Update order is packet timer increment; active reference-guard validation; automatic return when current referenced script is idle; pending or initial state entry; action execution; new reference scan; timed transition; ordinary state conditions. A new interrupt suppresses the current state deadline/condition phase. Completed actions can advance in the same update; yielding actions remain current.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:27 — param_4[9] = (int)((float)param_4[9] + param_5);
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:173 — iVar6 = FUN_0052caf0(param_1,param_3);
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:175 — fVar1 = (float)puVar3[0x2e];
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:185 — if ((puVar3[2] != 0) && (iVar6 = FUN_0052c880(param_1,puVar3[2] + 8,param_3,puVar3), iVar6 != 0)
+
+references
+At most four references are active. The current script reference list is scanned before the current state reference list. Each list is ordered; the first reference with a passing/empty guard and a referenced idle-state condition targeting a different state is taken. The reference is pushed and its target script/state is bound. Only one new reference is taken per update.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52caf0.c:16 — (*(int *)(unaff_ESI + 100) < 4)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_52caf0.c:17 — for (iVar1 = FUN_004f1440(*(int *)(unaff_ESI + 4) + 0x40); iVar1 != 0;
+  reverse-engineering/decompiled/corpus-expanded/FUN_52caf0.c:21 — iVar2 = FUN_004f1440(iVar1 + 0x1c);
+  reverse-engineering/decompiled/corpus-expanded/FUN_52caf0.c:44 — *(int *)(unaff_ESI + 0x54 + *(int *)(unaff_ESI + 100) * 4) = iVar1;
+  reverse-engineering/decompiled/corpus-expanded/FUN_52caf0.c:46 — FUN_00514640(param_1,param_2);
+
+unwind
+Active guards are checked from oldest to newest. The first failed guard removes its reference and all younger frames, then binds the owner script at that reference's ReturnState. Reaching the current referenced script's idle state, with no pending state, pops one frame at the next update. This is a return-state binding, not resumption of a suspended action pointer or saved local variables.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:34 — puVar3[0x19] = iVar6;
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:42 — uVar5 = *(undefined4 *)(iVar2 + 0x14);
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:60 — puVar3[0x19] = iVar6 + -1;
+
+binding
+Binding sets the current script, clears pending state, loads four script-default parameters, enters an explicit state or Base, and clears timed-state fields. Character configuration overrides are applied only when a configuration record is supplied: its values at +100,+104,+108,+112 replace defaults when mask+0x48 has bits 1,2,3,4 respectively (values 2,4,8,16). Returning to the base script uses the creature configuration; returning to an intermediate reference script uses its defaults.
+  reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:39 — piVar5 = (int *)(param_8 + 0x1c);
+  reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:50 — piVar3 = (int *)(param_4 + 100);
+  reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:62 — if (((uint)uVar8 & *(uint *)(param_4 + 0x48)) == 0 &&
+  reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:90 — piVar2[0x2e] = 0;
+
+stateEntry
+State entry clears pending/current action, marks condition bank 0 for refresh, and selects the first action with its first-call flag. Blocked-message word packet+0xb2 is cleared unless packet flag 4 was set; that flag is consumed on entry. A condition transition at the end of an update initializes its target action but does not execute that action until the next update.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5145a0.c:12 — *(undefined2 *)(param_1 + 0xb2) = 0;
+  reverse-engineering/decompiled/corpus-expanded/FUN_5145a0.c:14 — *(uint *)(param_1 + 0x50) = *(uint *)(param_1 + 0x50) & 0xfffffffb;
+  reverse-engineering/decompiled/corpus-expanded/FUN_5145a0.c:19 — FUN_00514550();
+  reverse-engineering/decompiled/corpus-expanded/FUN_514550.c:23 — *(uint *)(unaff_ESI + 0x50) = *(uint *)(unaff_ESI + 0x50) | 1;
+
+SetState
+On its first call, SetState finds the first case-insensitive state-name match in the current script, queues it as pending, and optionally sets KeepBlockedMessages. The action returns zero, so the queued state is entered on the next update. End-of-update ordinary conditions or a timed transition can override that queued state. A missing target queues null; this PC build's error-report routines are stubs, and the command continues yielding.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5157d0.c:17 — uVar1 = FUN_00512fc0(*param_4,*(undefined4 *)(param_2 + 4));
+  reverse-engineering/decompiled/corpus-expanded/FUN_5157d0.c:23 — iVar2 = FUN_004f8b10(param_4[iVar3],"KeepBlockedMessages");
+  reverse-engineering/decompiled/corpus-expanded/FUN_5157d0.c:34 — return 0;
+  reverse-engineering/decompiled/corpus-expanded/FUN_512fc0.c:16 — iVar2 = FUN_004f8b10(param_1,*(undefined4 *)(iVar1 + 0x18));
+
+deadline
+A positive deadline subtracts delta. Only a crossing to <=0 with a non-null target enters the timed target and clears its target/marker; this takes priority over ordinary state conditions. An initially zero or negative deadline does not fire. Script binding clears the deadline independently.
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:179 — if (((0.0 < fVar1) && ((float)puVar3[0x2e] <= 0.0)) && (puVar3[0x2f] != 0)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c:180 — FUN_005145a0(puVar3,puVar3[0x2f]);
+
+Idle
+Entry always yields and does not consume the entry-frame delta. frames=N is truncated and clamped to the byte range 0..255; positive counts finish after that many later updates. Zero/negative frame counts do not finish by frame countdown. Positive second durations decrement on later updates, clamp to zero, and complete on crossing. Zero/negative time with no positive frame count yields indefinitely. Random min/max duration uses one float-RNG draw only when min<max and no explicit nonzero remaining duration was set.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5159a0.c:25 — if (param_6 == 0) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_5159a0.c:77 — if (0xff < local_4) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_5159a0.c:87 — if ((*(float *)(param_2 + 0x9c) == 0.0) && (local_8 < local_c)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_5159a0.c:88 — fVar5 = (float10)FUN_005b9dd0();
+
+ResetTimer
+The action completes immediately. On entry, no arguments set packet timer to zero; time=value sets it to that evaluated value. If either min or max is nonzero, it draws r1 and r2 independently and sets (1-r1)*min + r2*max. This differs from a single uniform interpolation between min and max. Non-first calls preserve the existing timer.
+  reverse-engineering/decompiled/corpus-expanded/FUN_515890.c:22 — if (param_6 == 0) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_515890.c:34 — fVar4 = (float10)FUN_00514920(param_3,param_2,iVar2 + 5);
+  reverse-engineering/decompiled/corpus-expanded/FUN_515890.c:51 — fVar5 = (float10)FUN_005b9dd0();
+  reverse-engineering/decompiled/corpus-expanded/FUN_515890.c:53 — (float)(fVar5 * (float10)local_c +
+
+floatRandom
+SCP Idle/ResetTimer use float RNG 0x5b9dd0 with state at 0x95e5d4: state=state*0x19660d+0x3c6ef35f modulo 2^32, then the low 23 bits divided by 2^23. This state is distinct from GIT QRAND at 0x80253c and audio-group selection state at 0x810364.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b9dd0.c:10 — DAT_0095e5d4 = DAT_0095e5d4 * 0x19660d + 0x3c6ef35f;
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b9dd0.c:11 — return (float10)((float)(DAT_0095e5d4 & 0x7fffff | 0x3f800000) - 1.0);
+
+{"scripts":859,"states":4523,"references":214,"referenceLists":{"state-local":142,"script-global":72},"catalogTransitions":6799}
+Source=Global/Local in ReferenceScript selects the script library. It is not the runtime list priority: containing state braces determine state-local versus script-global references. Catalog transitions/source uses are not execution or reachability proof.
+
+Portable source: reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs
+Compiles with C# 5; compiled execution/differential comparison is pending because Windows denied new managed test executables.
+
+Command semantic ledger: {"dispatch-only":{"names":371,"sourceUses":11710},"bounded-native-contract":{"names":25,"sourceUses":8899},"unbound-name":{"names":38,"sourceUses":227}}
+
+Remaining
+Reference fixtures use explicit target/return pointers, while SetState uses actual native case-insensitive name lookup; source script text loading remains separate.
+Mask-based character parameter overrides are verified on synthetic configuration records; their connection to every authored configuration directive is not established here.
+Interrupt callbacks with arbitrary gameplay side effects, dynamic condition operands and all action command implementations remain open.
+Idle and ResetTimer scalar/time/frame/random variants use bounded ordinary numeric tokens; arbitrary expression evaluation, malformed arguments and all floating-point bit patterns are not covered.

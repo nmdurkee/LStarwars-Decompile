@@ -1,0 +1,54 @@
+PC VISIBILITY COMMAND CONTRACT
+
+2179 original-PC checks, zero mismatches; 1899 shipped occurrences.
+Unmodified PC scene/gizmo command functions, original scene/type/name lookup, native visibility wrapper and real NuSpecial animation/scene callbacks. Code hooks observe arguments only; no function replacement. Synthetic finite registries and scene records.
+
+sceneCommands
+GIT SetVisibility and SCP SetVisibility select scene instances by name=. Each name token immediately overwrites the selected handle, including failed lookup; only the final selection is changed. Matching is case-insensitive. A FALSE substring in a token without name= latches visibility off; later TRUE does not turn it back on. SCP runs only on first call and always returns 1. GIT has no entry-call gate.
+reverse-engineering/decompiled/corpus-expanded/FUN_464480.c:24 iVar1 = FUN_004f8a70(*(undefined4 *)(param_3 + iVar3 * 4),"name=");
+reverse-engineering/decompiled/corpus-expanded/FUN_464480.c:26 iVar1 = FUN_004f8a70(*(undefined4 *)(param_3 + iVar3 * 4),"FALSE");
+reverse-engineering/decompiled/corpus-expanded/FUN_464480.c:32 FUN_005cf5b0(*(undefined4 *)(PTR_DAT_00802c54 + 0x13c),&local_c,iVar1 + 5,1);
+reverse-engineering/decompiled/corpus-expanded/FUN_44cd40.c:21 if (in_stack_00000018 == 0) {
+
+sceneLookup
+Current scene is world+0x13c. With scene+0x110 null, search static records using count+0x24, base+0x28, stride0x4c, name pointer+0x44. Otherwise search dynamic container+0x6c count/+0x70 base, stride0xd0, name pointer+0xb4. Both choose the first case-insensitive match. The dynamic branch has a separate external fallback when global 0x97388c is nonzero; that fallback is not established here.
+reverse-engineering/decompiled/corpus-expanded/FUN_5cf5b0.c:17 if (*(int *)(param_1 + 0x110) != 0) {
+reverse-engineering/decompiled/corpus-expanded/FUN_5cf5b0.c:24 iVar2 = FUN_004f8b10(param_3,*(undefined4 *)(iVar4 + 0x44));
+reverse-engineering/decompiled/corpus-expanded/FUN_5cf510.c:21 iVar1 = FUN_004f8b10(param_3,*(undefined4 *)(iVar2 + 0xb4));
+reverse-engineering/decompiled/corpus-expanded/FUN_5cf510.c:33 if ((param_4 != 0) && (DAT_0097388c != 0)) {
+
+sceneFlags
+Static visibility changes instance flag0x200 and, if bounds exists, only bounds+0x44 bit0. Dynamic visibility changes flags+0xb8 bits0x202 together. If dynamic container byte+0x76 bit0 is set, it also changes bit0 in auxiliary byte array at container+0x48 indexed by instance+0xc0. Other bits are preserved. Fixture inputs are boolean; arbitrary nonboolean call values are outside the portable API.
+reverse-engineering/decompiled/corpus-expanded/FUN_5cfc00.c:23 *puVar1 = *puVar1 | 0x200;
+reverse-engineering/decompiled/corpus-expanded/FUN_5cfc00.c:41 *(uint *)(iVar2 + 0xb8) = *(uint *)(iVar2 + 0xb8) | 0x202;
+reverse-engineering/decompiled/corpus-expanded/FUN_5cfc00.c:35 if ((*(byte *)(*(int *)(*param_1 + 0x110) + 0x76) & 1) != 0) {
+reverse-engineering/decompiled/corpus-expanded/FUN_5cfc00.c:22 puVar1 = (uint *)(param_1[1] + 0x48);
+
+gizmoGit
+GIT SetGizmoVisibility scans name= before type= before a FALSE substring. The last name and type win; false latches. Type lookup is case-sensitive. Missing/unknown type resolves to -1 and searches all registered types in order. Object names are matched case-insensitively within type order, then handle order. Only the first match is changed.
+reverse-engineering/decompiled/corpus-expanded/FUN_464530.c:24 iVar1 = FUN_004f8a70(*(undefined4 *)(param_3 + iVar4 * 4),"type=");
+reverse-engineering/decompiled/corpus-expanded/FUN_464530.c:32 uVar2 = FUN_00559e20(*param_1,iVar1 + 5);
+reverse-engineering/decompiled/corpus-expanded/FUN_464530.c:40 if ((iVar3 != 0) && (iVar3 = FUN_0055a020(*param_1,uVar2,iVar3), iVar3 != 0)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_559e20.c:18 iVar1 = FUN_004f20f0(DAT_0093b268[2] + iVar3,param_2);
+reverse-engineering/decompiled/corpus-expanded/FUN_55a020.c:35 iVar8 = FUN_004f8b10(uVar1,param_3);
+
+gizmoScript
+SCP GizmoSetVisibility always returns 1 and acts only on first call. Each name= token immediately selects through an all-type name search in world+0x2ac8, including clearing the selection on failure. It recognizes FALSE only as a whole-token case-insensitive match. Unlike the GIT command, a token containing prefixFALSEsuffix is ignored.
+reverse-engineering/decompiled/corpus-expanded/FUN_456350.c:20 if ((in_stack_00000018 != 0) && (iVar3 = 0, 0 < in_stack_00000014)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_456350.c:24 iVar1 = FUN_004f8b10(*(undefined4 *)(in_stack_00000010 + iVar3 * 4),"FALSE");
+reverse-engineering/decompiled/corpus-expanded/FUN_456350.c:31 iVar2 = FUN_0055a020(*(undefined4 *)(PTR_DAT_00802c54 + 0x2ac8),0xffffffff,iVar1 + iVar2);
+
+callback
+Both gizmo commands call original wrapper 0x55a2b0. A type must provide a visibility callback. Hiding first invokes its activation callback with false, then its visibility callback; showing invokes visibility without activation. Native fixtures use actual NuSpecial callbacks, stop its animation when hidden, and update the static scene/bounds flags. Other type-specific effects remain callbacks.
+reverse-engineering/decompiled/corpus-expanded/FUN_55a2b0.c:15 (iVar2 = (uint)*(byte *)(param_2 + 6) * 0x9c + DAT_0093b268[2], *(int *)(iVar2 + 0x5c) != 0)))
+reverse-engineering/decompiled/corpus-expanded/FUN_55a2b0.c:17 if ((param_3 == 0) && (pcVar1 = *(code **)(iVar2 + 0x54), pcVar1 != (code *)0x0)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_5ae450.c:19 FUN_005a1170(*(undefined4 *)(iVar1 + 0x20));
+reverse-engineering/decompiled/corpus-expanded/FUN_5ae520.c:11 FUN_005a15e0();
+
+Core and comparison harness compile with C# 5. Managed execution/differential comparison pending.
+{"sourceUses":1899,"matched":1813,"unmatched":86,"sceneScopes":89,"gizmoScopes":67}
+
+Synthetic category labels for authored type= arguments use NuSpecial callbacks to validate command dispatch; distinct GizForce/GizObstacle/etc physical implementations are not validated.
+Dynamic scene fallback global 0x97388c is zero; external named fallback function 0x5c1300 remains outside scope.
+Static scene and dynamic scene branches are tested separately, with at most three name entries, first duplicate match and current scene binding.
+Compiled C# differential execution pending.

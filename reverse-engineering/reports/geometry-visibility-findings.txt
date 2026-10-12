@@ -1,0 +1,120 @@
+ORIGINAL PC SCENE REGISTRATION, VISIBILITY, LOD AND SPECIAL SUBMISSION
+
+Native bridge and corrected ABI
+Main render production4927f0 calls55f650 and later57d0a0. Both can pass the
+world scene at world+0x13c to601df0. Original601df0 assembly reads[argument+110],
+replaces its stack argument, and tail-jumps5f5830. Its decompilation omits this
+dereference; the recovered edge is assembly- and original-execution-backed.
+5f5830 receives a display scene, evaluates visibility via5f3c80, chooses normal
+5f5380 or shadow5f0ac0 using current-context capture pointer0x9718dc, marks
+scene flags bit4 after clipping, then dispatches visible named specials5f0f00.
+Transform generation603960 is empty in this PC build.
+
+Normal visibility/LOD consumer5f5380
+Scene fields: clip count+10,12-byte clip records+14, u16 item counts+18,
+squared LOD thresholds+28, far limits+2c, two clip-bit buffers+30/+34,
+32-byte bounds+44, instance flags+48, material-bit buffers+58/+5c,
+alpha scratch pointer+68, flags/buffer parity+74. Bit15 selects buffer0/1.
+Bounds have center float3+0, extent float3+16. One bound and visibility flag
+exists per instance; one or more clip records form each LOD group, ending
+at a zero threshold. This distinction matches all serialized scene tables.
+
+Visibility context instance-tree bits+24 first gate an instance. If context
+portal marker+18 is nonzero and global portals0x80ba58 is enabled, this gate
+is REPLACED by portal-bit+1c, unless instance flag8 bypasses the portal test.
+Instance visible bit1 must also be set. The tested replacement behavior means
+tree and portal bitsets must not be naively ANDed together.
+
+Distance uses camera position globals0x973718/1c/20 minus bound center.
+Each delta is float32; squared sum is evaluated by original x87 and stored.
+LOD advances while distanceSquared < threshold; equality stays at the current
+LOD. After processing, the loop skips to group-ending zero then next instance.
+Far limit comes from selected clip+2c. If fade table+0c exists, instance flag40
+is set, and end>start, fade end replaces that far limit. Frustum5d69a0 receives
+bound center, extent and limit. Nonzero result ORs all selected clip material
+IDs into current material bits and its two-bit result into current clip bits.
+The optional debug-occlusion branch is separate and was disabled in fixtures.
+
+Distance fade5df7b0
+Forward end>start:1 at/before start squared, otherwise max(0,(end-sqrt(d))/(end-start)).
+Reverse end<=start:0 at/before end squared, otherwise min(1,(sqrt(d)-end)/(start-end)).
+The original sqrt helper5c0240 returns float32 before division. Threshold squares
+are compared at native arithmetic precision, not artificially rounded first.
+At equal endpoints and distance just above the squared threshold, sqrt can
+round back to the endpoint:0/0 returns NaN. This was observed directly for
+start=end=4 and float32 distanceSquared16.000001907348633. It is preserved in
+recovered source and marked explicitly in JSON, not silently clamped to1.
+Alpha clamp603ad0 preserves NaN and negative zero; only values<0 become0 and
+values>1 become1. Decompiled ordered comparisons alone obscured this edge.
+
+Clip state to actual command controls
+5df910 compares current/previous32-bit clip words,16 objects per word. Unchanged
+words retain existing command bytes. Changed words set both each referenced
+mesh item and its preceding transform to byte+1 control0 for result0, or3 for
+result1/2/3. This directly connects culling bits to interpreter5e0f90 dispatch.
+5df880 applies per-clip alpha through603ad0 to enabled opcode82 items.
+
+Registration and ordering
+5ded80 appends scene to registry0x9739bc/count0x9739b8 (assertion at256), calls
+scene reset5ddd10, applies wrapped priorityBias0x973ff4<<17 to each36-byte sort
+record, then inserts with5de060. Keys compare signed ascending; equal keys
+insert BEFORE existing entries. It prepends scene+8c UV set to0x973fa8, clears
+scene flags0x2010, and clears alpha scratch+68.5dee40 removes that scene's sort
+records and UV set, and compacts registry while retaining other scene order.
+Fixtures isolate registration from reset/helper side effects and do not claim
+duplicate registration or overflow behavior is valid.
+
+Named special dispatch
+5f5830 reads208-byte specials from scene+70/count+6c. Visible is special flag2
+at+b8. Scene byte+76 bit1 or global0x973fd0 suppresses automatic special draws.
+Portal filtering can use instance index special+c0 and instance flag8 bypass.
+Matrix pointer special+c4 is passed when neither0 nor-1; otherwise special+40
+draw matrix is used. For animated specials+c4 points at IABL whose leading
+matrix supplies this view. Original test covers these fallback values and
+normal/shadow dispatch selection. Special consumer5f0f00 subsequently performs
+LOD/material substitution and feeds dynamic geometry builder5e0530; that full
+consumer and GHG layer path remain unimplemented CPU/graphics work.
+
+Verification and scope
+geometry-visibility-native-validation.json:2,025 assertions pass;432 normal
+visibility/LOD/fade fixtures;24 paired clip-patch cases;8 registration/removal
+sequences;86 direct fade boundary cases;11 alpha clamps;48 scene-wrapper/special
+dispatch cases. Maximum finite fade discrepancy is0. Original instructions
+execute; frustum results are explicit controlled0/1/2. Portal/tree evaluation,
+geometric frustum math, shadow extrusion and downstream special geometry draws
+are not asserted. No original process or graphics device ran.
+
+reconstructed/geometry/SceneSubmission.cs compiles beside MaterialUv.cs and
+projects selected CPU contracts into dependency-free C#. Source mapping and
+coverage boundaries are in geometry-recovered-source.json. Compiled execution
+remains pending because ordinary generated harness launch is denied by Windows.
+These independent native/model fixtures do not establish CLR runtime equivalence.
+
+Reproduce from workspace root
+python reverse-engineering/tools/geometry-visibility-native.py
+python reverse-engineering/tools/geometry-render-evidence.py
+
+Prepared-plane clipping follow-up
+geometry-clipping-findings.txt and the two native validation reports close the
+previously supplied frustum oracle at its CPU predicate boundary:82,204 original
+frustum cases and18,721 room-containment cases pass. All403 rooms are covered.
+40,470 original portal-facing/polygon tests cover all326 portals. Original
+plane-block restoration passes82,044 checks. Shared exact64-significand x87
+arithmetic preserves authored near-plane behavior that double arithmetic loses.
+Clipping.cs provides bounded prepared-plane frustum,room containment and portal
+classification source. It shares the recovered FiniteX87 arithmetic source,
+compiles successfully,and has explicit sourceFile/native-address mappings.
+Compiled runtime comparison remains pending OS denial. Camera production,
+room selection,child volumes,recursive/grid/tree visibility propagation and
+full shadow/GHG packet generation remain gaps; GPU equivalence is unclaimed.
+
+Room-selection follow-up
+geometry-room-selection-findings.txt documents the exact0x5d92b0 scan ordering,
+old-candidate priorities,first-shared-portal side and six-slot native stack bound.
+12,869 authored point choices across all403 rooms/326 portals plus2,427 synthetic
+and null cases pass.1,200 original0x5eeb30 entry cases verify selection-point
+override,stores,flag clearing and recursive-call arguments with explicit
+peripheral adapters. PortalSelection.cs and its ordinary harness compile;
+15,296 managed cases are prepared,execution pending. Room selection is now
+recovered within that bound. Child volumes,recursive visibility propagation,
+camera/grid/tree production,shadow/GHG packets and GPU equivalence remain gaps.

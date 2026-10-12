@@ -1,0 +1,37 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "caseFile": "reports\\animation-portable-cases.bin",
+  "caseFileSha256": "5156b634511dee589c692b190650d8d5b53a95cc2a35ad505261eae25bdd4afe",
+  "objectImageSize": 4312,
+  "counts": {
+    "1": 700,
+    "2": 9352,
+    "3": 3000,
+    "4": 2400,
+    "5": 1400,
+    "6": 800,
+    "7": 2400
+  },
+  "total": 20052,
+  "failures": [],
+  "typeNames": {
+    "1": "ResetPlayer resetMoves=0",
+    "2": "TakeHitCode timed death/stun progression",
+    "3": "Movement animation selection",
+    "4": "Jump animation selection",
+    "5": "Block animation selection",
+    "6": "Block combat jump initialization",
+    "7": "Animation duration"
+  },
+  "frontier": {
+    "address": "0x49c1c1",
+    "operation": "Original call to KillParts0x437770",
+    "behavior": "Stop before call; record kill mode and all object changes. No replacement callback, cleanup, drops or death side effect is executed by this suite.",
+    "arcadeGlobal": "0x93b324=0; arcade score callback not covered"
+  },
+  "limits": [
+    "Full respawn placement/resetMoves=1 requires terrain/socket/portal and larger reset-state integration, not covered.",
+    "Death input clips use synthetic legacy duration headers and exact PC model/action pointer layout.",
+    "Finite scalar fixtures only; pathological NaNs or invalid pointer state are outside contract."
+  ]
+}

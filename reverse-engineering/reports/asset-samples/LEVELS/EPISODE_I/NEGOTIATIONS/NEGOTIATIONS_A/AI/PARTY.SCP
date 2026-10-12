@@ -1,0 +1,28 @@
+ReferenceScript {
+	Script=GeneralParty
+	Source=Global
+	ReturnState=Base
+	Conditions {
+		if Message "DoneFirstBit" == 1
+	}
+}
+
+state Base {
+	Conditions {
+		if MissionMode == 0 and
+		if GotOpponent == 1 and
+		if Message "DoneFirstBit" == 0 goto HangBack
+	}
+	Actions {	
+		FollowPlayer "1"
+	}
+}
+
+state HangBack {
+	Conditions {
+		if GotOpponent == 0 goto Base
+	}
+	Actions {	
+		GoToLocator "name" "Hang_Back" 
+	}
+}

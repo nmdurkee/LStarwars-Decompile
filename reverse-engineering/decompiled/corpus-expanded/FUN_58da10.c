@@ -1,0 +1,55 @@
+/* Ghidra pseudocode, not original source.
+ * ev_9931c233bc23f2b366e36cd20edde6ea49582f2b0a176997d8924d6b396dfde7
+ * Entry: 0x58da10; label: FUN_0058da10
+ * Boundary hypotheses: reports/native-boundary-seeds.json.
+ */
+
+void FUN_0058da10(int param_1)
+
+{
+  float fVar1;
+  int iVar2;
+  int iVar3;
+  float10 fVar4;
+  float fStack_c;
+  float fStack_8;
+  
+  iVar3 = -1;
+  if (DAT_00802864 != -1) {
+    if (DAT_0095558c != (code *)0x0) {
+      iVar3 = (*DAT_0095558c)(param_1);
+    }
+    iVar2 = *(int *)(*(int *)(param_1 + 0x50) + 0xc);
+    if (*(int *)(iVar2 + iVar3 * 4) != 0) {
+      fVar4 = (float10)FUN_005ca470(*(undefined4 *)(iVar2 + iVar3 * 4));
+      fVar1 = (float)fVar4;
+      fVar4 = (float10)FUN_0062f1f0(*(undefined4 *)(param_1 + 0x50),iVar3,0);
+      fStack_c = (float)fVar4;
+      if (1.0 <= fStack_c) {
+        if (fStack_c < 1.0) goto LAB_0058db30;
+      }
+      else {
+        fStack_c = 1.0;
+      }
+      if (fStack_c < fVar1) {
+        fVar4 = (float10)FUN_0062f1f0(*(undefined4 *)(param_1 + 0x50),iVar3,1);
+        fStack_8 = (float)fVar4;
+        if (fVar1 < fStack_8) {
+          fStack_8 = fVar1;
+        }
+        if (fStack_c < fStack_8) {
+          *(undefined1 *)(param_1 + 0x7b5) = (undefined1)DAT_00802864;
+          *(short *)(param_1 + 0x7aa) = (short)iVar3;
+          fVar4 = (float10)FUN_0062e040((int)*(short *)(param_1 + 0x1064),(int)(short)iVar3,0,0,1);
+          *(float *)(param_1 + 0x77c) = (float)fVar4;
+          *(undefined4 *)(param_1 + 0xd3c) = 0x3f800000;
+          return;
+        }
+      }
+    }
+  }
+LAB_0058db30:
+  FUN_0058d930(param_1,1);
+  return;
+}
+

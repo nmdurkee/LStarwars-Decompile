@@ -1,0 +1,128 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Static PC startup/catalog/frame-loop observations; labels inferred from calls and literal paths, not debug symbols.",
+  "anchors": [
+    {
+      "address": "0x4011e0",
+      "role": "Windows/platform startup",
+      "observations": [
+        "Calls platform initialization with LUCASARTS\\LEGOSTARWARSSAGA.",
+        "Embedded source assertion pcbatman.cpp reflects shared engine code; it does not change the target identity."
+      ],
+      "evidence": {
+        "file": "decompiled/corpus-expanded/FUN_4011e0.c",
+        "sha256": "f8a2e75c76f99448348987493cab6f8247acf08e59bbb971c9bc86d93ad29652",
+        "evidenceId": "ev_48d4eb782bac12eedeead3c338e4f978b0df7732be8621fd20cf56d53bd7b1ed"
+      }
+    },
+    {
+      "address": "0x4c9fb0",
+      "role": "Global content catalog initialization",
+      "observations": [
+        "Loads badwords.txt, music.txt, Audio.cfg, movies.txt, chars.txt, levels.txt, areas.txt, episodes.txt and (in a guarded branch) cutscenes.txt.",
+        "Initializes memory arenas and callback tables; layouts and every callback role remain only partly interpreted."
+      ],
+      "evidence": {
+        "file": "decompiled/corpus-expanded/FUN_4c9fb0.c",
+        "sha256": "8e05afc81fbb984b5723be3bf93bd3ff41a7a1e061076968f6ff65b13923baab",
+        "evidenceId": "ev_2c33bc1d2955cf32f461d40ab407fc477c117f7bb728ceb3ddb2ece88215ba87"
+      }
+    },
+    {
+      "address": "0x492b40",
+      "role": "Main game/area transition and frame loop",
+      "observations": [
+        "Mounts Episode_I.dat through Episode_VI.dat via 0x4fc2b0.",
+        "Passes global pointer 0x802c54 through world update and teardown calls.",
+        "Inner frame flow calls 0x491d50 with the world pointer and local state pointer.",
+        "Reads delta from 0x4fd050 into 0x925018, conditionally capped by 0x925054 when 0x951be0 is zero.",
+        "Initializes a frame from 0x92501c; this is not proof of a permanently fixed timestep.",
+        "Calls 0x571b40, 0x5a8200 and 0x57cec0 on the transition/cleanup path; all their side effects are not reconstructed."
+      ],
+      "evidence": {
+        "file": "decompiled/corpus-expanded/FUN_492b40.c",
+        "sha256": "66e93d9fbedf3cac806eced3b779f2d545347df4827cca452e924772d6bbc25f",
+        "evidenceId": "ev_f838318f8db109b6dcd3b75a6a424a1459b1413cbbc9987106adb019bff4cb04"
+      }
+    },
+    {
+      "address": "0x491d50",
+      "role": "World/frame update dispatcher; bounded control flow verified",
+      "observations": [
+        "384 original dispatcher call-order cases and 9600 own-state assertions match; all direct subsystem callees are explicit no-op adapters.",
+        "The original takes a world pointer AND a separate output/state pointer; Ghidra conflates the second parameter.",
+        "Pause/force/override/cutscene/audio/level-flag branches have synthetic native fixtures. Positive timers subtract delta without clamping at zero.",
+        "No complete world-frame, live subsystem, menu, populated player or level-transition equivalence is claimed.",
+        "9024 additional player/menu/transition/native-state cases and 42176 assertions pass; see native-frame-branches.json. Only the two transition state helpers execute as original subsystem callees there."
+      ],
+      "evidence": {
+        "file": "decompiled/corpus-expanded/FUN_491d50.c",
+        "sha256": "fd7ef9db4a82d7ec9986a134c7db7b71325a9c6bbbcdb4d296004f6d1ce10b77",
+        "id": "ev_f838318f8db109b6dcd3b75a6a424a1459b1413cbbc9987106adb019bff4cb04"
+      },
+      "nativeVerification": "reports/native-frame-dispatch.json",
+      "additionalVerification": "reports/native-frame-branches.json"
+    }
+  ],
+  "catalogCalls": [
+    {
+      "path": "stuff\\text\\badwords.txt",
+      "callee": "0x4fe390",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "audio\\music.txt",
+      "callee": "0x548a70",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "Audio\\Audio.cfg",
+      "callee": "0x6521b0",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "movies\\movies.txt",
+      "callee": "0x5b2380",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "chars\\chars.txt",
+      "callee": "0x6307c0",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "levels\\levels.txt",
+      "callee": "0x5788f0",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "levels\\areas.txt",
+      "callee": "0x572b00",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "levels\\episodes.txt",
+      "callee": "0x59b360",
+      "caller": "0x4c9fb0"
+    },
+    {
+      "path": "cut\\cutscenes.txt",
+      "callee": "0x57a870",
+      "caller": "0x4c9fb0"
+    }
+  ],
+  "capacityWarning": "Constants 0x154, 0x16d, 0x48 and 6 passed to catalog loaders are call arguments/capacity clues, not measured counts of all character/level records.",
+  "runtimeContracts": [
+    "reports/native-input-camera.json",
+    "reports/animation-locomotion-contract.json",
+    "reports/gameplay-dispatch-contract.json",
+    "reports/gameplay-native-world.json",
+    "reports/geometry-material-shader-map.json",
+    "reports/geometry-billboard-shaders.json"
+  ],
+  "limits": [
+    "This is a navigation map for continued analysis, not a complete startup or runtime implementation.",
+    "No original game process was launched.",
+    "Guarded branches and global variable types require original assembly or isolated execution checks before implementation."
+  ]
+}

@@ -1,0 +1,20 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_2e9599a270e7c228276daed06211bb9a628229b53b154c3c2f5580fc0ff0e4f1
+ * Entry: 0x609d10; label: FUN_00609d10
+ */
+
+uint FUN_00609d10(void)
+
+{
+  int *in_ECX;
+  
+  if (*in_ECX == 0) {
+    FUN_006e9fe6();
+  }
+  if (*(uint *)(*in_ECX + 8) <= (uint)in_ECX[1]) {
+    FUN_006e9fe6();
+    return in_ECX[1];
+  }
+  return in_ECX[1];
+}
+

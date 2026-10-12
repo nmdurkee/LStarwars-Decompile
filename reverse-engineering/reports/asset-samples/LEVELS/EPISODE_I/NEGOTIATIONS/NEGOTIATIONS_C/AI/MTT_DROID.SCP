@@ -1,0 +1,44 @@
+state InActive {
+	Conditions {
+		if ObstacleOpenedByEitherPlayer "obstacle1" == 1 goto Activate
+		if ObstacleOpenedByEitherPlayer "obstacle2" == 1 goto Activate
+	}
+	Actions {
+	}
+}
+
+state Activate {
+	Conditions {
+	}
+	Actions {
+		Activate
+	}
+}
+
+state Base {
+	Conditions {
+		if GotOpponent == 1 goto Update
+		
+		if Timer > 10 goto Update
+	}
+	Actions {
+		AlertCreatures "character=player"
+		ResetTimer
+		FollowPlayer
+	}
+}
+
+state Update {
+	ReferenceScript {
+		Script=Chatting
+		Source=Global
+		ReturnState=Update
+		Conditions {
+		}
+	}
+	Conditions {
+	}
+	Actions {
+		GoToOrigin "waittime=10"
+	}
+}

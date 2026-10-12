@@ -1,0 +1,81 @@
+PC idle scheduling recovery checkpoint
+=====================================
+
+Four original helper entrypoints are reconstructed in dependency-free C#:
+  0x415050 -> IdleScheduling.SelectBaseIdleAction
+  0x4150d0 -> IdleScheduling.ResetIdleSchedule
+  0x4151c0 -> IdleScheduling.ChooseIdleVariation
+  0x415370 -> IdleScheduling.FinalizeIdleSelection
+
+These connect per-character requested action to idle variation scheduling. The
+host supplies resolved model/clip availability, character variant/flags, held
+throw state, and duration lookup validity. Native pointer resolution is not
+replaced with guessed assets. Unknown object bytes survive all operations.
+IdleClip.FromDefinition reads the existing native 76-byte definition and the
+decoded header, so the module accepts the same authored metadata as playback.
+
+SelectBaseIdleAction selects idle1, weaponidle25, extra_weaponidle118 or
+throw_wait151. The alternate is118 only for variant0 and character flag0x80.
+Throw-wait reset is a complete no-op, including RNG and timers. A missing idle
+definition produces a delay in [8,15] seconds from the original 16-bit LCG.
+
+ChooseIdleVariation scans exactly233 actions in ascending order for flag0x10,
+then matches the weapon group bit0x800. It avoids the previous variation only
+when at least two candidates exist. Selection uses native integer buckets;
+random repetition upper bounds are exclusive. Noncycling clips clamp repetition
+to1 AFTER consuming any repetition RNG. These ordering details are preserved.
+
+The PC duration branch subtracts the global blend-out written by duration
+helper0x62e040; it does not subtract FRAMETIME as the Android reference does.
+If the model mapping fails, duration returns0 while preserving prior blend-out.
+The adapter retains that global explicitly. Exact finite x87 intermediates are
+handled by the shared integer-backed PlaybackWide helper, including a binary64
+constructor for the native 1/65535 constant. No platform float assumptions are
+used for that constant's intermediate rounding.
+
+FinalizeIdleSelection preserves requested action for non-idle contexts while
+resetting the next idle schedule. Switching between base and alternate idle
+resets immediately. Otherwise it advances two stored timers and, at elapsed
+time >= limit, starts a variation or returns from variation to default idle.
+The final idle action is copied into object+0x42, which is the existing packet's
+requested-action field. Whole AnimatePlayer orchestration, callback ordering,
+footsteps, attachments and live character initialization remain outside scope.
+
+Original-native verification (no native callee substitutions):
+  192 base-action cases
+  2,400 reset cases
+  2,400 variation cases
+  4,800 finalizer cases
+  65,536 exhaustive RNG-delay seed cases
+  3,960 authored sequence frames across11 configurations
+  Total79,288 comparisons; zero mismatches and zero fixture failures.
+
+Checks compare the complete4,312-byte object image, return value when defined,
+RNG state and exact duration global bits. The authored sequences use recovered
+native definition bytes and source-hashed AN3 headers, with an explicitly
+chosen request schedule and variant/flag adapter state; they are not live
+character-loader or gameplay timing equivalence claims. Valid finite metadata,
+valid action indices and bounded iteration are the tested domain.
+
+The portable oracle retains13,752 cases; the65,536 exhaustive delay cases are
+summary-only to avoid another half-gigabyte of duplicate object bytes. Oracle
+SHA256:d31e2c34d8fd32ec862e1798081da2f45d02a2362c508e70f0032b7e8998618b.
+Animation source map now contains18 primary native entrypoints, and the full
+animation managed harness has116,540 prepared native-oracle cases.
+
+The C# library and harness compile successfully with .NET Framework csc AnyCPU.
+Managed behavioral verification remains pending: Windows denies execution of
+the new managed binaries. No security policies or file ACLs were changed and
+no execution bypass was attempted. Native-vs-independent-Python results above
+must not be described as a C# differential pass.
+
+Reproduce:
+  python tools/animation-idle-native-verify.py
+  python tools/animation-idle-evidence.py
+  python tools/animation-source-function-map.py
+  powershell -File reconstructed/animation/build.ps1 -CompileOnly
+
+Detailed byte hashes, native instructions, field layouts and adapter boundaries
+are in animation-idle-contract.json. Exact native outputs and source provenance
+are in animation-idle-native-verification.json. No new batches are in progress
+at this publication checkpoint.

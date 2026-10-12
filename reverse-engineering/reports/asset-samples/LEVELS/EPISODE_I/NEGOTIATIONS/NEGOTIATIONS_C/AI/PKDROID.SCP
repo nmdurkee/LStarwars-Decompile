@@ -1,0 +1,41 @@
+state Base {
+	ReferenceScript {
+		Script=Wander
+		Source=Global
+		ReturnState=Base
+		Conditions {
+		}
+	Conditions {
+	}
+	Actions {
+//		SetState "WalkToLever"
+	}
+}
+
+state WalkToLever {
+	Conditions {
+		if ForceComplete "force17" == 1 goto RunToBoxes
+	}
+	Actions {
+		GoToLocator "walk" "name" "lever"
+		SetState "UseLever"
+	}
+}
+
+state UseLever {
+	Conditions {
+		if ForceComplete "force17" == 1 goto RunToBoxes
+	}
+	Actions {
+		UseForce "force17" "triggered_by_hit"
+	}
+}
+
+state RunToBoxes {
+	Conditions {
+	}
+	Actions {
+		GoToLocator "run" "name" "boxes" "waittime 1.5"
+		SetState "WalkToLever"
+	}
+}

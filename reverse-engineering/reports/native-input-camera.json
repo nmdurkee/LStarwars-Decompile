@@ -1,0 +1,299 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "PC built-in Xbox profiles, generic pad processing, camera input contract. Static + isolated original-function emulation, not a running game observation.",
+  "profiles": [
+    "0x82505c",
+    "0x8250f8"
+  ],
+  "buttons": [
+    {
+      "physical": "A",
+      "logicalMask": "0x40",
+      "action": "Jump",
+      "actionGlobal": "0x802278",
+      "initialActionMask": 64,
+      "scriptPressHandler": "0x449970"
+    },
+    {
+      "physical": "B",
+      "logicalMask": "0x20",
+      "action": "Special",
+      "actionGlobal": "0x802280",
+      "initialActionMask": 32,
+      "scriptPressHandler": "0x4492e0"
+    },
+    {
+      "physical": "X",
+      "logicalMask": "0x80",
+      "action": "Action",
+      "actionGlobal": "0x80227c",
+      "initialActionMask": 128,
+      "scriptPressHandler": "0x4493d0"
+    },
+    {
+      "physical": "Y",
+      "logicalMask": "0x10",
+      "action": "Tag",
+      "actionGlobal": "0x802284",
+      "initialActionMask": 16,
+      "scriptPressHandler": "0x449390"
+    },
+    {
+      "physical": "LB",
+      "logicalMask": "0x4",
+      "action": "Toggle left (mask combined with LT)",
+      "actionGlobal": "0x802288",
+      "initialActionMask": 5,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "LT",
+      "logicalMask": "0x1",
+      "action": "Toggle left (mask combined with LB)",
+      "actionGlobal": "0x802288",
+      "initialActionMask": 5,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "RB",
+      "logicalMask": "0x8",
+      "action": "Toggle right (mask combined with RT)",
+      "actionGlobal": "0x80228c",
+      "initialActionMask": 10,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "RT",
+      "logicalMask": "0x2",
+      "action": "Toggle right (mask combined with RB)",
+      "actionGlobal": "0x80228c",
+      "initialActionMask": 10,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Back",
+      "logicalMask": "0x100",
+      "action": "Select",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Start",
+      "logicalMask": "0x800",
+      "action": "Start",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Left stick click",
+      "logicalMask": "0x200",
+      "action": "L3",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Right stick click",
+      "logicalMask": "0x400",
+      "action": "R3",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Dpad up",
+      "logicalMask": "0x1000",
+      "action": "Up",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Dpad right",
+      "logicalMask": "0x2000",
+      "action": "Right",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Dpad down",
+      "logicalMask": "0x4000",
+      "action": "Down",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    },
+    {
+      "physical": "Dpad left",
+      "logicalMask": "0x8000",
+      "action": "Left",
+      "actionGlobal": null,
+      "initialActionMask": null,
+      "scriptPressHandler": null
+    }
+  ],
+  "inputPipeline": [
+    {
+      "address": "0x6d74e0",
+      "role": "XInputGetState poll and raw staging"
+    },
+    {
+      "address": "0x6d4880",
+      "role": "Circle-to-square stick transform"
+    },
+    {
+      "address": "0x6d96b0",
+      "role": "24 default logical descriptors"
+    },
+    {
+      "address": "0x6d45f0",
+      "role": "Apply controller profile"
+    },
+    {
+      "address": "0x6d7d80",
+      "role": "Raw state to logical 8-bit axes, shoulder/trigger bytes, button mask"
+    },
+    {
+      "address": "0x6daa40",
+      "role": "Device read manager"
+    },
+    {
+      "address": "0x6dae50",
+      "role": "Manager wrapper"
+    },
+    {
+      "address": "0x4fb130",
+      "role": "Update generic pads, stride 0x84 from 0x917000"
+    },
+    {
+      "address": "0x4f4370",
+      "role": "Pressed/released edges, signed/normalized axes, deadzone"
+    },
+    {
+      "address": "0x54b3d0",
+      "role": "Camera-relative or socket-relative movement angle"
+    }
+  ],
+  "triggerDigitalThreshold": "Raw byte >=64 (staged byte <<7 compared strictly >8191)",
+  "rawState": {
+    "size": 196,
+    "signed16Slots": {
+      "LX": 0,
+      "LY": 1,
+      "RX": 3,
+      "RY": 4,
+      "LT": 6,
+      "RT": 7
+    },
+    "Y": "Negated during polling; input -32768 clamped to -32767 before negate.",
+    "buttonBytes": "0x40 + A0 B1 X2 Y3 LB4 RB5 Back6 Start7 Lclick8 Rclick9; Dpad at 0xc0..0xc3 Up Right Down Left."
+  },
+  "logicalOutput": {
+    "bytes": 12,
+    "offsets": {
+      "0": "LX",
+      "1": "LY",
+      "2": "RX",
+      "3": "RY",
+      "4": "LB analog ramp",
+      "5": "LT",
+      "6": "RB analog ramp",
+      "7": "RT",
+      "8": "LE32 held buttons"
+    },
+    "stickNeutral": 128,
+    "shoulderRampSeconds": 0.1
+  },
+  "genericPad": {
+    "size": 132,
+    "fields": {
+      "0x00": "valid byte",
+      "0x04": "mapped player/device id",
+      "0x08": "four 8-bit stick axes",
+      "0x0c": "four shoulder/trigger bytes",
+      "0x10": "held buttons u32",
+      "0x14": "pressed u32",
+      "0x18": "released u32",
+      "0x1c": "previous held u32",
+      "0x20": "capability/analog flags",
+      "0x24": "left X i32",
+      "0x28": "left Y i32",
+      "0x2c": "right X i32",
+      "0x30": "right Y i32",
+      "0x34": "deadzone i32",
+      "0x38": "left X normalized f32",
+      "0x3c": "left Y normalized f32",
+      "0x48": "left X bias",
+      "0x4c": "left Y bias",
+      "0x50": "right X bias",
+      "0x54": "right Y bias",
+      "0x58": "right X normalized f32",
+      "0x5c": "right Y normalized f32"
+    },
+    "edges": "changed=current XOR previous; pressed=changed AND current; released=changed AND previous; previous=current",
+    "normalization": "X=axisByte-128; Y=128-axisByte; divide by128 after deadzone; then subtract/add per-axis bias toward zero.",
+    "defaultXboxDeadzone": 16,
+    "radialModeByte": "0x91eef6 == 0",
+    "radialDeadzone": "At default16 on the 8-bit grid, zero both axes when x*x+y*y<256; outside retain full integer value. No radial rescale."
+  },
+  "camera": {
+    "globalPointer": "0x8021b4",
+    "initialObject": "0x925168",
+    "size": 560,
+    "nativeUpdate": "0x40ade0",
+    "reset": "0x54a2f0",
+    "lookInput": "0x5495e0",
+    "resetLook": "0x5495a0",
+    "adjustedYaw": "0x54a510",
+    "renderCameraPointer": "0x925164",
+    "renderCameraCreate": "0x5d5330",
+    "submit": "0x603cc0",
+    "setDerivedMatrices": "0x5ed540",
+    "projection": "0x604a80",
+    "aspectPolicy": "0x565470",
+    "fields": {
+      "0x38": "base matrix",
+      "0x78": "target/unadjusted matrix",
+      "0xb8": "render matrix",
+      "0x11c": "position",
+      "0x128": "target",
+      "0x1bc": "blend time",
+      "0x1c0": "blend duration",
+      "0x1f8": "pitch i32 angle units",
+      "0x1fc": "input yaw i32 angle units",
+      "0x200": "roll i32 angle units",
+      "0x22c": "mode signed byte",
+      "0x22d": "previous mode signed byte"
+    },
+    "inputAngle": "Normally pad.u16[0x26] + camera.i32[0x1fc]. If object flag0x80 at0x1fc, signed socket index0x671!=-1 and socket flag0x40 at0x68, instead add object.u16[0x696] + socket.u16[0x6e]. Downstream angles wrap to16bits; 65536 units/turn.",
+    "socketLookup": "world=*(u32*)0x802c54; socksys=*(u32*)(world+0x2988); socketArray=*(u32*)socksys; stride0x13c.",
+    "modes": {
+      "1": "Gameplay rail/socket follow",
+      "2": "Temporary scripted mini-cut camera",
+      "3": "Title spline camera",
+      "4": "Door transition camera",
+      "5": "View/free camera",
+      "6": "Menu spline24 camera",
+      "7": "Customizer spline15 camera",
+      "8": "Shop camera",
+      "9": "Minikit viewer camera",
+      "11": "Gunship level special camera"
+    },
+    "modeNamesEvidence": "Reference-assisted names cross-checked against PC function0x40ade0 case branches; not original PC symbols.",
+    "projectionNotes": "0x604a80 constructs D3D-style row-vector projection: m00=aspect*cot(fov/2), m11=cot(fov/2), m22=far/(far-near), m23=1, m32=-m22*near. Cotangent uses the original integer-angle trig table. PC global viewport/jitter factors also modify the global projection matrix. Do not import Android near-clamp assumptions."
+  },
+  "verification": [
+    "reports/native-stick-emulation.json",
+    "reports/native-input-emulation.json",
+    "reports/native-motion-emulation.json"
+  ],
+  "limits": [
+    "User Mappings.dat can override profiles; only built-in defaults were recovered here.",
+    "Isolated checks do not validate all gameplay-specific control states, camera modes, or frame integration.",
+    "Main camera logic is decompiled and traced, not reimplemented or play-tested.",
+    "Reference-assisted semantic names are distinguished from PC address/offset observations."
+  ]
+}

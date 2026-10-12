@@ -1,0 +1,318 @@
+max_obstacles 96
+max_obstacle_objects 320
+max_buildits 12
+max_buildit_objects 200
+
+max_timers 12
+
+max_blowups 32
+
+max_force 128                      // allocate space for this many forces.
+max_force_objects 256             // allocate space for this many special objects in the force system
+
+maxgizmoblowuptypes 64
+maxgizmoblowups 128
+
+max_gizspecials 220
+
+max_pushblocks 4
+max_pushblock_endpos 6
+
+other_level "negotiations_a"
+mipmapmode 3
+metal
+
+fix_strobing_anims
+
+default_sfx_start
+	sfx_default "LegoForm"
+	sfx_default_form "LegoForm"
+	sfx_default_switch "NegB_ServoArm"
+	sfx_default_null
+default_sfx_end
+
+blobshadow_alpha 80   // alpha value of blob shadow in level (0-255, 255   darkest)
+blobshadow_fadenear 5  // distance blob shadow starts fading out
+blobshadow_fadefar 10  // distance blob shadow finishes fading out
+
+forcesfx_start
+	forcename "head1" processsfx "NegB_GasHose" completesfx "none" returnsfx "None"
+	forcename "head2" processsfx "NegB_GasHose" completesfx "none" returnsfx "None"
+	forcename "head3" processsfx "NegB_GasHose" completesfx "none" returnsfx "None"
+	forcename "trolley" processsfx "NegB_LegoTruck" completesfx "None" returnsfx "None"
+	forcename "droid_a" processsfx-"NegB_MiniShip" completesfx "none" returnsfx "None"
+	forcename "droid_b" processsfx "LegoForm" completesfx "LegoClicks" returnsfx "None"
+	forcename "vent" processsfx "None" completesfx "ForceObjVBig" returnsfx "None"
+	forcename "spanner1" processsfx "None" completesfx "LegoClicks" returnsfx "None"
+	forcename "spanner" processsfx "None" completesfx "LegoClicks" returnsfx "None"
+	forcename "cog" processsfx "None" completesfx "ForceObjSmall" returnsfx "None"
+forcesfx_end
+
+rippleeffects_start
+	texture_name "ripple2"
+	effect_type "FORCEFIELD"
+	start_colour_r 00
+	start_colour_g 10
+	start_colour_b 20
+	start_colour_a 255
+	end_colour_r 00
+	end_colour_g 00
+	end_colour_b 20
+	end_colour_a 0
+	life 0.2
+	start_radius 0.0
+	end_radius 0.5
+rippleeffects_end
+
+settings_start 1
+	farclip 218
+	nearclip 0.021
+	fognear 1
+	fogfar 217
+	fogr 49
+	fogg 63
+	fogb 81
+	foga 0
+	hazer 0
+	hazeg 0
+	hazeb 0
+	hazea 0
+	backr 0
+	backg 0
+	backb 0
+
+	fogr_x 0
+	fogg_x 99
+	fogb_x 150
+	foga_x 0
+	hazer_x 0
+	hazeg_x 0
+	hazeb_x 0
+	hazea_x 0
+	backr_x 0
+	backg_x 0
+	backb_x 0
+	fogdensity 0.110
+
+	fognear_gc 1
+	fogfar_gc 23
+	fogr_gc 0
+	fogg_gc 71
+	fogb_gc 95
+	foga_gc 127
+	hazer_gc 0
+	hazeg_gc 39
+	hazeb_gc 63
+
+	settings_y -1.9
+settings_end
+
+//////////////////////////////////////////////
+
+sock_start 00
+	campos_seek 5
+	cam_blend_time 1.0
+	cam_y_offset 0.8
+	offset_blend_y_ratio 1
+	y_limits
+	cam_pullback_ratio 0.1
+sock_end
+
+sock_start 01
+	campos_seek 5
+	cam_blend_time 1.0
+	cam_y_offset 0.8
+	offset_blend_y_ratio 1
+	cam_z_offset -2.5
+	offset_blend_z_ratio 1
+	y_limits
+	cam_pullback_ratio 0.5
+sock_end
+
+sock_start 02
+	campos_seek 5
+	cam_blend_time 1.0
+	cam_pullback_ratio 0.3
+sock_end
+
+sock_start 03
+	campos_seek 5
+	cam_blend_time 1.0
+	cam_y_offset 0.8
+	offset_blend_y_ratio 0.2
+	y_limits
+	cam_pullback_ratio 0.0
+sock_end
+
+sock_start 04
+	campos_seek 5
+	cam_blend_time 1.0
+	cam_y_offset 0.8
+	offset_blend_y_ratio 0.2
+	y_limits
+	cam_pullback_ratio 0.0
+sock_end
+
+////////////////////////////////////////
+
+obstacle_start
+	name "R2_pan1"
+	type door	
+	obj "r2_static2"
+	obj "r2_pic2"
+	range 1.2
+	sfx_open "DPanelAct"
+	sfx_close "DPanelDis"
+obstacle_end
+
+obstacle_start
+	name "R2_door_01"
+	type door	
+	lock_spline "r2_door_lineup1"
+	lock interface
+	locked
+
+	obj "force_field_a"
+	obj "force_field_move_a"
+
+	obj "red_light_on1",no_collision
+	obj "green_light_on1",no_collision
+
+
+
+	obj "red_light_on2",no_collision
+	obj "green_light_on2",no_collision
+
+	range 1.2
+	sfx "FFieldOff"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 3,1
+	obj "force_field_move_a"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 3,2
+obstacle_end
+
+////////////////////////////////////////////////////
+
+
+
+//////////////driod fighter//////////////////////////////////////
+
+obstacle_start
+	type gadget
+	chain 1,1
+	obj "droid_a"
+	obj "droid_b"
+	obj "droid_c"
+	obj "droid_d"
+	obj "droid_e"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 1,2
+	obj "droid_ride",shove,cam_follow
+	
+	auto_start
+	sfx_animating "NegB_MiniShip"
+	camera_spline "droid_cam"
+	cam_start_time 0.0
+	cam_end_time 3.5
+	cam_blend_in_time 0.0
+	cam_blend_out_time 0.0
+obstacle_end
+
+//////
+
+obstacle_start
+	type gadget
+	chain 2,1
+	obj "gas"
+	sfx_animating "LegoShakeLp"
+obstacle_end
+
+obstacle_start
+	type gadget
+	chain 2,2,1
+	obj "gas1"
+
+	auto_start
+obstacle_end
+
+///////things that go pop//////////////
+
+blowup_start
+	force_name "blowup_barrel_a4"
+	deb_name "EXPLO_01"
+	obj "blowup_barrel_b"
+	obj "blowup_barrel_b"
+	obj "blowup_barrel_c"
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "blowup_barrel_b4"
+	deb_name "EXPLO_01"
+	obj "blowup_barrel_b"
+	obj "blowup_barrel_b"
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "blowup_barrel_c4"
+	deb_name "EXPLO_03"
+	obj "blowup_barrel_a"
+	obj "blowup_barrel_a"
+	obj "blowup_barrel_b"
+	obj "blowup_barrel_d"
+	sfx "Explode1"
+blowup_end
+
+blowup_start
+	force_name "blowup_barrel_d4"
+	deb_name "EXPLO_03"
+	obj "blowup_barrel_a"
+	obj "blowup_barrel_b"
+	obj "blowup_barrel_b"
+	obj "blowup_barrel_d"
+	sfx "Explode1"
+blowup_end
+
+///////
+
+
+door_start
+	spline "door_to_jar_vent"
+	level "negotiations_b"
+door_end
+
+door_start
+	spline "door_from_jar_vent"
+	level "negotiations_b"
+door_end
+
+door_start
+	spline "door_to_room4"
+	level "negotiations_b"
+door_end
+
+door_start
+	spline "door_from_room4"
+	level "negotiations_a"
+door_end
+
+door_start
+	spline "door_to_main"
+	level "negotiations_b"
+door_end
+
+door_start
+	spline "door_from_main"
+	level "negotiations_b"
+door_end

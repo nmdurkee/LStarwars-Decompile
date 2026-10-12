@@ -1,0 +1,14 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_6bac4da6f4ce0ce73312601f89fbd0303a514d0896ac0cebe3875471fcd2a12c
+ * Entry: 0x6db5e0; label: FUN_006db5e0
+ */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_006db5e0(undefined4 param_1)
+
+{
+  _DAT_008264a8 = FUN_004f8310(param_1);
+  return;
+}
+

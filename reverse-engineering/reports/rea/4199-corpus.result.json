@@ -1,0 +1,592 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_f1a36c6b3ad286842b1ed86bd3c2163f44c7dc63d65997010e74903b0be7db2b\",\"subject\":{\"name\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\",\"digest\":{\"sha256\":\"6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb\"},\"format\":\"pe\",\"architecture\":\"x86\",\"local_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\"},\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"analysis_profile\":{\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"parameters\":{\"upstream_analysis_profile\":{\"provider\":{\"id\":\"ghidra\",\"name\":\"Ghidra\",\"version\":\"12.1.4\"},\"parameters\":{\"target_kind\":\"executable\",\"target_format\":\"pe\",\"executable_role\":\"application\",\"managed\":false,\"native_aot_metadata\":{\"contract_revision\":\"rtr-9.1-x64-pe-read-only-v3\",\"source_bytes\":134217728,\"work_units\":67108864,\"working_memory_bytes\":67108864,\"report_bytes\":4194304},\"architecture\":\"x86\",\"available_architectures\":[\"x86\"],\"import_mode\":\"ephemeral-source-immutable\",\"annotation_policy\":\"atomic-function-entry-metadata-v1\",\"load_image_observations\":\"source-mappings-entry-context-v2\",\"function_body_evidence\":\"complete-inclusive-ranges-v1\",\"function_references\":\"complete-body-and-entry-reference-manager-v2\",\"string_inventory_evidence\":\"defined-data-coverage-v1\",\"location_resolution\":\"explicit-address-exact-entry-symbol-first-v3\",\"instruction_flow_evidence\":\"decoded-return-pcode-v1\",\"function_boundary_observations\":\"ghidra-terminal-call-limitations-v1\",\"no_return_repair\":\"disabled-windows-p0\",\"process_launch\":\"official-headless-script-v1\",\"jump_table_evidence\":\"typed-case-default-blocks-v1\",\"decompiler_jump_loads\":true,\"loader\":\"auto-from-header\",\"language_id\":\"auto-from-header\",\"compiler_spec_id\":\"auto-default\",\"analyzer_preset\":\"ghidra-default\",\"analysis_seeds\":{\"format\":\"rea-ghidra-seeds-v1\",\"path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"configured_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"sha256\":\"ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24\",\"entries\":{\"function\":1046,\"code\":0,\"label\":0}}},\"digest\":\"d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d\"},\"workflow_revision\":2},\"digest\":\"87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971\"},\"predicate_type\":\"rea.analysis\",\"operation\":\"batch_decompile\",\"parameters\":{\"addresses\":[\"0x699260\",\"0x6992c0\",\"0x699640\",\"0x699690\",\"0x6996b0\",\"0x6996d0\",\"0x6996f0\",\"0x699710\",\"0x699770\",\"0x6997a0\",\"0x6997f0\",\"0x699840\",\"0x6998a0\",\"0x6998d0\",\"0x6998f0\",\"0x6999e0\",\"0x699ec0\",\"0x69a180\",\"0x69a1b0\",\"0x69a210\",\"0x69a250\",\"0x69a280\",\"0x69a330\",\"0x69a350\",\"0x69a410\",\"0x69a460\",\"0x69a680\",\"0x69a7b0\",\"0x69a850\",\"0x69a8f0\",\"0x69aac0\",\"0x69ab50\"]},\"raw_result\":null,\"normalized_result\":{\"items\":[{\"address\":\"0x699260\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699260\",\"name\":\"FUN_00699260\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined1 FUN_00699260(int param_1)\\r\\n\\r\\n{\\r\\n  LPCRITICAL_SECTION lpCriticalSection;\\r\\n  int iVar1;\\r\\n  int in_ECX;\\r\\n  int *piVar2;\\r\\n  undefined1 uVar3;\\r\\n  \\r\\n  lpCriticalSection = (LPCRITICAL_SECTION)(in_ECX + 0x70);\\r\\n  uVar3 = 0;\\r\\n  EnterCriticalSection(lpCriticalSection);\\r\\n  iVar1 = 0;\\r\\n  if (*(int *)(in_ECX + 0x1b8) != 0) {\\r\\n    piVar2 = (int *)(in_ECX + 0xb8);\\r\\n    while (*piVar2 != param_1) {\\r\\n      iVar1 = iVar1 + 1;\\r\\n      piVar2 = piVar2 + 1;\\r\\n      if (iVar1 == *(int *)(in_ECX + 0x1b8)) {\\r\\n        LeaveCriticalSection(lpCriticalSection);\\r\\n        return 0;\\r\\n      }\\r\\n    }\\r\\n    uVar3 = 1;\\r\\n  }\\r\\n  LeaveCriticalSection(lpCriticalSection);\\r\\n  return uVar3;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6992c0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6992c0\",\"name\":\"FUN_006992c0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006992c0(void)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  int iVar2;\\r\\n  undefined4 uVar3;\\r\\n  int in_ECX;\\r\\n  int *piVar4;\\r\\n  int *_Size;\\r\\n  uint unaff_ESI;\\r\\n  uint unaff_EDI;\\r\\n  int *piVar5;\\r\\n  undefined1 *puStack_4c;\\r\\n  undefined1 *puStack_48;\\r\\n  undefined1 *puStack_44;\\r\\n  int *piStack_40;\\r\\n  int *piStack_3c;\\r\\n  undefined1 *puStack_38;\\r\\n  undefined4 uStack_34;\\r\\n  undefined1 auStack_20 [4];\\r\\n  undefined1 auStack_1c [4];\\r\\n  undefined1 local_18 [8];\\r\\n  uint uStack_10;\\r\\n  int *piStack_8;\\r\\n  uint local_4;\\r\\n  \\r\\n  local_4 = DAT_00829570 ^ (uint)auStack_20;\\r\\n  if (((*(int *)(in_ECX + 8) != 1) && (*(int *)(in_ECX + 8) != 2)) ||\\r\\n     (piStack_3c = *(int **)(in_ECX + 0x54), piStack_3c == (int *)0x0)) {\\r\\n    __security_check_cookie(local_4 ^ (uint)auStack_20);\\r\\n    return;\\r\\n  }\\r\\n  uStack_34 = 0;\\r\\n  puStack_38 = local_18;\\r\\n  piStack_40 = (int *)0x69930e;\\r\\n  iVar2 = (**(code **)(*piStack_3c + 0x10))();\\r\\n  _Size = piStack_8;\\r\\n  if (-1 < iVar2) {\\r\\n    iVar2 = *(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24);\\r\\n    piVar4 = (int *)(unaff_ESI - *(int *)(in_ECX + 0x1cc));\\r\\n    if ((int)piVar4 < 0) {\\r\\n      piVar4 = (int *)((int)piVar4 + iVar2);\\r\\n    }\\r\\n    if ((local_4 & 2) == 0) {\\r\\n      _Size = (int *)(*(int *)(in_ECX + 0x24) * 2);\\r\\n      if ((int)piVar4 < (int)_Size) {\\r\\n        _Size = piVar4;\\r\\n      }\\r\\n      if (iVar2 < *(int *)(in_ECX + 0x1cc) + (int)_Size) {\\r\\n        _Size = (int *)(iVar2 - *(int *)(in_ECX + 0x1cc));\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  if ((((local_4 & 2) == 0) && (*(int *)(in_ECX + 0x1cc) <= (int)unaff_ESI)) &&\\r\\n     ((int)unaff_ESI < *(int *)(in_ECX + 0x1cc) + (int)_Size)) {\\r\\n    __security_check_cookie(uStack_10 ^ (uint)&stack0xffffffd4);\\r\\n    return;\\r\\n  }\\r\\n  piStack_40 = (int *)0x69938d;\\r\\n  iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\\r\\n  piVar4 = _Size;\\r\\n  if (iVar2 - *(int *)(in_ECX + 0x1c8) <= (int)_Size) {\\r\\n    piStack_40 = (int *)0x6993aa;\\r\\n    iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\\r\\n    piVar4 = (int *)(iVar2 - *(int *)(in_ECX + 0x1c8));\\r\\n  }\\r\\n  piStack_40 = (int *)0x0;\\r\\n  puStack_44 = local_18;\\r\\n  puStack_48 = &stack0xffffffd8;\\r\\n  puStack_4c = auStack_1c;\\r\\n  iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x2c))();\\r\\n  if (iVar2 == -0x7787ff6a) {\\r\\n    iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x50))();\\r\\n    if (iVar2 < 0) goto LAB_00699626;\\r\\n    iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x2c))\\r\\n                      (*(int **)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x1cc),_Size,&puStack_4c,\\r\\n                       &piStack_3c,&puStack_48,&puStack_38);\\r\\n  }\\r\\n  if (-1 < iVar2) {\\r\\n    if (piStack_3c < _Size) {\\r\\n      piVar5 = (int *)0x0;\\r\\n    }\\r\\n    else {\\r\\n      if ((unaff_ESI & 1) == 0) {\\r\\n        if ((piVar4 != (int *)0x0) &&\\r\\n           ((iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x1c))(puStack_4c,piVar4), iVar2 < 0\\r\\n            || (piStack_40 != piVar4)))) {\\r\\n          uVar3 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\\r\\n          *(undefined4 *)(in_ECX + 0x1c8) = uVar3;\\r\\n          piVar4 = (int *)0x0;\\r\\n          iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x48))();\\r\\n          if (-1 < iVar2) {\\r\\n            *(undefined4 *)(in_ECX + 8) = 0;\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n      else {\\r\\n        piVar4 = (int *)0x0;\\r\\n      }\\r\\n      piVar1 = piVar4;\\r\\n      piVar5 = _Size;\\r\\n      if ((*(byte *)(in_ECX + 0x1d0) & 1) == 0) {\\r\\n        if ((int)piVar4 < (int)_Size) {\\r\\n          _memset(puStack_4c + (int)piVar4,0,(int)_Size - (int)piVar4);\\r\\n          iVar2 = *(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24);\\r\\n          if (piVar4 == (int *)0x0) {\\r\\n            if ((int)puStack_44 < (int)DAT_029739f4) {\\r\\n              iVar2 = iVar2 - (int)DAT_029739f4;\\r\\n            }\\r\\n            else {\\r\\n              iVar2 = -(int)DAT_029739f4;\\r\\n            }\\r\\n            DAT_029739f8 = DAT_029739f8 - (int)(puStack_44 + iVar2);\\r\\n            DAT_029739f4 = puStack_44;\\r\\n            if (DAT_029739f8 < 1) {\\r\\n              *(int *)(in_ECX + 0x1d8) = *(int *)(in_ECX + 0x1d8) + 1;\\r\\n            }\\r\\n          }\\r\\n          else {\\r\\n            DAT_029739f4 = puStack_44;\\r\\n            DAT_029739f8 = iVar2;\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n      else {\\r\\n        for (; (int)piVar1 < (int)_Size; piVar1 = (int *)((int)piVar1 + (int)piVar4)) {\\r\\n          (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x18))();\\r\\n          *(undefined4 *)(in_ECX + 0x1c8) = 0;\\r\\n          piVar4 = (int *)((int)_Size - (int)piVar1);\\r\\n          iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\\r\\n          if (iVar2 - *(int *)(in_ECX + 0x1c8) < (int)piVar4) {\\r\\n            iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\\r\\n            piVar4 = (int *)(iVar2 - *(int *)(in_ECX + 0x1c8));\\r\\n          }\\r\\n          iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x1c))(puStack_4c + (int)piVar1,piVar4);\\r\\n          if ((iVar2 < 0) || (piStack_40 != piVar4)) {\\r\\n            uVar3 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\\r\\n            *(undefined4 *)(in_ECX + 0x1c8) = uVar3;\\r\\n            _memset(puStack_4c,0,(size_t)_Size);\\r\\n            iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x48))();\\r\\n            if (-1 < iVar2) {\\r\\n              *(undefined4 *)(in_ECX + 8) = 0;\\r\\n            }\\r\\n            break;\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n    (**(code **)(**(int **)(in_ECX + 0x54) + 0x4c))\\r\\n              (*(int **)(in_ECX + 0x54),puStack_4c,piVar5,puStack_48);\\r\\n    *(int *)(in_ECX + 0x1c8) = *(int *)(in_ECX + 0x1c8) + (int)piVar4;\\r\\n    *(uint *)(in_ECX + 0x1cc) =\\r\\n         (uint)(*(int *)(in_ECX + 0x1cc) + (int)_Size) %\\r\\n         (uint)(*(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24));\\r\\n    __security_check_cookie((uint)puStack_44 ^ (uint)&stack0xffffffa0);\\r\\n    return;\\r\\n  }\\r\\nLAB_00699626:\\r\\n  __security_check_cookie(unaff_EDI ^ (uint)&puStack_4c);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x699640\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699640\",\"name\":\"FUN_00699640\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_00699640(undefined4 param_1,int param_2)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  int *in_ECX;\\r\\n  \\r\\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\\r\\n    FUN_004f1f40(in_ECX + 0x78,param_1,0x104);\\r\\n    in_ECX[0xfb] = param_2;\\r\\n    uVar1 = FUN_00699180(1,0);\\r\\n    return uVar1;\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x699690\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699690\",\"name\":\"FUN_00699690\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_00699690(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  int *in_ECX;\\r\\n  \\r\\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\\r\\n    uVar1 = FUN_00699180(2,param_1);\\r\\n    return uVar1;\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6996b0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6996b0\",\"name\":\"FUN_006996b0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006996b0(void)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  int *in_ECX;\\r\\n  \\r\\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\\r\\n    uVar1 = FUN_00699180(3,0);\\r\\n    return uVar1;\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6996d0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6996d0\",\"name\":\"FUN_006996d0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006996d0(void)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  int *in_ECX;\\r\\n  \\r\\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\\r\\n    uVar1 = FUN_00699180(4,0);\\r\\n    return uVar1;\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6996f0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6996f0\",\"name\":\"FUN_006996f0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006996f0(void)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  int *in_ECX;\\r\\n  \\r\\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\\r\\n    uVar1 = FUN_00699180(5,0);\\r\\n    return uVar1;\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x699710\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699710\",\"name\":\"FUN_00699710\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_00699710(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (in_ECX == 0) {\\r\\n    return 0;\\r\\n  }\\r\\n  EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n  *(undefined4 *)(in_ECX + 0x10) = param_1;\\r\\n  if (*(int **)(in_ECX + 0x54) != (int *)0x0) {\\r\\n    (**(code **)(**(int **)(in_ECX + 0x54) + 0x3c))\\r\\n              (*(undefined4 *)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x10));\\r\\n    *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0x10);\\r\\n  }\\r\\n  LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x699770\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699770\",\"name\":\"FUN_00699770\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_00699770(void)\\r\\n\\r\\n{\\r\\n  int in_ECX;\\r\\n  \\r\\n  if ((in_ECX != 0) &&\\r\\n     ((*(int *)(in_ECX + 0x1b8) != 0 || ((*(int *)(in_ECX + 8) != 0 && (*(int *)(in_ECX + 8) != 3)))\\r\\n      ))) {\\r\\n    return 0;\\r\\n  }\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6997a0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6997a0\",\"name\":\"FUN_006997a0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_006997a0(void)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  int iVar2;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (in_ECX == 0) {\\r\\n    return 0;\\r\\n  }\\r\\n  cVar1 = FUN_00699260(3);\\r\\n  if (cVar1 != '\\\\0') {\\r\\n    return 2;\\r\\n  }\\r\\n  if ((*(int *)(in_ECX + 8) != 2) && ((*(int *)(in_ECX + 8) != 3 || (*(int *)(in_ECX + 0xc) == 0))))\\r\\n  {\\r\\n    iVar2 = FUN_00699770();\\r\\n    return (-(uint)(iVar2 != 0) & 0xfffffffe) + 2;\\r\\n  }\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6997f0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6997f0\",\"name\":\"FUN_006997f0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006997f0(void)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (in_ECX != 0) {\\r\\n    EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\\r\\n    EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n    if ((*(int *)(in_ECX + 8) == 2) && (piVar1 = *(int **)(in_ECX + 0x54), piVar1 != (int *)0x0)) {\\r\\n      (**(code **)(*piVar1 + 0x48))(piVar1);\\r\\n    }\\r\\n    LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n    *(undefined4 *)(in_ECX + 0x3f4) = 1;\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x699840\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699840\",\"name\":\"FUN_00699840\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_00699840(void)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if ((in_ECX != 0) && (*(int *)(in_ECX + 0x3f4) != 0)) {\\r\\n    EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n    if ((*(int *)(in_ECX + 8) == 2) && (piVar1 = *(int **)(in_ECX + 0x54), piVar1 != (int *)0x0)) {\\r\\n      (**(code **)(*piVar1 + 0x30))(piVar1,0,0,1);\\r\\n    }\\r\\n    LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n    *(undefined4 *)(in_ECX + 0x3f4) = 0;\\r\\n    LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6998a0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6998a0\",\"name\":\"FUN_006998a0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006998a0(void)\\r\\n\\r\\n{\\r\\n  MMRESULT MVar1;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n    timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n  }\\r\\n  MVar1 = timeSetEvent(500,100,*(LPTIMECALLBACK *)(in_ECX + 0x5c),0,0x21);\\r\\n  *(MMRESULT *)(in_ECX + 100) = MVar1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6998d0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6998d0\",\"name\":\"FUN_006998d0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006998d0(void)\\r\\n\\r\\n{\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n    timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n  }\\r\\n  *(undefined4 *)(in_ECX + 100) = 0;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6998f0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6998f0\",\"name\":\"FUN_006998f0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006998f0(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  int *piVar2;\\r\\n  int *in_ECX;\\r\\n  \\r\\n  if (in_ECX != (int *)0x0) {\\r\\n    if (*in_ECX != 0) {\\r\\n      if (in_ECX[0xfd] != 0) {\\r\\n        FUN_00699840();\\r\\n      }\\r\\n      if (*in_ECX != 0) {\\r\\n        FUN_00699180(3,0);\\r\\n      }\\r\\n      FUN_00699180(6,0);\\r\\n      iVar1 = in_ECX[0x1a];\\r\\n      while (iVar1 != 0) {\\r\\n        Sleep(10);\\r\\n        iVar1 = in_ECX[0x1a];\\r\\n      }\\r\\n    }\\r\\n    if ((undefined4 *)in_ECX[0x77] != (undefined4 *)0x0) {\\r\\n      (*(code *)**(undefined4 **)in_ECX[0x77])(1);\\r\\n    }\\r\\n    in_ECX[0x77] = 0;\\r\\n    DeleteCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x28));\\r\\n    DeleteCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x22));\\r\\n    DeleteCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x1c));\\r\\n    if ((HANDLE)in_ECX[0x18] != (HANDLE)0xffffffff) {\\r\\n      CloseHandle((HANDLE)in_ECX[0x18]);\\r\\n    }\\r\\n    if ((HANDLE)in_ECX[0x17] != (HANDLE)0xffffffff) {\\r\\n      CloseHandle((HANDLE)in_ECX[0x17]);\\r\\n    }\\r\\n    in_ECX[0x18] = -1;\\r\\n    in_ECX[0x17] = -1;\\r\\n    if (in_ECX[0x19] != 0) {\\r\\n      timeKillEvent(in_ECX[0x19]);\\r\\n    }\\r\\n    piVar2 = (int *)in_ECX[0x15];\\r\\n    in_ECX[0x19] = 0;\\r\\n    if (piVar2 != (int *)0x0) {\\r\\n      (**(code **)(*piVar2 + 8))(piVar2);\\r\\n    }\\r\\n    in_ECX[0x15] = 0;\\r\\n    *in_ECX = 0;\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6999e0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6999e0\",\"name\":\"FUN_006999e0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006999e0(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  int *piVar2;\\r\\n  bool bVar3;\\r\\n  DWORD DVar4;\\r\\n  undefined4 uVar5;\\r\\n  MMRESULT MVar6;\\r\\n  int in_ECX;\\r\\n  int iVar7;\\r\\n  uint local_1c;\\r\\n  undefined1 auStack_14 [2];\\r\\n  short sStack_12;\\r\\n  int iStack_10;\\r\\n  \\r\\n  bVar3 = false;\\r\\n  do {\\r\\n    DVar4 = WaitForMultipleObjects(2,(HANDLE *)(in_ECX + 0x5c),0,0xffffffff);\\r\\n    if (DVar4 == 0) {\\r\\n      if (((-1 < *(int *)(in_ECX + 4)) &&\\r\\n          (FUN_006992c0((uint)(*(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24)) >> 2,0),\\r\\n          0 < *(int *)(in_ECX + 0x1d8))) && (*(int *)(in_ECX + 8) == 2)) {\\r\\n        piVar2 = *(int **)(in_ECX + 0x54);\\r\\n        if (piVar2 != (int *)0x0) {\\r\\n          (**(code **)(*piVar2 + 0x48))(piVar2);\\r\\n        }\\r\\n        *(undefined4 *)(in_ECX + 8) = 0;\\r\\n        if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n          timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n        }\\r\\n        *(undefined4 *)(in_ECX + 100) = 0;\\r\\n      }\\r\\n    }\\r\\n    else if (DVar4 == 1) {\\r\\n      ResetEvent(*(HANDLE *)(in_ECX + 0x60));\\r\\n      iVar7 = 0;\\r\\n      EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\\r\\n      if (0 < *(int *)(in_ECX + 0x1b8)) {\\r\\n        iVar1 = *(int *)(in_ECX + 0x1bc);\\r\\n        local_1c = *(uint *)(in_ECX + 0x138 + iVar1 * 4);\\r\\n        iVar7 = *(int *)(in_ECX + 0xb8 + iVar1 * 4);\\r\\n        *(uint *)(in_ECX + 0x1bc) = iVar1 + 1U & 0x1f;\\r\\n        *(int *)(in_ECX + 0x1b8) = *(int *)(in_ECX + 0x1b8) + -1;\\r\\n      }\\r\\n      LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\\r\\n      while (iVar7 != 0) {\\r\\n        EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\\r\\n        switch(iVar7) {\\r\\n        case 1:\\r\\n          FUN_004f1f40(in_ECX + 0x2e5,in_ECX + 0x1e0,0x104);\\r\\n          *(undefined4 *)(in_ECX + 0x3f0) = *(undefined4 *)(in_ECX + 0x3ec);\\r\\n          if (*(int *)(in_ECX + 8) == 2) {\\r\\n            if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n              timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n            }\\r\\n            piVar2 = *(int **)(in_ECX + 0x54);\\r\\n            *(undefined4 *)(in_ECX + 100) = 0;\\r\\n            if (piVar2 != (int *)0x0) {\\r\\n              (**(code **)(*piVar2 + 0x48))(piVar2);\\r\\n            }\\r\\n          }\\r\\n          *(undefined4 *)(in_ECX + 0xc) = 0;\\r\\n          *(undefined4 *)(in_ECX + 8) = 0;\\r\\n          *(undefined4 *)(in_ECX + 0x1d8) = 0;\\r\\n          *(undefined4 *)(in_ECX + 0x1c8) = 0;\\r\\n          *(undefined4 *)(in_ECX + 0x1cc) = 0;\\r\\n          *(undefined4 *)(in_ECX + 4) = 0xffffffff;\\r\\n          (**(code **)(**(int **)(in_ECX + 0x1dc) + 0xc))();\\r\\n          iVar7 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 4))(0,in_ECX + 0x2e5,auStack_14);\\r\\n          if (-1 < iVar7) {\\r\\n            if ((*(int *)(in_ECX + 0x20) != iStack_10) || (*(short *)(in_ECX + 0x1e) != sStack_12))\\r\\n            {\\r\\n              FUN_00699070(auStack_14);\\r\\n            }\\r\\n            *(undefined4 *)(in_ECX + 4) = 1;\\r\\n          }\\r\\n          break;\\r\\n        case 2:\\r\\n          if (*(int *)(in_ECX + 4) < 0) {\\r\\nLAB_00699c5d:\\r\\n            if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n              timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n            }\\r\\n            *(undefined4 *)(in_ECX + 100) = 0;\\r\\n          }\\r\\n          else if (*(int *)(in_ECX + 8) != 2) {\\r\\n            *(undefined4 *)(in_ECX + 0x1d8) = 0;\\r\\n            *(undefined4 *)(in_ECX + 0xc) = 0;\\r\\n            *(undefined4 *)(in_ECX + 0x1c8) = 0;\\r\\n            *(undefined4 *)(in_ECX + 0x1cc) = 0;\\r\\n            *(undefined4 *)(in_ECX + 0x1d0) = 0;\\r\\n            (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x18))();\\r\\n            iVar7 = *(int *)(in_ECX + 0x58) * 1000;\\r\\n            if (iVar7 < 2000) {\\r\\n              iVar7 = 2000;\\r\\n            }\\r\\n            iVar1 = *(int *)(in_ECX + 0x24);\\r\\n            *(undefined4 *)(in_ECX + 8) = 1;\\r\\n            uVar5 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x20))\\r\\n                              (*(undefined4 *)(in_ECX + 0x3f0));\\r\\n            *(undefined4 *)(in_ECX + 0x1c8) = uVar5;\\r\\n            piVar2 = *(int **)(in_ECX + 0x54);\\r\\n            if (piVar2 != (int *)0x0) {\\r\\n              (**(code **)(*piVar2 + 0x34))(piVar2,0);\\r\\n            }\\r\\n            FUN_006992c0((uint)(iVar1 * iVar7) / 1000,2);\\r\\n            piVar2 = *(int **)(in_ECX + 0x54);\\r\\n            if ((piVar2 == (int *)0x0) ||\\r\\n               (iVar7 = (**(code **)(*piVar2 + 0x34))(piVar2,0), iVar7 < 0)) goto LAB_00699c5d;\\r\\n            if ((local_1c & 2) == 0) {\\r\\n              iVar7 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x30))\\r\\n                                (*(int **)(in_ECX + 0x54),0,0,1);\\r\\n              if (iVar7 < 0) goto LAB_00699c5d;\\r\\n              *(undefined4 *)(in_ECX + 0xc) = 1;\\r\\n              *(undefined4 *)(in_ECX + 8) = 2;\\r\\n              *(uint *)(in_ECX + 0x1d0) = local_1c;\\r\\n              FUN_006998a0();\\r\\n            }\\r\\n            else {\\r\\n              *(undefined4 *)(in_ECX + 8) = 3;\\r\\n              *(uint *)(in_ECX + 0x1d0) = local_1c;\\r\\n              FUN_006998a0();\\r\\n            }\\r\\n          }\\r\\n          break;\\r\\n        case 3:\\r\\n          if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n            timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n          }\\r\\n          piVar2 = *(int **)(in_ECX + 0x54);\\r\\n          *(undefined4 *)(in_ECX + 100) = 0;\\r\\n          if ((piVar2 != (int *)0x0) && (iVar7 = (**(code **)(*piVar2 + 0x48))(piVar2), -1 < iVar7))\\r\\n          {\\r\\n            *(undefined4 *)(in_ECX + 0x1cc) = 0;\\r\\n            FUN_006992c0(*(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24),3);\\r\\n          }\\r\\n          *(undefined4 *)(in_ECX + 8) = 0;\\r\\n          break;\\r\\n        case 4:\\r\\n          if (*(int *)(in_ECX + 8) == 2) {\\r\\n            if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n              timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n            }\\r\\n            piVar2 = *(int **)(in_ECX + 0x54);\\r\\n            *(undefined4 *)(in_ECX + 100) = 0;\\r\\n            if ((piVar2 != (int *)0x0) &&\\r\\n               (iVar7 = (**(code **)(*piVar2 + 0x48))(piVar2), -1 < iVar7)) {\\r\\n              *(undefined4 *)(in_ECX + 8) = 3;\\r\\n            }\\r\\n          }\\r\\n          break;\\r\\n        case 5:\\r\\n          if (((*(int *)(in_ECX + 8) == 3) &&\\r\\n              (piVar2 = *(int **)(in_ECX + 0x54), piVar2 != (int *)0x0)) &&\\r\\n             (iVar7 = (**(code **)(*piVar2 + 0x30))(piVar2,0,0,1), -1 < iVar7)) {\\r\\n            *(undefined4 *)(in_ECX + 8) = 2;\\r\\n            *(undefined4 *)(in_ECX + 0xc) = 1;\\r\\n            if (*(UINT *)(in_ECX + 100) != 0) {\\r\\n              timeKillEvent(*(UINT *)(in_ECX + 100));\\r\\n            }\\r\\n            MVar6 = timeSetEvent(500,100,*(LPTIMECALLBACK *)(in_ECX + 0x5c),0,0x21);\\r\\n            *(MMRESULT *)(in_ECX + 100) = MVar6;\\r\\n          }\\r\\n          break;\\r\\n        case 6:\\r\\n          *(undefined4 *)(in_ECX + 0x68) = 0;\\r\\n          bVar3 = true;\\r\\n        }\\r\\n        LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\\r\\n        iVar7 = 0;\\r\\n        EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\\r\\n        if (0 < *(int *)(in_ECX + 0x1b8)) {\\r\\n          iVar1 = *(int *)(in_ECX + 0x1bc);\\r\\n          local_1c = *(uint *)(in_ECX + 0x138 + iVar1 * 4);\\r\\n          iVar7 = *(int *)(in_ECX + 0xb8 + iVar1 * 4);\\r\\n          *(uint *)(in_ECX + 0x1bc) = iVar1 + 1U & 0x1f;\\r\\n          *(int *)(in_ECX + 0x1b8) = *(int *)(in_ECX + 0x1b8) + -1;\\r\\n        }\\r\\n        LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\\r\\n        if ((*(int *)(in_ECX + 0x14) != *(int *)(in_ECX + 0x10)) || (*(int *)(in_ECX + 0x14) == 1))\\r\\n        {\\r\\n          EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n          if (*(int **)(in_ECX + 0x54) != (int *)0x0) {\\r\\n            (**(code **)(**(int **)(in_ECX + 0x54) + 0x3c))\\r\\n                      (*(undefined4 *)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x10));\\r\\n            *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0x10);\\r\\n          }\\r\\n          LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n    if ((*(int *)(in_ECX + 0x14) != *(int *)(in_ECX + 0x10)) || (*(int *)(in_ECX + 0x14) == 1)) {\\r\\n      EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n      if (*(int **)(in_ECX + 0x54) != (int *)0x0) {\\r\\n        (**(code **)(**(int **)(in_ECX + 0x54) + 0x3c))\\r\\n                  (*(undefined4 *)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x10));\\r\\n        *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0x10);\\r\\n      }\\r\\n      LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\\r\\n    }\\r\\n    if (bVar3) {\\r\\n      return 0;\\r\\n    }\\r\\n  } while( true );\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x699ec0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x699ec0\",\"name\":\"FUN_00699ec0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_00699ec0(int *param_1,undefined4 param_2)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  int iVar2;\\r\\n  undefined4 uVar3;\\r\\n  HANDLE pvVar4;\\r\\n  undefined4 *in_ECX;\\r\\n  undefined4 *unaff_EBP;\\r\\n  int *piVar5;\\r\\n  \\r\\n  in_ECX[0xfe] = DAT_029739f0;\\r\\n  DAT_029739f0 = DAT_029739f0 + 1;\\r\\n  in_ECX[0xff] = param_1;\\r\\n  in_ECX[6] = param_2;\\r\\n  puVar1 = in_ECX + 7;\\r\\n  *in_ECX = 0;\\r\\n  *puVar1 = 0;\\r\\n  in_ECX[8] = 0;\\r\\n  in_ECX[9] = 0;\\r\\n  in_ECX[10] = 0;\\r\\n  *(undefined2 *)(in_ECX + 0xb) = 0;\\r\\n  _memset(in_ECX + 0x78,0,0x105);\\r\\n  _memset((void *)((int)in_ECX + 0x2e5),0,0x105);\\r\\n  *(undefined2 *)puVar1 = 1;\\r\\n  switch(in_ECX[6]) {\\r\\n  case 1:\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\\r\\n    in_ECX[8] = 0x5622;\\r\\n    *(undefined2 *)(in_ECX + 10) = 1;\\r\\n    *(undefined2 *)((int)in_ECX + 0x2a) = 8;\\r\\n    in_ECX[0x16] = 4;\\r\\n    goto switchD_00699f3f_default;\\r\\n  case 2:\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\\r\\n    in_ECX[8] = 0x5622;\\r\\n    *(undefined2 *)(in_ECX + 10) = 2;\\r\\n    break;\\r\\n  case 3:\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 2;\\r\\n    in_ECX[8] = 0x5622;\\r\\n    *(undefined2 *)(in_ECX + 10) = 2;\\r\\n    *(undefined2 *)((int)in_ECX + 0x2a) = 8;\\r\\n    goto LAB_00699fff;\\r\\n  case 4:\\r\\n    in_ECX[8] = 0x5622;\\r\\n    goto LAB_00699fed;\\r\\n  case 5:\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\\r\\n    in_ECX[8] = 0xac44;\\r\\n    *(undefined2 *)(in_ECX + 10) = 2;\\r\\n    break;\\r\\n  case 6:\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 2;\\r\\n    in_ECX[8] = 0xac44;\\r\\n    *(undefined2 *)(in_ECX + 10) = 4;\\r\\n    *(undefined2 *)((int)in_ECX + 0x2a) = 0x10;\\r\\n    in_ECX[0x16] = 4;\\r\\n    goto switchD_00699f3f_default;\\r\\n  case 7:\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\\r\\n    in_ECX[8] = 48000;\\r\\n    *(undefined2 *)(in_ECX + 10) = 2;\\r\\n    break;\\r\\n  case 8:\\r\\n    in_ECX[8] = 48000;\\r\\nLAB_00699fed:\\r\\n    *(undefined2 *)(in_ECX + 10) = 4;\\r\\n    *(undefined2 *)((int)in_ECX + 0x1e) = 2;\\r\\n    break;\\r\\n  default:\\r\\n    goto switchD_00699f3f_default;\\r\\n  }\\r\\n  *(undefined2 *)((int)in_ECX + 0x2a) = 0x10;\\r\\nLAB_00699fff:\\r\\n  in_ECX[0x16] = 3;\\r\\nswitchD_00699f3f_default:\\r\\n  in_ECX[9] = (uint)*(ushort *)(in_ECX + 10) * in_ECX[8];\\r\\n  in_ECX[0xd] = 0;\\r\\n  in_ECX[0xe] = 0;\\r\\n  in_ECX[0xf] = 0;\\r\\n  in_ECX[0x10] = 0;\\r\\n  in_ECX[0x11] = 0;\\r\\n  in_ECX[0x12] = 0;\\r\\n  in_ECX[0x13] = 0;\\r\\n  in_ECX[0x14] = 0;\\r\\n  in_ECX[0xc] = 0x24;\\r\\n  in_ECX[0xd] = 0x10080;\\r\\n  in_ECX[0xe] = in_ECX[0x16] * in_ECX[9];\\r\\n  in_ECX[0x10] = puVar1;\\r\\n  param_2 = 0;\\r\\n  in_ECX[0x15] = 0;\\r\\n  in_ECX[0x18] = 0xffffffff;\\r\\n  in_ECX[0x17] = 0xffffffff;\\r\\n  in_ECX[0x70] = 0;\\r\\n  in_ECX[0x6f] = 0;\\r\\n  in_ECX[0x6e] = 0;\\r\\n  in_ECX[1] = 0xffffffff;\\r\\n  in_ECX[0x74] = 0;\\r\\n  in_ECX[0xfd] = 0;\\r\\n  in_ECX[4] = 0;\\r\\n  in_ECX[5] = 1;\\r\\n  iVar2 = FUN_006ea018(0x338);\\r\\n  if (iVar2 == 0) {\\r\\n    uVar3 = 0;\\r\\n  }\\r\\n  else {\\r\\n    uVar3 = FUN_0069a850();\\r\\n  }\\r\\n  in_ECX[0x77] = uVar3;\\r\\n  in_ECX[2] = 0;\\r\\n  InitializeCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x1c));\\r\\n  InitializeCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x22));\\r\\n  InitializeCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x28));\\r\\n  piVar5 = (int *)0x0;\\r\\n  iVar2 = (**(code **)(*param_1 + 0xc))(param_1,in_ECX + 0xc,&param_2);\\r\\n  if (-1 < iVar2) {\\r\\n    iVar2 = (**(code **)*unaff_EBP)(unaff_EBP,&DAT_0078496c,in_ECX + 0x15);\\r\\n    if (-1 < iVar2) {\\r\\n      pvVar4 = CreateEventA((LPSECURITY_ATTRIBUTES)0x0,0,0,(LPCSTR)0x0);\\r\\n      in_ECX[0x17] = pvVar4;\\r\\n      pvVar4 = CreateEventA((LPSECURITY_ATTRIBUTES)0x0,1,0,(LPCSTR)0x0);\\r\\n      in_ECX[0x18] = pvVar4;\\r\\n      if ((in_ECX[0x17] != -1) && (pvVar4 != (HANDLE)0xffffffff)) {\\r\\n        pvVar4 = CreateThread((LPSECURITY_ATTRIBUTES)0x0,0,(LPTHREAD_START_ROUTINE)&LAB_00699eb0,\\r\\n                              in_ECX,4,in_ECX + 0x1b);\\r\\n        in_ECX[0x1a] = pvVar4;\\r\\n        if (pvVar4 != (HANDLE)0x0) {\\r\\n          ResumeThread(pvVar4);\\r\\n          *in_ECX = 1;\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n    (**(code **)(*piVar5 + 8))(piVar5);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a180\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a180\",\"name\":\"FUN_0069a180\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_0069a180(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a1b0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a1b0\",\"name\":\"FUN_0069a1b0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_0069a1b0(void)\\r\\n\\r\\n{\\r\\n  undefined4 *in_ECX;\\r\\n  \\r\\n  *in_ECX = &PTR_FUN_0076efac;\\r\\n  in_ECX[2] = 0;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a210\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a210\",\"name\":\"FUN_0069a210\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_0069a210(void)\\r\\n\\r\\n{\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(int *)(in_ECX + 8) != 0) {\\r\\n    return (*(int *)(in_ECX + 0x30) - *(int *)(in_ECX + 0x2c)) * (uint)*(ushort *)(in_ECX + 0x24);\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a250\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a250\",\"name\":\"FUN_0069a250\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_0069a250(void)\\r\\n\\r\\n{\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(HANDLE *)(in_ECX + 8) != (HANDLE)0x0) {\\r\\n    CloseHandle(*(HANDLE *)(in_ECX + 8));\\r\\n    *(undefined4 *)(in_ECX + 8) = 0;\\r\\n    return 0;\\r\\n  }\\r\\n  return 0x80004005;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a280\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a280\",\"name\":\"FUN_0069a280\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_0069a280(void)\\r\\n\\r\\n{\\r\\n  ushort uVar1;\\r\\n  int iVar2;\\r\\n  int iVar3;\\r\\n  int in_ECX;\\r\\n  int iVar4;\\r\\n  int iVar5;\\r\\n  \\r\\n  uVar1 = *(ushort *)(in_ECX + 0x24);\\r\\n  iVar3 = FUN_006e6b90();\\r\\n  iVar4 = *(int *)(in_ECX + 0x30);\\r\\n  *(int *)(in_ECX + 0x34) = iVar3;\\r\\n  iVar5 = iVar4;\\r\\n  if (iVar3 <= iVar4) {\\r\\n    iVar5 = iVar3;\\r\\n  }\\r\\n  iVar2 = *(int *)(in_ECX + 0x2c);\\r\\n  if (iVar5 < iVar2) {\\r\\n    *(int *)(in_ECX + 0x34) = iVar2;\\r\\n    return (uint)uVar1 * iVar2;\\r\\n  }\\r\\n  if (iVar3 <= iVar4) {\\r\\n    iVar4 = iVar3;\\r\\n  }\\r\\n  *(int *)(in_ECX + 0x34) = iVar4;\\r\\n  return (uint)uVar1 * iVar4;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a330\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a330\",\"name\":\"FUN_0069a330\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_0069a330(void)\\r\\n\\r\\n{\\r\\n  undefined4 *in_ECX;\\r\\n  \\r\\n  *in_ECX = &PTR_FUN_0076efac;\\r\\n  if ((HANDLE)in_ECX[2] != (HANDLE)0x0) {\\r\\n    CloseHandle((HANDLE)in_ECX[2]);\\r\\n    in_ECX[2] = 0;\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a350\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a350\",\"name\":\"FUN_0069a350\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_0069a350(HANDLE param_1,char *param_2,uint *param_3)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  char cVar2;\\r\\n  char cVar3;\\r\\n  char cVar4;\\r\\n  uint *lpBuffer;\\r\\n  int iVar5;\\r\\n  BOOL BVar6;\\r\\n  DWORD unaff_EDI;\\r\\n  int local_8;\\r\\n  int local_4;\\r\\n  \\r\\n  lpBuffer = param_3;\\r\\n  cVar1 = param_2[1];\\r\\n  cVar2 = param_2[3];\\r\\n  cVar3 = param_2[2];\\r\\n  cVar4 = *param_2;\\r\\n  iVar5 = ReadFile(param_1,param_3,8,(LPDWORD)&param_2,(LPOVERLAPPED)0x0);\\r\\n  while( true ) {\\r\\n    if ((iVar5 == 0) || (param_2 != (char *)0x8)) {\\r\\n      return 0;\\r\\n    }\\r\\n    if (*lpBuffer == ((((int)cVar2 << 8 | (int)cVar3) << 8 | (int)cVar1) << 8 | (int)cVar4)) {\\r\\n      SetFilePointerEx(param_1,(LARGE_INTEGER)(ZEXT48(&local_8) << 0x20),(PLARGE_INTEGER)0x1,\\r\\n                       unaff_EDI);\\r\\n      lpBuffer[2] = local_4 - *(int *)(local_8 + 0x10);\\r\\n      return 1;\\r\\n    }\\r\\n    BVar6 = SetFilePointerEx(param_1,(LARGE_INTEGER)(ZEXT48(&local_8) << 0x20),(PLARGE_INTEGER)0x1,\\r\\n                             unaff_EDI);\\r\\n    if (BVar6 == -1) break;\\r\\n    unaff_EDI = 0;\\r\\n    iVar5 = ReadFile(param_1,lpBuffer,8,(LPDWORD)&param_3,(LPOVERLAPPED)0x0);\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a410\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a410\",\"name\":\"FUN_0069a410\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nbool FUN_0069a410(HANDLE param_1,int param_2)\\r\\n\\r\\n{\\r\\n  LARGE_INTEGER liDistanceToMove;\\r\\n  BOOL BVar1;\\r\\n  int in_ECX;\\r\\n  DWORD unaff_EDI;\\r\\n  undefined1 local_8 [8];\\r\\n  \\r\\n  liDistanceToMove.s.HighPart = (LONG)local_8;\\r\\n  liDistanceToMove.s.LowPart =\\r\\n       (uint)CARRY4(*(uint *)(param_2 + 8),*(uint *)(param_2 + 4)) + *(int *)(in_ECX + 0x14) +\\r\\n       (uint)CARRY4(*(uint *)(param_2 + 8) + *(uint *)(param_2 + 4),*(uint *)(in_ECX + 0x10));\\r\\n  BVar1 = SetFilePointerEx(param_1,liDistanceToMove,(PLARGE_INTEGER)0x0,unaff_EDI);\\r\\n  return BVar1 != -1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a460\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a460\",\"name\":\"FUN_0069a460\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_0069a460(int param_1,LPCSTR param_2,undefined4 *param_3)\\r\\n\\r\\n{\\r\\n  short *lpBuffer;\\r\\n  LARGE_INTEGER liDistanceToMove;\\r\\n  LPCSTR lpFileName;\\r\\n  int iVar1;\\r\\n  HANDLE pvVar2;\\r\\n  LPSECURITY_ATTRIBUTES lpSecurityAttributes;\\r\\n  BOOL BVar3;\\r\\n  int iVar4;\\r\\n  int in_ECX;\\r\\n  DWORD unaff_EDI;\\r\\n  undefined1 local_20 [8];\\r\\n  undefined1 auStack_18 [4];\\r\\n  uint local_14;\\r\\n  undefined4 local_10;\\r\\n  int local_c [2];\\r\\n  int iStack_4;\\r\\n  \\r\\n  lpFileName = param_2;\\r\\n  iVar4 = param_1;\\r\\n  *(undefined4 *)(in_ECX + 8) = 0;\\r\\n  *(undefined4 *)(in_ECX + 0x10) = 0;\\r\\n  *(undefined4 *)(in_ECX + 0x14) = 0;\\r\\n  if (param_1 == 0) {\\r\\n    lpSecurityAttributes = (LPSECURITY_ATTRIBUTES)FUN_0069a180(param_2);\\r\\n    pvVar2 = CreateFileA(lpFileName,0x80000000,1,lpSecurityAttributes,3,0x8000001,\\r\\n                         lpSecurityAttributes);\\r\\n    *(HANDLE *)(in_ECX + 8) = pvVar2;\\r\\n  }\\r\\n  else {\\r\\n    iVar1 = FUN_004fa740(param_1,param_2,(undefined4 *)(in_ECX + 0x10),&param_1);\\r\\n    if (iVar1 != 0) {\\r\\n      pvVar2 = CreateFileA(*(LPCSTR *)(iVar4 + 0xb8),0x80000000,1,(LPSECURITY_ATTRIBUTES)0x0,3,0x80,\\r\\n                           (HANDLE)0x0);\\r\\n      *(HANDLE *)(in_ECX + 8) = pvVar2;\\r\\n      if (pvVar2 == (HANDLE)0xffffffff) {\\r\\n        FUN_0069a180(*(undefined4 *)(iVar4 + 0xb8));\\r\\n      }\\r\\n      else {\\r\\n        liDistanceToMove.s.HighPart = (LONG)local_20;\\r\\n        liDistanceToMove.s.LowPart = *(undefined4 *)(in_ECX + 0x14);\\r\\n        SetFilePointerEx(pvVar2,liDistanceToMove,(PLARGE_INTEGER)0x0,unaff_EDI);\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  if (*(HANDLE *)(in_ECX + 8) != (HANDLE)0xffffffff) {\\r\\n    BVar3 = ReadFile(*(HANDLE *)(in_ECX + 8),local_c,0xc,(LPDWORD)&param_2,(LPOVERLAPPED)0x0);\\r\\n    if (((((BVar3 != 0) && (param_2 == (LPCSTR)0xc)) && (local_c[0] == 0x46464952)) &&\\r\\n        ((iStack_4 == 0x45564157 &&\\r\\n         (iVar4 = FUN_0069a350(*(undefined4 *)(in_ECX + 8),&DAT_0076efd8,auStack_18), iVar4 != 0))))\\r\\n       && (0xf < local_14)) {\\r\\n      lpBuffer = (short *)(in_ECX + 0x18);\\r\\n      lpBuffer[0] = 0;\\r\\n      lpBuffer[1] = 0;\\r\\n      *(undefined4 *)(in_ECX + 0x1c) = 0;\\r\\n      *(undefined4 *)(in_ECX + 0x20) = 0;\\r\\n      *(undefined4 *)(in_ECX + 0x24) = 0;\\r\\n      *(undefined2 *)(in_ECX + 0x28) = 0;\\r\\n      BVar3 = ReadFile(*(HANDLE *)(in_ECX + 8),lpBuffer,0x10,(LPDWORD)&param_2,(LPOVERLAPPED)0x0);\\r\\n      if ((BVar3 != 0) && (param_2 == (LPCSTR)0x10)) {\\r\\n        *(undefined2 *)(in_ECX + 0x28) = 0;\\r\\n        if (param_3 != (undefined4 *)0x0) {\\r\\n          *param_3 = *(undefined4 *)lpBuffer;\\r\\n          param_3[1] = *(undefined4 *)(in_ECX + 0x1c);\\r\\n          param_3[2] = *(undefined4 *)(in_ECX + 0x20);\\r\\n          param_3[3] = *(undefined4 *)(in_ECX + 0x24);\\r\\n          *(undefined2 *)(param_3 + 4) = *(undefined2 *)(in_ECX + 0x28);\\r\\n        }\\r\\n        if (*lpBuffer == 1) {\\r\\n          FUN_0069a410(*(undefined4 *)(in_ECX + 8),auStack_18);\\r\\n          iVar4 = FUN_0069a350(*(undefined4 *)(in_ECX + 8),&DAT_0076efd0,auStack_18);\\r\\n          if (iVar4 != 0) {\\r\\n            *(undefined4 *)(in_ECX + 0x38) = local_10;\\r\\n            *(uint *)(in_ECX + 0x3c) = local_14;\\r\\n            if (local_14 != 0) {\\r\\n              *(undefined4 *)(in_ECX + 0x2c) = 0;\\r\\n              *(undefined4 *)(in_ECX + 0x34) = 0;\\r\\n              *(int *)(in_ECX + 0x30) = (int)local_14 / (int)(uint)*(ushort *)(in_ECX + 0x24) + -1;\\r\\n              return 0;\\r\\n            }\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n    CloseHandle(*(HANDLE *)(in_ECX + 8));\\r\\n    *(undefined4 *)(in_ECX + 8) = 0;\\r\\n    return 0x80004005;\\r\\n  }\\r\\n  FUN_0069a180(lpFileName);\\r\\n  return 0x80004005;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a680\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a680\",\"name\":\"FUN_0069a680\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_0069a680(undefined4 param_1,LPVOID param_2,undefined4 param_3,uint *param_4)\\r\\n\\r\\n{\\r\\n  LARGE_INTEGER liDistanceToMove;\\r\\n  BOOL BVar1;\\r\\n  undefined4 uVar2;\\r\\n  int *in_ECX;\\r\\n  uint uVar3;\\r\\n  uint uVar4;\\r\\n  DWORD nNumberOfBytesToRead;\\r\\n  uint uVar5;\\r\\n  DWORD unaff_EDI;\\r\\n  uint local_c;\\r\\n  undefined4 local_8 [2];\\r\\n  \\r\\n  if (in_ECX[2] != 0) {\\r\\n    uVar3 = (uint)*(ushort *)(in_ECX + 9);\\r\\n    uVar4 = in_ECX[0xc] - in_ECX[0xd];\\r\\n    uVar5 = (uint)param_2 / uVar3;\\r\\n    if ((int)uVar4 <= (int)((uint)param_2 / uVar3)) {\\r\\n      uVar5 = uVar4;\\r\\n    }\\r\\n    uVar4 = in_ECX[0xd] * uVar3;\\r\\n    nNumberOfBytesToRead = uVar3 * uVar5;\\r\\n    local_c = uVar4;\\r\\n    if (nNumberOfBytesToRead - (int)param_2 != 0) {\\r\\n      FUN_0069a180();\\r\\n      uVar4 = FUN_0069a180(param_2,nNumberOfBytesToRead);\\r\\n    }\\r\\n    liDistanceToMove.s.HighPart = (LONG)local_8;\\r\\n    liDistanceToMove.s.LowPart =\\r\\n         in_ECX[5] + ((int)uVar4 >> 0x1f) + (uint)CARRY4(uVar4,in_ECX[4]) + (in_ECX[0xe] >> 0x1f) +\\r\\n         (uint)CARRY4(uVar4 + in_ECX[4],in_ECX[0xe]);\\r\\n    BVar1 = SetFilePointerEx((HANDLE)in_ECX[2],liDistanceToMove,(PLARGE_INTEGER)0x0,unaff_EDI);\\r\\n    if (BVar1 == 0) {\\r\\n      FUN_0069a180();\\r\\n      FUN_0069a180(local_8[0]);\\r\\n      FUN_0069a180(in_ECX[0xe]);\\r\\n      uVar2 = (**(code **)(*in_ECX + 0x14))();\\r\\n      FUN_0069a180(uVar2);\\r\\n    }\\r\\n    else {\\r\\n      BVar1 = ReadFile((HANDLE)in_ECX[2],param_2,nNumberOfBytesToRead,&local_c,(LPOVERLAPPED)0x0);\\r\\n      if ((BVar1 != 0) && (nNumberOfBytesToRead - local_c == 0)) {\\r\\n        if (param_4 != (uint *)0x0) {\\r\\n          *param_4 = local_c;\\r\\n        }\\r\\n        in_ECX[0xd] = in_ECX[0xd] + uVar5;\\r\\n        return 0;\\r\\n      }\\r\\n      FUN_0069a180();\\r\\n      FUN_0069a180(nNumberOfBytesToRead);\\r\\n      FUN_0069a180(local_c);\\r\\n      FUN_0069a180(param_3);\\r\\n    }\\r\\n  }\\r\\n  if (param_4 != (uint *)0x0) {\\r\\n    *param_4 = 0;\\r\\n  }\\r\\n  return 0x80004005;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a7b0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a7b0\",\"name\":\"FUN_0069a7b0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_0069a7b0(byte param_1)\\r\\n\\r\\n{\\r\\n  undefined4 *in_ECX;\\r\\n  \\r\\n  *in_ECX = &PTR_FUN_0076efac;\\r\\n  if ((HANDLE)in_ECX[2] != (HANDLE)0x0) {\\r\\n    CloseHandle((HANDLE)in_ECX[2]);\\r\\n    in_ECX[2] = 0;\\r\\n  }\\r\\n  if ((param_1 & 1) != 0) {\\r\\n    _free(in_ECX);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a850\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a850\",\"name\":\"FUN_0069a850\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_0069a850(void)\\r\\n\\r\\n{\\r\\n  undefined4 *in_ECX;\\r\\n  int iVar1;\\r\\n  \\r\\n  FUN_0069a1b0();\\r\\n  *in_ECX = &PTR_FUN_0076eff8;\\r\\n  *(undefined1 *)(in_ECX + 0x10) = 0;\\r\\n  in_ECX[0xc6] = 0;\\r\\n  in_ECX[199] = 0;\\r\\n  if (DAT_02973a00 == 0) {\\r\\n    DAT_02973a00 = FUN_004ffa60();\\r\\n    DAT_029739fc = FUN_004eef40(0x564,\\\".\\\\\\\\pc\\\\\\\\oggreader.cpp\\\",0x24);\\r\\n  }\\r\\n  iVar1 = 0;\\r\\n  do {\\r\\n    _memset((void *)(iVar1 + DAT_029739fc),0,0x114);\\r\\n    iVar1 = iVar1 + 0x114;\\r\\n  } while (iVar1 != 0x564);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69a8f0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69a8f0\",\"name\":\"FUN_0069a8f0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_0069a8f0(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(char *)(in_ECX + 0x40) == '\\\\0') {\\r\\n    iVar1 = FUN_0069a210();\\r\\n    return iVar1;\\r\\n  }\\r\\n  if (*(int *)(in_ECX + 0x318) != 0) {\\r\\n    iVar1 = FUN_0069c6b0(in_ECX + 0x48,0xffffffff);\\r\\n    return iVar1 * (uint)*(ushort *)(in_ECX + 0x32c);\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69aac0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69aac0\",\"name\":\"FUN_0069aac0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_0069aac0(void)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(char *)(in_ECX + 0x40) == '\\\\0') {\\r\\n    uVar1 = FUN_0069a250();\\r\\n    return uVar1;\\r\\n  }\\r\\n  FUN_004ffaa0(DAT_02973a00);\\r\\n  if (*(int *)(in_ECX + 0x318) == 0) {\\r\\n    FUN_004ffac0(DAT_02973a00);\\r\\n    return 0x80004005;\\r\\n  }\\r\\n  FUN_0069c3c0(in_ECX + 0x48);\\r\\n  if (*(int *)(in_ECX + 0x318) != 0) {\\r\\n    *(int *)(*(int *)(in_ECX + 0x318) + 0x110) = *(int *)(*(int *)(in_ECX + 0x318) + 0x110) + -1;\\r\\n  }\\r\\n  *(undefined4 *)(in_ECX + 0x318) = 0;\\r\\n  FUN_004ffac0(DAT_02973a00);\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x69ab50\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x69ab50\",\"name\":\"FUN_0069ab50\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_0069ab50(float param_1)\\r\\n\\r\\n{\\r\\n  ushort uVar1;\\r\\n  int iVar2;\\r\\n  int in_ECX;\\r\\n  \\r\\n  if (*(char *)(in_ECX + 0x40) == '\\\\0') {\\r\\n    iVar2 = FUN_0069a280(param_1);\\r\\n    return iVar2;\\r\\n  }\\r\\n  FUN_004ffaa0(DAT_02973a00);\\r\\n  if (*(int *)(in_ECX + 0x318) == 0) {\\r\\n    FUN_004ffac0(DAT_02973a00);\\r\\n    return -1;\\r\\n  }\\r\\n  FUN_0069d560(in_ECX + 0x48,(double)param_1);\\r\\n  iVar2 = FUN_0069d760(in_ECX + 0x48);\\r\\n  uVar1 = *(ushort *)(in_ECX + 0x32c);\\r\\n  FUN_004ffac0(DAT_02973a00);\\r\\n  return iVar2 * (uint)uVar1;\\r\\n}\\r\\n\\r\\n\"}],\"total\":32,\"succeeded\":32,\"failed\":0},\"confidence\":\"derived\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Derived by an REA composed workflow.\"],\"locations\":[{\"kind\":\"address\",\"address\":\"0x699260\"},{\"kind\":\"address\",\"address\":\"0x6992c0\"},{\"kind\":\"address\",\"address\":\"0x699640\"},{\"kind\":\"address\",\"address\":\"0x699690\"},{\"kind\":\"address\",\"address\":\"0x6996b0\"},{\"kind\":\"address\",\"address\":\"0x6996d0\"},{\"kind\":\"address\",\"address\":\"0x6996f0\"},{\"kind\":\"address\",\"address\":\"0x699710\"},{\"kind\":\"address\",\"address\":\"0x699770\"},{\"kind\":\"address\",\"address\":\"0x6997a0\"},{\"kind\":\"address\",\"address\":\"0x6997f0\"},{\"kind\":\"address\",\"address\":\"0x699840\"},{\"kind\":\"address\",\"address\":\"0x6998a0\"},{\"kind\":\"address\",\"address\":\"0x6998d0\"},{\"kind\":\"address\",\"address\":\"0x6998f0\"},{\"kind\":\"address\",\"address\":\"0x6999e0\"},{\"kind\":\"address\",\"address\":\"0x699ec0\"},{\"kind\":\"address\",\"address\":\"0x69a180\"},{\"kind\":\"address\",\"address\":\"0x69a1b0\"},{\"kind\":\"address\",\"address\":\"0x69a210\"},{\"kind\":\"address\",\"address\":\"0x69a250\"},{\"kind\":\"address\",\"address\":\"0x69a280\"},{\"kind\":\"address\",\"address\":\"0x69a330\"},{\"kind\":\"address\",\"address\":\"0x69a350\"},{\"kind\":\"address\",\"address\":\"0x69a410\"},{\"kind\":\"address\",\"address\":\"0x69a460\"},{\"kind\":\"address\",\"address\":\"0x69a680\"},{\"kind\":\"address\",\"address\":\"0x69a7b0\"},{\"kind\":\"address\",\"address\":\"0x69a850\"},{\"kind\":\"address\",\"address\":\"0x69a8f0\"},{\"kind\":\"address\",\"address\":\"0x69aac0\"},{\"kind\":\"address\",\"address\":\"0x69ab50\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_f1a36c6b3ad286842b1ed86bd3c2163f44c7dc63d65997010e74903b0be7db2b",
+    "subject": {
+      "name": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe",
+      "digest": {
+        "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb"
+      },
+      "format": "pe",
+      "architecture": "x86",
+      "local_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe"
+    },
+    "provider": {
+      "id": "rea-workflow",
+      "name": "REA composed investigation workflow",
+      "version": "1"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "parameters": {
+        "upstream_analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "pe",
+            "executable_role": "application",
+            "managed": false,
+            "native_aot_metadata": {
+              "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+              "source_bytes": 134217728,
+              "work_units": 67108864,
+              "working_memory_bytes": 67108864,
+              "report_bytes": 4194304
+            },
+            "architecture": "x86",
+            "available_architectures": [
+              "x86"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "function_boundary_observations": "ghidra-terminal-call-limitations-v1",
+            "no_return_repair": "disabled-windows-p0",
+            "process_launch": "official-headless-script-v1",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "auto-from-header",
+            "language_id": "auto-from-header",
+            "compiler_spec_id": "auto-default",
+            "analyzer_preset": "ghidra-default",
+            "analysis_seeds": {
+              "format": "rea-ghidra-seeds-v1",
+              "path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "configured_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "sha256": "ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24",
+              "entries": {
+                "function": 1046,
+                "code": 0,
+                "label": 0
+              }
+            }
+          },
+          "digest": "d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d"
+        },
+        "workflow_revision": 2
+      },
+      "digest": "87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971"
+    },
+    "predicate_type": "rea.analysis",
+    "operation": "batch_decompile",
+    "parameters": {
+      "addresses": [
+        "0x699260",
+        "0x6992c0",
+        "0x699640",
+        "0x699690",
+        "0x6996b0",
+        "0x6996d0",
+        "0x6996f0",
+        "0x699710",
+        "0x699770",
+        "0x6997a0",
+        "0x6997f0",
+        "0x699840",
+        "0x6998a0",
+        "0x6998d0",
+        "0x6998f0",
+        "0x6999e0",
+        "0x699ec0",
+        "0x69a180",
+        "0x69a1b0",
+        "0x69a210",
+        "0x69a250",
+        "0x69a280",
+        "0x69a330",
+        "0x69a350",
+        "0x69a410",
+        "0x69a460",
+        "0x69a680",
+        "0x69a7b0",
+        "0x69a850",
+        "0x69a8f0",
+        "0x69aac0",
+        "0x69ab50"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "items": [
+        {
+          "address": "0x699260",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699260",
+            "name": "FUN_00699260"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined1 FUN_00699260(int param_1)\r\n\r\n{\r\n  LPCRITICAL_SECTION lpCriticalSection;\r\n  int iVar1;\r\n  int in_ECX;\r\n  int *piVar2;\r\n  undefined1 uVar3;\r\n  \r\n  lpCriticalSection = (LPCRITICAL_SECTION)(in_ECX + 0x70);\r\n  uVar3 = 0;\r\n  EnterCriticalSection(lpCriticalSection);\r\n  iVar1 = 0;\r\n  if (*(int *)(in_ECX + 0x1b8) != 0) {\r\n    piVar2 = (int *)(in_ECX + 0xb8);\r\n    while (*piVar2 != param_1) {\r\n      iVar1 = iVar1 + 1;\r\n      piVar2 = piVar2 + 1;\r\n      if (iVar1 == *(int *)(in_ECX + 0x1b8)) {\r\n        LeaveCriticalSection(lpCriticalSection);\r\n        return 0;\r\n      }\r\n    }\r\n    uVar3 = 1;\r\n  }\r\n  LeaveCriticalSection(lpCriticalSection);\r\n  return uVar3;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6992c0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6992c0",
+            "name": "FUN_006992c0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006992c0(void)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  undefined4 uVar3;\r\n  int in_ECX;\r\n  int *piVar4;\r\n  int *_Size;\r\n  uint unaff_ESI;\r\n  uint unaff_EDI;\r\n  int *piVar5;\r\n  undefined1 *puStack_4c;\r\n  undefined1 *puStack_48;\r\n  undefined1 *puStack_44;\r\n  int *piStack_40;\r\n  int *piStack_3c;\r\n  undefined1 *puStack_38;\r\n  undefined4 uStack_34;\r\n  undefined1 auStack_20 [4];\r\n  undefined1 auStack_1c [4];\r\n  undefined1 local_18 [8];\r\n  uint uStack_10;\r\n  int *piStack_8;\r\n  uint local_4;\r\n  \r\n  local_4 = DAT_00829570 ^ (uint)auStack_20;\r\n  if (((*(int *)(in_ECX + 8) != 1) && (*(int *)(in_ECX + 8) != 2)) ||\r\n     (piStack_3c = *(int **)(in_ECX + 0x54), piStack_3c == (int *)0x0)) {\r\n    __security_check_cookie(local_4 ^ (uint)auStack_20);\r\n    return;\r\n  }\r\n  uStack_34 = 0;\r\n  puStack_38 = local_18;\r\n  piStack_40 = (int *)0x69930e;\r\n  iVar2 = (**(code **)(*piStack_3c + 0x10))();\r\n  _Size = piStack_8;\r\n  if (-1 < iVar2) {\r\n    iVar2 = *(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24);\r\n    piVar4 = (int *)(unaff_ESI - *(int *)(in_ECX + 0x1cc));\r\n    if ((int)piVar4 < 0) {\r\n      piVar4 = (int *)((int)piVar4 + iVar2);\r\n    }\r\n    if ((local_4 & 2) == 0) {\r\n      _Size = (int *)(*(int *)(in_ECX + 0x24) * 2);\r\n      if ((int)piVar4 < (int)_Size) {\r\n        _Size = piVar4;\r\n      }\r\n      if (iVar2 < *(int *)(in_ECX + 0x1cc) + (int)_Size) {\r\n        _Size = (int *)(iVar2 - *(int *)(in_ECX + 0x1cc));\r\n      }\r\n    }\r\n  }\r\n  if ((((local_4 & 2) == 0) && (*(int *)(in_ECX + 0x1cc) <= (int)unaff_ESI)) &&\r\n     ((int)unaff_ESI < *(int *)(in_ECX + 0x1cc) + (int)_Size)) {\r\n    __security_check_cookie(uStack_10 ^ (uint)&stack0xffffffd4);\r\n    return;\r\n  }\r\n  piStack_40 = (int *)0x69938d;\r\n  iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\r\n  piVar4 = _Size;\r\n  if (iVar2 - *(int *)(in_ECX + 0x1c8) <= (int)_Size) {\r\n    piStack_40 = (int *)0x6993aa;\r\n    iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\r\n    piVar4 = (int *)(iVar2 - *(int *)(in_ECX + 0x1c8));\r\n  }\r\n  piStack_40 = (int *)0x0;\r\n  puStack_44 = local_18;\r\n  puStack_48 = &stack0xffffffd8;\r\n  puStack_4c = auStack_1c;\r\n  iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x2c))();\r\n  if (iVar2 == -0x7787ff6a) {\r\n    iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x50))();\r\n    if (iVar2 < 0) goto LAB_00699626;\r\n    iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x2c))\r\n                      (*(int **)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x1cc),_Size,&puStack_4c,\r\n                       &piStack_3c,&puStack_48,&puStack_38);\r\n  }\r\n  if (-1 < iVar2) {\r\n    if (piStack_3c < _Size) {\r\n      piVar5 = (int *)0x0;\r\n    }\r\n    else {\r\n      if ((unaff_ESI & 1) == 0) {\r\n        if ((piVar4 != (int *)0x0) &&\r\n           ((iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x1c))(puStack_4c,piVar4), iVar2 < 0\r\n            || (piStack_40 != piVar4)))) {\r\n          uVar3 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\r\n          *(undefined4 *)(in_ECX + 0x1c8) = uVar3;\r\n          piVar4 = (int *)0x0;\r\n          iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x48))();\r\n          if (-1 < iVar2) {\r\n            *(undefined4 *)(in_ECX + 8) = 0;\r\n          }\r\n        }\r\n      }\r\n      else {\r\n        piVar4 = (int *)0x0;\r\n      }\r\n      piVar1 = piVar4;\r\n      piVar5 = _Size;\r\n      if ((*(byte *)(in_ECX + 0x1d0) & 1) == 0) {\r\n        if ((int)piVar4 < (int)_Size) {\r\n          _memset(puStack_4c + (int)piVar4,0,(int)_Size - (int)piVar4);\r\n          iVar2 = *(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24);\r\n          if (piVar4 == (int *)0x0) {\r\n            if ((int)puStack_44 < (int)DAT_029739f4) {\r\n              iVar2 = iVar2 - (int)DAT_029739f4;\r\n            }\r\n            else {\r\n              iVar2 = -(int)DAT_029739f4;\r\n            }\r\n            DAT_029739f8 = DAT_029739f8 - (int)(puStack_44 + iVar2);\r\n            DAT_029739f4 = puStack_44;\r\n            if (DAT_029739f8 < 1) {\r\n              *(int *)(in_ECX + 0x1d8) = *(int *)(in_ECX + 0x1d8) + 1;\r\n            }\r\n          }\r\n          else {\r\n            DAT_029739f4 = puStack_44;\r\n            DAT_029739f8 = iVar2;\r\n          }\r\n        }\r\n      }\r\n      else {\r\n        for (; (int)piVar1 < (int)_Size; piVar1 = (int *)((int)piVar1 + (int)piVar4)) {\r\n          (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x18))();\r\n          *(undefined4 *)(in_ECX + 0x1c8) = 0;\r\n          piVar4 = (int *)((int)_Size - (int)piVar1);\r\n          iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\r\n          if (iVar2 - *(int *)(in_ECX + 0x1c8) < (int)piVar4) {\r\n            iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\r\n            piVar4 = (int *)(iVar2 - *(int *)(in_ECX + 0x1c8));\r\n          }\r\n          iVar2 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x1c))(puStack_4c + (int)piVar1,piVar4);\r\n          if ((iVar2 < 0) || (piStack_40 != piVar4)) {\r\n            uVar3 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x14))();\r\n            *(undefined4 *)(in_ECX + 0x1c8) = uVar3;\r\n            _memset(puStack_4c,0,(size_t)_Size);\r\n            iVar2 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x48))();\r\n            if (-1 < iVar2) {\r\n              *(undefined4 *)(in_ECX + 8) = 0;\r\n            }\r\n            break;\r\n          }\r\n        }\r\n      }\r\n    }\r\n    (**(code **)(**(int **)(in_ECX + 0x54) + 0x4c))\r\n              (*(int **)(in_ECX + 0x54),puStack_4c,piVar5,puStack_48);\r\n    *(int *)(in_ECX + 0x1c8) = *(int *)(in_ECX + 0x1c8) + (int)piVar4;\r\n    *(uint *)(in_ECX + 0x1cc) =\r\n         (uint)(*(int *)(in_ECX + 0x1cc) + (int)_Size) %\r\n         (uint)(*(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24));\r\n    __security_check_cookie((uint)puStack_44 ^ (uint)&stack0xffffffa0);\r\n    return;\r\n  }\r\nLAB_00699626:\r\n  __security_check_cookie(unaff_EDI ^ (uint)&puStack_4c);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x699640",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699640",
+            "name": "FUN_00699640"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_00699640(undefined4 param_1,int param_2)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int *in_ECX;\r\n  \r\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\r\n    FUN_004f1f40(in_ECX + 0x78,param_1,0x104);\r\n    in_ECX[0xfb] = param_2;\r\n    uVar1 = FUN_00699180(1,0);\r\n    return uVar1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x699690",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699690",
+            "name": "FUN_00699690"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_00699690(undefined4 param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int *in_ECX;\r\n  \r\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\r\n    uVar1 = FUN_00699180(2,param_1);\r\n    return uVar1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6996b0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6996b0",
+            "name": "FUN_006996b0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006996b0(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int *in_ECX;\r\n  \r\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\r\n    uVar1 = FUN_00699180(3,0);\r\n    return uVar1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6996d0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6996d0",
+            "name": "FUN_006996d0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006996d0(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int *in_ECX;\r\n  \r\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\r\n    uVar1 = FUN_00699180(4,0);\r\n    return uVar1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6996f0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6996f0",
+            "name": "FUN_006996f0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006996f0(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int *in_ECX;\r\n  \r\n  if ((in_ECX != (int *)0x0) && (*in_ECX != 0)) {\r\n    uVar1 = FUN_00699180(5,0);\r\n    return uVar1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x699710",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699710",
+            "name": "FUN_00699710"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_00699710(undefined4 param_1)\r\n\r\n{\r\n  int in_ECX;\r\n  \r\n  if (in_ECX == 0) {\r\n    return 0;\r\n  }\r\n  EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n  *(undefined4 *)(in_ECX + 0x10) = param_1;\r\n  if (*(int **)(in_ECX + 0x54) != (int *)0x0) {\r\n    (**(code **)(**(int **)(in_ECX + 0x54) + 0x3c))\r\n              (*(undefined4 *)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x10));\r\n    *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0x10);\r\n  }\r\n  LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x699770",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699770",
+            "name": "FUN_00699770"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_00699770(void)\r\n\r\n{\r\n  int in_ECX;\r\n  \r\n  if ((in_ECX != 0) &&\r\n     ((*(int *)(in_ECX + 0x1b8) != 0 || ((*(int *)(in_ECX + 8) != 0 && (*(int *)(in_ECX + 8) != 3)))\r\n      ))) {\r\n    return 0;\r\n  }\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6997a0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6997a0",
+            "name": "FUN_006997a0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_006997a0(void)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  int in_ECX;\r\n  \r\n  if (in_ECX == 0) {\r\n    return 0;\r\n  }\r\n  cVar1 = FUN_00699260(3);\r\n  if (cVar1 != '\\0') {\r\n    return 2;\r\n  }\r\n  if ((*(int *)(in_ECX + 8) != 2) && ((*(int *)(in_ECX + 8) != 3 || (*(int *)(in_ECX + 0xc) == 0))))\r\n  {\r\n    iVar2 = FUN_00699770();\r\n    return (-(uint)(iVar2 != 0) & 0xfffffffe) + 2;\r\n  }\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6997f0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6997f0",
+            "name": "FUN_006997f0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006997f0(void)\r\n\r\n{\r\n  int *piVar1;\r\n  int in_ECX;\r\n  \r\n  if (in_ECX != 0) {\r\n    EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\r\n    EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n    if ((*(int *)(in_ECX + 8) == 2) && (piVar1 = *(int **)(in_ECX + 0x54), piVar1 != (int *)0x0)) {\r\n      (**(code **)(*piVar1 + 0x48))(piVar1);\r\n    }\r\n    LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n    *(undefined4 *)(in_ECX + 0x3f4) = 1;\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x699840",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699840",
+            "name": "FUN_00699840"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_00699840(void)\r\n\r\n{\r\n  int *piVar1;\r\n  int in_ECX;\r\n  \r\n  if ((in_ECX != 0) && (*(int *)(in_ECX + 0x3f4) != 0)) {\r\n    EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n    if ((*(int *)(in_ECX + 8) == 2) && (piVar1 = *(int **)(in_ECX + 0x54), piVar1 != (int *)0x0)) {\r\n      (**(code **)(*piVar1 + 0x30))(piVar1,0,0,1);\r\n    }\r\n    LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n    *(undefined4 *)(in_ECX + 0x3f4) = 0;\r\n    LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6998a0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6998a0",
+            "name": "FUN_006998a0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006998a0(void)\r\n\r\n{\r\n  MMRESULT MVar1;\r\n  int in_ECX;\r\n  \r\n  if (*(UINT *)(in_ECX + 100) != 0) {\r\n    timeKillEvent(*(UINT *)(in_ECX + 100));\r\n  }\r\n  MVar1 = timeSetEvent(500,100,*(LPTIMECALLBACK *)(in_ECX + 0x5c),0,0x21);\r\n  *(MMRESULT *)(in_ECX + 100) = MVar1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6998d0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6998d0",
+            "name": "FUN_006998d0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006998d0(void)\r\n\r\n{\r\n  int in_ECX;\r\n  \r\n  if (*(UINT *)(in_ECX + 100) != 0) {\r\n    timeKillEvent(*(UINT *)(in_ECX + 100));\r\n  }\r\n  *(undefined4 *)(in_ECX + 100) = 0;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6998f0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6998f0",
+            "name": "FUN_006998f0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006998f0(void)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  int *in_ECX;\r\n  \r\n  if (in_ECX != (int *)0x0) {\r\n    if (*in_ECX != 0) {\r\n      if (in_ECX[0xfd] != 0) {\r\n        FUN_00699840();\r\n      }\r\n      if (*in_ECX != 0) {\r\n        FUN_00699180(3,0);\r\n      }\r\n      FUN_00699180(6,0);\r\n      iVar1 = in_ECX[0x1a];\r\n      while (iVar1 != 0) {\r\n        Sleep(10);\r\n        iVar1 = in_ECX[0x1a];\r\n      }\r\n    }\r\n    if ((undefined4 *)in_ECX[0x77] != (undefined4 *)0x0) {\r\n      (*(code *)**(undefined4 **)in_ECX[0x77])(1);\r\n    }\r\n    in_ECX[0x77] = 0;\r\n    DeleteCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x28));\r\n    DeleteCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x22));\r\n    DeleteCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x1c));\r\n    if ((HANDLE)in_ECX[0x18] != (HANDLE)0xffffffff) {\r\n      CloseHandle((HANDLE)in_ECX[0x18]);\r\n    }\r\n    if ((HANDLE)in_ECX[0x17] != (HANDLE)0xffffffff) {\r\n      CloseHandle((HANDLE)in_ECX[0x17]);\r\n    }\r\n    in_ECX[0x18] = -1;\r\n    in_ECX[0x17] = -1;\r\n    if (in_ECX[0x19] != 0) {\r\n      timeKillEvent(in_ECX[0x19]);\r\n    }\r\n    piVar2 = (int *)in_ECX[0x15];\r\n    in_ECX[0x19] = 0;\r\n    if (piVar2 != (int *)0x0) {\r\n      (**(code **)(*piVar2 + 8))(piVar2);\r\n    }\r\n    in_ECX[0x15] = 0;\r\n    *in_ECX = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6999e0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6999e0",
+            "name": "FUN_006999e0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006999e0(void)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  bool bVar3;\r\n  DWORD DVar4;\r\n  undefined4 uVar5;\r\n  MMRESULT MVar6;\r\n  int in_ECX;\r\n  int iVar7;\r\n  uint local_1c;\r\n  undefined1 auStack_14 [2];\r\n  short sStack_12;\r\n  int iStack_10;\r\n  \r\n  bVar3 = false;\r\n  do {\r\n    DVar4 = WaitForMultipleObjects(2,(HANDLE *)(in_ECX + 0x5c),0,0xffffffff);\r\n    if (DVar4 == 0) {\r\n      if (((-1 < *(int *)(in_ECX + 4)) &&\r\n          (FUN_006992c0((uint)(*(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24)) >> 2,0),\r\n          0 < *(int *)(in_ECX + 0x1d8))) && (*(int *)(in_ECX + 8) == 2)) {\r\n        piVar2 = *(int **)(in_ECX + 0x54);\r\n        if (piVar2 != (int *)0x0) {\r\n          (**(code **)(*piVar2 + 0x48))(piVar2);\r\n        }\r\n        *(undefined4 *)(in_ECX + 8) = 0;\r\n        if (*(UINT *)(in_ECX + 100) != 0) {\r\n          timeKillEvent(*(UINT *)(in_ECX + 100));\r\n        }\r\n        *(undefined4 *)(in_ECX + 100) = 0;\r\n      }\r\n    }\r\n    else if (DVar4 == 1) {\r\n      ResetEvent(*(HANDLE *)(in_ECX + 0x60));\r\n      iVar7 = 0;\r\n      EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\r\n      if (0 < *(int *)(in_ECX + 0x1b8)) {\r\n        iVar1 = *(int *)(in_ECX + 0x1bc);\r\n        local_1c = *(uint *)(in_ECX + 0x138 + iVar1 * 4);\r\n        iVar7 = *(int *)(in_ECX + 0xb8 + iVar1 * 4);\r\n        *(uint *)(in_ECX + 0x1bc) = iVar1 + 1U & 0x1f;\r\n        *(int *)(in_ECX + 0x1b8) = *(int *)(in_ECX + 0x1b8) + -1;\r\n      }\r\n      LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\r\n      while (iVar7 != 0) {\r\n        EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\r\n        switch(iVar7) {\r\n        case 1:\r\n          FUN_004f1f40(in_ECX + 0x2e5,in_ECX + 0x1e0,0x104);\r\n          *(undefined4 *)(in_ECX + 0x3f0) = *(undefined4 *)(in_ECX + 0x3ec);\r\n          if (*(int *)(in_ECX + 8) == 2) {\r\n            if (*(UINT *)(in_ECX + 100) != 0) {\r\n              timeKillEvent(*(UINT *)(in_ECX + 100));\r\n            }\r\n            piVar2 = *(int **)(in_ECX + 0x54);\r\n            *(undefined4 *)(in_ECX + 100) = 0;\r\n            if (piVar2 != (int *)0x0) {\r\n              (**(code **)(*piVar2 + 0x48))(piVar2);\r\n            }\r\n          }\r\n          *(undefined4 *)(in_ECX + 0xc) = 0;\r\n          *(undefined4 *)(in_ECX + 8) = 0;\r\n          *(undefined4 *)(in_ECX + 0x1d8) = 0;\r\n          *(undefined4 *)(in_ECX + 0x1c8) = 0;\r\n          *(undefined4 *)(in_ECX + 0x1cc) = 0;\r\n          *(undefined4 *)(in_ECX + 4) = 0xffffffff;\r\n          (**(code **)(**(int **)(in_ECX + 0x1dc) + 0xc))();\r\n          iVar7 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 4))(0,in_ECX + 0x2e5,auStack_14);\r\n          if (-1 < iVar7) {\r\n            if ((*(int *)(in_ECX + 0x20) != iStack_10) || (*(short *)(in_ECX + 0x1e) != sStack_12))\r\n            {\r\n              FUN_00699070(auStack_14);\r\n            }\r\n            *(undefined4 *)(in_ECX + 4) = 1;\r\n          }\r\n          break;\r\n        case 2:\r\n          if (*(int *)(in_ECX + 4) < 0) {\r\nLAB_00699c5d:\r\n            if (*(UINT *)(in_ECX + 100) != 0) {\r\n              timeKillEvent(*(UINT *)(in_ECX + 100));\r\n            }\r\n            *(undefined4 *)(in_ECX + 100) = 0;\r\n          }\r\n          else if (*(int *)(in_ECX + 8) != 2) {\r\n            *(undefined4 *)(in_ECX + 0x1d8) = 0;\r\n            *(undefined4 *)(in_ECX + 0xc) = 0;\r\n            *(undefined4 *)(in_ECX + 0x1c8) = 0;\r\n            *(undefined4 *)(in_ECX + 0x1cc) = 0;\r\n            *(undefined4 *)(in_ECX + 0x1d0) = 0;\r\n            (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x18))();\r\n            iVar7 = *(int *)(in_ECX + 0x58) * 1000;\r\n            if (iVar7 < 2000) {\r\n              iVar7 = 2000;\r\n            }\r\n            iVar1 = *(int *)(in_ECX + 0x24);\r\n            *(undefined4 *)(in_ECX + 8) = 1;\r\n            uVar5 = (**(code **)(**(int **)(in_ECX + 0x1dc) + 0x20))\r\n                              (*(undefined4 *)(in_ECX + 0x3f0));\r\n            *(undefined4 *)(in_ECX + 0x1c8) = uVar5;\r\n            piVar2 = *(int **)(in_ECX + 0x54);\r\n            if (piVar2 != (int *)0x0) {\r\n              (**(code **)(*piVar2 + 0x34))(piVar2,0);\r\n            }\r\n            FUN_006992c0((uint)(iVar1 * iVar7) / 1000,2);\r\n            piVar2 = *(int **)(in_ECX + 0x54);\r\n            if ((piVar2 == (int *)0x0) ||\r\n               (iVar7 = (**(code **)(*piVar2 + 0x34))(piVar2,0), iVar7 < 0)) goto LAB_00699c5d;\r\n            if ((local_1c & 2) == 0) {\r\n              iVar7 = (**(code **)(**(int **)(in_ECX + 0x54) + 0x30))\r\n                                (*(int **)(in_ECX + 0x54),0,0,1);\r\n              if (iVar7 < 0) goto LAB_00699c5d;\r\n              *(undefined4 *)(in_ECX + 0xc) = 1;\r\n              *(undefined4 *)(in_ECX + 8) = 2;\r\n              *(uint *)(in_ECX + 0x1d0) = local_1c;\r\n              FUN_006998a0();\r\n            }\r\n            else {\r\n              *(undefined4 *)(in_ECX + 8) = 3;\r\n              *(uint *)(in_ECX + 0x1d0) = local_1c;\r\n              FUN_006998a0();\r\n            }\r\n          }\r\n          break;\r\n        case 3:\r\n          if (*(UINT *)(in_ECX + 100) != 0) {\r\n            timeKillEvent(*(UINT *)(in_ECX + 100));\r\n          }\r\n          piVar2 = *(int **)(in_ECX + 0x54);\r\n          *(undefined4 *)(in_ECX + 100) = 0;\r\n          if ((piVar2 != (int *)0x0) && (iVar7 = (**(code **)(*piVar2 + 0x48))(piVar2), -1 < iVar7))\r\n          {\r\n            *(undefined4 *)(in_ECX + 0x1cc) = 0;\r\n            FUN_006992c0(*(int *)(in_ECX + 0x58) * *(int *)(in_ECX + 0x24),3);\r\n          }\r\n          *(undefined4 *)(in_ECX + 8) = 0;\r\n          break;\r\n        case 4:\r\n          if (*(int *)(in_ECX + 8) == 2) {\r\n            if (*(UINT *)(in_ECX + 100) != 0) {\r\n              timeKillEvent(*(UINT *)(in_ECX + 100));\r\n            }\r\n            piVar2 = *(int **)(in_ECX + 0x54);\r\n            *(undefined4 *)(in_ECX + 100) = 0;\r\n            if ((piVar2 != (int *)0x0) &&\r\n               (iVar7 = (**(code **)(*piVar2 + 0x48))(piVar2), -1 < iVar7)) {\r\n              *(undefined4 *)(in_ECX + 8) = 3;\r\n            }\r\n          }\r\n          break;\r\n        case 5:\r\n          if (((*(int *)(in_ECX + 8) == 3) &&\r\n              (piVar2 = *(int **)(in_ECX + 0x54), piVar2 != (int *)0x0)) &&\r\n             (iVar7 = (**(code **)(*piVar2 + 0x30))(piVar2,0,0,1), -1 < iVar7)) {\r\n            *(undefined4 *)(in_ECX + 8) = 2;\r\n            *(undefined4 *)(in_ECX + 0xc) = 1;\r\n            if (*(UINT *)(in_ECX + 100) != 0) {\r\n              timeKillEvent(*(UINT *)(in_ECX + 100));\r\n            }\r\n            MVar6 = timeSetEvent(500,100,*(LPTIMECALLBACK *)(in_ECX + 0x5c),0,0x21);\r\n            *(MMRESULT *)(in_ECX + 100) = MVar6;\r\n          }\r\n          break;\r\n        case 6:\r\n          *(undefined4 *)(in_ECX + 0x68) = 0;\r\n          bVar3 = true;\r\n        }\r\n        LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x88));\r\n        iVar7 = 0;\r\n        EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\r\n        if (0 < *(int *)(in_ECX + 0x1b8)) {\r\n          iVar1 = *(int *)(in_ECX + 0x1bc);\r\n          local_1c = *(uint *)(in_ECX + 0x138 + iVar1 * 4);\r\n          iVar7 = *(int *)(in_ECX + 0xb8 + iVar1 * 4);\r\n          *(uint *)(in_ECX + 0x1bc) = iVar1 + 1U & 0x1f;\r\n          *(int *)(in_ECX + 0x1b8) = *(int *)(in_ECX + 0x1b8) + -1;\r\n        }\r\n        LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x70));\r\n        if ((*(int *)(in_ECX + 0x14) != *(int *)(in_ECX + 0x10)) || (*(int *)(in_ECX + 0x14) == 1))\r\n        {\r\n          EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n          if (*(int **)(in_ECX + 0x54) != (int *)0x0) {\r\n            (**(code **)(**(int **)(in_ECX + 0x54) + 0x3c))\r\n                      (*(undefined4 *)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x10));\r\n            *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0x10);\r\n          }\r\n          LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n        }\r\n      }\r\n    }\r\n    if ((*(int *)(in_ECX + 0x14) != *(int *)(in_ECX + 0x10)) || (*(int *)(in_ECX + 0x14) == 1)) {\r\n      EnterCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n      if (*(int **)(in_ECX + 0x54) != (int *)0x0) {\r\n        (**(code **)(**(int **)(in_ECX + 0x54) + 0x3c))\r\n                  (*(undefined4 *)(in_ECX + 0x54),*(undefined4 *)(in_ECX + 0x10));\r\n        *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(in_ECX + 0x10);\r\n      }\r\n      LeaveCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0xa0));\r\n    }\r\n    if (bVar3) {\r\n      return 0;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x699ec0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x699ec0",
+            "name": "FUN_00699ec0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_00699ec0(int *param_1,undefined4 param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  undefined4 uVar3;\r\n  HANDLE pvVar4;\r\n  undefined4 *in_ECX;\r\n  undefined4 *unaff_EBP;\r\n  int *piVar5;\r\n  \r\n  in_ECX[0xfe] = DAT_029739f0;\r\n  DAT_029739f0 = DAT_029739f0 + 1;\r\n  in_ECX[0xff] = param_1;\r\n  in_ECX[6] = param_2;\r\n  puVar1 = in_ECX + 7;\r\n  *in_ECX = 0;\r\n  *puVar1 = 0;\r\n  in_ECX[8] = 0;\r\n  in_ECX[9] = 0;\r\n  in_ECX[10] = 0;\r\n  *(undefined2 *)(in_ECX + 0xb) = 0;\r\n  _memset(in_ECX + 0x78,0,0x105);\r\n  _memset((void *)((int)in_ECX + 0x2e5),0,0x105);\r\n  *(undefined2 *)puVar1 = 1;\r\n  switch(in_ECX[6]) {\r\n  case 1:\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\r\n    in_ECX[8] = 0x5622;\r\n    *(undefined2 *)(in_ECX + 10) = 1;\r\n    *(undefined2 *)((int)in_ECX + 0x2a) = 8;\r\n    in_ECX[0x16] = 4;\r\n    goto switchD_00699f3f_default;\r\n  case 2:\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\r\n    in_ECX[8] = 0x5622;\r\n    *(undefined2 *)(in_ECX + 10) = 2;\r\n    break;\r\n  case 3:\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 2;\r\n    in_ECX[8] = 0x5622;\r\n    *(undefined2 *)(in_ECX + 10) = 2;\r\n    *(undefined2 *)((int)in_ECX + 0x2a) = 8;\r\n    goto LAB_00699fff;\r\n  case 4:\r\n    in_ECX[8] = 0x5622;\r\n    goto LAB_00699fed;\r\n  case 5:\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\r\n    in_ECX[8] = 0xac44;\r\n    *(undefined2 *)(in_ECX + 10) = 2;\r\n    break;\r\n  case 6:\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 2;\r\n    in_ECX[8] = 0xac44;\r\n    *(undefined2 *)(in_ECX + 10) = 4;\r\n    *(undefined2 *)((int)in_ECX + 0x2a) = 0x10;\r\n    in_ECX[0x16] = 4;\r\n    goto switchD_00699f3f_default;\r\n  case 7:\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 1;\r\n    in_ECX[8] = 48000;\r\n    *(undefined2 *)(in_ECX + 10) = 2;\r\n    break;\r\n  case 8:\r\n    in_ECX[8] = 48000;\r\nLAB_00699fed:\r\n    *(undefined2 *)(in_ECX + 10) = 4;\r\n    *(undefined2 *)((int)in_ECX + 0x1e) = 2;\r\n    break;\r\n  default:\r\n    goto switchD_00699f3f_default;\r\n  }\r\n  *(undefined2 *)((int)in_ECX + 0x2a) = 0x10;\r\nLAB_00699fff:\r\n  in_ECX[0x16] = 3;\r\nswitchD_00699f3f_default:\r\n  in_ECX[9] = (uint)*(ushort *)(in_ECX + 10) * in_ECX[8];\r\n  in_ECX[0xd] = 0;\r\n  in_ECX[0xe] = 0;\r\n  in_ECX[0xf] = 0;\r\n  in_ECX[0x10] = 0;\r\n  in_ECX[0x11] = 0;\r\n  in_ECX[0x12] = 0;\r\n  in_ECX[0x13] = 0;\r\n  in_ECX[0x14] = 0;\r\n  in_ECX[0xc] = 0x24;\r\n  in_ECX[0xd] = 0x10080;\r\n  in_ECX[0xe] = in_ECX[0x16] * in_ECX[9];\r\n  in_ECX[0x10] = puVar1;\r\n  param_2 = 0;\r\n  in_ECX[0x15] = 0;\r\n  in_ECX[0x18] = 0xffffffff;\r\n  in_ECX[0x17] = 0xffffffff;\r\n  in_ECX[0x70] = 0;\r\n  in_ECX[0x6f] = 0;\r\n  in_ECX[0x6e] = 0;\r\n  in_ECX[1] = 0xffffffff;\r\n  in_ECX[0x74] = 0;\r\n  in_ECX[0xfd] = 0;\r\n  in_ECX[4] = 0;\r\n  in_ECX[5] = 1;\r\n  iVar2 = FUN_006ea018(0x338);\r\n  if (iVar2 == 0) {\r\n    uVar3 = 0;\r\n  }\r\n  else {\r\n    uVar3 = FUN_0069a850();\r\n  }\r\n  in_ECX[0x77] = uVar3;\r\n  in_ECX[2] = 0;\r\n  InitializeCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x1c));\r\n  InitializeCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x22));\r\n  InitializeCriticalSection((LPCRITICAL_SECTION)(in_ECX + 0x28));\r\n  piVar5 = (int *)0x0;\r\n  iVar2 = (**(code **)(*param_1 + 0xc))(param_1,in_ECX + 0xc,&param_2);\r\n  if (-1 < iVar2) {\r\n    iVar2 = (**(code **)*unaff_EBP)(unaff_EBP,&DAT_0078496c,in_ECX + 0x15);\r\n    if (-1 < iVar2) {\r\n      pvVar4 = CreateEventA((LPSECURITY_ATTRIBUTES)0x0,0,0,(LPCSTR)0x0);\r\n      in_ECX[0x17] = pvVar4;\r\n      pvVar4 = CreateEventA((LPSECURITY_ATTRIBUTES)0x0,1,0,(LPCSTR)0x0);\r\n      in_ECX[0x18] = pvVar4;\r\n      if ((in_ECX[0x17] != -1) && (pvVar4 != (HANDLE)0xffffffff)) {\r\n        pvVar4 = CreateThread((LPSECURITY_ATTRIBUTES)0x0,0,(LPTHREAD_START_ROUTINE)&LAB_00699eb0,\r\n                              in_ECX,4,in_ECX + 0x1b);\r\n        in_ECX[0x1a] = pvVar4;\r\n        if (pvVar4 != (HANDLE)0x0) {\r\n          ResumeThread(pvVar4);\r\n          *in_ECX = 1;\r\n        }\r\n      }\r\n    }\r\n    (**(code **)(*piVar5 + 8))(piVar5);\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a180",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a180",
+            "name": "FUN_0069a180"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_0069a180(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a1b0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a1b0",
+            "name": "FUN_0069a1b0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_0069a1b0(void)\r\n\r\n{\r\n  undefined4 *in_ECX;\r\n  \r\n  *in_ECX = &PTR_FUN_0076efac;\r\n  in_ECX[2] = 0;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a210",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a210",
+            "name": "FUN_0069a210"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_0069a210(void)\r\n\r\n{\r\n  int in_ECX;\r\n  \r\n  if (*(int *)(in_ECX + 8) != 0) {\r\n    return (*(int *)(in_ECX + 0x30) - *(int *)(in_ECX + 0x2c)) * (uint)*(ushort *)(in_ECX + 0x24);\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a250",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a250",
+            "name": "FUN_0069a250"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_0069a250(void)\r\n\r\n{\r\n  int in_ECX;\r\n  \r\n  if (*(HANDLE *)(in_ECX + 8) != (HANDLE)0x0) {\r\n    CloseHandle(*(HANDLE *)(in_ECX + 8));\r\n    *(undefined4 *)(in_ECX + 8) = 0;\r\n    return 0;\r\n  }\r\n  return 0x80004005;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a280",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a280",
+            "name": "FUN_0069a280"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_0069a280(void)\r\n\r\n{\r\n  ushort uVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int in_ECX;\r\n  int iVar4;\r\n  int iVar5;\r\n  \r\n  uVar1 = *(ushort *)(in_ECX + 0x24);\r\n  iVar3 = FUN_006e6b90();\r\n  iVar4 = *(int *)(in_ECX + 0x30);\r\n  *(int *)(in_ECX + 0x34) = iVar3;\r\n  iVar5 = iVar4;\r\n  if (iVar3 <= iVar4) {\r\n    iVar5 = iVar3;\r\n  }\r\n  iVar2 = *(int *)(in_ECX + 0x2c);\r\n  if (iVar5 < iVar2) {\r\n    *(int *)(in_ECX + 0x34) = iVar2;\r\n    return (uint)uVar1 * iVar2;\r\n  }\r\n  if (iVar3 <= iVar4) {\r\n    iVar4 = iVar3;\r\n  }\r\n  *(int *)(in_ECX + 0x34) = iVar4;\r\n  return (uint)uVar1 * iVar4;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a330",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a330",
+            "name": "FUN_0069a330"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_0069a330(void)\r\n\r\n{\r\n  undefined4 *in_ECX;\r\n  \r\n  *in_ECX = &PTR_FUN_0076efac;\r\n  if ((HANDLE)in_ECX[2] != (HANDLE)0x0) {\r\n    CloseHandle((HANDLE)in_ECX[2]);\r\n    in_ECX[2] = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a350",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a350",
+            "name": "FUN_0069a350"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_0069a350(HANDLE param_1,char *param_2,uint *param_3)\r\n\r\n{\r\n  char cVar1;\r\n  char cVar2;\r\n  char cVar3;\r\n  char cVar4;\r\n  uint *lpBuffer;\r\n  int iVar5;\r\n  BOOL BVar6;\r\n  DWORD unaff_EDI;\r\n  int local_8;\r\n  int local_4;\r\n  \r\n  lpBuffer = param_3;\r\n  cVar1 = param_2[1];\r\n  cVar2 = param_2[3];\r\n  cVar3 = param_2[2];\r\n  cVar4 = *param_2;\r\n  iVar5 = ReadFile(param_1,param_3,8,(LPDWORD)&param_2,(LPOVERLAPPED)0x0);\r\n  while( true ) {\r\n    if ((iVar5 == 0) || (param_2 != (char *)0x8)) {\r\n      return 0;\r\n    }\r\n    if (*lpBuffer == ((((int)cVar2 << 8 | (int)cVar3) << 8 | (int)cVar1) << 8 | (int)cVar4)) {\r\n      SetFilePointerEx(param_1,(LARGE_INTEGER)(ZEXT48(&local_8) << 0x20),(PLARGE_INTEGER)0x1,\r\n                       unaff_EDI);\r\n      lpBuffer[2] = local_4 - *(int *)(local_8 + 0x10);\r\n      return 1;\r\n    }\r\n    BVar6 = SetFilePointerEx(param_1,(LARGE_INTEGER)(ZEXT48(&local_8) << 0x20),(PLARGE_INTEGER)0x1,\r\n                             unaff_EDI);\r\n    if (BVar6 == -1) break;\r\n    unaff_EDI = 0;\r\n    iVar5 = ReadFile(param_1,lpBuffer,8,(LPDWORD)&param_3,(LPOVERLAPPED)0x0);\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a410",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a410",
+            "name": "FUN_0069a410"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nbool FUN_0069a410(HANDLE param_1,int param_2)\r\n\r\n{\r\n  LARGE_INTEGER liDistanceToMove;\r\n  BOOL BVar1;\r\n  int in_ECX;\r\n  DWORD unaff_EDI;\r\n  undefined1 local_8 [8];\r\n  \r\n  liDistanceToMove.s.HighPart = (LONG)local_8;\r\n  liDistanceToMove.s.LowPart =\r\n       (uint)CARRY4(*(uint *)(param_2 + 8),*(uint *)(param_2 + 4)) + *(int *)(in_ECX + 0x14) +\r\n       (uint)CARRY4(*(uint *)(param_2 + 8) + *(uint *)(param_2 + 4),*(uint *)(in_ECX + 0x10));\r\n  BVar1 = SetFilePointerEx(param_1,liDistanceToMove,(PLARGE_INTEGER)0x0,unaff_EDI);\r\n  return BVar1 != -1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a460",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a460",
+            "name": "FUN_0069a460"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_0069a460(int param_1,LPCSTR param_2,undefined4 *param_3)\r\n\r\n{\r\n  short *lpBuffer;\r\n  LARGE_INTEGER liDistanceToMove;\r\n  LPCSTR lpFileName;\r\n  int iVar1;\r\n  HANDLE pvVar2;\r\n  LPSECURITY_ATTRIBUTES lpSecurityAttributes;\r\n  BOOL BVar3;\r\n  int iVar4;\r\n  int in_ECX;\r\n  DWORD unaff_EDI;\r\n  undefined1 local_20 [8];\r\n  undefined1 auStack_18 [4];\r\n  uint local_14;\r\n  undefined4 local_10;\r\n  int local_c [2];\r\n  int iStack_4;\r\n  \r\n  lpFileName = param_2;\r\n  iVar4 = param_1;\r\n  *(undefined4 *)(in_ECX + 8) = 0;\r\n  *(undefined4 *)(in_ECX + 0x10) = 0;\r\n  *(undefined4 *)(in_ECX + 0x14) = 0;\r\n  if (param_1 == 0) {\r\n    lpSecurityAttributes = (LPSECURITY_ATTRIBUTES)FUN_0069a180(param_2);\r\n    pvVar2 = CreateFileA(lpFileName,0x80000000,1,lpSecurityAttributes,3,0x8000001,\r\n                         lpSecurityAttributes);\r\n    *(HANDLE *)(in_ECX + 8) = pvVar2;\r\n  }\r\n  else {\r\n    iVar1 = FUN_004fa740(param_1,param_2,(undefined4 *)(in_ECX + 0x10),&param_1);\r\n    if (iVar1 != 0) {\r\n      pvVar2 = CreateFileA(*(LPCSTR *)(iVar4 + 0xb8),0x80000000,1,(LPSECURITY_ATTRIBUTES)0x0,3,0x80,\r\n                           (HANDLE)0x0);\r\n      *(HANDLE *)(in_ECX + 8) = pvVar2;\r\n      if (pvVar2 == (HANDLE)0xffffffff) {\r\n        FUN_0069a180(*(undefined4 *)(iVar4 + 0xb8));\r\n      }\r\n      else {\r\n        liDistanceToMove.s.HighPart = (LONG)local_20;\r\n        liDistanceToMove.s.LowPart = *(undefined4 *)(in_ECX + 0x14);\r\n        SetFilePointerEx(pvVar2,liDistanceToMove,(PLARGE_INTEGER)0x0,unaff_EDI);\r\n      }\r\n    }\r\n  }\r\n  if (*(HANDLE *)(in_ECX + 8) != (HANDLE)0xffffffff) {\r\n    BVar3 = ReadFile(*(HANDLE *)(in_ECX + 8),local_c,0xc,(LPDWORD)&param_2,(LPOVERLAPPED)0x0);\r\n    if (((((BVar3 != 0) && (param_2 == (LPCSTR)0xc)) && (local_c[0] == 0x46464952)) &&\r\n        ((iStack_4 == 0x45564157 &&\r\n         (iVar4 = FUN_0069a350(*(undefined4 *)(in_ECX + 8),&DAT_0076efd8,auStack_18), iVar4 != 0))))\r\n       && (0xf < local_14)) {\r\n      lpBuffer = (short *)(in_ECX + 0x18);\r\n      lpBuffer[0] = 0;\r\n      lpBuffer[1] = 0;\r\n      *(undefined4 *)(in_ECX + 0x1c) = 0;\r\n      *(undefined4 *)(in_ECX + 0x20) = 0;\r\n      *(undefined4 *)(in_ECX + 0x24) = 0;\r\n      *(undefined2 *)(in_ECX + 0x28) = 0;\r\n      BVar3 = ReadFile(*(HANDLE *)(in_ECX + 8),lpBuffer,0x10,(LPDWORD)&param_2,(LPOVERLAPPED)0x0);\r\n      if ((BVar3 != 0) && (param_2 == (LPCSTR)0x10)) {\r\n        *(undefined2 *)(in_ECX + 0x28) = 0;\r\n        if (param_3 != (undefined4 *)0x0) {\r\n          *param_3 = *(undefined4 *)lpBuffer;\r\n          param_3[1] = *(undefined4 *)(in_ECX + 0x1c);\r\n          param_3[2] = *(undefined4 *)(in_ECX + 0x20);\r\n          param_3[3] = *(undefined4 *)(in_ECX + 0x24);\r\n          *(undefined2 *)(param_3 + 4) = *(undefined2 *)(in_ECX + 0x28);\r\n        }\r\n        if (*lpBuffer == 1) {\r\n          FUN_0069a410(*(undefined4 *)(in_ECX + 8),auStack_18);\r\n          iVar4 = FUN_0069a350(*(undefined4 *)(in_ECX + 8),&DAT_0076efd0,auStack_18);\r\n          if (iVar4 != 0) {\r\n            *(undefined4 *)(in_ECX + 0x38) = local_10;\r\n            *(uint *)(in_ECX + 0x3c) = local_14;\r\n            if (local_14 != 0) {\r\n              *(undefined4 *)(in_ECX + 0x2c) = 0;\r\n              *(undefined4 *)(in_ECX + 0x34) = 0;\r\n              *(int *)(in_ECX + 0x30) = (int)local_14 / (int)(uint)*(ushort *)(in_ECX + 0x24) + -1;\r\n              return 0;\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n    CloseHandle(*(HANDLE *)(in_ECX + 8));\r\n    *(undefined4 *)(in_ECX + 8) = 0;\r\n    return 0x80004005;\r\n  }\r\n  FUN_0069a180(lpFileName);\r\n  return 0x80004005;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a680",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a680",
+            "name": "FUN_0069a680"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_0069a680(undefined4 param_1,LPVOID param_2,undefined4 param_3,uint *param_4)\r\n\r\n{\r\n  LARGE_INTEGER liDistanceToMove;\r\n  BOOL BVar1;\r\n  undefined4 uVar2;\r\n  int *in_ECX;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  DWORD nNumberOfBytesToRead;\r\n  uint uVar5;\r\n  DWORD unaff_EDI;\r\n  uint local_c;\r\n  undefined4 local_8 [2];\r\n  \r\n  if (in_ECX[2] != 0) {\r\n    uVar3 = (uint)*(ushort *)(in_ECX + 9);\r\n    uVar4 = in_ECX[0xc] - in_ECX[0xd];\r\n    uVar5 = (uint)param_2 / uVar3;\r\n    if ((int)uVar4 <= (int)((uint)param_2 / uVar3)) {\r\n      uVar5 = uVar4;\r\n    }\r\n    uVar4 = in_ECX[0xd] * uVar3;\r\n    nNumberOfBytesToRead = uVar3 * uVar5;\r\n    local_c = uVar4;\r\n    if (nNumberOfBytesToRead - (int)param_2 != 0) {\r\n      FUN_0069a180();\r\n      uVar4 = FUN_0069a180(param_2,nNumberOfBytesToRead);\r\n    }\r\n    liDistanceToMove.s.HighPart = (LONG)local_8;\r\n    liDistanceToMove.s.LowPart =\r\n         in_ECX[5] + ((int)uVar4 >> 0x1f) + (uint)CARRY4(uVar4,in_ECX[4]) + (in_ECX[0xe] >> 0x1f) +\r\n         (uint)CARRY4(uVar4 + in_ECX[4],in_ECX[0xe]);\r\n    BVar1 = SetFilePointerEx((HANDLE)in_ECX[2],liDistanceToMove,(PLARGE_INTEGER)0x0,unaff_EDI);\r\n    if (BVar1 == 0) {\r\n      FUN_0069a180();\r\n      FUN_0069a180(local_8[0]);\r\n      FUN_0069a180(in_ECX[0xe]);\r\n      uVar2 = (**(code **)(*in_ECX + 0x14))();\r\n      FUN_0069a180(uVar2);\r\n    }\r\n    else {\r\n      BVar1 = ReadFile((HANDLE)in_ECX[2],param_2,nNumberOfBytesToRead,&local_c,(LPOVERLAPPED)0x0);\r\n      if ((BVar1 != 0) && (nNumberOfBytesToRead - local_c == 0)) {\r\n        if (param_4 != (uint *)0x0) {\r\n          *param_4 = local_c;\r\n        }\r\n        in_ECX[0xd] = in_ECX[0xd] + uVar5;\r\n        return 0;\r\n      }\r\n      FUN_0069a180();\r\n      FUN_0069a180(nNumberOfBytesToRead);\r\n      FUN_0069a180(local_c);\r\n      FUN_0069a180(param_3);\r\n    }\r\n  }\r\n  if (param_4 != (uint *)0x0) {\r\n    *param_4 = 0;\r\n  }\r\n  return 0x80004005;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a7b0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a7b0",
+            "name": "FUN_0069a7b0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_0069a7b0(byte param_1)\r\n\r\n{\r\n  undefined4 *in_ECX;\r\n  \r\n  *in_ECX = &PTR_FUN_0076efac;\r\n  if ((HANDLE)in_ECX[2] != (HANDLE)0x0) {\r\n    CloseHandle((HANDLE)in_ECX[2]);\r\n    in_ECX[2] = 0;\r\n  }\r\n  if ((param_1 & 1) != 0) {\r\n    _free(in_ECX);\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a850",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a850",
+            "name": "FUN_0069a850"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_0069a850(void)\r\n\r\n{\r\n  undefined4 *in_ECX;\r\n  int iVar1;\r\n  \r\n  FUN_0069a1b0();\r\n  *in_ECX = &PTR_FUN_0076eff8;\r\n  *(undefined1 *)(in_ECX + 0x10) = 0;\r\n  in_ECX[0xc6] = 0;\r\n  in_ECX[199] = 0;\r\n  if (DAT_02973a00 == 0) {\r\n    DAT_02973a00 = FUN_004ffa60();\r\n    DAT_029739fc = FUN_004eef40(0x564,\".\\\\pc\\\\oggreader.cpp\",0x24);\r\n  }\r\n  iVar1 = 0;\r\n  do {\r\n    _memset((void *)(iVar1 + DAT_029739fc),0,0x114);\r\n    iVar1 = iVar1 + 0x114;\r\n  } while (iVar1 != 0x564);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69a8f0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69a8f0",
+            "name": "FUN_0069a8f0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_0069a8f0(void)\r\n\r\n{\r\n  int iVar1;\r\n  int in_ECX;\r\n  \r\n  if (*(char *)(in_ECX + 0x40) == '\\0') {\r\n    iVar1 = FUN_0069a210();\r\n    return iVar1;\r\n  }\r\n  if (*(int *)(in_ECX + 0x318) != 0) {\r\n    iVar1 = FUN_0069c6b0(in_ECX + 0x48,0xffffffff);\r\n    return iVar1 * (uint)*(ushort *)(in_ECX + 0x32c);\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69aac0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69aac0",
+            "name": "FUN_0069aac0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_0069aac0(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int in_ECX;\r\n  \r\n  if (*(char *)(in_ECX + 0x40) == '\\0') {\r\n    uVar1 = FUN_0069a250();\r\n    return uVar1;\r\n  }\r\n  FUN_004ffaa0(DAT_02973a00);\r\n  if (*(int *)(in_ECX + 0x318) == 0) {\r\n    FUN_004ffac0(DAT_02973a00);\r\n    return 0x80004005;\r\n  }\r\n  FUN_0069c3c0(in_ECX + 0x48);\r\n  if (*(int *)(in_ECX + 0x318) != 0) {\r\n    *(int *)(*(int *)(in_ECX + 0x318) + 0x110) = *(int *)(*(int *)(in_ECX + 0x318) + 0x110) + -1;\r\n  }\r\n  *(undefined4 *)(in_ECX + 0x318) = 0;\r\n  FUN_004ffac0(DAT_02973a00);\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x69ab50",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x69ab50",
+            "name": "FUN_0069ab50"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_0069ab50(float param_1)\r\n\r\n{\r\n  ushort uVar1;\r\n  int iVar2;\r\n  int in_ECX;\r\n  \r\n  if (*(char *)(in_ECX + 0x40) == '\\0') {\r\n    iVar2 = FUN_0069a280(param_1);\r\n    return iVar2;\r\n  }\r\n  FUN_004ffaa0(DAT_02973a00);\r\n  if (*(int *)(in_ECX + 0x318) == 0) {\r\n    FUN_004ffac0(DAT_02973a00);\r\n    return -1;\r\n  }\r\n  FUN_0069d560(in_ECX + 0x48,(double)param_1);\r\n  iVar2 = FUN_0069d760(in_ECX + 0x48);\r\n  uVar1 = *(ushort *)(in_ECX + 0x32c);\r\n  FUN_004ffac0(DAT_02973a00);\r\n  return iVar2 * (uint)uVar1;\r\n}\r\n\r\n"
+        }
+      ],
+      "total": 32,
+      "succeeded": 32,
+      "failed": 0
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Derived by an REA composed workflow."
+    ],
+    "locations": [
+      {
+        "kind": "address",
+        "address": "0x699260"
+      },
+      {
+        "kind": "address",
+        "address": "0x6992c0"
+      },
+      {
+        "kind": "address",
+        "address": "0x699640"
+      },
+      {
+        "kind": "address",
+        "address": "0x699690"
+      },
+      {
+        "kind": "address",
+        "address": "0x6996b0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6996d0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6996f0"
+      },
+      {
+        "kind": "address",
+        "address": "0x699710"
+      },
+      {
+        "kind": "address",
+        "address": "0x699770"
+      },
+      {
+        "kind": "address",
+        "address": "0x6997a0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6997f0"
+      },
+      {
+        "kind": "address",
+        "address": "0x699840"
+      },
+      {
+        "kind": "address",
+        "address": "0x6998a0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6998d0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6998f0"
+      },
+      {
+        "kind": "address",
+        "address": "0x6999e0"
+      },
+      {
+        "kind": "address",
+        "address": "0x699ec0"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a180"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a1b0"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a210"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a250"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a280"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a330"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a350"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a410"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a460"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a680"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a7b0"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a850"
+      },
+      {
+        "kind": "address",
+        "address": "0x69a8f0"
+      },
+      {
+        "kind": "address",
+        "address": "0x69aac0"
+      },
+      {
+        "kind": "address",
+        "address": "0x69ab50"
+      }
+    ],
+    "evidence_links": []
+  }
+}

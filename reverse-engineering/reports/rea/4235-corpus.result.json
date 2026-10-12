@@ -1,0 +1,592 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_526838828e273a637259fe0c0b8910ed57fcbb113f7ca97b4fe0b36ecb2b0c42\",\"subject\":{\"name\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\",\"digest\":{\"sha256\":\"6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb\"},\"format\":\"pe\",\"architecture\":\"x86\",\"local_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\"},\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"analysis_profile\":{\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"parameters\":{\"upstream_analysis_profile\":{\"provider\":{\"id\":\"ghidra\",\"name\":\"Ghidra\",\"version\":\"12.1.4\"},\"parameters\":{\"target_kind\":\"executable\",\"target_format\":\"pe\",\"executable_role\":\"application\",\"managed\":false,\"native_aot_metadata\":{\"contract_revision\":\"rtr-9.1-x64-pe-read-only-v3\",\"source_bytes\":134217728,\"work_units\":67108864,\"working_memory_bytes\":67108864,\"report_bytes\":4194304},\"architecture\":\"x86\",\"available_architectures\":[\"x86\"],\"import_mode\":\"ephemeral-source-immutable\",\"annotation_policy\":\"atomic-function-entry-metadata-v1\",\"load_image_observations\":\"source-mappings-entry-context-v2\",\"function_body_evidence\":\"complete-inclusive-ranges-v1\",\"function_references\":\"complete-body-and-entry-reference-manager-v2\",\"string_inventory_evidence\":\"defined-data-coverage-v1\",\"location_resolution\":\"explicit-address-exact-entry-symbol-first-v3\",\"instruction_flow_evidence\":\"decoded-return-pcode-v1\",\"function_boundary_observations\":\"ghidra-terminal-call-limitations-v1\",\"no_return_repair\":\"disabled-windows-p0\",\"process_launch\":\"official-headless-script-v1\",\"jump_table_evidence\":\"typed-case-default-blocks-v1\",\"decompiler_jump_loads\":true,\"loader\":\"auto-from-header\",\"language_id\":\"auto-from-header\",\"compiler_spec_id\":\"auto-default\",\"analyzer_preset\":\"ghidra-default\",\"analysis_seeds\":{\"format\":\"rea-ghidra-seeds-v1\",\"path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"configured_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"sha256\":\"ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24\",\"entries\":{\"function\":1046,\"code\":0,\"label\":0}}},\"digest\":\"d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d\"},\"workflow_revision\":2},\"digest\":\"87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971\"},\"predicate_type\":\"rea.analysis\",\"operation\":\"batch_decompile\",\"parameters\":{\"addresses\":[\"0x6f024e\",\"0x6f0299\",\"0x6f02d6\",\"0x6f038c\",\"0x6f0395\",\"0x6f040c\",\"0x6f0530\",\"0x6f053c\",\"0x6f05ba\",\"0x6f073e\",\"0x6f076f\",\"0x6f07af\",\"0x6f07f7\",\"0x6f0842\",\"0x6f08ae\",\"0x6f0948\",\"0x6f0954\",\"0x6f0999\",\"0x6f09ad\",\"0x6f09f8\",\"0x6f0bb8\",\"0x6f0bf1\",\"0x6f0c24\",\"0x6f0d9d\",\"0x6f0dfa\",\"0x6f0edf\",\"0x6f1077\",\"0x6f1130\",\"0x6f1265\",\"0x6f14f1\",\"0x6f1539\",\"0x6f1594\"]},\"raw_result\":null,\"normalized_result\":{\"items\":[{\"address\":\"0x6f024e\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f024e\",\"name\":\"FUN_006f024e\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nLPVOID FUN_006f024e(void)\\r\\n\\r\\n{\\r\\n  LPVOID lpTlsValue;\\r\\n  \\r\\n  lpTlsValue = TlsGetValue(DAT_00829ab8);\\r\\n  if (lpTlsValue == (LPVOID)0x0) {\\r\\n    lpTlsValue = (LPVOID)FUN_006f01bc(DAT_0297c53c);\\r\\n    TlsSetValue(DAT_00829ab8,lpTlsValue);\\r\\n  }\\r\\n  return lpTlsValue;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0299\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0299\",\"name\":\"__mtterm\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __mtterm\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __cdecl __mtterm(void)\\r\\n\\r\\n{\\r\\n  code *pcVar1;\\r\\n  \\r\\n  if (DAT_00829ab4 != -1) {\\r\\n    pcVar1 = (code *)FUN_006f01bc(DAT_0297c544,DAT_00829ab4);\\r\\n    (*pcVar1)();\\r\\n    DAT_00829ab4 = -1;\\r\\n  }\\r\\n  if (DAT_00829ab8 != 0xffffffff) {\\r\\n    TlsFree(DAT_00829ab8);\\r\\n    DAT_00829ab8 = 0xffffffff;\\r\\n  }\\r\\n  __mtdeletelocks();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f02d6\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f02d6\",\"name\":\"FUN_006f02d6\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n\\r\\nvoid FUN_006f02d6(int param_1,int param_2)\\r\\n\\r\\n{\\r\\n  HMODULE hModule;\\r\\n  int iVar1;\\r\\n  FARPROC pFVar2;\\r\\n  \\r\\n  hModule = GetModuleHandleA(\\\"KERNEL32.DLL\\\");\\r\\n  *(undefined **)(param_1 + 0x5c) = &DAT_00829b78;\\r\\n  *(undefined4 *)(param_1 + 0x14) = 1;\\r\\n  if (hModule != (HMODULE)0x0) {\\r\\n    iVar1 = FUN_006f00d9();\\r\\n    if (iVar1 != 0) {\\r\\n      pFVar2 = GetProcAddress(hModule,\\\"EncodePointer\\\");\\r\\n      *(FARPROC *)(param_1 + 0x1f8) = pFVar2;\\r\\n      pFVar2 = GetProcAddress(hModule,\\\"DecodePointer\\\");\\r\\n      *(FARPROC *)(param_1 + 0x1fc) = pFVar2;\\r\\n    }\\r\\n  }\\r\\n  *(undefined4 *)(param_1 + 0x70) = 1;\\r\\n  *(undefined1 *)(param_1 + 200) = 0x43;\\r\\n  *(undefined1 *)(param_1 + 0x14b) = 0x43;\\r\\n  *(undefined **)(param_1 + 0x68) = &DAT_0082a070;\\r\\n  InterlockedIncrement((LONG *)&DAT_0082a070);\\r\\n  __lock(0xc);\\r\\n  *(int *)(param_1 + 0x6c) = param_2;\\r\\n  if (param_2 == 0) {\\r\\n    *(undefined **)(param_1 + 0x6c) = PTR_DAT_0082a678;\\r\\n  }\\r\\n  ___addlocaleref(*(undefined4 *)(param_1 + 0x6c));\\r\\n  FUN_006f038c();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f038c\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f038c\",\"name\":\"FUN_006f038c\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006f038c(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(0xc);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0395\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0395\",\"name\":\"FUN_006f0395\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nDWORD * FUN_006f0395(void)\\r\\n\\r\\n{\\r\\n  DWORD dwErrCode;\\r\\n  code *pcVar1;\\r\\n  DWORD *_Memory;\\r\\n  int iVar2;\\r\\n  DWORD DVar3;\\r\\n  \\r\\n  dwErrCode = GetLastError();\\r\\n  pcVar1 = (code *)FUN_006f024e(DAT_00829ab4);\\r\\n  _Memory = (DWORD *)(*pcVar1)();\\r\\n  if (_Memory == (DWORD *)0x0) {\\r\\n    _Memory = __calloc_crt(1,0x214);\\r\\n    if (_Memory != (DWORD *)0x0) {\\r\\n      pcVar1 = (code *)FUN_006f01bc(DAT_0297c540,DAT_00829ab4,_Memory);\\r\\n      iVar2 = (*pcVar1)();\\r\\n      if (iVar2 == 0) {\\r\\n        _free(_Memory);\\r\\n        _Memory = (DWORD *)0x0;\\r\\n      }\\r\\n      else {\\r\\n        FUN_006f02d6(_Memory,0);\\r\\n        DVar3 = GetCurrentThreadId();\\r\\n        _Memory[1] = 0xffffffff;\\r\\n        *_Memory = DVar3;\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  SetLastError(dwErrCode);\\r\\n  return _Memory;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f040c\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f040c\",\"name\":\"__getptd\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __getptd\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\n_ptiddata __cdecl __getptd(void)\\r\\n\\r\\n{\\r\\n  _ptiddata p_Var1;\\r\\n  \\r\\n  p_Var1 = (_ptiddata)FUN_006f0395();\\r\\n  if (p_Var1 == (_ptiddata)0x0) {\\r\\n    __amsg_exit(0x10);\\r\\n  }\\r\\n  return p_Var1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0530\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0530\",\"name\":\"FUN_006f0530\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006f0530(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(0xd);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f053c\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f053c\",\"name\":\"FUN_006f053c\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006f053c(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(0xc);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f05ba\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f05ba\",\"name\":\"__mtinit\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __mtinit\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __mtinit(void)\\r\\n\\r\\n{\\r\\n  HMODULE hModule;\\r\\n  BOOL BVar1;\\r\\n  int iVar2;\\r\\n  code *pcVar3;\\r\\n  DWORD *pDVar4;\\r\\n  DWORD DVar5;\\r\\n  \\r\\n  hModule = GetModuleHandleA(\\\"KERNEL32.DLL\\\");\\r\\n  if (hModule == (HMODULE)0x0) {\\r\\n    __mtterm();\\r\\n    return 0;\\r\\n  }\\r\\n  DAT_0297c538 = GetProcAddress(hModule,\\\"FlsAlloc\\\");\\r\\n  DAT_0297c53c = GetProcAddress(hModule,\\\"FlsGetValue\\\");\\r\\n  DAT_0297c540 = GetProcAddress(hModule,\\\"FlsSetValue\\\");\\r\\n  DAT_0297c544 = GetProcAddress(hModule,\\\"FlsFree\\\");\\r\\n  if ((((DAT_0297c538 == (FARPROC)0x0) || (DAT_0297c53c == (FARPROC)0x0)) ||\\r\\n      (DAT_0297c540 == (FARPROC)0x0)) || (DAT_0297c544 == (FARPROC)0x0)) {\\r\\n    DAT_0297c53c = TlsGetValue_exref;\\r\\n    DAT_0297c538 = (FARPROC)&LAB_006f022a;\\r\\n    DAT_0297c540 = TlsSetValue_exref;\\r\\n    DAT_0297c544 = TlsFree_exref;\\r\\n  }\\r\\n  DAT_00829ab8 = TlsAlloc();\\r\\n  if ((DAT_00829ab8 != 0xffffffff) && (BVar1 = TlsSetValue(DAT_00829ab8,DAT_0297c53c), BVar1 != 0))\\r\\n  {\\r\\n    __init_pointers();\\r\\n    DAT_0297c538 = (FARPROC)FUN_006f0145(DAT_0297c538);\\r\\n    DAT_0297c53c = (FARPROC)FUN_006f0145(DAT_0297c53c);\\r\\n    DAT_0297c540 = (FARPROC)FUN_006f0145(DAT_0297c540);\\r\\n    DAT_0297c544 = (FARPROC)FUN_006f0145(DAT_0297c544);\\r\\n    iVar2 = __mtinitlocks();\\r\\n    if (iVar2 != 0) {\\r\\n      pcVar3 = (code *)FUN_006f01bc(DAT_0297c538,&LAB_006f0424);\\r\\n      DAT_00829ab4 = (*pcVar3)();\\r\\n      if ((DAT_00829ab4 != -1) && (pDVar4 = __calloc_crt(1,0x214), pDVar4 != (DWORD *)0x0)) {\\r\\n        pcVar3 = (code *)FUN_006f01bc(DAT_0297c540,DAT_00829ab4,pDVar4);\\r\\n        iVar2 = (*pcVar3)();\\r\\n        if (iVar2 != 0) {\\r\\n          FUN_006f02d6(pDVar4,0);\\r\\n          DVar5 = GetCurrentThreadId();\\r\\n          pDVar4[1] = 0xffffffff;\\r\\n          *pDVar4 = DVar5;\\r\\n          return 1;\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n    __mtterm();\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f073e\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f073e\",\"name\":\"FUN_006f073e\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nuint FUN_006f073e(DWORD param_1)\\r\\n\\r\\n{\\r\\n  uint uVar1;\\r\\n  \\r\\n  Sleep(param_1);\\r\\n  uVar1 = param_1 + 1000;\\r\\n  if (DAT_0297c548 < uVar1) {\\r\\n    uVar1 = 0xffffffff;\\r\\n  }\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f076f\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f076f\",\"name\":\"__malloc_crt\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __malloc_crt\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid * __cdecl __malloc_crt(size_t _Size)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  uint dwMilliseconds;\\r\\n  \\r\\n  dwMilliseconds = 0;\\r\\n  while( true ) {\\r\\n    pvVar1 = _malloc(_Size);\\r\\n    if (pvVar1 != (void *)0x0) {\\r\\n      return pvVar1;\\r\\n    }\\r\\n    if (DAT_0297c548 == 0) break;\\r\\n    Sleep(dwMilliseconds);\\r\\n    dwMilliseconds = dwMilliseconds + 1000;\\r\\n    if (DAT_0297c548 < dwMilliseconds) {\\r\\n      dwMilliseconds = 0xffffffff;\\r\\n    }\\r\\n    if (dwMilliseconds == 0xffffffff) {\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n  }\\r\\n  return (void *)0x0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f07af\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f07af\",\"name\":\"__calloc_crt\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __calloc_crt\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid * __cdecl __calloc_crt(size_t _Count,size_t _Size)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  uint dwMilliseconds;\\r\\n  \\r\\n  dwMilliseconds = 0;\\r\\n  while( true ) {\\r\\n    pvVar1 = (void *)__calloc_impl(_Count,_Size,0);\\r\\n    if (pvVar1 != (void *)0x0) {\\r\\n      return pvVar1;\\r\\n    }\\r\\n    if (DAT_0297c548 == 0) break;\\r\\n    Sleep(dwMilliseconds);\\r\\n    dwMilliseconds = dwMilliseconds + 1000;\\r\\n    if (DAT_0297c548 < dwMilliseconds) {\\r\\n      dwMilliseconds = 0xffffffff;\\r\\n    }\\r\\n    if (dwMilliseconds == 0xffffffff) {\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n  }\\r\\n  return (void *)0x0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f07f7\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f07f7\",\"name\":\"__realloc_crt\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __realloc_crt\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid * __cdecl __realloc_crt(void *_Ptr,size_t _NewSize)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  uint dwMilliseconds;\\r\\n  \\r\\n  dwMilliseconds = 0;\\r\\n  do {\\r\\n    pvVar1 = _realloc(_Ptr,_NewSize);\\r\\n    if (pvVar1 != (void *)0x0) {\\r\\n      return pvVar1;\\r\\n    }\\r\\n    if (_NewSize == 0) {\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n    if (DAT_0297c548 == 0) {\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n    Sleep(dwMilliseconds);\\r\\n    dwMilliseconds = dwMilliseconds + 1000;\\r\\n    if (DAT_0297c548 < dwMilliseconds) {\\r\\n      dwMilliseconds = 0xffffffff;\\r\\n    }\\r\\n  } while (dwMilliseconds != 0xffffffff);\\r\\n  return (void *)0x0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0842\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0842\",\"name\":\"__recalloc_crt\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __recalloc_crt\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid * __cdecl __recalloc_crt(void *_Ptr,size_t _Count,size_t _Size)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  uint dwMilliseconds;\\r\\n  \\r\\n  dwMilliseconds = 0;\\r\\n  do {\\r\\n    pvVar1 = (void *)FUN_006e78dc(_Ptr,_Count,_Size);\\r\\n    if (pvVar1 != (void *)0x0) {\\r\\n      return pvVar1;\\r\\n    }\\r\\n    if (_Size == 0) {\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n    if (DAT_0297c548 == 0) {\\r\\n      return (void *)0x0;\\r\\n    }\\r\\n    Sleep(dwMilliseconds);\\r\\n    dwMilliseconds = dwMilliseconds + 1000;\\r\\n    if (DAT_0297c548 < dwMilliseconds) {\\r\\n      dwMilliseconds = 0xffffffff;\\r\\n    }\\r\\n  } while (dwMilliseconds != 0xffffffff);\\r\\n  return (void *)0x0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f08ae\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f08ae\",\"name\":\"__msize\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Single Match\\r\\n    __msize\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\\r\\n\\r\\nsize_t __cdecl __msize(void *_Memory)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  size_t sVar2;\\r\\n  int iVar3;\\r\\n  size_t local_20;\\r\\n  \\r\\n  if (_Memory == (void *)0x0) {\\r\\n    puVar1 = (undefined4 *)FUN_006ead5f();\\r\\n    *puVar1 = 0x16;\\r\\n    FUN_006e9fc2(0,0,0,0,0);\\r\\n    sVar2 = 0xffffffff;\\r\\n  }\\r\\n  else {\\r\\n    if (DAT_029a9b28 == 3) {\\r\\n      __lock(4);\\r\\n      iVar3 = thunk_FUN_006f19ca(_Memory);\\r\\n      if (iVar3 != 0) {\\r\\n        local_20 = *(int *)((int)_Memory + -4) - 9;\\r\\n      }\\r\\n      FUN_006f0948();\\r\\n      if (iVar3 != 0) {\\r\\n        return local_20;\\r\\n      }\\r\\n    }\\r\\n    sVar2 = HeapSize(DAT_0297c974,0,_Memory);\\r\\n  }\\r\\n  return sVar2;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0948\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0948\",\"name\":\"FUN_006f0948\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006f0948(void)\\r\\n\\r\\n{\\r\\n  FUN_006f179a(4);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0954\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0954\",\"name\":\"__SEH_prolog4\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: This is an inlined function */\\r\\n/* WARNING: Unable to track spacebase fully for stack */\\r\\n/* Library Function - Single Match\\r\\n    __SEH_prolog4\\r\\n   \\r\\n   Library: Visual Studio */\\r\\n\\r\\nvoid __SEH_prolog4(undefined4 param_1,int param_2)\\r\\n\\r\\n{\\r\\n  undefined4 unaff_EBX;\\r\\n  undefined4 unaff_ESI;\\r\\n  undefined4 unaff_EDI;\\r\\n  int *unaff_FS_OFFSET;\\r\\n  undefined4 unaff_retaddr;\\r\\n  uint auStack_1c [5];\\r\\n  undefined1 local_8 [8];\\r\\n  \\r\\n  param_2 = -param_2;\\r\\n  *(undefined4 *)((int)auStack_1c + param_2 + 0x10) = unaff_EBX;\\r\\n  *(undefined4 *)((int)auStack_1c + param_2 + 0xc) = unaff_ESI;\\r\\n  *(undefined4 *)((int)auStack_1c + param_2 + 8) = unaff_EDI;\\r\\n  *(uint *)((int)auStack_1c + param_2 + 4) = DAT_00829570 ^ (uint)&stack0x00000008;\\r\\n  *(undefined4 *)((int)auStack_1c + param_2) = unaff_retaddr;\\r\\n  *unaff_FS_OFFSET = (int)local_8;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0999\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0999\",\"name\":\"__SEH_epilog4\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: This is an inlined function */\\r\\n/* Library Function - Single Match\\r\\n    __SEH_epilog4\\r\\n   \\r\\n   Library: Visual Studio */\\r\\n\\r\\nvoid __SEH_epilog4(void)\\r\\n\\r\\n{\\r\\n  undefined4 *unaff_EBP;\\r\\n  undefined4 *unaff_FS_OFFSET;\\r\\n  undefined4 unaff_retaddr;\\r\\n  \\r\\n  *unaff_FS_OFFSET = unaff_EBP[-4];\\r\\n  *unaff_EBP = unaff_retaddr;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f09ad\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f09ad\",\"name\":\"FUN_006f09ad\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006f09ad(int *param_1)\\r\\n\\r\\n{\\r\\n  undefined *puVar1;\\r\\n  \\r\\n  param_1 = (int *)*param_1;\\r\\n  if (((*param_1 == -0x1f928c9d) && (param_1[4] == 3)) &&\\r\\n     ((puVar1 = (undefined *)param_1[5], puVar1 == (undefined *)0x19930520 ||\\r\\n      (((puVar1 == (undefined *)0x19930521 || (puVar1 == (undefined *)0x19930522)) ||\\r\\n       (puVar1 == &DAT_01994000)))))) {\\r\\n    terminate();\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f09f8\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f09f8\",\"name\":\"FUN_006f09f8\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006f09f8(int param_1)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  int iVar2;\\r\\n  errno_t eVar3;\\r\\n  DWORD DVar4;\\r\\n  size_t sVar5;\\r\\n  HANDLE hFile;\\r\\n  uint uVar6;\\r\\n  DWORD *lpNumberOfBytesWritten;\\r\\n  LPOVERLAPPED lpOverlapped;\\r\\n  DWORD local_4;\\r\\n  \\r\\n  uVar6 = 0;\\r\\n  do {\\r\\n    if (param_1 == (&DAT_00829ac0)[uVar6 * 2]) break;\\r\\n    uVar6 = uVar6 + 1;\\r\\n  } while (uVar6 < 0x17);\\r\\n  if (uVar6 < 0x17) {\\r\\n    iVar2 = __set_error_mode(3);\\r\\n    if ((iVar2 == 1) || ((iVar2 = __set_error_mode(3), iVar2 == 0 && (DAT_00829580 == 1)))) {\\r\\n      hFile = GetStdHandle(0xfffffff4);\\r\\n      if ((hFile != (HANDLE)0x0) && (hFile != (HANDLE)0xffffffff)) {\\r\\n        lpOverlapped = (LPOVERLAPPED)0x0;\\r\\n        lpNumberOfBytesWritten = &local_4;\\r\\n        puVar1 = (undefined4 *)(uVar6 * 8 + 0x829ac4);\\r\\n        sVar5 = _strlen((char *)*puVar1);\\r\\n        WriteFile(hFile,(LPCVOID)*puVar1,sVar5,lpNumberOfBytesWritten,lpOverlapped);\\r\\n      }\\r\\n    }\\r\\n    else if (param_1 != 0xfc) {\\r\\n      eVar3 = _strcpy_s(&DAT_0297c550,0x314,\\\"Runtime Error!\\\\n\\\\nProgram: \\\");\\r\\n      if (eVar3 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n      }\\r\\n      DAT_0297c66d = 0;\\r\\n      DVar4 = GetModuleFileNameA((HMODULE)0x0,&DAT_0297c569,0x104);\\r\\n      if ((DVar4 == 0) &&\\r\\n         (eVar3 = _strcpy_s(&DAT_0297c569,0x2fb,\\\"<program name unknown>\\\"), eVar3 != 0)) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n      }\\r\\n      sVar5 = _strlen(&DAT_0297c569);\\r\\n      if (0x3c < sVar5 + 1) {\\r\\n        sVar5 = _strlen(&DAT_0297c569);\\r\\n        eVar3 = _strncpy_s((char *)(sVar5 + 0x297c52e),(int)&DAT_0297c864 - (int)(sVar5 + 0x297c52e)\\r\\n                           ,\\\"...\\\",3);\\r\\n        if (eVar3 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n          __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n        }\\r\\n      }\\r\\n      eVar3 = _strcat_s(&DAT_0297c550,0x314,\\\"\\\\n\\\\n\\\");\\r\\n      if (eVar3 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n      }\\r\\n      eVar3 = _strcat_s(&DAT_0297c550,0x314,*(char **)(uVar6 * 8 + 0x829ac4));\\r\\n      if (eVar3 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n      }\\r\\n      FUN_00701fe9(&DAT_0297c550,\\\"Microsoft Visual C++ Runtime Library\\\",0x12010);\\r\\n    }\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0bb8\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0bb8\",\"name\":\"__FF_MSGBANNER\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __FF_MSGBANNER\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __cdecl __FF_MSGBANNER(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  \\r\\n  iVar1 = __set_error_mode(3);\\r\\n  if (iVar1 != 1) {\\r\\n    iVar1 = __set_error_mode(3);\\r\\n    if (iVar1 != 0) {\\r\\n      return;\\r\\n    }\\r\\n    if (DAT_00829580 != 1) {\\r\\n      return;\\r\\n    }\\r\\n  }\\r\\n  FUN_006f09f8(0xfc);\\r\\n  FUN_006f09f8(0xff);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0bf1\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0bf1\",\"name\":\"FUN_006f0bf1\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006f0bf1(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0c24\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0c24\",\"name\":\"FUN_006f0c24\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_006f0c24(int param_1,undefined4 param_2)\\r\\n\\r\\n{\\r\\n  int *piVar1;\\r\\n  code *pcVar2;\\r\\n  undefined4 uVar3;\\r\\n  int iVar4;\\r\\n  int *piVar5;\\r\\n  undefined4 uVar6;\\r\\n  int iVar7;\\r\\n  int iVar8;\\r\\n  \\r\\n  iVar4 = FUN_006f0395();\\r\\n  uVar6 = 0;\\r\\n  if (iVar4 != 0) {\\r\\n    piVar1 = *(int **)(iVar4 + 0x5c);\\r\\n    piVar5 = piVar1;\\r\\n    do {\\r\\n      if (*piVar5 == param_1) break;\\r\\n      piVar5 = piVar5 + 3;\\r\\n    } while (piVar5 < piVar1 + DAT_00829bfc * 3);\\r\\n    if ((piVar1 + DAT_00829bfc * 3 <= piVar5) || (*piVar5 != param_1)) {\\r\\n      piVar5 = (int *)0x0;\\r\\n    }\\r\\n    if ((piVar5 == (int *)0x0) || (pcVar2 = (code *)piVar5[2], pcVar2 == (code *)0x0)) {\\r\\n      uVar6 = 0;\\r\\n    }\\r\\n    else if (pcVar2 == (code *)0x5) {\\r\\n      piVar5[2] = 0;\\r\\n      uVar6 = 1;\\r\\n    }\\r\\n    else {\\r\\n      if (pcVar2 != (code *)0x1) {\\r\\n        uVar6 = *(undefined4 *)(iVar4 + 0x60);\\r\\n        *(undefined4 *)(iVar4 + 0x60) = param_2;\\r\\n        if (piVar5[1] == 8) {\\r\\n          if (DAT_00829bf0 < DAT_00829bf4 + DAT_00829bf0) {\\r\\n            iVar7 = DAT_00829bf0 * 0xc;\\r\\n            iVar8 = DAT_00829bf0;\\r\\n            do {\\r\\n              *(undefined4 *)(iVar7 + 8 + *(int *)(iVar4 + 0x5c)) = 0;\\r\\n              iVar8 = iVar8 + 1;\\r\\n              iVar7 = iVar7 + 0xc;\\r\\n            } while (iVar8 < DAT_00829bf4 + DAT_00829bf0);\\r\\n          }\\r\\n          iVar8 = *piVar5;\\r\\n          uVar3 = *(undefined4 *)(iVar4 + 100);\\r\\n          if (iVar8 == -0x3fffff72) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x83;\\r\\n          }\\r\\n          else if (iVar8 == -0x3fffff70) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x81;\\r\\n          }\\r\\n          else if (iVar8 == -0x3fffff6f) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x84;\\r\\n          }\\r\\n          else if (iVar8 == -0x3fffff6d) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x85;\\r\\n          }\\r\\n          else if (iVar8 == -0x3fffff73) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x82;\\r\\n          }\\r\\n          else if (iVar8 == -0x3fffff71) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x86;\\r\\n          }\\r\\n          else if (iVar8 == -0x3fffff6e) {\\r\\n            *(undefined4 *)(iVar4 + 100) = 0x8a;\\r\\n          }\\r\\n          (*pcVar2)(8,*(undefined4 *)(iVar4 + 100));\\r\\n          *(undefined4 *)(iVar4 + 100) = uVar3;\\r\\n        }\\r\\n        else {\\r\\n          piVar5[2] = 0;\\r\\n          (*pcVar2)(piVar5[1]);\\r\\n        }\\r\\n        *(undefined4 *)(iVar4 + 0x60) = uVar6;\\r\\n      }\\r\\n      uVar6 = 0xffffffff;\\r\\n    }\\r\\n  }\\r\\n  return uVar6;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0d9d\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0d9d\",\"name\":\"__wincmdln\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __wincmdln\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nbyte * __wincmdln(void)\\r\\n\\r\\n{\\r\\n  byte bVar1;\\r\\n  bool bVar2;\\r\\n  int iVar3;\\r\\n  byte *pbVar4;\\r\\n  \\r\\n  bVar2 = false;\\r\\n  if (DAT_029a9c58 == 0) {\\r\\n    ___initmbctable();\\r\\n  }\\r\\n  pbVar4 = DAT_029aac84;\\r\\n  if (DAT_029aac84 == (byte *)0x0) {\\r\\n    pbVar4 = &DAT_007516c0;\\r\\n  }\\r\\n  do {\\r\\n    bVar1 = *pbVar4;\\r\\n    if (bVar1 < 0x21) {\\r\\n      if (bVar1 == 0) {\\r\\n        return pbVar4;\\r\\n      }\\r\\n      if (!bVar2) {\\r\\n        for (; (*pbVar4 != 0 && (*pbVar4 < 0x21)); pbVar4 = pbVar4 + 1) {\\r\\n        }\\r\\n        return pbVar4;\\r\\n      }\\r\\n    }\\r\\n    if (bVar1 == 0x22) {\\r\\n      bVar2 = !bVar2;\\r\\n    }\\r\\n    iVar3 = __ismbblead((uint)bVar1);\\r\\n    if (iVar3 != 0) {\\r\\n      pbVar4 = pbVar4 + 1;\\r\\n    }\\r\\n    pbVar4 = pbVar4 + 1;\\r\\n  } while( true );\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0dfa\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0dfa\",\"name\":\"__setenvp\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __setenvp\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __setenvp(void)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  size_t sVar2;\\r\\n  char *_Dst;\\r\\n  errno_t eVar3;\\r\\n  char *pcVar4;\\r\\n  int iVar5;\\r\\n  \\r\\n  if (DAT_029a9c58 == 0) {\\r\\n    ___initmbctable();\\r\\n  }\\r\\n  iVar5 = 0;\\r\\n  pcVar4 = DAT_0297c188;\\r\\n  if (DAT_0297c188 != (char *)0x0) {\\r\\n    for (; *pcVar4 != '\\\\0'; pcVar4 = pcVar4 + sVar2 + 1) {\\r\\n      if (*pcVar4 != '=') {\\r\\n        iVar5 = iVar5 + 1;\\r\\n      }\\r\\n      sVar2 = _strlen(pcVar4);\\r\\n    }\\r\\n    puVar1 = __calloc_crt(iVar5 + 1,4);\\r\\n    pcVar4 = DAT_0297c188;\\r\\n    DAT_0297c1d4 = puVar1;\\r\\n    if (puVar1 != (undefined4 *)0x0) {\\r\\n      do {\\r\\n        if (*pcVar4 == '\\\\0') {\\r\\n          _free(DAT_0297c188);\\r\\n          DAT_0297c188 = (char *)0x0;\\r\\n          *puVar1 = 0;\\r\\n          DAT_029a9c4c = 1;\\r\\n          return 0;\\r\\n        }\\r\\n        sVar2 = _strlen(pcVar4);\\r\\n        sVar2 = sVar2 + 1;\\r\\n        if (*pcVar4 != '=') {\\r\\n          _Dst = __calloc_crt(sVar2,1);\\r\\n          *puVar1 = _Dst;\\r\\n          if (_Dst == (char *)0x0) {\\r\\n            _free(DAT_0297c1d4);\\r\\n            DAT_0297c1d4 = (undefined4 *)0x0;\\r\\n            return -1;\\r\\n          }\\r\\n          eVar3 = _strcpy_s(_Dst,sVar2,pcVar4);\\r\\n          if (eVar3 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n            __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n          }\\r\\n          puVar1 = puVar1 + 1;\\r\\n        }\\r\\n        pcVar4 = pcVar4 + sVar2;\\r\\n      } while( true );\\r\\n    }\\r\\n  }\\r\\n  return -1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f0edf\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f0edf\",\"name\":\"parse_cmdline\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    _parse_cmdline\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __cdecl parse_cmdline(undefined4 *param_1,byte *param_2,int *param_3)\\r\\n\\r\\n{\\r\\n  bool bVar1;\\r\\n  bool bVar2;\\r\\n  int iVar3;\\r\\n  uint uVar4;\\r\\n  byte *in_EDX;\\r\\n  byte *pbVar5;\\r\\n  byte bVar6;\\r\\n  byte *pbVar7;\\r\\n  byte *pbVar8;\\r\\n  int *unaff_EDI;\\r\\n  \\r\\n  *unaff_EDI = 0;\\r\\n  *param_3 = 1;\\r\\n  if (param_1 != (undefined4 *)0x0) {\\r\\n    *param_1 = param_2;\\r\\n    param_1 = param_1 + 1;\\r\\n  }\\r\\n  bVar2 = false;\\r\\n  pbVar5 = param_2;\\r\\n  do {\\r\\n    if (*in_EDX == 0x22) {\\r\\n      bVar2 = !bVar2;\\r\\n      bVar6 = 0x22;\\r\\n      pbVar7 = in_EDX + 1;\\r\\n    }\\r\\n    else {\\r\\n      *unaff_EDI = *unaff_EDI + 1;\\r\\n      if (pbVar5 != (byte *)0x0) {\\r\\n        *pbVar5 = *in_EDX;\\r\\n        param_2 = pbVar5 + 1;\\r\\n      }\\r\\n      bVar6 = *in_EDX;\\r\\n      pbVar7 = in_EDX + 1;\\r\\n      iVar3 = __ismbblead((uint)bVar6);\\r\\n      if (iVar3 != 0) {\\r\\n        *unaff_EDI = *unaff_EDI + 1;\\r\\n        if (param_2 != (byte *)0x0) {\\r\\n          *param_2 = *pbVar7;\\r\\n          param_2 = param_2 + 1;\\r\\n        }\\r\\n        pbVar7 = in_EDX + 2;\\r\\n      }\\r\\n      pbVar5 = param_2;\\r\\n      if (bVar6 == 0) {\\r\\n        pbVar7 = pbVar7 + -1;\\r\\n        goto LAB_006f0f71;\\r\\n      }\\r\\n    }\\r\\n    in_EDX = pbVar7;\\r\\n  } while ((bVar2) || ((bVar6 != 0x20 && (bVar6 != 9))));\\r\\n  if (pbVar5 != (byte *)0x0) {\\r\\n    pbVar5[-1] = 0;\\r\\n  }\\r\\nLAB_006f0f71:\\r\\n  bVar2 = false;\\r\\n  while (*pbVar7 != 0) {\\r\\n    for (; (*pbVar7 == 0x20 || (*pbVar7 == 9)); pbVar7 = pbVar7 + 1) {\\r\\n    }\\r\\n    if (*pbVar7 == 0) break;\\r\\n    if (param_1 != (undefined4 *)0x0) {\\r\\n      *param_1 = pbVar5;\\r\\n      param_1 = param_1 + 1;\\r\\n    }\\r\\n    *param_3 = *param_3 + 1;\\r\\n    while( true ) {\\r\\n      bVar1 = true;\\r\\n      uVar4 = 0;\\r\\n      for (; *pbVar7 == 0x5c; pbVar7 = pbVar7 + 1) {\\r\\n        uVar4 = uVar4 + 1;\\r\\n      }\\r\\n      if (*pbVar7 == 0x22) {\\r\\n        pbVar8 = pbVar7;\\r\\n        if (((uVar4 & 1) == 0) && ((!bVar2 || (pbVar8 = pbVar7 + 1, *pbVar8 != 0x22)))) {\\r\\n          bVar1 = false;\\r\\n          bVar2 = !bVar2;\\r\\n          pbVar8 = pbVar7;\\r\\n        }\\r\\n        uVar4 = uVar4 >> 1;\\r\\n        pbVar7 = pbVar8;\\r\\n      }\\r\\n      while (uVar4 != 0) {\\r\\n        uVar4 = uVar4 - 1;\\r\\n        if (pbVar5 != (byte *)0x0) {\\r\\n          *pbVar5 = 0x5c;\\r\\n          pbVar5 = pbVar5 + 1;\\r\\n        }\\r\\n        *unaff_EDI = *unaff_EDI + 1;\\r\\n        param_2 = pbVar5;\\r\\n      }\\r\\n      bVar6 = *pbVar7;\\r\\n      if ((bVar6 == 0) || ((!bVar2 && ((bVar6 == 0x20 || (bVar6 == 9)))))) break;\\r\\n      if (bVar1) {\\r\\n        if (pbVar5 == (byte *)0x0) {\\r\\n          iVar3 = __ismbblead((int)(char)bVar6);\\r\\n          if (iVar3 != 0) {\\r\\n            pbVar7 = pbVar7 + 1;\\r\\n            *unaff_EDI = *unaff_EDI + 1;\\r\\n          }\\r\\n        }\\r\\n        else {\\r\\n          iVar3 = __ismbblead((int)(char)bVar6);\\r\\n          if (iVar3 != 0) {\\r\\n            *param_2 = *pbVar7;\\r\\n            pbVar7 = pbVar7 + 1;\\r\\n            *unaff_EDI = *unaff_EDI + 1;\\r\\n            param_2 = param_2 + 1;\\r\\n          }\\r\\n          *param_2 = *pbVar7;\\r\\n          param_2 = param_2 + 1;\\r\\n        }\\r\\n        *unaff_EDI = *unaff_EDI + 1;\\r\\n        pbVar5 = param_2;\\r\\n      }\\r\\n      pbVar7 = pbVar7 + 1;\\r\\n    }\\r\\n    if (pbVar5 != (byte *)0x0) {\\r\\n      *pbVar5 = 0;\\r\\n      pbVar5 = pbVar5 + 1;\\r\\n      param_2 = pbVar5;\\r\\n    }\\r\\n    *unaff_EDI = *unaff_EDI + 1;\\r\\n  }\\r\\n  if (param_1 != (undefined4 *)0x0) {\\r\\n    *param_1 = 0;\\r\\n  }\\r\\n  *param_3 = *param_3 + 1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f1077\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f1077\",\"name\":\"__setargv\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n/* Library Function - Single Match\\r\\n    __setargv\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __setargv(void)\\r\\n\\r\\n{\\r\\n  uint _Size;\\r\\n  void *pvVar1;\\r\\n  int iVar2;\\r\\n  uint local_10;\\r\\n  uint local_c;\\r\\n  char *local_8;\\r\\n  \\r\\n  if (DAT_029a9c58 == 0) {\\r\\n    ___initmbctable();\\r\\n  }\\r\\n  DAT_0297c96c = 0;\\r\\n  GetModuleFileNameA((HMODULE)0x0,&DAT_0297c868,0x104);\\r\\n  _DAT_0297c1e4 = &DAT_0297c868;\\r\\n  if ((DAT_029aac84 == (char *)0x0) || (local_8 = DAT_029aac84, *DAT_029aac84 == '\\\\0')) {\\r\\n    local_8 = &DAT_0297c868;\\r\\n  }\\r\\n  parse_cmdline(0,0,&local_c);\\r\\n  if ((local_c < 0x3fffffff) && (local_10 != 0xffffffff)) {\\r\\n    iVar2 = local_c * 4;\\r\\n    _Size = iVar2 + local_10;\\r\\n    if ((local_10 <= _Size) && (pvVar1 = __malloc_crt(_Size), pvVar1 != (void *)0x0)) {\\r\\n      parse_cmdline(pvVar1,(void *)(iVar2 + (int)pvVar1),&local_c);\\r\\n      _DAT_0297c1c8 = local_c - 1;\\r\\n      _DAT_0297c1cc = pvVar1;\\r\\n      return 0;\\r\\n    }\\r\\n  }\\r\\n  return -1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f1130\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f1130\",\"name\":\"___crtGetEnvironmentStringsA\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    ___crtGetEnvironmentStringsA\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nLPVOID __cdecl ___crtGetEnvironmentStringsA(void)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  WCHAR WVar2;\\r\\n  DWORD DVar3;\\r\\n  WCHAR *pWVar4;\\r\\n  int iVar6;\\r\\n  size_t _Size;\\r\\n  LPSTR lpMultiByteStr;\\r\\n  LPCH _Src;\\r\\n  char *pcVar7;\\r\\n  void *_Dst;\\r\\n  LPWCH lpWideCharStr;\\r\\n  LPSTR local_8;\\r\\n  WCHAR *pWVar5;\\r\\n  char *pcVar8;\\r\\n  \\r\\n  lpWideCharStr = (LPWCH)0x0;\\r\\n  if (DAT_0297c970 == 0) {\\r\\n    lpWideCharStr = GetEnvironmentStringsW();\\r\\n    if (lpWideCharStr != (LPWCH)0x0) {\\r\\n      DAT_0297c970 = 1;\\r\\n      goto LAB_006f1182;\\r\\n    }\\r\\n    DVar3 = GetLastError();\\r\\n    if (DVar3 == 0x78) {\\r\\n      DAT_0297c970 = 2;\\r\\n    }\\r\\n  }\\r\\n  if (DAT_0297c970 != 1) {\\r\\n    if ((DAT_0297c970 != 2) && (DAT_0297c970 != 0)) {\\r\\n      return (LPVOID)0x0;\\r\\n    }\\r\\n    _Src = GetEnvironmentStrings();\\r\\n    if (_Src == (LPCH)0x0) {\\r\\n      return (LPVOID)0x0;\\r\\n    }\\r\\n    cVar1 = *_Src;\\r\\n    pcVar7 = _Src;\\r\\n    while (cVar1 != '\\\\0') {\\r\\n      do {\\r\\n        pcVar8 = pcVar7;\\r\\n        pcVar7 = pcVar8 + 1;\\r\\n      } while (*pcVar7 != '\\\\0');\\r\\n      pcVar7 = pcVar8 + 2;\\r\\n      cVar1 = *pcVar7;\\r\\n    }\\r\\n    _Dst = __malloc_crt((size_t)(pcVar7 + (1 - (int)_Src)));\\r\\n    if (_Dst == (void *)0x0) {\\r\\n      FreeEnvironmentStringsA(_Src);\\r\\n      return (LPVOID)0x0;\\r\\n    }\\r\\n    _memcpy(_Dst,_Src,(size_t)(pcVar7 + (1 - (int)_Src)));\\r\\n    FreeEnvironmentStringsA(_Src);\\r\\n    return _Dst;\\r\\n  }\\r\\nLAB_006f1182:\\r\\n  if ((lpWideCharStr == (LPWCH)0x0) &&\\r\\n     (lpWideCharStr = GetEnvironmentStringsW(), lpWideCharStr == (LPWCH)0x0)) {\\r\\n    return (LPVOID)0x0;\\r\\n  }\\r\\n  WVar2 = *lpWideCharStr;\\r\\n  pWVar4 = lpWideCharStr;\\r\\n  while (WVar2 != L'\\\\0') {\\r\\n    do {\\r\\n      pWVar5 = pWVar4;\\r\\n      pWVar4 = pWVar5 + 1;\\r\\n    } while (*pWVar4 != L'\\\\0');\\r\\n    pWVar4 = pWVar5 + 2;\\r\\n    WVar2 = *pWVar4;\\r\\n  }\\r\\n  iVar6 = ((int)pWVar4 - (int)lpWideCharStr >> 1) + 1;\\r\\n  _Size = WideCharToMultiByte(0,0,lpWideCharStr,iVar6,(LPSTR)0x0,0,(LPCSTR)0x0,(LPBOOL)0x0);\\r\\n  local_8 = (LPSTR)0x0;\\r\\n  if (((_Size != 0) && (lpMultiByteStr = __malloc_crt(_Size), lpMultiByteStr != (LPSTR)0x0)) &&\\r\\n     (iVar6 = WideCharToMultiByte(0,0,lpWideCharStr,iVar6,lpMultiByteStr,_Size,(LPCSTR)0x0,\\r\\n                                  (LPBOOL)0x0), local_8 = lpMultiByteStr, iVar6 == 0)) {\\r\\n    _free(lpMultiByteStr);\\r\\n    local_8 = (LPSTR)0x0;\\r\\n  }\\r\\n  FreeEnvironmentStringsW(lpWideCharStr);\\r\\n  return local_8;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f1265\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f1265\",\"name\":\"__ioinit\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\\r\\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\\r\\n/* Library Function - Single Match\\r\\n    __ioinit\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __ioinit(void)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  undefined4 *puVar2;\\r\\n  DWORD DVar3;\\r\\n  HANDLE pvVar4;\\r\\n  int iVar5;\\r\\n  UINT *pUVar6;\\r\\n  int iVar7;\\r\\n  int *piVar8;\\r\\n  UINT UVar9;\\r\\n  UINT UVar10;\\r\\n  _STARTUPINFOA local_68;\\r\\n  uint local_24;\\r\\n  byte *local_20;\\r\\n  undefined4 uStack_c;\\r\\n  undefined4 local_8;\\r\\n  \\r\\n  uStack_c = 0x6f1271;\\r\\n  local_8 = 0;\\r\\n  GetStartupInfoA(&local_68);\\r\\n  local_8 = 0xfffffffe;\\r\\n  puVar2 = __calloc_crt(0x20,0x38);\\r\\n  if (puVar2 == (undefined4 *)0x0) {\\r\\nLAB_006f149c:\\r\\n    iVar7 = -1;\\r\\n  }\\r\\n  else {\\r\\n    DAT_029a9b2c = 0x20;\\r\\n    DAT_029a9b40 = puVar2;\\r\\n    for (; puVar2 < DAT_029a9b40 + 0x1c0; puVar2 = puVar2 + 0xe) {\\r\\n      *(undefined1 *)(puVar2 + 1) = 0;\\r\\n      *puVar2 = 0xffffffff;\\r\\n      *(undefined1 *)((int)puVar2 + 5) = 10;\\r\\n      puVar2[2] = 0;\\r\\n      *(undefined1 *)(puVar2 + 9) = 0;\\r\\n      *(undefined1 *)((int)puVar2 + 0x25) = 10;\\r\\n      *(undefined1 *)((int)puVar2 + 0x26) = 10;\\r\\n    }\\r\\n    if ((local_68.cbReserved2 != 0) && ((UINT *)local_68.lpReserved2 != (UINT *)0x0)) {\\r\\n      UVar9 = *(UINT *)local_68.lpReserved2;\\r\\n      pUVar6 = (UINT *)((int)local_68.lpReserved2 + 4);\\r\\n      local_20 = (byte *)((int)pUVar6 + UVar9);\\r\\n      if (0x7ff < (int)UVar9) {\\r\\n        UVar9 = 0x800;\\r\\n      }\\r\\n      iVar7 = 1;\\r\\n      while ((UVar10 = UVar9, (int)DAT_029a9b2c < (int)UVar9 &&\\r\\n             (puVar2 = __calloc_crt(0x20,0x38), UVar10 = DAT_029a9b2c, puVar2 != (undefined4 *)0x0))\\r\\n            ) {\\r\\n        (&DAT_029a9b40)[iVar7] = puVar2;\\r\\n        DAT_029a9b2c = DAT_029a9b2c + 0x20;\\r\\n        puVar1 = puVar2;\\r\\n        for (; puVar2 < puVar1 + 0x1c0; puVar2 = puVar2 + 0xe) {\\r\\n          *(undefined1 *)(puVar2 + 1) = 0;\\r\\n          *puVar2 = 0xffffffff;\\r\\n          *(undefined1 *)((int)puVar2 + 5) = 10;\\r\\n          puVar2[2] = 0;\\r\\n          *(byte *)(puVar2 + 9) = *(byte *)(puVar2 + 9) & 0x80;\\r\\n          *(undefined1 *)((int)puVar2 + 0x25) = 10;\\r\\n          *(undefined1 *)((int)puVar2 + 0x26) = 10;\\r\\n          puVar1 = (&DAT_029a9b40)[iVar7];\\r\\n        }\\r\\n        iVar7 = iVar7 + 1;\\r\\n      }\\r\\n      local_24 = 0;\\r\\n      if (0 < (int)UVar10) {\\r\\n        do {\\r\\n          pvVar4 = *(HANDLE *)local_20;\\r\\n          if ((((pvVar4 != (HANDLE)0xffffffff) && (pvVar4 != (HANDLE)0xfffffffe)) &&\\r\\n              ((*pUVar6 & 1) != 0)) &&\\r\\n             (((*pUVar6 & 8) != 0 || (DVar3 = GetFileType(pvVar4), DVar3 != 0)))) {\\r\\n            puVar2 = (undefined4 *)\\r\\n                     ((local_24 & 0x1f) * 0x38 + (int)(&DAT_029a9b40)[(int)local_24 >> 5]);\\r\\n            *puVar2 = *(undefined4 *)local_20;\\r\\n            *(byte *)(puVar2 + 1) = (byte)*pUVar6;\\r\\n            iVar7 = ___crtInitCritSecAndSpinCount(puVar2 + 3,4000);\\r\\n            if (iVar7 == 0) goto LAB_006f149c;\\r\\n            puVar2[2] = puVar2[2] + 1;\\r\\n          }\\r\\n          local_24 = local_24 + 1;\\r\\n          pUVar6 = (UINT *)((int)pUVar6 + 1);\\r\\n          local_20 = local_20 + 4;\\r\\n        } while ((int)local_24 < (int)UVar10);\\r\\n      }\\r\\n    }\\r\\n    iVar7 = 0;\\r\\n    do {\\r\\n      piVar8 = DAT_029a9b40 + iVar7 * 0xe;\\r\\n      if ((*piVar8 == -1) || (*piVar8 == -2)) {\\r\\n        *(undefined1 *)(piVar8 + 1) = 0x81;\\r\\n        if (iVar7 == 0) {\\r\\n          DVar3 = 0xfffffff6;\\r\\n        }\\r\\n        else {\\r\\n          DVar3 = 0xfffffff5 - (iVar7 != 1);\\r\\n        }\\r\\n        pvVar4 = GetStdHandle(DVar3);\\r\\n        if (((pvVar4 == (HANDLE)0xffffffff) || (pvVar4 == (HANDLE)0x0)) ||\\r\\n           (DVar3 = GetFileType(pvVar4), DVar3 == 0)) {\\r\\n          *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 0x40;\\r\\n          *piVar8 = -2;\\r\\n        }\\r\\n        else {\\r\\n          *piVar8 = (int)pvVar4;\\r\\n          if ((DVar3 & 0xff) == 2) {\\r\\n            *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 0x40;\\r\\n          }\\r\\n          else if ((DVar3 & 0xff) == 3) {\\r\\n            *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 8;\\r\\n          }\\r\\n          iVar5 = ___crtInitCritSecAndSpinCount(piVar8 + 3,4000);\\r\\n          if (iVar5 == 0) goto LAB_006f149c;\\r\\n          piVar8[2] = piVar8[2] + 1;\\r\\n        }\\r\\n      }\\r\\n      else {\\r\\n        *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 0x80;\\r\\n      }\\r\\n      iVar7 = iVar7 + 1;\\r\\n    } while (iVar7 < 3);\\r\\n    SetHandleCount(DAT_029a9b2c);\\r\\n    iVar7 = 0;\\r\\n  }\\r\\n  return iVar7;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f14f1\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f14f1\",\"name\":\"__RTC_Initialize\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Removing unreachable block (ram,0x006f1503) */\\r\\n/* WARNING: Removing unreachable block (ram,0x006f1509) */\\r\\n/* WARNING: Removing unreachable block (ram,0x006f150b) */\\r\\n/* Library Function - Single Match\\r\\n    __RTC_Initialize\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __RTC_Initialize(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f1539\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f1539\",\"name\":\"___heap_select\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    ___heap_select\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nundefined4 ___heap_select(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  uint local_c;\\r\\n  int local_8;\\r\\n  \\r\\n  local_8 = 0;\\r\\n  local_c = 0;\\r\\n  iVar1 = __get_osplatform(&local_8);\\r\\n  if (iVar1 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n    __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n  }\\r\\n  iVar1 = __get_winmajor(&local_c);\\r\\n  if (iVar1 != 0) {\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n    __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\\r\\n  }\\r\\n  if ((local_8 == 2) && (4 < local_c)) {\\r\\n    return 1;\\r\\n  }\\r\\n  return 3;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6f1594\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6f1594\",\"name\":\"__heap_init\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __heap_init\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nint __cdecl __heap_init(void)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  int in_stack_00000004;\\r\\n  \\r\\n  DAT_0297c974 = HeapCreate((uint)(in_stack_00000004 == 0),0x1000,0);\\r\\n  if (DAT_0297c974 == (HANDLE)0x0) {\\r\\n    return 0;\\r\\n  }\\r\\n  DAT_029a9b28 = ___heap_select();\\r\\n  if ((DAT_029a9b28 == 3) && (iVar1 = ___sbh_heap_init(0x3f8), iVar1 == 0)) {\\r\\n    HeapDestroy(DAT_0297c974);\\r\\n    DAT_0297c974 = (HANDLE)0x0;\\r\\n    return 0;\\r\\n  }\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"}],\"total\":32,\"succeeded\":32,\"failed\":0},\"confidence\":\"derived\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Derived by an REA composed workflow.\"],\"locations\":[{\"kind\":\"address\",\"address\":\"0x6f024e\"},{\"kind\":\"address\",\"address\":\"0x6f0299\"},{\"kind\":\"address\",\"address\":\"0x6f02d6\"},{\"kind\":\"address\",\"address\":\"0x6f038c\"},{\"kind\":\"address\",\"address\":\"0x6f0395\"},{\"kind\":\"address\",\"address\":\"0x6f040c\"},{\"kind\":\"address\",\"address\":\"0x6f0530\"},{\"kind\":\"address\",\"address\":\"0x6f053c\"},{\"kind\":\"address\",\"address\":\"0x6f05ba\"},{\"kind\":\"address\",\"address\":\"0x6f073e\"},{\"kind\":\"address\",\"address\":\"0x6f076f\"},{\"kind\":\"address\",\"address\":\"0x6f07af\"},{\"kind\":\"address\",\"address\":\"0x6f07f7\"},{\"kind\":\"address\",\"address\":\"0x6f0842\"},{\"kind\":\"address\",\"address\":\"0x6f08ae\"},{\"kind\":\"address\",\"address\":\"0x6f0948\"},{\"kind\":\"address\",\"address\":\"0x6f0954\"},{\"kind\":\"address\",\"address\":\"0x6f0999\"},{\"kind\":\"address\",\"address\":\"0x6f09ad\"},{\"kind\":\"address\",\"address\":\"0x6f09f8\"},{\"kind\":\"address\",\"address\":\"0x6f0bb8\"},{\"kind\":\"address\",\"address\":\"0x6f0bf1\"},{\"kind\":\"address\",\"address\":\"0x6f0c24\"},{\"kind\":\"address\",\"address\":\"0x6f0d9d\"},{\"kind\":\"address\",\"address\":\"0x6f0dfa\"},{\"kind\":\"address\",\"address\":\"0x6f0edf\"},{\"kind\":\"address\",\"address\":\"0x6f1077\"},{\"kind\":\"address\",\"address\":\"0x6f1130\"},{\"kind\":\"address\",\"address\":\"0x6f1265\"},{\"kind\":\"address\",\"address\":\"0x6f14f1\"},{\"kind\":\"address\",\"address\":\"0x6f1539\"},{\"kind\":\"address\",\"address\":\"0x6f1594\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_526838828e273a637259fe0c0b8910ed57fcbb113f7ca97b4fe0b36ecb2b0c42",
+    "subject": {
+      "name": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe",
+      "digest": {
+        "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb"
+      },
+      "format": "pe",
+      "architecture": "x86",
+      "local_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe"
+    },
+    "provider": {
+      "id": "rea-workflow",
+      "name": "REA composed investigation workflow",
+      "version": "1"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "parameters": {
+        "upstream_analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "pe",
+            "executable_role": "application",
+            "managed": false,
+            "native_aot_metadata": {
+              "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+              "source_bytes": 134217728,
+              "work_units": 67108864,
+              "working_memory_bytes": 67108864,
+              "report_bytes": 4194304
+            },
+            "architecture": "x86",
+            "available_architectures": [
+              "x86"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "function_boundary_observations": "ghidra-terminal-call-limitations-v1",
+            "no_return_repair": "disabled-windows-p0",
+            "process_launch": "official-headless-script-v1",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "auto-from-header",
+            "language_id": "auto-from-header",
+            "compiler_spec_id": "auto-default",
+            "analyzer_preset": "ghidra-default",
+            "analysis_seeds": {
+              "format": "rea-ghidra-seeds-v1",
+              "path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "configured_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "sha256": "ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24",
+              "entries": {
+                "function": 1046,
+                "code": 0,
+                "label": 0
+              }
+            }
+          },
+          "digest": "d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d"
+        },
+        "workflow_revision": 2
+      },
+      "digest": "87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971"
+    },
+    "predicate_type": "rea.analysis",
+    "operation": "batch_decompile",
+    "parameters": {
+      "addresses": [
+        "0x6f024e",
+        "0x6f0299",
+        "0x6f02d6",
+        "0x6f038c",
+        "0x6f0395",
+        "0x6f040c",
+        "0x6f0530",
+        "0x6f053c",
+        "0x6f05ba",
+        "0x6f073e",
+        "0x6f076f",
+        "0x6f07af",
+        "0x6f07f7",
+        "0x6f0842",
+        "0x6f08ae",
+        "0x6f0948",
+        "0x6f0954",
+        "0x6f0999",
+        "0x6f09ad",
+        "0x6f09f8",
+        "0x6f0bb8",
+        "0x6f0bf1",
+        "0x6f0c24",
+        "0x6f0d9d",
+        "0x6f0dfa",
+        "0x6f0edf",
+        "0x6f1077",
+        "0x6f1130",
+        "0x6f1265",
+        "0x6f14f1",
+        "0x6f1539",
+        "0x6f1594"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "items": [
+        {
+          "address": "0x6f024e",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f024e",
+            "name": "FUN_006f024e"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nLPVOID FUN_006f024e(void)\r\n\r\n{\r\n  LPVOID lpTlsValue;\r\n  \r\n  lpTlsValue = TlsGetValue(DAT_00829ab8);\r\n  if (lpTlsValue == (LPVOID)0x0) {\r\n    lpTlsValue = (LPVOID)FUN_006f01bc(DAT_0297c53c);\r\n    TlsSetValue(DAT_00829ab8,lpTlsValue);\r\n  }\r\n  return lpTlsValue;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0299",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0299",
+            "name": "__mtterm"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __mtterm\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __cdecl __mtterm(void)\r\n\r\n{\r\n  code *pcVar1;\r\n  \r\n  if (DAT_00829ab4 != -1) {\r\n    pcVar1 = (code *)FUN_006f01bc(DAT_0297c544,DAT_00829ab4);\r\n    (*pcVar1)();\r\n    DAT_00829ab4 = -1;\r\n  }\r\n  if (DAT_00829ab8 != 0xffffffff) {\r\n    TlsFree(DAT_00829ab8);\r\n    DAT_00829ab8 = 0xffffffff;\r\n  }\r\n  __mtdeletelocks();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f02d6",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f02d6",
+            "name": "FUN_006f02d6"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n\r\nvoid FUN_006f02d6(int param_1,int param_2)\r\n\r\n{\r\n  HMODULE hModule;\r\n  int iVar1;\r\n  FARPROC pFVar2;\r\n  \r\n  hModule = GetModuleHandleA(\"KERNEL32.DLL\");\r\n  *(undefined **)(param_1 + 0x5c) = &DAT_00829b78;\r\n  *(undefined4 *)(param_1 + 0x14) = 1;\r\n  if (hModule != (HMODULE)0x0) {\r\n    iVar1 = FUN_006f00d9();\r\n    if (iVar1 != 0) {\r\n      pFVar2 = GetProcAddress(hModule,\"EncodePointer\");\r\n      *(FARPROC *)(param_1 + 0x1f8) = pFVar2;\r\n      pFVar2 = GetProcAddress(hModule,\"DecodePointer\");\r\n      *(FARPROC *)(param_1 + 0x1fc) = pFVar2;\r\n    }\r\n  }\r\n  *(undefined4 *)(param_1 + 0x70) = 1;\r\n  *(undefined1 *)(param_1 + 200) = 0x43;\r\n  *(undefined1 *)(param_1 + 0x14b) = 0x43;\r\n  *(undefined **)(param_1 + 0x68) = &DAT_0082a070;\r\n  InterlockedIncrement((LONG *)&DAT_0082a070);\r\n  __lock(0xc);\r\n  *(int *)(param_1 + 0x6c) = param_2;\r\n  if (param_2 == 0) {\r\n    *(undefined **)(param_1 + 0x6c) = PTR_DAT_0082a678;\r\n  }\r\n  ___addlocaleref(*(undefined4 *)(param_1 + 0x6c));\r\n  FUN_006f038c();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f038c",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f038c",
+            "name": "FUN_006f038c"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006f038c(void)\r\n\r\n{\r\n  FUN_006f179a(0xc);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0395",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0395",
+            "name": "FUN_006f0395"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nDWORD * FUN_006f0395(void)\r\n\r\n{\r\n  DWORD dwErrCode;\r\n  code *pcVar1;\r\n  DWORD *_Memory;\r\n  int iVar2;\r\n  DWORD DVar3;\r\n  \r\n  dwErrCode = GetLastError();\r\n  pcVar1 = (code *)FUN_006f024e(DAT_00829ab4);\r\n  _Memory = (DWORD *)(*pcVar1)();\r\n  if (_Memory == (DWORD *)0x0) {\r\n    _Memory = __calloc_crt(1,0x214);\r\n    if (_Memory != (DWORD *)0x0) {\r\n      pcVar1 = (code *)FUN_006f01bc(DAT_0297c540,DAT_00829ab4,_Memory);\r\n      iVar2 = (*pcVar1)();\r\n      if (iVar2 == 0) {\r\n        _free(_Memory);\r\n        _Memory = (DWORD *)0x0;\r\n      }\r\n      else {\r\n        FUN_006f02d6(_Memory,0);\r\n        DVar3 = GetCurrentThreadId();\r\n        _Memory[1] = 0xffffffff;\r\n        *_Memory = DVar3;\r\n      }\r\n    }\r\n  }\r\n  SetLastError(dwErrCode);\r\n  return _Memory;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f040c",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f040c",
+            "name": "__getptd"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __getptd\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\n_ptiddata __cdecl __getptd(void)\r\n\r\n{\r\n  _ptiddata p_Var1;\r\n  \r\n  p_Var1 = (_ptiddata)FUN_006f0395();\r\n  if (p_Var1 == (_ptiddata)0x0) {\r\n    __amsg_exit(0x10);\r\n  }\r\n  return p_Var1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0530",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0530",
+            "name": "FUN_006f0530"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006f0530(void)\r\n\r\n{\r\n  FUN_006f179a(0xd);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f053c",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f053c",
+            "name": "FUN_006f053c"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006f053c(void)\r\n\r\n{\r\n  FUN_006f179a(0xc);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f05ba",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f05ba",
+            "name": "__mtinit"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __mtinit\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __mtinit(void)\r\n\r\n{\r\n  HMODULE hModule;\r\n  BOOL BVar1;\r\n  int iVar2;\r\n  code *pcVar3;\r\n  DWORD *pDVar4;\r\n  DWORD DVar5;\r\n  \r\n  hModule = GetModuleHandleA(\"KERNEL32.DLL\");\r\n  if (hModule == (HMODULE)0x0) {\r\n    __mtterm();\r\n    return 0;\r\n  }\r\n  DAT_0297c538 = GetProcAddress(hModule,\"FlsAlloc\");\r\n  DAT_0297c53c = GetProcAddress(hModule,\"FlsGetValue\");\r\n  DAT_0297c540 = GetProcAddress(hModule,\"FlsSetValue\");\r\n  DAT_0297c544 = GetProcAddress(hModule,\"FlsFree\");\r\n  if ((((DAT_0297c538 == (FARPROC)0x0) || (DAT_0297c53c == (FARPROC)0x0)) ||\r\n      (DAT_0297c540 == (FARPROC)0x0)) || (DAT_0297c544 == (FARPROC)0x0)) {\r\n    DAT_0297c53c = TlsGetValue_exref;\r\n    DAT_0297c538 = (FARPROC)&LAB_006f022a;\r\n    DAT_0297c540 = TlsSetValue_exref;\r\n    DAT_0297c544 = TlsFree_exref;\r\n  }\r\n  DAT_00829ab8 = TlsAlloc();\r\n  if ((DAT_00829ab8 != 0xffffffff) && (BVar1 = TlsSetValue(DAT_00829ab8,DAT_0297c53c), BVar1 != 0))\r\n  {\r\n    __init_pointers();\r\n    DAT_0297c538 = (FARPROC)FUN_006f0145(DAT_0297c538);\r\n    DAT_0297c53c = (FARPROC)FUN_006f0145(DAT_0297c53c);\r\n    DAT_0297c540 = (FARPROC)FUN_006f0145(DAT_0297c540);\r\n    DAT_0297c544 = (FARPROC)FUN_006f0145(DAT_0297c544);\r\n    iVar2 = __mtinitlocks();\r\n    if (iVar2 != 0) {\r\n      pcVar3 = (code *)FUN_006f01bc(DAT_0297c538,&LAB_006f0424);\r\n      DAT_00829ab4 = (*pcVar3)();\r\n      if ((DAT_00829ab4 != -1) && (pDVar4 = __calloc_crt(1,0x214), pDVar4 != (DWORD *)0x0)) {\r\n        pcVar3 = (code *)FUN_006f01bc(DAT_0297c540,DAT_00829ab4,pDVar4);\r\n        iVar2 = (*pcVar3)();\r\n        if (iVar2 != 0) {\r\n          FUN_006f02d6(pDVar4,0);\r\n          DVar5 = GetCurrentThreadId();\r\n          pDVar4[1] = 0xffffffff;\r\n          *pDVar4 = DVar5;\r\n          return 1;\r\n        }\r\n      }\r\n    }\r\n    __mtterm();\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f073e",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f073e",
+            "name": "FUN_006f073e"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nuint FUN_006f073e(DWORD param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  \r\n  Sleep(param_1);\r\n  uVar1 = param_1 + 1000;\r\n  if (DAT_0297c548 < uVar1) {\r\n    uVar1 = 0xffffffff;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f076f",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f076f",
+            "name": "__malloc_crt"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __malloc_crt\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid * __cdecl __malloc_crt(size_t _Size)\r\n\r\n{\r\n  void *pvVar1;\r\n  uint dwMilliseconds;\r\n  \r\n  dwMilliseconds = 0;\r\n  while( true ) {\r\n    pvVar1 = _malloc(_Size);\r\n    if (pvVar1 != (void *)0x0) {\r\n      return pvVar1;\r\n    }\r\n    if (DAT_0297c548 == 0) break;\r\n    Sleep(dwMilliseconds);\r\n    dwMilliseconds = dwMilliseconds + 1000;\r\n    if (DAT_0297c548 < dwMilliseconds) {\r\n      dwMilliseconds = 0xffffffff;\r\n    }\r\n    if (dwMilliseconds == 0xffffffff) {\r\n      return (void *)0x0;\r\n    }\r\n  }\r\n  return (void *)0x0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f07af",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f07af",
+            "name": "__calloc_crt"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __calloc_crt\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid * __cdecl __calloc_crt(size_t _Count,size_t _Size)\r\n\r\n{\r\n  void *pvVar1;\r\n  uint dwMilliseconds;\r\n  \r\n  dwMilliseconds = 0;\r\n  while( true ) {\r\n    pvVar1 = (void *)__calloc_impl(_Count,_Size,0);\r\n    if (pvVar1 != (void *)0x0) {\r\n      return pvVar1;\r\n    }\r\n    if (DAT_0297c548 == 0) break;\r\n    Sleep(dwMilliseconds);\r\n    dwMilliseconds = dwMilliseconds + 1000;\r\n    if (DAT_0297c548 < dwMilliseconds) {\r\n      dwMilliseconds = 0xffffffff;\r\n    }\r\n    if (dwMilliseconds == 0xffffffff) {\r\n      return (void *)0x0;\r\n    }\r\n  }\r\n  return (void *)0x0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f07f7",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f07f7",
+            "name": "__realloc_crt"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __realloc_crt\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid * __cdecl __realloc_crt(void *_Ptr,size_t _NewSize)\r\n\r\n{\r\n  void *pvVar1;\r\n  uint dwMilliseconds;\r\n  \r\n  dwMilliseconds = 0;\r\n  do {\r\n    pvVar1 = _realloc(_Ptr,_NewSize);\r\n    if (pvVar1 != (void *)0x0) {\r\n      return pvVar1;\r\n    }\r\n    if (_NewSize == 0) {\r\n      return (void *)0x0;\r\n    }\r\n    if (DAT_0297c548 == 0) {\r\n      return (void *)0x0;\r\n    }\r\n    Sleep(dwMilliseconds);\r\n    dwMilliseconds = dwMilliseconds + 1000;\r\n    if (DAT_0297c548 < dwMilliseconds) {\r\n      dwMilliseconds = 0xffffffff;\r\n    }\r\n  } while (dwMilliseconds != 0xffffffff);\r\n  return (void *)0x0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0842",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0842",
+            "name": "__recalloc_crt"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __recalloc_crt\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid * __cdecl __recalloc_crt(void *_Ptr,size_t _Count,size_t _Size)\r\n\r\n{\r\n  void *pvVar1;\r\n  uint dwMilliseconds;\r\n  \r\n  dwMilliseconds = 0;\r\n  do {\r\n    pvVar1 = (void *)FUN_006e78dc(_Ptr,_Count,_Size);\r\n    if (pvVar1 != (void *)0x0) {\r\n      return pvVar1;\r\n    }\r\n    if (_Size == 0) {\r\n      return (void *)0x0;\r\n    }\r\n    if (DAT_0297c548 == 0) {\r\n      return (void *)0x0;\r\n    }\r\n    Sleep(dwMilliseconds);\r\n    dwMilliseconds = dwMilliseconds + 1000;\r\n    if (DAT_0297c548 < dwMilliseconds) {\r\n      dwMilliseconds = 0xffffffff;\r\n    }\r\n  } while (dwMilliseconds != 0xffffffff);\r\n  return (void *)0x0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f08ae",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f08ae",
+            "name": "__msize"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Single Match\r\n    __msize\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\r\n\r\nsize_t __cdecl __msize(void *_Memory)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  size_t sVar2;\r\n  int iVar3;\r\n  size_t local_20;\r\n  \r\n  if (_Memory == (void *)0x0) {\r\n    puVar1 = (undefined4 *)FUN_006ead5f();\r\n    *puVar1 = 0x16;\r\n    FUN_006e9fc2(0,0,0,0,0);\r\n    sVar2 = 0xffffffff;\r\n  }\r\n  else {\r\n    if (DAT_029a9b28 == 3) {\r\n      __lock(4);\r\n      iVar3 = thunk_FUN_006f19ca(_Memory);\r\n      if (iVar3 != 0) {\r\n        local_20 = *(int *)((int)_Memory + -4) - 9;\r\n      }\r\n      FUN_006f0948();\r\n      if (iVar3 != 0) {\r\n        return local_20;\r\n      }\r\n    }\r\n    sVar2 = HeapSize(DAT_0297c974,0,_Memory);\r\n  }\r\n  return sVar2;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0948",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0948",
+            "name": "FUN_006f0948"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006f0948(void)\r\n\r\n{\r\n  FUN_006f179a(4);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0954",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0954",
+            "name": "__SEH_prolog4"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: This is an inlined function */\r\n/* WARNING: Unable to track spacebase fully for stack */\r\n/* Library Function - Single Match\r\n    __SEH_prolog4\r\n   \r\n   Library: Visual Studio */\r\n\r\nvoid __SEH_prolog4(undefined4 param_1,int param_2)\r\n\r\n{\r\n  undefined4 unaff_EBX;\r\n  undefined4 unaff_ESI;\r\n  undefined4 unaff_EDI;\r\n  int *unaff_FS_OFFSET;\r\n  undefined4 unaff_retaddr;\r\n  uint auStack_1c [5];\r\n  undefined1 local_8 [8];\r\n  \r\n  param_2 = -param_2;\r\n  *(undefined4 *)((int)auStack_1c + param_2 + 0x10) = unaff_EBX;\r\n  *(undefined4 *)((int)auStack_1c + param_2 + 0xc) = unaff_ESI;\r\n  *(undefined4 *)((int)auStack_1c + param_2 + 8) = unaff_EDI;\r\n  *(uint *)((int)auStack_1c + param_2 + 4) = DAT_00829570 ^ (uint)&stack0x00000008;\r\n  *(undefined4 *)((int)auStack_1c + param_2) = unaff_retaddr;\r\n  *unaff_FS_OFFSET = (int)local_8;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0999",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0999",
+            "name": "__SEH_epilog4"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: This is an inlined function */\r\n/* Library Function - Single Match\r\n    __SEH_epilog4\r\n   \r\n   Library: Visual Studio */\r\n\r\nvoid __SEH_epilog4(void)\r\n\r\n{\r\n  undefined4 *unaff_EBP;\r\n  undefined4 *unaff_FS_OFFSET;\r\n  undefined4 unaff_retaddr;\r\n  \r\n  *unaff_FS_OFFSET = unaff_EBP[-4];\r\n  *unaff_EBP = unaff_retaddr;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f09ad",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f09ad",
+            "name": "FUN_006f09ad"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006f09ad(int *param_1)\r\n\r\n{\r\n  undefined *puVar1;\r\n  \r\n  param_1 = (int *)*param_1;\r\n  if (((*param_1 == -0x1f928c9d) && (param_1[4] == 3)) &&\r\n     ((puVar1 = (undefined *)param_1[5], puVar1 == (undefined *)0x19930520 ||\r\n      (((puVar1 == (undefined *)0x19930521 || (puVar1 == (undefined *)0x19930522)) ||\r\n       (puVar1 == &DAT_01994000)))))) {\r\n    terminate();\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f09f8",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f09f8",
+            "name": "FUN_006f09f8"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006f09f8(int param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  errno_t eVar3;\r\n  DWORD DVar4;\r\n  size_t sVar5;\r\n  HANDLE hFile;\r\n  uint uVar6;\r\n  DWORD *lpNumberOfBytesWritten;\r\n  LPOVERLAPPED lpOverlapped;\r\n  DWORD local_4;\r\n  \r\n  uVar6 = 0;\r\n  do {\r\n    if (param_1 == (&DAT_00829ac0)[uVar6 * 2]) break;\r\n    uVar6 = uVar6 + 1;\r\n  } while (uVar6 < 0x17);\r\n  if (uVar6 < 0x17) {\r\n    iVar2 = __set_error_mode(3);\r\n    if ((iVar2 == 1) || ((iVar2 = __set_error_mode(3), iVar2 == 0 && (DAT_00829580 == 1)))) {\r\n      hFile = GetStdHandle(0xfffffff4);\r\n      if ((hFile != (HANDLE)0x0) && (hFile != (HANDLE)0xffffffff)) {\r\n        lpOverlapped = (LPOVERLAPPED)0x0;\r\n        lpNumberOfBytesWritten = &local_4;\r\n        puVar1 = (undefined4 *)(uVar6 * 8 + 0x829ac4);\r\n        sVar5 = _strlen((char *)*puVar1);\r\n        WriteFile(hFile,(LPCVOID)*puVar1,sVar5,lpNumberOfBytesWritten,lpOverlapped);\r\n      }\r\n    }\r\n    else if (param_1 != 0xfc) {\r\n      eVar3 = _strcpy_s(&DAT_0297c550,0x314,\"Runtime Error!\\n\\nProgram: \");\r\n      if (eVar3 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n      }\r\n      DAT_0297c66d = 0;\r\n      DVar4 = GetModuleFileNameA((HMODULE)0x0,&DAT_0297c569,0x104);\r\n      if ((DVar4 == 0) &&\r\n         (eVar3 = _strcpy_s(&DAT_0297c569,0x2fb,\"<program name unknown>\"), eVar3 != 0)) {\r\n                    /* WARNING: Subroutine does not return */\r\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n      }\r\n      sVar5 = _strlen(&DAT_0297c569);\r\n      if (0x3c < sVar5 + 1) {\r\n        sVar5 = _strlen(&DAT_0297c569);\r\n        eVar3 = _strncpy_s((char *)(sVar5 + 0x297c52e),(int)&DAT_0297c864 - (int)(sVar5 + 0x297c52e)\r\n                           ,\"...\",3);\r\n        if (eVar3 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n          __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n        }\r\n      }\r\n      eVar3 = _strcat_s(&DAT_0297c550,0x314,\"\\n\\n\");\r\n      if (eVar3 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n      }\r\n      eVar3 = _strcat_s(&DAT_0297c550,0x314,*(char **)(uVar6 * 8 + 0x829ac4));\r\n      if (eVar3 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n        __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n      }\r\n      FUN_00701fe9(&DAT_0297c550,\"Microsoft Visual C++ Runtime Library\",0x12010);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0bb8",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0bb8",
+            "name": "__FF_MSGBANNER"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __FF_MSGBANNER\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __cdecl __FF_MSGBANNER(void)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = __set_error_mode(3);\r\n  if (iVar1 != 1) {\r\n    iVar1 = __set_error_mode(3);\r\n    if (iVar1 != 0) {\r\n      return;\r\n    }\r\n    if (DAT_00829580 != 1) {\r\n      return;\r\n    }\r\n  }\r\n  FUN_006f09f8(0xfc);\r\n  FUN_006f09f8(0xff);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0bf1",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0bf1",
+            "name": "FUN_006f0bf1"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006f0bf1(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0c24",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0c24",
+            "name": "FUN_006f0c24"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_006f0c24(int param_1,undefined4 param_2)\r\n\r\n{\r\n  int *piVar1;\r\n  code *pcVar2;\r\n  undefined4 uVar3;\r\n  int iVar4;\r\n  int *piVar5;\r\n  undefined4 uVar6;\r\n  int iVar7;\r\n  int iVar8;\r\n  \r\n  iVar4 = FUN_006f0395();\r\n  uVar6 = 0;\r\n  if (iVar4 != 0) {\r\n    piVar1 = *(int **)(iVar4 + 0x5c);\r\n    piVar5 = piVar1;\r\n    do {\r\n      if (*piVar5 == param_1) break;\r\n      piVar5 = piVar5 + 3;\r\n    } while (piVar5 < piVar1 + DAT_00829bfc * 3);\r\n    if ((piVar1 + DAT_00829bfc * 3 <= piVar5) || (*piVar5 != param_1)) {\r\n      piVar5 = (int *)0x0;\r\n    }\r\n    if ((piVar5 == (int *)0x0) || (pcVar2 = (code *)piVar5[2], pcVar2 == (code *)0x0)) {\r\n      uVar6 = 0;\r\n    }\r\n    else if (pcVar2 == (code *)0x5) {\r\n      piVar5[2] = 0;\r\n      uVar6 = 1;\r\n    }\r\n    else {\r\n      if (pcVar2 != (code *)0x1) {\r\n        uVar6 = *(undefined4 *)(iVar4 + 0x60);\r\n        *(undefined4 *)(iVar4 + 0x60) = param_2;\r\n        if (piVar5[1] == 8) {\r\n          if (DAT_00829bf0 < DAT_00829bf4 + DAT_00829bf0) {\r\n            iVar7 = DAT_00829bf0 * 0xc;\r\n            iVar8 = DAT_00829bf0;\r\n            do {\r\n              *(undefined4 *)(iVar7 + 8 + *(int *)(iVar4 + 0x5c)) = 0;\r\n              iVar8 = iVar8 + 1;\r\n              iVar7 = iVar7 + 0xc;\r\n            } while (iVar8 < DAT_00829bf4 + DAT_00829bf0);\r\n          }\r\n          iVar8 = *piVar5;\r\n          uVar3 = *(undefined4 *)(iVar4 + 100);\r\n          if (iVar8 == -0x3fffff72) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x83;\r\n          }\r\n          else if (iVar8 == -0x3fffff70) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x81;\r\n          }\r\n          else if (iVar8 == -0x3fffff6f) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x84;\r\n          }\r\n          else if (iVar8 == -0x3fffff6d) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x85;\r\n          }\r\n          else if (iVar8 == -0x3fffff73) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x82;\r\n          }\r\n          else if (iVar8 == -0x3fffff71) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x86;\r\n          }\r\n          else if (iVar8 == -0x3fffff6e) {\r\n            *(undefined4 *)(iVar4 + 100) = 0x8a;\r\n          }\r\n          (*pcVar2)(8,*(undefined4 *)(iVar4 + 100));\r\n          *(undefined4 *)(iVar4 + 100) = uVar3;\r\n        }\r\n        else {\r\n          piVar5[2] = 0;\r\n          (*pcVar2)(piVar5[1]);\r\n        }\r\n        *(undefined4 *)(iVar4 + 0x60) = uVar6;\r\n      }\r\n      uVar6 = 0xffffffff;\r\n    }\r\n  }\r\n  return uVar6;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0d9d",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0d9d",
+            "name": "__wincmdln"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __wincmdln\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nbyte * __wincmdln(void)\r\n\r\n{\r\n  byte bVar1;\r\n  bool bVar2;\r\n  int iVar3;\r\n  byte *pbVar4;\r\n  \r\n  bVar2 = false;\r\n  if (DAT_029a9c58 == 0) {\r\n    ___initmbctable();\r\n  }\r\n  pbVar4 = DAT_029aac84;\r\n  if (DAT_029aac84 == (byte *)0x0) {\r\n    pbVar4 = &DAT_007516c0;\r\n  }\r\n  do {\r\n    bVar1 = *pbVar4;\r\n    if (bVar1 < 0x21) {\r\n      if (bVar1 == 0) {\r\n        return pbVar4;\r\n      }\r\n      if (!bVar2) {\r\n        for (; (*pbVar4 != 0 && (*pbVar4 < 0x21)); pbVar4 = pbVar4 + 1) {\r\n        }\r\n        return pbVar4;\r\n      }\r\n    }\r\n    if (bVar1 == 0x22) {\r\n      bVar2 = !bVar2;\r\n    }\r\n    iVar3 = __ismbblead((uint)bVar1);\r\n    if (iVar3 != 0) {\r\n      pbVar4 = pbVar4 + 1;\r\n    }\r\n    pbVar4 = pbVar4 + 1;\r\n  } while( true );\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0dfa",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0dfa",
+            "name": "__setenvp"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __setenvp\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __setenvp(void)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  size_t sVar2;\r\n  char *_Dst;\r\n  errno_t eVar3;\r\n  char *pcVar4;\r\n  int iVar5;\r\n  \r\n  if (DAT_029a9c58 == 0) {\r\n    ___initmbctable();\r\n  }\r\n  iVar5 = 0;\r\n  pcVar4 = DAT_0297c188;\r\n  if (DAT_0297c188 != (char *)0x0) {\r\n    for (; *pcVar4 != '\\0'; pcVar4 = pcVar4 + sVar2 + 1) {\r\n      if (*pcVar4 != '=') {\r\n        iVar5 = iVar5 + 1;\r\n      }\r\n      sVar2 = _strlen(pcVar4);\r\n    }\r\n    puVar1 = __calloc_crt(iVar5 + 1,4);\r\n    pcVar4 = DAT_0297c188;\r\n    DAT_0297c1d4 = puVar1;\r\n    if (puVar1 != (undefined4 *)0x0) {\r\n      do {\r\n        if (*pcVar4 == '\\0') {\r\n          _free(DAT_0297c188);\r\n          DAT_0297c188 = (char *)0x0;\r\n          *puVar1 = 0;\r\n          DAT_029a9c4c = 1;\r\n          return 0;\r\n        }\r\n        sVar2 = _strlen(pcVar4);\r\n        sVar2 = sVar2 + 1;\r\n        if (*pcVar4 != '=') {\r\n          _Dst = __calloc_crt(sVar2,1);\r\n          *puVar1 = _Dst;\r\n          if (_Dst == (char *)0x0) {\r\n            _free(DAT_0297c1d4);\r\n            DAT_0297c1d4 = (undefined4 *)0x0;\r\n            return -1;\r\n          }\r\n          eVar3 = _strcpy_s(_Dst,sVar2,pcVar4);\r\n          if (eVar3 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n            __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n          }\r\n          puVar1 = puVar1 + 1;\r\n        }\r\n        pcVar4 = pcVar4 + sVar2;\r\n      } while( true );\r\n    }\r\n  }\r\n  return -1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f0edf",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f0edf",
+            "name": "parse_cmdline"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    _parse_cmdline\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __cdecl parse_cmdline(undefined4 *param_1,byte *param_2,int *param_3)\r\n\r\n{\r\n  bool bVar1;\r\n  bool bVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  byte *in_EDX;\r\n  byte *pbVar5;\r\n  byte bVar6;\r\n  byte *pbVar7;\r\n  byte *pbVar8;\r\n  int *unaff_EDI;\r\n  \r\n  *unaff_EDI = 0;\r\n  *param_3 = 1;\r\n  if (param_1 != (undefined4 *)0x0) {\r\n    *param_1 = param_2;\r\n    param_1 = param_1 + 1;\r\n  }\r\n  bVar2 = false;\r\n  pbVar5 = param_2;\r\n  do {\r\n    if (*in_EDX == 0x22) {\r\n      bVar2 = !bVar2;\r\n      bVar6 = 0x22;\r\n      pbVar7 = in_EDX + 1;\r\n    }\r\n    else {\r\n      *unaff_EDI = *unaff_EDI + 1;\r\n      if (pbVar5 != (byte *)0x0) {\r\n        *pbVar5 = *in_EDX;\r\n        param_2 = pbVar5 + 1;\r\n      }\r\n      bVar6 = *in_EDX;\r\n      pbVar7 = in_EDX + 1;\r\n      iVar3 = __ismbblead((uint)bVar6);\r\n      if (iVar3 != 0) {\r\n        *unaff_EDI = *unaff_EDI + 1;\r\n        if (param_2 != (byte *)0x0) {\r\n          *param_2 = *pbVar7;\r\n          param_2 = param_2 + 1;\r\n        }\r\n        pbVar7 = in_EDX + 2;\r\n      }\r\n      pbVar5 = param_2;\r\n      if (bVar6 == 0) {\r\n        pbVar7 = pbVar7 + -1;\r\n        goto LAB_006f0f71;\r\n      }\r\n    }\r\n    in_EDX = pbVar7;\r\n  } while ((bVar2) || ((bVar6 != 0x20 && (bVar6 != 9))));\r\n  if (pbVar5 != (byte *)0x0) {\r\n    pbVar5[-1] = 0;\r\n  }\r\nLAB_006f0f71:\r\n  bVar2 = false;\r\n  while (*pbVar7 != 0) {\r\n    for (; (*pbVar7 == 0x20 || (*pbVar7 == 9)); pbVar7 = pbVar7 + 1) {\r\n    }\r\n    if (*pbVar7 == 0) break;\r\n    if (param_1 != (undefined4 *)0x0) {\r\n      *param_1 = pbVar5;\r\n      param_1 = param_1 + 1;\r\n    }\r\n    *param_3 = *param_3 + 1;\r\n    while( true ) {\r\n      bVar1 = true;\r\n      uVar4 = 0;\r\n      for (; *pbVar7 == 0x5c; pbVar7 = pbVar7 + 1) {\r\n        uVar4 = uVar4 + 1;\r\n      }\r\n      if (*pbVar7 == 0x22) {\r\n        pbVar8 = pbVar7;\r\n        if (((uVar4 & 1) == 0) && ((!bVar2 || (pbVar8 = pbVar7 + 1, *pbVar8 != 0x22)))) {\r\n          bVar1 = false;\r\n          bVar2 = !bVar2;\r\n          pbVar8 = pbVar7;\r\n        }\r\n        uVar4 = uVar4 >> 1;\r\n        pbVar7 = pbVar8;\r\n      }\r\n      while (uVar4 != 0) {\r\n        uVar4 = uVar4 - 1;\r\n        if (pbVar5 != (byte *)0x0) {\r\n          *pbVar5 = 0x5c;\r\n          pbVar5 = pbVar5 + 1;\r\n        }\r\n        *unaff_EDI = *unaff_EDI + 1;\r\n        param_2 = pbVar5;\r\n      }\r\n      bVar6 = *pbVar7;\r\n      if ((bVar6 == 0) || ((!bVar2 && ((bVar6 == 0x20 || (bVar6 == 9)))))) break;\r\n      if (bVar1) {\r\n        if (pbVar5 == (byte *)0x0) {\r\n          iVar3 = __ismbblead((int)(char)bVar6);\r\n          if (iVar3 != 0) {\r\n            pbVar7 = pbVar7 + 1;\r\n            *unaff_EDI = *unaff_EDI + 1;\r\n          }\r\n        }\r\n        else {\r\n          iVar3 = __ismbblead((int)(char)bVar6);\r\n          if (iVar3 != 0) {\r\n            *param_2 = *pbVar7;\r\n            pbVar7 = pbVar7 + 1;\r\n            *unaff_EDI = *unaff_EDI + 1;\r\n            param_2 = param_2 + 1;\r\n          }\r\n          *param_2 = *pbVar7;\r\n          param_2 = param_2 + 1;\r\n        }\r\n        *unaff_EDI = *unaff_EDI + 1;\r\n        pbVar5 = param_2;\r\n      }\r\n      pbVar7 = pbVar7 + 1;\r\n    }\r\n    if (pbVar5 != (byte *)0x0) {\r\n      *pbVar5 = 0;\r\n      pbVar5 = pbVar5 + 1;\r\n      param_2 = pbVar5;\r\n    }\r\n    *unaff_EDI = *unaff_EDI + 1;\r\n  }\r\n  if (param_1 != (undefined4 *)0x0) {\r\n    *param_1 = 0;\r\n  }\r\n  *param_3 = *param_3 + 1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f1077",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f1077",
+            "name": "__setargv"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n/* Library Function - Single Match\r\n    __setargv\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __setargv(void)\r\n\r\n{\r\n  uint _Size;\r\n  void *pvVar1;\r\n  int iVar2;\r\n  uint local_10;\r\n  uint local_c;\r\n  char *local_8;\r\n  \r\n  if (DAT_029a9c58 == 0) {\r\n    ___initmbctable();\r\n  }\r\n  DAT_0297c96c = 0;\r\n  GetModuleFileNameA((HMODULE)0x0,&DAT_0297c868,0x104);\r\n  _DAT_0297c1e4 = &DAT_0297c868;\r\n  if ((DAT_029aac84 == (char *)0x0) || (local_8 = DAT_029aac84, *DAT_029aac84 == '\\0')) {\r\n    local_8 = &DAT_0297c868;\r\n  }\r\n  parse_cmdline(0,0,&local_c);\r\n  if ((local_c < 0x3fffffff) && (local_10 != 0xffffffff)) {\r\n    iVar2 = local_c * 4;\r\n    _Size = iVar2 + local_10;\r\n    if ((local_10 <= _Size) && (pvVar1 = __malloc_crt(_Size), pvVar1 != (void *)0x0)) {\r\n      parse_cmdline(pvVar1,(void *)(iVar2 + (int)pvVar1),&local_c);\r\n      _DAT_0297c1c8 = local_c - 1;\r\n      _DAT_0297c1cc = pvVar1;\r\n      return 0;\r\n    }\r\n  }\r\n  return -1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f1130",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f1130",
+            "name": "___crtGetEnvironmentStringsA"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    ___crtGetEnvironmentStringsA\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nLPVOID __cdecl ___crtGetEnvironmentStringsA(void)\r\n\r\n{\r\n  char cVar1;\r\n  WCHAR WVar2;\r\n  DWORD DVar3;\r\n  WCHAR *pWVar4;\r\n  int iVar6;\r\n  size_t _Size;\r\n  LPSTR lpMultiByteStr;\r\n  LPCH _Src;\r\n  char *pcVar7;\r\n  void *_Dst;\r\n  LPWCH lpWideCharStr;\r\n  LPSTR local_8;\r\n  WCHAR *pWVar5;\r\n  char *pcVar8;\r\n  \r\n  lpWideCharStr = (LPWCH)0x0;\r\n  if (DAT_0297c970 == 0) {\r\n    lpWideCharStr = GetEnvironmentStringsW();\r\n    if (lpWideCharStr != (LPWCH)0x0) {\r\n      DAT_0297c970 = 1;\r\n      goto LAB_006f1182;\r\n    }\r\n    DVar3 = GetLastError();\r\n    if (DVar3 == 0x78) {\r\n      DAT_0297c970 = 2;\r\n    }\r\n  }\r\n  if (DAT_0297c970 != 1) {\r\n    if ((DAT_0297c970 != 2) && (DAT_0297c970 != 0)) {\r\n      return (LPVOID)0x0;\r\n    }\r\n    _Src = GetEnvironmentStrings();\r\n    if (_Src == (LPCH)0x0) {\r\n      return (LPVOID)0x0;\r\n    }\r\n    cVar1 = *_Src;\r\n    pcVar7 = _Src;\r\n    while (cVar1 != '\\0') {\r\n      do {\r\n        pcVar8 = pcVar7;\r\n        pcVar7 = pcVar8 + 1;\r\n      } while (*pcVar7 != '\\0');\r\n      pcVar7 = pcVar8 + 2;\r\n      cVar1 = *pcVar7;\r\n    }\r\n    _Dst = __malloc_crt((size_t)(pcVar7 + (1 - (int)_Src)));\r\n    if (_Dst == (void *)0x0) {\r\n      FreeEnvironmentStringsA(_Src);\r\n      return (LPVOID)0x0;\r\n    }\r\n    _memcpy(_Dst,_Src,(size_t)(pcVar7 + (1 - (int)_Src)));\r\n    FreeEnvironmentStringsA(_Src);\r\n    return _Dst;\r\n  }\r\nLAB_006f1182:\r\n  if ((lpWideCharStr == (LPWCH)0x0) &&\r\n     (lpWideCharStr = GetEnvironmentStringsW(), lpWideCharStr == (LPWCH)0x0)) {\r\n    return (LPVOID)0x0;\r\n  }\r\n  WVar2 = *lpWideCharStr;\r\n  pWVar4 = lpWideCharStr;\r\n  while (WVar2 != L'\\0') {\r\n    do {\r\n      pWVar5 = pWVar4;\r\n      pWVar4 = pWVar5 + 1;\r\n    } while (*pWVar4 != L'\\0');\r\n    pWVar4 = pWVar5 + 2;\r\n    WVar2 = *pWVar4;\r\n  }\r\n  iVar6 = ((int)pWVar4 - (int)lpWideCharStr >> 1) + 1;\r\n  _Size = WideCharToMultiByte(0,0,lpWideCharStr,iVar6,(LPSTR)0x0,0,(LPCSTR)0x0,(LPBOOL)0x0);\r\n  local_8 = (LPSTR)0x0;\r\n  if (((_Size != 0) && (lpMultiByteStr = __malloc_crt(_Size), lpMultiByteStr != (LPSTR)0x0)) &&\r\n     (iVar6 = WideCharToMultiByte(0,0,lpWideCharStr,iVar6,lpMultiByteStr,_Size,(LPCSTR)0x0,\r\n                                  (LPBOOL)0x0), local_8 = lpMultiByteStr, iVar6 == 0)) {\r\n    _free(lpMultiByteStr);\r\n    local_8 = (LPSTR)0x0;\r\n  }\r\n  FreeEnvironmentStringsW(lpWideCharStr);\r\n  return local_8;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f1265",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f1265",
+            "name": "__ioinit"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Function: __SEH_prolog4 replaced with injection: SEH_prolog4 */\r\n/* WARNING: Function: __SEH_epilog4 replaced with injection: EH_epilog3 */\r\n/* Library Function - Single Match\r\n    __ioinit\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __ioinit(void)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  undefined4 *puVar2;\r\n  DWORD DVar3;\r\n  HANDLE pvVar4;\r\n  int iVar5;\r\n  UINT *pUVar6;\r\n  int iVar7;\r\n  int *piVar8;\r\n  UINT UVar9;\r\n  UINT UVar10;\r\n  _STARTUPINFOA local_68;\r\n  uint local_24;\r\n  byte *local_20;\r\n  undefined4 uStack_c;\r\n  undefined4 local_8;\r\n  \r\n  uStack_c = 0x6f1271;\r\n  local_8 = 0;\r\n  GetStartupInfoA(&local_68);\r\n  local_8 = 0xfffffffe;\r\n  puVar2 = __calloc_crt(0x20,0x38);\r\n  if (puVar2 == (undefined4 *)0x0) {\r\nLAB_006f149c:\r\n    iVar7 = -1;\r\n  }\r\n  else {\r\n    DAT_029a9b2c = 0x20;\r\n    DAT_029a9b40 = puVar2;\r\n    for (; puVar2 < DAT_029a9b40 + 0x1c0; puVar2 = puVar2 + 0xe) {\r\n      *(undefined1 *)(puVar2 + 1) = 0;\r\n      *puVar2 = 0xffffffff;\r\n      *(undefined1 *)((int)puVar2 + 5) = 10;\r\n      puVar2[2] = 0;\r\n      *(undefined1 *)(puVar2 + 9) = 0;\r\n      *(undefined1 *)((int)puVar2 + 0x25) = 10;\r\n      *(undefined1 *)((int)puVar2 + 0x26) = 10;\r\n    }\r\n    if ((local_68.cbReserved2 != 0) && ((UINT *)local_68.lpReserved2 != (UINT *)0x0)) {\r\n      UVar9 = *(UINT *)local_68.lpReserved2;\r\n      pUVar6 = (UINT *)((int)local_68.lpReserved2 + 4);\r\n      local_20 = (byte *)((int)pUVar6 + UVar9);\r\n      if (0x7ff < (int)UVar9) {\r\n        UVar9 = 0x800;\r\n      }\r\n      iVar7 = 1;\r\n      while ((UVar10 = UVar9, (int)DAT_029a9b2c < (int)UVar9 &&\r\n             (puVar2 = __calloc_crt(0x20,0x38), UVar10 = DAT_029a9b2c, puVar2 != (undefined4 *)0x0))\r\n            ) {\r\n        (&DAT_029a9b40)[iVar7] = puVar2;\r\n        DAT_029a9b2c = DAT_029a9b2c + 0x20;\r\n        puVar1 = puVar2;\r\n        for (; puVar2 < puVar1 + 0x1c0; puVar2 = puVar2 + 0xe) {\r\n          *(undefined1 *)(puVar2 + 1) = 0;\r\n          *puVar2 = 0xffffffff;\r\n          *(undefined1 *)((int)puVar2 + 5) = 10;\r\n          puVar2[2] = 0;\r\n          *(byte *)(puVar2 + 9) = *(byte *)(puVar2 + 9) & 0x80;\r\n          *(undefined1 *)((int)puVar2 + 0x25) = 10;\r\n          *(undefined1 *)((int)puVar2 + 0x26) = 10;\r\n          puVar1 = (&DAT_029a9b40)[iVar7];\r\n        }\r\n        iVar7 = iVar7 + 1;\r\n      }\r\n      local_24 = 0;\r\n      if (0 < (int)UVar10) {\r\n        do {\r\n          pvVar4 = *(HANDLE *)local_20;\r\n          if ((((pvVar4 != (HANDLE)0xffffffff) && (pvVar4 != (HANDLE)0xfffffffe)) &&\r\n              ((*pUVar6 & 1) != 0)) &&\r\n             (((*pUVar6 & 8) != 0 || (DVar3 = GetFileType(pvVar4), DVar3 != 0)))) {\r\n            puVar2 = (undefined4 *)\r\n                     ((local_24 & 0x1f) * 0x38 + (int)(&DAT_029a9b40)[(int)local_24 >> 5]);\r\n            *puVar2 = *(undefined4 *)local_20;\r\n            *(byte *)(puVar2 + 1) = (byte)*pUVar6;\r\n            iVar7 = ___crtInitCritSecAndSpinCount(puVar2 + 3,4000);\r\n            if (iVar7 == 0) goto LAB_006f149c;\r\n            puVar2[2] = puVar2[2] + 1;\r\n          }\r\n          local_24 = local_24 + 1;\r\n          pUVar6 = (UINT *)((int)pUVar6 + 1);\r\n          local_20 = local_20 + 4;\r\n        } while ((int)local_24 < (int)UVar10);\r\n      }\r\n    }\r\n    iVar7 = 0;\r\n    do {\r\n      piVar8 = DAT_029a9b40 + iVar7 * 0xe;\r\n      if ((*piVar8 == -1) || (*piVar8 == -2)) {\r\n        *(undefined1 *)(piVar8 + 1) = 0x81;\r\n        if (iVar7 == 0) {\r\n          DVar3 = 0xfffffff6;\r\n        }\r\n        else {\r\n          DVar3 = 0xfffffff5 - (iVar7 != 1);\r\n        }\r\n        pvVar4 = GetStdHandle(DVar3);\r\n        if (((pvVar4 == (HANDLE)0xffffffff) || (pvVar4 == (HANDLE)0x0)) ||\r\n           (DVar3 = GetFileType(pvVar4), DVar3 == 0)) {\r\n          *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 0x40;\r\n          *piVar8 = -2;\r\n        }\r\n        else {\r\n          *piVar8 = (int)pvVar4;\r\n          if ((DVar3 & 0xff) == 2) {\r\n            *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 0x40;\r\n          }\r\n          else if ((DVar3 & 0xff) == 3) {\r\n            *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 8;\r\n          }\r\n          iVar5 = ___crtInitCritSecAndSpinCount(piVar8 + 3,4000);\r\n          if (iVar5 == 0) goto LAB_006f149c;\r\n          piVar8[2] = piVar8[2] + 1;\r\n        }\r\n      }\r\n      else {\r\n        *(byte *)(piVar8 + 1) = *(byte *)(piVar8 + 1) | 0x80;\r\n      }\r\n      iVar7 = iVar7 + 1;\r\n    } while (iVar7 < 3);\r\n    SetHandleCount(DAT_029a9b2c);\r\n    iVar7 = 0;\r\n  }\r\n  return iVar7;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f14f1",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f14f1",
+            "name": "__RTC_Initialize"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Removing unreachable block (ram,0x006f1503) */\r\n/* WARNING: Removing unreachable block (ram,0x006f1509) */\r\n/* WARNING: Removing unreachable block (ram,0x006f150b) */\r\n/* Library Function - Single Match\r\n    __RTC_Initialize\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __RTC_Initialize(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f1539",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f1539",
+            "name": "___heap_select"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    ___heap_select\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nundefined4 ___heap_select(void)\r\n\r\n{\r\n  int iVar1;\r\n  uint local_c;\r\n  int local_8;\r\n  \r\n  local_8 = 0;\r\n  local_c = 0;\r\n  iVar1 = __get_osplatform(&local_8);\r\n  if (iVar1 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n    __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n  }\r\n  iVar1 = __get_winmajor(&local_c);\r\n  if (iVar1 != 0) {\r\n                    /* WARNING: Subroutine does not return */\r\n    __invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);\r\n  }\r\n  if ((local_8 == 2) && (4 < local_c)) {\r\n    return 1;\r\n  }\r\n  return 3;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6f1594",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6f1594",
+            "name": "__heap_init"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __heap_init\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nint __cdecl __heap_init(void)\r\n\r\n{\r\n  int iVar1;\r\n  int in_stack_00000004;\r\n  \r\n  DAT_0297c974 = HeapCreate((uint)(in_stack_00000004 == 0),0x1000,0);\r\n  if (DAT_0297c974 == (HANDLE)0x0) {\r\n    return 0;\r\n  }\r\n  DAT_029a9b28 = ___heap_select();\r\n  if ((DAT_029a9b28 == 3) && (iVar1 = ___sbh_heap_init(0x3f8), iVar1 == 0)) {\r\n    HeapDestroy(DAT_0297c974);\r\n    DAT_0297c974 = (HANDLE)0x0;\r\n    return 0;\r\n  }\r\n  return 1;\r\n}\r\n\r\n"
+        }
+      ],
+      "total": 32,
+      "succeeded": 32,
+      "failed": 0
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Derived by an REA composed workflow."
+    ],
+    "locations": [
+      {
+        "kind": "address",
+        "address": "0x6f024e"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0299"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f02d6"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f038c"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0395"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f040c"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0530"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f053c"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f05ba"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f073e"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f076f"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f07af"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f07f7"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0842"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f08ae"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0948"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0954"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0999"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f09ad"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f09f8"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0bb8"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0bf1"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0c24"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0d9d"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0dfa"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f0edf"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f1077"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f1130"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f1265"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f14f1"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f1539"
+      },
+      {
+        "kind": "address",
+        "address": "0x6f1594"
+      }
+    ],
+    "evidence_links": []
+  }
+}

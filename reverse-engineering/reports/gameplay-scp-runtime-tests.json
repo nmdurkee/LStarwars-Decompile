@@ -1,0 +1,48 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original PC 0x52c880 and 0x52cc90 on synthetic linked records, original Timer/PreviousResult/ResetTimer/Idle handlers and linked-list helpers. EAX condition-bank index fixed to zero. No function replacement or OS API.",
+  "checks": 303,
+  "categories": {
+    "comparison": 216,
+    "and-chain-previous-result": 62,
+    "first-matching-alternative": 16,
+    "empty-condition-list": 1,
+    "scheduler-instant-action-advances": 2,
+    "scheduler-initialization-flag-cleared": 2,
+    "reset-timer-only-on-entry": 2,
+    "idle-blocks-next-frame": 2
+  },
+  "mismatches": 0,
+  "errors": [],
+  "actionTrace": [
+    {
+      "initialFlag": 0,
+      "timerAfterFirstTick": 5.25,
+      "timerAfterSecondTick": 5.5,
+      "actionAfterTwoTicks": "0x10100420"
+    },
+    {
+      "initialFlag": 1,
+      "timerAfterFirstTick": 0.0,
+      "timerAfterSecondTick": 0.25,
+      "actionAfterTwoTicks": "0x10100420"
+    }
+  ],
+  "contracts": {
+    "comparators": [
+      "==",
+      "<",
+      ">",
+      "<=",
+      ">=",
+      "!="
+    ],
+    "conditionChain": "Bit0 at condition+0x0e joins the next condition with AND. An unmarked passing final record is returned; a failing member skips the remainder of its marked group. Unchained groups are ordered alternatives. PreviousResult has a null handler and reuses the preceding float result.",
+    "action": "Packet+0x24 timer increments by delta each update. Handler return zero retains current action for another frame; nonzero advances within the same update. Packet+0x50 bit0 marks the first call of an action; the dispatcher clears it before calling the handler and passes firstCall=1."
+  },
+  "limits": [
+    "No full gameplay script or inter-script interrupt/state transition emulation.",
+    "Condition variable operands, dynamic random operands and condition-bank1 remain outside these fixtures.",
+    "No claim that every parsed source file is reachable during ordinary gameplay."
+  ]
+}

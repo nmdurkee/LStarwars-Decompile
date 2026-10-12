@@ -1,0 +1,592 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_89ac6cdcf79c80fd66b36aa582044170c8ea90809525d25928dfed7b186ac36e\",\"subject\":{\"name\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\",\"digest\":{\"sha256\":\"6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb\"},\"format\":\"pe\",\"architecture\":\"x86\",\"local_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\"},\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"analysis_profile\":{\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"parameters\":{\"upstream_analysis_profile\":{\"provider\":{\"id\":\"ghidra\",\"name\":\"Ghidra\",\"version\":\"12.1.4\"},\"parameters\":{\"target_kind\":\"executable\",\"target_format\":\"pe\",\"executable_role\":\"application\",\"managed\":false,\"native_aot_metadata\":{\"contract_revision\":\"rtr-9.1-x64-pe-read-only-v3\",\"source_bytes\":134217728,\"work_units\":67108864,\"working_memory_bytes\":67108864,\"report_bytes\":4194304},\"architecture\":\"x86\",\"available_architectures\":[\"x86\"],\"import_mode\":\"ephemeral-source-immutable\",\"annotation_policy\":\"atomic-function-entry-metadata-v1\",\"load_image_observations\":\"source-mappings-entry-context-v2\",\"function_body_evidence\":\"complete-inclusive-ranges-v1\",\"function_references\":\"complete-body-and-entry-reference-manager-v2\",\"string_inventory_evidence\":\"defined-data-coverage-v1\",\"location_resolution\":\"explicit-address-exact-entry-symbol-first-v3\",\"instruction_flow_evidence\":\"decoded-return-pcode-v1\",\"function_boundary_observations\":\"ghidra-terminal-call-limitations-v1\",\"no_return_repair\":\"disabled-windows-p0\",\"process_launch\":\"official-headless-script-v1\",\"jump_table_evidence\":\"typed-case-default-blocks-v1\",\"decompiler_jump_loads\":true,\"loader\":\"auto-from-header\",\"language_id\":\"auto-from-header\",\"compiler_spec_id\":\"auto-default\",\"analyzer_preset\":\"ghidra-default\",\"analysis_seeds\":{\"format\":\"rea-ghidra-seeds-v1\",\"path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-expanded-seeds.tsv\",\"configured_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-expanded-seeds.tsv\",\"sha256\":\"9882e31b8db57e82063527e0ca4afc638e3db1bc6aed8d29b5ee7a1ab04339bc\",\"entries\":{\"function\":7392,\"code\":0,\"label\":0}}},\"digest\":\"39359c696c3a24b5bee48c782b5857ee25653abdc2b148df011b09fd41a6bfb3\"},\"workflow_revision\":2},\"digest\":\"11e4b00746f88bcea8ae43c57d53bf6d80e8b6654ba2f662d108b5e3ebec1e4d\"},\"predicate_type\":\"rea.analysis\",\"operation\":\"batch_decompile\",\"parameters\":{\"addresses\":[\"0x5fe700\",\"0x5fe800\",\"0x5fe810\",\"0x5fe850\",\"0x5fe860\",\"0x5fe8b0\",\"0x5fe910\",\"0x5fe970\",\"0x5fe980\",\"0x5fe990\",\"0x5fe9a0\",\"0x5fe9b0\",\"0x5fe9c0\",\"0x5fe9d0\",\"0x5feab0\",\"0x5fead0\",\"0x5feae0\",\"0x5feaf0\",\"0x5fec80\",\"0x5fec90\",\"0x5feca0\",\"0x5fecb0\",\"0x5fecc0\",\"0x5fecd0\",\"0x5fece0\",\"0x5fed10\",\"0x5fee80\",\"0x5feef0\",\"0x5fef00\",\"0x5fef10\",\"0x5fef20\",\"0x5fef30\"]},\"raw_result\":null,\"normalized_result\":{\"items\":[{\"address\":\"0x5fe700\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe700\",\"name\":\"FUN_005fe700\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Removing unreachable block (ram,0x005fe7a2) */\\r\\n\\r\\nvoid FUN_005fe700(short param_1)\\r\\n\\r\\n{\\r\\n  float fVar1;\\r\\n  short sVar2;\\r\\n  short *psVar3;\\r\\n  int local_8;\\r\\n  \\r\\n  psVar3 = &DAT_00981cc0;\\r\\n  do {\\r\\n    if (*psVar3 != 0) {\\r\\n      sVar2 = *psVar3 - param_1;\\r\\n      *psVar3 = sVar2;\\r\\n      if (sVar2 < 1) {\\r\\n        *psVar3 = 0;\\r\\n      }\\r\\n      else {\\r\\n        fVar1 = (float)(int)sVar2 / (float)(int)psVar3[1];\\r\\n        *(float *)(psVar3 + -6) =\\r\\n             *(float *)(psVar3 + -8) + fVar1 * (*(float *)(psVar3 + -10) - *(float *)(psVar3 + -8));\\r\\n        if (fVar1 <= 0.75) {\\r\\n          fVar1 = fVar1 * 1.3333334;\\r\\n        }\\r\\n        else {\\r\\n          fVar1 = (1.0 - fVar1) * 4.0;\\r\\n        }\\r\\n        local_8 = (int)(longlong)ROUND((float)(*(uint *)(psVar3 + -4) >> 0x18) * fVar1);\\r\\n        *(uint *)(psVar3 + -2) = local_8 * 0x1000000 + (*(uint *)(psVar3 + -4) & 0xffffff);\\r\\n      }\\r\\n    }\\r\\n    psVar3 = psVar3 + 0x14;\\r\\n  } while ((int)psVar3 < 0x9821c0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe800\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe800\",\"name\":\"FUN_005fe800\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fe800(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe810\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe810\",\"name\":\"FUN_005fe810\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_005fe810(undefined4 param_1,uint param_2)\\r\\n\\r\\n{\\r\\n  _DAT_0080e214 = param_1;\\r\\n  _DAT_0280d3dc =\\r\\n       (((param_2 >> 0x18) * 0x100 + (param_2 & 0xff)) * 0x100 + (param_2 >> 8 & 0xff)) * 0x100 +\\r\\n       (param_2 >> 0x10 & 0xff);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe850\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe850\",\"name\":\"FUN_005fe850\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_005fe850(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  _DAT_0080e21c = param_1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe860\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe860\",\"name\":\"FUN_005fe860\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_005fe860(int param_1)\\r\\n\\r\\n{\\r\\n  if (_DAT_02854ccc != 0.0) {\\r\\n    _DAT_0080e214 = _DAT_02854ccc;\\r\\n    _DAT_0280d3dc = 0xc04080c0;\\r\\n  }\\r\\n  if (param_1 == 0) {\\r\\n    _DAT_0080e218 = _DAT_0080e214;\\r\\n    return;\\r\\n  }\\r\\n  _DAT_0080e214 = _DAT_0080e218;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe8b0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe8b0\",\"name\":\"FUN_005fe8b0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nundefined4 FUN_005fe8b0(undefined4 param_1,undefined4 param_2)\\r\\n\\r\\n{\\r\\n  if (DAT_02854cd0 != 0) {\\r\\n    FUN_005f7490();\\r\\n  }\\r\\n  DAT_02854cd0 = param_1;\\r\\n  _DAT_0280d804 = &DAT_0097fc40;\\r\\n  _DAT_0097fa3c = &DAT_0097fc40;\\r\\n  _DAT_0097c1a0 = &DAT_028490f0;\\r\\n  _DAT_0097c1a8 = &DAT_028490f0;\\r\\n  _DAT_02854cd4 = param_2;\\r\\n  _DAT_0097c138 = 0;\\r\\n  _DAT_02854bac = &DAT_0097fa40;\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe910\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe910\",\"name\":\"FUN_005fe910\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nundefined4 FUN_005fe910(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  undefined4 extraout_ECX;\\r\\n  \\r\\n  uVar1 = 0;\\r\\n  if (DAT_02854cd0 != 0) {\\r\\n    FUN_005f7490();\\r\\n    uVar1 = extraout_ECX;\\r\\n  }\\r\\n  DAT_02854cd0 = param_1;\\r\\n  _DAT_02854cd4 = param_2;\\r\\n  _DAT_0280d804 = param_3;\\r\\n  _DAT_0097fa3c = param_3;\\r\\n  _DAT_0097c138 = uVar1;\\r\\n  _DAT_0097c1a0 = uVar1;\\r\\n  _DAT_0097c1a8 = uVar1;\\r\\n  FUN_005f7490();\\r\\n  _DAT_02854bac = param_4;\\r\\n  _DAT_028490e0 = param_4;\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe970\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe970\",\"name\":\"FUN_005fe970\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_005fe970(void)\\r\\n\\r\\n{\\r\\n  FUN_005f7490();\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe980\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe980\",\"name\":\"FUN_005fe980\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fe980(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe990\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe990\",\"name\":\"FUN_005fe990\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fe990(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe9a0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe9a0\",\"name\":\"thunk_FUN_005f74a0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid thunk_FUN_005f74a0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe9b0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe9b0\",\"name\":\"FUN_005fe9b0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_005fe9b0(void)\\r\\n\\r\\n{\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe9c0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe9c0\",\"name\":\"FUN_005fe9c0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_005fe9c0(void)\\r\\n\\r\\n{\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fe9d0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fe9d0\",\"name\":\"FUN_005fe9d0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fe9d0(float *param_1,float param_2)\\r\\n\\r\\n{\\r\\n  float local_48;\\r\\n  float local_44;\\r\\n  float local_40;\\r\\n  undefined4 local_30;\\r\\n  float local_24;\\r\\n  float local_20;\\r\\n  float local_1c;\\r\\n  undefined4 local_c;\\r\\n  \\r\\n  local_30 = 0xffffffff;\\r\\n  local_48 = *param_1 - param_2;\\r\\n  local_c = 0xffffffff;\\r\\n  local_44 = param_1[1];\\r\\n  local_40 = param_1[2];\\r\\n  local_24 = param_2 + *param_1;\\r\\n  local_20 = param_1[1];\\r\\n  local_1c = param_1[2];\\r\\n  FUN_005dbed0(&local_48,0,0);\\r\\n  local_48 = *param_1;\\r\\n  local_44 = param_1[1] - param_2;\\r\\n  local_40 = param_1[2];\\r\\n  local_24 = *param_1;\\r\\n  local_20 = param_2 + param_1[1];\\r\\n  local_1c = param_1[2];\\r\\n  FUN_005dbed0(&local_48,0,0);\\r\\n  local_48 = *param_1;\\r\\n  local_44 = param_1[1];\\r\\n  local_40 = param_1[2] - param_2;\\r\\n  local_24 = *param_1;\\r\\n  local_20 = param_1[1];\\r\\n  local_1c = param_2 + param_1[2];\\r\\n  FUN_005dbed0(&local_48,0,0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5feab0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5feab0\",\"name\":\"FUN_005feab0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005feab0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\\r\\n\\r\\n{\\r\\n  FUN_005ebd80(param_1,param_3,param_4);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fead0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fead0\",\"name\":\"FUN_005fead0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_005fead0(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  _DAT_02854c74 = param_1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5feae0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5feae0\",\"name\":\"FUN_005feae0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_005feae0(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  _DAT_02854c70 = param_1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5feaf0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5feaf0\",\"name\":\"FUN_005feaf0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005feaf0(float param_1,float param_2,undefined4 param_3,float param_4,float param_5,\\r\\n                 undefined4 param_6,undefined4 param_7,undefined4 param_8,undefined4 param_9,\\r\\n                 undefined4 param_10)\\r\\n\\r\\n{\\r\\n  float local_a8;\\r\\n  float local_a4;\\r\\n  undefined4 local_a0;\\r\\n  undefined4 local_9c;\\r\\n  undefined4 local_98;\\r\\n  undefined4 local_94;\\r\\n  undefined4 local_90;\\r\\n  float local_8c;\\r\\n  float local_88;\\r\\n  undefined4 local_84;\\r\\n  undefined4 local_80;\\r\\n  undefined4 local_7c;\\r\\n  undefined4 local_78;\\r\\n  undefined4 local_74;\\r\\n  float local_70;\\r\\n  float local_6c;\\r\\n  undefined4 local_68;\\r\\n  undefined4 local_64;\\r\\n  undefined4 local_60;\\r\\n  undefined4 local_5c;\\r\\n  undefined4 local_58;\\r\\n  float local_54;\\r\\n  float local_50;\\r\\n  undefined4 local_4c;\\r\\n  undefined4 local_48;\\r\\n  undefined4 local_44;\\r\\n  undefined4 local_40;\\r\\n  undefined4 local_3c;\\r\\n  float local_38;\\r\\n  float local_34;\\r\\n  undefined4 local_30;\\r\\n  undefined4 local_2c;\\r\\n  undefined4 local_28;\\r\\n  undefined4 local_24;\\r\\n  undefined4 local_20;\\r\\n  float local_1c;\\r\\n  float local_18;\\r\\n  undefined4 local_14;\\r\\n  undefined4 local_10;\\r\\n  undefined4 local_c;\\r\\n  undefined4 local_8;\\r\\n  undefined4 local_4;\\r\\n  \\r\\n  local_a8 = param_1;\\r\\n  local_98 = param_10;\\r\\n  local_7c = param_10;\\r\\n  local_a4 = param_2;\\r\\n  local_60 = param_10;\\r\\n  local_44 = param_10;\\r\\n  local_a0 = param_3;\\r\\n  local_28 = param_10;\\r\\n  local_c = param_10;\\r\\n  local_9c = 0x3f800000;\\r\\n  local_94 = param_6;\\r\\n  local_90 = param_7;\\r\\n  local_8c = param_1 + param_4;\\r\\n  local_88 = param_2;\\r\\n  local_84 = param_3;\\r\\n  local_80 = 0x3f800000;\\r\\n  local_78 = param_8;\\r\\n  local_74 = param_7;\\r\\n  local_70 = param_1;\\r\\n  local_6c = param_2 + param_5;\\r\\n  local_68 = param_3;\\r\\n  local_64 = 0x3f800000;\\r\\n  local_5c = param_6;\\r\\n  local_58 = param_9;\\r\\n  local_50 = param_2;\\r\\n  local_4c = param_3;\\r\\n  local_48 = 0x3f800000;\\r\\n  local_40 = param_8;\\r\\n  local_3c = param_7;\\r\\n  local_30 = param_3;\\r\\n  local_2c = 0x3f800000;\\r\\n  local_24 = param_8;\\r\\n  local_20 = param_9;\\r\\n  local_1c = param_1;\\r\\n  local_14 = param_3;\\r\\n  local_10 = 0x3f800000;\\r\\n  local_8 = param_6;\\r\\n  local_4 = param_9;\\r\\n  local_54 = local_8c;\\r\\n  local_38 = local_8c;\\r\\n  local_34 = local_6c;\\r\\n  local_18 = local_6c;\\r\\n  FUN_006e56c0(DAT_02976c74);\\r\\n  FUN_006e49b0(4,2,&local_a8,0x1c);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fec80\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fec80\",\"name\":\"FUN_005fec80\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fec80(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fec90\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fec90\",\"name\":\"FUN_005fec90\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_005fec90(void)\\r\\n\\r\\n{\\r\\n  FUN_005f7490();\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5feca0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5feca0\",\"name\":\"FUN_005feca0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005feca0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fecb0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fecb0\",\"name\":\"FUN_005fecb0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fecb0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fecc0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fecc0\",\"name\":\"FUN_005fecc0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fecc0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fecd0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fecd0\",\"name\":\"FUN_005fecd0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fecd0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fece0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fece0\",\"name\":\"FUN_005fece0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fece0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\\r\\n                 undefined4 param_5)\\r\\n\\r\\n{\\r\\n  FUN_005f4ff0(param_1,param_2,param_3,param_4,param_5,0,0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fed10\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fed10\",\"name\":\"FUN_005fed10\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_005fed10(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  float *pfVar1;\\r\\n  int iVar2;\\r\\n  \\r\\n  if (DAT_02854c84 != 0) {\\r\\n    iVar2 = 0;\\r\\n    if (0 < DAT_02854c84) {\\r\\n      pfVar1 = (float *)&DAT_0280c74c;\\r\\n      do {\\r\\n        _DAT_0285715c = pfVar1[-2];\\r\\n        _DAT_028571a8 = *pfVar1;\\r\\n        _DAT_02857158 = pfVar1[-3] - _DAT_028571a8;\\r\\n        _DAT_02857170 = (int)*(short *)(pfVar1 + 1) << 0x18;\\r\\n        _DAT_02857160 = pfVar1[-1] - _DAT_028571a8;\\r\\n        _DAT_02857174 = 0;\\r\\n        _DAT_02857178 = 0;\\r\\n        _DAT_0285717c = _DAT_028571a8 + pfVar1[-3];\\r\\n        _DAT_02857198 = 0x3f800000;\\r\\n        _DAT_0285719c = 0;\\r\\n        _DAT_028571a8 = pfVar1[-1] + _DAT_028571a8;\\r\\n        _DAT_028571bc = 0;\\r\\n        _DAT_028571c0 = 0x3f800000;\\r\\n        _DAT_028571e0 = 0x3f800000;\\r\\n        _DAT_028571e4 = 0x3f800000;\\r\\n        _DAT_02857180 = _DAT_0285715c;\\r\\n        _DAT_02857184 = _DAT_02857160;\\r\\n        _DAT_02857194 = _DAT_02857170;\\r\\n        _DAT_028571a0 = _DAT_02857158;\\r\\n        _DAT_028571a4 = _DAT_0285715c;\\r\\n        _DAT_028571b8 = _DAT_02857170;\\r\\n        _DAT_028571c4 = _DAT_0285717c;\\r\\n        _DAT_028571c8 = _DAT_0285715c;\\r\\n        _DAT_028571cc = _DAT_028571a8;\\r\\n        _DAT_028571dc = _DAT_02857170;\\r\\n        FUN_005dda30(&DAT_02857158,param_1,0,4);\\r\\n        iVar2 = iVar2 + 1;\\r\\n        pfVar1 = pfVar1 + 6;\\r\\n      } while (iVar2 < DAT_02854c84);\\r\\n    }\\r\\n    DAT_02854c84 = 0;\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fee80\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fee80\",\"name\":\"FUN_005fee80\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fee80(undefined4 *param_1,undefined4 param_2,undefined2 param_3)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  \\r\\n  iVar1 = FUN_005d6710(param_1,1,0);\\r\\n  if ((iVar1 == 0) && (DAT_02854c84 < 0x80)) {\\r\\n    (&DAT_0280c740)[DAT_02854c84 * 6] = *param_1;\\r\\n    (&DAT_0280c744)[DAT_02854c84 * 6] = param_1[1];\\r\\n    (&DAT_0280c748)[DAT_02854c84 * 6] = param_1[2];\\r\\n    (&DAT_0280c74c)[DAT_02854c84 * 6] = param_2;\\r\\n    (&DAT_0280c750)[DAT_02854c84 * 0xc] = param_3;\\r\\n    DAT_02854c84 = DAT_02854c84 + 1;\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5feef0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5feef0\",\"name\":\"thunk_FUN_005f74a0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid thunk_FUN_005f74a0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fef00\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fef00\",\"name\":\"FUN_005fef00\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fef00(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fef10\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fef10\",\"name\":\"FUN_005fef10\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fef10(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fef20\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fef20\",\"name\":\"FUN_005fef20\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fef20(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x5fef30\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x5fef30\",\"name\":\"FUN_005fef30\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_005fef30(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"}],\"total\":32,\"succeeded\":32,\"failed\":0},\"confidence\":\"derived\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Derived by an REA composed workflow.\"],\"locations\":[{\"kind\":\"address\",\"address\":\"0x5fe700\"},{\"kind\":\"address\",\"address\":\"0x5fe800\"},{\"kind\":\"address\",\"address\":\"0x5fe810\"},{\"kind\":\"address\",\"address\":\"0x5fe850\"},{\"kind\":\"address\",\"address\":\"0x5fe860\"},{\"kind\":\"address\",\"address\":\"0x5fe8b0\"},{\"kind\":\"address\",\"address\":\"0x5fe910\"},{\"kind\":\"address\",\"address\":\"0x5fe970\"},{\"kind\":\"address\",\"address\":\"0x5fe980\"},{\"kind\":\"address\",\"address\":\"0x5fe990\"},{\"kind\":\"address\",\"address\":\"0x5fe9a0\"},{\"kind\":\"address\",\"address\":\"0x5fe9b0\"},{\"kind\":\"address\",\"address\":\"0x5fe9c0\"},{\"kind\":\"address\",\"address\":\"0x5fe9d0\"},{\"kind\":\"address\",\"address\":\"0x5feab0\"},{\"kind\":\"address\",\"address\":\"0x5fead0\"},{\"kind\":\"address\",\"address\":\"0x5feae0\"},{\"kind\":\"address\",\"address\":\"0x5feaf0\"},{\"kind\":\"address\",\"address\":\"0x5fec80\"},{\"kind\":\"address\",\"address\":\"0x5fec90\"},{\"kind\":\"address\",\"address\":\"0x5feca0\"},{\"kind\":\"address\",\"address\":\"0x5fecb0\"},{\"kind\":\"address\",\"address\":\"0x5fecc0\"},{\"kind\":\"address\",\"address\":\"0x5fecd0\"},{\"kind\":\"address\",\"address\":\"0x5fece0\"},{\"kind\":\"address\",\"address\":\"0x5fed10\"},{\"kind\":\"address\",\"address\":\"0x5fee80\"},{\"kind\":\"address\",\"address\":\"0x5feef0\"},{\"kind\":\"address\",\"address\":\"0x5fef00\"},{\"kind\":\"address\",\"address\":\"0x5fef10\"},{\"kind\":\"address\",\"address\":\"0x5fef20\"},{\"kind\":\"address\",\"address\":\"0x5fef30\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_89ac6cdcf79c80fd66b36aa582044170c8ea90809525d25928dfed7b186ac36e",
+    "subject": {
+      "name": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe",
+      "digest": {
+        "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb"
+      },
+      "format": "pe",
+      "architecture": "x86",
+      "local_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe"
+    },
+    "provider": {
+      "id": "rea-workflow",
+      "name": "REA composed investigation workflow",
+      "version": "1"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "parameters": {
+        "upstream_analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "pe",
+            "executable_role": "application",
+            "managed": false,
+            "native_aot_metadata": {
+              "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+              "source_bytes": 134217728,
+              "work_units": 67108864,
+              "working_memory_bytes": 67108864,
+              "report_bytes": 4194304
+            },
+            "architecture": "x86",
+            "available_architectures": [
+              "x86"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "function_boundary_observations": "ghidra-terminal-call-limitations-v1",
+            "no_return_repair": "disabled-windows-p0",
+            "process_launch": "official-headless-script-v1",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "auto-from-header",
+            "language_id": "auto-from-header",
+            "compiler_spec_id": "auto-default",
+            "analyzer_preset": "ghidra-default",
+            "analysis_seeds": {
+              "format": "rea-ghidra-seeds-v1",
+              "path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-expanded-seeds.tsv",
+              "configured_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-expanded-seeds.tsv",
+              "sha256": "9882e31b8db57e82063527e0ca4afc638e3db1bc6aed8d29b5ee7a1ab04339bc",
+              "entries": {
+                "function": 7392,
+                "code": 0,
+                "label": 0
+              }
+            }
+          },
+          "digest": "39359c696c3a24b5bee48c782b5857ee25653abdc2b148df011b09fd41a6bfb3"
+        },
+        "workflow_revision": 2
+      },
+      "digest": "11e4b00746f88bcea8ae43c57d53bf6d80e8b6654ba2f662d108b5e3ebec1e4d"
+    },
+    "predicate_type": "rea.analysis",
+    "operation": "batch_decompile",
+    "parameters": {
+      "addresses": [
+        "0x5fe700",
+        "0x5fe800",
+        "0x5fe810",
+        "0x5fe850",
+        "0x5fe860",
+        "0x5fe8b0",
+        "0x5fe910",
+        "0x5fe970",
+        "0x5fe980",
+        "0x5fe990",
+        "0x5fe9a0",
+        "0x5fe9b0",
+        "0x5fe9c0",
+        "0x5fe9d0",
+        "0x5feab0",
+        "0x5fead0",
+        "0x5feae0",
+        "0x5feaf0",
+        "0x5fec80",
+        "0x5fec90",
+        "0x5feca0",
+        "0x5fecb0",
+        "0x5fecc0",
+        "0x5fecd0",
+        "0x5fece0",
+        "0x5fed10",
+        "0x5fee80",
+        "0x5feef0",
+        "0x5fef00",
+        "0x5fef10",
+        "0x5fef20",
+        "0x5fef30"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "items": [
+        {
+          "address": "0x5fe700",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe700",
+            "name": "FUN_005fe700"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Removing unreachable block (ram,0x005fe7a2) */\r\n\r\nvoid FUN_005fe700(short param_1)\r\n\r\n{\r\n  float fVar1;\r\n  short sVar2;\r\n  short *psVar3;\r\n  int local_8;\r\n  \r\n  psVar3 = &DAT_00981cc0;\r\n  do {\r\n    if (*psVar3 != 0) {\r\n      sVar2 = *psVar3 - param_1;\r\n      *psVar3 = sVar2;\r\n      if (sVar2 < 1) {\r\n        *psVar3 = 0;\r\n      }\r\n      else {\r\n        fVar1 = (float)(int)sVar2 / (float)(int)psVar3[1];\r\n        *(float *)(psVar3 + -6) =\r\n             *(float *)(psVar3 + -8) + fVar1 * (*(float *)(psVar3 + -10) - *(float *)(psVar3 + -8));\r\n        if (fVar1 <= 0.75) {\r\n          fVar1 = fVar1 * 1.3333334;\r\n        }\r\n        else {\r\n          fVar1 = (1.0 - fVar1) * 4.0;\r\n        }\r\n        local_8 = (int)(longlong)ROUND((float)(*(uint *)(psVar3 + -4) >> 0x18) * fVar1);\r\n        *(uint *)(psVar3 + -2) = local_8 * 0x1000000 + (*(uint *)(psVar3 + -4) & 0xffffff);\r\n      }\r\n    }\r\n    psVar3 = psVar3 + 0x14;\r\n  } while ((int)psVar3 < 0x9821c0);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe800",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe800",
+            "name": "FUN_005fe800"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fe800(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe810",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe810",
+            "name": "FUN_005fe810"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005fe810(undefined4 param_1,uint param_2)\r\n\r\n{\r\n  _DAT_0080e214 = param_1;\r\n  _DAT_0280d3dc =\r\n       (((param_2 >> 0x18) * 0x100 + (param_2 & 0xff)) * 0x100 + (param_2 >> 8 & 0xff)) * 0x100 +\r\n       (param_2 >> 0x10 & 0xff);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe850",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe850",
+            "name": "FUN_005fe850"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005fe850(undefined4 param_1)\r\n\r\n{\r\n  _DAT_0080e21c = param_1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe860",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe860",
+            "name": "FUN_005fe860"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005fe860(int param_1)\r\n\r\n{\r\n  if (_DAT_02854ccc != 0.0) {\r\n    _DAT_0080e214 = _DAT_02854ccc;\r\n    _DAT_0280d3dc = 0xc04080c0;\r\n  }\r\n  if (param_1 == 0) {\r\n    _DAT_0080e218 = _DAT_0080e214;\r\n    return;\r\n  }\r\n  _DAT_0080e214 = _DAT_0080e218;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe8b0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe8b0",
+            "name": "FUN_005fe8b0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 FUN_005fe8b0(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  if (DAT_02854cd0 != 0) {\r\n    FUN_005f7490();\r\n  }\r\n  DAT_02854cd0 = param_1;\r\n  _DAT_0280d804 = &DAT_0097fc40;\r\n  _DAT_0097fa3c = &DAT_0097fc40;\r\n  _DAT_0097c1a0 = &DAT_028490f0;\r\n  _DAT_0097c1a8 = &DAT_028490f0;\r\n  _DAT_02854cd4 = param_2;\r\n  _DAT_0097c138 = 0;\r\n  _DAT_02854bac = &DAT_0097fa40;\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe910",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe910",
+            "name": "FUN_005fe910"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 FUN_005fe910(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined4 extraout_ECX;\r\n  \r\n  uVar1 = 0;\r\n  if (DAT_02854cd0 != 0) {\r\n    FUN_005f7490();\r\n    uVar1 = extraout_ECX;\r\n  }\r\n  DAT_02854cd0 = param_1;\r\n  _DAT_02854cd4 = param_2;\r\n  _DAT_0280d804 = param_3;\r\n  _DAT_0097fa3c = param_3;\r\n  _DAT_0097c138 = uVar1;\r\n  _DAT_0097c1a0 = uVar1;\r\n  _DAT_0097c1a8 = uVar1;\r\n  FUN_005f7490();\r\n  _DAT_02854bac = param_4;\r\n  _DAT_028490e0 = param_4;\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe970",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe970",
+            "name": "FUN_005fe970"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_005fe970(void)\r\n\r\n{\r\n  FUN_005f7490();\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe980",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe980",
+            "name": "FUN_005fe980"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fe980(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe990",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe990",
+            "name": "FUN_005fe990"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fe990(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe9a0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe9a0",
+            "name": "thunk_FUN_005f74a0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid thunk_FUN_005f74a0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe9b0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe9b0",
+            "name": "FUN_005fe9b0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_005fe9b0(void)\r\n\r\n{\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe9c0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe9c0",
+            "name": "FUN_005fe9c0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_005fe9c0(void)\r\n\r\n{\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fe9d0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fe9d0",
+            "name": "FUN_005fe9d0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fe9d0(float *param_1,float param_2)\r\n\r\n{\r\n  float local_48;\r\n  float local_44;\r\n  float local_40;\r\n  undefined4 local_30;\r\n  float local_24;\r\n  float local_20;\r\n  float local_1c;\r\n  undefined4 local_c;\r\n  \r\n  local_30 = 0xffffffff;\r\n  local_48 = *param_1 - param_2;\r\n  local_c = 0xffffffff;\r\n  local_44 = param_1[1];\r\n  local_40 = param_1[2];\r\n  local_24 = param_2 + *param_1;\r\n  local_20 = param_1[1];\r\n  local_1c = param_1[2];\r\n  FUN_005dbed0(&local_48,0,0);\r\n  local_48 = *param_1;\r\n  local_44 = param_1[1] - param_2;\r\n  local_40 = param_1[2];\r\n  local_24 = *param_1;\r\n  local_20 = param_2 + param_1[1];\r\n  local_1c = param_1[2];\r\n  FUN_005dbed0(&local_48,0,0);\r\n  local_48 = *param_1;\r\n  local_44 = param_1[1];\r\n  local_40 = param_1[2] - param_2;\r\n  local_24 = *param_1;\r\n  local_20 = param_1[1];\r\n  local_1c = param_2 + param_1[2];\r\n  FUN_005dbed0(&local_48,0,0);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5feab0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5feab0",
+            "name": "FUN_005feab0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005feab0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  FUN_005ebd80(param_1,param_3,param_4);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fead0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fead0",
+            "name": "FUN_005fead0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005fead0(undefined4 param_1)\r\n\r\n{\r\n  _DAT_02854c74 = param_1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5feae0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5feae0",
+            "name": "FUN_005feae0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005feae0(undefined4 param_1)\r\n\r\n{\r\n  _DAT_02854c70 = param_1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5feaf0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5feaf0",
+            "name": "FUN_005feaf0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005feaf0(float param_1,float param_2,undefined4 param_3,float param_4,float param_5,\r\n                 undefined4 param_6,undefined4 param_7,undefined4 param_8,undefined4 param_9,\r\n                 undefined4 param_10)\r\n\r\n{\r\n  float local_a8;\r\n  float local_a4;\r\n  undefined4 local_a0;\r\n  undefined4 local_9c;\r\n  undefined4 local_98;\r\n  undefined4 local_94;\r\n  undefined4 local_90;\r\n  float local_8c;\r\n  float local_88;\r\n  undefined4 local_84;\r\n  undefined4 local_80;\r\n  undefined4 local_7c;\r\n  undefined4 local_78;\r\n  undefined4 local_74;\r\n  float local_70;\r\n  float local_6c;\r\n  undefined4 local_68;\r\n  undefined4 local_64;\r\n  undefined4 local_60;\r\n  undefined4 local_5c;\r\n  undefined4 local_58;\r\n  float local_54;\r\n  float local_50;\r\n  undefined4 local_4c;\r\n  undefined4 local_48;\r\n  undefined4 local_44;\r\n  undefined4 local_40;\r\n  undefined4 local_3c;\r\n  float local_38;\r\n  float local_34;\r\n  undefined4 local_30;\r\n  undefined4 local_2c;\r\n  undefined4 local_28;\r\n  undefined4 local_24;\r\n  undefined4 local_20;\r\n  float local_1c;\r\n  float local_18;\r\n  undefined4 local_14;\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  local_a8 = param_1;\r\n  local_98 = param_10;\r\n  local_7c = param_10;\r\n  local_a4 = param_2;\r\n  local_60 = param_10;\r\n  local_44 = param_10;\r\n  local_a0 = param_3;\r\n  local_28 = param_10;\r\n  local_c = param_10;\r\n  local_9c = 0x3f800000;\r\n  local_94 = param_6;\r\n  local_90 = param_7;\r\n  local_8c = param_1 + param_4;\r\n  local_88 = param_2;\r\n  local_84 = param_3;\r\n  local_80 = 0x3f800000;\r\n  local_78 = param_8;\r\n  local_74 = param_7;\r\n  local_70 = param_1;\r\n  local_6c = param_2 + param_5;\r\n  local_68 = param_3;\r\n  local_64 = 0x3f800000;\r\n  local_5c = param_6;\r\n  local_58 = param_9;\r\n  local_50 = param_2;\r\n  local_4c = param_3;\r\n  local_48 = 0x3f800000;\r\n  local_40 = param_8;\r\n  local_3c = param_7;\r\n  local_30 = param_3;\r\n  local_2c = 0x3f800000;\r\n  local_24 = param_8;\r\n  local_20 = param_9;\r\n  local_1c = param_1;\r\n  local_14 = param_3;\r\n  local_10 = 0x3f800000;\r\n  local_8 = param_6;\r\n  local_4 = param_9;\r\n  local_54 = local_8c;\r\n  local_38 = local_8c;\r\n  local_34 = local_6c;\r\n  local_18 = local_6c;\r\n  FUN_006e56c0(DAT_02976c74);\r\n  FUN_006e49b0(4,2,&local_a8,0x1c);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fec80",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fec80",
+            "name": "FUN_005fec80"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fec80(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fec90",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fec90",
+            "name": "FUN_005fec90"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_005fec90(void)\r\n\r\n{\r\n  FUN_005f7490();\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5feca0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5feca0",
+            "name": "FUN_005feca0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005feca0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fecb0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fecb0",
+            "name": "FUN_005fecb0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fecb0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fecc0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fecc0",
+            "name": "FUN_005fecc0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fecc0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fecd0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fecd0",
+            "name": "FUN_005fecd0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fecd0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fece0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fece0",
+            "name": "FUN_005fece0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fece0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\r\n                 undefined4 param_5)\r\n\r\n{\r\n  FUN_005f4ff0(param_1,param_2,param_3,param_4,param_5,0,0);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fed10",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fed10",
+            "name": "FUN_005fed10"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005fed10(undefined4 param_1)\r\n\r\n{\r\n  float *pfVar1;\r\n  int iVar2;\r\n  \r\n  if (DAT_02854c84 != 0) {\r\n    iVar2 = 0;\r\n    if (0 < DAT_02854c84) {\r\n      pfVar1 = (float *)&DAT_0280c74c;\r\n      do {\r\n        _DAT_0285715c = pfVar1[-2];\r\n        _DAT_028571a8 = *pfVar1;\r\n        _DAT_02857158 = pfVar1[-3] - _DAT_028571a8;\r\n        _DAT_02857170 = (int)*(short *)(pfVar1 + 1) << 0x18;\r\n        _DAT_02857160 = pfVar1[-1] - _DAT_028571a8;\r\n        _DAT_02857174 = 0;\r\n        _DAT_02857178 = 0;\r\n        _DAT_0285717c = _DAT_028571a8 + pfVar1[-3];\r\n        _DAT_02857198 = 0x3f800000;\r\n        _DAT_0285719c = 0;\r\n        _DAT_028571a8 = pfVar1[-1] + _DAT_028571a8;\r\n        _DAT_028571bc = 0;\r\n        _DAT_028571c0 = 0x3f800000;\r\n        _DAT_028571e0 = 0x3f800000;\r\n        _DAT_028571e4 = 0x3f800000;\r\n        _DAT_02857180 = _DAT_0285715c;\r\n        _DAT_02857184 = _DAT_02857160;\r\n        _DAT_02857194 = _DAT_02857170;\r\n        _DAT_028571a0 = _DAT_02857158;\r\n        _DAT_028571a4 = _DAT_0285715c;\r\n        _DAT_028571b8 = _DAT_02857170;\r\n        _DAT_028571c4 = _DAT_0285717c;\r\n        _DAT_028571c8 = _DAT_0285715c;\r\n        _DAT_028571cc = _DAT_028571a8;\r\n        _DAT_028571dc = _DAT_02857170;\r\n        FUN_005dda30(&DAT_02857158,param_1,0,4);\r\n        iVar2 = iVar2 + 1;\r\n        pfVar1 = pfVar1 + 6;\r\n      } while (iVar2 < DAT_02854c84);\r\n    }\r\n    DAT_02854c84 = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fee80",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fee80",
+            "name": "FUN_005fee80"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fee80(undefined4 *param_1,undefined4 param_2,undefined2 param_3)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = FUN_005d6710(param_1,1,0);\r\n  if ((iVar1 == 0) && (DAT_02854c84 < 0x80)) {\r\n    (&DAT_0280c740)[DAT_02854c84 * 6] = *param_1;\r\n    (&DAT_0280c744)[DAT_02854c84 * 6] = param_1[1];\r\n    (&DAT_0280c748)[DAT_02854c84 * 6] = param_1[2];\r\n    (&DAT_0280c74c)[DAT_02854c84 * 6] = param_2;\r\n    (&DAT_0280c750)[DAT_02854c84 * 0xc] = param_3;\r\n    DAT_02854c84 = DAT_02854c84 + 1;\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5feef0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5feef0",
+            "name": "thunk_FUN_005f74a0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid thunk_FUN_005f74a0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fef00",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fef00",
+            "name": "FUN_005fef00"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fef00(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fef10",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fef10",
+            "name": "FUN_005fef10"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fef10(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fef20",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fef20",
+            "name": "FUN_005fef20"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fef20(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x5fef30",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x5fef30",
+            "name": "FUN_005fef30"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_005fef30(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        }
+      ],
+      "total": 32,
+      "succeeded": 32,
+      "failed": 0
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Derived by an REA composed workflow."
+    ],
+    "locations": [
+      {
+        "kind": "address",
+        "address": "0x5fe700"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe800"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe810"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe850"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe860"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe8b0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe910"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe970"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe980"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe990"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe9a0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe9b0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe9c0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fe9d0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5feab0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fead0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5feae0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5feaf0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fec80"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fec90"
+      },
+      {
+        "kind": "address",
+        "address": "0x5feca0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fecb0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fecc0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fecd0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fece0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fed10"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fee80"
+      },
+      {
+        "kind": "address",
+        "address": "0x5feef0"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fef00"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fef10"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fef20"
+      },
+      {
+        "kind": "address",
+        "address": "0x5fef30"
+      }
+    ],
+    "evidence_links": []
+  }
+}

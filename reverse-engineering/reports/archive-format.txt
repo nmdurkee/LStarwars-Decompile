@@ -1,0 +1,76 @@
+LEGO STAR WARS: THE COMPLETE SAGA - PC DAT FORMAT
+Scope: all seven supplied MkDat v4.0 archives, index type -3.
+Authoritative validation: verification-full.json, archive-codec-validation.json,
+native-archive-paths.json and native-archive-emulation.json.
+
+All integer fields below are little-endian.
+Archive +0: u32 index offset; +4: u32 index length. Index ends at archive EOF.
+Producer marker at +8: BEGIN_APP_ID_STRINGMkDat v4.0END_APP_ID_STRING.
+
+Index +0: i32 type (-3); +4: u32 file count.
+File table at +8: fileCount records, 16 bytes each:
+ +0 u32 high offset; +4 u32 stored size; +8 u32 expanded size;
+ +12 u32 combined flags/low offset.
+ Payload offset = high offset *256 + (combined >>24).
+ Flags = combined &0xffffff: 4,991 raw (0), 7,468 compressed (2).
+
+After file table: u32 node count, followed by eight-byte name nodes:
+ +0 i16 next/file marker; +2 i16 previous-node link; +4 i32 name-pool offset.
+ Positive marker denotes a directory; zero/negative a leaf in this traversal.
+ Previous-node restores the saved prefix from an earlier node. Save prefix before
+ appending each directory. This is not a conventional parent-index tree.
+Then u32 string-pool length, NUL-terminated names, fileCount u32 filename hashes,
+and eight trailer bytes. Resolve paths to file records by hash, not ordinal.
+
+Path hash: initial0x811c9dc5; uppercase ASCII; normalize slash to backslash;
+for every byte: hash=(hash XOR byte)*0x199933 modulo2^32. This multiplier is not
+standard FNV-1a. PC lookup0x4f76f0 hashes already-normalized bytes. Its caller
+0x4f9aa0 calls0x4efdf0 to normalize; global0x91ee84 optionally preserves case,
+and a nonnull filesystem object supplies a custom separator at+0x10.
+12,459 actual mixed/lowercase path tests passed original normalization and lookup
+in isolated native emulation; four case/separator mode checks also passed.
+
+COMPRESSED PAYLOAD
+Every compressed payload in these archives consists of LZ2K chunks. No DFLT chunks
+were observed. Each 12-byte header contains:
+ +0 ASCII LZ2K; +4 u32 expanded chunk length; +8 u32 stored chunk length.
+Compressed bytes follow. Advance12+stored length; concatenate expanded chunks until
+the indexed stored extent is consumed. Sum must equal the indexed expanded size.
+When lengths match, chunk bytes are stored verbatim.
+Observed 43,148 LZ2K chunks. Canonical Huffman bitstream is MSB-first; output uses an
+8 KiB overlapping LZ window. Block header starts with16-bit symbol count, then
+code-length, literal/length, and distance trees. Literal symbols0..255 emit bytes;
+256..509 encode lengths3..256 via symbol-253. Distance symbol0 gives distance1;
+otherwise distance=2^(symbol-1)+next(symbol-1)bits+1. Maximum distance8192.
+Unused trailing bits:0..7 in every decoded compressed chunk.
+
+Independent implementation: tools/tt-lz2k.mjs, canonical tables and bounded reads.
+Algorithm reference: pinned OpenSaga implode.cpp (Android cross-build); actual PC
+bytes verified against QuickBMS output and the PC routine0x4faea0. It is not PKWARE
+DCL or ZIP implode. Original PC decode helpers:0x4fa320 output ring,0x4f9820 symbols,
+0x4f5f30 distance,0x4f6000 Huffman table,0x4f5d00 bit buffer. PC state resets per chunk.
+Native decompressor tests cover51 distinct chunks across all seven archives,
+10,155,145 output bytes with exact agreement and original callees unmodified.
+
+COMPLETE EXTRACTION AND INDEPENDENT BYTE COMPARISON
+ GAME.DAT:12174; EPISODE_I:61; II:44; III:46; IV:51; V:46; VI:37.
+ Total12,459/12,459 files; no path collisions; all payload bounds and sizes valid.
+ Original DAT sizes total4,278,430,452 bytes including indexes and alignment.
+ Indexed payload bytes4,270,161,144; recovered bytes9,692,364,695.
+ Every recovered byte independently matched the QuickBMS extraction, including all
+4,991 raw files. Each output SHA-256 is retained in archive-codec-validation.json.
+14 focused codec tests cover constant Huffman trees, overlap copies, raw chunks,
+framing and malformed/truncated inputs. Synthetic DFLT support is tested but is
+not evidence of DFLT presence in this game. Four separate index-parser negative
+tests also pass. Expanded byte totals are storage totals, not Quest RAM/VRAM needs.
+
+REPRODUCE FROM SW
+ node reverse-engineering/tools/verify.mjs --all
+ node reverse-engineering/tools/tt-lz2k.mjs --all
+ node reverse-engineering/tools/tt-lz2k-tests.mjs
+ python reverse-engineering/tools/native-archive-paths.py
+ python reverse-engineering/tools/native-archive-emulate.py
+ node reverse-engineering/tools/extract.mjs EPISODE_I.DAT
+QuickBMS extraction uses original ttgames.bms0.9.11a; originals are read-only.
+References: https://aluigi.altervista.org/bms/ttgames.bms
+https://github.com/opensagadev/saga (commit ab97911d162d896d8f4b20e9df8e7d23a2f81557)

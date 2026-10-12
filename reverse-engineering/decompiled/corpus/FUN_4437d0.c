@@ -1,0 +1,37 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_6b8c5160150a0b0a722ba8204210d6d18ff1e44325cd9d4d6103efb3bbacbc6b
+ * Entry: 0x4437d0; label: FUN_004437d0
+ */
+
+float10 FUN_004437d0(int param_1,undefined4 param_2,int param_3)
+
+{
+  int iVar1;
+  int *piVar2;
+  float10 fVar3;
+  float local_10;
+  undefined1 local_c [12];
+  
+  local_10 = 1e+09;
+  if (((param_3 != 0) && (*(int *)(param_3 + 0xd0) != 0)) && (param_1 != 0)) {
+    piVar2 = &DAT_0093d7f0;
+    do {
+      iVar1 = *piVar2;
+      if (((iVar1 != 0) && ((*(uint *)(iVar1 + 0x1fc) & 1) != 0)) &&
+         ((*(uint *)(iVar1 + 0x1fc) & 0x1000) != 0)) {
+        fVar3 = (float10)FUN_005b3c50(iVar1 + 0x5c,*(int *)(param_3 + 0xd0) + 0x5c,local_c);
+        if ((float)fVar3 < local_10) {
+          local_10 = (float)fVar3;
+        }
+      }
+      piVar2 = piVar2 + 1;
+    } while ((int)piVar2 < 0x93d810);
+    if ((float10)local_10 == (float10)1000000000.0) {
+      return (float10)local_10;
+    }
+    fVar3 = (float10)FUN_005c0240(local_10);
+    local_10 = (float)fVar3;
+  }
+  return (float10)local_10;
+}
+

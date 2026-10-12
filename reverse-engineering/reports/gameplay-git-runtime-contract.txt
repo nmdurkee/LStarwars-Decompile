@@ -1,0 +1,101 @@
+PC GIT PUZZLE RUNTIME CONTRACT
+
+141,315 original-PC checks passed; zero mismatches.
+166 shipped source graphs: 302 GizTimer instances, 26 GizRandom instances, 182 Loop conditions, 7 TurnOnFlowBox commands.
+
+nodeLayout
+Runtime node size is 32 bytes. Source Collapse nodes and negative source IDs are retained separately in the usage ledger; the GIT text loader and editor-collapse flattening are not emulated by these fixtures.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f740.c:25 — iVar2 = iVar2 + 0x20;
+  reverse-engineering/decompiled/corpus-expanded/FUN_59db00.c:99 — puVar7 = *(undefined1 **)(pbVar3 + 0x18);
+
+tick
+Flow+0xc generation is an 8-bit increment, including wrap to zero. Nodes are scanned in array order. Active bit0 or monitor bit0x100 enters processing if node generation differs. Successful activation sets0x802 and clears bit0, then recursively activates children. Condition parents may revisit an already stamped child.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f740.c:14 — *(char *)(param_1 + 0xc) = *(char *)(param_1 + 0xc) + '\x01';
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f740.c:20 — (((*(ushort *)(iVar2 + 10) & 1) != 0 || ((*(ushort *)(iVar2 + 10) & 0x100) != 0)))) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:33 — uVar5 = uVar2 & 0xfffe | 0x802;
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:98 — FUN_0059e090(param_1,*(undefined4 *)(*(int *)(param_2 + 0x14) + iVar6 * 4),param_3);
+
+activationVsOutput
+Successful processing and an active gizmo output are separate. A timer activation immediately completes its flow node; downstream nodes still consult the timer output callback, which requires enabled && remaining <= 0. Each kind has its own process/output pair. This distinction is necessary to reproduce timer delays.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:24 — iVar6 = (*(code *)(&PTR_FUN_00805518)[(uint)param_2[3] * 3])(param_1,param_2,param_3);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f800.c:41 — FUN_0055a250(*param_1,**(undefined4 **)(piVar5[2] + iVar4 * 4),1,1);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59d930.c:22 — iVar2 = FUN_0055a1b0(*param_1,**(undefined4 **)(piVar1[2] + iVar3 * 4),param_3,
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b0470.c:11 — return 1;
+
+initialization
+Without saved graph state, initialization resolves gizmo references, clears selected runtime flags and generation, and activates ordinary nodes only when they have no parents. A Loop computes reachable return edges, stores their count in node+1, and can start active when every input is a return input. The original initializer and a Timer/Action/Loop cycle were executed for 270 frames at each of four durations, including 8-bit tick/reset generation wrap. Saved graph-state restoration is verified separately in gameplay-reconstruction.json.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c:21 — FUN_0059f2a0(param_1);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c:29 — *(ushort *)(pcVar6 + 10) = uVar4 & 0xfedd;
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c:32 — cVar2 = FUN_0059da30(DAT_00956434);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59f4e0.c:36 — *(ushort *)(pcVar6 + 10) = *(ushort *)(pcVar6 + 10) | 0x801;
+
+loopThreshold
+Loop is condition code 4. While state flag 0x400 is set, its required true-input count is parentCount minus startup return-input count; otherwise it requires all parents. Successful processing starts a distinct reset generation for each immediate child and recursively deactivates eligible descendant gizmos. A later successful processing with both 0x400 and 0x800 set clears 0x400.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59db00.c:133 — uVar6 = uVar4 - param_2[1];
+  reverse-engineering/decompiled/corpus-expanded/FUN_59db00.c:163 — FUN_0059da60(param_1,pbVar3,*(undefined4 *)(*(int *)(pbVar3 + 0x14) + iVar9 * 4),DAT_00956434)
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e090.c:29 — if (((uVar2 & 0x400) != 0) && ((uVar2 & 0x800) != 0)) {
+
+loopReset
+Recursive0x59da60 stamps byte+9, stops at owning Loop and previously visited generation. It deactivates descendant gizmos unless nodeflag0x1000 is set; it does not clear node completion flags. A fresh reset generation is used for each immediate Loop child.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59da60.c:13 — if ((param_3 != param_2) && (*(byte *)(param_3 + 9) != param_4)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_59da60.c:16 — ((((*(ushort *)(param_3 + 10) & 0x1000) == 0 &&
+  reverse-engineering/decompiled/corpus-expanded/FUN_59da60.c:19 — FUN_0055a250(*param_1,**(undefined4 **)(piVar1[2] + iVar2 * 4),0,1);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59da60.c:3 — * Entry: 0x59da60; label: FUN_0059da60
+
+parentCleanup
+Pending flag0x20 releases when all children cross their state barrier: ordinary children may be inactive or the current child; children with flags0xc0 require completion and no0x100. Flag0x10 deactivates associated gizmos if flag8 is absent; flag0x40 clears0x100 and recursively releases parents. Reverse callback behavior itself remains unverified.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59de40.c:32 — if ((uVar3 & 0xc0) == 0) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_59de40.c:41 — bVar7 = (uVar3 & 0x100) == 0;
+  reverse-engineering/decompiled/corpus-expanded/FUN_59de40.c:57 — FUN_0055a250(*param_1,**(undefined4 **)(piVar1[2] + iVar6 * 4),0,1);
+  reverse-engineering/decompiled/corpus-expanded/FUN_59de40.c:77 — *(ushort *)(iVar4 + 10) = *(ushort *)(iVar4 + 10) & 0xffdf;
+
+monitoredCondition
+Condition output with flag0x200 recomputes its kind process with temporary flag0x400, then restores the prior flag0x400 value. Without monitor it returns completion bit1.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59ddd0.c:14 — if ((uVar1 & 0x200) == 0) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_59ddd0.c:18 — iVar2 = (*(code *)(&PTR_FUN_00805518)[(uint)*(byte *)(param_2 + 3) * 3])(param_1,param_2,0);
+
+monitoredGizmo
+A monitored gizmo reads parent outputs and calls reversal wrapper 0x55b0e0 with reverse=1 on the first false parent, otherwise reverse=0. Node flag 0x80 also changes visibility. Original NuSpecial callbacks, static-instance visibility and exact callback order are now verified in gameplay-reconstruction.json; other physical gizmo implementations remain open.
+  reverse-engineering/decompiled/corpus-expanded/FUN_59df70.c:27 — FUN_0055b0e0(*param_1,**(undefined4 **)(piVar1[2] + iVar3 * 4),1,unaff_ESI[10] >> 7,1);
+  reverse-engineering/decompiled/corpus-expanded/FUN_55b0e0.c:19 — (pcVar1 = *(code **)((uint)*(byte *)(param_2 + 6) * 0x9c + 0x58 + *(int *)(DAT_0093b268 + 8)),
+  reverse-engineering/decompiled/corpus-expanded/FUN_55b0e0.c:24 — FUN_0055a2b0(param_1,param_2,param_3 == 0,1);
+
+timer
+Gizmo activation finishes immediately, but output remains false until enabled flag bit0 and remaining<=0. Update subtracts delta when remaining>=0; it does not clamp negative results. Activate/deactivate both reset duration, with randomized reset when flag bit1 is set.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b0400.c:21 — if (0.0 < fVar1 != (fVar1 == 0.0)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b0470.c:11 — return 1;
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b04b0.c:19 — iVar3 = FUN_0054fa60();
+
+random
+16-bit QRAND is state=(state*0x24cd+1)&65535. Draw=1+floor(updatedState*C*100), where C is the exact binary64 reciprocal at0x751700, evaluated by x87 before truncation. Its slight rounding below1/65535 keeps the top draw at100. Select the first inclusive cumulative interval. All65536 states give exactly16384 choices per output for25/25/25/25 weights.
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b00b0.c:30 — if ((iVar5 <= 1 - iVar2) && (1 - iVar2 <= *piVar3 + iVar5)) {
+  reverse-engineering/decompiled/corpus-expanded/FUN_5b00b0.c:23 — *(undefined4 *)(iVar1 + 0x34) = 0xffffffff;
+  reverse-engineering/decompiled/corpus-expanded/FUN_54fa60.c:10 — DAT_0080253c = DAT_0080253c * 0x24cd + 1 & 0xffff;
+
+TurnOnFlowBox
+Case-insensitive matching of all node names. name= chooses target; FALSE disables active bit0. TRUE does not undo FALSE within a call. Other flags/completion remain unchanged. Linked actions run in order.
+  reverse-engineering/decompiled/corpus-expanded/FUN_464760.c:25 — iVar3 = FUN_004f8a70(*(undefined4 *)(param_3 + iVar6 * 4),"name=");
+  reverse-engineering/decompiled/corpus-expanded/FUN_464760.c:27 — iVar3 = FUN_004f8b10(*(undefined4 *)(param_3 + iVar6 * 4),"FALSE");
+  reverse-engineering/decompiled/corpus-expanded/FUN_464760.c:45 — *puVar1 = *puVar1 ^ (*(byte *)(iVar3 + 10 + *(int *)(param_1 + 8)) ^ bVar5) & 1;
+  reverse-engineering/decompiled/corpus-expanded/FUN_59e030.c:17 — (*pcVar2)(param_1,param_2,puVar1[1],puVar1[2]);
+
+Concrete source examples
+NEGOTIATIONS_C.GIT:600 configures node 35 (GizTimer_1) for 15 seconds; source parents are node 3, children 4 and 41. Nodes 36 and 37 use Loop at lines 612 and 624. These links are catalog evidence, not a claim that the entire level has run.
+reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.GIT:1567 — TurnOnFlowBox "name=SPIN_SLOW_1" "FALSE"; matched source node IDs 45.
+reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.GIT:1568 — TurnOnFlowBox "name=SPIN_MID_1" "FALSE"; matched source node IDs 47.
+reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.GIT:1569 — TurnOnFlowBox "name=SPIN_FAST_1" "FALSE"; matched source node IDs 48.
+reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.GIT:1570 — TurnOnFlowBox "name=SPIN_SLOW_2" "FALSE"; matched source node IDs 56.
+reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/MOSEISLEY_A.GIT:2592 — TurnOnFlowBox "name=Snap Big Gate" "FALSE"; matched source node IDs 167.
+reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/MOSEISLEY_A.GIT:2616 — TurnOnFlowBox "name=Snap Storm Door" "FALSE"; matched source node IDs 169.
+reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/MOSEISLEY_B.GIT:1826 — TurnOnFlowBox "name=Snap Storm Door" "FALSE"; matched source node IDs 112.
+
+All source paths, lines, directives, matching node records and source counts are in gameplay-git-runtime-contract.json.
+
+Remaining limitations
+Graph DAG scheduling model covers action/condition nodes and timer callbacks, not every gizmo or arbitrary cyclic scheduler graph.
+A Timer/Action/Loop cycle, including actual initialization, was checked for270 frames at each of four durations, including generation wrap. Other real puzzle topologies and non-timer gizmos remain unverified.
+Reset/monitor side effects on real non-timer gizmos remain unverified.
+Synthetic runtime records were constructed from native layouts; no original GIT text-loader emulation or full level simulation is implied.
+Source Collapse nodes and negative IDs require native loader flattening before treating the parsed editor topology as the exact runtime graph.
+NuSpecial reversal/visibility and saved graph restoration are verified in gameplay-reconstruction.json; other physical gizmo implementations remain open.
+Source references demonstrate use, not full reachability or successful end-to-end puzzle execution. The Negotiations examples are shipped source graphs; the verified Timer/Action/Loop fixture is synthetic.

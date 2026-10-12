@@ -1,0 +1,81 @@
+﻿ASSET REVERSE-ENGINEERING FINDINGS — LEGO STAR WARS: THE COMPLETE SAGA
+Scope: static inspection of recovered GAME.DAT content and Negotiations graphics. No game execution, Unity implementation, or claim of complete engine reconstruction.
+Date: 2026-10-12
+
+Evidence conventions
+All paths below are relative to the workspace root. E = reverse-engineering/extracted. N = E/LEVELS/EPISODE_I/NEGOTIATIONS. Text citations use one-based line numbers; binary offsets are zero-based decimal.
+Reproducible analysis: reverse-engineering/reports/analyze-assets.mjs (run with node from workspace root).
+Structured output: reverse-engineering/reports/asset-analysis.json. It includes file hashes, source references, all recovered flow nodes, script state names/transitions, character settings, GIZ chunks, and graphics-container observations.
+Raw uncompressed-entry provenance: reverse-engineering/reports/asset-samples/manifest.json records source GAME.DAT offsets and lengths for 69 independent copies. Those samples were read before bulk extraction reached the levels. Report citations use the now-extracted equivalents.
+Confidence labels: OBSERVED = bytes/source text directly establish it; INFERENCE = interpretation not yet tied to native handlers; UNRESOLVED = decoding or engine behavior not established.
+
+1. Level assembly and progression — partially answered
+OBSERVED: E/LEVELS/LEVELS.TXT:28-65 registers two Negotiations intro scenes, gameplay scenes A/B/C, FailedNeg_Outro, and negotiations_status. This registry is not by itself a runtime execution-order trace.
+OBSERVED: N/NEGOTIATIONS.TXT:1-15 declares Qui-Gon, Obi-Wan and TC14 as player characters; destroyer, BattleDroid variants, PKDroid and STAP2 as resident characters; and four cutscene character types. Lines 17-22 set story_coins=31000, freeplay_coins=64000, AIMessage close_gate output0 2, and music Ep1_1_Quiet.
+OBSERVED: N/NEGOTIATIONS_A/NEGOTIATIONS_A.TXT:298-341 defines door splines and destination names: door_to_hangar and door_to_hangar2 target negotiations_c; door_to_room4 targets negotiations_b; reverse and within-A links are also explicitly present.
+OBSERVED: N/NEGOTIATIONS_C/NEGOTIATIONS_C.TXT:565-569 routes door_mtt1 to failedneg_outro and sets level_freeplay negotiations_status. Story and Free Play therefore have distinct configured destination names at that exit.
+OBSERVED: A.TXT:358-376 defines C3PO_door_02 as an initially locked protocol interface door, names its line-up spline, lists door/light objects and sets range 1.2. A.TXT:1026-1030 links mini_door1 to mini_pad_1 and mini_pad_2.
+UNRESOLVED: Native load order, persistence across areas, simultaneous scene residency, transforms between areas, and exact trigger/obstacle evaluation order.
+
+2. Recoverable character configuration — answered at source/configuration level
+OBSERVED: E/CHARS/QUIGONJINN/QUIGONJINN.TXT:13-53 specifies radius 0.1, height extent maxy 0.42, acceleration 10, walk_speed 0.6, run_speed 1.2, jedi, hit_points 4, jump_speed 2.3, jump_2_speed 3, air_gravity -6, slam_gravity -15 and locator/layer indices. No conversion to metres, seconds or Unity units has been assumed.
+OBSERVED: E/CHARS/OBIWANKENOBI/OBIWANKENOBI.TXT:14-57 has matching core movement values with character-specific settings. E/CHARS/BATTLEDROID/BATTLEDROID.TXT:14-28 has variant=battledroid, hit_points=1, run_speed=1.2, walk_speed=0.33 and droid/baddie/blaster flags.
+OBSERVED: E/CHARS/PROTOCOLDROIDS/TC14.TXT:1 references txt_file=c3po and supplies identity/audio overrides. E/CHARS/PROTOCOLDROIDS/C3PO.TXT:20-31 declares droid/protocol/untargetable, hit_points=4, run_speed=0.75 and walk_speed=0.5. This establishes a configuration reference; inheritance/override evaluation details still need the native parser.
+OBSERVED: Character TXT files explicitly bind anim_start names to logical action names and carry blending, cycle, frame and effect settings. The bounded parser recovered 58 bindings for Qui-Gon, 62 for Obi-Wan, 14 for BattleDroid and 22 for C3PO. Commander and TC14 files use txt_file references instead of their own animation blocks. These are binding counts, not verified decoded animation clips.
+UNRESOLVED: Native movement integration, collision response, animation-track format, hit timing semantics, combo state machine and capability-flag consumers. Typo-like/disabled names in the shipped text must not be normalized speculatively.
+
+3. Scripted behavior — substantial source recovered; engine semantics unresolved
+OBSERVED: .SCP source contains named states, Conditions, Actions, conditional goto, SetState and ReferenceScript blocks. The summary inventories 22 Negotiations .SCP files plus GeneralParty and Jedi global scripts.
+OBSERVED: All 27 non-PAK AI siblings in areas A/B/C occur as exact byte sequences inside their corresponding ai.pak, including .SCP, .AI2 and SCRIPT.TXT. Examples: A LEVEL.SCP at AI.PAK offset 2153 (1519 bytes); A TC14.SCP at 33375 (898 bytes); A NEGOTIATIONS_A.AI2 at 10717 (21714 bytes); C DROIDEKA.SCP at 385 (1697 bytes). Full comparisons are in asset-analysis.json. This is stronger evidence than filenames alone, but does not establish which load path the executable selects.
+OBSERVED: N/NEGOTIATIONS_A/AI/LEVEL.SCP:7-10 configures four navigation connections with BLOCK, visibility checks, door object names and animation frame 64. Lines 17-24 monitor either player becoming TC14, entering DoneFirstBit and completing force1. Lines 53-54 configure the intruder sound twice (repdelay=1.5, startdelay=1) and set IntruderAlert.
+OBSERVED: N/NEGOTIATIONS_A/AI/TC14.SCP:14-51 initializes TC14 at TC14_START, waits for TaggedTC14, then moves to locator TC14; obstacle40 completion leads to a GeneralParty reference and FollowPlayer. CannotDropIn calls are explicit, but exact drop-in semantics remain native.
+OBSERVED: N/NEGOTIATIONS_A/AI/LEVEL1.SCP:4-7 bypasses the tutorial branch for MissionMode, FreePlay or completed state. Lines 15-58 connect hint 602 to Hint2and3, a timer threshold of 0.5 and the player becoming TC14. This is an actual recoverable tutorial state machine.
+OBSERVED: N/NEGOTIATIONS_A/AI/LEVEL2.SCP contains a separate mission branch with locator-based PKDroid/BattleDroid spawns, live-set counts, spawn counters and timer resets. It should not be confused with the normal story branch.
+OBSERVED: E/SCRIPTS/GENERALPARTY.SCP:3-8 selects trigger assistance or following, with FollowPlayer 0.75. Lines 13-50 select Hero, Jedi, Blaster or NoWeapon global references through conditions. Lines 61-67 run HelpWithTriggers.
+OBSERVED: E/SCRIPTS/JEDI.SCP:13-34 conditions combat on threat, same path and player-range thresholds 2.5/1.5, then resets a timer. Lines 43 and 67 call PressActionButton. This supplies a concrete logical-action bridge for companion AI, not proof of the player-input implementation.
+OBSERVED: N/NEGOTIATIONS_C/AI/DROIDEKA.SCP:1 sets shootrange 3. Lines 34-73 wait on START_DROIDEKA, open/move through a gate, run CameraCut, increment Close_Gate and set GoneThroughGate. Lines 78-96 guard a locator and EngageOpponent with static/firerange options.
+ANOMALY: N/NEGOTIATIONS_C/AI/PKDROID.SCP:2 opens ReferenceScript but no matching closing brace precedes the following Conditions at line 8. This same malformed source is an exact byte sequence in C AI.PAK at offset 21651. The analysis JSON flags Base as an unclosed block; its aggregated transitions should not be treated as a correctly parsed state. No originals or source samples were repaired. Whether the native parser tolerates it, ignores it or never loads this behavior is unresolved.
+UNRESOLVED: Action blocking/yielding, condition re-evaluation schedule, parser tolerance, message scopes, pathfinding, timer units, spawning visibility checks and the native implementations of script commands.
+
+4. Flow graphs and gizmo container — format boundaries recovered
+OBSERVED: .GIT is readable flow-editor/logic text, not a mesh format. N/NEGOTIATIONS_A/NEGOTIATIONS_A.GIT:242-317 explicitly links force1 -> obstacle1 -> force2/force3 with Parent/Child IDs and GizForce/GizObstacle references. Lines 1937 onward include Loop, All, None and visibility-action blocks.
+OBSERVED: The parser recovered A=135 FlowBox nodes/140 Child links, B=9/7, C=46/41. All Child IDs resolve when both FlowBox and Collapse grouping IDs are considered. Graph layout x/y and GitOptions.CameraPos (A.GIT:1-7) are editor metadata; they must not be mistaken for world positions or the in-game camera.
+INFERENCE: The graph connects interaction/puzzle events, supported by named GizForce/GizObstacle types and explicit action text. Exact port meanings and activation/deactivation propagation remain unknown.
+OBSERVED: Five Negotiations GIZ files parse fully under this little-endian outer structure:
+  u32 header_word (=1 in inspected samples)
+  repeated: u32 ASCII_name_length; name bytes; u32 payload_byte_length; payload bytes
+  terminating u32 zero
+The parser verifies each chunk boundary stays within the carrier and that the final offset equals file length. A/B/C contain 20 chunks each; intro2/outro contain 18 each. This establishes the container boundaries, not inner object layouts.
+OBSERVED: A.GIZ (43973 bytes) chunk examples:
+  GizObstacle: header 4, payload 23, length 17447
+  GizBuildit: header 17470, payload 17488, length 228
+  GizForce: header 17716, payload 17732, length 11985
+  blowup: header 29717, payload 29731, length 10934
+  GizmoPickup: header 40665, payload 40684, length 2642
+Other observed labels include Panel, Lever, Spinner, MiniCut, Tube, ZipUp, GizTurret, BombGenerator, HatMachine, PushBlocks, Torp Machine, ShadowEditor, Grapple, Plug and Techno. Small payloads may represent empty collections; labels alone do not establish active functionality.
+UNRESOLVED: Per-version payload records, counts, transforms, collision references, pickup values and cross-reference rules. .TER and .AI2 remain binary; neither has been converted into collision or navigation geometry here.
+
+5. Camera and logical control connections — partially answered
+OBSERVED: N/NEGOTIATIONS_A/NEGOTIATIONS_A.TXT:111-294 defines sock camera blocks with campos_seek, cam_blend_time, cam_y_offset, offset_blend_y_ratio, y_limits and an optional circuit flag. A.TXT:298-304 connects door_to_hangar to vent_cam with cam_blend_time 2.25 and cam_wait 0.25.
+OBSERVED: A.TXT:833-846 attaches camera_spline tc14_look to an obstacle with start/end timing 0/4. N/NEGOTIATIONS_C/AI/DROIDEKA.SCP:58 issues a 7-duration CameraCut targeting Droideka_1, position options 5/0/-19, 0.5 in/out blend times and FollowTgt.
+OBSERVED: E/STUFF/TEXT/ENGLISH.TXT:744-760 provides logical controls: TOGGLELEFT/TOGGLERIGHT select Free Play characters; SPECIAL is held for Force/building and pressed for panels/grappling; TAG switches character or enters vehicles/creatures; JUMP exits vehicles; ACTION dodges/deflects. This is shipped UI guidance, not an observed runtime input trace.
+OBSERVED: E/STUFF/TEXT/BUTTONS_360.TXT only describes a button-font glyph set. It does not establish the physical Xbox mapping. Old TRIANGLE/SQUARE comments in C/AI/LEVEL1.SCP are also insufficient for PC/Xbox mapping.
+UNRESOLVED: Physical Xbox button IDs, axis deadzones, repeat/hold thresholds, camera-relative character movement and two-controller routing. Root native analysis owns those questions.
+Implication for later MR work (inference): Camera changes are coupled to scripted game events as well as ordinary follow settings. Recovering those hooks is necessary before deciding which camera effects can be replaced with an outside tabletop view. No MR behavior has been implemented.
+
+6. Graphics and animation carrier inspection — partial format recovery, not conversion
+OBSERVED: N/NEGOTIATIONS_A/NEGOTIATIONS_A_PC.GSC is 14665220 bytes. Its first u32 is 13652672. At offset 13652676 is NU20; a sequential four-character-tag/u32-size walk from 13652692 recovers 19 chunks, ending at 14665092 with a 128-byte textual trailer.
+OBSERVED: A GSC chunks include HEAD, NTBL, MS00, SST0, INID, FDNS, BNDS, DISP, IABL, TAS0, PORT, TREF, TST0, VBIB, SALI, ALA3, DYNO, GSNH and PNTR. Exact offsets/sizes are saved in graphicsCarriers. Chunk names alone have not been interpreted as decoded mesh or hierarchy records.
+OBSERVED: The NTBL range contains door and camera-spline names also referenced by TXT: door_to_room4 at 13660445, door_to_room1 at 13660489, tc14_look at 13660651 and multiple sock_a/b/cam names. This is a concrete name-level connection between configuration and the graphics container; transform/index linkage is not decoded.
+OBSERVED: GSC scanning finds 96 DDS-magic/header-size-124 candidates, including DXT1/DXT5 tags and dimension/mipmap fields. The separate u16 at offset 4 equals 106, so it must not be reported as 96 total textures or treated as a completed texture-table parse.
+OBSERVED: E/CHARS/QUIGONJINN/QUIGONJINN_PC.GHG is 3760324 bytes. First u32=3690688; NU20 occurs at 3690692. A chunk walk from 3690708 resolves HEAD, NTBL, MS00, INID, FDNS, BNDS, TAS0, CDAT, TREF, TST0 and VBIB, then stops at 3748644 with 11680 bytes remaining. This tail is retained as unresolved, not discarded.
+OBSERVED: This GHG contains nine DDS-header candidates, and NTBL strings such as upperTorso, head, rightElbow, weaponRight, leftLeg and LOD layer names. These are names only; bone relationships, bind poses, skin weights, submeshes and materials have not been recovered.
+OBSERVED: E/CHARS/QUIGONJINN/JUMP.AN3 is 2384 bytes, starts with ASCII 4INA and has Jump at byte 60. E/CHARS/QUIGONJINN/JUMP.BSA is 81 bytes of binary data. Neither carrier has been decoded into tracks, frames, poses or events.
+UNRESOLVED: Render buffers, vertex declarations/index formats, material/shader rules, skeletons, animation compression and native pointer/relocation conventions. The recovered chunk/name/texture-header evidence is useful for the next parser pass but is not a Unity-importable asset.
+
+Completion ledger
+Answered: character tuning/source binding discovery; logical action names from UI text; plaintext script/flow availability; bounded GIZ outer container; exact SCP/AI2 copies inside ai.pak.
+Partially answered: Negotiations assembly, puzzle/party/enemy progression, camera coupling, GSC/GHG container structure.
+Unresolved: native execution semantics, physical controller mapping, decoded meshes/rigs/animation/collision/navigation, runtime validation. The overall reverse-engineering task is not complete on asset evidence alone.
+
+Standalone read-only outer-container inspector: node reverse-engineering/reports/inspect-giz.mjs <input.GIZ>. Validates header=1, bounded ASCII names/payloads, a zero terminator and exact EOF. Applied successfully to all five Negotiations GIZ carriers; it does not decode payload objects.

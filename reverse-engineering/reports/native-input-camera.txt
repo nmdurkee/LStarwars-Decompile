@@ -1,0 +1,28 @@
+PC INPUT AND CAMERA RECOVERY
+
+The exact built-in Xbox mapping, stick transform, default radial deadzone, button edges, and camera/socket-relative input angle are recovered. See native-input-camera.json for address/offset contracts.
+
+Physical defaults: A Jump; B Special; X Action; Y Tag; LB/LT Toggle Left; RB/RT Toggle Right; Start 0x800; Back 0x100; D-pad 0x1000/2000/4000/8000. User mapping overrides can differ.
+
+Validation against original x86 instructions in isolated Unicorn memory:
+- Circle-to-square stick transform: 10,009 vectors, zero integer differences.
+- Built-in wired/wireless profiles: 3,102 raw-state cases, zero mismatches; all256 trigger values and every individual physical button checked.
+- Radial deadzone16: all65,536 signed8-bit axis pairs, zero mismatches.
+- Camera/socket-relative movement: 4,096 synthetic cases, zero mismatches.
+- Full generic pad processing: button-edge sequence and both normalized sticks checked.
+No game process, OS input API, or live gameplay was executed by these checks.
+
+The camera system is not just a display viewpoint. Native0x54b3d0 converts gameplay input using camera yaw, and0x40ade0 owns mode selection, rails, blending, shake, and final renderer submission. For later tabletop reconstruction, movement orientation must remain explicitly defined even when the player supplies the viewing position. That is a design decision for the later Unity work; no MR camera behavior was implemented here.
+
+PC camera anchors:
+0x40ade0 main frame camera update
+0x54a2f0 reset
+0x5495e0 look-input adjustment
+0x54b3d0 movement input angle
+0x5d5330 render camera allocation (0x78bytes)
+0x603cc0 renderer submission
+0x5ed540 derived matrices/frustum state
+0x604a80 projection
+0x565470 aspect/FOV policy
+
+PC source evidence remains in decompiled/corpus and reports/rea. Public OpenSaga source pin ab97911d162d896d8f4b20e9df8e7d23a2f81557 is an Androidx86 build and supplies candidate semantic names; PC addresses, constants, branches and emulation corroborate the claims above. Original pseudocode is not buildable recovered source. Main camera modes and gameplay integration remain untested as a running game.

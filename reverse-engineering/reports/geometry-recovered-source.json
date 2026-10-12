@@ -1,0 +1,209 @@
+{
+  "schema": "recovered-geometry-source-status-v1",
+  "namespace": "Recovered.Geometry",
+  "core": {
+    "file": "reconstructed/geometry/MaterialUv.cs",
+    "bytes": 8050,
+    "sha256": "7b27271cc9458a3182c3d91babe8f15e8042420ed1ecc309ba05cd3432db0d29"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/Program.cs",
+    "bytes": 3395,
+    "sha256": "52f7cf47c7b92d1066bfdcd57441708205aee0ddc8c950658b958bcb00252913"
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.dll",
+    "bytes": 31744,
+    "sha256": "473b37c2466d28c708c3866379104d8a3544bbc7d947c4b33893ecfdeab5e77a"
+  },
+  "harnessAssembly": {
+    "file": "reconstructed/geometry/GeometryUvHarness.exe",
+    "readStatus": "OS access denied",
+    "error": "[Errno 13] Permission denied: 'C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\reconstructed\\\\geometry\\\\GeometryUvHarness.exe'",
+    "sha256": null
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "compiler default AnyCPU",
+    "dependencies": "System/System.Core framework only; no Unity or original game linking"
+  },
+  "compiledDifferentialCheck": {
+    "status": "blocked-os-access-denied",
+    "log": "geometry-recovered-uv-validation.log",
+    "reason": "Ordinary generated harness launch returns WinError5. Reproduced by root using central combined-library build. No security or ACL modifications; no alternate host execution.",
+    "resultClaim": "pending; existing JS/Python native results do not establish compiled C# equivalence",
+    "runner": "tools/geometry-recovered-uv-check.py",
+    "optionalArguments": [
+      "--harness",
+      "--assembly"
+    ]
+  },
+  "independentContractEvidence": "geometry-uv-native-validation.json",
+  "frameIntegrationEvidence": "geometry-render-integration.json",
+  "limits": [
+    "Core covers current708-byte material UV evaluation/reset, bounded CPU visibility/LOD/fade/clip-control/sort projections, prepared-plane frustum/room/portal predicates and bounded room selection. Caller supplies camera planes, portal/tree bitsets and runtime integration.",
+    "Signed32 conversion domain only; nonfinite/overflow conversions rejected.",
+    "No renderer, scene scheduler, game loop, or Unity implementation."
+  ],
+  "additionalCore": {
+    "file": "reconstructed/geometry/SceneSubmission.cs",
+    "bytes": 10060,
+    "sha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
+  },
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/MaterialUv.cs",
+      "bytes": 8050,
+      "sha256": "7b27271cc9458a3182c3d91babe8f15e8042420ed1ecc309ba05cd3432db0d29"
+    },
+    {
+      "file": "reconstructed/geometry/SceneSubmission.cs",
+      "bytes": 10060,
+      "sha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
+    },
+    {
+      "file": "reconstructed/geometry/Clipping.cs",
+      "bytes": 7458,
+      "sha256": "326c3019a8790eacb2b5cf0b8962d82f302d78bcd78d9ef4666e304d5739d9d8"
+    },
+    {
+      "file": "reconstructed/geometry/PortalSelection.cs",
+      "bytes": 4302,
+      "sha256": "4ee831efc8b27868e988429b032e4f05ec2a157dbc0601497f79a834269f050e"
+    }
+  ],
+  "sharedSourceDependency": {
+    "file": "reconstructed/animation/AnimationPlayback.cs",
+    "bytes": 18235,
+    "sha256": "1a2c1d4077a3164734936c36a1b858af5aa35845a28c045ae4c71f6f7a8752ac",
+    "api": "Recovered.Animation.FiniteX87.Dot3PlusConstant; exact64-significand finite arithmetic, not a game-native function."
+  },
+  "additionalContractEvidence": "geometry-visibility-native-validation.json",
+  "clippingContractEvidence": [
+    "geometry-clipping-native-validation.json",
+    "geometry-portal-native-validation.json",
+    "geometry-room-selection-native-validation.json"
+  ],
+  "roomSelectionHarness": {
+    "file": "reconstructed/geometry/harness/PortalSelectionHarness.cs",
+    "bytes": 2828,
+    "sha256": "9a14d329ca2299f7b11919f594c126c31c4ec1f144d4bd07b4d4b7c0880992c3"
+  },
+  "roomSelectionManagedCheck": {
+    "runner": "tools/geometry-room-selection-check.py",
+    "report": "geometry-room-selection-managed-check.json",
+    "status": "prepared-not-executed",
+    "fixtureCount": 15296,
+    "harness": "reconstructed/geometry/GeometryRoomHarness.exe",
+    "build": "passed",
+    "execution": "not attempted; existing Windows execution denial remains separate"
+  },
+  "nativeMappings": [
+    {
+      "address": "0x5dfbd0",
+      "method": "MaterialUv.Advance",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Managed memberships replace pointer chain; mutex excluded; finite signed32 conversion domain.",
+      "sourceFile": "reconstructed/geometry/MaterialUv.cs"
+    },
+    {
+      "address": "0x601330",
+      "method": "MaterialUv.Tick",
+      "coverage": "whole-wrapper-contract",
+      "limitations": "Caller-owned state replaces globals; includes recovered6012a0 tail.",
+      "sourceFile": "reconstructed/geometry/MaterialUv.cs"
+    },
+    {
+      "address": "0x6012a0",
+      "method": "MaterialUv.Tick reset/time tail",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Managed registered scenes replace global pointer array.",
+      "sourceFile": "reconstructed/geometry/MaterialUv.cs"
+    },
+    {
+      "address": "0x5f5380",
+      "method": "SceneSubmission.EvaluateVisibility / SelectLod",
+      "coverage": "bounded-helper-projection",
+      "limitations": "Transient allocator replaced by managed alpha array; frustum supplied by caller; optional debug occlusion excluded; finite input domain. Does not implement scene visibility evaluation.",
+      "sourceFile": "reconstructed/geometry/SceneSubmission.cs"
+    },
+    {
+      "address": "0x5df7b0",
+      "method": "SceneSubmission.DistanceFade",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite nonnegative distance input domain; host sqrt roundedfloat32; original degenerate output NaN retained; compiled CLR equivalence pending.",
+      "sourceFile": "reconstructed/geometry/SceneSubmission.cs"
+    },
+    {
+      "address": "0x5df910",
+      "method": "SceneSubmission.PatchClipControls",
+      "coverage": "whole-helper-contract-projection",
+      "limitations": "Decoded clip indices and managed item byte array replace pointers; bounds checks added.",
+      "sourceFile": "reconstructed/geometry/SceneSubmission.cs"
+    },
+    {
+      "address": "0x5de060",
+      "method": "SceneSubmission.InsertSortRecord",
+      "coverage": "whole-helper-contract-projection",
+      "limitations": "Managed ordered collection replaces linked list/counter; tie order retained.",
+      "sourceFile": "reconstructed/geometry/SceneSubmission.cs"
+    },
+    {
+      "address": "0x5ded80",
+      "method": "SceneSubmission.ApplyPriorityBias",
+      "coverage": "small-extracted-branch",
+      "limitations": "Only wrapped key bias arithmetic; registration helper is not reconstructed in C#.",
+      "sourceFile": "reconstructed/geometry/SceneSubmission.cs"
+    },
+    {
+      "address": "0x603ad0",
+      "method": "SceneSubmission.ClampInstanceAlpha",
+      "coverage": "extracted-pure-result",
+      "limitations": "Exact clamp result; pointer dereference/store moved to caller.",
+      "sourceFile": "reconstructed/geometry/SceneSubmission.cs"
+    },
+    {
+      "address": "0x5d69a0",
+      "method": "NativeFrustum.Classify",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Prepared native plane block replaces globals; far override local instead of temporary global store; finite inputs, nonnegative extents. Shared software x87, compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/Clipping.cs"
+    },
+    {
+      "address": "0x5d9220",
+      "method": "PortalPredicates.ContainsPoint",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Managed finite plane list/point replace room pointers; maximum255planes; shared software x87, compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/Clipping.cs"
+    },
+    {
+      "address": "0x5d9ce0",
+      "method": "PortalPredicates.ClassifyPortal",
+      "coverage": "bounded-helper-projection",
+      "limitations": "Uses recovered recursive caller contract: current room is endpoint, target is other endpoint. Managed finite vertex/plane/priority arrays; count signed16; active bit belongs to caller. Compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/Clipping.cs"
+    },
+    {
+      "address": "0x5d92b0",
+      "method": "PortalSelection.SelectRoom",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Managed finite room/link arrays replace pointers; preserves native old-candidate priority/flag ordering and first-shared-portal side. At most six stored overlaps: seventh native store corrupts return address, so managed code throws. Empty debug hook has no effect; compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/PortalSelection.cs"
+    }
+  ],
+  "adaptersWithoutNativeEntry": [
+    "UvMaterial.DecodeCurrentRecord",
+    "NativeSineTable.DecodeLittleEndian",
+    "UvLayer/UvMaterial/UvScene/UvAnimationSet/UvClock",
+    "Point3/ClipBounds/ClipObject/SceneVisibility/VisibilityInputs/SortRecord",
+    "MaterialUv.EvaluateAxis is an extracted internal branch of5dfbd0, not a separate entry.",
+    "TruncateToNativeInt32 is a bounded integer-conversion adapter, not full6e6b90 reconstruction.",
+    "NativeFrustum.DecodeNativePlaneBlock",
+    "PortalPlane",
+    "Shared Recovered.Animation.FiniteX87 arithmetic is an instruction-semantics adapter, not a native entry.",
+    "PortalRoom",
+    "PortalLink",
+    "PortalSelectionHarness is fixture I/O, not a native runtime helper."
+  ]
+}

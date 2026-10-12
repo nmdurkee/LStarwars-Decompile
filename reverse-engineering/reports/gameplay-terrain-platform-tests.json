@@ -1,0 +1,59 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original 0x68ee40 including inverse-matrix0x5b5b90 and homogeneous transforms0x5c03e0. Synthetic platform, retained-contact record and negative candidate header yield an empty copied candidate list; this allows checking the carry proposal and no-hit refusal without replacement callbacks. No live contact is claimed.",
+  "cases": 400,
+  "checks": 1600,
+  "mismatches": 0,
+  "errors": [],
+  "examples": [
+    {
+      "transformed": false,
+      "returnedIterations": 6,
+      "carryTarget": [
+        5.0,
+        4.900000095367432,
+        9.0
+      ],
+      "temporaryStart": [
+        5.0,
+        5.25,
+        9.0
+      ],
+      "originalQueryPosition": [
+        2.0,
+        3.25,
+        4.0
+      ],
+      "scratchRestored": true
+    },
+    {
+      "transformed": true,
+      "returnedIterations": 6,
+      "carryTarget": [
+        5.0,
+        4.900000095367432,
+        7.0
+      ],
+      "temporaryStart": [
+        5.0,
+        5.25,
+        7.0
+      ],
+      "originalQueryPosition": [
+        2.0,
+        3.25,
+        4.0
+      ],
+      "scratchRestored": true
+    }
+  ],
+  "contracts": {
+    "translationOnly": "proposalXYZ=queryXYZ+(currentTranslation-priorTranslation), with Y translation divided by vertical stretch.",
+    "transformed": "Convert internal query Y to foot/world Y: (queryY-radius)*stretch. Subtract prior translation, multiply inverse prior3x3, then current full matrix. Return proposed internalY=worldY/stretch+radius.",
+    "acceptance": "These no-hit fixtures preserve the original query position, retain iteration count and restore the scratch arena. Actual support-hit acceptance still needs collision fixtures."
+  },
+  "limits": [
+    "Only Y-axis platform rotations with nonuniform scale were sampled; arbitrary 3D rotations and singular matrices are untested.",
+    "Negative candidate header is a bounded fixture to bypass contact geometry; the recovered transform does not itself prove live moving-platform collision or carry acceptance."
+  ]
+}

@@ -1,0 +1,1187 @@
+{
+  "formatVersion": 1,
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "purpose": "Buildable portable fragments of recovered PC behavior. This is not a complete reconstructed game or original source tree.",
+  "language": "C# compatible with installed .NET Framework compiler; core has no Unity or OS dependency.",
+  "modules": [
+    {
+      "name": "combat",
+      "files": [
+        "combat/CombatRules.cs",
+        "combat/CombatHitGuards.cs",
+        "combat/CombatEconomy.cs",
+        "combat/KillCommand.cs"
+      ],
+      "mappings": [
+        {
+          "address": "0x58b720",
+          "method": "CombatRules.AttackerHitFlags",
+          "coverage": "whole-helper",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x58b7f0",
+          "method": "CombatRules.CannotKill",
+          "coverage": "helper-with-registry-input",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x55f1d0",
+          "method": "CombatRules.PlayerInvincible",
+          "coverage": "helper-with-cheat-state-input",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x414ab0",
+          "method": "CombatRules.SetPostHitProtection",
+          "coverage": "whole-state-helper",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x433be0",
+          "method": "CombatRules.ApplyShieldDamage",
+          "coverage": "state-projection-excludes-feedback",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x441e20",
+          "method": "CombatRules.HitPoints",
+          "coverage": "field-read-after-reference-resolution",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x44b150",
+          "method": "HealthCommands.SetHitPoints",
+          "coverage": "handler-with-explicit-services",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x44b290",
+          "method": "HealthCommands.SetShieldHitPoints",
+          "coverage": "handler-with-explicit-services",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x44fd10",
+          "method": "HealthCommands.TakeDamage",
+          "coverage": "handler-with-explicit-services",
+          "sourceFile": "combat/CombatRules.cs"
+        },
+        {
+          "address": "0x438230",
+          "method": "CombatHitGuards",
+          "coverage": "selected-guard-branches-only",
+          "sourceFile": "combat/CombatHitGuards.cs"
+        },
+        {
+          "address": "0x46c6e0",
+          "method": "CombatEconomy.DeductStuds",
+          "coverage": "currency state helper with explicit cheat/difficulty inputs",
+          "sourceFile": "combat/CombatEconomy.cs"
+        },
+        {
+          "address": "0x46c4f0",
+          "method": "CombatEconomy.ShouldDropHeart",
+          "coverage": "decision projection after world pickup/player enumeration",
+          "sourceFile": "combat/CombatEconomy.cs"
+        },
+        {
+          "address": "0x445230",
+          "method": "KillCommand.Execute",
+          "coverage": "bounded-command-handler-with-explicit-services",
+          "sourceFile": "combat/KillCommand.cs",
+          "evidence": "reports/native-combat-kill.json"
+        }
+      ],
+      "evidence": [
+        "reports/native-combat-contract.json",
+        "reports/native-combat-kill.json"
+      ]
+    },
+    {
+      "name": "animation",
+      "files": [
+        "animation/CharacterContexts.cs",
+        "animation/RespawnState.cs",
+        "animation/AnimationPlayback.cs",
+        "animation/IdleScheduling.cs"
+      ],
+      "mappings": [
+        {
+          "address": "0x55e300",
+          "method": "Recovered.Animation.CharacterContexts.SelectStartPositionPointer",
+          "coverage": "whole helper with adapter-provided start-table pointers",
+          "limits": [
+            "0x93d5a0 table:8 rows,stride16,pointer+0,heading+12"
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-respawn-native-verification.json"
+        },
+        {
+          "address": "0x41b420",
+          "method": "Recovered.Animation.CharacterContexts.ResetWithoutMoves",
+          "coverage": "bounded resetMoves=0 branch/common tail",
+          "limits": [
+            "Full resetMoves=1 portable routine is not implemented."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-portable-native-cases.json"
+        },
+        {
+          "address": "0x62f150",
+          "method": "Recovered.Animation.CharacterContexts.PlayingTimeOffset",
+          "coverage": "whole pointer-selection semantics represented by packet-relative offset",
+          "limits": [
+            "Returns-1 instead of native null; no animation time advancement."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-portable-native-cases.json"
+        },
+        {
+          "address": "0x62e040",
+          "method": "Recovered.Animation.CharacterContexts.DurationSeconds",
+          "coverage": "scalar sub-contract after model/header resolution",
+          "limits": [
+            "Native model/header lookup and global blend-out side effect excluded."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-portable-native-cases.json"
+        },
+        {
+          "address": "0x49c080",
+          "method": "Recovered.Animation.CharacterContexts.AdvanceHitContext",
+          "coverage": "bounded contexts21/90/95 through pre-KillParts frontier0x49c1c1",
+          "limits": [
+            "Arcade global0x93b324=0; side effects/debris/cleanup/pickups excluded.",
+            "No DieGround96 branch claimed."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-portable-native-cases.json"
+        },
+        {
+          "address": "0x4a54b0",
+          "method": "Recovered.Animation.CharacterContexts.SelectMovementAnimation",
+          "coverage": "whole selection with resolved clip/suit inputs",
+          "limits": [
+            "Does not load character/model assets or advance animation."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-context-native-verification.json"
+        },
+        {
+          "address": "0x4a7360",
+          "method": "Recovered.Animation.CharacterContexts.SelectJumpAnimation",
+          "coverage": "whole selection with supplied dt/fallDelay",
+          "limits": [
+            "Does not advance animation or perform collision."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-context-native-verification.json"
+        },
+        {
+          "address": "0x58dfa0",
+          "method": "Recovered.Animation.CharacterContexts.SelectBlockAnimation",
+          "coverage": "whole selector for PC registry-exact block IDs26/27/28",
+          "limits": [
+            "0x54fa60 RNG inlined; caller owns RNG state."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-context-native-verification.json"
+        },
+        {
+          "address": "0x62e650",
+          "method": "Recovered.Animation.CharacterContexts.ResetAnimationPacket",
+          "coverage": "whole packet state helper",
+          "limits": [
+            "Operates on packet embedded at PC object+8."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-portable-native-cases.json"
+        },
+        {
+          "address": "0x49e2b0",
+          "method": "Recovered.Animation.CharacterContexts.StartBlockJump",
+          "coverage": "all object writes; audio adapter excluded",
+          "limits": [
+            "Native oracle executes original audio no-sound branch."
+          ],
+          "sourceFile": "animation/CharacterContexts.cs",
+          "evidence": "reports/animation-context-native-verification.json"
+        },
+        {
+          "address": "0x41af70",
+          "method": "Recovered.Animation.RespawnState.ResetMovesWithoutClips",
+          "coverage": "whole function within absent-clip/no-suit/no-companion branch",
+          "limits": [
+            "Valid96-byte PC pad state and optional16-byte coin state.",
+            "No clips loaded; no suit or companion.",
+            "RNG/global tuning supplied; original vectors v000 andv010 are fixed."
+          ],
+          "sourceFile": "animation/RespawnState.cs",
+          "evidence": "reports/animation-reset-moves-native-verification.json"
+        },
+        {
+          "address": "0x5ca470",
+          "method": "Recovered.Animation.AnimationPlayback.EndFrame",
+          "coverage": "whole valid header helper with supplied byte image",
+          "limits": [
+            "ANI4/ANI5 u16 frame count plus first frame; legacy first float.",
+            "Host resolves source pointers; truncated headers rejected."
+          ],
+          "sourceFile": "animation/AnimationPlayback.cs",
+          "evidence": "reports/animation-playback-authored-verification.json"
+        },
+        {
+          "address": "0x62e760",
+          "method": "Recovered.Animation.AnimationPlayback.UpdateTimer",
+          "coverage": "whole finite timer with adapter-resolved clip/header",
+          "limits": [
+            "No NaN/infinite metadata or extreme loop iteration counts.",
+            "x87 intermediate rounding reconstructed explicitly; C# behavioral check pending."
+          ],
+          "sourceFile": "animation/AnimationPlayback.cs",
+          "evidence": "reports/animation-playback-native-verification.json"
+        },
+        {
+          "address": "0x62e9b0",
+          "method": "Recovered.Animation.AnimationPlayback.UpdatePacket",
+          "coverage": "whole finite72-byte packet state helper with resolved clip table",
+          "limits": [
+            "Caller context selection, callbacks, speed selection, weapon/footstep effects remain external.",
+            "Frame step in30Hz units; blend step inseconds.",
+            "No whole animation system or game-loop equivalence claimed."
+          ],
+          "sourceFile": "animation/AnimationPlayback.cs",
+          "evidence": "reports/animation-playback-native-verification.json"
+        },
+        {
+          "address": "0x415050",
+          "method": "Recovered.Animation.IdleScheduling.SelectBaseIdleAction",
+          "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+          "limits": [
+            "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+            "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+            "Original RNG and duration global side effects preserved; managed differential execution pending."
+          ],
+          "sourceFile": "animation/IdleScheduling.cs",
+          "evidence": "reports/animation-idle-native-verification.json"
+        },
+        {
+          "address": "0x4150d0",
+          "method": "Recovered.Animation.IdleScheduling.ResetIdleSchedule",
+          "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+          "limits": [
+            "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+            "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+            "Original RNG and duration global side effects preserved; managed differential execution pending."
+          ],
+          "sourceFile": "animation/IdleScheduling.cs",
+          "evidence": "reports/animation-idle-native-verification.json"
+        },
+        {
+          "address": "0x4151c0",
+          "method": "Recovered.Animation.IdleScheduling.ChooseIdleVariation",
+          "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+          "limits": [
+            "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+            "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+            "Original RNG and duration global side effects preserved; managed differential execution pending."
+          ],
+          "sourceFile": "animation/IdleScheduling.cs",
+          "evidence": "reports/animation-idle-native-verification.json"
+        },
+        {
+          "address": "0x415370",
+          "method": "Recovered.Animation.IdleScheduling.FinalizeIdleSelection",
+          "coverage": "whole finite helper with adapter-resolved character and clip inputs",
+          "limits": [
+            "Valid native action indices0..232; finite metadata; valid resolved model and definition tables.",
+            "Character flags/variant/throw state and duration mapping are supplied pointer-resolution facts.",
+            "Original RNG and duration global side effects preserved; managed differential execution pending."
+          ],
+          "sourceFile": "animation/IdleScheduling.cs",
+          "evidence": "reports/animation-idle-native-verification.json"
+        }
+      ],
+      "evidence": [
+        "reports/animation-context-contract.json",
+        "reports/animation-portable-native-cases.json",
+        "reports/animation-respawn-native-verification.json"
+      ]
+    },
+    {
+      "name": "gameplay",
+      "files": [
+        "gameplay/CompactConditions.cs",
+        "gameplay/Visibility.cs",
+        "gameplay/StateControl.cs",
+        "gameplay/Messages.cs",
+        "gameplay/ScriptRuntime.cs",
+        "gameplay/FlowRuntime.cs",
+        "gameplay/SpecialGizmo.cs"
+      ],
+      "mappings": [
+        {
+          "address": "0x5151c0",
+          "method": "CompactConditions.GotOpponent",
+          "coverage": "bounded condition reader",
+          "limits": [
+            "Tests projected script-creature/opponent-reference presence only; lifetime remains host-owned."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x515250",
+          "method": "CompactConditions.OpponentRange",
+          "coverage": "bounded condition reader",
+          "limits": [
+            "Cached range or max-finite-float sentinel; finite float32 fixture domain."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x4417d0",
+          "method": "CompactConditions.BindOffScreenTimer",
+          "coverage": "initializer with named-object adapter",
+          "limits": [
+            "Explicit native named resolver boundary; returns the resolved world object or null."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x441800",
+          "method": "CompactConditions.OffScreenTimer",
+          "coverage": "bounded reference-chain reader",
+          "limits": [
+            "Bound object overrides self reference chain; timer update and units remain external."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x442a80",
+          "method": "CompactConditions.FreePlay",
+          "coverage": "bounded global reader",
+          "limits": [
+            "Signed integer converted at SCP float32 storage boundary; host supplies global value."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x441f90",
+          "method": "CompactConditions.BindNumInSetAlive",
+          "coverage": "bounded initializer",
+          "limits": [
+            "ASCII myset and wrapped integer-prefix selector, restricted to native outputs0..16/-1."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x442000",
+          "method": "CompactConditions.NumInSetAlive",
+          "coverage": "bounded global reader with adapter",
+          "limits": [
+            "Literal/self-set selection and unsigned byte read; host owns count storage and population."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x5149b0",
+          "method": "CompactConditions.BindAlwaysTrue",
+          "coverage": "bounded numeric initializer",
+          "limits": [
+            "Default1 and native decimal-prefix operand, modeled as initialized float instead of raw EAX bits."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x5149f0",
+          "method": "CompactConditions.AlwaysTrue",
+          "coverage": "full scalar helper",
+          "limits": [
+            "Reads the resolved initialized float value at the SCP float32 storage boundary."
+          ],
+          "sourceFile": "gameplay/CompactConditions.cs"
+        },
+        {
+          "address": "0x464480",
+          "method": "VisibilityCommands.Scene",
+          "coverage": "bounded command projection with scene adapter",
+          "limits": [
+            "Original token order and scene-name selection; host owns current scene and renderer propagation."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x44cd40",
+          "method": "VisibilityCommands.SceneScript",
+          "coverage": "bounded command projection with scene adapter",
+          "limits": [
+            "First-call wrapper around the same scene visibility behavior."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x464530",
+          "method": "VisibilityCommands.Gizmo",
+          "coverage": "bounded command projection with physical adapters",
+          "limits": [
+            "Type/name lookup, false latch and registered visibility/deactivation order."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x456350",
+          "method": "VisibilityCommands.GizmoScript",
+          "coverage": "bounded command projection with physical adapters",
+          "limits": [
+            "First-call, immediate per-name lookup and whole-token FALSE semantics."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x559e20",
+          "method": "NamedGizmoRegistry.FindType",
+          "coverage": "bounded registry projection",
+          "limits": [
+            "Case-sensitive first type name match and -1 on failure; host owns type table."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x55a020",
+          "method": "NamedGizmoRegistry.Find",
+          "coverage": "bounded registry projection",
+          "limits": [
+            "Ordered first object-name match and all-type fallback; typeIndex==count is rejected."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x5cf5b0",
+          "method": "SceneVisibilityRegistry.Find",
+          "coverage": "bounded scene lookup projection",
+          "limits": [
+            "Host supplies current static/dynamic item order; dynamic external fallback is excluded."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x5cf510",
+          "method": "SceneVisibilityRegistry.Find",
+          "coverage": "bounded dynamic scene lookup projection",
+          "limits": [
+            "First case-insensitive dynamic instance match; native optional 5c1300 fallback is excluded."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x5cfc00",
+          "method": "SceneVisibilityItem.SetVisible",
+          "coverage": "bounded boolean visibility helper",
+          "limits": [
+            "Static/dynamic flag and secondary-byte projection; renderer propagation is host-owned."
+          ],
+          "sourceFile": "gameplay/Visibility.cs"
+        },
+        {
+          "address": "0x445740",
+          "method": "StateControl.SetScriptState",
+          "coverage": "bounded command projection with actor adapters",
+          "limits": [
+            "First-call self/group selection, token order and immediate base-script rebind; world registry and named-character callback are explicit adapters."
+          ],
+          "sourceFile": "gameplay/StateControl.cs"
+        },
+        {
+          "address": "0x442480",
+          "method": "MessageCommands.Bind",
+          "coverage": "helper with registry-lifetime adapter",
+          "limits": [
+            "Boolean/system, registry and name guards; binds the shared persistent record. Host owns allocation/lifetime."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x4424b0",
+          "method": "MessageCommands.Read",
+          "coverage": "full scalar helper",
+          "limits": [
+            "Reads a previously bound record value or returns zero for null."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x44b360",
+          "method": "MessageCommands.Set",
+          "coverage": "bounded command projection",
+          "limits": [
+            "Shipped ASCII arguments and finite scalar domain; original first-call, ordered token and mode behavior."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x44b680",
+          "method": "MessageCommands.Copy",
+          "coverage": "bounded command projection",
+          "limits": [
+            "Shipped ASCII from/to arguments and raw-bit copy with original lookup side effects."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x464f40",
+          "method": "MessageCommands.SetAI",
+          "coverage": "bounded command projection with host guards",
+          "limits": [
+            "Valid registry/name/capacity path; throws on failed lookup instead of native null dereference."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x5aac00",
+          "method": "MessageRegistry.Resolve",
+          "coverage": "bounded registry projection",
+          "limits": [
+            "Ordered case-insensitive first match, free-record transfer and retained value; host allocation and overlong prefixed-name guard."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x5147c0",
+          "method": "MessageNumbers.Resolve",
+          "coverage": "bounded operand helper",
+          "limits": [
+            "Four parameter names/values and native param-substring slot-zero behavior; ASCII operand domain."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x4f28e0",
+          "method": "MessageNumbers.Parse",
+          "coverage": "bounded numeric helper",
+          "limits": [
+            "Minus/decimal prefix parser with binary32 stores; finite authored operand fixtures."
+          ],
+          "sourceFile": "gameplay/Messages.cs"
+        },
+        {
+          "address": "0x52cc90",
+          "method": "ScriptMachine.Tick",
+          "coverage": "bounded scheduler projection",
+          "limits": [
+            "State/actions/interrupt/timer ordering; arbitrary condition evaluators, scratch-object effects and animation overrides are adapters."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x52caf0",
+          "method": "ScriptMachine.TryReferences; ScriptMachine.Tick",
+          "coverage": "bounded interrupt projection",
+          "limits": [
+            "Global-before-state lists, four-frame cap and reference eligibility; source loading and dynamic condition caches are external."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x514640",
+          "method": "ScriptMachine.Bind",
+          "coverage": "bounded binding projection",
+          "limits": [
+            "Resolved ScriptDefinition/state and parameter masks; script loading and full opaque scratch reset remain external."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x5145a0",
+          "method": "ScriptMachine.EnterState",
+          "coverage": "state helper with condition-bank adapter",
+          "limits": [
+            "Blocked-message preservation, current/pending state and action entry."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x514550",
+          "method": "ScriptMachine.Advance",
+          "coverage": "full linked-action helper",
+          "limits": [
+            "Resolved action links replace raw pointers; first-call flag is preserved."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x512fc0",
+          "method": "ScriptDefinition.Find",
+          "coverage": "bounded name lookup",
+          "limits": [
+            "Ordered first match in shipped ASCII name domain."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x5157d0",
+          "method": "ScriptCommands.SetState",
+          "coverage": "bounded command projection",
+          "limits": [
+            "Actual command argument roles preserved; missing-state error stubs are omitted."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x5159a0",
+          "method": "ScriptCommands.IdleSeconds; ScriptCommands.IdleFrames; ScriptCommands.IdleRange; ScriptCommands.IdleTick",
+          "coverage": "bounded evaluated-operand projection",
+          "limits": [
+            "Core wait behavior only; string/expression parsing and arbitrary mixed argument forms remain external."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x515890",
+          "method": "ScriptCommands.ResetTimer; ScriptCommands.ResetTimerRange",
+          "coverage": "bounded evaluated-operand projection",
+          "limits": [
+            "Single constant and two-draw min/max forms; string/expression parsing remains external."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x514990",
+          "method": "ScriptCommands.Timer",
+          "coverage": "full scalar helper",
+          "limits": [
+            "Reads the resolved packet timer."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x5b9dd0",
+          "method": "ScriptRandom.Next",
+          "coverage": "full scalar helper",
+          "limits": [
+            "32-bit LCG and low-mantissa float mapping; host owns the separate shared state."
+          ],
+          "sourceFile": "gameplay/ScriptRuntime.cs"
+        },
+        {
+          "address": "0x54fa60",
+          "method": "QRandom.Next",
+          "coverage": "full scalar helper",
+          "limits": [
+            "Exact unchecked integer recurrence; all 16-bit initial states have native fixtures."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x5b0400",
+          "method": "FlowTimer.Update",
+          "coverage": "bounded projection",
+          "limits": [
+            "One finite-valued timer record; world timer-array iteration remains host-owned."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x5b0470",
+          "method": "FlowTimer.Output",
+          "coverage": "full scalar helper",
+          "limits": [
+            "Enabled and expired predicate; valid bound timer object is required."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x5b04b0",
+          "method": "FlowTimer.Activate",
+          "coverage": "helper with numeric qualification",
+          "limits": [
+            "Shared RNG adapter; random duration uses binary64 intermediates. Exact compiled differential checks remain pending."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x5b0070",
+          "method": "FlowRandom.Output",
+          "coverage": "bounded projection",
+          "limits": [
+            "Valid object and byte-sized GIT output-index domain."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x5b00b0",
+          "method": "FlowRandom.Activate; QRandom.PercentDraw",
+          "coverage": "helper with host bounds",
+          "limits": [
+            "Eight weights maximum; integer percentile expression models the PC x87 endpoint behavior; invalid missing RNG fails explicitly."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x55a250",
+          "method": "GizmoCallbacks.SetActive",
+          "coverage": "helper with adapters",
+          "limits": [
+            "Registered valid-object callback dispatch is represented by nullable delegates; registry/index checks are host-owned."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x55a2b0",
+          "method": "GizmoCallbacks.SetVisible",
+          "coverage": "helper with adapters",
+          "limits": [
+            "Visibility callback and deactivate-before-hide order; registry/index checks are host-owned."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x55b0e0",
+          "method": "GizmoCallbacks.SetReverse",
+          "coverage": "helper with adapters",
+          "limits": [
+            "Reverse query/mutation and conditional visibility; valid bound callbacks replace registry lookup."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59f740",
+          "method": "FlowGraph.Tick",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Native runtime node order and byte stamps; operation-budget guard is an intentional host addition."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59e090",
+          "method": "FlowGraph.Process",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Scheduler branches, cleanup and callback adapters; not a source-GIT loader or every physical gizmo implementation."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59f800",
+          "method": "FlowGraph.Process; FlowGraph.AllParents; FlowGraph.Enabled",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Gizmo activation process branch integrated into Process; valid bound graph."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59f8d0",
+          "method": "FlowGraph.Process; FlowGraph.AllParents",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Action process branch integrated into Process; command callbacks remain adapters."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59e030",
+          "method": "FlowGraph.Process",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Ordered non-null action delegates replace linked action records and argument decoding."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59d930",
+          "method": "FlowGraph.ReadOutput; FlowGraph.Enabled",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Gizmo output branch and mode gates; physical output callbacks remain adapters."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59e080",
+          "method": "FlowGraph.ReadOutput",
+          "coverage": "full scalar helper",
+          "limits": [
+            "Action output branch returns completion flag 2."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59ddd0",
+          "method": "FlowGraph.ReadOutput",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Monitored-condition branch temporarily sets 0x400 and restores that bit."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59db00",
+          "method": "FlowGraph.ConditionProcess",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "All six condition types on resolved inputs; original null condition-data representation maps to All."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59da60",
+          "method": "FlowGraph.ResetWalk",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Descendant stamp/reset propagation with original callback semantics and host operation budget."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59de40",
+          "method": "FlowGraph.Cleanup",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Pending parent barriers, visibility/deactivation callbacks and recursive release."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59df70",
+          "method": "FlowGraph.Monitor",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Includes original first-output-index reuse; actual object reverse callbacks remain adapters."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59d9d0",
+          "method": "FlowGraph.ReturnWalk",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Cycle-return counting and byte visit marks; valid node indices with host budget."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59da30",
+          "method": "FlowGraph.CountLoopInputs",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Loop counting wrapper includes increment performed by native caller; custom EDI ABI is removed."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59f4e0",
+          "method": "FlowGraph.Initialize",
+          "coverage": "bounded projection with loader adapter",
+          "limits": [
+            "Fresh and saved-state branches; native 0x59f2a0 name rebinding is explicitly external, not ported."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59d8e0",
+          "method": "FlowGraph.Initialize",
+          "coverage": "bounded graph projection",
+          "limits": [
+            "Fresh gizmo initialization deactivation branch integrated into Initialize."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x59f3b0",
+          "method": "FlowGraph.Save",
+          "coverage": "helper with host bounds",
+          "limits": [
+            "Exact 81-word state encoding on at most 512 nodes; larger input rejected instead of native overwrite."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x464760",
+          "method": "FlowGraph.TurnOnFlowBox",
+          "coverage": "bounded command projection",
+          "limits": [
+            "Shipped ASCII argument/name domain; ordinal-ignore-case strings replace native text helper."
+          ],
+          "sourceFile": "gameplay/FlowRuntime.cs"
+        },
+        {
+          "address": "0x5ae450",
+          "method": "SpecialGizmo.Activate",
+          "coverage": "helper with scene-animation adapter",
+          "limits": [
+            "Actual animation implementation is ISceneAnimation; valid bound object semantics only."
+          ],
+          "sourceFile": "gameplay/SpecialGizmo.cs"
+        },
+        {
+          "address": "0x5ae4a0",
+          "method": "SpecialGizmo.Reverse",
+          "coverage": "helper with scene-animation adapter",
+          "limits": [
+            "Query/mutate and flags reconstructed; ISceneAnimation implements physical playback."
+          ],
+          "sourceFile": "gameplay/SpecialGizmo.cs"
+        },
+        {
+          "address": "0x5ae520",
+          "method": "SpecialGizmo.Callbacks",
+          "coverage": "callback binding with adapter",
+          "limits": [
+            "Visibility delegate forwards to ISceneAnimation.SetVisibility; GameAnimSet and instance rendering are not ported here."
+          ],
+          "sourceFile": "gameplay/SpecialGizmo.cs"
+        }
+      ],
+      "evidence": [
+        "reports/gameplay-source-function-map.json",
+        "reports/gameplay-reconstruction.json"
+      ]
+    },
+    {
+      "name": "geometry",
+      "files": [
+        "geometry/MaterialUv.cs",
+        "geometry/SceneSubmission.cs",
+        "geometry/Clipping.cs",
+        "geometry/PortalSelection.cs"
+      ],
+      "mappings": [
+        {
+          "address": "0x5dfbd0",
+          "method": "MaterialUv.Advance",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed memberships replace pointer chain; mutex excluded; finite signed32 conversion domain."
+          ],
+          "sourceFile": "geometry/MaterialUv.cs"
+        },
+        {
+          "address": "0x601330",
+          "method": "MaterialUv.Tick",
+          "coverage": "whole-wrapper-contract",
+          "limits": [
+            "Caller-owned state replaces globals; includes recovered6012a0 tail."
+          ],
+          "sourceFile": "geometry/MaterialUv.cs"
+        },
+        {
+          "address": "0x6012a0",
+          "method": "MaterialUv.Tick reset/time tail",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed registered scenes replace global pointer array."
+          ],
+          "sourceFile": "geometry/MaterialUv.cs"
+        },
+        {
+          "address": "0x5f5380",
+          "method": "SceneSubmission.EvaluateVisibility / SelectLod",
+          "coverage": "bounded-helper-projection",
+          "limits": [
+            "Transient allocator replaced by managed alpha array; frustum supplied by caller; optional debug occlusion excluded; finite input domain. Does not implement scene visibility evaluation."
+          ],
+          "sourceFile": "geometry/SceneSubmission.cs"
+        },
+        {
+          "address": "0x5df7b0",
+          "method": "SceneSubmission.DistanceFade",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Finite nonnegative distance input domain; host sqrt roundedfloat32; original degenerate output NaN retained; compiled CLR equivalence pending."
+          ],
+          "sourceFile": "geometry/SceneSubmission.cs"
+        },
+        {
+          "address": "0x5df910",
+          "method": "SceneSubmission.PatchClipControls",
+          "coverage": "whole-helper-contract-projection",
+          "limits": [
+            "Decoded clip indices and managed item byte array replace pointers; bounds checks added."
+          ],
+          "sourceFile": "geometry/SceneSubmission.cs"
+        },
+        {
+          "address": "0x5de060",
+          "method": "SceneSubmission.InsertSortRecord",
+          "coverage": "whole-helper-contract-projection",
+          "limits": [
+            "Managed ordered collection replaces linked list/counter; tie order retained."
+          ],
+          "sourceFile": "geometry/SceneSubmission.cs"
+        },
+        {
+          "address": "0x5ded80",
+          "method": "SceneSubmission.ApplyPriorityBias",
+          "coverage": "small-extracted-branch",
+          "limits": [
+            "Only wrapped key bias arithmetic; registration helper is not reconstructed in C#."
+          ],
+          "sourceFile": "geometry/SceneSubmission.cs"
+        },
+        {
+          "address": "0x603ad0",
+          "method": "SceneSubmission.ClampInstanceAlpha",
+          "coverage": "extracted-pure-result",
+          "limits": [
+            "Exact clamp result; pointer dereference/store moved to caller."
+          ],
+          "sourceFile": "geometry/SceneSubmission.cs"
+        },
+        {
+          "address": "0x5d69a0",
+          "method": "NativeFrustum.Classify",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Prepared native plane block replaces globals; far override local instead of temporary global store; finite inputs, nonnegative extents. Shared software x87, compiled execution pending."
+          ],
+          "sourceFile": "geometry/Clipping.cs"
+        },
+        {
+          "address": "0x5d9220",
+          "method": "PortalPredicates.ContainsPoint",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed finite plane list/point replace room pointers; maximum255planes; shared software x87, compiled execution pending."
+          ],
+          "sourceFile": "geometry/Clipping.cs"
+        },
+        {
+          "address": "0x5d9ce0",
+          "method": "PortalPredicates.ClassifyPortal",
+          "coverage": "bounded-helper-projection",
+          "limits": [
+            "Uses recovered recursive caller contract: current room is endpoint, target is other endpoint. Managed finite vertex/plane/priority arrays; count signed16; active bit belongs to caller. Compiled execution pending."
+          ],
+          "sourceFile": "geometry/Clipping.cs"
+        },
+        {
+          "address": "0x5d92b0",
+          "method": "PortalSelection.SelectRoom",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed finite room/link arrays replace pointers; preserves native old-candidate priority/flag ordering and first-shared-portal side. At most six stored overlaps: seventh native store corrupts return address, so managed code throws. Empty debug hook has no effect; compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalSelection.cs"
+        }
+      ],
+      "evidence": [
+        "reports/geometry-uv-findings.txt",
+        "reports/geometry-uv-native-validation.json"
+      ]
+    },
+    {
+      "name": "frame",
+      "files": [
+        "frame/StateTransitions.cs"
+      ],
+      "mappings": [
+        {
+          "address": "0x491d50",
+          "method": "FrameTransitions.Advance",
+          "coverage": "transition tail only, from 0x49267a; opaque level records resolved by host",
+          "sourceFile": "frame/StateTransitions.cs"
+        },
+        {
+          "address": "0x5b1220",
+          "method": "TransitionState.Select",
+          "coverage": "whole helper for valid four-slot object; invalid indices rejected by host",
+          "sourceFile": "frame/StateTransitions.cs"
+        },
+        {
+          "address": "0x5b11b0",
+          "method": "TransitionState.Begin",
+          "coverage": "whole state helper with virtual callback adapter",
+          "sourceFile": "frame/StateTransitions.cs"
+        }
+      ],
+      "evidence": [
+        "reports/native-frame-dispatch.json",
+        "reports/native-frame-branches.json"
+      ]
+    },
+    {
+      "name": "input",
+      "files": [
+        "input/ControllerInput.cs"
+      ],
+      "mappings": [
+        {
+          "address": "0x6d7d80",
+          "method": "ControllerInput.MapDefaultXbox",
+          "coverage": "built-in wired/wireless Xbox mapping, zero smoothing; excludes remapping and device APIs",
+          "sourceFile": "input/ControllerInput.cs"
+        },
+        {
+          "address": "0x6d4880",
+          "method": "ControllerInput.CircleToSquare",
+          "coverage": "scalar transform with explicit float32 stores; rare unsampled x87 boundary differences remain unexcluded",
+          "sourceFile": "input/ControllerInput.cs"
+        },
+        {
+          "address": "0x4f40a0",
+          "method": "ControllerInput.ScaledAxis",
+          "coverage": "whole per-axis arithmetic on signed byte axes including inverted-Y128; valid thresholds0..127",
+          "sourceFile": "input/ControllerInput.cs"
+        },
+        {
+          "address": "0x4f4110",
+          "method": "ControllerInput.Deadzone",
+          "coverage": "both branches on bounded signed byte axes and thresholds0..127; original helper uses custom register ABI",
+          "sourceFile": "input/ControllerInput.cs"
+        },
+        {
+          "address": "0x4f4280",
+          "method": "ControllerInput.DirectionResponse",
+          "coverage": "original five-row step response, including infinite inputs; NaN excluded",
+          "sourceFile": "input/ControllerInput.cs"
+        },
+        {
+          "address": "0x4f4370",
+          "method": "ControllerInput.ProcessPad",
+          "coverage": "whole132-byte state projection, finite bias/frame and non-NaN ramps; valid deadzones; device loading excluded",
+          "sourceFile": "input/ControllerInput.cs"
+        },
+        {
+          "address": "0x54b3d0",
+          "method": "ControllerInput.MovementAngle",
+          "coverage": "whole arithmetic selection after explicit socket resolution, returns unwrapped uint32",
+          "sourceFile": "input/ControllerInput.cs"
+        }
+      ],
+      "evidence": [
+        "reports/native-controller-state.json",
+        "reports/native-input-emulation.json",
+        "reports/native-motion-emulation.json",
+        "reports/native-stick-emulation.json"
+      ]
+    }
+  ],
+  "harnessFiles": [
+    "RecoveredSourceVerify.cs",
+    "combat/CombatDifferential.cs",
+    "animation/DifferentialHarness.cs",
+    "../tools/gameplay-portable-verify.cs",
+    "geometry/harness/Program.cs",
+    "frame/FrameDifferential.cs",
+    "../tools/gameplay-message-portable-verify.cs",
+    "input/InputDifferential.cs",
+    "../tools/gameplay-state-command-portable-verify.cs",
+    "../tools/gameplay-visibility-portable-verify.cs",
+    "combat/KillDifferential.cs",
+    "../tools/gameplay-compact-condition-portable-verify.cs",
+    "geometry/harness/PortalSelectionHarness.cs"
+  ],
+  "verificationStatus": "Library and unified verifier compile. Windows denies new managed executables; initial combat subset14553 passed before the updated verifier became unavailable. Native original-function tests remain available.",
+  "excluded": [
+    "Full game executable/bootstrap",
+    "World/level runtime adapters",
+    "Full ObjHitObj and player death effects",
+    "Renderer/GPU implementation",
+    "Audio backend",
+    "Full source-level gameplay equivalence",
+    "Unity/Quest project"
+  ],
+  "updated": "2026-10-12T19:46:42.421Z"
+}

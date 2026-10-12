@@ -1,0 +1,75 @@
+GAMEPLAY AND DATA RECOVERY - LEGO STAR WARS: THE COMPLETE SAGA (PC)
+Generated 2026-10-12T16:55:45.568Z
+
+Scope and confidence
+Work combines static reverse engineering with isolated original-code emulation on synthetic memory in a separate output tree. The original installed game and extracted carriers were not edited by these tools. This is a recoverable data catalog and collision export, not a gameplay interpreter or Unity project. Structural consumption to EOF does not establish complete field meaning, runtime behavior, load precedence, or visual equivalence.
+Counts below include shipped alternates, backups, obsolete source and cutscene variants. A registry row is not necessarily a distinct playable character or level.
+
+Primary artifacts
+gameplay-binary/index.json plus data/*.json.gz: bounded AI2/TER/GIZ records with source hashes, offsets and unknown fields.
+gameplay-ancillary/index.json plus data/*.json.gz: PTL/PAR/RTL/BUR/SFX/GRA/FSP/SPL/ATS/FPK data.
+gameplay-catalog/: character configuration, load plans, level/area registries, doors/cameras, SCP states/actions/conditions, GIT directed graphs, package members and AI crosslinks. Source syntax trees retain lines/text and malformed grammar diagnostics.
+gameplay-collision/index.json and per-carrier collision.gltf, collision.bin, collision-metadata.json.gz: native-coordinate initial collision surfaces with source face offsets and properties, and moving-platform scene bindings.
+gameplay-media/: original WAV/OGG/BIK inventory, AUDIO.CFG samples/groups, MUSIC.CFG track modes/transition markers, and actual text references.
+gameplay-text/: all 1187 text/CFG/CSV/ATS carriers preserved as decoded lines with original SHA256 and encoding. Nine language tables contain 11527 records; 55 literal script hint references link to translations. Blank IDs and malformed/unquoted/multiline strings remain explicitly tagged.
+gameplay-crosslinks/rows.json.gz: 41815 explicit source-to-data name relationships. Each preserves source line/offset and native target index/address. Multiple matches and unmatched names are retained; none are silently guessed.
+gameplay-validation.json: all checks pass; 1644 input hash checks, 4853 GIZ chunk bound checks, 72 malformed-input checks and all 269 collision glTFs validated.
+gameplay-native-dispatch/: PC registered/looked-up native table entries joined to SCP/GIT usages; separates actual dispatch bindings from broad name-pointer candidates.
+gameplay-dispatch-contract.json/txt: native lookup precedence, SCP condition/action callbacks and GIT scheduler/predicates, with all 38 unbound names and all parser warnings. 3,258 original-code checks pass across lookup, GIT predicates and SCP condition/action scheduling.
+gameplay-navigation/: native meaning of every AI2 base route cell, graph connectivity and source offsets. All 858,337 next-hop/direction cases and 4,406 route-distance cases passed original-PC execution.
+gameplay-native-world.json/txt: PC navigation layouts, collision query/response, character position/velocity commit, moving-platform binding and carry proposal contracts. 7,942 original terrain checks plus 1,600 proposed-platform-carry checks pass. Live swept-edge and support-contact acceptance remain explicit gaps.
+gameplay-save-format-tests.json and gameplay-native-contract-tests.json: bounded PC save decoder tested with synthetic data, plus original x86 checksum/audio name hash/group selection verification. See gameplay-native-save-audio.json/txt for reconstruction contracts.
+gameplay-coverage.json: complete extension-level map of all 12,459 recovered archive entries with assigned owners. Rendering, skeletal animation, CU2/ANM, font/texture/RAW recovery belongs to sibling reports.
+
+Recovered gameplay data
+AI2: 173/173 carriers to EOF; 10,051 navigation points, 10,301 connections, 425 triggers, 2,945 locators, 270 locator sets, 1,410 creature placements and 743 additional spatial records. Base routing matrices are decoded and verified against the PC: each byte is an ordinal into the current node adjacency array, with 255 meaning no route. All 692,774 valid base routes reach their destinations without missing hops or cycles. Unknown flags and subroute behavior remain separate; layout of additional spatial records follows a commented BrickBench candidate and is explicitly tentative.
+TER: 269/269 carriers to EOF; 19,163 collision objects, 645,546 face records, 8,137 moving-platform records, 361 infinite walls. 101 carriers contain bounded 68-byte auxiliary records whose meanings remain unknown.
+GIZ: 251 carriers inspected. 248 complete containers, two zero-filled placeholders, one shipped truncated carrier. All available complete payloads decode with zero opaque tail bytes: 25,381 definitions and 7,039 blowup instances. The truncated PLOPSARLACCPIT_C.GIZ ends in a declared 3,094-byte chunk with only 1,100 bytes available; incomplete bytes are retained and the source is not repaired. Detailed path and extent are in the index.
+PTL: 229 carriers, 4,210 particle types and 3,277 placements, including emission timing, colour/alpha/size/rotation curves, UVs, clip/torus/reflection parameters and sound names. PAR: 112 carriers, 1,224 debris types, 56 emitters, object variants, trails, lifetime/gravity/bounce/velocity fields and sound modes. All consume EOF.
+RTL: 290 carriers, 36,736 light slots (1,463 nonzero type), 9,280 fog slots, raw direction/colour/radius/blend/modifier values. Slot presence is not proof a light is enabled at runtime. BUR: 189 carriers, 49 burnout positions plus postprocess parameters; the three 40-byte version-2 files have five additional floats where upstream Android loader reads six. Those parameter labels are positional candidates.
+SFX: 72 carriers, 2,130 scene-object bindings and frame-based audio events. One NEW_TOWN.SFX is big endian while the other 71 are little endian; both layouts validate exactly.
+GRA: 17 carriers decode clumps, special-object names, sizes/flags/seeds/fade distances, individual placements and vector arrays. FSP: six carriers contain 278 flight splines with four-component points, parameters, stored distances where present. SPL: three editor-spline carriers contain seven named point lists. ATS: 31 readable texture-animation scripts retained with labels and instructions; geometry sibling reports own native ATS execution verification and texture-animation links.
+
+Configuration and behavior source
+319 character registry rows; 342 configs; 90 txt_file directives; 3,197 animation blocks. 88 redirect targets resolve in the character's own directory. CLOUDCITYCITIZEN/CANTINAALIENS.TXT:1 and SANSWEET/GHOSTBENKENOBI.TXT:1 lack local targets; global basename matches are candidates only.
+PC native 0x584640 / 0x589410 / 0x589ac0 corroborate single relative redirect followed by optional second pass on the original. This is not recursive inheritance. loadPlan records the actual pass sequence; overlayCandidate remains a convenience hypothesis because keyword handlers have effects beyond dictionary replacement. No observed chain exceeds two files.
+350 level registry rows, 70 area rows, 568 level/area configs, 843 doors and 846 camera blocks. Camera constraints and door destinations remain source data; there is no reconstructed camera runtime.
+859 SCP files contain 4,523 states, 214 ReferenceScript blocks and 443 command identifiers. Three script links have no recovered target: PARTY.SCP in KAMINO_D asks for Global Script; C3PO.SCP in ANEWHOPE_A/B asks for Global GenericDefend. These may be unused/stale. The source graph parser preserves 241 malformed quote/block warnings rather than silently correcting game data.
+166 GIT files contain 11,237 FlowBox/Collapse nodes; every explicit child ID has a node in its file. Typed GIZ joins resolve 6,993/7,499 named references; 328 timer/random nodes are created inline according to upstream gizflow.cpp:136-140. Missing source links are reported, not treated automatically as game defects.
+All 168 PAK containers parse 2,376 members, each byte-identical to its loose counterpart. Both FPK containers parse 591 members, also all byte-identical. Package precedence may differ at runtime but there is no alternate byte content hidden in those recovered packages.
+
+Collision and media
+All 269 TER carriers exported 1240388 triangles in 19,163 glTF meshes. Source polygon ordering is p1,p2,p3 and p2,p4,p3; the single-triangle normal sentinel is recognized. Native axes/units remain unchanged. Infinite walls are finite line-strip visualizations of stored points; vertical collision extent is not invented.
+7780/8,137 moving collider records bind via scene INID[platformIndex] to special-object boundsIndex and matrix. 357 unresolved records retain their terrain translation with an explicit uncertainty flag. These include alternate .TXT/.CUT/.NUP/_360 carrier names and three exact companions without a matching bounds link. Exported transforms are an initial snapshot, not moving-platform behavior.
+Media: 1456 files (1147 WAV, 307 OGG, 2 BIK), unchanged. 1,130 sample definitions, 100 groups, 200 music tracks and 88 IDs. Exact relative paths resolve 1,126 samples and 197 music tracks; three additional tracks are unique-basename candidates and four sample paths remain unresolved. 3369 actual text references are cataloged, and 2,866 ancillary binary sound references match sample definitions (two duplicate-name ambiguities).
+English localization IDs 600/601/602 at STUFF/TEXT/ENGLISH.TXT:744-746 identify logical TOGGLELEFT/TOGGLERIGHT, SPECIAL and TAG actions. Negotiations LEVEL1.SCP:47 sets hint 602. These are logical action names, not proof of hardware button mapping. Native input mapping is documented separately by the main investigation.
+
+Primary sources and independent corroboration
+BrickBench 3d149673e1f70dc04425ff30fcc00ec2194d2743: src/com/opengg/loader/game/nu2/ai/AI2Loader.java, terrain/TerrainLoader.java and TerrainGroupComponent.java, gizmo/GizLoader.java. https://github.com/BrickBench/BrickBench/tree/3d149673e1f70dc04425ff30fcc00ec2194d2743
+OpenSaga ab97911d162d896d8f4b20e9df8e7d23a2f81557 targets Android x86, not this PC executable. Its semantic names are cross-build evidence, corroborated here by exact PC carrier layout and selected PC pseudocode, without assuming all runtime semantics are identical. https://github.com/opensagadev/saga/tree/ab97911d162d896d8f4b20e9df8e7d23a2f81557
+OpenSaga loaders: legoapi/audio/specialsfx.cpp:106 (SFX), :361 (PTL types); gameapi/edtools/edtoolsall_plain.cpp:1977 (GRA), :2705 (PTL page); legoapi/render/fx/parts.cpp:2546 (PAR); legoapi/render/core/rtl.h:13 and rtl.c:2328 (RTL/BUR); legoapi/render/fx/edsplines.cpp:246 (FSP); gameapi/edtools/edtoolsall.cpp:2978 (SPL). Remaining GIZ loaders and their source paths are embedded per decoded chunk.
+Selected PC-native evidence and exact local paths: gameplay-native-evidence.json. Ghidra pseudocode is reconstructed analysis, not recovered original C/C++.
+
+Reproduction from workspace root (Node 24, no installed game execution)
+node reverse-engineering/tools/gameplay-recover-binary.mjs
+node reverse-engineering/tools/gameplay-recover-ancillary.mjs
+node reverse-engineering/tools/gameplay-catalog.mjs
+node reverse-engineering/tools/gameplay-media.mjs
+node reverse-engineering/tools/gameplay-text.mjs
+node reverse-engineering/tools/gameplay-collision.mjs
+node reverse-engineering/tools/gameplay-crosslinks.mjs
+node reverse-engineering/tools/gameplay-validate.mjs
+node reverse-engineering/tools/gameplay-report.mjs
+node reverse-engineering/tools/gameplay-native-dispatch.mjs
+python reverse-engineering/tools/gameplay-dispatch-native-verify.py
+python reverse-engineering/tools/gameplay-scp-runtime-verify.py
+node reverse-engineering/tools/gameplay-dispatch-contract.mjs
+node reverse-engineering/tools/gameplay-navigation.mjs
+python reverse-engineering/tools/gameplay-navigation-native-verify.py
+python reverse-engineering/tools/gameplay-terrain-native-verify.py
+python reverse-engineering/tools/gameplay-terrain-platform-probe.py
+node reverse-engineering/tools/gameplay-native-world-report.mjs
+Collision/crosslinks require sibling reports/geometry-scene-data to exist. Source hash verification of original DATs and extraction bounds is the main investigation's verification-full.json.
+
+Outstanding behavior, not hidden by coverage counts
+Individual gameplay command implementations and inter-script interrupts/state transitions; live gizmo outputs and GIT reset propagation; full swept collision edges/vertices and moving-platform support acceptance; AI subroutes/mask changes; complete event/animation coordination; particle/renderer/material semantics; complete audio backend mixing and randomized pitch/volume; unresolved source flags and numeric fields; full saving/progression/co-op and native subsystem interactions. The native lookup, bounded script execution, base navigation, collision math, save layout/checksum and complete AUDIO.CFG parsing contracts now have their own evidence and tests. A full equivalent game has not been reconstructed or tested here.

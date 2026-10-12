@@ -1,0 +1,29 @@
+//Hints only in here.
+state Base {
+	Conditions {
+		//605 "You can regain control of your other characters at any time by moving up to them and pressing TRIANGLE."
+		if FreePlay == 0 and
+		if HintAvailable "613" == 1 goto SetHintOn_613
+	}
+	Actions {	
+	}
+}
+
+state SetHint_Off {
+	Conditions {
+	}
+	Actions {
+		SetHint "id=-1"	
+		SetState "Base"	
+	}
+}
+
+//604 "To defend yourself, hold down [button]. To deflect a laser bolt back to where it came from, press SQUARE as the bolt is about to hit you."
+state SetHintOn_613 {
+	Conditions {
+	}
+	Actions {
+		SetHint "id=613"	
+		SetState "Base"	
+	}
+}

@@ -1,0 +1,62 @@
+PC COMPACT CONDITION CONTRACT
+
+9096 original-PC checks, zero mismatches; 1888 source occurrences and 1879 original comparisons.
+Original six condition functions, three initializers, integer/float parsers and original condition evaluator. Synthetic object/packet fields and global values. OffScreenTimer named lookup alone is an explicit callback adapter; no condition body or comparator is replaced.
+
+GotOpponent
+Return 1 when script-creature pointer and its opponent reference at +0xe4 are nonzero, otherwise 0. The reference itself is not dereferenced or checked for a live target. A fixture with an unmapped nonzero pointer confirms that only presence is tested.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_5151c0.c:10 if ((param_3 != 0) && (*(int *)(param_3 + 0xe4) != 0)) {
+
+OpponentRange
+With a nonzero script-creature and opponent reference+0xe4, return the stored float at creature+0xe8. Otherwise return the largest finite positive float32, bits0x7f7fffff. This is a cached field read, not distance computation or validation of the referenced opponent.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_515250.c:11 return (float10)*(float *)(param_3 + 0xe8);
+reverse-engineering/decompiled/corpus-expanded/FUN_515250.c:13 return (float10)3.4028235e+38;
+
+OffScreenTimer
+Initializer 0x4417d0 calls global named-character callback0x923904 when both operand pointer and callback are nonzero. If a reference is returned, it stores that reference's first pointer as the bound object. The reader prefers this bound object; if null, it follows creature+0xd0 then reference+0 to the current world object. Failed/null links return zero. A failed named binding therefore falls back to self. A valid object returns its float at +0xf10. Initialization binds a raw object pointer; lifetime and rebinding are external.
+No shipped OffScreenTimer occurrence supplies a quoted initializer operand. Synthetic named cases validate callback/binding rules, not the engine alias resolver. Timer accumulation and units are not established here.
+reverse-engineering/decompiled/corpus-expanded/FUN_4417d0.c:12 if ((param_2 != 0) && (DAT_00923904 != (code *)0x0)) {
+reverse-engineering/decompiled/corpus-expanded/FUN_4417d0.c:15 return *puVar1;
+reverse-engineering/decompiled/corpus-expanded/FUN_441800.c:12 (((param_3 == 0 || (*(int **)(param_3 + 0xd0) == (int *)0x0)) ||
+reverse-engineering/decompiled/corpus-expanded/FUN_441800.c:16 return (float10)*(float *)(param_5 + 0xf10);
+
+FreePlay
+Read global0x93b2a4 as a signed 32-bit integer using x87 FILD. It is not normalized to a boolean. The native SCP evaluator stores the returned extended value to float32; the portable API exposes that storage boundary. Fixtures include negative values, 0/1/2, int32 extremes and rounding around2^24.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_442a80.c:10 return (float10)DAT_0093b2a4;
+
+NumInSetAlive
+Initializer accepts case-insensitive whole-token myset as sentinel-1. Otherwise parse an optional minus and a decimal integer prefix with unchecked 32-bit wrap; only resulting values1..16 survive, and all others become0. The condition replaces sentinel-1 with unsigned packet byte+0xb0. Selector0 returns0 without reading the count region. Otherwise return the unsigned byte at0x876847+selector as a float. Literal selectors1..16 and every byte value were verified; myset was verified across all256 packet-byte indices.
+The unchecked myset index is native behavior, not evidence that the actual global count-table allocation has256 elements. The source uses an explicit byte-index read adapter instead of inventing storage layout or update logic.
+reverse-engineering/decompiled/corpus-expanded/FUN_441f90.c:13 iVar1 = FUN_004f8b10(param_2,"myset");
+reverse-engineering/decompiled/corpus-expanded/FUN_441f90.c:18 if (iVar1 - 1U < 0x10) {
+reverse-engineering/decompiled/corpus-expanded/FUN_442000.c:12 param_5 = (uint)*(byte *)(param_2 + 0xb0);
+reverse-engineering/decompiled/corpus-expanded/FUN_442000.c:15 return (float10)(byte)(&DAT_00876847)[param_5];
+
+AlwaysTrue
+Initializer defaults to float1 for null or empty input. A nonempty input is parsed by native decimal-prefix helper0x4f28e0. The result's raw float bits are returned in EAX, stored in the condition initializer slot, then the condition reader interprets argument five as a float. The name does not make this reader unconditionally return1. All236 authored occurrences have no quoted initializer operand.
+
+reverse-engineering/decompiled/corpus-expanded/FUN_5149b0.c:14 local_4 = 1.0;
+reverse-engineering/decompiled/corpus-expanded/FUN_5149b0.c:18 fVar2 = (float10)FUN_004f28e0(param_2);
+reverse-engineering/decompiled/corpus-expanded/FUN_5149f0.c:10 float in_stack_00000014;
+
+Core library and comparison harness compile with installed C#5 compiler. Managed execution/differential comparison remains pending.
+
+Comparison/source omissions
+reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/AI_POD.SCP:25 if AlwaysTrue == 1 gotoUpdate
+reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/DROIDEKA.SCP:81 if OpponentRange < shootrange goto Engage
+reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/DROIDEKA.SCP:91 if OpponentRange > shootrange goto Guard
+reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/AI/BLOCK.SCP:6 if OpponentRange < shootrange goto Engage
+reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/AI/BLOCK.SCP:18 if OpponentRange > shootrange goto Base
+reverse-engineering/extracted/SCRIPTS/NATIVE.SCP:89 if OpponentRange < JavelinRange goto GunFight
+reverse-engineering/extracted/SCRIPTS/NATIVE.SCP:100 if OpponentRange < FistFightRange goto FistFight
+reverse-engineering/extracted/SCRIPTS/NATIVE.SCP:111 if OpponentRange > JavelinRange goto StopFistFight
+reverse-engineering/extracted/SCRIPTS/NATIVE.SCP:124 if OpponentRange > JavelinRange goto GunFight
+
+World global updates, reference lifetime, range computation, off-screen timer accumulation and alive-count population are external input contracts, not recovered by these readers.
+Literal NumInSetAlive initializer admits 1..16 or myset; myset reads an unchecked byte index. Fixtures use a synthetic 256-byte backing region and do not assert the actual global count-table allocation size.
+All scalar reader checks compare values at the float32 storage boundary used by the native SCP evaluator; signaling NaN payload behavior is excluded.
+Eight symbolic comparison RHS occurrences and one malformed gotoUpdate occurrence retain separate source/loader gaps; their condition bodies were still exercised.
+Compiled C# differential execution pending.

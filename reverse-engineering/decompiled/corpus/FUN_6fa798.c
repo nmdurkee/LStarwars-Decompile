@@ -1,0 +1,123 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_0bf9b7e593526bfec203cc134385061e8cfbfb74a64816bf5716f75cb05b36af
+ * Entry: 0x6fa798; label: FUN_006fa798
+ */
+
+void FUN_006fa798(undefined4 param_1,int param_2)
+
+{
+  BYTE *pBVar1;
+  byte *pbVar2;
+  byte bVar3;
+  uint uVar4;
+  uint uVar5;
+  BOOL BVar6;
+  undefined4 uVar7;
+  undefined2 *puVar8;
+  byte *pbVar9;
+  int extraout_ECX;
+  undefined2 *puVar10;
+  int iVar11;
+  BYTE *pBVar12;
+  threadmbcinfostruct *unaff_EDI;
+  undefined8 uVar13;
+  uint local_24;
+  byte *local_20;
+  _cpinfo local_1c;
+  uint local_8;
+  
+  local_8 = DAT_00829570 ^ (uint)&stack0xfffffffc;
+  uVar4 = getSystemCP((int)unaff_EDI);
+  if (uVar4 != 0) {
+    local_20 = (byte *)0x0;
+    uVar5 = 0;
+LAB_006fa7d4:
+    if (*(uint *)((int)&DAT_0082a4a0 + uVar5) != uVar4) goto code_r0x006fa7e0;
+    _memset((void *)(param_2 + 0x1c),0,0x101);
+    local_24 = 0;
+    pbVar9 = &DAT_0082a4b0 + (int)local_20 * 0x30;
+    local_20 = pbVar9;
+    do {
+      for (; (*pbVar9 != 0 && (bVar3 = pbVar9[1], bVar3 != 0)); pbVar9 = pbVar9 + 2) {
+        for (uVar5 = (uint)*pbVar9; uVar5 <= bVar3; uVar5 = uVar5 + 1) {
+          pbVar2 = (byte *)(param_2 + 0x1d + uVar5);
+          *pbVar2 = *pbVar2 | *(byte *)(local_24 + 0x82a49c);
+          bVar3 = pbVar9[1];
+        }
+      }
+      local_24 = local_24 + 1;
+      pbVar9 = local_20 + 8;
+      local_20 = pbVar9;
+    } while (local_24 < 4);
+    *(uint *)(param_2 + 4) = uVar4;
+    *(undefined4 *)(param_2 + 8) = 1;
+    uVar7 = FUN_006fa46c();
+    *(undefined4 *)(param_2 + 0xc) = uVar7;
+    puVar8 = (undefined2 *)(param_2 + 0x10);
+    puVar10 = (undefined2 *)(&DAT_0082a4a4 + extraout_ECX);
+    iVar11 = 6;
+    do {
+      *puVar8 = *puVar10;
+      puVar10 = puVar10 + 1;
+      puVar8 = puVar8 + 1;
+      iVar11 = iVar11 + -1;
+    } while (iVar11 != 0);
+    goto LAB_006fa905;
+  }
+LAB_006fa7c1:
+  setSBCS(unaff_EDI);
+LAB_006fa962:
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+code_r0x006fa7e0:
+  local_20 = (byte *)((int)local_20 + 1);
+  uVar5 = uVar5 + 0x30;
+  if (0xef < uVar5) goto code_r0x006fa7ed;
+  goto LAB_006fa7d4;
+code_r0x006fa7ed:
+  if (((uVar4 == 65000) || (uVar4 == 0xfde9)) ||
+     (BVar6 = IsValidCodePage(uVar4 & 0xffff), BVar6 == 0)) goto LAB_006fa962;
+  BVar6 = GetCPInfo(uVar4,&local_1c);
+  if (BVar6 != 0) {
+    _memset((void *)(param_2 + 0x1c),0,0x101);
+    *(uint *)(param_2 + 4) = uVar4;
+    *(undefined4 *)(param_2 + 0xc) = 0;
+    if (local_1c.MaxCharSize < 2) {
+      *(undefined4 *)(param_2 + 8) = 0;
+    }
+    else {
+      if (local_1c.LeadByte[0] != '\0') {
+        pBVar12 = local_1c.LeadByte + 1;
+        do {
+          bVar3 = *pBVar12;
+          if (bVar3 == 0) break;
+          for (uVar4 = (uint)pBVar12[-1]; uVar4 <= bVar3; uVar4 = uVar4 + 1) {
+            pbVar9 = (byte *)(param_2 + 0x1d + uVar4);
+            *pbVar9 = *pbVar9 | 4;
+          }
+          pBVar1 = pBVar12 + 1;
+          pBVar12 = pBVar12 + 2;
+        } while (*pBVar1 != 0);
+      }
+      pbVar9 = (byte *)(param_2 + 0x1e);
+      iVar11 = 0xfe;
+      do {
+        *pbVar9 = *pbVar9 | 8;
+        pbVar9 = pbVar9 + 1;
+        iVar11 = iVar11 + -1;
+      } while (iVar11 != 0);
+      uVar13 = FUN_006fa46c();
+      *(int *)(param_2 + 0xc) = (int)uVar13;
+      *(int *)(param_2 + 8) = (int)((ulonglong)uVar13 >> 0x20);
+    }
+    *(undefined4 *)(param_2 + 0x10) = 0;
+    *(undefined4 *)(param_2 + 0x14) = 0;
+    *(undefined4 *)(param_2 + 0x18) = 0;
+LAB_006fa905:
+    setSBUpLow(unaff_EDI);
+    goto LAB_006fa962;
+  }
+  if (DAT_0297caf4 == 0) goto LAB_006fa962;
+  goto LAB_006fa7c1;
+}
+

@@ -1,0 +1,189 @@
+PC CHARACTER CONTEXTS AND ACTION/ANIMATION TRANSITIONS
+====================================================
+
+Recovered scope
+----------------
+The original PC binary contains 100 named character contexts, 233 action slots,
+and 32 action aliases. Selected block, combat-jump, movement-animation and
+jump-animation contracts are validated by executing original isolated functions.
+This is not a claim that the complete combat or character context dispatcher has
+been reproduced. Damage and hit response are investigated separately.
+
+Binary SHA256:
+6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+
+Registry and bindings
+---------------------
+reports/animation-context-registry.json preserves all rows and their PC addresses:
+  CInfo pointer 0x7fb0e4 -> 0x7fb138; stride16, IDs0..99
+  NoContext sentinel at index-1, address0x7fb128
+  ActionInfo pointer 0x7fbec8 -> 0x7fb780; stride8, IDs0..232
+  ? action sentinel at index-1, address0x7fb778
+  Alias table at0x7fbed0; 32 rows followed by a null-name sentinel
+
+Each context is {namePointer,action,flags,parameter}. The action field is -1 in
+every original image row; it is not a static context-to-animation mapping. Flags
+and parameter bits are retained raw and interpreted only where consumers justify
+the interpretation. Examples: Jump0, Combo5, Block12, LandLunge13, LandSlam14,
+Hold24, Punch38, Batarang77, Stunned90, DieAir95, DieGround96.
+
+All335 rows including the context/action sentinels exactly match the pinned
+OpenSaga lookup data, including their flags. This agreement does not make the
+Android control functions interchangeable with PC code: a concrete difference
+in the Hold callback is described below.
+
+The registry records 100 literal context/action initializer writes from the
+original 0x42e160 instructions, with each instruction's address/bytes, plus 63
+native pseudocode consumers of the context table. The initializer list covers
+direct immediate stores only; register-mediated stores are not silently inferred.
+The live action count233 is corroborated by 0x4c9fb0 passing0xe9 to0x630b40.
+
+Native registration0x6306e0 and name resolver0x630740 were executed directly. The
+resolver searches the action table first, then aliases, comparing ASCII names
+case-insensitively; unknown names return-1. All3,829 validation calls matched.
+
+reports/animation-context-action-bindings.json links 3,029 explicit catalog
+action directives to the native resolver: 3,004 match and25 return-1. Unmatched
+text is preserved, including alt_idle/alt_walk/alt_run, BountyAccess and some
+legacy names. A failed action lookup does not establish that a similarly named
+animation asset is absent. Omitted directives, malformed source quoting and
+configuration replacement semantics remain distinct from this explicit-name test.
+
+Movement animation selection
+-----------------------------
+Original function0x4a54b0 takes the object in ECX, permission for weapon variants
+in EDX, and stack arguments(speed,allowTiptoe). It chooses animation by midpoints
+between configured speeds, independently of MovePlayer's analog-input bands:
+  tiptoe4 when allowed and speed <= (tiptoe_speed+walk_speed)/2
+  run3 when speed > (walk_speed+run_speed)/2
+  walk0 otherwise
+
+When armed and the variant exists, tiptoe/walk/run become63/64/23 (tiptoe2/walk2/
+run2). The ordinary walk branch can choose walkbackwards80. A magnetic-suit flag
+can remap base4/0/3 to198/199/200 (magnet_tiptoe/walk/run), except in context67,
+substate5. Required variant clips must be present in the character's model array.
+
+Missing base clips use at most three substitutions: tiptoe4 -> walk0; walk0 ->
+run3; run3 -> walk0. This bounded fallback can finish with a missing ID when all
+alternatives are absent; it does not search indefinitely or invent a valid clip.
+The original function passed7,000 randomized clip-availability/state cases.
+
+Jump animation transition
+-------------------------
+Original function0x4a7360 takes the object in ECX. Runtime context flag0x8000
+denotes the fall-animation phase for this consumer. If set, movement state8 can
+select combatroll_fall181, then fall5 is the general fallback if present.
+Otherwise the requested action follows contextAnimation at object+0x7aa.
+
+For movement states0,1,6,7,9, a completed matching nonblending jump animation can
+enter the fall phase after the delay at global0x7fc094. It immediately sets the
+bit for a nonpositive delay; otherwise timer+0xd2c accumulates FRAMETIME. A positive
+delay also requires distance+0xda0 to equal the no-hit sentinel2000000 or exceed
+float32(0.35). Incomplete/mismatching/blending animation resets that timer. Action
+hoverdown73 is excluded from this automatic transition. All4,000 cases matched.
+
+Blocking contracts
+-------------------
+NewBlockAction0x58dfa0 finds the first three action slots marked with action flag8
+whose model animation pointers are nonzero. In the actual table these are
+block1/2/3, IDs26/27/28. No available clip returns0; a single clip may repeat.
+With several, it rejects the previously selected block animation.
+
+Its original random function0x54fa60 uses a16-bit state:
+  next=(state*0x24cd+1)&65535
+  choice=next/(floor(65535/count)+1), integer division
+Both contextAnimation+0x7aa and previousBlockAnimation+0xe10 receive the result.
+All1,400 availability/previous-choice/seed cases matched, including RNG state.
+
+BlockCode0x49e450 receives the object in EAX and stack arguments
+(pressed,held,jumpPressed,allowStart). Outside Block12, entering requires no
+positive cooldown, allowStart, a press, nonzero grounded byte, context-table
+flags bit0x20 clear, runtime+0xeec bit2, and an incoming threat pointer.
+All1,600 gate cases across every non-Block registry context matched.
+
+StartBlock0x49e370 calls the original block animation selector. Failure sets
+NoContext. Success sets Block12 and clears the latch. Bolt/part capture uses
+timer0.3, clears attacker/stage and records the projectile/part. Special/melee
+capture uses timer0.1, records the attacker and its animation ID/successor combo
+stage; special capture also sets runtime+0xe20 bit0x20000000. All296 source and
+availability cases matched, including byte-sized stage wrapping.
+
+Before latching, the timer decreases; expiry sets latch1 and timer0.2. An active
+attacker-stage wait instead retains or clears the stage without advancing that
+timer. Melee requires a live/enabled Combo5 attacker whose combo stage remains
+below the blocked stage; special mode requires a matching Punch38 animation.
+All480 bounded attacker-stage cases matched.
+
+After latching, held action with an incoming bolt refreshes timer0.2. Released
+action eventually clears context. The NPC Gamorrean-guard branch also sets a
+cooldown1.5. Outside Block, positive cooldown decreases bydt and returns, allowing
+a small negative overshoot. All2,000 timer/refresh/release/cooldown cases matched.
+Incoming-target discovery and live weapon/bolt interactions were not emulated.
+
+Block to combat jump
+---------------------
+Original helper0x49e2b0 (ESI=object) enters Jump0/movementState2 and assigns
+jump_2_speed to vertical velocity. Variant0 selects combojump18; nonzero selects
+flip12. It updates the corresponding context bits, clears ground/counters/timers,
+sets the runtime jump-held flag, resets the animation packet, and marks player
+objects with runtime+0xeec bit0x800. All600 cases matched. Original sound and
+animation-reset callees ran; the fixture selected the original no-sound branch.
+The caller's opponent selection and live jump-trigger eligibility remain separate.
+
+PC-specific Hold callback
+-------------------------
+Game initializer0x42e160 assigns global0x955598 to callback0x428f20. This callback
+is absent from the saved pseudocode corpus; its entire68-byte instruction sequence
+is preserved with hashes in animation-context-hold-callback-assembly.json.
+
+Unlike the pinned Android CanStartHold_Game stub, the original PC callback does
+not always return1:
+  global0x7f39e4 !=0 and global0x876580 ==0: return1
+  otherwise, character tuning+0x90 bit0x20000000 can invoke0x404fa0
+  successful special action: return0; otherwise return2
+
+The special path uses enabled slot50 or51, enters Batarang77 with target144,
+sets context bit0x20000 and initializes its companion object. The raw global
+names are intentionally retained; their wider gameplay meaning is not assumed.
+All32 combinations exercised the original callback and its real helpers.
+
+StartHold0x58e3b0 treats result2 by clearing timer+0xde4 and context. Other results
+can enter Hold24 with timer0.3 if the context is configured and a block animation
+exists; otherwise context clears. A null callback returns without changing state.
+All16 configured callback/animation cases passed using the actual0x428f20 callback,
+not a replacement stub. The audio helper used its original no-sound branch.
+
+Context flags and boundaries
+----------------------------
+All606 registry-wide predicate cases passed. 0x562150 uses context flag8 only when
+a configured fall action and corresponding clip exist. 0x441ce0 returns true for
+flag0x04000000, or flag0x08000000 together with runtime context bit0x20000.
+Consumers0x4a8f20/0x4a9b80 statically show flag0x10 copying contextAnimation to the
+animation request. The surrounding complete animation dispatchers are not claimed
+emulated. Other registry flags stay raw until a specific consumer is established.
+
+reports/animation-context-state-writes.json is a mechanical candidate inventory
+of explicit context/action field assignments from the native pseudocode. It keeps
+function, source line, base expression, constant destination label where available,
+and all dynamic expressions. It is not a transition graph, reachability proof,
+complete alias analysis or live trace; candidate base-object identity can differ.
+The corrected extractor excludes equality comparisons: 631 assignment candidates,
+451 constant destinations, across 176 functions. Earlier mechanical counts also
+included comparisons; all native context verification counts remain unchanged.
+
+Validation and reproduction
+---------------------------
+reports/animation-context-native-verification.json records18,030 original-function
+cases with zero mismatches/failures. The registry resolver adds3,829, for21,859
+passing cases in this stage. State, action IDs, RNG state and float32 outputs match
+exactly in these fixtures. No original instruction or callback was replaced.
+
+Reproduce from the workspace root:
+  python reverse-engineering/tools/animation-context-registry.py
+  python reverse-engineering/tools/animation-context-native-verify.py
+  python reverse-engineering/tools/animation-context-assembly.py
+  node reverse-engineering/tools/animation-context-report.mjs
+
+The JSON contract contains exact offsets, native evidence IDs, corpus hashes and
+coverage limits. This work supplements animation-locomotion-findings.txt and the
+existing asset exports; it does not regenerate or alter those exports.

@@ -1,0 +1,64 @@
+//All the hint stuff is in level1.scp
+state Base {
+	Conditions {
+		if MissionMode == 1 goto MissionMode
+	}
+	Actions {	
+		CnxController "from=door1_a" "to=door1_b" "off_flag=BLOCK" "obj=door_02a" "checkvisible" "on_frames=64to64"  "bothways"
+		CnxController "from=door2_a" "to=door2_b" "off_flag=BLOCK" "obj=door_04a" "checkvisible" "on_frames=64to64"  "bothways"
+		CnxController "from=door3_a" "to=door3_b" "off_flag=BLOCK" "obj=door_07a" "checkvisible" "on_frames=64to64"  "bothways"
+		CnxController "from=door4_a" "to=door4_b" "off_flag=BLOCK" "obj=door_08a" "checkvisible" "on_frames=64to64"  "bothways"
+		SetState "Update"
+	}
+}
+
+state Update {
+	Conditions {
+		if Message "TaggedTC14" == 0 and
+		if EitherPlayerIs "TC14" == 1 goto TaggedTC14
+
+		if Message "DoneFirstBit" == 0 and
+		if EitherPlayerInTriggerArea "DoneFirstBit" == 1 goto SetDoneFirstBit
+		
+		if Message "IntruderAlert" == 0 and
+		if ForceComplete "force1" == 1 goto IntruderAlert
+	}
+	Actions {
+	}
+}
+	
+
+state TaggedTC14 {
+	Conditions {
+	}
+	Actions {
+		SetMessage "name=TaggedTC14" "value=1"
+		SetState "Update"	
+	}
+}
+
+state SetDoneFirstBit {
+	Conditions {
+	}
+	Actions {
+		SetMessage "name=DoneFirstBit" "value=1"
+		SetState "Update"	
+	}
+}
+
+state IntruderAlert {
+	Conditions {
+	}
+	Actions {
+		PlaySfx "name=NegA_IntAlert" "playcount=2" "repdelay=1.5" "startdelay=1"
+		SetMessage "name=IntruderAlert" "value=1"
+		SetState "Update"
+	}
+}
+
+state MissionMode {
+	Conditions {
+	}
+	Actions {
+	}
+}

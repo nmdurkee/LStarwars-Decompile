@@ -1,0 +1,43 @@
+state Base {
+	Conditions {
+		if PartyUnderCover == 0 and
+		if PlayerInTriggerArea "table" == 1 goto DelayAttack
+		
+		if BeenAlerted == 1 goto DelayAttack
+	}
+	Actions {	
+		SetViewDistance "0"
+		SetHearDistance "0"
+		DontPush
+		OverrideAnimation "from=idle" "to=sit"
+		Idle "1"
+		AnimTimeRandom
+		GoToOrigin
+	}
+}
+
+state DelayAttack {
+	Conditions {
+	}
+	Actions {
+		Idle "mintime 0.1" "maxtime 1.0"
+		SetViewDistance "default"
+		SetHearDistance "default"
+		OverrideAnimation "reset"
+		SetState "Attack"
+	}
+}
+
+state Attack {
+	ReferenceScript {
+		Script=Attack
+		Source=Global
+		ReturnState=Attack
+		Conditions {
+		}
+	}
+	Conditions {
+	}
+	Actions {	
+	}
+}

@@ -1,0 +1,592 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_40a85160eaccd151253910192404d8aba277d39ac9ab2a88fc5c5de06172d047\",\"subject\":{\"name\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\",\"digest\":{\"sha256\":\"6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb\"},\"format\":\"pe\",\"architecture\":\"x86\",\"local_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\"},\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"analysis_profile\":{\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"parameters\":{\"upstream_analysis_profile\":{\"provider\":{\"id\":\"ghidra\",\"name\":\"Ghidra\",\"version\":\"12.1.4\"},\"parameters\":{\"target_kind\":\"executable\",\"target_format\":\"pe\",\"executable_role\":\"application\",\"managed\":false,\"native_aot_metadata\":{\"contract_revision\":\"rtr-9.1-x64-pe-read-only-v3\",\"source_bytes\":134217728,\"work_units\":67108864,\"working_memory_bytes\":67108864,\"report_bytes\":4194304},\"architecture\":\"x86\",\"available_architectures\":[\"x86\"],\"import_mode\":\"ephemeral-source-immutable\",\"annotation_policy\":\"atomic-function-entry-metadata-v1\",\"load_image_observations\":\"source-mappings-entry-context-v2\",\"function_body_evidence\":\"complete-inclusive-ranges-v1\",\"function_references\":\"complete-body-and-entry-reference-manager-v2\",\"string_inventory_evidence\":\"defined-data-coverage-v1\",\"location_resolution\":\"explicit-address-exact-entry-symbol-first-v3\",\"instruction_flow_evidence\":\"decoded-return-pcode-v1\",\"function_boundary_observations\":\"ghidra-terminal-call-limitations-v1\",\"no_return_repair\":\"disabled-windows-p0\",\"process_launch\":\"official-headless-script-v1\",\"jump_table_evidence\":\"typed-case-default-blocks-v1\",\"decompiler_jump_loads\":true,\"loader\":\"auto-from-header\",\"language_id\":\"auto-from-header\",\"compiler_spec_id\":\"auto-default\",\"analyzer_preset\":\"ghidra-default\",\"analysis_seeds\":{\"format\":\"rea-ghidra-seeds-v1\",\"path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-expanded-seeds.tsv\",\"configured_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-expanded-seeds.tsv\",\"sha256\":\"9882e31b8db57e82063527e0ca4afc638e3db1bc6aed8d29b5ee7a1ab04339bc\",\"entries\":{\"function\":7392,\"code\":0,\"label\":0}}},\"digest\":\"39359c696c3a24b5bee48c782b5857ee25653abdc2b148df011b09fd41a6bfb3\"},\"workflow_revision\":2},\"digest\":\"11e4b00746f88bcea8ae43c57d53bf6d80e8b6654ba2f662d108b5e3ebec1e4d\"},\"predicate_type\":\"rea.analysis\",\"operation\":\"batch_decompile\",\"parameters\":{\"addresses\":[\"0x4ff3f0\",\"0x4ff430\",\"0x4ff4a0\",\"0x4ff4b0\",\"0x4ff4d0\",\"0x4ff4f0\",\"0x4ff570\",\"0x4ff750\",\"0x4ff7a0\",\"0x4ff930\",\"0x4ff960\",\"0x4ff970\",\"0x4ffa50\",\"0x4ffa60\",\"0x4ffa90\",\"0x4ffaa0\",\"0x4ffac0\",\"0x4ffae0\",\"0x4ffb20\",\"0x4ffb90\",\"0x4ffbb0\",\"0x4ffc20\",\"0x4ffd20\",\"0x4ffd80\",\"0x4fff00\",\"0x4fff10\",\"0x4fff20\",\"0x4fff30\",\"0x4fff50\",\"0x4fff90\",\"0x4fffb0\",\"0x500020\"]},\"raw_result\":null,\"normalized_result\":{\"items\":[{\"address\":\"0x4ff3f0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff3f0\",\"name\":\"FUN_004ff3f0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nuint FUN_004ff3f0(int param_1,LPCVOID param_2,DWORD param_3)\\r\\n\\r\\n{\\r\\n  BOOL BVar1;\\r\\n  DWORD local_4;\\r\\n  \\r\\n  local_4 = 0;\\r\\n  BVar1 = WriteFile((HANDLE)(&DAT_008007a0)[param_1],param_2,param_3,&local_4,(LPOVERLAPPED)0x0);\\r\\n  return -(uint)(BVar1 != 0) & local_4;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff430\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff430\",\"name\":\"FUN_004ff430\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nlonglong FUN_004ff430(int param_1,undefined4 param_2,undefined4 param_3,int param_4)\\r\\n\\r\\n{\\r\\n  LARGE_INTEGER liDistanceToMove;\\r\\n  PLARGE_INTEGER lpNewFilePointer;\\r\\n  BOOL BVar1;\\r\\n  uint unaff_retaddr;\\r\\n  \\r\\n  if (param_4 == 0) {\\r\\n    lpNewFilePointer = (PLARGE_INTEGER)0x0;\\r\\n  }\\r\\n  else if (param_4 == 1) {\\r\\n    lpNewFilePointer = (PLARGE_INTEGER)0x1;\\r\\n  }\\r\\n  else {\\r\\n    lpNewFilePointer = (PLARGE_INTEGER)0x2;\\r\\n  }\\r\\n  liDistanceToMove.s.HighPart = (LONG)&stack0xfffffff8;\\r\\n  liDistanceToMove.s.LowPart = param_3;\\r\\n  BVar1 = SetFilePointerEx((HANDLE)(&DAT_008007a0)[param_1],liDistanceToMove,lpNewFilePointer,0);\\r\\n  if (BVar1 != 0) {\\r\\n    return (ulonglong)unaff_retaddr << 0x20;\\r\\n  }\\r\\n  return -1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff4a0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff4a0\",\"name\":\"FUN_004ff4a0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ff4a0(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff4b0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff4b0\",\"name\":\"FUN_004ff4b0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ff4b0(char *param_1)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  int iVar2;\\r\\n  \\r\\n  iVar2 = (int)&DAT_0091f0a8 - (int)param_1;\\r\\n  do {\\r\\n    cVar1 = *param_1;\\r\\n    param_1[iVar2] = cVar1;\\r\\n    param_1 = param_1 + 1;\\r\\n  } while (cVar1 != '\\\\0');\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff4d0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff4d0\",\"name\":\"FUN_004ff4d0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ff4d0(int param_1)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  char *pcVar2;\\r\\n  \\r\\n  pcVar2 = &DAT_0091f0a8;\\r\\n  do {\\r\\n    cVar1 = *pcVar2;\\r\\n    pcVar2[param_1 + -0x91f0a8] = cVar1;\\r\\n    pcVar2 = pcVar2 + 1;\\r\\n  } while (cVar1 != '\\\\0');\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff4f0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff4f0\",\"name\":\"FUN_004ff4f0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ff4f0(undefined4 param_1,undefined4 param_2)\\r\\n\\r\\n{\\r\\n  CHAR local_204 [256];\\r\\n  CHAR local_104 [256];\\r\\n  uint local_4;\\r\\n  \\r\\n  local_4 = DAT_00829570 ^ (uint)local_204;\\r\\n  FUN_004f0180(local_104,param_2,0x100);\\r\\n  FUN_004f0180(local_204,param_1,0x100);\\r\\n  DeleteFileA(local_204);\\r\\n  MoveFileA(local_104,local_204);\\r\\n  __security_check_cookie(local_4 ^ (uint)local_204);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff570\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff570\",\"name\":\"FUN_004ff570\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ff570(char *param_1)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  int iVar2;\\r\\n  char *pcVar3;\\r\\n  char *pcVar4;\\r\\n  HANDLE pvVar5;\\r\\n  int iVar6;\\r\\n  undefined2 *puVar7;\\r\\n  undefined4 *puVar8;\\r\\n  char local_cc [200];\\r\\n  uint local_4;\\r\\n  \\r\\n  local_4 = DAT_00829570 ^ (uint)local_cc;\\r\\n  if (DAT_00921248 == 0x10) {\\r\\n    __security_check_cookie(local_4 ^ (uint)local_cc);\\r\\n    return;\\r\\n  }\\r\\n  iVar6 = 0;\\r\\n  do {\\r\\n    if ((&DAT_00921250)[iVar6] == 0) break;\\r\\n    if ((&DAT_00921254)[iVar6] == 0) {\\r\\n      iVar6 = iVar6 + 1;\\r\\n      break;\\r\\n    }\\r\\n    if ((&DAT_00921258)[iVar6] == 0) {\\r\\n      iVar6 = iVar6 + 2;\\r\\n      break;\\r\\n    }\\r\\n    if ((&DAT_0092125c)[iVar6] == 0) {\\r\\n      iVar6 = iVar6 + 3;\\r\\n      break;\\r\\n    }\\r\\n    iVar6 = iVar6 + 4;\\r\\n  } while (iVar6 < 0x10);\\r\\n  if (iVar6 == 0x10) {\\r\\n    __security_check_cookie(local_4 ^ (uint)local_cc);\\r\\n    return;\\r\\n  }\\r\\n  iVar2 = -(int)param_1;\\r\\n  do {\\r\\n    cVar1 = *param_1;\\r\\n    param_1[(int)(local_cc + iVar2)] = cVar1;\\r\\n    param_1 = param_1 + 1;\\r\\n    pcVar3 = local_cc;\\r\\n  } while (cVar1 != '\\\\0');\\r\\n  do {\\r\\n    pcVar4 = pcVar3;\\r\\n    pcVar3 = pcVar4 + 1;\\r\\n  } while (*pcVar4 != '\\\\0');\\r\\n  if (pcVar4[-1] != '\\\\\\\\') {\\r\\n    puVar7 = (undefined2 *)&stack0xffffff33;\\r\\n    do {\\r\\n      pcVar3 = (char *)((int)puVar7 + 1);\\r\\n      puVar7 = (undefined2 *)((int)puVar7 + 1);\\r\\n    } while (*pcVar3 != '\\\\0');\\r\\n    *puVar7 = 0x5c;\\r\\n  }\\r\\n  puVar8 = (undefined4 *)&stack0xffffff33;\\r\\n  do {\\r\\n    pcVar3 = (char *)((int)puVar8 + 1);\\r\\n    puVar8 = (undefined4 *)((int)puVar8 + 1);\\r\\n  } while (*pcVar3 != '\\\\0');\\r\\n  pcVar3 = local_cc;\\r\\n  *puVar8 = 0x2a2e2a;\\r\\n  do {\\r\\n    cVar1 = *pcVar3;\\r\\n    pcVar3 = pcVar3 + 1;\\r\\n  } while (cVar1 != '\\\\0');\\r\\n  pcVar4 = (char *)FUN_004eef40(pcVar3 + (4 - (int)(local_cc + 1)),\\r\\n                                \\\"d:\\\\\\\\projects\\\\\\\\legosagapc\\\\\\\\nu2api.saga\\\\\\\\nucore\\\\\\\\pc\\\\\\\\nufile_pc.c\\\",\\r\\n                                0x21a);\\r\\n  puVar8 = &DAT_00921250 + iVar6;\\r\\n  *puVar8 = pcVar4;\\r\\n  pcVar3 = local_cc;\\r\\n  do {\\r\\n    cVar1 = *pcVar3;\\r\\n    *pcVar4 = cVar1;\\r\\n    pcVar3 = pcVar3 + 1;\\r\\n    pcVar4 = pcVar4 + 1;\\r\\n  } while (cVar1 != '\\\\0');\\r\\n  DAT_00921248 = DAT_00921248 + 1;\\r\\n  pvVar5 = FindFirstFileA((LPCSTR)*puVar8,(LPWIN32_FIND_DATAA)(&DAT_0091f1b8 + iVar6 * 0x140));\\r\\n  *(HANDLE *)(&DAT_0091ef40 + iVar6 * 4) = pvVar5;\\r\\n  if (pvVar5 != (HANDLE)0xffffffff) {\\r\\n    __security_check_cookie(local_4 ^ (uint)local_cc);\\r\\n    return;\\r\\n  }\\r\\n  FUN_004ef280(*puVar8,\\\"d:\\\\\\\\projects\\\\\\\\legosagapc\\\\\\\\nu2api.saga\\\\\\\\nucore\\\\\\\\pc\\\\\\\\nufile_pc.c\\\",0x222);\\r\\n  DAT_00921248 = DAT_00921248 + -1;\\r\\n  (&DAT_0092124c)[iVar6] = 0;\\r\\n  __security_check_cookie(local_4 ^ (uint)local_cc);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff750\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff750\",\"name\":\"FUN_004ff750\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_004ff750(int param_1)\\r\\n\\r\\n{\\r\\n  HANDLE hFindFile;\\r\\n  \\r\\n  FUN_004ef280((&DAT_00921250)[param_1],\\r\\n               \\\"d:\\\\\\\\projects\\\\\\\\legosagapc\\\\\\\\nu2api.saga\\\\\\\\nucore\\\\\\\\pc\\\\\\\\nufile_pc.c\\\",0x22e);\\r\\n  hFindFile = *(HANDLE *)(&DAT_0091ef40 + param_1 * 4);\\r\\n  (&DAT_0092124c)[param_1] = 0;\\r\\n  FindClose(hFindFile);\\r\\n  DAT_00921248 = DAT_00921248 + -1;\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff7a0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff7a0\",\"name\":\"FUN_004ff7a0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_004ff7a0(int param_1,int *param_2)\\r\\n\\r\\n{\\r\\n  LPWIN32_FIND_DATAA lpFindFileData;\\r\\n  char cVar1;\\r\\n  int iVar2;\\r\\n  char *pcVar3;\\r\\n  BOOL BVar4;\\r\\n  int *piVar5;\\r\\n  int iVar6;\\r\\n  _SYSTEMTIME local_10;\\r\\n  \\r\\n  iVar6 = param_1 * 0x140;\\r\\n  lpFindFileData = (LPWIN32_FIND_DATAA)(&DAT_0091f1b8 + iVar6);\\r\\n  iVar2 = 0x100;\\r\\n  if ((*(uint *)(&DAT_0091f1b8 + iVar6) & 1) != 0) {\\r\\n    iVar2 = 0x180;\\r\\n  }\\r\\n  if ((*(uint *)(&DAT_0091f1b8 + iVar6) & 0x10) != 0) {\\r\\n    iVar2 = iVar2 + 0x2000;\\r\\n  }\\r\\n  *param_2 = iVar2;\\r\\n  piVar5 = param_2 + 0x10;\\r\\n  param_2[2] = *(int *)(&DAT_0091f1d8 + iVar6);\\r\\n  pcVar3 = &DAT_0091f1e4 + iVar6;\\r\\n  param_2[9] = 0;\\r\\n  iVar2 = (int)piVar5 - (int)pcVar3;\\r\\n  do {\\r\\n    cVar1 = *pcVar3;\\r\\n    pcVar3[iVar2] = cVar1;\\r\\n    pcVar3 = pcVar3 + 1;\\r\\n  } while (cVar1 != '\\\\0');\\r\\n  FileTimeToSystemTime((FILETIME *)(&DAT_0091f1bc + iVar6),&local_10);\\r\\n  *(undefined1 *)((int)param_2 + 0xd) = (undefined1)local_10.wSecond;\\r\\n  *(undefined1 *)((int)param_2 + 0xe) = (undefined1)local_10.wMinute;\\r\\n  *(undefined1 *)(param_2 + 4) = (undefined1)local_10.wDay;\\r\\n  *(undefined1 *)((int)param_2 + 0xf) = (undefined1)local_10.wHour;\\r\\n  *(undefined1 *)((int)param_2 + 0x11) = (undefined1)local_10.wMonth;\\r\\n  *(undefined1 *)((int)param_2 + 0x12) = (undefined1)local_10.wYear;\\r\\n  *(undefined1 *)((int)param_2 + 0x13) = 0;\\r\\n  FileTimeToSystemTime((FILETIME *)(&DAT_0091f1cc + iVar6),&local_10);\\r\\n  *(undefined1 *)((int)param_2 + 0x1d) = (undefined1)local_10.wSecond;\\r\\n  *(undefined1 *)((int)param_2 + 0x1e) = (undefined1)local_10.wMinute;\\r\\n  *(undefined1 *)(param_2 + 8) = (undefined1)local_10.wDay;\\r\\n  *(undefined1 *)((int)param_2 + 0x1f) = (undefined1)local_10.wHour;\\r\\n  *(undefined1 *)((int)param_2 + 0x21) = (undefined1)local_10.wMonth;\\r\\n  *(undefined1 *)((int)param_2 + 0x22) = (undefined1)local_10.wYear;\\r\\n  *(undefined1 *)((int)param_2 + 0x23) = 0;\\r\\n  FileTimeToSystemTime((FILETIME *)(&DAT_0091f1c4 + iVar6),&local_10);\\r\\n  *(undefined1 *)((int)param_2 + 0x15) = (undefined1)local_10.wSecond;\\r\\n  *(undefined1 *)((int)param_2 + 0x16) = (undefined1)local_10.wMinute;\\r\\n  *(undefined1 *)((int)param_2 + 0x17) = (undefined1)local_10.wHour;\\r\\n  *(undefined1 *)(param_2 + 6) = (undefined1)local_10.wDay;\\r\\n  *(undefined1 *)((int)param_2 + 0x19) = (undefined1)local_10.wMonth;\\r\\n  *(undefined1 *)((int)param_2 + 0x1a) = (undefined1)local_10.wYear;\\r\\n  *(undefined1 *)((int)param_2 + 0x1b) = 0;\\r\\n  if (lpFindFileData->dwFileAttributes == 0xffffffff) {\\r\\n    return 0;\\r\\n  }\\r\\n  BVar4 = FindNextFileA(*(HANDLE *)(&DAT_0091ef40 + param_1 * 4),lpFindFileData);\\r\\n  if (BVar4 != 1) {\\r\\n    lpFindFileData->dwFileAttributes = 0xffffffff;\\r\\n  }\\r\\n  do {\\r\\n    iVar2 = *piVar5;\\r\\n    piVar5 = (int *)((int)piVar5 + 1);\\r\\n  } while ((char)iVar2 != '\\\\0');\\r\\n  return (int)piVar5 - ((int)param_2 + 0x41);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff930\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff930\",\"name\":\"FUN_004ff930\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ff930(LPCSTR param_1)\\r\\n\\r\\n{\\r\\n  _SECURITY_ATTRIBUTES local_c;\\r\\n  \\r\\n  local_c.bInheritHandle = 1;\\r\\n  local_c.nLength = 0xc;\\r\\n  local_c.lpSecurityDescriptor = (LPVOID)0x0;\\r\\n  CreateDirectoryA(param_1,&local_c);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff960\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff960\",\"name\":\"FUN_004ff960\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_004ff960(void)\\r\\n\\r\\n{\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ff970\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ff970\",\"name\":\"FUN_004ff970\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nundefined4 FUN_004ff970(LPCSTR param_1,uint *param_2)\\r\\n\\r\\n{\\r\\n  _SYSTEMTIME local_34;\\r\\n  uint local_24;\\r\\n  FILETIME local_20 [2];\\r\\n  FILETIME local_10;\\r\\n  uint local_4;\\r\\n  \\r\\n  GetFileAttributesExA(param_1,GetFileExInfoStandard,&local_24);\\r\\n  *param_2 = ((local_24 & 0x4000 | 0x400) >> 9 | local_24 & 0x10) >> 1 | ~(local_24 * 2) & 2;\\r\\n  *(undefined1 *)(param_2 + 6) = 0;\\r\\n  param_2[1] = local_4;\\r\\n  FileTimeToSystemTime(local_20,&local_34);\\r\\n  *(WORD *)((int)param_2 + 0xe) = local_34.wYear;\\r\\n  *(undefined1 *)(param_2 + 3) = (undefined1)local_34.wMonth;\\r\\n  *(undefined1 *)((int)param_2 + 10) = (undefined1)local_34.wHour;\\r\\n  *(undefined1 *)((int)param_2 + 0xb) = (undefined1)local_34.wDay;\\r\\n  *(undefined1 *)((int)param_2 + 9) = (undefined1)local_34.wMinute;\\r\\n  *(undefined1 *)(param_2 + 2) = (undefined1)local_34.wSecond;\\r\\n  FileTimeToSystemTime(&local_10,&local_34);\\r\\n  *(WORD *)((int)param_2 + 0x16) = local_34.wYear;\\r\\n  *(undefined1 *)(param_2 + 5) = (undefined1)local_34.wMonth;\\r\\n  *(undefined1 *)((int)param_2 + 0x13) = (undefined1)local_34.wDay;\\r\\n  *(undefined1 *)((int)param_2 + 0x12) = (undefined1)local_34.wHour;\\r\\n  *(undefined1 *)((int)param_2 + 0x11) = (undefined1)local_34.wMinute;\\r\\n  *(undefined1 *)(param_2 + 4) = (undefined1)local_34.wSecond;\\r\\n  return 1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffa50\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffa50\",\"name\":\"FUN_004ffa50\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffa50(LPCSTR param_1)\\r\\n\\r\\n{\\r\\n  DeleteFileA(param_1);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffa60\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffa60\",\"name\":\"FUN_004ffa60\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nint FUN_004ffa60(void)\\r\\n\\r\\n{\\r\\n  if (DAT_0092124c < 0xd) {\\r\\n    DAT_0092124c = DAT_0092124c + 1;\\r\\n    InitializeCriticalSection((LPCRITICAL_SECTION)(&DAT_0091ef70 + DAT_0092124c * 0x18));\\r\\n    return DAT_0092124c;\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffa90\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffa90\",\"name\":\"FUN_004ffa90\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffa90(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffaa0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffaa0\",\"name\":\"FUN_004ffaa0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffaa0(int param_1)\\r\\n\\r\\n{\\r\\n  if (param_1 - 1U < 0xc) {\\r\\n    EnterCriticalSection((LPCRITICAL_SECTION)(&DAT_0091ef70 + param_1 * 0x18));\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffac0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffac0\",\"name\":\"FUN_004ffac0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffac0(int param_1)\\r\\n\\r\\n{\\r\\n  if (param_1 - 1U < 0xc) {\\r\\n    LeaveCriticalSection((LPCRITICAL_SECTION)(&DAT_0091ef70 + param_1 * 0x18));\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffae0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffae0\",\"name\":\"FUN_004ffae0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffae0(void)\\r\\n\\r\\n{\\r\\n  undefined4 local_8;\\r\\n  undefined4 local_4;\\r\\n  \\r\\n  FUN_004f3bd0(&local_8);\\r\\n  __alldiv(local_8,local_4,1000,0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffb20\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffb20\",\"name\":\"FUN_004ffb20\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffb20(int *param_1,int *param_2)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  int iVar2;\\r\\n  bool bVar3;\\r\\n  LARGE_INTEGER local_8;\\r\\n  \\r\\n  QueryPerformanceCounter(&local_8);\\r\\n  if ((DAT_009209e4 <= local_8.s.HighPart) &&\\r\\n     ((DAT_009209e4 < local_8.s.HighPart || (DAT_009209e0 < local_8.s.LowPart)))) {\\r\\n    bVar3 = local_8.s.LowPart < DAT_009209e0;\\r\\n    iVar1 = local_8.s.HighPart - DAT_009209e4;\\r\\n    *param_1 = local_8.s.LowPart - DAT_009209e0;\\r\\n    *param_2 = iVar1 - (uint)bVar3;\\r\\n    return;\\r\\n  }\\r\\n  iVar2 = -DAT_009209e0;\\r\\n  iVar1 = 0x7fffffff - DAT_009209e4;\\r\\n  *param_1 = local_8.s.LowPart + (iVar2 - 1U);\\r\\n  *param_2 = local_8.s.HighPart + iVar1 + (uint)CARRY4(local_8.s.LowPart,iVar2 - 1U);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffb90\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffb90\",\"name\":\"FUN_004ffb90\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffb90(undefined4 *param_1,undefined4 *param_2)\\r\\n\\r\\n{\\r\\n  *param_1 = DAT_0091ef80;\\r\\n  *param_2 = DAT_0091ef84;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffbb0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffbb0\",\"name\":\"FUN_004ffbb0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffbb0(void)\\r\\n\\r\\n{\\r\\n  HANDLE pvVar1;\\r\\n  BOOL BVar2;\\r\\n  ULONG_PTR *lpProcessAffinityMask;\\r\\n  ULONG_PTR *lpSystemAffinityMask;\\r\\n  DWORD_PTR dwProcessAffinityMask;\\r\\n  ULONG_PTR dwProcessAffinityMask_00;\\r\\n  ULONG_PTR local_8 [2];\\r\\n  \\r\\n  lpSystemAffinityMask = local_8 + 1;\\r\\n  lpProcessAffinityMask = local_8;\\r\\n  local_8[0] = 1;\\r\\n  local_8[1] = 1;\\r\\n  pvVar1 = GetCurrentProcess();\\r\\n  BVar2 = GetProcessAffinityMask(pvVar1,lpProcessAffinityMask,lpSystemAffinityMask);\\r\\n  if (BVar2 == 0) {\\r\\n    local_8[0] = 1;\\r\\n  }\\r\\n  dwProcessAffinityMask = 1;\\r\\n  pvVar1 = GetCurrentProcess();\\r\\n  SetProcessAffinityMask(pvVar1,dwProcessAffinityMask);\\r\\n  QueryPerformanceCounter((LARGE_INTEGER *)&DAT_009209e0);\\r\\n  QueryPerformanceFrequency((LARGE_INTEGER *)&DAT_0091ef80);\\r\\n  dwProcessAffinityMask_00 = local_8[0];\\r\\n  pvVar1 = GetCurrentProcess();\\r\\n  SetProcessAffinityMask(pvVar1,dwProcessAffinityMask_00);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffc20\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffc20\",\"name\":\"FUN_004ffc20\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffc20(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  undefined2 *puVar1;\\r\\n  int *piVar2;\\r\\n  undefined2 *puVar3;\\r\\n  int iVar4;\\r\\n  char local_104 [256];\\r\\n  uint local_4;\\r\\n  \\r\\n  local_4 = DAT_00829570 ^ (uint)local_104;\\r\\n  piVar2 = (int *)FUN_004f98c0(param_1);\\r\\n  if (piVar2 == (int *)0x0) {\\r\\n    piVar2 = (int *)PTR_DAT_00800784;\\r\\n  }\\r\\n  (*(code *)piVar2[0x8b])(piVar2,local_104,param_1,0x100);\\r\\n  if (*piVar2 == 2) {\\r\\n    puVar1 = (undefined2 *)&stack0xfffffefb;\\r\\n    do {\\r\\n      puVar3 = puVar1;\\r\\n      puVar1 = (undefined2 *)((int)puVar3 + 1);\\r\\n    } while (*(char *)((int)puVar3 + 1) != '\\\\0');\\r\\n    *(undefined2 *)((int)puVar3 + 1) = 0x313b;\\r\\n    *(undefined1 *)((int)puVar3 + 3) = 0;\\r\\n  }\\r\\n  if (*piVar2 == 1) {\\r\\n    iVar4 = FUN_006def40(local_104[2] + -0x30,local_104[3] + -0x30,local_104 + piVar2[0x12]);\\r\\n    if (-1 < iVar4) {\\r\\n      __security_check_cookie(local_4 ^ (uint)local_104);\\r\\n      return;\\r\\n    }\\r\\n  }\\r\\n  else {\\r\\n    iVar4 = FUN_004ff570(local_104);\\r\\n    if (-1 < iVar4) {\\r\\n      __security_check_cookie(local_4 ^ (uint)local_104);\\r\\n      return;\\r\\n    }\\r\\n  }\\r\\n  __security_check_cookie(local_4 ^ (uint)local_104);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffd20\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffd20\",\"name\":\"FUN_004ffd20\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffd20(int param_1)\\r\\n\\r\\n{\\r\\n  HANDLE hFindFile;\\r\\n  \\r\\n  if (0xfff < param_1) {\\r\\n    FUN_006def50(param_1 + -0x1000);\\r\\n    return;\\r\\n  }\\r\\n  FUN_004ef280((&DAT_0092124c)[param_1],\\r\\n               \\\"d:\\\\\\\\projects\\\\\\\\legosagapc\\\\\\\\nu2api.saga\\\\\\\\nucore\\\\\\\\pc\\\\\\\\nufile_pc.c\\\",0x22e);\\r\\n  hFindFile = *(HANDLE *)(&DAT_0091ef3c + param_1 * 4);\\r\\n  (&DAT_00921248)[param_1] = 0;\\r\\n  FindClose(hFindFile);\\r\\n  DAT_00921248 = DAT_00921248 + -1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4ffd80\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4ffd80\",\"name\":\"FUN_004ffd80\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004ffd80(int param_1,uint *param_2)\\r\\n\\r\\n{\\r\\n  char cVar1;\\r\\n  uint uVar2;\\r\\n  int iVar3;\\r\\n  char *pcVar4;\\r\\n  uint *puVar5;\\r\\n  int iVar6;\\r\\n  int extraout_EDX;\\r\\n  undefined8 uVar7;\\r\\n  uint local_148 [2];\\r\\n  uint local_140;\\r\\n  undefined1 local_13b;\\r\\n  undefined1 local_13a;\\r\\n  undefined1 local_139;\\r\\n  undefined1 local_138;\\r\\n  undefined1 local_137;\\r\\n  byte local_136;\\r\\n  byte local_135;\\r\\n  undefined1 local_12b;\\r\\n  undefined1 local_12a;\\r\\n  undefined1 local_129;\\r\\n  undefined1 local_128;\\r\\n  undefined1 local_127;\\r\\n  byte local_126;\\r\\n  byte local_125;\\r\\n  char local_108 [260];\\r\\n  uint local_4;\\r\\n  \\r\\n  local_4 = DAT_00829570 ^ (uint)local_148;\\r\\n  if (param_1 < 0x1000) {\\r\\n    uVar7 = FUN_004ff7a0(param_1 + -1,local_148);\\r\\n    iVar6 = (int)((ulonglong)uVar7 >> 0x20);\\r\\n    iVar3 = (int)uVar7;\\r\\n    if (iVar3 < 1) {\\r\\n      if (iVar3 < 0) {\\r\\n        FUN_004fe650(iVar3);\\r\\n        iVar6 = extraout_EDX;\\r\\n      }\\r\\n    }\\r\\n    else {\\r\\n      *param_2 = (((local_148[0] >> 2 & 0x800 | local_148[0] & 0x100) >> 2 | local_148[0] & 0x80) >>\\r\\n                  2 | local_148[0] & 0x40) >> 4;\\r\\n      param_2[1] = local_140;\\r\\n      *(undefined1 *)(param_2 + 2) = local_13b;\\r\\n      *(undefined1 *)((int)param_2 + 10) = local_139;\\r\\n      *(undefined1 *)((int)param_2 + 9) = local_13a;\\r\\n      *(undefined1 *)((int)param_2 + 0xb) = local_138;\\r\\n      *(undefined1 *)(param_2 + 3) = local_137;\\r\\n      *(undefined1 *)(param_2 + 4) = local_12b;\\r\\n      *(ushort *)((int)param_2 + 0xe) = (ushort)local_135 * 0x100 + (ushort)local_136;\\r\\n      *(undefined1 *)((int)param_2 + 0x12) = local_129;\\r\\n      *(undefined1 *)((int)param_2 + 0x13) = local_128;\\r\\n      *(undefined1 *)((int)param_2 + 0x11) = local_12a;\\r\\n      *(undefined1 *)(param_2 + 5) = local_127;\\r\\n      *(ushort *)((int)param_2 + 0x16) = (ushort)local_125 * 0x100 + (ushort)local_126;\\r\\n      puVar5 = param_2 + 6;\\r\\n      pcVar4 = local_108;\\r\\n      iVar6 = (int)puVar5 - (int)pcVar4;\\r\\n      do {\\r\\n        cVar1 = *pcVar4;\\r\\n        pcVar4[iVar6] = cVar1;\\r\\n        pcVar4 = pcVar4 + 1;\\r\\n      } while (cVar1 != '\\\\0');\\r\\n      iVar6 = (int)param_2 + 0x19;\\r\\n      do {\\r\\n        uVar2 = *puVar5;\\r\\n        puVar5 = (uint *)((int)puVar5 + 1);\\r\\n      } while ((char)uVar2 != '\\\\0');\\r\\n    }\\r\\n    __security_check_cookie(local_4 ^ (uint)local_148,iVar6);\\r\\n    return;\\r\\n  }\\r\\n  FUN_006def60(param_1 + -0x1000,param_2);\\r\\n  __security_check_cookie(local_4 ^ (uint)local_148);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fff00\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fff00\",\"name\":\"FUN_004fff00\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004fff00(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fff10\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fff10\",\"name\":\"FUN_004fff10\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004fff10(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fff20\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fff20\",\"name\":\"FUN_004fff20\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004fff20(void)\\r\\n\\r\\n{\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fff30\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fff30\",\"name\":\"FUN_004fff30\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nfloat10 FUN_004fff30(float param_1)\\r\\n\\r\\n{\\r\\n  return (float10)ABS(param_1);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fff50\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fff50\",\"name\":\"FUN_004fff50\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nfloat10 FUN_004fff50(float param_1,float param_2)\\r\\n\\r\\n{\\r\\n  float10 fVar1;\\r\\n  \\r\\n  fVar1 = (float10)0;\\r\\n  if (((float10)param_1 != fVar1) && ((float10)param_2 != fVar1)) {\\r\\n    return (float10)(float)((float10)param_1 / (float10)param_2);\\r\\n  }\\r\\n  return fVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fff90\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fff90\",\"name\":\"FUN_004fff90\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004fff90(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\\r\\n\\r\\n{\\r\\n  undefined4 *in_EAX;\\r\\n  \\r\\n  *in_EAX = param_1;\\r\\n  in_EAX[1] = param_2;\\r\\n  in_EAX[2] = param_3;\\r\\n  in_EAX[3] = param_4;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x4fffb0\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x4fffb0\",\"name\":\"FUN_004fffb0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_004fffb0(void)\\r\\n\\r\\n{\\r\\n  undefined4 *in_EAX;\\r\\n  undefined4 *in_ECX;\\r\\n  \\r\\n  *in_ECX = *in_EAX;\\r\\n  in_ECX[1] = in_EAX[1];\\r\\n  in_ECX[2] = in_EAX[2];\\r\\n  in_ECX[3] = in_EAX[3];\\r\\n  in_ECX[4] = in_EAX[4];\\r\\n  in_ECX[5] = in_EAX[5];\\r\\n  in_ECX[6] = in_EAX[6];\\r\\n  in_ECX[7] = in_EAX[7];\\r\\n  in_ECX[8] = in_EAX[8];\\r\\n  in_ECX[9] = in_EAX[9];\\r\\n  in_ECX[10] = in_EAX[10];\\r\\n  in_ECX[0xb] = in_EAX[0xb];\\r\\n  in_ECX[0xc] = in_EAX[0xc];\\r\\n  in_ECX[0xd] = in_EAX[0xd];\\r\\n  in_ECX[0xe] = in_EAX[0xe];\\r\\n  in_ECX[0xf] = in_EAX[0xf];\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x500020\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x500020\",\"name\":\"FUN_00500020\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_00500020(void)\\r\\n\\r\\n{\\r\\n  uint in_EAX;\\r\\n  \\r\\n  if (DAT_02854c31 != '\\\\0') {\\r\\n    *(uint *)(*DAT_02854d10 + 0xc) =\\r\\n         ((int)in_EAX >> 0x10 & 0xffU) + (in_EAX & 0xff) * 0x10000 + (in_EAX & 0xff000000) +\\r\\n         (in_EAX & 0xff00);\\r\\n    return;\\r\\n  }\\r\\n  *(uint *)(*DAT_02854d10 + 0xc) =\\r\\n       ((int)in_EAX >> 1 & 0x7f00U) + (in_EAX & 0xfe) * 0x8000 + ((int)in_EAX >> 0x11 & 0x7fU) +\\r\\n       (in_EAX & 0xff000000);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"}],\"total\":32,\"succeeded\":32,\"failed\":0},\"confidence\":\"derived\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Derived by an REA composed workflow.\"],\"locations\":[{\"kind\":\"address\",\"address\":\"0x4ff3f0\"},{\"kind\":\"address\",\"address\":\"0x4ff430\"},{\"kind\":\"address\",\"address\":\"0x4ff4a0\"},{\"kind\":\"address\",\"address\":\"0x4ff4b0\"},{\"kind\":\"address\",\"address\":\"0x4ff4d0\"},{\"kind\":\"address\",\"address\":\"0x4ff4f0\"},{\"kind\":\"address\",\"address\":\"0x4ff570\"},{\"kind\":\"address\",\"address\":\"0x4ff750\"},{\"kind\":\"address\",\"address\":\"0x4ff7a0\"},{\"kind\":\"address\",\"address\":\"0x4ff930\"},{\"kind\":\"address\",\"address\":\"0x4ff960\"},{\"kind\":\"address\",\"address\":\"0x4ff970\"},{\"kind\":\"address\",\"address\":\"0x4ffa50\"},{\"kind\":\"address\",\"address\":\"0x4ffa60\"},{\"kind\":\"address\",\"address\":\"0x4ffa90\"},{\"kind\":\"address\",\"address\":\"0x4ffaa0\"},{\"kind\":\"address\",\"address\":\"0x4ffac0\"},{\"kind\":\"address\",\"address\":\"0x4ffae0\"},{\"kind\":\"address\",\"address\":\"0x4ffb20\"},{\"kind\":\"address\",\"address\":\"0x4ffb90\"},{\"kind\":\"address\",\"address\":\"0x4ffbb0\"},{\"kind\":\"address\",\"address\":\"0x4ffc20\"},{\"kind\":\"address\",\"address\":\"0x4ffd20\"},{\"kind\":\"address\",\"address\":\"0x4ffd80\"},{\"kind\":\"address\",\"address\":\"0x4fff00\"},{\"kind\":\"address\",\"address\":\"0x4fff10\"},{\"kind\":\"address\",\"address\":\"0x4fff20\"},{\"kind\":\"address\",\"address\":\"0x4fff30\"},{\"kind\":\"address\",\"address\":\"0x4fff50\"},{\"kind\":\"address\",\"address\":\"0x4fff90\"},{\"kind\":\"address\",\"address\":\"0x4fffb0\"},{\"kind\":\"address\",\"address\":\"0x500020\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_40a85160eaccd151253910192404d8aba277d39ac9ab2a88fc5c5de06172d047",
+    "subject": {
+      "name": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe",
+      "digest": {
+        "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb"
+      },
+      "format": "pe",
+      "architecture": "x86",
+      "local_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe"
+    },
+    "provider": {
+      "id": "rea-workflow",
+      "name": "REA composed investigation workflow",
+      "version": "1"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "parameters": {
+        "upstream_analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "pe",
+            "executable_role": "application",
+            "managed": false,
+            "native_aot_metadata": {
+              "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+              "source_bytes": 134217728,
+              "work_units": 67108864,
+              "working_memory_bytes": 67108864,
+              "report_bytes": 4194304
+            },
+            "architecture": "x86",
+            "available_architectures": [
+              "x86"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "function_boundary_observations": "ghidra-terminal-call-limitations-v1",
+            "no_return_repair": "disabled-windows-p0",
+            "process_launch": "official-headless-script-v1",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "auto-from-header",
+            "language_id": "auto-from-header",
+            "compiler_spec_id": "auto-default",
+            "analyzer_preset": "ghidra-default",
+            "analysis_seeds": {
+              "format": "rea-ghidra-seeds-v1",
+              "path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-expanded-seeds.tsv",
+              "configured_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-expanded-seeds.tsv",
+              "sha256": "9882e31b8db57e82063527e0ca4afc638e3db1bc6aed8d29b5ee7a1ab04339bc",
+              "entries": {
+                "function": 7392,
+                "code": 0,
+                "label": 0
+              }
+            }
+          },
+          "digest": "39359c696c3a24b5bee48c782b5857ee25653abdc2b148df011b09fd41a6bfb3"
+        },
+        "workflow_revision": 2
+      },
+      "digest": "11e4b00746f88bcea8ae43c57d53bf6d80e8b6654ba2f662d108b5e3ebec1e4d"
+    },
+    "predicate_type": "rea.analysis",
+    "operation": "batch_decompile",
+    "parameters": {
+      "addresses": [
+        "0x4ff3f0",
+        "0x4ff430",
+        "0x4ff4a0",
+        "0x4ff4b0",
+        "0x4ff4d0",
+        "0x4ff4f0",
+        "0x4ff570",
+        "0x4ff750",
+        "0x4ff7a0",
+        "0x4ff930",
+        "0x4ff960",
+        "0x4ff970",
+        "0x4ffa50",
+        "0x4ffa60",
+        "0x4ffa90",
+        "0x4ffaa0",
+        "0x4ffac0",
+        "0x4ffae0",
+        "0x4ffb20",
+        "0x4ffb90",
+        "0x4ffbb0",
+        "0x4ffc20",
+        "0x4ffd20",
+        "0x4ffd80",
+        "0x4fff00",
+        "0x4fff10",
+        "0x4fff20",
+        "0x4fff30",
+        "0x4fff50",
+        "0x4fff90",
+        "0x4fffb0",
+        "0x500020"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "items": [
+        {
+          "address": "0x4ff3f0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff3f0",
+            "name": "FUN_004ff3f0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nuint FUN_004ff3f0(int param_1,LPCVOID param_2,DWORD param_3)\r\n\r\n{\r\n  BOOL BVar1;\r\n  DWORD local_4;\r\n  \r\n  local_4 = 0;\r\n  BVar1 = WriteFile((HANDLE)(&DAT_008007a0)[param_1],param_2,param_3,&local_4,(LPOVERLAPPED)0x0);\r\n  return -(uint)(BVar1 != 0) & local_4;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff430",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff430",
+            "name": "FUN_004ff430"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nlonglong FUN_004ff430(int param_1,undefined4 param_2,undefined4 param_3,int param_4)\r\n\r\n{\r\n  LARGE_INTEGER liDistanceToMove;\r\n  PLARGE_INTEGER lpNewFilePointer;\r\n  BOOL BVar1;\r\n  uint unaff_retaddr;\r\n  \r\n  if (param_4 == 0) {\r\n    lpNewFilePointer = (PLARGE_INTEGER)0x0;\r\n  }\r\n  else if (param_4 == 1) {\r\n    lpNewFilePointer = (PLARGE_INTEGER)0x1;\r\n  }\r\n  else {\r\n    lpNewFilePointer = (PLARGE_INTEGER)0x2;\r\n  }\r\n  liDistanceToMove.s.HighPart = (LONG)&stack0xfffffff8;\r\n  liDistanceToMove.s.LowPart = param_3;\r\n  BVar1 = SetFilePointerEx((HANDLE)(&DAT_008007a0)[param_1],liDistanceToMove,lpNewFilePointer,0);\r\n  if (BVar1 != 0) {\r\n    return (ulonglong)unaff_retaddr << 0x20;\r\n  }\r\n  return -1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff4a0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff4a0",
+            "name": "FUN_004ff4a0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ff4a0(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff4b0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff4b0",
+            "name": "FUN_004ff4b0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ff4b0(char *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = (int)&DAT_0091f0a8 - (int)param_1;\r\n  do {\r\n    cVar1 = *param_1;\r\n    param_1[iVar2] = cVar1;\r\n    param_1 = param_1 + 1;\r\n  } while (cVar1 != '\\0');\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff4d0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff4d0",
+            "name": "FUN_004ff4d0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ff4d0(int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  char *pcVar2;\r\n  \r\n  pcVar2 = &DAT_0091f0a8;\r\n  do {\r\n    cVar1 = *pcVar2;\r\n    pcVar2[param_1 + -0x91f0a8] = cVar1;\r\n    pcVar2 = pcVar2 + 1;\r\n  } while (cVar1 != '\\0');\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff4f0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff4f0",
+            "name": "FUN_004ff4f0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ff4f0(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  CHAR local_204 [256];\r\n  CHAR local_104 [256];\r\n  uint local_4;\r\n  \r\n  local_4 = DAT_00829570 ^ (uint)local_204;\r\n  FUN_004f0180(local_104,param_2,0x100);\r\n  FUN_004f0180(local_204,param_1,0x100);\r\n  DeleteFileA(local_204);\r\n  MoveFileA(local_104,local_204);\r\n  __security_check_cookie(local_4 ^ (uint)local_204);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff570",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff570",
+            "name": "FUN_004ff570"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ff570(char *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  char *pcVar3;\r\n  char *pcVar4;\r\n  HANDLE pvVar5;\r\n  int iVar6;\r\n  undefined2 *puVar7;\r\n  undefined4 *puVar8;\r\n  char local_cc [200];\r\n  uint local_4;\r\n  \r\n  local_4 = DAT_00829570 ^ (uint)local_cc;\r\n  if (DAT_00921248 == 0x10) {\r\n    __security_check_cookie(local_4 ^ (uint)local_cc);\r\n    return;\r\n  }\r\n  iVar6 = 0;\r\n  do {\r\n    if ((&DAT_00921250)[iVar6] == 0) break;\r\n    if ((&DAT_00921254)[iVar6] == 0) {\r\n      iVar6 = iVar6 + 1;\r\n      break;\r\n    }\r\n    if ((&DAT_00921258)[iVar6] == 0) {\r\n      iVar6 = iVar6 + 2;\r\n      break;\r\n    }\r\n    if ((&DAT_0092125c)[iVar6] == 0) {\r\n      iVar6 = iVar6 + 3;\r\n      break;\r\n    }\r\n    iVar6 = iVar6 + 4;\r\n  } while (iVar6 < 0x10);\r\n  if (iVar6 == 0x10) {\r\n    __security_check_cookie(local_4 ^ (uint)local_cc);\r\n    return;\r\n  }\r\n  iVar2 = -(int)param_1;\r\n  do {\r\n    cVar1 = *param_1;\r\n    param_1[(int)(local_cc + iVar2)] = cVar1;\r\n    param_1 = param_1 + 1;\r\n    pcVar3 = local_cc;\r\n  } while (cVar1 != '\\0');\r\n  do {\r\n    pcVar4 = pcVar3;\r\n    pcVar3 = pcVar4 + 1;\r\n  } while (*pcVar4 != '\\0');\r\n  if (pcVar4[-1] != '\\\\') {\r\n    puVar7 = (undefined2 *)&stack0xffffff33;\r\n    do {\r\n      pcVar3 = (char *)((int)puVar7 + 1);\r\n      puVar7 = (undefined2 *)((int)puVar7 + 1);\r\n    } while (*pcVar3 != '\\0');\r\n    *puVar7 = 0x5c;\r\n  }\r\n  puVar8 = (undefined4 *)&stack0xffffff33;\r\n  do {\r\n    pcVar3 = (char *)((int)puVar8 + 1);\r\n    puVar8 = (undefined4 *)((int)puVar8 + 1);\r\n  } while (*pcVar3 != '\\0');\r\n  pcVar3 = local_cc;\r\n  *puVar8 = 0x2a2e2a;\r\n  do {\r\n    cVar1 = *pcVar3;\r\n    pcVar3 = pcVar3 + 1;\r\n  } while (cVar1 != '\\0');\r\n  pcVar4 = (char *)FUN_004eef40(pcVar3 + (4 - (int)(local_cc + 1)),\r\n                                \"d:\\\\projects\\\\legosagapc\\\\nu2api.saga\\\\nucore\\\\pc\\\\nufile_pc.c\",\r\n                                0x21a);\r\n  puVar8 = &DAT_00921250 + iVar6;\r\n  *puVar8 = pcVar4;\r\n  pcVar3 = local_cc;\r\n  do {\r\n    cVar1 = *pcVar3;\r\n    *pcVar4 = cVar1;\r\n    pcVar3 = pcVar3 + 1;\r\n    pcVar4 = pcVar4 + 1;\r\n  } while (cVar1 != '\\0');\r\n  DAT_00921248 = DAT_00921248 + 1;\r\n  pvVar5 = FindFirstFileA((LPCSTR)*puVar8,(LPWIN32_FIND_DATAA)(&DAT_0091f1b8 + iVar6 * 0x140));\r\n  *(HANDLE *)(&DAT_0091ef40 + iVar6 * 4) = pvVar5;\r\n  if (pvVar5 != (HANDLE)0xffffffff) {\r\n    __security_check_cookie(local_4 ^ (uint)local_cc);\r\n    return;\r\n  }\r\n  FUN_004ef280(*puVar8,\"d:\\\\projects\\\\legosagapc\\\\nu2api.saga\\\\nucore\\\\pc\\\\nufile_pc.c\",0x222);\r\n  DAT_00921248 = DAT_00921248 + -1;\r\n  (&DAT_0092124c)[iVar6] = 0;\r\n  __security_check_cookie(local_4 ^ (uint)local_cc);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff750",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff750",
+            "name": "FUN_004ff750"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_004ff750(int param_1)\r\n\r\n{\r\n  HANDLE hFindFile;\r\n  \r\n  FUN_004ef280((&DAT_00921250)[param_1],\r\n               \"d:\\\\projects\\\\legosagapc\\\\nu2api.saga\\\\nucore\\\\pc\\\\nufile_pc.c\",0x22e);\r\n  hFindFile = *(HANDLE *)(&DAT_0091ef40 + param_1 * 4);\r\n  (&DAT_0092124c)[param_1] = 0;\r\n  FindClose(hFindFile);\r\n  DAT_00921248 = DAT_00921248 + -1;\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff7a0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff7a0",
+            "name": "FUN_004ff7a0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_004ff7a0(int param_1,int *param_2)\r\n\r\n{\r\n  LPWIN32_FIND_DATAA lpFindFileData;\r\n  char cVar1;\r\n  int iVar2;\r\n  char *pcVar3;\r\n  BOOL BVar4;\r\n  int *piVar5;\r\n  int iVar6;\r\n  _SYSTEMTIME local_10;\r\n  \r\n  iVar6 = param_1 * 0x140;\r\n  lpFindFileData = (LPWIN32_FIND_DATAA)(&DAT_0091f1b8 + iVar6);\r\n  iVar2 = 0x100;\r\n  if ((*(uint *)(&DAT_0091f1b8 + iVar6) & 1) != 0) {\r\n    iVar2 = 0x180;\r\n  }\r\n  if ((*(uint *)(&DAT_0091f1b8 + iVar6) & 0x10) != 0) {\r\n    iVar2 = iVar2 + 0x2000;\r\n  }\r\n  *param_2 = iVar2;\r\n  piVar5 = param_2 + 0x10;\r\n  param_2[2] = *(int *)(&DAT_0091f1d8 + iVar6);\r\n  pcVar3 = &DAT_0091f1e4 + iVar6;\r\n  param_2[9] = 0;\r\n  iVar2 = (int)piVar5 - (int)pcVar3;\r\n  do {\r\n    cVar1 = *pcVar3;\r\n    pcVar3[iVar2] = cVar1;\r\n    pcVar3 = pcVar3 + 1;\r\n  } while (cVar1 != '\\0');\r\n  FileTimeToSystemTime((FILETIME *)(&DAT_0091f1bc + iVar6),&local_10);\r\n  *(undefined1 *)((int)param_2 + 0xd) = (undefined1)local_10.wSecond;\r\n  *(undefined1 *)((int)param_2 + 0xe) = (undefined1)local_10.wMinute;\r\n  *(undefined1 *)(param_2 + 4) = (undefined1)local_10.wDay;\r\n  *(undefined1 *)((int)param_2 + 0xf) = (undefined1)local_10.wHour;\r\n  *(undefined1 *)((int)param_2 + 0x11) = (undefined1)local_10.wMonth;\r\n  *(undefined1 *)((int)param_2 + 0x12) = (undefined1)local_10.wYear;\r\n  *(undefined1 *)((int)param_2 + 0x13) = 0;\r\n  FileTimeToSystemTime((FILETIME *)(&DAT_0091f1cc + iVar6),&local_10);\r\n  *(undefined1 *)((int)param_2 + 0x1d) = (undefined1)local_10.wSecond;\r\n  *(undefined1 *)((int)param_2 + 0x1e) = (undefined1)local_10.wMinute;\r\n  *(undefined1 *)(param_2 + 8) = (undefined1)local_10.wDay;\r\n  *(undefined1 *)((int)param_2 + 0x1f) = (undefined1)local_10.wHour;\r\n  *(undefined1 *)((int)param_2 + 0x21) = (undefined1)local_10.wMonth;\r\n  *(undefined1 *)((int)param_2 + 0x22) = (undefined1)local_10.wYear;\r\n  *(undefined1 *)((int)param_2 + 0x23) = 0;\r\n  FileTimeToSystemTime((FILETIME *)(&DAT_0091f1c4 + iVar6),&local_10);\r\n  *(undefined1 *)((int)param_2 + 0x15) = (undefined1)local_10.wSecond;\r\n  *(undefined1 *)((int)param_2 + 0x16) = (undefined1)local_10.wMinute;\r\n  *(undefined1 *)((int)param_2 + 0x17) = (undefined1)local_10.wHour;\r\n  *(undefined1 *)(param_2 + 6) = (undefined1)local_10.wDay;\r\n  *(undefined1 *)((int)param_2 + 0x19) = (undefined1)local_10.wMonth;\r\n  *(undefined1 *)((int)param_2 + 0x1a) = (undefined1)local_10.wYear;\r\n  *(undefined1 *)((int)param_2 + 0x1b) = 0;\r\n  if (lpFindFileData->dwFileAttributes == 0xffffffff) {\r\n    return 0;\r\n  }\r\n  BVar4 = FindNextFileA(*(HANDLE *)(&DAT_0091ef40 + param_1 * 4),lpFindFileData);\r\n  if (BVar4 != 1) {\r\n    lpFindFileData->dwFileAttributes = 0xffffffff;\r\n  }\r\n  do {\r\n    iVar2 = *piVar5;\r\n    piVar5 = (int *)((int)piVar5 + 1);\r\n  } while ((char)iVar2 != '\\0');\r\n  return (int)piVar5 - ((int)param_2 + 0x41);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff930",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff930",
+            "name": "FUN_004ff930"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ff930(LPCSTR param_1)\r\n\r\n{\r\n  _SECURITY_ATTRIBUTES local_c;\r\n  \r\n  local_c.bInheritHandle = 1;\r\n  local_c.nLength = 0xc;\r\n  local_c.lpSecurityDescriptor = (LPVOID)0x0;\r\n  CreateDirectoryA(param_1,&local_c);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff960",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff960",
+            "name": "FUN_004ff960"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_004ff960(void)\r\n\r\n{\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ff970",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ff970",
+            "name": "FUN_004ff970"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nundefined4 FUN_004ff970(LPCSTR param_1,uint *param_2)\r\n\r\n{\r\n  _SYSTEMTIME local_34;\r\n  uint local_24;\r\n  FILETIME local_20 [2];\r\n  FILETIME local_10;\r\n  uint local_4;\r\n  \r\n  GetFileAttributesExA(param_1,GetFileExInfoStandard,&local_24);\r\n  *param_2 = ((local_24 & 0x4000 | 0x400) >> 9 | local_24 & 0x10) >> 1 | ~(local_24 * 2) & 2;\r\n  *(undefined1 *)(param_2 + 6) = 0;\r\n  param_2[1] = local_4;\r\n  FileTimeToSystemTime(local_20,&local_34);\r\n  *(WORD *)((int)param_2 + 0xe) = local_34.wYear;\r\n  *(undefined1 *)(param_2 + 3) = (undefined1)local_34.wMonth;\r\n  *(undefined1 *)((int)param_2 + 10) = (undefined1)local_34.wHour;\r\n  *(undefined1 *)((int)param_2 + 0xb) = (undefined1)local_34.wDay;\r\n  *(undefined1 *)((int)param_2 + 9) = (undefined1)local_34.wMinute;\r\n  *(undefined1 *)(param_2 + 2) = (undefined1)local_34.wSecond;\r\n  FileTimeToSystemTime(&local_10,&local_34);\r\n  *(WORD *)((int)param_2 + 0x16) = local_34.wYear;\r\n  *(undefined1 *)(param_2 + 5) = (undefined1)local_34.wMonth;\r\n  *(undefined1 *)((int)param_2 + 0x13) = (undefined1)local_34.wDay;\r\n  *(undefined1 *)((int)param_2 + 0x12) = (undefined1)local_34.wHour;\r\n  *(undefined1 *)((int)param_2 + 0x11) = (undefined1)local_34.wMinute;\r\n  *(undefined1 *)(param_2 + 4) = (undefined1)local_34.wSecond;\r\n  return 1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffa50",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffa50",
+            "name": "FUN_004ffa50"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffa50(LPCSTR param_1)\r\n\r\n{\r\n  DeleteFileA(param_1);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffa60",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffa60",
+            "name": "FUN_004ffa60"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nint FUN_004ffa60(void)\r\n\r\n{\r\n  if (DAT_0092124c < 0xd) {\r\n    DAT_0092124c = DAT_0092124c + 1;\r\n    InitializeCriticalSection((LPCRITICAL_SECTION)(&DAT_0091ef70 + DAT_0092124c * 0x18));\r\n    return DAT_0092124c;\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffa90",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffa90",
+            "name": "FUN_004ffa90"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffa90(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffaa0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffaa0",
+            "name": "FUN_004ffaa0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffaa0(int param_1)\r\n\r\n{\r\n  if (param_1 - 1U < 0xc) {\r\n    EnterCriticalSection((LPCRITICAL_SECTION)(&DAT_0091ef70 + param_1 * 0x18));\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffac0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffac0",
+            "name": "FUN_004ffac0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffac0(int param_1)\r\n\r\n{\r\n  if (param_1 - 1U < 0xc) {\r\n    LeaveCriticalSection((LPCRITICAL_SECTION)(&DAT_0091ef70 + param_1 * 0x18));\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffae0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffae0",
+            "name": "FUN_004ffae0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffae0(void)\r\n\r\n{\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  FUN_004f3bd0(&local_8);\r\n  __alldiv(local_8,local_4,1000,0);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffb20",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffb20",
+            "name": "FUN_004ffb20"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffb20(int *param_1,int *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  bool bVar3;\r\n  LARGE_INTEGER local_8;\r\n  \r\n  QueryPerformanceCounter(&local_8);\r\n  if ((DAT_009209e4 <= local_8.s.HighPart) &&\r\n     ((DAT_009209e4 < local_8.s.HighPart || (DAT_009209e0 < local_8.s.LowPart)))) {\r\n    bVar3 = local_8.s.LowPart < DAT_009209e0;\r\n    iVar1 = local_8.s.HighPart - DAT_009209e4;\r\n    *param_1 = local_8.s.LowPart - DAT_009209e0;\r\n    *param_2 = iVar1 - (uint)bVar3;\r\n    return;\r\n  }\r\n  iVar2 = -DAT_009209e0;\r\n  iVar1 = 0x7fffffff - DAT_009209e4;\r\n  *param_1 = local_8.s.LowPart + (iVar2 - 1U);\r\n  *param_2 = local_8.s.HighPart + iVar1 + (uint)CARRY4(local_8.s.LowPart,iVar2 - 1U);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffb90",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffb90",
+            "name": "FUN_004ffb90"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffb90(undefined4 *param_1,undefined4 *param_2)\r\n\r\n{\r\n  *param_1 = DAT_0091ef80;\r\n  *param_2 = DAT_0091ef84;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffbb0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffbb0",
+            "name": "FUN_004ffbb0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffbb0(void)\r\n\r\n{\r\n  HANDLE pvVar1;\r\n  BOOL BVar2;\r\n  ULONG_PTR *lpProcessAffinityMask;\r\n  ULONG_PTR *lpSystemAffinityMask;\r\n  DWORD_PTR dwProcessAffinityMask;\r\n  ULONG_PTR dwProcessAffinityMask_00;\r\n  ULONG_PTR local_8 [2];\r\n  \r\n  lpSystemAffinityMask = local_8 + 1;\r\n  lpProcessAffinityMask = local_8;\r\n  local_8[0] = 1;\r\n  local_8[1] = 1;\r\n  pvVar1 = GetCurrentProcess();\r\n  BVar2 = GetProcessAffinityMask(pvVar1,lpProcessAffinityMask,lpSystemAffinityMask);\r\n  if (BVar2 == 0) {\r\n    local_8[0] = 1;\r\n  }\r\n  dwProcessAffinityMask = 1;\r\n  pvVar1 = GetCurrentProcess();\r\n  SetProcessAffinityMask(pvVar1,dwProcessAffinityMask);\r\n  QueryPerformanceCounter((LARGE_INTEGER *)&DAT_009209e0);\r\n  QueryPerformanceFrequency((LARGE_INTEGER *)&DAT_0091ef80);\r\n  dwProcessAffinityMask_00 = local_8[0];\r\n  pvVar1 = GetCurrentProcess();\r\n  SetProcessAffinityMask(pvVar1,dwProcessAffinityMask_00);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffc20",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffc20",
+            "name": "FUN_004ffc20"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffc20(undefined4 param_1)\r\n\r\n{\r\n  undefined2 *puVar1;\r\n  int *piVar2;\r\n  undefined2 *puVar3;\r\n  int iVar4;\r\n  char local_104 [256];\r\n  uint local_4;\r\n  \r\n  local_4 = DAT_00829570 ^ (uint)local_104;\r\n  piVar2 = (int *)FUN_004f98c0(param_1);\r\n  if (piVar2 == (int *)0x0) {\r\n    piVar2 = (int *)PTR_DAT_00800784;\r\n  }\r\n  (*(code *)piVar2[0x8b])(piVar2,local_104,param_1,0x100);\r\n  if (*piVar2 == 2) {\r\n    puVar1 = (undefined2 *)&stack0xfffffefb;\r\n    do {\r\n      puVar3 = puVar1;\r\n      puVar1 = (undefined2 *)((int)puVar3 + 1);\r\n    } while (*(char *)((int)puVar3 + 1) != '\\0');\r\n    *(undefined2 *)((int)puVar3 + 1) = 0x313b;\r\n    *(undefined1 *)((int)puVar3 + 3) = 0;\r\n  }\r\n  if (*piVar2 == 1) {\r\n    iVar4 = FUN_006def40(local_104[2] + -0x30,local_104[3] + -0x30,local_104 + piVar2[0x12]);\r\n    if (-1 < iVar4) {\r\n      __security_check_cookie(local_4 ^ (uint)local_104);\r\n      return;\r\n    }\r\n  }\r\n  else {\r\n    iVar4 = FUN_004ff570(local_104);\r\n    if (-1 < iVar4) {\r\n      __security_check_cookie(local_4 ^ (uint)local_104);\r\n      return;\r\n    }\r\n  }\r\n  __security_check_cookie(local_4 ^ (uint)local_104);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffd20",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffd20",
+            "name": "FUN_004ffd20"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffd20(int param_1)\r\n\r\n{\r\n  HANDLE hFindFile;\r\n  \r\n  if (0xfff < param_1) {\r\n    FUN_006def50(param_1 + -0x1000);\r\n    return;\r\n  }\r\n  FUN_004ef280((&DAT_0092124c)[param_1],\r\n               \"d:\\\\projects\\\\legosagapc\\\\nu2api.saga\\\\nucore\\\\pc\\\\nufile_pc.c\",0x22e);\r\n  hFindFile = *(HANDLE *)(&DAT_0091ef3c + param_1 * 4);\r\n  (&DAT_00921248)[param_1] = 0;\r\n  FindClose(hFindFile);\r\n  DAT_00921248 = DAT_00921248 + -1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4ffd80",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4ffd80",
+            "name": "FUN_004ffd80"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004ffd80(int param_1,uint *param_2)\r\n\r\n{\r\n  char cVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  char *pcVar4;\r\n  uint *puVar5;\r\n  int iVar6;\r\n  int extraout_EDX;\r\n  undefined8 uVar7;\r\n  uint local_148 [2];\r\n  uint local_140;\r\n  undefined1 local_13b;\r\n  undefined1 local_13a;\r\n  undefined1 local_139;\r\n  undefined1 local_138;\r\n  undefined1 local_137;\r\n  byte local_136;\r\n  byte local_135;\r\n  undefined1 local_12b;\r\n  undefined1 local_12a;\r\n  undefined1 local_129;\r\n  undefined1 local_128;\r\n  undefined1 local_127;\r\n  byte local_126;\r\n  byte local_125;\r\n  char local_108 [260];\r\n  uint local_4;\r\n  \r\n  local_4 = DAT_00829570 ^ (uint)local_148;\r\n  if (param_1 < 0x1000) {\r\n    uVar7 = FUN_004ff7a0(param_1 + -1,local_148);\r\n    iVar6 = (int)((ulonglong)uVar7 >> 0x20);\r\n    iVar3 = (int)uVar7;\r\n    if (iVar3 < 1) {\r\n      if (iVar3 < 0) {\r\n        FUN_004fe650(iVar3);\r\n        iVar6 = extraout_EDX;\r\n      }\r\n    }\r\n    else {\r\n      *param_2 = (((local_148[0] >> 2 & 0x800 | local_148[0] & 0x100) >> 2 | local_148[0] & 0x80) >>\r\n                  2 | local_148[0] & 0x40) >> 4;\r\n      param_2[1] = local_140;\r\n      *(undefined1 *)(param_2 + 2) = local_13b;\r\n      *(undefined1 *)((int)param_2 + 10) = local_139;\r\n      *(undefined1 *)((int)param_2 + 9) = local_13a;\r\n      *(undefined1 *)((int)param_2 + 0xb) = local_138;\r\n      *(undefined1 *)(param_2 + 3) = local_137;\r\n      *(undefined1 *)(param_2 + 4) = local_12b;\r\n      *(ushort *)((int)param_2 + 0xe) = (ushort)local_135 * 0x100 + (ushort)local_136;\r\n      *(undefined1 *)((int)param_2 + 0x12) = local_129;\r\n      *(undefined1 *)((int)param_2 + 0x13) = local_128;\r\n      *(undefined1 *)((int)param_2 + 0x11) = local_12a;\r\n      *(undefined1 *)(param_2 + 5) = local_127;\r\n      *(ushort *)((int)param_2 + 0x16) = (ushort)local_125 * 0x100 + (ushort)local_126;\r\n      puVar5 = param_2 + 6;\r\n      pcVar4 = local_108;\r\n      iVar6 = (int)puVar5 - (int)pcVar4;\r\n      do {\r\n        cVar1 = *pcVar4;\r\n        pcVar4[iVar6] = cVar1;\r\n        pcVar4 = pcVar4 + 1;\r\n      } while (cVar1 != '\\0');\r\n      iVar6 = (int)param_2 + 0x19;\r\n      do {\r\n        uVar2 = *puVar5;\r\n        puVar5 = (uint *)((int)puVar5 + 1);\r\n      } while ((char)uVar2 != '\\0');\r\n    }\r\n    __security_check_cookie(local_4 ^ (uint)local_148,iVar6);\r\n    return;\r\n  }\r\n  FUN_006def60(param_1 + -0x1000,param_2);\r\n  __security_check_cookie(local_4 ^ (uint)local_148);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fff00",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fff00",
+            "name": "FUN_004fff00"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004fff00(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fff10",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fff10",
+            "name": "FUN_004fff10"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004fff10(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fff20",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fff20",
+            "name": "FUN_004fff20"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004fff20(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fff30",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fff30",
+            "name": "FUN_004fff30"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nfloat10 FUN_004fff30(float param_1)\r\n\r\n{\r\n  return (float10)ABS(param_1);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fff50",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fff50",
+            "name": "FUN_004fff50"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nfloat10 FUN_004fff50(float param_1,float param_2)\r\n\r\n{\r\n  float10 fVar1;\r\n  \r\n  fVar1 = (float10)0;\r\n  if (((float10)param_1 != fVar1) && ((float10)param_2 != fVar1)) {\r\n    return (float10)(float)((float10)param_1 / (float10)param_2);\r\n  }\r\n  return fVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fff90",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fff90",
+            "name": "FUN_004fff90"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004fff90(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  undefined4 *in_EAX;\r\n  \r\n  *in_EAX = param_1;\r\n  in_EAX[1] = param_2;\r\n  in_EAX[2] = param_3;\r\n  in_EAX[3] = param_4;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x4fffb0",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x4fffb0",
+            "name": "FUN_004fffb0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_004fffb0(void)\r\n\r\n{\r\n  undefined4 *in_EAX;\r\n  undefined4 *in_ECX;\r\n  \r\n  *in_ECX = *in_EAX;\r\n  in_ECX[1] = in_EAX[1];\r\n  in_ECX[2] = in_EAX[2];\r\n  in_ECX[3] = in_EAX[3];\r\n  in_ECX[4] = in_EAX[4];\r\n  in_ECX[5] = in_EAX[5];\r\n  in_ECX[6] = in_EAX[6];\r\n  in_ECX[7] = in_EAX[7];\r\n  in_ECX[8] = in_EAX[8];\r\n  in_ECX[9] = in_EAX[9];\r\n  in_ECX[10] = in_EAX[10];\r\n  in_ECX[0xb] = in_EAX[0xb];\r\n  in_ECX[0xc] = in_EAX[0xc];\r\n  in_ECX[0xd] = in_EAX[0xd];\r\n  in_ECX[0xe] = in_EAX[0xe];\r\n  in_ECX[0xf] = in_EAX[0xf];\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x500020",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x500020",
+            "name": "FUN_00500020"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_00500020(void)\r\n\r\n{\r\n  uint in_EAX;\r\n  \r\n  if (DAT_02854c31 != '\\0') {\r\n    *(uint *)(*DAT_02854d10 + 0xc) =\r\n         ((int)in_EAX >> 0x10 & 0xffU) + (in_EAX & 0xff) * 0x10000 + (in_EAX & 0xff000000) +\r\n         (in_EAX & 0xff00);\r\n    return;\r\n  }\r\n  *(uint *)(*DAT_02854d10 + 0xc) =\r\n       ((int)in_EAX >> 1 & 0x7f00U) + (in_EAX & 0xfe) * 0x8000 + ((int)in_EAX >> 0x11 & 0x7fU) +\r\n       (in_EAX & 0xff000000);\r\n  return;\r\n}\r\n\r\n"
+        }
+      ],
+      "total": 32,
+      "succeeded": 32,
+      "failed": 0
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Derived by an REA composed workflow."
+    ],
+    "locations": [
+      {
+        "kind": "address",
+        "address": "0x4ff3f0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff430"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff4a0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff4b0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff4d0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff4f0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff570"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff750"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff7a0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff930"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff960"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ff970"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffa50"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffa60"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffa90"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffaa0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffac0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffae0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffb20"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffb90"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffbb0"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffc20"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffd20"
+      },
+      {
+        "kind": "address",
+        "address": "0x4ffd80"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fff00"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fff10"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fff20"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fff30"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fff50"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fff90"
+      },
+      {
+        "kind": "address",
+        "address": "0x4fffb0"
+      },
+      {
+        "kind": "address",
+        "address": "0x500020"
+      }
+    ],
+    "evidence_links": []
+  }
+}

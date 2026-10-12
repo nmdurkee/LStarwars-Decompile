@@ -1,0 +1,96 @@
+PARAM 1 shootrange 3
+
+state Base {
+	Conditions {
+		if Message "GoneThroughGate" == 1 goto SnapToGuard
+		
+		if GotLocatorInSet "Droideka1" == 1 goto LocatorSetDroideka1
+		if GotLocatorInSet "Droideka2" == 1 goto LocatorSetDroideka2
+	}
+	Actions {
+	}
+}
+
+state LocatorSetDroideka1 {
+	Conditions {
+	}
+	Actions {
+		SetLocatorSet "name=Droideka1"
+		GetLocatorFromSet "first"
+		SetState "WaitStart"
+	}
+}
+
+state LocatorSetDroideka2 {
+	Conditions {
+	}
+	Actions {
+		SetLocatorSet "name=Droideka2"
+		GetLocatorFromSet "first"
+		SetState "WaitStart"
+	}
+}
+
+state WaitStart {
+	Conditions {
+		
+		if PlayerInTriggerArea "START_DROIDEKA" == 1 goto OpenGate
+	}
+	Actions {
+		GoToOrigin
+	}
+}
+
+state SnapToGuard {
+	Conditions {
+	}
+	Actions {
+		SnapToLocator
+		SetState "Guard"
+	}
+}
+
+state OpenGate {
+	Conditions {
+		if ObstacleAtEnd "obstacle8" == 1 goto GoThroughGate
+	}
+	Actions {
+		CameraCut "campos_x=5" "campos_y=0" "campos_z=-19" "tgt_character=Droideka_1" "end_time=7" "blend_in_time=0.5" "blend_out_time=0.5" "FollowTgt"
+		CanOpenDoors "TRUE"
+		GoToLocator "ignore_path"
+	}
+}
+
+state GoThroughGate {
+	Conditions {
+	}
+	Actions {
+		Idle "1.0"
+		GetLocatorFromSet "next"
+		GoToLocator
+		SetMessage "name=Close_Gate" "increment=1"
+		GoToLocator
+		SetMessage "name=GoneThroughGate" "value=1"
+		SetState "Guard"
+	}
+}
+
+state Guard {
+	Conditions {
+		if GotOpponent == 1 and 
+		if OpponentRange < shootrange goto Engage
+	}
+	Actions {
+		GoToLocator
+	}
+}
+
+state Engage {
+	Conditions {
+		if GotOpponent == 0 goto Guard
+		if OpponentRange > shootrange goto Guard
+	}
+	Actions {
+		EngageOpponent "static" "firerange shootrange"
+	}
+}

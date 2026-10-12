@@ -1,0 +1,229 @@
+{
+  "generatedAt": "2026-10-12T19:07:03.338Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "registry": {
+      "address": "0x5aac00",
+      "description": "The shared registry is global 0x95df4c. Records are linked with next+0, previous+4, a 32-byte name at +8, and a float value at +0x28. Registry free-list head/tail are +8/+12 and active-list head/tail +16/+20. A non-null cached third argument is returned directly when the registry is non-null. Lookup adds msg_ unless a case-insensitive occurrence of msg_ appears anywhere in the supplied name. Unprefixed names longer than 26 bytes are rejected. Active records are scanned in order, case-insensitively, before transferring the first free record to the active tail. Transfer does not zero the record value. Exhaustion returns null.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c",
+          "line": 23,
+          "excerpt": "iVar1 = FUN_004f8a70(param_2,&DAT_00805d48);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c",
+          "line": 27,
+          "excerpt": "if (0x1f < iVar1 + 1 + iVar2) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c",
+          "line": 38,
+          "excerpt": "iVar3 = FUN_004f8b80(local_24,iVar2 + 8,0x20);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5aac00.c",
+          "line": 47,
+          "excerpt": "FUN_004f1310(iVar1,iVar2);"
+        }
+      ],
+      "qualification": "Native disassembly establishes the returned cached-pointer path, which Ghidra typed void. Original literal at 0x805d48 is msg_. The already-prefixed sprintf branch lacks a name-length check; fixtures exclude its overflow domain, and the portable API rejects >31 characters."
+    },
+    "Message": {
+      "addresses": [
+        "0x442480",
+        "0x4424b0"
+      ],
+      "description": "The condition initializer resolves/creates its name in the shared registry when its first argument, name pointer and global registry are nonzero. The condition reads the current float at its bound record+0x28, or zero for a null record. It reads the live value each evaluation. It does not dequeue notifications or use the packet blocked-message mask.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_442480.c",
+          "line": 12,
+          "excerpt": "if (((param_2 != 0) && (param_1 != 0)) && (DAT_0095df4c != 0)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_4424b0.c",
+          "line": 13,
+          "excerpt": "return (float10)*(float *)(in_stack_00000014 + 0x28);"
+        }
+      ]
+    },
+    "SetMessage": {
+      "address": "0x44b360",
+      "description": "Always completes (returns 1). Only first-call, non-null-registry, positive-argument-count calls scan arguments. Each argument is searched case-insensitively, in name=, value=, increment=, decrement= priority. Matches can begin inside a longer token. Last matching name and numeric amount win; increment/decrement set mode +1/-1, while value= does not reset an earlier mode. Default amount and mode are zero. A valid name lookup is set, incremented or decremented as a float32 value. Failed lookup is ignored.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c",
+          "line": 23,
+          "excerpt": "if (((param_6 != 0) && (DAT_0095df4c != 0)) && (0 < param_5)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c",
+          "line": 25,
+          "excerpt": "iVar1 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar3 * 4),\"name=\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c",
+          "line": 27,
+          "excerpt": "iVar1 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar3 * 4),\"value=\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c",
+          "line": 34,
+          "excerpt": "iVar2 = -1;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b360.c",
+          "line": 54,
+          "excerpt": "*(float *)(iVar3 + 0x28) = *(float *)(iVar3 + 0x28) - local_8;"
+        }
+      ]
+    },
+    "SetAIMessage": {
+      "address": "0x464f40",
+      "description": "GIT updates the same shared registry. It searches Name and Val without the equals sign, then skips the key plus one separator byte. Increment/decrement use their equals-suffixed keys. Token order and persistent operation mode match SetMessage. Numeric operands use the decimal-prefix parser directly, without SCP packet parameter lookup. This handler has no first-call guard and no failed-lookup guard.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c",
+          "line": 24,
+          "excerpt": "iVar1 = FUN_004f8a70(*(undefined4 *)(param_3 + iVar4 * 4),&DAT_00758a60);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c",
+          "line": 42,
+          "excerpt": "fVar5 = (float10)FUN_004f28e0(iVar1 + 1 + iVar2);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c",
+          "line": 32,
+          "excerpt": "fVar5 = (float10)FUN_004f28e0(iVar1 + 10);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_464f40.c",
+          "line": 54,
+          "excerpt": "iVar4 = FUN_005aac00(DAT_0095df4c,local_4,0);"
+        }
+      ]
+    },
+    "CopyMessage": {
+      "address": "0x44b680",
+      "description": "On first call with a non-null registry and positive argument count, scan from= before to= inside each token; last matched source/destination names win. Resolve/create source first, then destination even if source lookup failed. If both resolve, copy all 32 value bits. Negative zero and quiet-NaN payload fixtures confirm a bit copy. Newly created source records retain their free-list values. The action always returns 1.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c",
+          "line": 21,
+          "excerpt": "if (((in_stack_00000018 != 0) && (DAT_0095df4c != 0)) && (0 < in_stack_00000014)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c",
+          "line": 23,
+          "excerpt": "iVar1 = FUN_004f8a70(*(undefined4 *)(in_stack_00000010 + iVar3 * 4),\"from=\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c",
+          "line": 36,
+          "excerpt": "iVar3 = FUN_005aac00(DAT_0095df4c,local_4,0);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44b680.c",
+          "line": 39,
+          "excerpt": "*(undefined4 *)(iVar2 + 0x28) = *(undefined4 *)(iVar3 + 0x28);"
+        }
+      ]
+    },
+    "operands": {
+      "addresses": [
+        "0x5147c0",
+        "0x4f28e0"
+      ],
+      "description": "SCP numeric operands first search the entire token for param, case-insensitively. The PC passes the beginning of that match to its integer parser, so param0, param3 and prefixPaRaM99 all resolve to packet parameter 0. Without such a match, ordered case-insensitive script parameter names map to the four packet values. Otherwise parse an optional minus and decimal digits/dot, stopping at the first other character; leading plus, whitespace and exponent notation are not accepted. Digit multiplication, digit addition, decimal divisor multiplication and final division store float32 values.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c",
+          "line": 20,
+          "excerpt": "iVar1 = FUN_004f8a70(param_2,\"param\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c",
+          "line": 39,
+          "excerpt": "uVar2 = FUN_004f29a0(iVar1);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c",
+          "line": 33,
+          "excerpt": "iVar1 = iVar1 + 8;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_4f28e0.c",
+          "line": 19,
+          "excerpt": "if (cVar1 == '-') {"
+        }
+      ],
+      "qualification": "The slot-zero result is confirmed by 40 direct operand fixtures here and independently by the root combat-command fixture. No general expression evaluator is implied."
+    },
+    "puzzleLink": {
+      "description": "For all 34 authored GIT SetAIMessage occurrences, isolated original-PC tests construct a bound Message condition, perform the graph command, then call the original SCP scheduler 0x52cc90. The expected state is entered after the shared value update. This proves the command-to-record-to-condition-to-state contract on the controlled fixtures, not the reachability of those graph nodes or whole-level completion.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52c880.c",
+          "line": 26,
+          "excerpt": "*(undefined4 *)(iVar4 + 0x18));"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_52cc90.c",
+          "line": 33,
+          "excerpt": "if ((iVar4 != 0) && (iVar4 = FUN_0052c880(param_1,iVar2 + 0x1c,param_3,puVar3), iVar4 == 0)) {"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "checks": 2638,
+    "mismatches": 0,
+    "shippedOccurrences": 1678,
+    "originalSchedulerChains": 34,
+    "report": "reverse-engineering/reports/gameplay-message-tests.json",
+    "tool": "reverse-engineering/tools/gameplay-message-verify.py",
+    "adapters": [
+      {
+        "address": "0x6e69ef",
+        "kind": "CRT string-format adapter",
+        "scope": "Only %s or %s%s, ASCII fixtures and bounded output <32 bytes. Does not model CRT locale, allocator or OS imports."
+      }
+    ]
+  },
+  "portable": {
+    "source": "reverse-engineering/reconstructed/gameplay/Messages.cs",
+    "sha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d",
+    "status": "Core library and message comparison harness compiled with installed C# 5 compiler. Execution/differential comparison pending; root reports Windows denial of newly generated managed executables.",
+    "harness": "reverse-engineering/tools/gameplay-message-portable-verify.cs",
+    "fixtures": "reverse-engineering/reports/gameplay-message-native-fixtures.json",
+    "map": "reverse-engineering/reports/gameplay-source-function-map.json",
+    "adapters": [
+      "Host constructs registry capacity and initial free-record value bits and owns its lifetime. No recovered level-load/reset policy is invented.",
+      "Host binds ScriptDefinition.ParameterNames and packet values from source loader.",
+      "SCP condition comparisons and graph activation remain separate scheduler integrations; native bounded chain fixtures verify the connection."
+    ],
+    "hostGuards": [
+      "Reject embedded NUL/non-ASCII text rather than approximate native extended-byte case folding.",
+      "Reject already-prefixed names longer than 31 characters rather than reproduce stack overflow.",
+      "Throw on GIT missing registry/name/capacity instead of native failed-lookup dereference."
+    ]
+  },
+  "crosslinks": {
+    "report": "reverse-engineering/reports/gameplay-message-crosslinks.json",
+    "counts": {
+      "occurrences": 1678,
+      "accesses": 1679,
+      "scopeNameGroups": 371,
+      "gitToScpGroups": 5,
+      "unnamedNoOps": 4
+    }
+  },
+  "remaining": [
+    "ASCII names only; embedded NUL and overlong names already containing msg_ are excluded because original sprintf lacks a bound on that branch.",
+    "GIT SetAIMessage requires a valid registry, name and available record. Original handler dereferences a failed lookup; portable source will explicitly reject that invalid input.",
+    "Registry lifecycle/allocation/reset and inter-level message persistence are not established by these isolated fixtures.",
+    "Native reference fixtures are not a compiled C# differential pass."
+  ]
+}

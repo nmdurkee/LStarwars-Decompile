@@ -1,0 +1,46 @@
+{
+  "updated": "2026-10-12T19:25:49.091Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "name": "frame",
+  "files": [
+    "frame/StateTransitions.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x491d50",
+      "method": "FrameTransitions.Advance",
+      "coverage": "transition tail only, from 0x49267a; opaque level records resolved by host",
+      "sourceFile": "frame/StateTransitions.cs"
+    },
+    {
+      "address": "0x5b1220",
+      "method": "TransitionState.Select",
+      "coverage": "whole helper for valid four-slot object; invalid indices rejected by host",
+      "sourceFile": "frame/StateTransitions.cs"
+    },
+    {
+      "address": "0x5b11b0",
+      "method": "TransitionState.Begin",
+      "coverage": "whole state helper with virtual callback adapter",
+      "sourceFile": "frame/StateTransitions.cs"
+    }
+  ],
+  "evidence": [
+    "reports/native-frame-dispatch.json",
+    "reports/native-frame-branches.json"
+  ],
+  "nativeBranchVerification": {
+    "cases": 9024,
+    "assertions": 42176,
+    "mismatches": 0,
+    "failures": 0
+  },
+  "preparedCompiledCases": 5152,
+  "managedVerification": "Combined library and verifier compile; Windows process-creation restriction prevents runtime comparison.",
+  "review": "Independent read-only assembly review found no discrepancy in recovered transition tail.",
+  "limits": [
+    "Only transition tail0x49267a onward is reconstructed from491d50. Earlier frame scheduling is not a portable source implementation.",
+    "Native state callbacks represented by Action delegates; level identity/reference and area metadata resolved by host.",
+    "Complete frame tests still replace subsystem callees with declared adapters."
+  ]
+}

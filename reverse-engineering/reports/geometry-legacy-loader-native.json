@@ -1,0 +1,83 @@
+{
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original scene loader 0x5ef1d0 with preloaded NU20 bytes; original pointer relocation0x4f4f40 and version gate execute. Texture registration boundary is stubbed; execution stops at entry0x5eedf0 before material fixup. No originals modified, no Windows process.",
+  "cases": [
+    {
+      "source": "CHARS/DROIDTRIFIGHTER/DROIDTRIFIGHTER_PC.GSC",
+      "sha256": "cb40a3f380e3145f429e599c3ee2a482933d07a34855d44ed1d0d75c72775c47",
+      "NU20version": 1,
+      "materialCount": 27,
+      "authoredMaterialStride": 628,
+      "legacyFlagAfterVersionGate": 1,
+      "materialPointerTableUnchangedExceptRelocation": true,
+      "noNewMaterialAllocationBeforeFixup": true,
+      "textureRegistrationCalls": 10,
+      "firstMaterialNativeReadOutsideLegacyRecord": {
+        "function": "0x5eedf0",
+        "offsets": [
+          664,
+          668
+        ],
+        "recordSize": 628
+      }
+    },
+    {
+      "source": "CHARS/DROIDTRIFIGHTER/DROIDTRIFIGHTER_PC.GHG",
+      "sha256": "989e08e9330159abbc0d3dcab5c8486453173ea903c2efba8dcfbcdbfae755f3",
+      "NU20version": 2,
+      "materialCount": 25,
+      "authoredMaterialStride": 708,
+      "legacyFlagAfterVersionGate": 2,
+      "materialPointerTableUnchangedExceptRelocation": true,
+      "noNewMaterialAllocationBeforeFixup": true,
+      "textureRegistrationCalls": 16,
+      "firstMaterialNativeReadOutsideLegacyRecord": null
+    },
+    {
+      "source": "CHARS/VULTUREDROID/VULTUREDROID_PC.GSC",
+      "sha256": "5d93ddc3b63b9e6d28c4b7a8067c061a1d431cac74fdef92071e73e306d04a7d",
+      "NU20version": 1,
+      "materialCount": 19,
+      "authoredMaterialStride": 628,
+      "legacyFlagAfterVersionGate": 1,
+      "materialPointerTableUnchangedExceptRelocation": true,
+      "noNewMaterialAllocationBeforeFixup": true,
+      "textureRegistrationCalls": 11,
+      "firstMaterialNativeReadOutsideLegacyRecord": {
+        "function": "0x5eedf0",
+        "offsets": [
+          664,
+          668
+        ],
+        "recordSize": 628
+      }
+    },
+    {
+      "source": "CHARS/VULTUREDROID/VULTUREDROID_PC.GHG",
+      "sha256": "0184f5f8489c1d30cafb04263019c5f32d5671d80839cb91ed64b7b3705c9f98",
+      "NU20version": 2,
+      "materialCount": 25,
+      "authoredMaterialStride": 708,
+      "legacyFlagAfterVersionGate": 2,
+      "materialPointerTableUnchangedExceptRelocation": true,
+      "noNewMaterialAllocationBeforeFixup": true,
+      "textureRegistrationCalls": 17,
+      "firstMaterialNativeReadOutsideLegacyRecord": null
+    }
+  ],
+  "passed": true,
+  "evidence": [
+    "decompiled/corpus-expanded/FUN_5ef1d0.c",
+    "decompiled/corpus-expanded/FUN_4f4f40.c",
+    "decompiled/corpus-expanded/FUN_602370.c",
+    "decompiled/corpus-expanded/FUN_5eedf0.c",
+    "decompiled/corpus-expanded/FUN_601030.c",
+    "decompiled/corpus-expanded/FUN_602550.c"
+  ],
+  "finding": "The ordinary PC loader accepts version1 but performs no 628-to708 material expansion before invoking current-layout texture fixup. It retains all authored material pointers and sets scene+0x1f4=1. Current fixup reads material+0x298/+0x29c and writes+0x2c0; current preparation writes+0x2bc. Those offsets exceed628-byte records. Both legacy GSCs have current GHG companions.",
+  "limits": [
+    "No unsupported layout conversion is invented. No claim that every possible game path ignores or cannot consume these GSCs.",
+    "This bounded trace establishes the ordinary loader path only; downstream full graphics execution is not attempted.",
+    "The 46 legacy records remain excluded from the current native material feature and uniform survey."
+  ]
+}

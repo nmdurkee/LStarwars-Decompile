@@ -1,0 +1,76 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original0x4364e0 death cleanup and bounded lethal0x438230 paths in Unicorn. NPC synthetic state; original cleanup callees execute. Only inherited media/rumble/alert boundaries hooked.",
+  "contracts": {
+    "npc_death_state_velocity_timers_and_cleanup": {
+      "cases": 576,
+      "mismatches": 0,
+      "examples": []
+    },
+    "lethal_hit_no_parts_native_branch": {
+      "cases": 36,
+      "mismatches": 0,
+      "examples": []
+    }
+  },
+  "failures": [],
+  "boundaryHooks": [
+    {
+      "address": "0x4399e0",
+      "role": "AlertSurroundingCreatures",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x547930",
+      "role": "GameAudio_PlaySfx",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x681e90",
+      "role": "PlayIndexedSfx",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x681f40",
+      "role": "PlayNamedSfx",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54a8a0",
+      "role": "NewBuzz",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54a850",
+      "role": "NewRumble",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54aae0",
+      "role": "TakeHitRumble",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54aa70",
+      "role": "AttackerHitRumble",
+      "behavior": "record call and return0"
+    },
+    {
+      "address": "0x54aa10",
+      "role": "KillRumble",
+      "behavior": "record call and return0"
+    }
+  ],
+  "totals": {
+    "cases": 612,
+    "mismatches": 0,
+    "failures": 0
+  },
+  "limits": [
+    "NPC state only: player stud loss, rescue/respawn placement and level-specific death behavior remain unverified.",
+    "World registries empty and no scripts attached; global0x81020c explicitly set0 to represent no registry entries.",
+    "Lethal hit suite sets original character flag0x2000000 so original KillParts takes its no-parts branch. Debris rendering and drops are not simulated.",
+    "No named character special cases, respawn-group scheduling or populated AI squads.",
+    "Particle/audio/rumble-related live behavior is not established."
+  ]
+}

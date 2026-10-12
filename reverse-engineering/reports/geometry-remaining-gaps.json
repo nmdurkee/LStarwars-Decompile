@@ -1,0 +1,100 @@
+{
+  "scope": "Geometry/material/texture reverse engineering, not total game reverse engineering",
+  "gaps": [
+    {
+      "id": "render-shader-equivalence",
+      "status": "native-material-contracts-validated-pixels-uncompared",
+      "evidence": "49,109 current materials: 170,936 original feature calls /3,792 emission variants; 29 uniform formulas /1,424,161 checks /4,567,137 scalar comparisons, zero errors. 100 original semantics and15 sampler bindings mapped. Original template, compiled shaders and RTTI identities retained. glTF PBR approximate.",
+      "next": "Recover additional live GPU/pass contexts, legacy material preprocessing, lighting/global render state and compare native GPU pixels."
+    },
+    {
+      "id": "legacy-material-preprocessing",
+      "status": "ordinary-native-loader-does-not-expand",
+      "evidence": "Both legacy version-1 GSCs and current version-2 GHG companions traced through original loader to material fixup. All four cases preserve material pointers and allocate no replacement materials. Legacy stride remains 628; current fixup accesses offsets beyond each record. All 46 old records remain raw-preserved and viewable.",
+      "next": "Locate a demonstrated alternate consumer or original asset-format history before any conversion; do not pad legacy records or invoke current native material routines on them."
+    },
+    {
+      "id": "visibility-game-state",
+      "status": "native-predicates-and-room-selection-validated-runtime-integration-incomplete",
+      "evidence": "2,025 submission assertions plus82,204 native frustum comparisons,18,721 point tests over all403rooms,and40,470 portal polygon/facing tests over all326portals pass.82,044 complete plane-block restoration checks pass. Shared software64-significand arithmetic is necessary for authored near-plane boundaries. C# projections compile; managed execution remains pending OS Access denied. Room selector adds12,869 authored +2,427 synthetic/null comparisons;1,200 original portal-entry handoffs pass with explicit peripheral adapters. Seventh stored overlap corrupts the native return address and is excluded; recovered source guards this bound.",
+      "next": "Recover camera producer,portal child clipping volumes and recursive bitset propagation,grid/tree evaluation,and full dynamic special/GHG/shadow packet consumers; validate compiled source in ordinary permitted execution."
+    },
+    {
+      "id": "billboard-view-facing",
+      "status": "native-shader-contract-recovered-preview-approximate",
+      "evidence": "All 1,367 packets /14,314 faces decoded. Dedicated original face-on shaders, material selector and transform callback documented; 12 original-code cases /60 constant upload checks pass. glTF fixed XY preview.",
+      "next": "Recover live view-facing packet construction and implement the documented shader contract in a later renderer."
+    },
+    {
+      "id": "shader-uv-lightmaps",
+      "status": "partial",
+      "evidence": "Native UV timing is now validated: all 1,864 memberships /537 authored configurations plus81 edge cases; 9,270 ticks /83,430 scalar comparisons, zero numeric differences. All44 mode128 axes use default zero output. Native wrapper and reset also verified. Correct UV source indices and all source vertex buffers retained; glTF primarily UV0. Buildable MaterialUv.cs and actual previous-platform-delta caller recovered; compiled execution blocked by OS, equivalence pending.",
+      "next": "Export remaining shader-consumed channels, map layered/lightmap rendering, and connect verified UV contracts to future live renderer scheduling."
+    },
+    {
+      "id": "cubemap-hdr-mips",
+      "status": "raw-complete-preview-partial",
+      "evidence": "Original DDS retain all faces/mips/floating values. PNG only first face/base mip; HDR clamp explicit.",
+      "next": "Use DDS directly or export complete faces/mips for target renderer."
+    },
+    {
+      "id": "raw-channel-order",
+      "status": "unconfirmed-pc-initialization-uses-dds",
+      "evidence": "Two RAW files preserved with labelled RGBA/BGRA candidates. Original PC basename loader selects matching _PC.dds in five native filename checks; those initialization paths do not consume RAW.",
+      "next": "Determine channel order only if another native consumer or exporter-format evidence is found; no unsupported definitive format label."
+    },
+    {
+      "id": "ats-live-scheduling",
+      "status": "native-evaluator-rng-and-platform-caller-recovered",
+      "evidence": "225600 original evaluator ticks /188scenarios including141 seeded original-RNG scenarios; events, PC and RNG state all match. 58compiler checks pass. Original4fd050 schedules ATS and UV with previous platform delta0x297dbfc before measurement; capped world delta is separate.",
+      "next": "Recover reset/signal owners and full multi-program scheduling/shared RNG ordering in gameplay."
+    },
+    {
+      "id": "runtime-cache-fields",
+      "status": "preserved-opaque",
+      "evidence": "DYNO/TREF/VBIB auxiliary bytes and unused pointers retained; not all runtime fields interpreted.",
+      "next": "Trace only if needed for a missing visible or gameplay behavior."
+    },
+    {
+      "id": "compiled-cpu-runtime-verification",
+      "status": "build-passed-execution-denied",
+      "evidence": "MaterialUv.cs,SceneSubmission.cs andClipping.cs compile with Framework csc. Clipping shares Recovered.Animation.FiniteX87 source fromAnimationPlayback.cs andCharacterContexts.cs. Ordinary generated harness launch/file access previously returned OS Access denied,independently reproduced. Original-x86/model tests do not prove managed runtime results. PortalSelection.cs and its ordinary harness also compile;15,296 source-bound room-selection cases are prepared but not executed.",
+      "next": "Run normal compiled differential harness in an authorized execution-capable environment; do not change protections or claim a pass without results."
+    },
+    {
+      "id": "unity-quest-port",
+      "status": "outside-current-task",
+      "evidence": "No Unity project or Quest runtime built; user current instruction is reverse engineering only.",
+      "next": "Use validated asset exports and native behavior evidence in a later authorized implementation."
+    }
+  ],
+  "authoritativeReports": [
+    "geometry-finalized-gsc.json",
+    "geometry-scene-data-index.json",
+    "geometry-material-data-index.json",
+    "geometry-images-independent.json",
+    "geometry-images-float-independent.json",
+    "geometry-scene-runtime.json",
+    "geometry-texture-native-validation.json",
+    "geometry-material-native-programs.json",
+    "geometry-material-uniform-native.json",
+    "geometry-material-shader-map.json",
+    "geometry-material-parameters.json",
+    "geometry-billboard-shaders.json",
+    "geometry-billboard-native-validation.json",
+    "geometry-raw-loader-evidence.json",
+    "geometry-legacy-loader-native.json",
+    "geometry-uv-programs.json",
+    "geometry-uv-native-validation.json",
+    "geometry-render-integration.json",
+    "geometry-render-native-validation.json",
+    "geometry-visibility-native-validation.json",
+    "geometry-recovered-source.json",
+    "geometry-clipping-native-validation.json",
+    "geometry-portal-native-validation.json",
+    "geometry-clipping-findings.txt",
+    "geometry-room-selection-native-validation.json",
+    "geometry-room-selection-managed-check.json",
+    "geometry-room-selection-findings.txt"
+  ]
+}

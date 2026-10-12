@@ -1,0 +1,518 @@
+{
+  "generatedAt": "2026-10-12T16:54:50.903Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "navigation": {
+    "data": "reports/gameplay-navigation/index.json",
+    "coverage": {
+      "files": 173,
+      "paths": 207,
+      "points": 10051,
+      "connections": 10301,
+      "matrixCells": 858337,
+      "diagonal": 10051,
+      "noRoute": 155512,
+      "validFirstHop": 692774,
+      "invalidFirstHop": 0,
+      "routeReached": 692774,
+      "routeMissingLater": 0,
+      "routeCycles": 0,
+      "repeatConnectionStops": 0
+    },
+    "verification": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "method": "Materialize runtime path/point/connection records using decoded AI2 fields and the PC loader/writer layout; run original0x51be90 on every base-matrix cell and original0x51a890 on seeded representative pairs. No native callee replaced. Float return captured with a synthetic FSTP after the original returns.",
+      "functions": [
+        "0x51be90",
+        "0x51a890"
+      ],
+      "files": 173,
+      "paths": 207,
+      "nextHopAndDirectionCases": 858337,
+      "distanceCases": 4406,
+      "mismatches": 0,
+      "errors": [],
+      "elapsedSeconds": 48.818575620651245,
+      "limits": [
+        "Tests base routes with selected-route index255 and exclusion mask0. Named subroute groups and dynamic special transforms are not covered.",
+        "Runtime records are materialized from bounded decoded fields; this does not itself execute or validate every branch of the AI2 loader.",
+        "Live character capability filters, collision steering and dynamic graph updates remain separate."
+      ],
+      "checks": 862743
+    },
+    "runtimeLayouts": {
+      "pathBytes": 168,
+      "pointBytes": 92,
+      "connectionBytes": 36,
+      "path": {
+        "+0x10": "point count",
+        "+0x7c": "point array",
+        "+0x80": "connection array",
+        "+0x84": "base route row pointers",
+        "+0x88": "subroutes",
+        "+0x90": "minimum XYZ",
+        "+0x9c": "maximum XYZ"
+      },
+      "point": {
+        "+0x04": "position XYZ",
+        "+0x10": "radius",
+        "+0x14": "radius squared",
+        "+0x18": "minimum world Y",
+        "+0x1c": "minimum relative Y",
+        "+0x20": "maximum world Y",
+        "+0x24": "maximum relative Y",
+        "+0x28": "connection count byte",
+        "+0x29": "flags byte",
+        "+0x2a": "has special byte",
+        "+0x2b": "runtime flags",
+        "+0x2e/+0x2f": "two cached destination indices",
+        "+0x34": "adjacent connection indices",
+        "+0x38/+0x3c": "cached route distances",
+        "+0x40": "special handle",
+        "+0x4c": "special local position"
+      },
+      "connection": {
+        "+0/+4": "directional traversal flags",
+        "+8/+0xc": "original directional flags",
+        "+0x10/+0x11": "endpoint point indices",
+        "+0x12": "heading angle short",
+        "+0x14": "route mask",
+        "+0x16": "open byte",
+        "+0x17": "search checksum",
+        "+0x18": "3D route distance",
+        "+0x1c": "horizontal distance",
+        "+0x20": "maximum allowed horizontal distance"
+      },
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_517430.c",
+          "line": 85,
+          "excerpt": "(*param_3 <= *unaff_EDI + 0xa8U)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_525080.c",
+          "line": 27,
+          "excerpt": "FUN_00621520(*param_1);"
+        }
+      ]
+    },
+    "nextHop": {
+      "description": "For base route selector255, route[current][destination] is an ordinal into the current point adjacency array, not a destination point ID. 255 means no route. The selected connection yields its opposite endpoint; direction0 means endpoint0 is current, otherwise direction1. Same-point cells are sentinels.",
+      "function": "0x51be90",
+      "abi": "Path-info packet in EAX, output direction pointer on stack.",
+      "packet": {
+        "+0x13c": "subroute selector, 255 selects base route",
+        "+0x158": "path pointer",
+        "+0x15c": "current connection pointer",
+        "+0x160": "current connection direction byte",
+        "+0x17c": "destination point"
+      },
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51be90.c",
+          "line": 35,
+          "excerpt": "iVar3 = *(int *)(*(int *)(in_EAX + 0x158) + 0x7c);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51be90.c",
+          "line": 41,
+          "excerpt": "uVar7 = (uint)*(byte *)(*(int *)(*(int *)(*(int *)(in_EAX + 0x158) + 0x84) + uVar10 * 4) + uVar9);"
+        }
+      ]
+    },
+    "distance": {
+      "description": "0x51a890 follows the same adjacency choices and accumulates connection+0x18 as float32. Same source/destination returns0; missing matrix, missing hop or excluded connection route-mask intersection returns FLT_MAX. Two cached destinations/distances sit on each point. A repeated immediate connection terminates with the accumulated distance; the shipped base matrices were also exhaustively checked for longer cycles and missing continuations.",
+      "function": "0x51a890",
+      "verifiedScope": "Base selector255, excludedMask0; all stored first hops plus bounded source/destination distance pairs. Subroute behavior and dynamic mask changes are not implied.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51a890.c",
+          "line": 145,
+          "excerpt": "local_1c = *(float *)(iVar4 + 0x18) + local_1c;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51a890.c",
+          "line": 36,
+          "excerpt": "return (float10)3.4028235e+38;"
+        }
+      ]
+    },
+    "routeBuild": {
+      "description": "0x524cb0 recursively searches available adjacent connections and accumulates 3D distance; directed flag0x40000000 excludes traversal and nonzero requested route masks require intersection. 0x524f30 picks a strictly smaller neighbor cost and writes its adjacency ordinal, initialized to255.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_524cb0.c",
+          "line": 42,
+          "excerpt": "if (((*(uint *)(iVar3 + uVar4 * 4) & 0x40000000) == 0) &&"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_524f30.c",
+          "line": 31,
+          "excerpt": "*(undefined1 *)(uVar7 + *(int *)(param_4 + uVar5 * 4)) = 0xff;"
+        }
+      ]
+    },
+    "dynamicNodes": {
+      "description": "0x51af40 refreshes a special-attached point through 0x5b30a0, updates its world Y range, and recomputes connection horizontal distance and heading. Unavailable special nodes set directional connection flag0x10000000. Excessive span sets0x08000000. These native branches are recovered statically; the whole dynamic update is not emulated here.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51af40.c",
+          "line": 86,
+          "excerpt": "FUN_005b30a0(pfVar1,param_3 + 0x4c,uVar8);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51af40.c",
+          "line": 52,
+          "excerpt": "*puVar4 = *puVar4 | 0x10000000;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_51af40.c",
+          "line": 32,
+          "excerpt": "uVar9 = uVar5 & 0x80000007;"
+        }
+      ]
+    },
+    "bounds": {
+      "description": "Path bounds test0x5173b0 is inclusive in XYZ. TER, AI and scene transforms use the same native coordinates; no conversion to meters has been established.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5173b0.c",
+          "line": 10,
+          "excerpt": "if ((((*(float *)(param_1 + 0x90) <= *param_2) && (*(float *)(param_1 + 0x94) <= param_2[1])) &&"
+        }
+      ]
+    }
+  },
+  "terrain": {
+    "contracts": {
+      "platformBinding": {
+        "description": "Runtime terrain objects are56 bytes and platform records108 bytes. A kind1 source platform index is remapped through scene INID when that array exists. The remapped index is matched against NU2 specialObject+0xc0 (boundsIndex). The matrix pointer is special+0xc4 when valid, otherwise special+0x40. Platform+0x68 points to special+0xb8 flags; flag2 on that special controls participation for NU2 platforms. Runtime platform indices are reassigned sequentially by successful loader binding, so original source platformIndex and runtime platform ordinal are separate identities.",
+        "record": {
+          "+0x00": "prior matrix",
+          "+0x40": "current matrix pointer",
+          "+0x48": "terrain object index u16",
+          "+0x4a": "remapped scene index u16",
+          "+0x4c": "flags (bit0 transformed, bit2 NU2)",
+          "+0x68": "special flags pointer"
+        },
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c",
+            "line": 462,
+            "excerpt": "_DAT_0292fc5c = *puVar22;"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c",
+            "line": 464,
+            "excerpt": "_DAT_0292fc5c = *(ushort *)(*(int *)(param_6 + 0x5c) + (uint)_DAT_0292fc5c * 2);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c",
+            "line": 512,
+            "excerpt": "if (*(uint *)(iVar18 + 0xc0) == uVar14) {"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66b8c0.c",
+            "line": 513,
+            "excerpt": "iVar8 = *(int *)(iVar18 + 0xc4);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66cc60.c",
+            "line": 264,
+            "excerpt": "else if ((*puVar6 & 2) != 0) goto LAB_0066d130;"
+          }
+        ]
+      },
+      "transform": {
+        "description": "worldPoint[k]=x*M[k]+y*M[4+k]+z*M[8+k]+M[12+k]. Homogeneous w=0 excludes translation, including in-place output.",
+        "translation": "0x66cc60 refreshes collider translation from current platform matrix+0x30/+0x34/+0x38. Transformed face points use homogeneous w0 then terrain translation; normals use the same linear part. No handedness or unit conversion is introduced.",
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66cc60.c",
+            "line": 229,
+            "excerpt": "*pfVar1 = *(float *)(*(int *)(piVar9[0x1a] + 0x40 + iVar8) + 0x30);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_66da90.c",
+            "line": 76,
+            "excerpt": "FUN_005c03e0(&local_50,&local_50,*(undefined4 *)(iVar7 + 0x40));"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5b30a0.c",
+            "line": 39,
+            "excerpt": "*param_1 = param_3[8] * param_2[2] + *param_2 * *param_3 + param_3[4] * param_2[1] + param_3[0xc];"
+          }
+        ]
+      },
+      "triangles": {
+        "description": "PC tests a second triangle only when its stored normalY at face+0x58 is below65536. First triangle uses points at +0x18,+0x24,+0x30 and normal+0x48; the second uses point+0x3c and normal+0x54. Exported static triangle order is p1,p2,p3 and p2,p4,p3; original properties remain attached through source byte offsets.",
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_674490.c",
+            "line": 48,
+            "excerpt": "param_5 = param_1 / (param_1 - param_2);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_674490.c",
+            "line": 74,
+            "excerpt": "if (*(float *)(iVar4 + 0x58) < 65536.0) {"
+          }
+        ]
+      },
+      "broadphase": {
+        "description": "0x675240 converts the query start/end to a terrain object local translation before plane-distance tests, then calls0x674490 for faces that can intersect. Zero-radius interior triangle tests were executed on2114 actual TER faces from267 files. Full ellipsoid edges/vertices, wall strips and dynamic broadphase remain outside these fixtures.",
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_675240.c",
+            "line": 56,
+            "excerpt": "*(float *)(iVar8 + 0x70) ="
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_675240.c",
+            "line": 102,
+            "excerpt": "(iVar7 = FUN_00674490(local_18,fVar3,local_1c,local_20,iVar7), iVar8 = DAT_0292186c,"
+          }
+        ]
+      },
+      "response": {
+        "description": "out=v+n*(-dot(v,n)+0.0003). Variant0x678010 scales only the added Y term by global0x2947c00.",
+        "verticalSpace": "0x68f940 stores radius and vertical-stretch parameters, raises queryY by radius*stretch, divides Y movement/position by stretch, then resolves in that space.0x6786f0 restores output Y.0x678010 multiplies only the added Y deflection by global0x2947c00.",
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_68f940.c",
+            "line": 77,
+            "excerpt": "fVar3 = param_6 * param_7 + (float)param_1[1];"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_68f940.c",
+            "line": 65,
+            "excerpt": "puVar7[0x19] = (uint)local_10;"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_677fb0.c",
+            "line": 12,
+            "excerpt": "fVar1 = -param_2[2] * param_1[2] + -*param_2 * *param_1 + -param_2[1] * param_1[1] + 0.0003;"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_678010.c",
+            "line": 16,
+            "excerpt": "param_3[1] = param_1[1] * fVar1 * _DAT_02947c00 + param_2[1];"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_6786f0.c",
+            "line": 70,
+            "excerpt": "case 0:"
+          }
+        ]
+      },
+      "characterCommit": {
+        "function": "0x416d60",
+        "description": "Full terrain path copies position+(0,characterBottom*scale,0), forms movement=velocity*frameDelta, calls0x68f940, then commits correctedVelocity=correctedMovement/frameDelta and correctedPosition with the bottom offset removed. Supporting platform ID is written to object+0x27e. Simplified/AI and bypass paths directly integrate position+=velocity*frameDelta and can clamp Y against a shadow floor.",
+        "object": {
+          "+0x5c": "position XYZ",
+          "+0x68": "velocity XYZ",
+          "+0xa8": "scale",
+          "+0xac": "radius",
+          "+0xff0": "character bottom",
+          "+0x1004": "vertical collision stretch parameter",
+          "+0x27e": "supporting platform ID i16",
+          "+0x281": "ground/contact flags",
+          "+0x28b": "inactive byte"
+        },
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 247,
+            "excerpt": "local_1b4 = *(float *)(param_1 + 0xa8) * *(float *)(param_1 + 0xff0) +"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 359,
+            "excerpt": "FUN_0068f940(&local_1b8,&local_1c4,param_1 + 0x1050,local_1d4,local_1e4,"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 392,
+            "excerpt": "local_1e4 = 1.0 / _DAT_00925018;"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 394,
+            "excerpt": "*(float *)(param_1 + 0x5c) = local_1b8;"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 521,
+            "excerpt": "*(float *)(param_1 + 0x68) * _DAT_00925018 + *(float *)(param_1 + 0x5c);"
+          }
+        ],
+        "verificationCaveat": "Commit is a direct native caller-flow recovery; the complete GameObject path is not executed by this report. Animation agent owns verified upstream locomotion."
+      },
+      "platformRotationCarry": {
+        "description": "After a platform contact,0x416d60 obtains prior/current matrices via0x67fb50, transforms a forward direction with both, computes the angle delta and adds it to three character headings.",
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 402,
+            "excerpt": "FUN_0067fb50((int)*(short *)(param_1 + 0x27e),&local_1e0,&local_1d8);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_416d60.c",
+            "line": 411,
+            "excerpt": "iVar14 = FUN_005be5b0(uVar13,uVar12);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_67fb50.c",
+            "line": 11,
+            "excerpt": "*param_2 = *(int *)(DAT_0292fc68 + 0x68) + param_1 * 0x6c;"
+          }
+        ]
+      },
+      "platformPositionCarry": {
+        "description": "0x68ee40 computes a carried-position proposal. Translation-only case adds current minus prior translation (Y divided by collision stretch). Transformed case restores world foot Y, subtracts prior translation, applies inverse prior3x3 then current matrix, and converts back to query Y. A vertical support probe and further collision logic decide acceptance; no-hit fixtures retain the original position. 400 original-helper cases verified proposals for translation/Y rotation/nonuniform scale, no-hit rejection and arena restoration.",
+        "verification": "reports/gameplay-terrain-platform-tests.json",
+        "evidence": [
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c",
+            "line": 96,
+            "excerpt": "FUN_005b5b90(&DAT_0292fdd0,iVar12);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c",
+            "line": 97,
+            "excerpt": "_DAT_02921874 ="
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c",
+            "line": 108,
+            "excerpt": "FUN_005c03e0(&DAT_02921874,&DAT_02921874,&DAT_0292fdd0);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_68ee40.c",
+            "line": 140,
+            "excerpt": "FUN_00678f60(&local_28);"
+          },
+          {
+            "file": "reverse-engineering/decompiled/corpus-expanded/FUN_5b5b90.c",
+            "line": 34,
+            "excerpt": "fVar1 = 1.0 / fVar1;"
+          }
+        ]
+      }
+    },
+    "exports": {
+      "files": 269,
+      "problems": 0,
+      "objects": 19163,
+      "meshes": 19163,
+      "faces": 645546,
+      "triangles": 1240388,
+      "walls": 361,
+      "movingMapped": 7780,
+      "movingUnresolved": 357,
+      "bytes": 44946792
+    },
+    "verification": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "method": "Original PC x86 functions with actual decoded TER triangles and synthetic in-memory query state. No game, OS API, callback replacement, or original modification.",
+      "checks": 7942,
+      "categories": {
+        "real-ter-triangle-ray-hit": 2114,
+        "real-ter-triangle-ray-fraction": 2114,
+        "real-ter-triangle-normal": 2114,
+        "affine-point": 400,
+        "homogeneous-direction-no-translation": 400,
+        "surface-deflection": 200,
+        "surface-deflection-scaled-y": 200,
+        "unobstructed-position-commit": 200,
+        "unobstructed-ground-flag": 200
+      },
+      "mismatches": 0,
+      "errors": [],
+      "terrainCarriersSampled": 267,
+      "functions": [
+        "0x674490",
+        "0x5b30a0",
+        "0x5c03e0",
+        "0x677fb0",
+        "0x678010",
+        "0x6786f0"
+      ],
+      "contracts": {
+        "triangle": "Interior front-to-back zero-radius ray hits first triangles; no edge/capsule or second-triangle assertion. Triangles are sampled from every terrain carrier containing usable faces.",
+        "transform": "worldPoint[k]=x*M[k]+y*M[4+k]+z*M[8+k]+M[12+k]. Homogeneous w=0 excludes translation, including in-place output.",
+        "slide": "out=v+n*(-dot(v,n)+0.0003). Variant0x678010 scales only the added Y term by global0x2947c00.",
+        "unobstructed": "Position becomes (queryPosition+queryMovement), with Y multiplied by vertical stretch then radius*stretch removed. Ground-contact flag clears."
+      },
+      "limits": [
+        "These are bounded triangle, transform, deflection and no-hit response checks. Full swept ellipsoid broadphase/edge handling/moving-platform contacts remain incompletely tested.",
+        "Runtime query fixtures are constructed from decoded TER fields; original file-loader execution is not implied.",
+        "Native coordinates are preserved; no physical meter scale established."
+      ]
+    },
+    "platformVerification": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "method": "Original 0x68ee40 including inverse-matrix0x5b5b90 and homogeneous transforms0x5c03e0. Synthetic platform, retained-contact record and negative candidate header yield an empty copied candidate list; this allows checking the carry proposal and no-hit refusal without replacement callbacks. No live contact is claimed.",
+      "cases": 400,
+      "checks": 1600,
+      "mismatches": 0,
+      "errors": [],
+      "examples": [
+        {
+          "transformed": false,
+          "returnedIterations": 6,
+          "carryTarget": [
+            5,
+            4.900000095367432,
+            9
+          ],
+          "temporaryStart": [
+            5,
+            5.25,
+            9
+          ],
+          "originalQueryPosition": [
+            2,
+            3.25,
+            4
+          ],
+          "scratchRestored": true
+        },
+        {
+          "transformed": true,
+          "returnedIterations": 6,
+          "carryTarget": [
+            5,
+            4.900000095367432,
+            7
+          ],
+          "temporaryStart": [
+            5,
+            5.25,
+            7
+          ],
+          "originalQueryPosition": [
+            2,
+            3.25,
+            4
+          ],
+          "scratchRestored": true
+        }
+      ],
+      "contracts": {
+        "translationOnly": "proposalXYZ=queryXYZ+(currentTranslation-priorTranslation), with Y translation divided by vertical stretch.",
+        "transformed": "Convert internal query Y to foot/world Y: (queryY-radius)*stretch. Subtract prior translation, multiply inverse prior3x3, then current full matrix. Return proposed internalY=worldY/stretch+radius.",
+        "acceptance": "These no-hit fixtures preserve the original query position, retain iteration count and restore the scratch arena. Actual support-hit acceptance still needs collision fixtures."
+      },
+      "limits": [
+        "Only Y-axis platform rotations with nonuniform scale were sampled; arbitrary 3D rotations and singular matrices are untested.",
+        "Negative candidate header is a bounded fixture to bypass contact geometry; the recovered transform does not itself prove live moving-platform collision or carry acceptance."
+      ]
+    }
+  },
+  "remaining": [
+    "No complete full-scene movement/collision game runtime has been recreated.",
+    "Static collider binding and proposed platform carry transforms are verified; live support/contact acceptance, deformation and edge/capsule sweep behavior need more checks.",
+    "AI base routes are verified; special subroute/mask choices and dynamic traversal flags need live-path fixtures.",
+    "Source-assisted names are hypotheses unless byte layout or PC native behavior is cited. OpenSaga is an Android x86 cross-build reference."
+  ]
+}

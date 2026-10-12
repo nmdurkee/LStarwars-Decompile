@@ -1,0 +1,592 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"evidence_id\":\"ev_7c1f0ecd29c800f910a33bdaa344f8ed50b7b31113b7bd43cf044ecf7b83bf10\",\"subject\":{\"name\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\",\"digest\":{\"sha256\":\"6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb\"},\"format\":\"pe\",\"architecture\":\"x86\",\"local_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\binary\\\\LEGOStarWarsSaga.packed.exe.unpacked.exe\"},\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"analysis_profile\":{\"provider\":{\"id\":\"rea-workflow\",\"name\":\"REA composed investigation workflow\",\"version\":\"1\"},\"parameters\":{\"upstream_analysis_profile\":{\"provider\":{\"id\":\"ghidra\",\"name\":\"Ghidra\",\"version\":\"12.1.4\"},\"parameters\":{\"target_kind\":\"executable\",\"target_format\":\"pe\",\"executable_role\":\"application\",\"managed\":false,\"native_aot_metadata\":{\"contract_revision\":\"rtr-9.1-x64-pe-read-only-v3\",\"source_bytes\":134217728,\"work_units\":67108864,\"working_memory_bytes\":67108864,\"report_bytes\":4194304},\"architecture\":\"x86\",\"available_architectures\":[\"x86\"],\"import_mode\":\"ephemeral-source-immutable\",\"annotation_policy\":\"atomic-function-entry-metadata-v1\",\"load_image_observations\":\"source-mappings-entry-context-v2\",\"function_body_evidence\":\"complete-inclusive-ranges-v1\",\"function_references\":\"complete-body-and-entry-reference-manager-v2\",\"string_inventory_evidence\":\"defined-data-coverage-v1\",\"location_resolution\":\"explicit-address-exact-entry-symbol-first-v3\",\"instruction_flow_evidence\":\"decoded-return-pcode-v1\",\"function_boundary_observations\":\"ghidra-terminal-call-limitations-v1\",\"no_return_repair\":\"disabled-windows-p0\",\"process_launch\":\"official-headless-script-v1\",\"jump_table_evidence\":\"typed-case-default-blocks-v1\",\"decompiler_jump_loads\":true,\"loader\":\"auto-from-header\",\"language_id\":\"auto-from-header\",\"compiler_spec_id\":\"auto-default\",\"analyzer_preset\":\"ghidra-default\",\"analysis_seeds\":{\"format\":\"rea-ghidra-seeds-v1\",\"path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"configured_path\":\"C:\\\\Users\\\\NathanDurkee\\\\OneDrive - SpectrumVoIP\\\\Desktop\\\\SW\\\\reverse-engineering\\\\references\\\\native-analysis-seeds.tsv\",\"sha256\":\"ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24\",\"entries\":{\"function\":1046,\"code\":0,\"label\":0}}},\"digest\":\"d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d\"},\"workflow_revision\":2},\"digest\":\"87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971\"},\"predicate_type\":\"rea.analysis\",\"operation\":\"batch_decompile\",\"parameters\":{\"addresses\":[\"0x6e9c18\",\"0x6e9c66\",\"0x6e9c7e\",\"0x6e9cd6\",\"0x6e9d2c\",\"0x6e9e02\",\"0x6e9e1e\",\"0x6e9e40\",\"0x6e9e62\",\"0x6e9e84\",\"0x6e9e8e\",\"0x6e9fb9\",\"0x6e9fc2\",\"0x6e9fe6\",\"0x6e9ff6\",\"0x6e9fff\",\"0x6ea018\",\"0x6ea082\",\"0x6ea0cc\",\"0x6ea0fc\",\"0x6ea103\",\"0x6ea10a\",\"0x6ea111\",\"0x6ea163\",\"0x6ea199\",\"0x6ea1cf\",\"0x6ea24f\",\"0x6ea324\",\"0x6ea3c1\",\"0x6ea434\",\"0x6ea45c\",\"0x6ea47d\"]},\"raw_result\":null,\"normalized_result\":{\"items\":[{\"address\":\"0x6e9c18\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9c18\",\"name\":\"std::exception::exception\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    public: __thiscall std::exception::exception(char const * const &)\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nexception * __thiscall std::exception::exception(exception *this,char **param_1)\\r\\n\\r\\n{\\r\\n  size_t sVar1;\\r\\n  char *_Dst;\\r\\n  \\r\\n  *(undefined ***)this = &PTR_FUN_00777d54;\\r\\n  if (*param_1 == (char *)0x0) {\\r\\n    *(undefined4 *)(this + 4) = 0;\\r\\n  }\\r\\n  else {\\r\\n    sVar1 = _strlen(*param_1);\\r\\n    _Dst = _malloc(sVar1 + 1);\\r\\n    *(char **)(this + 4) = _Dst;\\r\\n    if (_Dst != (char *)0x0) {\\r\\n      _strcpy_s(_Dst,sVar1 + 1,*param_1);\\r\\n    }\\r\\n  }\\r\\n  *(undefined4 *)(this + 8) = 1;\\r\\n  return this;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9c66\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9c66\",\"name\":\"std::exception::exception\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    public: __thiscall std::exception::exception(char const * const &,int)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\\r\\n\\r\\nvoid __thiscall std::exception::exception(exception *this,char **param_1,int param_2)\\r\\n\\r\\n{\\r\\n  char *pcVar1;\\r\\n  \\r\\n  *(undefined ***)this = &PTR_FUN_00777d54;\\r\\n  pcVar1 = *param_1;\\r\\n  *(undefined4 *)(this + 8) = 0;\\r\\n  *(char **)(this + 4) = pcVar1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9c7e\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9c7e\",\"name\":\"std::exception::exception\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    public: __thiscall std::exception::exception(class std::exception const &)\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nexception * __thiscall std::exception::exception(exception *this,exception *param_1)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  size_t sVar2;\\r\\n  char *pcVar3;\\r\\n  \\r\\n  *(undefined ***)this = &PTR_FUN_00777d54;\\r\\n  iVar1 = *(int *)(param_1 + 8);\\r\\n  *(int *)(this + 8) = iVar1;\\r\\n  pcVar3 = *(char **)(param_1 + 4);\\r\\n  if (iVar1 == 0) {\\r\\n    *(char **)(this + 4) = pcVar3;\\r\\n  }\\r\\n  else if (pcVar3 == (char *)0x0) {\\r\\n    *(undefined4 *)(this + 4) = 0;\\r\\n  }\\r\\n  else {\\r\\n    sVar2 = _strlen(pcVar3);\\r\\n    pcVar3 = _malloc(sVar2 + 1);\\r\\n    *(char **)(this + 4) = pcVar3;\\r\\n    if (pcVar3 != (char *)0x0) {\\r\\n      _strcpy_s(pcVar3,sVar2 + 1,*(char **)(param_1 + 4));\\r\\n    }\\r\\n  }\\r\\n  return this;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9cd6\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9cd6\",\"name\":\"std::exception::operator=\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    public: class std::exception & __thiscall std::exception::operator=(class std::exception const\\r\\n   &)\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nexception * __thiscall std::exception::operator=(exception *this,exception *param_1)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  size_t sVar2;\\r\\n  char *pcVar3;\\r\\n  \\r\\n  if (this != param_1) {\\r\\n    iVar1 = *(int *)(param_1 + 8);\\r\\n    *(int *)(this + 8) = iVar1;\\r\\n    pcVar3 = *(char **)(param_1 + 4);\\r\\n    if (iVar1 == 0) {\\r\\n      *(char **)(this + 4) = pcVar3;\\r\\n    }\\r\\n    else if (pcVar3 == (char *)0x0) {\\r\\n      *(undefined4 *)(this + 4) = 0;\\r\\n    }\\r\\n    else {\\r\\n      sVar2 = _strlen(pcVar3);\\r\\n      pcVar3 = _malloc(sVar2 + 1);\\r\\n      *(char **)(this + 4) = pcVar3;\\r\\n      if (pcVar3 != (char *)0x0) {\\r\\n        _strcpy_s(pcVar3,sVar2 + 1,*(char **)(param_1 + 4));\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  return this;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9d2c\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9d2c\",\"name\":\"exception::~exception\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    public: virtual __thiscall exception::~exception(void)\\r\\n   \\r\\n   Libraries: Visual Studio 2003 Release, Visual Studio 2005 Release */\\r\\n\\r\\nvoid __thiscall exception::~exception(exception *this)\\r\\n\\r\\n{\\r\\n  *(undefined ***)this = &PTR_FUN_00777d54;\\r\\n  if (*(int *)(this + 8) != 0) {\\r\\n    _free(*(void **)(this + 4));\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9e02\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9e02\",\"name\":\"FUN_006e9e02\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9e02(byte param_1)\\r\\n\\r\\n{\\r\\n  exception *in_ECX;\\r\\n  \\r\\n  exception::~exception(in_ECX);\\r\\n  if ((param_1 & 1) != 0) {\\r\\n    _free(in_ECX);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9e1e\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9e1e\",\"name\":\"FUN_006e9e1e\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9e1e(byte param_1)\\r\\n\\r\\n{\\r\\n  exception *in_ECX;\\r\\n  \\r\\n  *(undefined ***)in_ECX = &PTR_FUN_00777d74;\\r\\n  exception::~exception(in_ECX);\\r\\n  if ((param_1 & 1) != 0) {\\r\\n    _free(in_ECX);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9e40\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9e40\",\"name\":\"FUN_006e9e40\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9e40(byte param_1)\\r\\n\\r\\n{\\r\\n  exception *in_ECX;\\r\\n  \\r\\n  *(undefined ***)in_ECX = &PTR_FUN_00777d80;\\r\\n  exception::~exception(in_ECX);\\r\\n  if ((param_1 & 1) != 0) {\\r\\n    _free(in_ECX);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9e62\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9e62\",\"name\":\"FUN_006e9e62\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9e62(byte param_1)\\r\\n\\r\\n{\\r\\n  exception *in_ECX;\\r\\n  \\r\\n  *(undefined ***)in_ECX = &PTR_FUN_00777d80;\\r\\n  exception::~exception(in_ECX);\\r\\n  if ((param_1 & 1) != 0) {\\r\\n    _free(in_ECX);\\r\\n  }\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9e84\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9e84\",\"name\":\"FUN_006e9e84\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9e84(undefined4 param_1)\\r\\n\\r\\n{\\r\\n  DAT_0297c19c = param_1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9e8e\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9e8e\",\"name\":\"__invoke_watson\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __invoke_watson\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __cdecl\\r\\n__invoke_watson(wchar_t *param_1,wchar_t *param_2,wchar_t *param_3,uint param_4,uintptr_t param_5)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  BOOL BVar2;\\r\\n  LONG LVar3;\\r\\n  HANDLE hProcess;\\r\\n  UINT uExitCode;\\r\\n  EXCEPTION_RECORD local_32c;\\r\\n  _EXCEPTION_POINTERS local_2dc;\\r\\n  undefined4 local_2d4;\\r\\n  \\r\\n  uVar1 = DAT_00829570;\\r\\n  local_2d4 = 0x10001;\\r\\n  _memset(&local_32c,0,0x50);\\r\\n  local_2dc.ExceptionRecord = &local_32c;\\r\\n  local_2dc.ContextRecord = (PCONTEXT)&local_2d4;\\r\\n  local_32c.ExceptionCode = 0xc000000d;\\r\\n  BVar2 = IsDebuggerPresent();\\r\\n  SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)0x0);\\r\\n  LVar3 = UnhandledExceptionFilter(&local_2dc);\\r\\n  if ((LVar3 == 0) && (BVar2 == 0)) {\\r\\n    FUN_006f8568(2);\\r\\n  }\\r\\n  uExitCode = 0xc000000d;\\r\\n  hProcess = GetCurrentProcess();\\r\\n  TerminateProcess(hProcess,uExitCode);\\r\\n  __security_check_cookie(uVar1);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9fb9\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9fb9\",\"name\":\"FUN_006e9fb9\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9fb9(wchar_t *param_1,wchar_t *param_2,wchar_t *param_3,uint param_4,uintptr_t param_5)\\r\\n\\r\\n{\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n  __invoke_watson(param_1,param_2,param_3,param_4,param_5);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9fc2\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9fc2\",\"name\":\"FUN_006e9fc2\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9fc2(wchar_t *param_1,wchar_t *param_2,wchar_t *param_3,uint param_4,uintptr_t param_5)\\r\\n\\r\\n{\\r\\n  code *UNRECOVERED_JUMPTABLE;\\r\\n  \\r\\n  UNRECOVERED_JUMPTABLE = (code *)FUN_006f01bc(DAT_0297c19c);\\r\\n  if (UNRECOVERED_JUMPTABLE != (code *)0x0) {\\r\\n                    /* WARNING: Could not recover jumptable at 0x006e9fd6. Too many branches */\\r\\n                    /* WARNING: Treating indirect jump as call */\\r\\n    (*UNRECOVERED_JUMPTABLE)();\\r\\n    return;\\r\\n  }\\r\\n  FUN_006f8568(2);\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n  __invoke_watson(param_1,param_2,param_3,param_4,param_5);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9fe6\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9fe6\",\"name\":\"FUN_006e9fe6\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9fe6(void)\\r\\n\\r\\n{\\r\\n  FUN_006e9fc2(0,0,0,0,0);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9ff6\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9ff6\",\"name\":\"FUN_006e9ff6\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\nvoid FUN_006e9ff6(void)\\r\\n\\r\\n{\\r\\n  FUN_006e9fc2();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6e9fff\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6e9fff\",\"name\":\"std::bad_alloc::bad_alloc\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    public: __thiscall std::bad_alloc::bad_alloc(void)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\\r\\n\\r\\nbad_alloc * __thiscall std::bad_alloc::bad_alloc(bad_alloc *this)\\r\\n\\r\\n{\\r\\n  exception::exception((exception *)this,&PTR_s_bad_allocation_008298dc,1);\\r\\n  *(undefined ***)this = &PTR_FUN_0076a75c;\\r\\n  return this;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea018\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea018\",\"name\":\"FUN_006ea018\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\\r\\n\\r\\nvoid FUN_006ea018(size_t param_1)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  void *pvVar2;\\r\\n  undefined **local_10 [3];\\r\\n  \\r\\n  do {\\r\\n    pvVar2 = _malloc(param_1);\\r\\n    if (pvVar2 != (void *)0x0) {\\r\\n      return;\\r\\n    }\\r\\n    iVar1 = __callnewh(param_1);\\r\\n  } while (iVar1 != 0);\\r\\n  if ((_DAT_0297c1ac & 1) == 0) {\\r\\n    _DAT_0297c1ac = _DAT_0297c1ac | 1;\\r\\n    std::bad_alloc::bad_alloc((bad_alloc *)&DAT_0297c1a0);\\r\\n    _atexit((_func_4879 *)&LAB_007506ca);\\r\\n  }\\r\\n  std::exception::exception((exception *)local_10,(exception *)&DAT_0297c1a0);\\r\\n  local_10[0] = &PTR_FUN_0076a75c;\\r\\n                    /* WARNING: Subroutine does not return */\\r\\n  __CxxThrowException_8(local_10,&DAT_007eca48);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea082\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea082\",\"name\":\"__CxxThrowException@8\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __CxxThrowException@8\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __CxxThrowException_8(undefined4 param_1,byte *param_2)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  DWORD *pDVar2;\\r\\n  DWORD *pDVar3;\\r\\n  DWORD local_24 [4];\\r\\n  DWORD local_14;\\r\\n  undefined *local_10;\\r\\n  undefined4 local_c;\\r\\n  byte *local_8;\\r\\n  \\r\\n  pDVar2 = &DAT_00777da8;\\r\\n  pDVar3 = local_24;\\r\\n  for (iVar1 = 8; iVar1 != 0; iVar1 = iVar1 + -1) {\\r\\n    *pDVar3 = *pDVar2;\\r\\n    pDVar2 = pDVar2 + 1;\\r\\n    pDVar3 = pDVar3 + 1;\\r\\n  }\\r\\n  local_c = param_1;\\r\\n  local_8 = param_2;\\r\\n  if ((param_2 != (byte *)0x0) && ((*param_2 & 8) != 0)) {\\r\\n    local_10 = &DAT_01994000;\\r\\n  }\\r\\n  RaiseException(local_24[0],local_24[1],local_14,(ULONG_PTR *)&local_10);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea0cc\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea0cc\",\"name\":\"_JumpToContinuation\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    void __stdcall _JumpToContinuation(void *,struct EHRegistrationNode *)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nvoid _JumpToContinuation(void *param_1,EHRegistrationNode *param_2)\\r\\n\\r\\n{\\r\\n  undefined4 *unaff_FS_OFFSET;\\r\\n  \\r\\n  *unaff_FS_OFFSET = *(undefined4 *)*unaff_FS_OFFSET;\\r\\n                    /* WARNING: Could not recover jumptable at 0x006ea0f5. Too many branches */\\r\\n                    /* WARNING: Treating indirect jump as call */\\r\\n  (*param_1)();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea0fc\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea0fc\",\"name\":\"_CallMemberFunction0\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    void __stdcall _CallMemberFunction0(void *,void *)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nvoid _CallMemberFunction0(void *param_1,void *param_2)\\r\\n\\r\\n{\\r\\n  LOCK();\\r\\n  UNLOCK();\\r\\n                    /* WARNING: Could not recover jumptable at 0x006ea101. Too many branches */\\r\\n                    /* WARNING: Treating indirect jump as call */\\r\\n  (*param_2)();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea103\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea103\",\"name\":\"FID_conflict:_CallMemberFunction1\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Multiple Matches With Different Base Names\\r\\n    void __stdcall _CallMemberFunction1(void *,void *,void *)\\r\\n    void __stdcall _CallMemberFunction2(void *,void *,void *,int)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nvoid FID_conflict__CallMemberFunction1(undefined4 param_1,code *UNRECOVERED_JUMPTABLE)\\r\\n\\r\\n{\\r\\n  LOCK();\\r\\n  UNLOCK();\\r\\n                    /* WARNING: Could not recover jumptable at 0x006ea108. Too many branches */\\r\\n                    /* WARNING: Treating indirect jump as call */\\r\\n  (*UNRECOVERED_JUMPTABLE)();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea10a\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea10a\",\"name\":\"FID_conflict:_CallMemberFunction1\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Multiple Matches With Different Base Names\\r\\n    void __stdcall _CallMemberFunction1(void *,void *,void *)\\r\\n    void __stdcall _CallMemberFunction2(void *,void *,void *,int)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nvoid FID_conflict__CallMemberFunction1(undefined4 param_1,code *UNRECOVERED_JUMPTABLE)\\r\\n\\r\\n{\\r\\n  LOCK();\\r\\n  UNLOCK();\\r\\n                    /* WARNING: Could not recover jumptable at 0x006ea10f. Too many branches */\\r\\n                    /* WARNING: Treating indirect jump as call */\\r\\n  (*UNRECOVERED_JUMPTABLE)();\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea111\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea111\",\"name\":\"_UnwindNestedFrames\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    void __stdcall _UnwindNestedFrames(struct EHRegistrationNode *,struct EHExceptionRecord *)\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid _UnwindNestedFrames(EHRegistrationNode *param_1,EHExceptionRecord *param_2)\\r\\n\\r\\n{\\r\\n  undefined4 *puVar1;\\r\\n  undefined4 *unaff_FS_OFFSET;\\r\\n  \\r\\n  puVar1 = (undefined4 *)*unaff_FS_OFFSET;\\r\\n  RtlUnwind(param_1,(PVOID)0x6ea13a,(PEXCEPTION_RECORD)param_2,(PVOID)0x0);\\r\\n  *(uint *)(param_2 + 4) = *(uint *)(param_2 + 4) & 0xfffffffd;\\r\\n  *puVar1 = *unaff_FS_OFFSET;\\r\\n  *unaff_FS_OFFSET = puVar1;\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea163\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea163\",\"name\":\"FID_conflict:___CxxFrameHandler3\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Multiple Matches With Different Base Names\\r\\n    ___CxxFrameHandler\\r\\n    ___CxxFrameHandler2\\r\\n    ___CxxFrameHandler3\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nundefined4\\r\\nFID_conflict____CxxFrameHandler3\\r\\n          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  \\r\\n  uVar1 = ___InternalCxxFrameHandler(param_1,param_2,param_3,param_4);\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea199\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea199\",\"name\":\"FID_conflict:___CxxFrameHandler3\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Multiple Matches With Different Base Names\\r\\n    ___CxxFrameHandler\\r\\n    ___CxxFrameHandler2\\r\\n    ___CxxFrameHandler3\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nundefined4\\r\\nFID_conflict____CxxFrameHandler3\\r\\n          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  \\r\\n  uVar1 = ___InternalCxxFrameHandler(param_1,param_2,param_3,param_4);\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea1cf\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea1cf\",\"name\":\"FID_conflict:___CxxFrameHandler3\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Multiple Matches With Different Base Names\\r\\n    ___CxxFrameHandler\\r\\n    ___CxxFrameHandler2\\r\\n    ___CxxFrameHandler3\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\nundefined4\\r\\nFID_conflict____CxxFrameHandler3\\r\\n          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\\r\\n\\r\\n{\\r\\n  undefined4 uVar1;\\r\\n  \\r\\n  uVar1 = ___InternalCxxFrameHandler(param_1,param_2,param_3,param_4);\\r\\n  return uVar1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea24f\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea24f\",\"name\":\"_CallSETranslator\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    int __cdecl _CallSETranslator(struct EHExceptionRecord *,struct EHRegistrationNode *,void *,void\\r\\n   *,struct _s_FuncInfo const *,int,struct EHRegistrationNode *)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\\r\\n\\r\\nint __cdecl\\r\\n_CallSETranslator(EHExceptionRecord *param_1,EHRegistrationNode *param_2,void *param_3,void *param_4\\r\\n                 ,_s_FuncInfo *param_5,int param_6,EHRegistrationNode *param_7)\\r\\n\\r\\n{\\r\\n  _ptiddata p_Var1;\\r\\n  int *unaff_FS_OFFSET;\\r\\n  int local_3c;\\r\\n  EHExceptionRecord *local_38;\\r\\n  void *local_34;\\r\\n  code *local_30;\\r\\n  undefined4 *local_2c;\\r\\n  code *local_28;\\r\\n  uint local_24;\\r\\n  _s_FuncInfo *local_20;\\r\\n  EHRegistrationNode *local_1c;\\r\\n  int local_18;\\r\\n  EHRegistrationNode *local_14;\\r\\n  undefined1 *local_10;\\r\\n  undefined1 *local_c;\\r\\n  int local_8;\\r\\n  \\r\\n  local_c = &stack0xfffffffc;\\r\\n  local_10 = &stack0xffffffc0;\\r\\n  if (param_1 == (EHExceptionRecord *)0x123) {\\r\\n    *(undefined4 *)param_2 = 0x6ea2f8;\\r\\n    local_3c = 1;\\r\\n  }\\r\\n  else {\\r\\n    local_28 = TranslatorGuardHandler;\\r\\n    local_24 = DAT_00829570 ^ (uint)&local_2c;\\r\\n    local_20 = param_5;\\r\\n    local_1c = param_2;\\r\\n    local_18 = param_6;\\r\\n    local_14 = param_7;\\r\\n    local_8 = 0;\\r\\n    local_2c = (undefined4 *)*unaff_FS_OFFSET;\\r\\n    *unaff_FS_OFFSET = (int)&local_2c;\\r\\n    local_38 = param_1;\\r\\n    local_34 = param_3;\\r\\n    p_Var1 = __getptd();\\r\\n    local_30 = p_Var1->_translator;\\r\\n    (*local_30)(*(undefined4 *)param_1,&local_38);\\r\\n    local_3c = 0;\\r\\n    if (local_8 == 0) {\\r\\n      *unaff_FS_OFFSET = (int)local_2c;\\r\\n    }\\r\\n    else {\\r\\n      *local_2c = *(undefined4 *)*unaff_FS_OFFSET;\\r\\n      *unaff_FS_OFFSET = (int)local_2c;\\r\\n    }\\r\\n  }\\r\\n  return local_3c;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea324\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea324\",\"name\":\"TranslatorGuardHandler\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    enum _EXCEPTION_DISPOSITION __cdecl TranslatorGuardHandler(struct EHExceptionRecord *,struct\\r\\n   TranslatorGuardRN *,void *,void *)\\r\\n   \\r\\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\\r\\n\\r\\n_EXCEPTION_DISPOSITION __cdecl\\r\\nTranslatorGuardHandler\\r\\n          (EHExceptionRecord *param_1,TranslatorGuardRN *param_2,void *param_3,void *param_4)\\r\\n\\r\\n{\\r\\n  _EXCEPTION_DISPOSITION _Var1;\\r\\n  code *local_8;\\r\\n  \\r\\n  __security_check_cookie(*(uint *)(param_2 + 8) ^ (uint)param_2);\\r\\n  if ((*(uint *)(param_1 + 4) & 0x66) != 0) {\\r\\n    *(undefined4 *)(param_2 + 0x24) = 1;\\r\\n    return 1;\\r\\n  }\\r\\n  ___InternalCxxFrameHandler\\r\\n            (param_1,*(undefined4 *)(param_2 + 0x10),param_3,0,*(undefined4 *)(param_2 + 0xc),\\r\\n             *(undefined4 *)(param_2 + 0x14),*(undefined4 *)(param_2 + 0x18),1);\\r\\n  if (*(int *)(param_2 + 0x24) == 0) {\\r\\n    _UnwindNestedFrames((EHRegistrationNode *)param_2,param_1);\\r\\n  }\\r\\n  _CallSETranslator((EHExceptionRecord *)0x123,(EHRegistrationNode *)&local_8,(void *)0x0,\\r\\n                    (void *)0x0,(_s_FuncInfo *)0x0,0,(EHRegistrationNode *)0x0);\\r\\n                    /* WARNING: Could not recover jumptable at 0x006ea3b9. Too many branches */\\r\\n                    /* WARNING: Treating indirect jump as call */\\r\\n  _Var1 = (*local_8)();\\r\\n  return _Var1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea3c1\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea3c1\",\"name\":\"_GetRangeOfTrysToCheck\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    struct _s_TryBlockMapEntry const * __cdecl _GetRangeOfTrysToCheck(struct _s_FuncInfo const\\r\\n   *,int,int,unsigned int *,unsigned int *)\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\n_s_TryBlockMapEntry * __cdecl\\r\\n_GetRangeOfTrysToCheck(_s_FuncInfo *param_1,int param_2,int param_3,uint *param_4,uint *param_5)\\r\\n\\r\\n{\\r\\n  int iVar1;\\r\\n  uint uVar2;\\r\\n  int iVar3;\\r\\n  uint uVar4;\\r\\n  uint uVar5;\\r\\n  uint uVar6;\\r\\n  \\r\\n  iVar1 = *(int *)(param_1 + 0x10);\\r\\n  uVar6 = *(uint *)(param_1 + 0xc);\\r\\n  uVar2 = uVar6;\\r\\n  uVar4 = uVar6;\\r\\n  while (uVar5 = uVar2, -1 < param_2) {\\r\\n    if (uVar6 == 0xffffffff) {\\r\\n      _inconsistency();\\r\\n    }\\r\\n    uVar6 = uVar6 - 1;\\r\\n    iVar3 = uVar6 * 0x14 + iVar1;\\r\\n    if (((*(int *)(iVar3 + 4) < param_3) && (param_3 <= *(int *)(iVar3 + 8))) ||\\r\\n       (uVar2 = uVar5, uVar6 == 0xffffffff)) {\\r\\n      param_2 = param_2 + -1;\\r\\n      uVar2 = uVar6;\\r\\n      uVar4 = uVar5;\\r\\n    }\\r\\n  }\\r\\n  uVar6 = uVar6 + 1;\\r\\n  *param_4 = uVar6;\\r\\n  *param_5 = uVar4;\\r\\n  if ((*(uint *)(param_1 + 0xc) < uVar4) || (uVar4 < uVar6)) {\\r\\n    _inconsistency();\\r\\n  }\\r\\n  return (_s_TryBlockMapEntry *)(uVar6 * 0x14 + iVar1);\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea434\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea434\",\"name\":\"__CreateFrameInfo\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __CreateFrameInfo\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nundefined4 * __CreateFrameInfo(undefined4 *param_1,undefined4 param_2)\\r\\n\\r\\n{\\r\\n  _ptiddata p_Var1;\\r\\n  \\r\\n  *param_1 = param_2;\\r\\n  p_Var1 = __getptd();\\r\\n  param_1[1] = p_Var1->_pFrameInfoChain;\\r\\n  p_Var1 = __getptd();\\r\\n  p_Var1->_pFrameInfoChain = param_1;\\r\\n  return param_1;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea45c\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea45c\",\"name\":\"__IsExceptionObjectToBeDestroyed\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __IsExceptionObjectToBeDestroyed\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nundefined4 __IsExceptionObjectToBeDestroyed(int param_1)\\r\\n\\r\\n{\\r\\n  _ptiddata p_Var1;\\r\\n  int *piVar2;\\r\\n  \\r\\n  p_Var1 = __getptd();\\r\\n  piVar2 = p_Var1->_pFrameInfoChain;\\r\\n  while( true ) {\\r\\n    if (piVar2 == (int *)0x0) {\\r\\n      return 1;\\r\\n    }\\r\\n    if (*piVar2 == param_1) break;\\r\\n    piVar2 = (int *)piVar2[1];\\r\\n  }\\r\\n  return 0;\\r\\n}\\r\\n\\r\\n\"},{\"address\":\"0x6ea47d\",\"procedure\":{\"status\":\"resolved\",\"address\":\"0x6ea47d\",\"name\":\"__FindAndUnlinkFrame\"},\"status\":\"ok\",\"pseudocode\":\"\\r\\n/* Library Function - Single Match\\r\\n    __FindAndUnlinkFrame\\r\\n   \\r\\n   Library: Visual Studio 2005 Release */\\r\\n\\r\\nvoid __FindAndUnlinkFrame(void *param_1)\\r\\n\\r\\n{\\r\\n  void *pvVar1;\\r\\n  _ptiddata p_Var2;\\r\\n  void *pvVar3;\\r\\n  \\r\\n  p_Var2 = __getptd();\\r\\n  if (param_1 == p_Var2->_pFrameInfoChain) {\\r\\n    p_Var2 = __getptd();\\r\\n    p_Var2->_pFrameInfoChain = *(void **)((int)param_1 + 4);\\r\\n    return;\\r\\n  }\\r\\n  p_Var2 = __getptd();\\r\\n  pvVar1 = p_Var2->_pFrameInfoChain;\\r\\n  do {\\r\\n    pvVar3 = pvVar1;\\r\\n    if (*(int *)((int)pvVar3 + 4) == 0) {\\r\\n      _inconsistency();\\r\\n      return;\\r\\n    }\\r\\n    pvVar1 = *(void **)((int)pvVar3 + 4);\\r\\n  } while (param_1 != *(void **)((int)pvVar3 + 4));\\r\\n  *(undefined4 *)((int)pvVar3 + 4) = *(undefined4 *)((int)param_1 + 4);\\r\\n  return;\\r\\n}\\r\\n\\r\\n\"}],\"total\":32,\"succeeded\":32,\"failed\":0},\"confidence\":\"derived\",\"authority\":\"shipped-artifact\",\"environment\":null,\"limitations\":[\"Derived by an REA composed workflow.\"],\"locations\":[{\"kind\":\"address\",\"address\":\"0x6e9c18\"},{\"kind\":\"address\",\"address\":\"0x6e9c66\"},{\"kind\":\"address\",\"address\":\"0x6e9c7e\"},{\"kind\":\"address\",\"address\":\"0x6e9cd6\"},{\"kind\":\"address\",\"address\":\"0x6e9d2c\"},{\"kind\":\"address\",\"address\":\"0x6e9e02\"},{\"kind\":\"address\",\"address\":\"0x6e9e1e\"},{\"kind\":\"address\",\"address\":\"0x6e9e40\"},{\"kind\":\"address\",\"address\":\"0x6e9e62\"},{\"kind\":\"address\",\"address\":\"0x6e9e84\"},{\"kind\":\"address\",\"address\":\"0x6e9e8e\"},{\"kind\":\"address\",\"address\":\"0x6e9fb9\"},{\"kind\":\"address\",\"address\":\"0x6e9fc2\"},{\"kind\":\"address\",\"address\":\"0x6e9fe6\"},{\"kind\":\"address\",\"address\":\"0x6e9ff6\"},{\"kind\":\"address\",\"address\":\"0x6e9fff\"},{\"kind\":\"address\",\"address\":\"0x6ea018\"},{\"kind\":\"address\",\"address\":\"0x6ea082\"},{\"kind\":\"address\",\"address\":\"0x6ea0cc\"},{\"kind\":\"address\",\"address\":\"0x6ea0fc\"},{\"kind\":\"address\",\"address\":\"0x6ea103\"},{\"kind\":\"address\",\"address\":\"0x6ea10a\"},{\"kind\":\"address\",\"address\":\"0x6ea111\"},{\"kind\":\"address\",\"address\":\"0x6ea163\"},{\"kind\":\"address\",\"address\":\"0x6ea199\"},{\"kind\":\"address\",\"address\":\"0x6ea1cf\"},{\"kind\":\"address\",\"address\":\"0x6ea24f\"},{\"kind\":\"address\",\"address\":\"0x6ea324\"},{\"kind\":\"address\",\"address\":\"0x6ea3c1\"},{\"kind\":\"address\",\"address\":\"0x6ea434\"},{\"kind\":\"address\",\"address\":\"0x6ea45c\"},{\"kind\":\"address\",\"address\":\"0x6ea47d\"}],\"evidence_links\":[]}"
+    }
+  ],
+  "structuredContent": {
+    "evidence_id": "ev_7c1f0ecd29c800f910a33bdaa344f8ed50b7b31113b7bd43cf044ecf7b83bf10",
+    "subject": {
+      "name": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe",
+      "digest": {
+        "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb"
+      },
+      "format": "pe",
+      "architecture": "x86",
+      "local_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\binary\\LEGOStarWarsSaga.packed.exe.unpacked.exe"
+    },
+    "provider": {
+      "id": "rea-workflow",
+      "name": "REA composed investigation workflow",
+      "version": "1"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "rea-workflow",
+        "name": "REA composed investigation workflow",
+        "version": "1"
+      },
+      "parameters": {
+        "upstream_analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "pe",
+            "executable_role": "application",
+            "managed": false,
+            "native_aot_metadata": {
+              "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+              "source_bytes": 134217728,
+              "work_units": 67108864,
+              "working_memory_bytes": 67108864,
+              "report_bytes": 4194304
+            },
+            "architecture": "x86",
+            "available_architectures": [
+              "x86"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "function_boundary_observations": "ghidra-terminal-call-limitations-v1",
+            "no_return_repair": "disabled-windows-p0",
+            "process_launch": "official-headless-script-v1",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "auto-from-header",
+            "language_id": "auto-from-header",
+            "compiler_spec_id": "auto-default",
+            "analyzer_preset": "ghidra-default",
+            "analysis_seeds": {
+              "format": "rea-ghidra-seeds-v1",
+              "path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "configured_path": "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\references\\native-analysis-seeds.tsv",
+              "sha256": "ce74c591e3521af10afd31fcccc33251360ecf3d4ed45f3885d7977f30af9c24",
+              "entries": {
+                "function": 1046,
+                "code": 0,
+                "label": 0
+              }
+            }
+          },
+          "digest": "d2522da9da646421a6f2fec568a6f611a0de6a69ba6aaee50b104d28027af90d"
+        },
+        "workflow_revision": 2
+      },
+      "digest": "87cba6afcfb5fa009d5677e2223552cf9720a44490b470ef7398fdb9ab7f5971"
+    },
+    "predicate_type": "rea.analysis",
+    "operation": "batch_decompile",
+    "parameters": {
+      "addresses": [
+        "0x6e9c18",
+        "0x6e9c66",
+        "0x6e9c7e",
+        "0x6e9cd6",
+        "0x6e9d2c",
+        "0x6e9e02",
+        "0x6e9e1e",
+        "0x6e9e40",
+        "0x6e9e62",
+        "0x6e9e84",
+        "0x6e9e8e",
+        "0x6e9fb9",
+        "0x6e9fc2",
+        "0x6e9fe6",
+        "0x6e9ff6",
+        "0x6e9fff",
+        "0x6ea018",
+        "0x6ea082",
+        "0x6ea0cc",
+        "0x6ea0fc",
+        "0x6ea103",
+        "0x6ea10a",
+        "0x6ea111",
+        "0x6ea163",
+        "0x6ea199",
+        "0x6ea1cf",
+        "0x6ea24f",
+        "0x6ea324",
+        "0x6ea3c1",
+        "0x6ea434",
+        "0x6ea45c",
+        "0x6ea47d"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "items": [
+        {
+          "address": "0x6e9c18",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9c18",
+            "name": "std::exception::exception"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    public: __thiscall std::exception::exception(char const * const &)\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nexception * __thiscall std::exception::exception(exception *this,char **param_1)\r\n\r\n{\r\n  size_t sVar1;\r\n  char *_Dst;\r\n  \r\n  *(undefined ***)this = &PTR_FUN_00777d54;\r\n  if (*param_1 == (char *)0x0) {\r\n    *(undefined4 *)(this + 4) = 0;\r\n  }\r\n  else {\r\n    sVar1 = _strlen(*param_1);\r\n    _Dst = _malloc(sVar1 + 1);\r\n    *(char **)(this + 4) = _Dst;\r\n    if (_Dst != (char *)0x0) {\r\n      _strcpy_s(_Dst,sVar1 + 1,*param_1);\r\n    }\r\n  }\r\n  *(undefined4 *)(this + 8) = 1;\r\n  return this;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9c66",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9c66",
+            "name": "std::exception::exception"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    public: __thiscall std::exception::exception(char const * const &,int)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\r\n\r\nvoid __thiscall std::exception::exception(exception *this,char **param_1,int param_2)\r\n\r\n{\r\n  char *pcVar1;\r\n  \r\n  *(undefined ***)this = &PTR_FUN_00777d54;\r\n  pcVar1 = *param_1;\r\n  *(undefined4 *)(this + 8) = 0;\r\n  *(char **)(this + 4) = pcVar1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9c7e",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9c7e",
+            "name": "std::exception::exception"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    public: __thiscall std::exception::exception(class std::exception const &)\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nexception * __thiscall std::exception::exception(exception *this,exception *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  size_t sVar2;\r\n  char *pcVar3;\r\n  \r\n  *(undefined ***)this = &PTR_FUN_00777d54;\r\n  iVar1 = *(int *)(param_1 + 8);\r\n  *(int *)(this + 8) = iVar1;\r\n  pcVar3 = *(char **)(param_1 + 4);\r\n  if (iVar1 == 0) {\r\n    *(char **)(this + 4) = pcVar3;\r\n  }\r\n  else if (pcVar3 == (char *)0x0) {\r\n    *(undefined4 *)(this + 4) = 0;\r\n  }\r\n  else {\r\n    sVar2 = _strlen(pcVar3);\r\n    pcVar3 = _malloc(sVar2 + 1);\r\n    *(char **)(this + 4) = pcVar3;\r\n    if (pcVar3 != (char *)0x0) {\r\n      _strcpy_s(pcVar3,sVar2 + 1,*(char **)(param_1 + 4));\r\n    }\r\n  }\r\n  return this;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9cd6",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9cd6",
+            "name": "std::exception::operator="
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    public: class std::exception & __thiscall std::exception::operator=(class std::exception const\r\n   &)\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nexception * __thiscall std::exception::operator=(exception *this,exception *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  size_t sVar2;\r\n  char *pcVar3;\r\n  \r\n  if (this != param_1) {\r\n    iVar1 = *(int *)(param_1 + 8);\r\n    *(int *)(this + 8) = iVar1;\r\n    pcVar3 = *(char **)(param_1 + 4);\r\n    if (iVar1 == 0) {\r\n      *(char **)(this + 4) = pcVar3;\r\n    }\r\n    else if (pcVar3 == (char *)0x0) {\r\n      *(undefined4 *)(this + 4) = 0;\r\n    }\r\n    else {\r\n      sVar2 = _strlen(pcVar3);\r\n      pcVar3 = _malloc(sVar2 + 1);\r\n      *(char **)(this + 4) = pcVar3;\r\n      if (pcVar3 != (char *)0x0) {\r\n        _strcpy_s(pcVar3,sVar2 + 1,*(char **)(param_1 + 4));\r\n      }\r\n    }\r\n  }\r\n  return this;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9d2c",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9d2c",
+            "name": "exception::~exception"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    public: virtual __thiscall exception::~exception(void)\r\n   \r\n   Libraries: Visual Studio 2003 Release, Visual Studio 2005 Release */\r\n\r\nvoid __thiscall exception::~exception(exception *this)\r\n\r\n{\r\n  *(undefined ***)this = &PTR_FUN_00777d54;\r\n  if (*(int *)(this + 8) != 0) {\r\n    _free(*(void **)(this + 4));\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9e02",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9e02",
+            "name": "FUN_006e9e02"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9e02(byte param_1)\r\n\r\n{\r\n  exception *in_ECX;\r\n  \r\n  exception::~exception(in_ECX);\r\n  if ((param_1 & 1) != 0) {\r\n    _free(in_ECX);\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9e1e",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9e1e",
+            "name": "FUN_006e9e1e"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9e1e(byte param_1)\r\n\r\n{\r\n  exception *in_ECX;\r\n  \r\n  *(undefined ***)in_ECX = &PTR_FUN_00777d74;\r\n  exception::~exception(in_ECX);\r\n  if ((param_1 & 1) != 0) {\r\n    _free(in_ECX);\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9e40",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9e40",
+            "name": "FUN_006e9e40"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9e40(byte param_1)\r\n\r\n{\r\n  exception *in_ECX;\r\n  \r\n  *(undefined ***)in_ECX = &PTR_FUN_00777d80;\r\n  exception::~exception(in_ECX);\r\n  if ((param_1 & 1) != 0) {\r\n    _free(in_ECX);\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9e62",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9e62",
+            "name": "FUN_006e9e62"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9e62(byte param_1)\r\n\r\n{\r\n  exception *in_ECX;\r\n  \r\n  *(undefined ***)in_ECX = &PTR_FUN_00777d80;\r\n  exception::~exception(in_ECX);\r\n  if ((param_1 & 1) != 0) {\r\n    _free(in_ECX);\r\n  }\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9e84",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9e84",
+            "name": "FUN_006e9e84"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9e84(undefined4 param_1)\r\n\r\n{\r\n  DAT_0297c19c = param_1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9e8e",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9e8e",
+            "name": "__invoke_watson"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __invoke_watson\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __cdecl\r\n__invoke_watson(wchar_t *param_1,wchar_t *param_2,wchar_t *param_3,uint param_4,uintptr_t param_5)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  BOOL BVar2;\r\n  LONG LVar3;\r\n  HANDLE hProcess;\r\n  UINT uExitCode;\r\n  EXCEPTION_RECORD local_32c;\r\n  _EXCEPTION_POINTERS local_2dc;\r\n  undefined4 local_2d4;\r\n  \r\n  uVar1 = DAT_00829570;\r\n  local_2d4 = 0x10001;\r\n  _memset(&local_32c,0,0x50);\r\n  local_2dc.ExceptionRecord = &local_32c;\r\n  local_2dc.ContextRecord = (PCONTEXT)&local_2d4;\r\n  local_32c.ExceptionCode = 0xc000000d;\r\n  BVar2 = IsDebuggerPresent();\r\n  SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)0x0);\r\n  LVar3 = UnhandledExceptionFilter(&local_2dc);\r\n  if ((LVar3 == 0) && (BVar2 == 0)) {\r\n    FUN_006f8568(2);\r\n  }\r\n  uExitCode = 0xc000000d;\r\n  hProcess = GetCurrentProcess();\r\n  TerminateProcess(hProcess,uExitCode);\r\n  __security_check_cookie(uVar1);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9fb9",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9fb9",
+            "name": "FUN_006e9fb9"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9fb9(wchar_t *param_1,wchar_t *param_2,wchar_t *param_3,uint param_4,uintptr_t param_5)\r\n\r\n{\r\n                    /* WARNING: Subroutine does not return */\r\n  __invoke_watson(param_1,param_2,param_3,param_4,param_5);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9fc2",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9fc2",
+            "name": "FUN_006e9fc2"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9fc2(wchar_t *param_1,wchar_t *param_2,wchar_t *param_3,uint param_4,uintptr_t param_5)\r\n\r\n{\r\n  code *UNRECOVERED_JUMPTABLE;\r\n  \r\n  UNRECOVERED_JUMPTABLE = (code *)FUN_006f01bc(DAT_0297c19c);\r\n  if (UNRECOVERED_JUMPTABLE != (code *)0x0) {\r\n                    /* WARNING: Could not recover jumptable at 0x006e9fd6. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n    (*UNRECOVERED_JUMPTABLE)();\r\n    return;\r\n  }\r\n  FUN_006f8568(2);\r\n                    /* WARNING: Subroutine does not return */\r\n  __invoke_watson(param_1,param_2,param_3,param_4,param_5);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9fe6",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9fe6",
+            "name": "FUN_006e9fe6"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9fe6(void)\r\n\r\n{\r\n  FUN_006e9fc2(0,0,0,0,0);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9ff6",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9ff6",
+            "name": "FUN_006e9ff6"
+          },
+          "status": "ok",
+          "pseudocode": "\r\nvoid FUN_006e9ff6(void)\r\n\r\n{\r\n  FUN_006e9fc2();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6e9fff",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6e9fff",
+            "name": "std::bad_alloc::bad_alloc"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    public: __thiscall std::bad_alloc::bad_alloc(void)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\r\n\r\nbad_alloc * __thiscall std::bad_alloc::bad_alloc(bad_alloc *this)\r\n\r\n{\r\n  exception::exception((exception *)this,&PTR_s_bad_allocation_008298dc,1);\r\n  *(undefined ***)this = &PTR_FUN_0076a75c;\r\n  return this;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea018",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea018",
+            "name": "FUN_006ea018"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_006ea018(size_t param_1)\r\n\r\n{\r\n  int iVar1;\r\n  void *pvVar2;\r\n  undefined **local_10 [3];\r\n  \r\n  do {\r\n    pvVar2 = _malloc(param_1);\r\n    if (pvVar2 != (void *)0x0) {\r\n      return;\r\n    }\r\n    iVar1 = __callnewh(param_1);\r\n  } while (iVar1 != 0);\r\n  if ((_DAT_0297c1ac & 1) == 0) {\r\n    _DAT_0297c1ac = _DAT_0297c1ac | 1;\r\n    std::bad_alloc::bad_alloc((bad_alloc *)&DAT_0297c1a0);\r\n    _atexit((_func_4879 *)&LAB_007506ca);\r\n  }\r\n  std::exception::exception((exception *)local_10,(exception *)&DAT_0297c1a0);\r\n  local_10[0] = &PTR_FUN_0076a75c;\r\n                    /* WARNING: Subroutine does not return */\r\n  __CxxThrowException_8(local_10,&DAT_007eca48);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea082",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea082",
+            "name": "__CxxThrowException@8"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __CxxThrowException@8\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __CxxThrowException_8(undefined4 param_1,byte *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  DWORD *pDVar2;\r\n  DWORD *pDVar3;\r\n  DWORD local_24 [4];\r\n  DWORD local_14;\r\n  undefined *local_10;\r\n  undefined4 local_c;\r\n  byte *local_8;\r\n  \r\n  pDVar2 = &DAT_00777da8;\r\n  pDVar3 = local_24;\r\n  for (iVar1 = 8; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *pDVar3 = *pDVar2;\r\n    pDVar2 = pDVar2 + 1;\r\n    pDVar3 = pDVar3 + 1;\r\n  }\r\n  local_c = param_1;\r\n  local_8 = param_2;\r\n  if ((param_2 != (byte *)0x0) && ((*param_2 & 8) != 0)) {\r\n    local_10 = &DAT_01994000;\r\n  }\r\n  RaiseException(local_24[0],local_24[1],local_14,(ULONG_PTR *)&local_10);\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea0cc",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea0cc",
+            "name": "_JumpToContinuation"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    void __stdcall _JumpToContinuation(void *,struct EHRegistrationNode *)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nvoid _JumpToContinuation(void *param_1,EHRegistrationNode *param_2)\r\n\r\n{\r\n  undefined4 *unaff_FS_OFFSET;\r\n  \r\n  *unaff_FS_OFFSET = *(undefined4 *)*unaff_FS_OFFSET;\r\n                    /* WARNING: Could not recover jumptable at 0x006ea0f5. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*param_1)();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea0fc",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea0fc",
+            "name": "_CallMemberFunction0"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    void __stdcall _CallMemberFunction0(void *,void *)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nvoid _CallMemberFunction0(void *param_1,void *param_2)\r\n\r\n{\r\n  LOCK();\r\n  UNLOCK();\r\n                    /* WARNING: Could not recover jumptable at 0x006ea101. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*param_2)();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea103",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea103",
+            "name": "FID_conflict:_CallMemberFunction1"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Multiple Matches With Different Base Names\r\n    void __stdcall _CallMemberFunction1(void *,void *,void *)\r\n    void __stdcall _CallMemberFunction2(void *,void *,void *,int)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nvoid FID_conflict__CallMemberFunction1(undefined4 param_1,code *UNRECOVERED_JUMPTABLE)\r\n\r\n{\r\n  LOCK();\r\n  UNLOCK();\r\n                    /* WARNING: Could not recover jumptable at 0x006ea108. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*UNRECOVERED_JUMPTABLE)();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea10a",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea10a",
+            "name": "FID_conflict:_CallMemberFunction1"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Multiple Matches With Different Base Names\r\n    void __stdcall _CallMemberFunction1(void *,void *,void *)\r\n    void __stdcall _CallMemberFunction2(void *,void *,void *,int)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nvoid FID_conflict__CallMemberFunction1(undefined4 param_1,code *UNRECOVERED_JUMPTABLE)\r\n\r\n{\r\n  LOCK();\r\n  UNLOCK();\r\n                    /* WARNING: Could not recover jumptable at 0x006ea10f. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*UNRECOVERED_JUMPTABLE)();\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea111",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea111",
+            "name": "_UnwindNestedFrames"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    void __stdcall _UnwindNestedFrames(struct EHRegistrationNode *,struct EHExceptionRecord *)\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid _UnwindNestedFrames(EHRegistrationNode *param_1,EHExceptionRecord *param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  undefined4 *unaff_FS_OFFSET;\r\n  \r\n  puVar1 = (undefined4 *)*unaff_FS_OFFSET;\r\n  RtlUnwind(param_1,(PVOID)0x6ea13a,(PEXCEPTION_RECORD)param_2,(PVOID)0x0);\r\n  *(uint *)(param_2 + 4) = *(uint *)(param_2 + 4) & 0xfffffffd;\r\n  *puVar1 = *unaff_FS_OFFSET;\r\n  *unaff_FS_OFFSET = puVar1;\r\n  return;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea163",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea163",
+            "name": "FID_conflict:___CxxFrameHandler3"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Multiple Matches With Different Base Names\r\n    ___CxxFrameHandler\r\n    ___CxxFrameHandler2\r\n    ___CxxFrameHandler3\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nundefined4\r\nFID_conflict____CxxFrameHandler3\r\n          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  uVar1 = ___InternalCxxFrameHandler(param_1,param_2,param_3,param_4);\r\n  return uVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea199",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea199",
+            "name": "FID_conflict:___CxxFrameHandler3"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Multiple Matches With Different Base Names\r\n    ___CxxFrameHandler\r\n    ___CxxFrameHandler2\r\n    ___CxxFrameHandler3\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nundefined4\r\nFID_conflict____CxxFrameHandler3\r\n          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  uVar1 = ___InternalCxxFrameHandler(param_1,param_2,param_3,param_4);\r\n  return uVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea1cf",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea1cf",
+            "name": "FID_conflict:___CxxFrameHandler3"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Multiple Matches With Different Base Names\r\n    ___CxxFrameHandler\r\n    ___CxxFrameHandler2\r\n    ___CxxFrameHandler3\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\nundefined4\r\nFID_conflict____CxxFrameHandler3\r\n          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  uVar1 = ___InternalCxxFrameHandler(param_1,param_2,param_3,param_4);\r\n  return uVar1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea24f",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea24f",
+            "name": "_CallSETranslator"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    int __cdecl _CallSETranslator(struct EHExceptionRecord *,struct EHRegistrationNode *,void *,void\r\n   *,struct _s_FuncInfo const *,int,struct EHRegistrationNode *)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\r\n\r\nint __cdecl\r\n_CallSETranslator(EHExceptionRecord *param_1,EHRegistrationNode *param_2,void *param_3,void *param_4\r\n                 ,_s_FuncInfo *param_5,int param_6,EHRegistrationNode *param_7)\r\n\r\n{\r\n  _ptiddata p_Var1;\r\n  int *unaff_FS_OFFSET;\r\n  int local_3c;\r\n  EHExceptionRecord *local_38;\r\n  void *local_34;\r\n  code *local_30;\r\n  undefined4 *local_2c;\r\n  code *local_28;\r\n  uint local_24;\r\n  _s_FuncInfo *local_20;\r\n  EHRegistrationNode *local_1c;\r\n  int local_18;\r\n  EHRegistrationNode *local_14;\r\n  undefined1 *local_10;\r\n  undefined1 *local_c;\r\n  int local_8;\r\n  \r\n  local_c = &stack0xfffffffc;\r\n  local_10 = &stack0xffffffc0;\r\n  if (param_1 == (EHExceptionRecord *)0x123) {\r\n    *(undefined4 *)param_2 = 0x6ea2f8;\r\n    local_3c = 1;\r\n  }\r\n  else {\r\n    local_28 = TranslatorGuardHandler;\r\n    local_24 = DAT_00829570 ^ (uint)&local_2c;\r\n    local_20 = param_5;\r\n    local_1c = param_2;\r\n    local_18 = param_6;\r\n    local_14 = param_7;\r\n    local_8 = 0;\r\n    local_2c = (undefined4 *)*unaff_FS_OFFSET;\r\n    *unaff_FS_OFFSET = (int)&local_2c;\r\n    local_38 = param_1;\r\n    local_34 = param_3;\r\n    p_Var1 = __getptd();\r\n    local_30 = p_Var1->_translator;\r\n    (*local_30)(*(undefined4 *)param_1,&local_38);\r\n    local_3c = 0;\r\n    if (local_8 == 0) {\r\n      *unaff_FS_OFFSET = (int)local_2c;\r\n    }\r\n    else {\r\n      *local_2c = *(undefined4 *)*unaff_FS_OFFSET;\r\n      *unaff_FS_OFFSET = (int)local_2c;\r\n    }\r\n  }\r\n  return local_3c;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea324",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea324",
+            "name": "TranslatorGuardHandler"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    enum _EXCEPTION_DISPOSITION __cdecl TranslatorGuardHandler(struct EHExceptionRecord *,struct\r\n   TranslatorGuardRN *,void *,void *)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release, Visual Studio 2010 Release */\r\n\r\n_EXCEPTION_DISPOSITION __cdecl\r\nTranslatorGuardHandler\r\n          (EHExceptionRecord *param_1,TranslatorGuardRN *param_2,void *param_3,void *param_4)\r\n\r\n{\r\n  _EXCEPTION_DISPOSITION _Var1;\r\n  code *local_8;\r\n  \r\n  __security_check_cookie(*(uint *)(param_2 + 8) ^ (uint)param_2);\r\n  if ((*(uint *)(param_1 + 4) & 0x66) != 0) {\r\n    *(undefined4 *)(param_2 + 0x24) = 1;\r\n    return 1;\r\n  }\r\n  ___InternalCxxFrameHandler\r\n            (param_1,*(undefined4 *)(param_2 + 0x10),param_3,0,*(undefined4 *)(param_2 + 0xc),\r\n             *(undefined4 *)(param_2 + 0x14),*(undefined4 *)(param_2 + 0x18),1);\r\n  if (*(int *)(param_2 + 0x24) == 0) {\r\n    _UnwindNestedFrames((EHRegistrationNode *)param_2,param_1);\r\n  }\r\n  _CallSETranslator((EHExceptionRecord *)0x123,(EHRegistrationNode *)&local_8,(void *)0x0,\r\n                    (void *)0x0,(_s_FuncInfo *)0x0,0,(EHRegistrationNode *)0x0);\r\n                    /* WARNING: Could not recover jumptable at 0x006ea3b9. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  _Var1 = (*local_8)();\r\n  return _Var1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea3c1",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea3c1",
+            "name": "_GetRangeOfTrysToCheck"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    struct _s_TryBlockMapEntry const * __cdecl _GetRangeOfTrysToCheck(struct _s_FuncInfo const\r\n   *,int,int,unsigned int *,unsigned int *)\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\n_s_TryBlockMapEntry * __cdecl\r\n_GetRangeOfTrysToCheck(_s_FuncInfo *param_1,int param_2,int param_3,uint *param_4,uint *param_5)\r\n\r\n{\r\n  int iVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  uint uVar6;\r\n  \r\n  iVar1 = *(int *)(param_1 + 0x10);\r\n  uVar6 = *(uint *)(param_1 + 0xc);\r\n  uVar2 = uVar6;\r\n  uVar4 = uVar6;\r\n  while (uVar5 = uVar2, -1 < param_2) {\r\n    if (uVar6 == 0xffffffff) {\r\n      _inconsistency();\r\n    }\r\n    uVar6 = uVar6 - 1;\r\n    iVar3 = uVar6 * 0x14 + iVar1;\r\n    if (((*(int *)(iVar3 + 4) < param_3) && (param_3 <= *(int *)(iVar3 + 8))) ||\r\n       (uVar2 = uVar5, uVar6 == 0xffffffff)) {\r\n      param_2 = param_2 + -1;\r\n      uVar2 = uVar6;\r\n      uVar4 = uVar5;\r\n    }\r\n  }\r\n  uVar6 = uVar6 + 1;\r\n  *param_4 = uVar6;\r\n  *param_5 = uVar4;\r\n  if ((*(uint *)(param_1 + 0xc) < uVar4) || (uVar4 < uVar6)) {\r\n    _inconsistency();\r\n  }\r\n  return (_s_TryBlockMapEntry *)(uVar6 * 0x14 + iVar1);\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea434",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea434",
+            "name": "__CreateFrameInfo"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __CreateFrameInfo\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nundefined4 * __CreateFrameInfo(undefined4 *param_1,undefined4 param_2)\r\n\r\n{\r\n  _ptiddata p_Var1;\r\n  \r\n  *param_1 = param_2;\r\n  p_Var1 = __getptd();\r\n  param_1[1] = p_Var1->_pFrameInfoChain;\r\n  p_Var1 = __getptd();\r\n  p_Var1->_pFrameInfoChain = param_1;\r\n  return param_1;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea45c",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea45c",
+            "name": "__IsExceptionObjectToBeDestroyed"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __IsExceptionObjectToBeDestroyed\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nundefined4 __IsExceptionObjectToBeDestroyed(int param_1)\r\n\r\n{\r\n  _ptiddata p_Var1;\r\n  int *piVar2;\r\n  \r\n  p_Var1 = __getptd();\r\n  piVar2 = p_Var1->_pFrameInfoChain;\r\n  while( true ) {\r\n    if (piVar2 == (int *)0x0) {\r\n      return 1;\r\n    }\r\n    if (*piVar2 == param_1) break;\r\n    piVar2 = (int *)piVar2[1];\r\n  }\r\n  return 0;\r\n}\r\n\r\n"
+        },
+        {
+          "address": "0x6ea47d",
+          "procedure": {
+            "status": "resolved",
+            "address": "0x6ea47d",
+            "name": "__FindAndUnlinkFrame"
+          },
+          "status": "ok",
+          "pseudocode": "\r\n/* Library Function - Single Match\r\n    __FindAndUnlinkFrame\r\n   \r\n   Library: Visual Studio 2005 Release */\r\n\r\nvoid __FindAndUnlinkFrame(void *param_1)\r\n\r\n{\r\n  void *pvVar1;\r\n  _ptiddata p_Var2;\r\n  void *pvVar3;\r\n  \r\n  p_Var2 = __getptd();\r\n  if (param_1 == p_Var2->_pFrameInfoChain) {\r\n    p_Var2 = __getptd();\r\n    p_Var2->_pFrameInfoChain = *(void **)((int)param_1 + 4);\r\n    return;\r\n  }\r\n  p_Var2 = __getptd();\r\n  pvVar1 = p_Var2->_pFrameInfoChain;\r\n  do {\r\n    pvVar3 = pvVar1;\r\n    if (*(int *)((int)pvVar3 + 4) == 0) {\r\n      _inconsistency();\r\n      return;\r\n    }\r\n    pvVar1 = *(void **)((int)pvVar3 + 4);\r\n  } while (param_1 != *(void **)((int)pvVar3 + 4));\r\n  *(undefined4 *)((int)pvVar3 + 4) = *(undefined4 *)((int)param_1 + 4);\r\n  return;\r\n}\r\n\r\n"
+        }
+      ],
+      "total": 32,
+      "succeeded": 32,
+      "failed": 0
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Derived by an REA composed workflow."
+    ],
+    "locations": [
+      {
+        "kind": "address",
+        "address": "0x6e9c18"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9c66"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9c7e"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9cd6"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9d2c"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9e02"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9e1e"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9e40"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9e62"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9e84"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9e8e"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9fb9"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9fc2"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9fe6"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9ff6"
+      },
+      {
+        "kind": "address",
+        "address": "0x6e9fff"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea018"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea082"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea0cc"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea0fc"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea103"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea10a"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea111"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea163"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea199"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea1cf"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea24f"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea324"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea3c1"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea434"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea45c"
+      },
+      {
+        "kind": "address",
+        "address": "0x6ea47d"
+      }
+    ],
+    "evidence_links": []
+  }
+}

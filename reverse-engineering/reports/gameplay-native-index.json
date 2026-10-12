@@ -1,0 +1,277 @@
+{
+  "generatedAt": "2026-10-12T19:46:08.053Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "suites": [
+    {
+      "name": "save decoder",
+      "report": "reverse-engineering/reports/gameplay-save-format-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-save-format-tests.mjs",
+      "method": "synthetic Buffer fixtures",
+      "checks": 15,
+      "mismatches": 0,
+      "binarySha256": null,
+      "limitations": "Synthetic in-memory fixtures only. No user save paths searched, no user saves read or written. These test decoder behavior; they do not establish runtime or real-save roundtrip equivalence."
+    },
+    {
+      "name": "save/audio primitives",
+      "report": "reverse-engineering/reports/gameplay-native-contract-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-native-contract-verify.py",
+      "method": "original PC execution",
+      "checks": 1774,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Does not emulate filesystem framing or native save-state machine.",
+        "Audio mixer, 3D attenuation, floating-point random pitch/volume and live playback are outside these isolated checks.",
+        "ASCII audio config names only; non-ASCII hashing is not generalized."
+      ]
+    },
+    {
+      "name": "complete AUDIO.CFG compilation",
+      "report": "reverse-engineering/reports/gameplay-audio-compiled-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-audio-compiled-verify.mjs",
+      "method": "independent model compared with original PC parser output",
+      "checks": 20437,
+      "mismatches": 0,
+      "binarySha256": null,
+      "limitations": [
+        "Covers observed configuration values; no claimtoexhaustall malformed tokens or numeric edgecases.",
+        "Native parser emulation haszero preloaded backend samples; file IDs can shift in a full game environment."
+      ]
+    },
+    {
+      "name": "dispatch lookup and GIT predicates",
+      "report": "reverse-engineering/reports/gameplay-dispatch-native-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-dispatch-native-verify.py",
+      "method": "original PC execution",
+      "checks": 2955,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Parent fixtures use action-node kind2 completion bits; live gizmo callback values and whole graph scheduling not exhaustively emulated.",
+        "Loop predicate verified with no children; recursive reset/walk side effects not validated here.",
+        "No complete SCP interpreter or execution of gameplay action handlers."
+      ]
+    },
+    {
+      "name": "SCP condition chains and action scheduling",
+      "report": "reverse-engineering/reports/gameplay-scp-runtime-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-scp-runtime-verify.py",
+      "method": "original PC execution",
+      "checks": 303,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "No full gameplay script or inter-script interrupt/state transition emulation.",
+        "Condition variable operands, dynamic random operands and condition-bank1 remain outside these fixtures.",
+        "No claim that every parsed source file is reachable during ordinary gameplay."
+      ]
+    },
+    {
+      "name": "SCP state transitions, interrupts and wait commands",
+      "report": "reverse-engineering/reports/gameplay-scp-transition-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-scp-transition-verify.py",
+      "method": "original PC execution",
+      "checks": 1899,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Reference fixtures use explicit target/return pointers, while SetState uses actual native case-insensitive name lookup; source script text loading remains separate.",
+        "Mask-based character parameter overrides are verified on synthetic configuration records; their connection to every authored configuration directive is not established here.",
+        "Interrupt callbacks with arbitrary gameplay side effects, dynamic condition operands and all action command implementations remain open.",
+        "Idle and ResetTimer scalar/time/frame/random variants use bounded ordinary numeric tokens; arbitrary expression evaluation, malformed arguments and all floating-point bit patterns are not covered."
+      ]
+    },
+    {
+      "name": "named message commands and puzzle-state chains",
+      "report": "reverse-engineering/reports/gameplay-message-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-message-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 2638,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "ASCII names only; embedded NUL and overlong names already containing msg_ are excluded because original sprintf lacks a bound on that branch.",
+        "GIT SetAIMessage requires a valid registry, name and available record. Original handler dereferences a failed lookup; portable source will explicitly reject that invalid input.",
+        "Registry lifecycle/allocation/reset and inter-level message persistence are not established by these isolated fixtures.",
+        "Native reference fixtures are not a compiled C# differential pass."
+      ]
+    },
+    {
+      "name": "SetScriptState self/group binding and scheduler chains",
+      "report": "reverse-engineering/reports/gameplay-state-command-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-state-command-verify.py",
+      "method": "original PC execution with named-character lookup adapter",
+      "checks": 1271,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Synthetically resolved script/state lists, not runtime source attachment or whole-level reachability.",
+        "Selected group records are required to have a valid packet and base-script pointer; original group path lacks the self-path null checks.",
+        "Numeric group fixtures are finite values within int32 conversion range; NaN/infinity/overflow are excluded.",
+        "Compiled C# differential execution remains pending."
+      ]
+    },
+    {
+      "name": "scene/gizmo visibility commands and NuSpecial callbacks",
+      "report": "reverse-engineering/reports/gameplay-visibility-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-visibility-verify.py",
+      "method": "original PC execution with synthetic type registry and actual NuSpecial callbacks",
+      "checks": 2179,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Synthetic category labels for authored type= arguments use NuSpecial callbacks to validate command dispatch; distinct GizForce/GizObstacle/etc physical implementations are not validated.",
+        "Dynamic scene fallback global 0x97388c is zero; external named fallback function 0x5c1300 remains outside scope.",
+        "Static scene and dynamic scene branches are tested separately, with at most three name entries, first duplicate match and current scene binding.",
+        "Compiled C# differential execution pending."
+      ]
+    },
+    {
+      "name": "compact condition readers, initializers and comparisons",
+      "report": "reverse-engineering/reports/gameplay-compact-condition-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-compact-conditions-verify.py",
+      "method": "original PC execution with explicit named-object initializer adapter",
+      "checks": 9096,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "World global updates, reference lifetime, range computation, off-screen timer accumulation and alive-count population are external input contracts, not recovered by these readers.",
+        "Literal NumInSetAlive initializer admits 1..16 or myset; myset reads an unchecked byte index. Fixtures use a synthetic 256-byte backing region and do not assert the actual global count-table allocation size.",
+        "All scalar reader checks compare values at the float32 storage boundary used by the native SCP evaluator; signaling NaN payload behavior is excluded.",
+        "Eight symbolic comparison RHS occurrences and one malformed gotoUpdate occurrence retain separate source/loader gaps; their condition bodies were still exercised.",
+        "Compiled C# differential execution pending."
+      ]
+    },
+    {
+      "name": "GIT scheduling, Loop resets, timers and puzzle actions",
+      "report": "reverse-engineering/reports/gameplay-git-runtime-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-git-runtime-verify.py",
+      "method": "original PC execution",
+      "checks": 141315,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Graph DAG scheduling model covers action/condition nodes and timer callbacks, not every gizmo or arbitrary cyclic scheduler graph.",
+        "A Timer/Action/Loop cycle, including actual initialization, was checked for270 frames at each of four durations, including generation wrap. Other real puzzle topologies and non-timer gizmos remain unverified.",
+        "Reset/monitor side effects on real non-timer gizmos remain unverified.",
+        "Synthetic runtime records were constructed from native layouts; no original GIT text-loader emulation or full level simulation is implied."
+      ]
+    },
+    {
+      "name": "GIT saved state and physical callbacks",
+      "report": "reverse-engineering/reports/gameplay-git-state-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-git-state-verify.py",
+      "method": "original PC execution",
+      "checks": 540,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Saved-state tests use at most the 512 nodes representable by each 16-word bit plane; larger counts are not treated as safe native input.",
+        "Physical fixtures exercise NuSpecial with one static scene instance and animation control; other gizmo types, skinned-instance visibility and renderer/collision refresh remain outside this suite.",
+        "Native loader name rebinding is invoked only on empty/previously bound synthetic lists; shipped text loading and editor Collapse flattening remain open."
+      ]
+    },
+    {
+      "name": "AI2 base navigation",
+      "report": "reverse-engineering/reports/gameplay-navigation-native-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-navigation-native-verify.py",
+      "method": "original PC execution",
+      "checks": 862743,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Tests base routes with selected-route index255 and exclusion mask0. Named subroute groups and dynamic special transforms are not covered.",
+        "Runtime records are materialized from bounded decoded fields; this does not itself execute or validate every branch of the AI2 loader.",
+        "Live character capability filters, collision steering and dynamic graph updates remain separate."
+      ]
+    },
+    {
+      "name": "TER geometry and collision math",
+      "report": "reverse-engineering/reports/gameplay-terrain-native-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-terrain-native-verify.py",
+      "method": "original PC execution",
+      "checks": 7942,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "These are bounded triangle, transform, deflection and no-hit response checks. Full swept ellipsoid broadphase/edge handling/moving-platform contacts remain incompletely tested.",
+        "Runtime query fixtures are constructed from decoded TER fields; original file-loader execution is not implied.",
+        "Native coordinates are preserved; no physical meter scale established."
+      ]
+    },
+    {
+      "name": "moving-platform carry proposals",
+      "report": "reverse-engineering/reports/gameplay-terrain-platform-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-terrain-platform-probe.py",
+      "method": "original PC execution with no-hit fixtures",
+      "checks": 1600,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Only Y-axis platform rotations with nonuniform scale were sampled; arbitrary 3D rotations and singular matrices are untested.",
+        "Negative candidate header is a bounded fixture to bypass contact geometry; the recovered transform does not itself prove live moving-platform collision or carry acceptance."
+      ]
+    }
+  ],
+  "totals": {
+    "allChecks": 1056707,
+    "originalPcChecks": 1036255,
+    "mismatches": 0
+  },
+  "contracts": [
+    "reverse-engineering/reports/gameplay-native-save-audio.json",
+    "reverse-engineering/reports/gameplay-dispatch-contract.json",
+    "reverse-engineering/reports/gameplay-native-world.json",
+    "reverse-engineering/reports/gameplay-git-runtime-contract.json",
+    "reverse-engineering/reports/gameplay-reconstruction.json",
+    "reverse-engineering/reports/gameplay-scp-transition-contract.json",
+    "reverse-engineering/reports/gameplay-message-contract.json",
+    "reverse-engineering/reports/gameplay-state-command-contract.json",
+    "reverse-engineering/reports/gameplay-visibility-contract.json",
+    "reverse-engineering/reports/gameplay-compact-condition-contract.json"
+  ],
+  "data": [
+    "reverse-engineering/reports/gameplay-coverage.json",
+    "reverse-engineering/reports/gameplay-catalog/coverage.json",
+    "reverse-engineering/reports/gameplay-binary/index.json",
+    "reverse-engineering/reports/gameplay-ancillary/index.json",
+    "reverse-engineering/reports/gameplay-navigation/index.json",
+    "reverse-engineering/reports/gameplay-collision/index.json",
+    "reverse-engineering/reports/gameplay-native-dispatch/index.json",
+    "reverse-engineering/reports/gameplay-native-audio-compiled.json"
+  ],
+  "confidence": "A check count measures these bounded fixtures, not percentage of the game recovered. Carrier layout, source associations, native caller flow and isolated runtime execution remain distinct evidence classes.",
+  "remaining": [
+    "Full live gameplay runtime and individual command semantics",
+    "SCP dynamic condition operands and remaining command semantics; GIT physical types beyond NuSpecial and source-collapse loader",
+    "Full swept collision edges/vertices and moving-platform support-hit acceptance",
+    "AI subroutes, dynamic masks and attached-node updates",
+    "Complete mixer/pitch/volume runtime and all progression flag meanings"
+  ],
+  "externalCommandContracts": [
+    {
+      "name": "Kill",
+      "address": "0x445230",
+      "report": "reverse-engineering/reports/native-combat-kill.json",
+      "usage": "reverse-engineering/reports/native-combat-kill-usage.json",
+      "vectors": "reverse-engineering/reports/native-combat-kill-vectors.json",
+      "owner": "combat",
+      "checks": 7064,
+      "sourceUses": 202,
+      "includedInGameplayTotals": false,
+      "scope": "Bounded command selection and dispatch only; name/reference/numeric services and downstream parts/death effects remain explicit boundaries.",
+      "limits": [
+        "Standalone command with valid script and allocated contiguous actor pool. Malformed tokens without required separators are outside bounds.",
+        "Name/reference lookup callbacks are explicit fixture adapters, not reconstructed world binding.",
+        "Parts and death cleanup are captured dispatches; no downstream death, FX, audio, stud or body-part behavior is asserted.",
+        "Numeric evaluator has original PC finite literal/parameter execution; portable command uses an explicit numeric service.",
+        "Instruction audit corrects misleading pseudocode: single and pool paths all reject unordered NaN spawn timers when check_if_dead is enabled.",
+        "Authored commands execute against documented synthetic world bindings, not their live levels.",
+        "Managed opponent and pool references assume stable canonical bindings during service callbacks; callback mutation of native weak slots or pool membership is outside the contract."
+      ]
+    }
+  ],
+  "commandPriorities": "reverse-engineering/reports/gameplay-next-command-priorities.json",
+  "commandSemanticCoverage": "reverse-engineering/reports/gameplay-command-semantic-coverage.json"
+}

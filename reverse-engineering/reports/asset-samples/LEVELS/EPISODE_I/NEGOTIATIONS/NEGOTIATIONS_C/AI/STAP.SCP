@@ -1,0 +1,18 @@
+state Base {
+	Conditions {	
+		if LocatorRangeXZ "LeftJump" < 0.5 goto GoToOrigin
+		if LocatorRangeXZ "RightJump" < 0.5 goto GoToOrigin
+	}
+	Actions {	
+	}
+}
+
+state GoToOrigin {
+	Conditions {	
+		if LocatorRangeXZ "LeftJump" > 0.5 and
+		if LocatorRangeXZ "RightJump" > 0.5 goto Base
+	}
+	Actions {	
+		GoToOrigin "TipToe"
+	}
+}

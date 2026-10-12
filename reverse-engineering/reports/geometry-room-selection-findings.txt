@@ -1,0 +1,94 @@
+Original room selection and handoff to portal traversal
+
+Evidence: geometry-room-selection-native-validation.json, source-bound fixtures
+in geometry-room-selection-fixtures.json, tools/geometry-room-selection-native.py.
+Original binary SHA256:
+6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb
+
+Results
+12,869 authored point selections cover all 403 rooms and 326 portals in 60 PORT
+scene carriers. 2,427 synthetic/null cases exercise extra priority/flag branches.
+1,200 original portal-entry cases verify gates, selection, cached camera data,
+room flag clearing and traversal arguments. All comparisons pass.
+76 synthetic inputs that would cause native stack corruption were excluded
+before execution. This is an explicit source safety bound, not a native pass.
+
+Selector 0x5d92b0: actual instruction behavior
+The cdecl arguments are GSNH and float3 point; result is a signed16 room index
+in AX, or -1. A null argument or no containing rooms returns -1. GSNH+0x74 is
+the room count and +0x78 is the 24-byte room array. Original containment0x5d9220
+executes unchanged; plane distances use the previously recovered x87 contract.
+
+The scan keeps two candidate indices, initially both 0. The first match fills
+the first slot; the second fills the second. Before each store the native reads
+the OLD candidate room records. On the second match it stops immediately if
+both old records have flags bit1 clear. This means the old second record is
+still room0 at that check, not the newly matching room. All authored rooms have
+priority0 and flags0, so the authored path stops after its first two matches.
+
+If a third match is reached, only the two existing candidates' priority bytes
+are compared. A smaller first priority replaces the first candidate with the
+new index; otherwise the second is replaced. Equal priority and expected flag
+checks call 0x5c12e0, which is an empty function in this PC build. Further matches
+do not repeat priority replacement because the branch requires count==2 before
+incrementing. A generic priority sort would therefore change native behavior.
+Synthetic cases compare both returned indices and counts of original empty-hook
+calls, and cover encountered match counts 0 through 6.
+
+One match returns its index directly. For two or more, nested loops scan the
+first candidate's portal list in stored order, then the second's list. The first
+common signed16 index chooses a 32-byte portal record at GSNH+0x70. Its float4
+plane dot(point), rounded tofloat32, selects frontRoom(+0x16) when negative and
+backRoom(+0x18) otherwise. Exactly zero chooses the back room. No common index
+returns -1. Portal active flags and whether returned endpoints belong to the
+candidate pair are not checked here; the source retains this behavior.
+
+Bounded stack behavior
+Ghidra's apparent64KB temporary array is misleading. The actual prologue
+allocates12 local bytes. The room-index stores address six signed16 slots.
+A seventh stored match writes into the return address. The portable helper
+rejects this unsafe input instead of imitating stack corruption. It also limits
+the room scan to its valid signed16 index range and validates referenced arrays.
+These restrictions are recorded in its bounded source mapping.
+
+Portal-entry connection, original 0x5eeb30
+Original entry always calls600bd0. If global0x80ba58 is false it calls600c60 and
+returns0. Otherwise it requires nonzero GSNH portal count+0x6c, room count+0x74,
+and field+0xf4. Eligible execution clears GSNH+0xdc, sets visibility globals,
+calls600cb0, copies the64-byte camera matrix0x9736e8 to0x95fb78, and caches camera
+translation at0x971894/98/9c. If0x973990 is nonnull it supplies the selector's
+point instead of that cached camera position. It does not replace the camera
+matrix or cached position; override cases verify that distinction.
+
+The selected signed16 room is stored at0x971abc and sign-extended at GSNH+0xe0.
+A -1 result returns0 before traversal. Success prepares native plane globals,
+requests an initial volume through5d9a00, invokes debug helper5ee250, and clears
+bit4 of every room flags word. The call to5ee940 receives exactly:
+  (GSNH, initialClipVolume, selectedRoom, previousRoom=-1, depth=0)
+After5ee710 it returns1. All five eligibility gates, inside/outside point cases,
+and both ordinary/override selection-point paths are checked across 60 scenes.
+
+Entry validation boundaries
+600bd0/600c60/600cb0,5d9a00,5ee250,5ee940 and5ee710 are explicit record-only
+adapters. The selector and its containment math run original instructions.
+The checks establish the entry's own stores/control flow/call arguments; they
+do not establish initialization effects, child clipping volumes, recursive
+visibility propagation, debug drawing, renderer state or GPU equivalence.
+
+Portable source and ordinary harness
+reconstructed/geometry/PortalSelection.cs provides PortalSelection.SelectRoom
+plus decoded PortalRoom/PortalLink types, reusing shared FiniteX87 arithmetic.
+The core and harness compile with installed Framework csc; no original binary
+or native library is linked. Source/native mapping has explicit sourceFile in
+geometry-recovered-source.json. Add PortalSelection.cs to the geometry build
+alongside MaterialUv.cs,SceneSubmission.cs,Clipping.cs and shared animation
+AnimationPlayback.cs/CharacterContexts.cs.
+
+harness/PortalSelectionHarness.cs is a separate ordinary console Main. It reads
+bounded RMS1 fixtures and writes RMSO signed16 results. Preparation command:
+  python reverse-engineering/tools/geometry-room-selection-check.py
+This creates 15,296 cases across 2,484 shared scene fixtures (788,316 bytes).
+The script accepts --harness for an ordinary permitted executable launch or
+--compare for previously produced output. No alternate host or security change
+is attempted. Current status is prepared-not-executed, not a managed numerical
+pass. The existing Windows execution denial remains a separate limitation.

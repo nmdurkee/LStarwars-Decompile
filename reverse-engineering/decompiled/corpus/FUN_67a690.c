@@ -1,0 +1,14 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_6fbd3af984a39447bc9fe9dd191dc75e4e15fa1d77defc2a7b40b22f43e8d294
+ * Entry: 0x67a690; label: FUN_0067a690
+ */
+
+uint FUN_0067a690(void)
+
+{
+  if (DAT_0292182c != 0) {
+    return (uint)*(byte *)(DAT_0292182c + 0x60);
+  }
+  return 0xffffffff;
+}
+

@@ -1,0 +1,35 @@
+/* Ghidra pseudocode, not original source.
+ * ev_5f8bd7f02bbfa9819b1ea6d4f28ed7de24e0304b6779d959c9b1888bbc6517da
+ * Entry: 0x5b6d20; label: FUN_005b6d20
+ * Boundary hypotheses: reports/native-boundary-seeds.json.
+ */
+
+void FUN_005b6d20(float *param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float10 fVar4;
+  
+  fVar4 = (float10)FUN_005c0240(param_1[2] * param_1[2] +
+                                *param_1 * *param_1 + param_1[1] * param_1[1]);
+  fVar1 = (float)((float10)1 / fVar4);
+  *param_1 = fVar1 * *param_1;
+  param_1[1] = fVar1 * param_1[1];
+  param_1[2] = fVar1 * param_1[2];
+  fVar4 = (float10)FUN_005c0240(param_1[6] * param_1[6] +
+                                param_1[4] * param_1[4] + param_1[5] * param_1[5]);
+  fVar1 = (float)((float10)1 / fVar4);
+  fVar3 = fVar1 * param_1[6] * param_1[1] - param_1[5] * fVar1 * param_1[2];
+  param_1[8] = fVar3;
+  fVar2 = fVar1 * param_1[4] * param_1[2] - *param_1 * fVar1 * param_1[6];
+  param_1[9] = fVar2;
+  fVar1 = *param_1 * param_1[5] * fVar1 - param_1[1] * fVar1 * param_1[4];
+  param_1[10] = fVar1;
+  param_1[4] = param_1[2] * fVar2 - fVar1 * param_1[1];
+  param_1[5] = *param_1 * param_1[10] - param_1[2] * fVar3;
+  param_1[6] = param_1[8] * param_1[1] - *param_1 * param_1[9];
+  return;
+}
+

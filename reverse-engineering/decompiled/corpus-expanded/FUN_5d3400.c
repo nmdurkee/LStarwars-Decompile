@@ -1,0 +1,37 @@
+/* Ghidra pseudocode, not original source.
+ * ev_feeb0d300fc0a1ec823458f778250bd56b5f3fc24779efc17b7484c96bfb9aef
+ * Entry: 0x5d3400; label: FUN_005d3400
+ * Boundary hypotheses: reports/native-boundary-seeds.json.
+ */
+
+void FUN_005d3400(int param_1)
+
+{
+  int *piVar1;
+  
+  FUN_004ffaa0(DAT_0080b6d4);
+  piVar1 = DAT_009738d8;
+  while( true ) {
+    if (piVar1 == (int *)0x0) {
+      FUN_004ffac0();
+      return;
+    }
+    if (*piVar1 == param_1) break;
+    piVar1 = (int *)piVar1[1];
+  }
+  if (piVar1[1] != 0) {
+    *(int *)(piVar1[1] + 8) = piVar1[2];
+  }
+  if (piVar1[2] == 0) {
+    DAT_009738d8 = (int *)piVar1[1];
+  }
+  else {
+    *(int *)(piVar1[2] + 4) = piVar1[1];
+  }
+  piVar1[1] = (int)DAT_009738dc;
+  DAT_009738dc = piVar1;
+  (*(code *)PTR_FUN_00800824)();
+  FUN_004ffac0();
+  return;
+}
+

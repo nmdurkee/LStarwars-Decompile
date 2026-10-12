@@ -1,0 +1,25 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_7b35a8fafa232ee0b9a0913c200a618a9d6b1b7e21f700964d68a0258798e3f5
+ * Entry: 0x7132ab; label: __get_dstbias
+ */
+
+/* Library Function - Single Match
+    __get_dstbias
+   
+   Library: Visual Studio 2005 Release */
+
+errno_t __cdecl __get_dstbias(long *_Daylight_savings_bias)
+
+{
+  undefined4 *puVar1;
+  
+  if (_Daylight_savings_bias == (long *)0x0) {
+    puVar1 = (undefined4 *)FUN_006ead5f();
+    *puVar1 = 0x16;
+    FUN_006e9fc2(0,0,0,0,0);
+    return 0x16;
+  }
+  *_Daylight_savings_bias = DAT_0082aa90;
+  return 0;
+}
+

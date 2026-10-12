@@ -1,0 +1,56 @@
+state Base {
+	Conditions {
+		// Start of Big dock's hack!!!
+		if Message "TaggedTC14" == 1 goto WaitByDoor
+		// End
+		if ObstacleAtEnd "obstacle40" == 1 goto FollowPlayer
+		if PreviousResult == 0 goto Init
+	}
+	Actions {
+		CannotDropIn "FALSE"	
+	}
+}
+
+state Init {
+	Conditions {
+	}
+	Actions {
+		CannotDropIn
+		SnapToLocator "name=TC14_START"
+		SetState "WaitToBeTagged"
+	}
+}
+
+state WaitToBeTagged {
+	Conditions {
+		if Message "TaggedTC14" == 1 goto WaitByDoor
+	}
+	Actions {
+		GoToLocator "name" "TC14_START"
+	}
+}
+
+state WaitByDoor {
+	Conditions {
+		if ObstacleAtEnd "obstacle40" == 1 goto FollowPlayer
+	}
+	Actions {
+		CannotDropIn "FALSE"
+		GoToLocator "name" "TC14"
+	}
+}
+
+state FollowPlayer {
+	ReferenceScript {
+		Script=GeneralParty
+		Source=Global
+		ReturnState=Base
+		Conditions {
+		}
+	}
+	Conditions {
+	}
+	Actions {
+		FollowPlayer "1"
+	}
+}

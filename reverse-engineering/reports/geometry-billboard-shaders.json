@@ -1,0 +1,109 @@
+{
+  "source": "Original PC executable, reflected compiled shader assembly, and bounded original callback emulation",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "templateRelationship": "Separate precompiled FaceOn shader programs; not a branch in the generic embedded Nu2 HLSL template.",
+  "native": {
+    "programInitializer": "0x60ddc0",
+    "materialCallback": "0x608000",
+    "transformCallback": "0x5fda20",
+    "vertexShader": "0x769e98",
+    "pixelShaderLow": "0x76a2b0",
+    "pixelShaderHigh": "0x76a3e0",
+    "materialCallbackEvidence": "ev_deacb65ff86bfd262c36c7125baff66f7c0e4faab911474243066d5360a0fd29"
+  },
+  "materialSelection": {
+    "recordFlagsOffset": 496,
+    "faceOnMask": 2097152,
+    "earlierDebrisMask": 1048576,
+    "highPixelCondition": "global u32[0x2976c80] != 0 AND (material[0x268] & 15) != 0",
+    "lowProgramPointer": "0x2854d34",
+    "highProgramPointer": "0x2854d30",
+    "diffuseTextureIdOffset": 184,
+    "textureUnit": 0,
+    "evidence": "reports/geometry-native-material-callback.asm at 0x608169..0x60825d"
+  },
+  "vertexLayout": {
+    "stride": 32,
+    "positionFloat3": 0,
+    "colorBGRA8": 12,
+    "uvFloat2": 16,
+    "cornerFloat2": 24
+  },
+  "registers": {
+    "viewProj": {
+      "first": 0,
+      "count": 4
+    },
+    "view": {
+      "first": 12,
+      "count": 4
+    },
+    "kTint": {
+      "first": 40,
+      "count": 1
+    },
+    "fog_params": {
+      "first": 48,
+      "count": 1
+    },
+    "faceOnMtx": {
+      "first": 80,
+      "count": 3
+    },
+    "faceOnMag": {
+      "first": 84,
+      "count": 1
+    },
+    "viewMtx": {
+      "first": 85,
+      "count": 4
+    },
+    "faceOnTranslation": {
+      "first": 89,
+      "count": 1
+    }
+  },
+  "transformPacket": {
+    "bytes": 132,
+    "matrixOffset": 0,
+    "magnitudeOffset": 64,
+    "viewMatrixOffset": 68,
+    "translation": "matrix row 3 xyz moved into faceOnTranslation.xyz; matrix translation cleared; m33 is opacity then replaced with 1",
+    "transpose": "Original callback transposes both matrices before upload.",
+    "tint": "global vec4 at 0x986ea0; alpha multiplied by saved m33 only when m33 < 1",
+    "depth": "When opacity < 1 sets render states (7,1), (14,0), (23,4); otherwise restores material depth mode."
+  },
+  "shaderMath": {
+    "convention": "Equations use D3D constant-register row vectors directly, as named cN in assembly; avoids row/column serialization ambiguity.",
+    "center": "p=[center.x,center.y,center.z,1]; C=[dot(p,c80),dot(p,c81),dot(p,c82)] + c89.xyz",
+    "corner": "q=[corner.x*c84.x,corner.y*c84.x,1]; O=[dot(q,c85.xyw),dot(q,c86.xyw),dot(q,c87.xyw)]; W=dot(q,c88.xyw)",
+    "world": "P=[C+O,W]",
+    "clip": "[dot(P,c0),dot(P,c1),dot(P,c2),dot(P,c3)]",
+    "uv": "[-uv.x,uv.y]",
+    "color": "[vertexColor.rgb * c40.rgb, 2*vertexColor.a*c40.a]",
+    "fog": "V=[dot(P,c12),dot(P,c13),dot(P,c14)]/dot(P,c15); fog=exp(-pow(length(V)*c48.w,2)); extra fog components 0",
+    "pixelLow": "s=sample(diffuse_tex,uv)*vertexColor; output.rgb=lerp(fog_color.rgb,s.rgb,fog); output.a=s.a",
+    "pixelHigh": "Same color/fog/alpha; writes extra render target [0.5,0.5,0.5,1]."
+  },
+  "validation": {
+    "report": "geometry-billboard-native-validation.json",
+    "cases": 12,
+    "uploadChecks": 60,
+    "errors": 0
+  },
+  "references": [
+    "exports/shaders/769e98.asm",
+    "exports/shaders/76a2b0.asm",
+    "exports/shaders/76a3e0.asm",
+    "decompiled/corpus/FUN_60ddc0.c",
+    "decompiled/corpus/FUN_5fda20.c",
+    "reports/geometry-native-material-callback.asm",
+    "decompiled/corpus-expanded/FUN_608000.c"
+  ],
+  "limits": [
+    "Transform/constant and shader mathematics are recovered; original GPU pixels have not been compared.",
+    "Live construction of the view-facing transform packet and complete draw ordering still require runtime reconstruction.",
+    "glTF preview remains a fixed XY expansion; original center and corner data retained.",
+    "The generic 49,109-material feature survey does not substitute for this dedicated face-on material path."
+  ]
+}

@@ -1,0 +1,174 @@
+RECOVERED PC CHARACTER CONTEXT MODULE AND RESPAWN CONTRACTS
+=========================================================
+
+reconstructed/animation/CharacterContexts.cs and RespawnState.cs form a dependency-
+free portable C# module in namespace Recovered.Animation. It reconstructs selected PC behavior;
+it is not the original game source and is not a complete character controller.
+Known fields use explicit PC offsets and retain the 0x10d8 object stride. Unknown
+bytes remain intact in PcObjectImage, and native pointers are never dereferenced.
+An engine adapter supplies clip presence/metadata, tuning values, timing and RNG.
+
+Current verification status
+---------------------------
+The library and differential harness compile using the installed .NET Framework
+C# compiler. Windows currently rejects the newly built harness EXE with Access
+is denied, including an AnyCPU build. No ACL or security policy was changed and
+no alternate managed-code execution workaround was used. Therefore compiled C#
+behavioral equivalence is PENDING, not passed. Root is investigating execution.
+
+The original-PC oracle is complete: animation-portable-native-cases.json records
+20,052 cases without native execution failures. animation-portable-cases.bin
+stores each input and expected complete 4,312-byte object image, return/effect
+value and RNG state. DifferentialHarness.cs compares every byte and scalar bit.
+Its output is animation-portable-differential.json when execution succeeds; a
+missing result must never be treated as a passing test.
+The harness also reads animation-reset-moves-cases.bin (1,200 complete state
+fixtures) and animation-spawn-pointer-cases.bin (65,536 pointer-selector fixtures),
+for86,788 prepared managed comparisons. These counts remain PENDING in C#.
+
+Oracle cases: ResetWithoutMoves700; timed hit/stun/death9,352; movement animation
+3,000; jump animation2,400; block selection1,400; block jump800; duration2,400.
+The separate native respawn suite passes65,536 spawn-selector cases and1,000 full
+resetMoves=1 cases, with94,443 independent assertions and zero mismatches. These
+are original-code fixture checks, not a completed portable full-respawn module.
+
+Native address -> portable method mapping
+----------------------------------------
+0x55e300 -> SelectStartPositionPointer: whole pointer-selection helper; supplied
+  eight table pointers replace direct global memory reads. It selects player0..7
+  or fallback byte modulo8, then falls back to table row0 when chosen row is null.
+  Return can still be null. The native table begins0x93d5a0, stride16, pointer+0,
+  heading ushort+12. The full65536 signed-player/fallback-byte input pairs pass.
+0x41b420 -> ResetWithoutMoves: only resetMoves=0 branch and common reset tail.
+0x62f150 -> PlayingTimeOffset: whole selection semantics, returning a relative
+  time-field offset instead of the native pointer.
+0x62e040 -> DurationSeconds: scalar part after valid model/header resolution;
+  native global blend-out side effect is not part of this pure API.
+0x49c080 -> AdvanceHitContext: contexts21,90,95 through pre-KillParts boundary;
+  arcade disabled and debris/cleanup/pickups delegated to an engine adapter.
+0x4a54b0 -> SelectMovementAnimation: selection with resolved suit/clip inputs.
+0x4a7360 -> SelectJumpAnimation: selection with supplied dt and fall delay.
+0x58dfa0 and0x54fa60 -> SelectBlockAnimation: original registry block IDs26..28
+  and exact16-bit RNG, supplied as state rather than native global memory.
+0x62e650 -> ResetAnimationPacket: complete packet-reset state writes.
+0x49e2b0 -> StartBlockJump: all object-state writes; audio remains an adapter.
+0x41af70 -> RespawnState.ResetMovesWithoutClips: whole movement-reset function
+  within the absent-animation/no-suit/no-companion branch, with valid pad and
+  optional coin state. Runtime tuning and16-bit RNG are adapter inputs.
+
+Bounded movement-reset source
+-----------------------------
+The new ResetMovesWithoutClips API preserves all unknown object/controller/coin
+bytes. It inlines original core0x4148a0 and its original reset helpers, initializes
+the absent-clip idle path, resets the animation packet, recalculates dimensions,
+clears flicker/coin state and assigns the immediate draw offset. Original globals
+v000=(0,0,0), v010=(0,1,0) are retained; the latter is not silently replaced by zero.
+The no-suit/no-companion contract is checked by the C# API. Clip absence remains
+an explicit caller prerequisite because native model pointers are not dereferenced.
+
+animation-reset-moves-native-verification.json records1,200 randomized full-object
+and controller/coin states, dimensions and RNG seeds. The independent Python
+reconstruction matches all4,312 object bytes,96 pad bytes,16 coin bytes and final
+RNG in every case. Original0x41af70 and original callees execute unmodified.
+This closes a source-predictive movement-reset branch while leaving the complete
+loaded-world ResetPlayer(resetMoves=1) integration distinct.
+
+Timed hit, stun and death transitions
+------------------------------------
+Original TakeHitCode0x49c080 recognizes TakeHit21, Stunned90 and DieAir95. It has
+no DieGround96 branch. There is no recovered95->96 transition in this helper.
+The readiness condition is deliberately unusual: action must not be-1, and
+either its clip pointer is missing or it matches the playing/current or blending
+target packet. A source-only blend match does not advance the state.
+
+TakeHit21 decrements timer+77c bydt and clears context when the stored float32
+timer reaches0. Stunned90 also counts down. At expiry substate1 clears context;
+other nonzero substates do nothing further. Substate0 sets runtime+e24 bit8000.
+Action185 requests stun death; action61 clears context;167/168/169 become
+170/171/172, and other actions become idle1. Those transitions set substate1.
+With an existing nonlooped destination clip (definition.flags bit2 clear), the
+new timer is native duration minus blend-out. Otherwise it copies object+778.
+
+DieAir95 increments timer+77c. It requests death at timer>=duration+784, or after
+timer>0.5 when either prior vertical velocity+dfc<0 with a nonzero grounded byte,
+or contact+1078 is nonzero and impact+1030 exceeds
+  (timer/duration)*-0.800000011920929 + 0.800000011920929.
+The constants are exact doubles representing float32(0.8), not decimal0.8.
+
+Original instruction0x49c1c1 calls KillParts0x437770 with mode0 for stun death or
+mode1 for airborne death. Verification stops immediately BEFORE that call and
+records the mode; no original instruction or callback is replaced. The following
+KillGameObject0x4364e0 and conditional NPC pickup calls belong to the separate
+combat/death-effect investigation. Arcade credit precedes this boundary when
+enabled; these fixtures use global0x93b324=0.
+
+Observed oracle outcomes include622 airborne-death and6 stun-death frontiers,
+163 TakeHit exits,52 Stunned exits and all three paired stun-animation remaps.
+These are bounded outcome counts, not exhaustive branch/state-space coverage.
+
+Full resetMoves=1 native subpath
+-------------------------------
+tools/animation-respawn-native-verify.py executes original0x41b420 and its original
+callees, with no substitutions. The fixture supplies a valid empty world, model,
+character tuning and controller state, but no scene/terrain/socket/navigation/
+vehicle resources and no loaded animation clips. It varies player/NPC identity,
+explicit/table/missing spawn location, heading, dimensions, health, prior context,
+death flag and mode bits in1,000 cases. All finish normally and pass28,907 checks.
+
+Position copies at5c/8c/98/1b4/10bc match the selected origin in this subpath.
+Object+80 differs: original0x55d2b0 creates a predicted bounds center, adding
+  (top+bottom)*scale/2 to Y when prior velocity is zero.
+Treating this field as another position copy failed the first checks and was
+corrected using the native consumer, not by deleting the assertion.
+
+The full reset clears context/ground/contact and velocity, sets table heading,
+resets animation request to-1 when idle is absent, and restores health when mode
+bit2, prior death state, or an assigned player's prior context43 requires it.
+Health becomes min(character maximum, global default). Mode bit8 selects saved
+per-player inventory state. Other reset branches and actual loaded-resource
+interactions must still be integrated. Passing an empty-world fixture is not a
+claim of complete live respawn, collision or checkpoint behavior.
+
+Dependency boundaries for live respawn
+--------------------------------------
+0x41af70 resets move/input state and chooses/reset idle animation. Nonempty clips
+add random playback-time behavior not exercised by the full-respawn fixture.
+0x55e300 chooses the start table pointer unless an explicit position is supplied.
+0x55cd20/0x55cc40 derive dimensions; optional game callback0x93d508 can modify them.
+0x55d2b0 computes prediction/bounds and optional character-layer attachment paths.
+0x54a7f0 clears pad rumble;0x595840 resolves scene lighting.
+0x541bc0/0x53f380 bind sockets when world+2988 is present; special level/aircraft
+paths can replace the chosen position and override hover/surface behavior.
+0x499ca0 handles current state;0x5728a0 probes surface;0x498480 derives hover height;
+0x572660 sets surface state for the applicable parameter/tuning branch.
+0x466820 resets gizmo force;0x55d6a0 resolves portals against world+13c scene data.
+0x414ad0 resets AI and calls0x52f800 against world+2ae8 navigation data.
+Vehicle-tuning bit2000 adds0x54a240/0x4999e0 and heading-dependent velocity.
+All empty-resource branches above execute original code in the passing fixture;
+the corresponding loaded-resource paths remain unverified here.
+
+Durable evidence and reproduction
+--------------------------------
+animation-portable-contract.json: exact bytes and hashes for10 relevant native
+functions (1,331 linear instructions), literal constants and28 known PC fields.
+animation-portable-state-coverage.json: observed oracle outcome distribution.
+animation-respawn-native-verification.json: independent assertions and callsite
+traces for the first8 reset cases, including state at each direct native call.
+
+From workspace root:
+  python reverse-engineering/tools/animation-portable-cases.py
+  python reverse-engineering/tools/animation-portable-coverage.py
+  python reverse-engineering/tools/animation-portable-evidence.py
+  python reverse-engineering/tools/animation-respawn-native-verify.py
+  python reverse-engineering/tools/animation-reset-moves-cases.py
+  python reverse-engineering/tools/animation-source-function-map.py
+  & reverse-engineering/reconstructed/animation/build.ps1 -CompileOnly
+  & reverse-engineering/reconstructed/animation/build.ps1
+
+The final command currently compiles and then encounters Windows Access is denied
+on its harness. The other commands complete without running the Windows game.
+animation-source-function-map.json is the explicit reviewed11-entrypoint source
+ledger, including exact public method names, scope boundaries and verification
+reports. It intentionally excludes incidental hexadecimal constants from counts.
+Finite, valid fixtures only; NaNs, invalid pointers and whole-game behavior are
+not claimed equivalent. Prior animation/rig/scene exports are unchanged.

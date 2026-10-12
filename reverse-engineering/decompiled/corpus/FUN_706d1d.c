@@ -1,0 +1,266 @@
+/* Ghidra analysis pseudocode, not original source.
+ * ev_75a7d2b24aeb03b7e743c7a0854f91e7fe1db20b8c79637047cd036a94f43c24
+ * Entry: 0x706d1d; label: UnDecorator::getDataIndirectType
+ */
+
+/* Library Function - Single Match
+    private: static class DName __cdecl UnDecorator::getDataIndirectType(class DName const
+   &,char,class DName const &,int)
+   
+   Library: Visual Studio 2005 Release */
+
+DName * __cdecl
+UnDecorator::getDataIndirectType(DName *param_1,char param_2,DName *param_3,int param_4)
+
+{
+  char cVar1;
+  int iVar2;
+  DName *pDVar3;
+  DName *pDVar4;
+  char *pcVar5;
+  DName *extraout_ECX;
+  DName *this;
+  DName *this_00;
+  DName *extraout_EDX;
+  DName *extraout_EDX_00;
+  int extraout_EDX_01;
+  uint uVar6;
+  undefined3 in_stack_00000009;
+  int in_stack_00000014;
+  Tokens TVar7;
+  DNameStatus DVar8;
+  DName local_58 [8];
+  char local_50 [8];
+  undefined1 local_48 [8];
+  char local_40 [8];
+  undefined1 local_38 [8];
+  char local_30 [8];
+  undefined4 local_28;
+  uint local_24;
+  undefined4 local_20;
+  uint local_1c;
+  undefined4 local_18;
+  uint local_14;
+  DName local_10 [4];
+  uint local_c;
+  char local_5;
+  
+  local_24 = local_24 & 0xfffff000;
+  local_28 = 0;
+  local_5 = '\0';
+  if (*DAT_0297cb78 == '\0') {
+    if (in_stack_00000014 == 0) {
+      iVar2 = DName::isEmpty(_param_2);
+      if (iVar2 == 0) {
+        if (((*(byte *)(extraout_EDX_01 + 4) & 0x10) == 0) &&
+           (iVar2 = DName::isEmpty((DName *)param_4), iVar2 == 0)) {
+          cVar1 = (char)local_58;
+          pDVar3 = param_1;
+          pDVar4 = (DName *)operator+((DNameStatus)local_50,(DName *)0x2);
+          pDVar4 = (DName *)DName::operator+(pDVar4,cVar1);
+          DName::operator+(pDVar4,pDVar3);
+          return param_1;
+        }
+      }
+      else {
+        iVar2 = DName::isEmpty((DName *)param_4);
+        if (iVar2 != 0) goto LAB_007071ef;
+      }
+      operator+((DNameStatus)param_1,(DName *)0x2);
+      return param_1;
+    }
+LAB_007071ef:
+    DVar8 = 2;
+LAB_007071f1:
+    DName::DName(param_1,DVar8);
+    return param_1;
+  }
+  if (*DAT_0297cb78 == '$') {
+    getExtendedDataIndirectType((char *)&local_20,(bool *)&param_3,(int)&local_5);
+    iVar2 = DName::isEmpty((DName *)&local_20);
+    pDVar3 = extraout_ECX;
+    if (iVar2 == 0) goto LAB_00706d6f;
+  }
+  local_14 = local_14 & 0xfffff000;
+  local_18 = 0;
+  uVar6 = (int)*DAT_0297cb78 - (((*DAT_0297cb78 < 'A') - 1 & 0x2b) + 0x16);
+  local_1c = local_1c & 0xfffff000;
+  local_20 = 0;
+LAB_00706da6:
+  if (uVar6 == 4) {
+    if (((~(DAT_0297cb88 >> 1) & 1) != 0) && ((~(DAT_0297cb88 >> 0x11) & 1) != 0)) {
+      iVar2 = DName::isEmpty((DName *)&local_18);
+      TVar7 = 7;
+      if (iVar2 == 0) {
+        UScore(7);
+        pcVar5 = local_50;
+        cVar1 = (char)local_58;
+LAB_00706df0:
+        pDVar3 = (DName *)DName::operator+((DName *)&local_18,cVar1);
+        pDVar4 = (DName *)DName::operator+(pDVar3,pcVar5);
+        pDVar3 = (DName *)&local_18;
+        goto LAB_00706e04;
+      }
+LAB_00706e97:
+      pcVar5 = UScore(TVar7);
+      pDVar3 = (DName *)&local_18;
+LAB_00706e9f:
+      DName::operator=(pDVar3,pcVar5);
+    }
+  }
+  else if (uVar6 == 5) {
+    if ((~(DAT_0297cb88 >> 1) & 1) != 0) {
+      iVar2 = DName::isEmpty((DName *)&local_20);
+      if (iVar2 != 0) {
+        pcVar5 = UScore(9);
+        pDVar3 = (DName *)&local_20;
+        goto LAB_00706e9f;
+      }
+      UScore(9);
+      pcVar5 = local_40;
+      pDVar3 = (DName *)DName::operator+(this,(char)local_48);
+      pDVar4 = (DName *)DName::operator+(pDVar3,pcVar5);
+      pDVar3 = (DName *)&local_20;
+LAB_00706e04:
+      DName::operator=(pDVar3,pDVar4);
+    }
+  }
+  else {
+    if (uVar6 != 8) {
+      DAT_0297cb78 = DAT_0297cb78 + 1;
+      if (0x1f < uVar6) {
+LAB_00706f9d:
+        DVar8 = 1;
+        goto LAB_007071f1;
+      }
+      DName::DName(local_10,(char)param_3);
+      pDVar3 = (DName *)DName::operator+((DName *)&local_28,local_58);
+      DName::operator=(local_10,pDVar3);
+      iVar2 = DName::isEmpty((DName *)&local_18);
+      if (iVar2 == 0) {
+        pDVar3 = local_58;
+        pDVar4 = (DName *)DName::operator+(local_10,(char)local_50);
+        pDVar3 = (DName *)DName::operator+(pDVar4,pDVar3);
+        DName::operator=(local_10,pDVar3);
+      }
+      iVar2 = DName::isEmpty((DName *)&local_20);
+      if (iVar2 == 0) {
+        pDVar3 = local_58;
+        pDVar4 = (DName *)DName::operator+(this_00,(char)local_50);
+        pDVar3 = (DName *)DName::operator+(pDVar4,pDVar3);
+        DName::operator=(local_10,pDVar3);
+      }
+      if ((uVar6 & 0x10) != 0) {
+        if (in_stack_00000014 != 0) goto LAB_00706f9d;
+        if ((char)param_3 == '\0') {
+          if (*DAT_0297cb78 != '\0') {
+            pDVar3 = (DName *)getScope();
+            DName::operator|=(local_10,pDVar3);
+            goto LAB_00707020;
+          }
+        }
+        else {
+          pDVar3 = (DName *)operator+((char *)local_58,(DName *)&DAT_00781014);
+          DName::operator=(local_10,pDVar3);
+          pDVar3 = local_58;
+          if (*DAT_0297cb78 == '\0') {
+            pDVar3 = (DName *)operator+((DNameStatus)pDVar3,(DName *)0x2);
+          }
+          else {
+            pDVar4 = (DName *)getScope();
+            pDVar3 = (DName *)DName::operator+(pDVar4,pDVar3);
+          }
+          DName::operator=(local_10,pDVar3);
+LAB_00707020:
+          cVar1 = *DAT_0297cb78;
+          if (cVar1 != '\0') {
+            DAT_0297cb78 = DAT_0297cb78 + 1;
+            if (cVar1 != '@') goto LAB_00706f9d;
+            goto LAB_00707045;
+          }
+        }
+        DName::operator+=(local_10,2);
+      }
+LAB_00707045:
+      if ((~(DAT_0297cb88 >> 1) & 1) == 0) {
+        if (((byte)uVar6 & 0xc) == 0xc) {
+          pDVar3 = (DName *)getBasedType();
+          DName::operator|=(local_10,pDVar3);
+        }
+      }
+      else if (((byte)uVar6 & 0xc) == 0xc) {
+        if (in_stack_00000014 != 0) goto LAB_00706f9d;
+        pDVar3 = local_58;
+        pDVar4 = (DName *)getBasedType();
+        pDVar3 = (DName *)DName::operator+(pDVar4,pDVar3);
+        DName::operator=(local_10,pDVar3);
+      }
+      if ((uVar6 & 2) != 0) {
+        pDVar3 = (DName *)operator+((char *)local_58,(DName *)"volatile ");
+        DName::operator=(local_10,pDVar3);
+      }
+      if ((uVar6 & 1) != 0) {
+        pDVar3 = (DName *)operator+((char *)local_58,(DName *)"const ");
+        DName::operator=(local_10,pDVar3);
+      }
+      if (in_stack_00000014 == 0) {
+        iVar2 = DName::isEmpty(_param_2);
+        if (iVar2 == 0) {
+          uVar6 = *(uint *)(extraout_EDX + 4);
+          pDVar3 = extraout_EDX;
+          if (((uVar6 & 0x10) == 0) &&
+             (iVar2 = DName::isEmpty((DName *)param_4), pDVar3 = extraout_EDX_00, iVar2 == 0)) {
+            pDVar3 = local_58;
+            cVar1 = (char)local_50;
+            pDVar4 = (DName *)operator+((char)local_48,(DName *)0x20);
+            pDVar4 = (DName *)DName::operator+(pDVar4,cVar1);
+            pDVar3 = (DName *)DName::operator+(pDVar4,pDVar3);
+LAB_00707160:
+            DName::operator+=(local_10,pDVar3);
+          }
+          else {
+            if (-1 < (char)uVar6) goto LAB_00707153;
+            DName::operator=(local_10,pDVar3);
+          }
+        }
+        else {
+          iVar2 = DName::isEmpty((DName *)param_4);
+          if (iVar2 == 0) {
+LAB_00707153:
+            pDVar3 = (DName *)operator+((char)local_58,(DName *)0x20);
+            goto LAB_00707160;
+          }
+        }
+      }
+      uVar6 = local_c | 0x10;
+      if (local_5 != '\0') {
+        uVar6 = local_c | 0x210;
+      }
+LAB_0070717a:
+      local_c = uVar6;
+      pDVar3 = local_10;
+LAB_00706d6f:
+      DName::DName(param_1,pDVar3);
+      return param_1;
+    }
+    if ((~(DAT_0297cb88 >> 1) & 1) != 0) {
+      iVar2 = DName::isEmpty((DName *)&local_18);
+      TVar7 = 8;
+      if (iVar2 != 0) goto LAB_00706e97;
+      UScore(8);
+      pcVar5 = local_30;
+      cVar1 = (char)local_38;
+      goto LAB_00706df0;
+    }
+  }
+  DAT_0297cb78 = DAT_0297cb78 + 1;
+  if (*DAT_0297cb78 == '$') {
+    getExtendedDataIndirectType((char *)local_10,(bool *)&param_3,(int)&local_5);
+    iVar2 = DName::isEmpty(local_10);
+    uVar6 = local_c;
+    if (iVar2 == 0) goto LAB_0070717a;
+  }
+  uVar6 = (int)*DAT_0297cb78 - (((*DAT_0297cb78 < 'A') - 1 & 0x2b) + 0x16);
+  goto LAB_00706da6;
+}
+

@@ -1,0 +1,58 @@
+/* Ghidra pseudocode, not original source.
+ * ev_dafa2233724afb43ee4ce5fb75a2fdf73c0a8c82e75434708f3b2ad0dea6bad5
+ * Entry: 0x7033ba; label: DName::getString
+ * Boundary hypotheses: reports/native-boundary-seeds.json.
+ */
+
+/* Library Function - Single Match
+    public: char * __thiscall DName::getString(char *,int)const 
+   
+   Library: Visual Studio 2005 Release */
+
+char * __thiscall DName::getString(DName *this,char *param_1,int param_2)
+
+{
+  int iVar1;
+  uint uVar2;
+  DName *this_00;
+  uint uVar3;
+  int *piVar4;
+  
+  iVar1 = isEmpty(this);
+  if (iVar1 == 0) {
+    uVar3 = param_2;
+    if (param_1 == (char *)0x0) {
+      iVar1 = length(this_00);
+      uVar3 = iVar1 + 1;
+      param_1 = HeapManager::getMemory((HeapManager *)&DAT_0297cb58,uVar3,0);
+      if (param_1 == (char *)0x0) {
+        return (char *)0x0;
+      }
+    }
+    piVar4 = *(int **)this;
+    param_2 = (int)param_1;
+    while ((piVar4 != (int *)0x0 && (0 < (int)uVar3))) {
+      uVar2 = (**(code **)*piVar4)();
+      if (uVar2 != 0) {
+        if ((int)(uVar3 - uVar2) < 0) {
+          uVar2 = uVar3;
+        }
+        iVar1 = (**(code **)(*piVar4 + 8))(param_2,uVar2);
+        if (iVar1 != 0) {
+          uVar3 = uVar3 - uVar2;
+          param_2 = param_2 + uVar2;
+        }
+      }
+      piVar4 = (int *)piVar4[1];
+    }
+  }
+  else {
+    param_2 = (int)param_1;
+    if (param_1 == (char *)0x0) {
+      return (char *)0x0;
+    }
+  }
+  *(char *)param_2 = '\0';
+  return param_1;
+}
+

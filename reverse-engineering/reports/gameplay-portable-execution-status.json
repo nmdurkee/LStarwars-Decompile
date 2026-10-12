@@ -1,0 +1,28 @@
+{
+  "status": "compiled-comparison-pending",
+  "coreCompilation": "C# 5 / Framework csc compilation succeeded for all seven gameplay source files: FlowRuntime.cs, SpecialGizmo.cs, ScriptRuntime.cs, Messages.cs, StateControl.cs, Visibility.cs and CompactConditions.cs. Their separate comparison harnesses compile; managed execution remains pending.",
+  "observedExecutionFailures": [
+    {
+      "artifact": "reverse-engineering/reconstructed/gameplay/GameplayVerify.exe",
+      "operation": "ordinary PowerShell executable invocation",
+      "message": "Program GameplayVerify.exe failed to run: Access is denied."
+    },
+    {
+      "artifact": "reverse-engineering/reconstructed/gameplay/GameplayVerify.exe",
+      "operation": "Assembly.LoadFrom diagnostic attempt before parent requested no alternative hosts",
+      "message": "Could not load file or assembly, or one of its dependencies. Access is denied."
+    }
+  ],
+  "parentConfirmation": "The combined library and combined verifier also compiled; parent reported Windows denial for all newly generated managed binaries. No current compiled gameplay differential pass is claimed.",
+  "securityChanges": "None. No ACL, execution policy, registry or protection changes were made. No further execution-host workaround was attempted.",
+  "nativeEvidence": [
+    "reports/gameplay-git-runtime-tests.json",
+    "reports/gameplay-git-state-tests.json",
+    "reports/gameplay-scp-transition-tests.json",
+    "reports/gameplay-message-tests.json",
+    "reports/gameplay-state-command-tests.json",
+    "reports/gameplay-visibility-tests.json",
+    "reports/gameplay-compact-condition-tests.json"
+  ],
+  "nextValidation": "Run the ordinary compiled verifier when the execution environment permits it; retain compiler success and original-PC checks as distinct evidence until then."
+}

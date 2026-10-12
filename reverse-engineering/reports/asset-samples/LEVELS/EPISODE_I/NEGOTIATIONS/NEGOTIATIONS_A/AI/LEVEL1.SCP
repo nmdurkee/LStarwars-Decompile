@@ -1,0 +1,81 @@
+//Hints only in here.
+state Base {
+	Conditions {
+		if MissionMode == 1 goto MissionMode
+		if FreePlay == 1 goto FreePlay		
+		if AreaComplete "Negotiations" == 1 goto Done_TC14Hint
+		if Message "Done_TC14Hint" == 1 goto Done_TC14Hint
+		
+		if AlwaysTrue == 1 goto Update_TC14Hint
+	}
+	Actions {	
+	}
+}
+
+state Update_TC14Hint {
+	Conditions {
+		if EitherPlayerIs "TC14" == 1 goto Complete_TC14Hint
+		
+		if Timer > 0.5 and
+		if CurrentHintId != 602 and
+		if EitherPlayerIs "TC14" == 0 and 
+		if EitherPlayerInTriggerArea "Hint2and3" == 1 goto Show_TC14Hint
+	}
+	Actions {
+		ResetTimer
+	}
+}
+
+state Cancel_TC14Hint {
+	Conditions {
+	}
+	Actions {
+		CancelHint
+		SetState "Update_TC14Hint"	
+	}
+}
+
+state Show_TC14Hint {
+	Conditions {
+		if EitherPlayerIs "TC14" == 1 goto Complete_TC14Hint
+
+		if EitherPlayerInTriggerArea "Hint2and3" == 0 goto Cancel_TC14Hint
+		
+		if CurrentHintId != 602 goto Update_TC14Hint
+	}
+	Actions {
+		SetHint "id=602" "ignore_done_flag"
+	}
+}
+
+state Complete_TC14Hint {
+	Conditions {
+	}
+	Actions {
+		SetMessage "name=Done_TC14Hint" "value=1"
+		CancelHint
+		SetHintComplete "id=602"
+		SetState "Done_TC14Hint"
+	}
+}
+
+state Done_TC14Hint {
+	Conditions {
+	}
+	Actions {
+	}
+}
+
+state FreePlay {
+	Conditions {
+	}
+	Actions {
+	}
+}
+
+state MissionMode {
+	Conditions {
+	}
+	Actions {
+	}
+}

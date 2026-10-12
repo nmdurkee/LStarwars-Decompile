@@ -1,0 +1,103 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "method": "Original PC functions in Unicorn with bounded synthetic object/character/cheat state. Shield-only audio/rumble/alert callees intercepted; protection and damage arithmetic execute unchanged.",
+  "contracts": {
+    "attacker_hit_flags": {
+      "functions": [
+        "0x58b720"
+      ],
+      "cases": 4097,
+      "mismatches": 0,
+      "examples": []
+    },
+    "cannot_kill_context_and_character": {
+      "functions": [
+        "0x58b7f0"
+      ],
+      "cases": 1616,
+      "mismatches": 0,
+      "examples": [],
+      "originalRegistry": "0x7fb138",
+      "contextsProtected": [
+        31
+      ]
+    },
+    "player_invincibility": {
+      "functions": [
+        "0x55f1d0",
+        "0x56e0f0"
+      ],
+      "cases": 40,
+      "mismatches": 0,
+      "examples": []
+    },
+    "post_hit_protection_timer": {
+      "functions": [
+        "0x414ab0"
+      ],
+      "cases": 1000,
+      "mismatches": 0,
+      "examples": []
+    },
+    "shield_hit_arithmetic_and_guards": {
+      "functions": [
+        "0x433be0",
+        "0x55f1d0",
+        "0x56e0f0"
+      ],
+      "cases": 6720,
+      "mismatches": 0,
+      "examples": [],
+      "flickerSeconds": 0.10000000149011612
+    }
+  },
+  "failures": [],
+  "shieldBoundaryHooks": [
+    {
+      "address": "0x4399e0",
+      "role": "AlertSurroundingCreatures",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    },
+    {
+      "address": "0x547820",
+      "role": "GameAudio_GetPlrSfxBits",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    },
+    {
+      "address": "0x547930",
+      "role": "GameAudio_PlaySfx",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    },
+    {
+      "address": "0x54aae0",
+      "role": "TakeHitRumble",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    },
+    {
+      "address": "0x681f40",
+      "role": "PlayNamedSfx",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    },
+    {
+      "address": "0x54a8a0",
+      "role": "NewBuzz",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    },
+    {
+      "address": "0x54a850",
+      "role": "NewRumble",
+      "behavior": "record call and return0; health/shield logic is not hooked"
+    }
+  ],
+  "totals": {
+    "cases": 13473,
+    "mismatches": 0,
+    "failures": 0
+  },
+  "limits": [
+    "Synthetic states do not prove all combinations occur in ordinary gameplay.",
+    "No live audio, feedback, neighborhood alerts, graphics or OS calls.",
+    "General ObjHitObj combat orchestration and death side effects are not included in this suite.",
+    "Protection booleans tested with finite timer values only; malformed NaN input is not generalized."
+  ]
+}

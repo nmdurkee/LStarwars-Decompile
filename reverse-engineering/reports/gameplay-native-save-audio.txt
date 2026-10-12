@@ -1,0 +1,60 @@
+PC SAVE, AUDIO AND SCRIPT DISPATCH CONTRACTS
+Generated 2026-10-12T16:56:40.569Z
+
+The PC save payload is 32332 bytes (0x7e4c), with six slots and reset version byte5 at payload+1. Checksum is 0x5c0999 plus each complete little-endian32-bitword modulo2^32. The writer emits HMGR header0x2028, optional metadata blob, payload, checksum, then a separate four-byte completion value. The completion callback zero-extends the 16-bit value at0x86e4e0. No user save directories or files were read.
+
+The PC hint-completion array has THREE words; Android reference has six. This explains the12-byte payload difference. The decoder preserves every payload byte in regions, marks cross-build semantic candidates, retains unknown fields/tails and reportschecksumfailure. Fifteen synthetic fixture tests passed; these do not substitute for a real-save roundtrip.
+
+Original x86 isolated-memory verification: 1774 checks, 0 mismatches. This covers checksum,completioncallback,CRCtable,namehash(all1130sample names),groupsequential/randomselection andLCG state. No Windowsgame execution orOSAPIcalls.
+
+Audio:1600playbackdefinitions at64bytes each,1600sampleentries at28bytes,256 signedshort hashbuckets. Names use ASCII uppercase MSB-firstCRC polynomial0x04c11db7,initialzero,no finalxor. Lookup bucket=hash&255; linkedlistends at-1; comparisonsmax32bytes. Groups:128records,512memberslots; leaderisincludedatindex0. Randomselection uses high16bits of updatedLCG state; sequentialselection wraps cursor.
+
+Catalog: 1130 definitions, 100 groups, 287 resolvedsource-memberslots including leaders. Duplicate names: blasterdraw lines75/462; blasterholster lines76/463; forcemindtrick lines1059/1416. Missingmembers: imp_punch_03 atCFGline1692; imp_slap_01 atCFGline1696. Native IDs are notassumed equal sourceordinals.
+
+Playback selects groupmember, skipsflaggeddefinitions(mask0xc0000), extracts signed15-bit sampleID and loopbit15, culls distantpositionalsounds, andselects2D/3D/priority/loopedbackend. Exact randompitch/volume arithmetic andbackendmixing remain unresolved. Pseudocode x87temporaries shouldnotbe copied as trustedmath.
+
+Script bindings: PCregistered tables contain170gameconditions+49builtins,207gameactions+54builtins,23GITactions. All20usedGITactionnames bind. Separate-line-brace parsing wasfixedbefore thecatalog anddispatchjoinwere regenerated; latestcatalog has4523states and214ReferenceScriptblocks. Missingnativebindings andall source locationsarein gameplay-native-dispatch/rows.json.gz. These includeshippedstale/malformednames, so theyarenot automaticallyruntimebugs.
+
+Artifacts:
+tools/gameplay-save-format.mjs - read-onlybufferdecoder
+tools/gameplay-save-format-tests.mjs -15syntheticchecks
+tools/gameplay-native-contract-verify.py -isolated originalPCcodeverification
+tools/gameplay-native-dispatch.mjs -boundednative dispatchtables+sourcejoins
+tools/gameplay-audio-native-catalog.mjs -hashes,groups,buckets,ambiguities
+reports/gameplay-native-save-audio.json -fieldregions,evidence,limits
+reports/gameplay-native-contract-tests.json -nativeverificationcases
+
+Native audio parsing: Original PC sample/group handlers parsed all 1130 definitions and 100 groups in source order with synthetic buffers. This recovered 1097 filename entries, 287 group-member slots and 176 looped definitions. All 1127 name lookups confirm the last duplicate definition wins. The independent source model passed 20437 field/group/lookup checks. No mixer or backend sample loading was run. See gameplay-native-audio-compiled.json and gameplay-audio-compiled-tests.json. PC evidence (paths relative workspace):
+0x428b90: reverse-engineering/decompiled/corpus/FUN_428b90.c:24 - Game registers six slots, payload base 0x8668c8, payload bytes0x7e4c and two callbacks; subsequent lines establish table bases.
+0x50b850: reverse-engineering/decompiled/corpus/FUN_50b850.c:18 - PC allocation source string and payload/checksum scratch buffer setup.
+0x50b970: reverse-engineering/decompiled/corpus/FUN_50b970.c:14 - Sum complete little-endian 32-bit words modulo2^32 from seed0x5c0999.
+0x50b9a0: reverse-engineering/decompiled/corpus/FUN_50b9a0.c:105 - Load validates checksum before copying payload; invalid checksum goes to corrupt/error path.
+0x50b9a0: reverse-engineering/decompiled/corpus/FUN_50b9a0.c:184 - Save copies payload, appends its checksum, then calls native slot writer with callback completion value.
+0x5439d0: reverse-engineering/decompiled/corpus/FUN_5439d0.c:47 - PC writer emits 0x2028-byte HMGR header, optional metadata blob, payload+checksum and additionalfour-bytecompletiontrailer.
+0x543c30: reverse-engineering/decompiled/corpus/FUN_543c30.c:23 - Reader skips optional header-declared metadata blob and reads requestedpayload/checksum; trailingcompletionvalue is not read here.
+0x5436e0: reverse-engineering/decompiled/corpus/FUN_5436e0.c:38 - Constructs SavedGames/SaveGame%d.%s_SavedGame under provider base. No actual save directory accessed.
+0x428b80: reverse-engineering/decompiled/corpus-expanded/FUN_428b80.c:10 - Save callback returns16-bitcompletion; zero extension to32 bits independentlyemulated.
+0x42abf0: reverse-engineering/decompiled/corpus/FUN_42abf0.c:36 - Reset zeroes32332-bytepayload, preserves13 optionbytes and writes saveversion5.
+0x458440: reverse-engineering/decompiled/corpus/FUN_458440.c:11 - PC registers THREE hint-completionwords at0x86e4d0, unlike six inAndroid GAMESAVE.
+0x4c2660: reverse-engineering/decompiled/corpus/FUN_4c2660.c:41 - PC purchasebitsets andcoinbalance update.
+0x48b540: reverse-engineering/decompiled/corpus/FUN_48b540.c:205 - Gameplayseconds accumulator usesframe delta.
+0x573aa0: reverse-engineering/decompiled/corpus/FUN_573aa0.c:34 - PC levelrecords stride84, collectednamecount at+0x50 and8-byte nameentries.
+0x483c70: reverse-engineering/decompiled/corpus/FUN_483c70.c:553 - Missioncompletionbyte at+0x50+index and besttimefloat atindex*4.
+0x4c9fb0: reverse-engineering/decompiled/corpus/FUN_4c9fb0.c:42 - PC loads Audio/Audio.cfg into audioarena.
+0x6521b0: reverse-engineering/decompiled/corpus/FUN_6521b0.c:21 - 1600x28-byte sample entries,1600x64-byte definitions and backupdefinitions,256two-bytehashbuckets.
+0x6520b0: reverse-engineering/decompiled/corpus/FUN_6520b0.c:14 - Audio parser table: Audio->0x651680,Sample->0x6516a0,Group->0x652010.
+0x650280: reverse-engineering/decompiled/corpus/FUN_650280.c:20 - MSB-first CRC tablepolynomial0x04c11db7; independentlyemulated.
+0x650430: reverse-engineering/decompiled/corpus/FUN_650430.c:18 - ASCII casefolded hash, initialzero, nofinalxor; independentlyemulated for all1130configuration names.
+0x650dc0: reverse-engineering/decompiled/corpus/FUN_650dc0.c:28 - Name lookup useshash&255, signedshortchain links, -1terminator,32-byte case-insensitive compare.
+0x4f8b80: reverse-engineering/decompiled/corpus/FUN_4f8b80.c:25 - Native boundednamecomparison casefolding; high-byte behavior is not generalized in the ASCII model.
+0x650c50: reverse-engineering/decompiled/corpus/FUN_650c50.c:13 - Group capacity128,memberpool512; group creation inserts leader asmemberzero.
+0x652010: reverse-engineering/decompiled/corpus/FUN_652010.c:30 - Additional groupnames lookup existing definitions; missingnames skipped; append whilepoolbelow512.
+0x650d10: reverse-engineering/decompiled/corpus/FUN_650d10.c:23 - Randomselection usesupdatedLCGstate high16 bits modulo count; sequentialcursor increments/wraps. Originalcode verified.
+0x5b9e10: reverse-engineering/decompiled/corpus/FUN_5b9e10.c:9 - Shared RNGstate update=(state*1664525+1013904223) modulo2^32.
+0x650f20: reverse-engineering/decompiled/corpus/FUN_650f20.c:41 - Suppresses playback when definitionflags&0xc0000; groupreference at+0x14; sequenceflag bit16.
+0x650f20: reverse-engineering/decompiled/corpus/FUN_650f20.c:69 - Positionalsounds are culled by listenerdistancesquared versusglobalfar distancesquared.
+0x650f20: reverse-engineering/decompiled/corpus/FUN_650f20.c:104 - Backend routing differs byposition presence,loopbit15,priority. 2D0x6980c0/0x698040,3D0x698210/0x698100,looped0x698260.
+0x651530: reverse-engineering/decompiled/corpus/FUN_651530.c:18 - Default definitionpitch22050,volume0x3fff,pan/variance/near/far/rumblezero,group-1; copies64 bytes tobackup. Reset doesnotclear everypossiblebit.
+0x681f40: reverse-engineering/decompiled/corpus/FUN_681f40.c:13 - Play-by-name resolves definitionthenpasses two1.0scalevalues toplay-by-ID.
+
+Public semantic reference: https://github.com/opensagadev/saga/tree/ab97911d162d896d8f4b20e9df8e7d23a2f81557; Android x86. Names borrowed from that code are candidates unless PC code/emulation independentlycorroborates them.
