@@ -1,7 +1,7 @@
 {
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "mappingMethod": "Explicit reviewed native function entrypoint to public C# method, not string scanning for hexadecimal constants.",
-  "primaryNativeEntryPoints": 18,
+  "primaryNativeEntryPoints": 24,
   "records": [
     {
       "nativeAddress": "0x55e300",
@@ -233,6 +233,91 @@
         "Original RNG and duration global side effects preserved; managed differential execution pending."
       ],
       "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62efb0",
+      "csharpMethod": "Recovered.Animation.AnimationControl.ExpandMini",
+      "source": "reconstructed/animation/AnimationControl.cs",
+      "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9",
+      "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+      "nativeEvidenceReport": "reports/animation-control-native-verification.json",
+      "limits": [
+        "Native compact packet is36 bytes; full packet is72 bytes.",
+        "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+        "No invalid pointer/action-index behavior claimed; C# execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62f030",
+      "csharpMethod": "Recovered.Animation.AnimationControl.CompactFull",
+      "source": "reconstructed/animation/AnimationControl.cs",
+      "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9",
+      "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+      "nativeEvidenceReport": "reports/animation-control-native-verification.json",
+      "limits": [
+        "Native compact packet is36 bytes; full packet is72 bytes.",
+        "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+        "No invalid pointer/action-index behavior claimed; C# execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62f0a0",
+      "csharpMethod": "Recovered.Animation.AnimationControl.UpdateMini",
+      "source": "reconstructed/animation/AnimationControl.cs",
+      "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9",
+      "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+      "nativeEvidenceReport": "reports/animation-control-native-verification.json",
+      "limits": [
+        "Native compact packet is36 bytes; full packet is72 bytes.",
+        "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+        "No invalid pointer/action-index behavior claimed; C# execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62f100",
+      "csharpMethod": "Recovered.Animation.AnimationControl.IsBlendingFromTo",
+      "source": "reconstructed/animation/AnimationControl.cs",
+      "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9",
+      "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+      "nativeEvidenceReport": "reports/animation-control-native-verification.json",
+      "limits": [
+        "Native compact packet is36 bytes; full packet is72 bytes.",
+        "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+        "No invalid pointer/action-index behavior claimed; C# execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x62f1a0",
+      "csharpMethod": "Recovered.Animation.AnimationControl.CurrentAction",
+      "source": "reconstructed/animation/AnimationControl.cs",
+      "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9",
+      "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+      "nativeEvidenceReport": "reports/animation-control-native-verification.json",
+      "limits": [
+        "Native compact packet is36 bytes; full packet is72 bytes.",
+        "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+        "No invalid pointer/action-index behavior claimed; C# execution pending."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
+    },
+    {
+      "nativeAddress": "0x418ca0",
+      "csharpMethod": "Recovered.Animation.AnimationControl.AdvancePlayerWithoutEvents",
+      "source": "reconstructed/animation/AnimationControl.cs",
+      "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9",
+      "coverage": "bounded complete call: selection callback suppressed, ordinary rate, inactive wake/weapon/footstep effects",
+      "nativeEvidenceReport": "reports/animation-control-native-verification.json",
+      "limits": [
+        "Object API flag0x40000 is required; selected action already supplied by caller.",
+        "No special character speed branch, context45 multiplier, action95 randomization or clip flags0x100/0x400/0x800.",
+        "Original effect helpers run their no-op branches in fixtures; effect dispatch remains external.",
+        "Valid active definitions required even atdt0; finite input domain; explicit adapter guards are not native exception semantics."
+      ],
+      "managedVerification": "PENDING: library/harness compile; Windows Access is denied on new EXE launch. No managed behavioral pass claimed."
     }
   ],
   "inlinedSupportingFunctions": {
@@ -251,6 +336,16 @@
       "0x55ccd0",
       "0x570a60",
       "0x4988b0 immediate/no-suit branch"
+    ],
+    "0x62f0a0": [
+      "0x62efb0",
+      "0x62e9b0",
+      "0x62f030"
+    ],
+    "0x418ca0": [
+      "0x62e9b0",
+      "0x58dd90 inactive-effects branch",
+      "0x58bc60 inactive-effects branch"
     ],
     "0x4150d0": [
       "0x54fa60",
@@ -278,9 +373,10 @@
     "contextAndAnimation": 20052,
     "resetMovesFullByteImages": 1200,
     "spawnPointerSelection": 65536,
-    "total": 116540,
+    "total": 151380,
     "playbackPackets": 16000,
-    "idleScheduling": 13752
+    "idleScheduling": 13752,
+    "animationControl": 34840
   },
   "nativeOnlyAdditionalEvidence": {
     "fullResetMoves1": 1000,

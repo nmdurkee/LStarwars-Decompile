@@ -39,8 +39,8 @@ def item(r):
 remaining = sorted((r for r in rows if r['status'] != 'bounded-native-contract'), key=lambda r: -r['sourceUses'])
 top = [dict(item(r), rankBySourceUse=i+1) for i,r in enumerate(remaining[:20])]
 old['generatedAt'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
-old['auditMode'] = 'Refreshed from the semantic ledger after six compact conditions and the externally owned bounded Kill contract. No new native implementation or execution occurs in this prioritization refresh.'
-old['inputs'] = [dict(file=p.as_posix(), sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in [ledger_path, ROOT/'reports/gameplay-dispatch-contract.json', ROOT/'reports/native-combat-kill.json']]
+old['auditMode'] = 'Refreshed from the semantic ledger after the currently established bounded command contracts. No new native implementation or execution occurs in this prioritization refresh.'
+old['inputs'] = [dict(file=p.as_posix(), sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in [ledger_path, ROOT/'reports/gameplay-dispatch-contract.json', ROOT/'reports/gameplay-native-index.json']]
 old['top20'] = top
 for field in ['sameNativeHandlerClusters', 'sameSpellingDifferentHandlers', 'sharedConditionInitializerCandidates']:
     for group in old[field]:
@@ -61,7 +61,8 @@ for batch in old['suggestedBatches']:
     batches.append(batch)
 old['suggestedBatches'] = batches
 old['completedPriorityBatches'] = completed
-old['externalCompletedContracts'] = [dict(name='Kill', kind='scp-action', address='0x445230', sourceUses=202, report='reverse-engineering/reports/native-combat-kill.json', checks=6920, includedInGameplayCheckTotals=False, scope='Bounded selection and dispatch; world/name/reference/numeric services and parts/death effects retain explicit boundaries.')]
+native_index = json.loads((ROOT/'reports/gameplay-native-index.json').read_text(encoding='utf-8'))
+old['externalCompletedContracts'] = [dict(name=c['name'], kind='scp-action', address=c['address'], sourceUses=c['sourceUses'], report=c['report'], checks=c['checks'], includedInGameplayCheckTotals=False, scope=c['scope'], countQualification=c.get('countQualification')) for c in native_index['externalCommandContracts']]
 c = old['counts']
 c.update(catalogNames=len(rows), boundedContractNames=len(rows)-len(remaining), uncontractedNames=len(remaining), uncontractedSourceUses=sum(r['sourceUses'] for r in remaining), nativeBoundButUncontractedNames=sum(r['status']=='dispatch-only' for r in remaining), missingNativeBindingNames=len(old['missingNativeBindings']), missingNativeBindingSourceUses=sum(r['sourceUses'] for r in old['missingNativeBindings']), top20SourceUses=sum(r['sourceUses'] for r in top), top20MissingBindings=sum(r['status']=='unbound-name' for r in top))
 PATH.write_text(json.dumps(old, indent=2)+'\n', encoding='utf-8')
@@ -77,7 +78,11 @@ lines += ['', 'ALL NAMES WITHOUT A NATIVE BINDING']
 for r in old['missingNativeBindings']:
     e=r['sourceExamples'][0]
     lines.append(f"{r['name']} [{r['kind']}] {r['sourceUses']} uses | {e['source']}:{e['line']}")
-lines += ['', 'COMPLETED SINCE ORIGINAL PRIORITIZATION', 'Six compact conditions: 1,888 uses, gameplay-compact-condition-contract.json.', 'Kill: 202 uses, 6,920 external combat comparisons; native-combat-kill.json. These checks are excluded from gameplay totals. Downstream death/parts behavior remains external.', '', 'LIMITS'] + old['limitations']
+lines += ['', 'COMPLETED SINCE ORIGINAL PRIORITIZATION', 'Six compact conditions: 1,888 uses, gameplay-compact-condition-contract.json.', 'CreateCreatures: 653 uses, bounded spawn orchestration and world/effect services; gameplay-createcreatures-contract.json.']
+for c in old['externalCompletedContracts']:
+    lines.append(f"{c['name']}: {c['sourceUses']} uses, {c['checks']} externally owned checks; {c['report']}. Excluded from gameplay totals. {c['scope']}")
+    if c.get('countQualification'): lines.append(c['countQualification'])
+lines += ['', 'LIMITS'] + old['limitations']
 lines += ['', 'Full source references, native table addresses and retained inspection evidence are in gameplay-next-command-priorities.json.']
 PATH.with_suffix('.txt').write_text('\n'.join(lines)+'\n', encoding='utf-8')
-print(json.dumps(c, sort_keys=True))
+print(json.dumps(old['counts'], sort_keys=True))

@@ -7,6 +7,10 @@ public static class RecoveredSourceVerify
         string[] rest=new string[args.Length-1];Array.Copy(args,1,rest,0,rest.Length);
         switch(args[0])
         {
+            case "navigation":return ConnectionDifferential.Main(rest);
+            case "gameplay-createcreatures":return GameplayCreateCreaturesVerify.Main(rest);
+            case "geometry-volumes":PortalVolumeHarness.Main(rest);return 0;
+            case "geometry-visibility":PortalVisibilityHarness.Main(rest);return 0;
             case "combat-kill":return KillDifferential.Main(rest);
             case "gameplay-conditions":return GameplayCompactConditionVerify.Main(rest);
             case "geometry-rooms":return PortalSelectionHarness.Main(rest);

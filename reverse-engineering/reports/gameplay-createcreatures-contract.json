@@ -1,0 +1,511 @@
+{
+  "generatedAt": "2026-10-12T20:14:21.418Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "address": "0x456c10",
+  "classification": "bounded command projection with world and physical-effect adapters",
+  "contracts": {
+    "entry": {
+      "description": "Non-first calls complete without resolving arguments or attempting spawns. First calls always complete within the bounded terminating domain, including zero groupsize, missing types/candidates, failed selection, and allocation failure. The disassembly sets EAX=1; Ghidra incorrectly presents the entrypoint as void.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 128,
+          "excerpt": "if (param_6 != 0) {"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 807,
+          "excerpt": "004577a6  je 0x457e71"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 1279,
+          "excerpt": "00457e71  mov eax, 1"
+        }
+      ]
+    },
+    "parsing": {
+      "description": "Each token takes the first matching branch in a fixed ordered scan. Most key/value forms use case-insensitive substring search and fixed byte skips rather than a general key/value parser. Bare flags use whole-token case-insensitive equality. Later scalar/script/state/locator-set/rider values overwrite earlier values; type, locator and zip candidates accumulate. Unknown tokens are preserved in source but ignored by this command. Scalar operands execute original 0x5147c0, including the established param-substring slot-zero behavior.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 139,
+          "excerpt": "iVar7 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar9 * 4),\"mingroupsize\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 145,
+          "excerpt": "iVar7 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar9 * 4),\"start_locator_set=\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 147,
+          "excerpt": "iVar7 = FUN_004f8b10(\"dont_inherit_locator_set\",*(undefined4 *)(param_4 + iVar9 * 4)"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 218,
+          "excerpt": "iVar7 = FUN_004f8b10(\"not_grouped\","
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 412,
+          "excerpt": "FUN_004f1f10(local_44,iVar7 + 7);"
+        }
+      ]
+    },
+    "types": {
+      "description": "Up to ten short type IDs are stored. Ordinary names require both type callbacks: byte ID255 is rejected; its resolved short ID-1 is rejected. Callbacks still execute after the candidate cap is reached. Generic-goon lookup is skipped after ten candidates. RandomMap executes only in hub mode; hub ordinary names only recognize Barman/Jabba/CantinaBand, accepting the original special ID when its load-table entry is not -1. The identity mapping and loader remain services.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 421,
+          "excerpt": "if ((DAT_00923884 != (code *)0x0) &&"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 424,
+          "excerpt": "iVar10 = FUN_004f8b10(\"Barman\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 442,
+          "excerpt": "if ((sVar2 != -1) && (local_29c < 10)) {"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 421,
+          "excerpt": "0045725b  jmp 0x457284"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 434,
+          "excerpt": "0045728a  cmp dword ptr [esp + 0x14], 0xa"
+        }
+      ]
+    },
+    "locators": {
+      "description": "locator_set resolves a set, refreshes its occupancy through a service, and appends members whose occupant byte is255, up to64 candidates. locator=mylocator reads the packet reference directly. start_locator_set latches a flag on a successful lookup; it later chooses the first member without the normal selection service or occupancy filtering. A later failed set lookup replaces the set pointer but does not clear that flag. The most recently assigned set is inherited and updated even when accumulated candidates include earlier sets.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 536,
+          "excerpt": "local_264 = 1;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 508,
+          "excerpt": "FUN_0051fe60(local_288,iVar7);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 513,
+          "excerpt": "if (0x3f < local_290) break;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 514,
+          "excerpt": "if (*(char *)(iVar10 + *(int *)(iVar7 + 0x18)) == -1) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 580,
+          "excerpt": "iVar7 = FUN_00440640();"
+        }
+      ]
+    },
+    "zipCandidates": {
+      "description": "Zip lookup is guarded by LOCATOR count<32, not zip count. The native zip array has32 entries but lacks the matching insertion bound. The portable core rejects a33rd resolved zip to avoid reproducing stack corruption. Shipments contain at most five zip candidates. Zip selection and successful zip-up state/angle/audio/animation work remain services.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 463,
+          "excerpt": "else if ((local_290 < 0x20) &&"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 465,
+          "excerpt": "local_d8[local_25c] = iVar7;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 593,
+          "excerpt": "local_2a0 = FUN_00449e60(local_25c);"
+        }
+      ]
+    },
+    "groupAndRng": {
+      "description": "Default count1; minimum/maximum start at-1. If minimum>=0 and maximum>minimum, one shared integer-RNG draw modulo(maximum-minimum+1) chooses the count inclusively. Equal nonnegative endpoints replace the count directly; reversed endpoints leave explicit/default count intact. One type draw occurs per outer iteration, even with one type. Grouped mode attempts the entire remaining count with one type/location and creates one formation before the first attempt when count>1. not_grouped repeats type/location selection for each attempt. Failed allocations consume attempts; selection failure stops the command. Native negative counts can fail to make progress; the portable guard rejects them.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 559,
+          "excerpt": "if (local_27c < local_280) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 563,
+          "excerpt": "else if (local_280 == local_27c) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 575,
+          "excerpt": "sVar6 = asStack_58[iVar9 % local_29c];"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 646,
+          "excerpt": "if (local_210 == 0) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 649,
+          "excerpt": "local_28c = local_28c - local_27c;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 655,
+          "excerpt": "local_1f4 = FUN_00517fd0(local_288,local_1fc,local_204,local_20c,"
+        }
+      ]
+    },
+    "originAndOffsets": {
+      "description": "Origin priority is normal/start locator, then zip, then rider; the self origin and heading initialize temporary state. Normal selection receives radius=(typeRadius+0.5) only for offscreen, otherwise0; nearest_player selects a separate service and player-origin reference. max_range_to_player switches the other selector from null to player predicted-origin reference. Heading is an integer angle, despite Ghidra float temporaries. Offset rotates in place before adding to position. A later ungrouped locator iteration rotates the already-rotated offset again; it does not restore the authored vector. Zip/rider iterations retain the applied latch, so later selected origins omit the offset. Tests exercise original vector helpers with a cardinal sine-table fixture; arbitrary angle LUT generation is external.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 634,
+          "excerpt": "local_294 = *(float *)(iVar7 + 0x1c);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 638,
+          "excerpt": "FUN_005b3620(&local_240,&local_240,local_294);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 640,
+          "excerpt": "local_244 = 1;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 625,
+          "excerpt": "iVar7 = FUN_00440470(&local_1d8,local_290,local_294,DAT_0093d810 + 0x5c,local_218,"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 618,
+          "excerpt": "iVar9 = DAT_0093d810 + 0x80;"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 973,
+          "excerpt": "004579fd  mov eax, dword ptr [ebx + 0x18]"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 976,
+          "excerpt": "00457a07  mov dword ptr [esp + 0x1c], ecx"
+        }
+      ]
+    },
+    "spawnArguments": {
+      "description": "Allocator0x43d890 receives type, position, integer heading, script, orientation reference, formation, surface flag, three zero arguments, and addtoset. It is called once per planned attempt. default script is \"default\", spacing values0.8 and across2. addtoset=myset uses packet byte+0xb0 without range clamping; numeric addtoset truncates to an int32. Character loading, actual formation positions, pool allocation and ground placement are external.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 99,
+          "excerpt": "builtin_strncpy(local_44,\"default\",8);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 101,
+          "excerpt": "local_204 = 0.8;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 660,
+          "excerpt": "iVar9 = FUN_0043d890(local_258,&local_254,local_294,local_44,local_270,local_1f4,"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 1039,
+          "excerpt": "00457af6  push 0"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 1040,
+          "excerpt": "00457af8  push 0"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createcreatures-assembly.txt",
+          "line": 1041,
+          "excerpt": "00457afa  push 0"
+        }
+      ]
+    },
+    "successfulSpawn": {
+      "description": "On a non-null actor: dispatch requested state; store selected locator; optionally store latest set; clear gun bit4 for no_gun; dispatch nonzero crate height with current delay; advance delay only after successful allocation; replace the matching set occupant byte with actor slot. dont_inherit_locator_set prevents actor+0x370 assignment but does not prevent occupancy writes. zipdown takes effect when fall_chance<=0 or one float RNG draw is>=fall_chance: copy three origin words, set state0x35/kind0x2a, and dispatch its setup. CheapAsChips ORs actor flags0x420. Rider attachment takes precedence over balloon effects. Capability add/remove masks apply last, with remove winning overlapping bits. Effect functions remain adapters.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 664,
+          "excerpt": "FUN_0052c790(iVar9 + 0x2c8,local_1dc);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 666,
+          "excerpt": "*(int *)(iVar9 + 0x36c) = iVar7;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 667,
+          "excerpt": "if (local_208 != 0) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 671,
+          "excerpt": "*(uint *)(iVar9 + 0xeec) = *(uint *)(iVar9 + 0xeec) & 0xfffffffb;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 676,
+          "excerpt": "local_228 = local_228 + local_1e4;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 694,
+          "excerpt": "(fVar11 = (float10)FUN_005b9dd0(), (float10)local_21c <= fVar11)))) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 697,
+          "excerpt": "*(undefined1 *)(iVar9 + 0x7b5) = 0x35;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 586,
+          "excerpt": "local_270 = local_284 + 0x420;"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 749,
+          "excerpt": "FUN_00488730(local_284,iVar9,0,1);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
+          "line": 755,
+          "excerpt": "*(uint *)(iVar9 + 0x4bc) = *(uint *)(iVar9 + 0x4bc) & ~local_224;"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "checks": 15239,
+    "mismatches": 0,
+    "cases": 2177,
+    "report": "reverse-engineering/reports/gameplay-createcreatures-tests.json",
+    "tool": "reverse-engineering/tools/gameplay-createcreatures-verify.py",
+    "method": "Original PC body plus original string/numeric/RNG/vector helpers against an independent Python contract model; explicit world service hooks. Compiled C# comparison is a separate pending stage."
+  },
+  "sourceCoverage": {
+    "occurrences": 653,
+    "variantsPerOccurrence": 3,
+    "variants": [
+      "allocation fails",
+      "ordinary allocations succeed; zip-up allocation fails",
+      "alternating ordinary success/failure; zip-up allocation fails"
+    ],
+    "baselineSpawnAttempts": 782,
+    "baselineSuccessfulActors": 774,
+    "baselineZipCases": 7,
+    "noSpawnSources": [
+      {
+        "index": 329,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_C/AI/TUSKENCOMMANDER.SCP",
+        "line": 28,
+        "tokens": [
+          "locator",
+          "mylocator",
+          "type=TuskenRaider",
+          "script=SpawnAttack"
+        ],
+        "types": [
+          2
+        ],
+        "locators": [],
+        "zips": []
+      },
+      {
+        "index": 330,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_C/AI/TUSKENCOMMANDER.SCP",
+        "line": 31,
+        "tokens": [
+          "locator",
+          "mylocator",
+          "type=TuskenRaider",
+          "script=SpawnAttack"
+        ],
+        "types": [
+          2
+        ],
+        "locators": [],
+        "zips": []
+      },
+      {
+        "index": 409,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL1.SCP",
+        "line": 30,
+        "tokens": [
+          "locator_group=Snake",
+          "type=Snake",
+          "script=Snake",
+          "addtoset=1",
+          "yGGoffset=2",
+          "dxont_set_on_surface"
+        ],
+        "types": [
+          3
+        ],
+        "locators": [],
+        "zips": []
+      }
+    ],
+    "branchCounts": {
+      "type": 721,
+      "script": 653,
+      "locator_set=": 388,
+      "!dont_set_on_surface": 145,
+      "!off_screen": 103,
+      "addtoset=": 515,
+      "yoffset": 118,
+      "locator=": 278,
+      "!nearest_player": 41,
+      "crate_height=": 19,
+      "max_range_to_player=": 94,
+      "mindy=": 3,
+      "maxdy=": 3,
+      "mingroupsize": 46,
+      "maxgroupsize": 46,
+      "groupsize": 63,
+      "xspacing": 50,
+      "zspacing": 64,
+      "crate_delay=": 4,
+      "!not_grouped": 5,
+      "!offscreen": 12,
+      "!zipdown": 83,
+      "capability=": 1,
+      "lose_capability=": 1,
+      "nacross": 21,
+      "fall_chance=": 32,
+      "zipup": 18,
+      "xoffset": 1,
+      "!CheapAsChips": 21,
+      "type=randommap": 96,
+      "state=": 10
+    },
+    "ignoredTokens": [
+      {
+        "index": 329,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_C/AI/TUSKENCOMMANDER.SCP",
+        "line": 28,
+        "token": "locator"
+      },
+      {
+        "index": 329,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_C/AI/TUSKENCOMMANDER.SCP",
+        "line": 28,
+        "token": "mylocator"
+      },
+      {
+        "index": 330,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_C/AI/TUSKENCOMMANDER.SCP",
+        "line": 31,
+        "token": "locator"
+      },
+      {
+        "index": 330,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/TATOOINE/TATOOINE_C/AI/TUSKENCOMMANDER.SCP",
+        "line": 31,
+        "token": "mylocator"
+      },
+      {
+        "index": 409,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL1.SCP",
+        "line": 30,
+        "token": "locator_group=Snake"
+      },
+      {
+        "index": 409,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL1.SCP",
+        "line": 30,
+        "token": "yGGoffset=2"
+      },
+      {
+        "index": 409,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/LEVEL1.SCP",
+        "line": 30,
+        "token": "dxont_set_on_surface"
+      },
+      {
+        "index": 463,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_D/AI/LEVEL.SCP",
+        "line": 33,
+        "token": "oXff_screen"
+      },
+      {
+        "index": 464,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_D/AI/LEVEL.SCP",
+        "line": 46,
+        "token": "oXff_screen"
+      },
+      {
+        "index": 499,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/JABBASPALACE/JABBASPALACE_D/AI/LEVEL3.SCP",
+        "line": 54,
+        "token": "alert_to_player"
+      },
+      {
+        "index": 500,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/JABBASPALACE/JABBASPALACE_D/AI/LEVEL3.SCP",
+        "line": 64,
+        "token": "alert_to_player"
+      }
+    ],
+    "qualification": "Authored arguments are exact catalog values, including malformed/misspelled forms. World bindings/occupancy and type metadata are synthetic; these results are not claims about runtime source reachability or counts in live levels."
+  },
+  "portable": {
+    "source": "reverse-engineering/reconstructed/gameplay/CreateCreatures.cs",
+    "sha256": "f7c5ebde9971cf65d8511dacceaf5336c743aad10c55837aeb3eeb36559432b8",
+    "methods": [
+      "CreatureSpawner.Parse",
+      "CreatureSpawner.Execute"
+    ],
+    "harness": "reverse-engineering/tools/gameplay-createcreatures-portable-verify.cs",
+    "harnessMain": "GameplayCreateCreaturesVerify.Main",
+    "fixtures": "reverse-engineering/reports/gameplay-createcreatures-native-fixtures.json",
+    "compiledStatus": "C#5-compatible core and ordinary executable harness compile successfully. Managed differential execution remains pending under the parent-confirmed Windows execution denial.",
+    "adapters": [
+      "SpawnServices resolves runtime type, locator, set, zip, rider and capability references; synthetic fixtures do not establish level reachability.",
+      "Locator selection/visibility/player range tests and set refresh are supplied services; only their argument and call ordering is established.",
+      "Formation/character allocation and state/crate/zip/ride/balloon effects are explicit services. Successful ZipUp is wholly delegated and not exercised.",
+      "Shared integer and float RNG ownership remains host-supplied; native state and draw order are compared in fixtures.",
+      "RotateOffset supplies the angle LUT math. Original PC rotation and addition execute on cardinal fixture inputs; arbitrary angle precision and host LUT generation are not claimed."
+    ],
+    "hostGuards": [
+      "Reject negative spawn counts, out-of-int32/nonfinite numeric operands, and group spans beyond positive int32.",
+      "Bound script string to63 non-NUL ASCII characters; native copies into a64-byte stack buffer without a bound.",
+      "Reject a33rd resolved zip and invalid signed-byte locator-set representation rather than corrupting memory.",
+      "Use a configurable operation budget for malformed or excessively large groups.",
+      "Reject negative type-RNG indices and tokens whose fixed skip exceeds their string terminator."
+    ]
+  },
+  "remaining": [
+    "World/name/type/candidate/formation/allocation/effect calls are explicit fixture adapters. Original parser, loop, field mutations, scalar evaluator, RNG and cardinal vector helpers execute unchanged.",
+    "Zip-up allocation returns null in these fixtures; successful zip-up setup is external, not verified or implemented.",
+    "Actor comparisons cover documented fields, not every byte or downstream effects.",
+    "Synthetic locator bindings are not the actual level world or source reachability.",
+    "Native negative-count loops, stack overflow inputs, nonfinite numeric operands and full hub loader behavior are outside the bounded core.",
+    "Compiled C# differential execution remains pending under the Windows execution denial."
+  ]
+}

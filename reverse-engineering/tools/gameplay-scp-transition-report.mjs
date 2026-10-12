@@ -21,6 +21,8 @@ const contracts={
 const references=scripts.flatMap(s=>s.references.map(r=>{const state=s.states.find(x=>r.line>=x.line&&r.line<=x.endLine);return{source:s.source,...r,owningState:state?.name??null,runtimeList:state?'state-local':'script-global',sourceLibrary:r.scope,returnStateExists:s.states.some(x=>x.name?.toLowerCase()===r.returnState?.toLowerCase())};}));
 const transitionUses=scripts.flatMap(s=>s.states.flatMap(state=>state.transitions.map(t=>({source:s.source,state:state.name,...t}))));
 const known={
+ '0x44d900':{contract:'native-connections-contract.json',scope:'Externally owned bounded CnxController parsing, connection-controller construction/pool/update and frame-mask contract. World/target/path binding and generic gizmo-output callbacks remain adapters; not a live navigation or locomotion implementation.'},
+ '0x456c10':{contract:'gameplay-createcreatures-contract.json',scope:'Bounded ordered parsing, grouped/ungrouped spawn orchestration, native request arguments and ordinary post-spawn updates. World allocation/lookup/effects are adapters; successful ZipUp setup remains external.'},
  '0x445230':{contract:'native-combat-kill.json',scope:'Bounded Kill selection, ordered tokens and hit-flag mutation with named/reference/numeric service boundaries. Parts and death-cleanup dispatches are recorded, not implemented; downstream lifecycle effects remain external.'},
  '0x5151c0':{contract:'gameplay-compact-condition-contract.json',scope:'GotOpponent tests only script-creature and opponent-reference presence; no target liveness inference.'},
  '0x515250':{contract:'gameplay-compact-condition-contract.json',scope:'OpponentRange cached field or maximum-finite-float sentinel; distance computation remains external.'},

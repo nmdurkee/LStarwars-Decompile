@@ -1,0 +1,19 @@
+NAVIGATION CONNECTION CONTROLLERS
+
+16443 saved native comparison records; zero mismatches. 16435 excluding eight duplicate pool sequence replays. All534authored CnxController uses covered.
+13 bounded native mappings in reconstructed/navigation/ConnectionControllers.cs.
+
+CnxController parser uses ordered case-insensitive substring recognition and returns1 even though the decompiler declares void.
+Target lookup occurs before free-pool availability is checked. Reset and release order influence which record is allocated next.
+on_frames ranges are one-based inclusive; lastframe and lastframe-1 are sentinels. Animation ranges cap at1024frames.
+First matching adjacency endpoint wins. Direction chooses a connection flag word, and bothways modifies both words.
+Controllers update in active-list order. Conflicting controllers sharing an edge use last-writer semantics.
+Exact flag dialect is selected from original mode globals; fallback flags apply only when dialect lookup returnszero.
+
+BOUNDS
+World/path-name registries, target binding, animation reference/header resolution, generic gizmo-output evaluation and numeric expression evaluation are explicit host services. These dependencies are not reconstructed by this module.
+Finite float-to-int32 conversion, nonnull valid native records, byte-encoded NUL-terminated strings, locator/adjacency/path counts within byte-index limits. on_frames suffix must fit the original64-byte buffer and token separators must be present.
+Update requires positive animation end frame and nonnull connection. Native fake-animation creation can allocate a null-edge controller even for an otherwise invalid fake ID when endpoint lookup fails; creation is retained, unsafe update is rejected.
+Native allocation/bootstrap, corruption/double-release behavior, invalid pointers, service reentrancy and callback mutation of manager/path lists are outside the contract.
+Animation duration/frame, visibility and force condition helpers execute unchanged in native tests. Portable source uses resolved fields; there is no whole-level pathfinder or character locomotion implementation.
+Original x86 versus Python contract tests do not establish compiled C# equivalence. Managed compilation is separate; ordinary execution remains pending.

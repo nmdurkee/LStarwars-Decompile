@@ -1,30 +1,30 @@
 REMAINING GAMEPLAY COMMAND PRIORITIES
 
-Refreshed from the semantic ledger after six compact conditions and the externally owned bounded Kill contract. No new native implementation or execution occurs in this prioritization refresh.
+Refreshed from the semantic ledger after the currently established bounded command contracts. No new native implementation or execution occurs in this prioritization refresh.
 
-{"boundedContractNames": 25, "catalogNames": 434, "missingNativeBindingNames": 38, "missingNativeBindingSourceUses": 227, "nativeBoundButUncontractedNames": 371, "remainingSameSpellingDifferentHandlerGroups": 6, "sameSpellingDifferentHandlerGroups": 7, "sharedHandlerClusters": 3, "sharedHandlerSourceUses": 506, "top20MissingBindings": 0, "top20SourceUses": 5218, "uncontractedNames": 409, "uncontractedSourceUses": 11937}
+{"boundedContractNames": 27, "catalogNames": 434, "missingNativeBindingNames": 38, "missingNativeBindingSourceUses": 227, "nativeBoundButUncontractedNames": 369, "remainingSameSpellingDifferentHandlerGroups": 6, "sameSpellingDifferentHandlerGroups": 7, "sharedHandlerClusters": 3, "sharedHandlerSourceUses": 506, "top20MissingBindings": 0, "top20SourceUses": 4311, "uncontractedNames": 407, "uncontractedSourceUses": 10750}
 
 TOP 20 BY SHIPPED USE COUNT
- 1. CreateCreatures [scp-action] 653 uses | 0x456c10 | initializer -
- 2. CnxController [scp-action] 534 uses | 0x44d900 | initializer -
- 3. GoToLocator [scp-action] 516 uses | 0x536700 | initializer -
- 4. EitherPlayerInTriggerArea [scp-condition] 386 uses | 0x515070 | initializer 0x52d160
- 5. FollowPlayer [scp-action] 325 uses | 0x452570 | initializer -
- 6. ActivateEffect [git-action] 277 uses | 0x464360 | initializer -
- 7. EngageOpponent [scp-action] 263 uses | 0x447f00 | initializer -
- 8. SetLocator [scp-action] 222 uses | 0x445cf0 | initializer -
- 9. PlaySpecial [git-action] 219 uses | 0x465720 | initializer -
-10. FacePlayer [scp-action] 210 uses | 0x515ca0 | initializer -
-11. SnapToLocator [scp-action] 186 uses | 0x446060 | initializer -
-12. ObstacleAtEnd [scp-condition] 178 uses | 0x440940 | initializer 0x4408b0
-13. DontPush [scp-action] 177 uses | 0x4497b0 | initializer -
-14. InTriggerArea [scp-condition] 165 uses | 0x514bd0 | initializer 0x52d0b0
-15. GotLocator [scp-condition] 157 uses | 0x514ae0 | initializer -
-16. SetSide [scp-action] 156 uses | 0x444940 | initializer -
-17. KeepWeaponOut [scp-action] 154 uses | 0x44ef00 | initializer -
-18. ObstacleAtStart [scp-condition] 153 uses | 0x440910 | initializer 0x4408b0
-19. SetInvulnerable [scp-action] 145 uses | 0x449440 | initializer -
-20. CameraCut [scp-action] 142 uses | 0x4509d0 | initializer -
+ 1. GoToLocator [scp-action] 516 uses | 0x536700 | initializer -
+ 2. EitherPlayerInTriggerArea [scp-condition] 386 uses | 0x515070 | initializer 0x52d160
+ 3. FollowPlayer [scp-action] 325 uses | 0x452570 | initializer -
+ 4. ActivateEffect [git-action] 277 uses | 0x464360 | initializer -
+ 5. EngageOpponent [scp-action] 263 uses | 0x447f00 | initializer -
+ 6. SetLocator [scp-action] 222 uses | 0x445cf0 | initializer -
+ 7. PlaySpecial [git-action] 219 uses | 0x465720 | initializer -
+ 8. FacePlayer [scp-action] 210 uses | 0x515ca0 | initializer -
+ 9. SnapToLocator [scp-action] 186 uses | 0x446060 | initializer -
+10. ObstacleAtEnd [scp-condition] 178 uses | 0x440940 | initializer 0x4408b0
+11. DontPush [scp-action] 177 uses | 0x4497b0 | initializer -
+12. InTriggerArea [scp-condition] 165 uses | 0x514bd0 | initializer 0x52d0b0
+13. GotLocator [scp-condition] 157 uses | 0x514ae0 | initializer -
+14. SetSide [scp-action] 156 uses | 0x444940 | initializer -
+15. KeepWeaponOut [scp-action] 154 uses | 0x44ef00 | initializer -
+16. ObstacleAtStart [scp-condition] 153 uses | 0x440910 | initializer 0x4408b0
+17. SetInvulnerable [scp-action] 145 uses | 0x449440 | initializer -
+18. CameraCut [scp-action] 142 uses | 0x4509d0 | initializer -
+19. PlayerInTriggerArea [scp-condition] 141 uses | 0x514fb0 | initializer 0x52d160
+20. PlayObstacle [git-action] 139 uses | 0x465590 | initializer -
 
 EXACT SHARED HANDLERS
 0x440940: ObstacleAtEnd [scp-condition] 0x440940 178 uses (dispatch-only; init 0x4408b0); SpecialAtEnd [scp-condition] 0x440940 6 uses (dispatch-only; init 0x4408e0)
@@ -64,10 +64,8 @@ Trigger mask family: 3 names / 528 uses
 Observed shared initializer 0x52d160 links all three conditions. Check bit-index/shift ABI and both player slots before extending to the global trigger updater.
 Gizmo endpoint and playback cluster: 8 names / 864 uses
 Three exact shared handlers and established registry/animation callback boundaries provide reuse. Distinct obstacle versus special initializers must remain explicit.
-Locator, movement and opponent controllers: 7 names / 2256 uses
+Locator, movement and opponent controllers: 6 names / 1722 uses
 High aggregate use, but deeper runtime dependencies. Split lookup/argument contracts from motion, navigation and target-lifecycle effects.
-Spawn lifecycle: 1 names / 653 uses
-CreateCreatures remains uncontracted. Kill has an externally owned bounded dispatch contract; downstream death and parts effects remain open.
 
 ALL NAMES WITHOUT A NATIVE BINDING
 SetDefensive [scp-action] 37 uses | reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/DARTHMAUL.SCP:160
@@ -111,7 +109,10 @@ ThrowThermal [scp-action] 1 uses | reverse-engineering/extracted/LEVELS/EPISODE_
 
 COMPLETED SINCE ORIGINAL PRIORITIZATION
 Six compact conditions: 1,888 uses, gameplay-compact-condition-contract.json.
-Kill: 202 uses, 6,920 external combat comparisons; native-combat-kill.json. These checks are excluded from gameplay totals. Downstream death/parts behavior remains external.
+CreateCreatures: 653 uses, bounded spawn orchestration and world/effect services; gameplay-createcreatures-contract.json.
+Kill: 202 uses, 7064 externally owned checks; reverse-engineering/reports/native-combat-kill.json. Excluded from gameplay totals. Bounded command selection and dispatch only; name/reference/numeric services and downstream parts/death effects remain explicit boundaries.
+CnxController: 534 uses, 16443 externally owned checks; reverse-engineering/reports/native-connections-contract.json. Excluded from gameplay totals. Bounded command parsing, constructor, connection matching, pool/list operations, frame-mask building and controller update. World target/path bindings and generic gizmo-output callbacks are explicit adapters; no live pathfinder or locomotion.
+Eight pool-sequence aggregate checks overlap their underlying 528 pool checks; this external total is not an independent-case count and is excluded from gameplay totals.
 
 LIMITS
 A use count measures preserved authored occurrences, including alternate files; it is not execution frequency or gameplay importance.

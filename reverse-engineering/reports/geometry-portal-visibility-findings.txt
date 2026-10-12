@@ -1,0 +1,62 @@
+Original PC portal room-to-instance visibility
+
+The original functions0x600bd0,0x600be0,0x600c60,0x600cb0 and0x600d00
+were replayed with their original geometry predicates0x5d94a0,0x5d9580,
+0x5d9770. Predicate hooks count entries only; no return values are replaced.
+The report geometry-portal-visibility-native-validation.json records all results.
+
+Coverage:6,448 authored propagation cases cover all403 rooms in60 PORT scenes,
+38,680 authored room-to-instance membership references, four prepared clip sets
+and four flag/override/cache modes. All these scenes use BNDS0x80000001 and
+display mode0x4000: bounds are32-byte center/extent records. Alternate
+sphere/min-max storage is tested with1,000 explicitly synthetic cases. Another
+288 tangent/empty/tiny-coefficient predicate cases and40 bitset/legacy flag
+initialization/unclipped-room cases pass. There are zero mismatches.
+The original center/extent predicate executes250,232 times, sphere1,047 times,
+and min/max262 times, including direct boundary calls.
+
+Observed native contracts
+0x600bd0 assigns global0x280a2f0 to GSNH+0x13c. Modern clear/set helpers write
+exactly625 bytes (5000 bits), independent of scene instance count. Buffer
+canaries remain intact. The legacy branch changes only bit4 in flags+0x44 of
+80-byte instances, retaining every other flag. Root-room0x600be0 marks all
+members unconditionally. IDs and counts must be valid signed16 values.
+
+Clipped-room0x600d00 first skips an already visible bit, then accepts an override
+bit at display+0x88 before checking flags. With display+0x74 bit0x4000 set,
+instance flag1 is required; flag8 bypasses geometry; otherwise center/extent
+bounds must pass0x5d9770. In alternate mode, flag1 is not required; flag8 still
+bypasses geometry; sphere result1 accepts, result2 refines with min/max bounds.
+Both branches consume display+0x48 flag bytes. The helper's apparent null-display
+condition is not safe null support: later loads dereference that same pointer.
+The portable clipped-room helper therefore covers nonnull display scenes only.
+
+Sphere classification tests prepared planes plus the extra global camera plane.
+It rejects distance < -radius; full acceptance requires distance > radius for
+every plane; tangency gives partial2. Center/extent classification does not test
+that extra camera plane, rejects strictly below negative support radius, and
+accepts tangency. Min/max uses eight corners with distance >=0 inside, returning
+0 for all-eight-outside any plane,1 for all-inside, otherwise2. Exact software
+x87 intermediates plus the observed float32 stores preserve tiny authored
+coefficients. All finite inputs are bounded; malformed indices/negative extents
+are rejected by portable adapters rather than reproducing unsafe native reads.
+
+Portable source
+reconstructed/geometry/PortalVisibility.cs has seven explicit native mappings.
+It compiles with the other geometry modules and shared AnimationPlayback.cs /
+CharacterContexts.cs exact arithmetic. Pointer attachment0x600bd0 is verified,
+but not counted as a portable source helper. The authored replay harness also
+compiles. Its compact shared-scene binary contains6,448 cases in1,156,114 bytes;
+expected hashes come directly from original625-byte outputs. The generator is
+tools/geometry-portal-visibility-check.py; ordinary optional --harness/--compare
+arguments support later verification. Managed execution was not attempted here:
+the existing Windows Access denied limitation remains, so C# equivalence is not
+claimed. Synthetic alternate-mode and initializer checks are currently native
+versus Python, separately from the prepared authored managed fixture suite.
+
+Boundary still open
+These consumers close the previously supplied per-room visibility bit writes.
+They do not reconstruct recursive0x5ee940 control, allocator/child volumes,
+screen projection/intersection, portal activation, grid/tree visibility,
+camera production or GPU pixels. Clip planes in these tests are explicit
+prepared fixtures, never labelled as recovered child volumes.

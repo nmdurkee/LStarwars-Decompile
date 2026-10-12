@@ -1,13 +1,13 @@
 Recovered.Gameplay
 ==================
 
-FlowRuntime.cs, SpecialGizmo.cs, ScriptRuntime.cs, Messages.cs, StateControl.cs, Visibility.cs and CompactConditions.cs
+FlowRuntime.cs, SpecialGizmo.cs, ScriptRuntime.cs, Messages.cs, StateControl.cs, Visibility.cs, CompactConditions.cs and CreateCreatures.cs
 are handwritten, dependency-free C# reconstructions
 of bounded behavior established from the original PC code. They are not original
 developer source and do not form a complete game. All compile with C# 5.
 
 Build from the workspace (PowerShell):
-  & 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' /nologo /target:library '/out:reverse-engineering\reconstructed\gameplay\Recovered.Gameplay.dll' '.\reverse-engineering\reconstructed\gameplay\FlowRuntime.cs' '.\reverse-engineering\reconstructed\gameplay\SpecialGizmo.cs' '.\reverse-engineering\reconstructed\gameplay\ScriptRuntime.cs' '.\reverse-engineering\reconstructed\gameplay\Messages.cs' '.\reverse-engineering\reconstructed\gameplay\StateControl.cs' '.\reverse-engineering\reconstructed\gameplay\Visibility.cs' '.\reverse-engineering\reconstructed\gameplay\CompactConditions.cs'
+  & 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' /nologo /target:library '/out:reverse-engineering\reconstructed\gameplay\Recovered.Gameplay.dll' '.\reverse-engineering\reconstructed\gameplay\FlowRuntime.cs' '.\reverse-engineering\reconstructed\gameplay\SpecialGizmo.cs' '.\reverse-engineering\reconstructed\gameplay\ScriptRuntime.cs' '.\reverse-engineering\reconstructed\gameplay\Messages.cs' '.\reverse-engineering\reconstructed\gameplay\StateControl.cs' '.\reverse-engineering\reconstructed\gameplay\Visibility.cs' '.\reverse-engineering\reconstructed\gameplay\CompactConditions.cs' '.\reverse-engineering\reconstructed\gameplay\CreateCreatures.cs'
 
 The core can also be compiled with a modern C# compiler or included as source in a
 later Unity project. It has no Unity API dependency and launches no game or process.
@@ -132,3 +132,21 @@ Compiled harness: tools/gameplay-compact-condition-portable-verify.cs, public
 GameplayCompactConditionVerify.Main. Its first argument is
 reports/gameplay-compact-condition-native-fixtures.json; second is the desired
 JSON comparison output path. Compilation passed; managed execution is pending.
+
+CreateCreatures spawn orchestration
+----------------------------------
+CreateCreatures.cs implements the ordered raw-token parser, grouped/ungrouped
+spawn attempts, argument bundles, ordinary actor field updates and effect dispatch
+order. SpawnServices supplies world/type/candidate lookup, selection, formation,
+allocation, angle lookup and downstream physical effects. Successful ZipUp setup
+is delegated and not verified. These are service contracts, not a game runtime.
+
+The original-PC suite tools/gameplay-createcreatures-verify.py passes 15,239 checks
+in 2,177 cases, covering all 653 authored occurrences in three allocation scenarios.
+It preserves unknown source tokens and the original accumulating/overwriting rules.
+See reports/gameplay-createcreatures-contract.json for limits and exact evidence.
+
+The comparison harness tools/gameplay-createcreatures-portable-verify.cs exposes
+GameplayCreateCreaturesVerify.Main with fixture JSON and output JSON path arguments.
+Use reports/gameplay-createcreatures-native-fixtures.json as its input. Core and
+harness compilation passed; compiled differential execution remains pending.

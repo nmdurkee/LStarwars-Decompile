@@ -9,17 +9,19 @@ Uses the installed Framework compiler; no package download or original game link
 
 VERIFY
   & .\reconstructed\verify.ps1 -Module all
-Or select combat, combat-kill, animation, gameplay, gameplay-message, gameplay-state, gameplay-visibility, gameplay-conditions, input, frame, geometry, geometry-rooms.
+Or select combat, combat-kill, animation, gameplay, gameplay-message, gameplay-state, gameplay-visibility, gameplay-conditions, gameplay-createcreatures, input, frame, geometry, geometry-rooms, geometry-visibility, geometry-volumes, navigation.
 The script stops on failure and writes module reports; it does not change security settings.
 Current environment rejects generated EXE launch with Windows Access denied. Compilation succeeds, but extended compiled-source comparisons remain pending.
 
 MODULES
 combat: hit flags/protection/shields/health commands, selected hit guards, currency deduction, heart-drop decisions and the Kill command with explicit death/parts dispatch boundaries.
-animation: object/context projections, reset/respawn branches, selectors, clip end frames and full bounded animation packet updates and idle scheduling; shared finite x87 arithmetic.
-gameplay: puzzle graphs/timers/random/save, SCP state scheduling, messages, SetScriptState and visibility commands plus six compact conditions with explicit world adapters.
-geometry: material UV state, CPU submission/LOD/fade/sort and prepared frustum/room/portal predicates and room selection. Uses shared animation arithmetic.
+animation: object/context projections, reset/respawn branches, selectors, clip end frames, bounded animation packet updates, idle scheduling, compact controls and event-suppressed player advancement; shared finite x87 arithmetic.
+gameplay: puzzle graphs/timers/random/save, SCP state scheduling, messages, SetScriptState and visibility commands, six compact conditions and CreateCreatures with explicit world/spawn/effect adapters.
+geometry: material UV state, CPU submission/LOD/fade/sort, prepared frustum/room/portal predicates, room selection, portal visibility propagation and bounded child-volume construction. Full recursive traversal remains incomplete.
 frame: transition state helpers and the recovered level-transition tail. Full frame dispatcher is not implemented.
 input: built-in Xbox mapping, stick transform, both deadzones, whole generic pad state and camera/socket-relative movement angle. No VR binding is implemented.
+
+navigation: CnxController parsing, route flag dialects, locator/connection lookup, fixed-capacity controller pool, frame masks and ordered state gates with explicit world/target services.
 
 PROVENANCE AND LIMITS
 source-manifest.json maps each method to original entrypoints and precise scope.

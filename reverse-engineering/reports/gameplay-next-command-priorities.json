@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-10-12T19:43:14.092969+00:00",
-  "auditMode": "Refreshed from the semantic ledger after six compact conditions and the externally owned bounded Kill contract. No new native implementation or execution occurs in this prioritization refresh.",
+  "generatedAt": "2026-10-12T20:19:41.242190+00:00",
+  "auditMode": "Refreshed from the semantic ledger after the currently established bounded command contracts. No new native implementation or execution occurs in this prioritization refresh.",
   "inputs": [
     {
       "file": "reverse-engineering/reports/gameplay-command-semantic-coverage.json",
-      "sha256": "150faa33e98d116b94a48f9d4dd53d30abecd98e67dcac7f4b835cbe94f70d5b"
+      "sha256": "61ed6382e4b23478a21fc7a5457b074f704214f456a3dd2c77e4b03bd876de40"
     },
     {
       "file": "reverse-engineering/reports/gameplay-dispatch-contract.json",
       "sha256": "25c65f4b1c1648b8cd0d84b6b58caedb8ba79c883b10dc433036b923fcc01ae7"
     },
     {
-      "file": "reverse-engineering/reports/native-combat-kill.json",
-      "sha256": "3e594ae72ee6eb167c86fdbe927b505abd6a683a841d05b36aedb619e2ef246a"
+      "file": "reverse-engineering/reports/gameplay-native-index.json",
+      "sha256": "dfc366a7461c5b6d962e63ea83d5f2628ee1fa8a111fd8ac2c7e57dc44848344"
     }
   ],
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "counts": {
     "catalogNames": 434,
-    "boundedContractNames": 25,
-    "uncontractedNames": 409,
-    "uncontractedSourceUses": 11937,
-    "nativeBoundButUncontractedNames": 371,
+    "boundedContractNames": 27,
+    "uncontractedNames": 407,
+    "uncontractedSourceUses": 10750,
+    "nativeBoundButUncontractedNames": 369,
     "missingNativeBindingNames": 38,
     "missingNativeBindingSourceUses": 227,
-    "top20SourceUses": 5218,
+    "top20SourceUses": 4311,
     "top20MissingBindings": 0,
     "sharedHandlerClusters": 3,
     "sharedHandlerSourceUses": 506,
@@ -33,212 +33,6 @@
   },
   "countPolicy": "A recovered dispatch pointer is not a semantic implementation. Only explicitly established entrypoint contracts are marked bounded-native-contract. Helper/animation/character-parser evidence is not promoted to unrelated command semantics. Source uses count this source-preserving catalog, including shipped alternate files; counts may differ from filtered literal-argument fixture datasets.",
   "top20": [
-    {
-      "kind": "scp-action",
-      "name": "CreateCreatures",
-      "spellings": [
-        "CreateCreatures"
-      ],
-      "sourceUses": 653,
-      "status": "dispatch-only",
-      "address": "0x456c10",
-      "table": "scp-game-actions",
-      "tableIndex": 77,
-      "tableEntryVa": "0x7f73fc",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LEVEL.SCP",
-          "line": 43,
-          "state": "RandomSpawn",
-          "text": "CreateCreatures \"type=DroidStarfighter\" \"script=launch_tie\" \"locator_set=rand\" \"dont_set_on_surface\" \"off_screen\" \"addtoset=1\" \"yoffset=-10\"",
-          "args": [
-            "type=DroidStarfighter",
-            "script=launch_tie",
-            "locator_set=rand",
-            "dont_set_on_surface",
-            "off_screen",
-            "addtoset=1",
-            "yoffset=-10"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LEVEL.SCP",
-          "line": 54,
-          "state": "Launch1",
-          "text": "CreateCreatures \"type=DroidStarfighter\" \"script=launch_tie\" \"locator=locator_1\" \"dont_set_on_surface\" \"addtoset=1\" \"yoffset=-10\"",
-          "args": [
-            "type=DroidStarfighter",
-            "script=launch_tie",
-            "locator=locator_1",
-            "dont_set_on_surface",
-            "addtoset=1",
-            "yoffset=-10"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LEVEL.SCP",
-          "line": 64,
-          "state": "Launch2",
-          "text": "CreateCreatures \"type=DroidStarfighter\" \"script=launch_tie\" \"locator=locator_2\" \"dont_set_on_surface\" \"addtoset=1\" \"yoffset=-10\"",
-          "args": [
-            "type=DroidStarfighter",
-            "script=launch_tie",
-            "locator=locator_2",
-            "dont_set_on_surface",
-            "addtoset=1",
-            "yoffset=-10"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
-      "corpusSha256": "70b1ee8fad28eca85444ae29df65eed40933989375716b40337f8f1e042ed2fd",
-      "pseudocodeLines": 768,
-      "directCalleeTokens": [
-        "FUN_004302e0",
-        "FUN_0043d890",
-        "FUN_00440030",
-        "FUN_00440120",
-        "FUN_00440290",
-        "FUN_00440470",
-        "FUN_00440640",
-        "FUN_00449e60",
-        "FUN_00449ee0",
-        "FUN_0044d870",
-        "FUN_00456c10",
-        "FUN_00488730",
-        "FUN_00491800",
-        "FUN_0049d4d0",
-        "FUN_0049d520",
-        "FUN_004f1f10",
-        "FUN_004f1ff0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_005147c0",
-        "FUN_00517fd0",
-        "FUN_0051ac10",
-        "FUN_0051ac70",
-        "FUN_0051fe60",
-        "FUN_0052c790",
-        "FUN_00547f30",
-        "FUN_0058d430",
-        "FUN_005b3620",
-        "FUN_005b37d0",
-        "FUN_005b9dd0",
-        "FUN_005b9e90",
-        "FUN_005be2d0",
-        "FUN_005c0240",
-        "FUN_00681f40",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 35,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Large spawning action; separate token/selection contract from allocation, registration, spawn placement and lifecycle adapters.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_456c10.c",
-          "line": 348,
-          "excerpt": "fVar11 = (float10)FUN_005147c0(local_2a0,"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 1
-    },
-    {
-      "kind": "scp-action",
-      "name": "CnxController",
-      "spellings": [
-        "CnxController"
-      ],
-      "sourceUses": 534,
-      "status": "dispatch-only",
-      "address": "0x44d900",
-      "table": "scp-game-actions",
-      "tableIndex": 119,
-      "tableEntryVa": "0x7f75f4",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LEVEL.SCP",
-          "line": 5,
-          "state": "Base",
-          "text": "CnxController \"from=door3_in\" \"to=door3_out\" \"off_flag=BLOCK\" \"gizmo=obstacle9\" \"checkvisible\" \"on_frames=1TO1\" \"bothways\"",
-          "args": [
-            "from=door3_in",
-            "to=door3_out",
-            "off_flag=BLOCK",
-            "gizmo=obstacle9",
-            "checkvisible",
-            "on_frames=1TO1",
-            "bothways"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LEVEL.SCP",
-          "line": 6,
-          "state": "Base",
-          "text": "CnxController \"from=door5_in\" \"to=door5_out\" \"off_flag=BLOCK\" \"gizmo=obstacle10\" \"checkvisible\" \"on_frames=1TO1\" \"bothways\"",
-          "args": [
-            "from=door5_in",
-            "to=door5_out",
-            "off_flag=BLOCK",
-            "gizmo=obstacle10",
-            "checkvisible",
-            "on_frames=1TO1",
-            "bothways"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP",
-          "line": 7,
-          "state": "Base",
-          "text": "CnxController \"from=block1_a\" \"to=block1_b\" \"on_flag=BLOCK\" \"obj=junk_02\" \"checkvisible\" \"on_frames=1TOlastframe\" \"bothways\"",
-          "args": [
-            "from=block1_a",
-            "to=block1_b",
-            "on_flag=BLOCK",
-            "obj=junk_02",
-            "checkvisible",
-            "on_frames=1TOlastframe",
-            "bothways"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44d900.c",
-      "corpusSha256": "04318e065b9a283a6571ae53c9c1584830d0b5901081302dd9d7835311232e14",
-      "pseudocodeLines": 282,
-      "directCalleeTokens": [
-        "FUN_0043cca0",
-        "FUN_0043cfb0",
-        "FUN_0044d870",
-        "FUN_0044d900",
-        "FUN_004f1f10",
-        "FUN_004f1ff0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_005147c0",
-        "FUN_0051ad20",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 11,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Connection-flag and controller action; reuse the existing navigation carrier evidence, then verify mutations and caller propagation.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44d900.c",
-          "line": 173,
-          "excerpt": "uVar5 = FUN_0044d870();"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 2
-    },
     {
       "kind": "scp-action",
       "name": "GoToLocator",
@@ -308,7 +102,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 3
+      "rankBySourceUse": 1
     },
     {
       "kind": "scp-condition",
@@ -378,7 +172,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 4
+      "rankBySourceUse": 2
     },
     {
       "kind": "scp-action",
@@ -440,7 +234,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 5
+      "rankBySourceUse": 3
     },
     {
       "kind": "git-action",
@@ -513,7 +307,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 6
+      "rankBySourceUse": 4
     },
     {
       "kind": "scp-action",
@@ -593,7 +387,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 7
+      "rankBySourceUse": 5
     },
     {
       "kind": "scp-action",
@@ -664,7 +458,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 8
+      "rankBySourceUse": 6
     },
     {
       "kind": "git-action",
@@ -738,7 +532,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 9
+      "rankBySourceUse": 7
     },
     {
       "kind": "scp-action",
@@ -803,7 +597,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 10
+      "rankBySourceUse": 8
     },
     {
       "kind": "scp-action",
@@ -877,7 +671,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 11
+      "rankBySourceUse": 9
     },
     {
       "kind": "scp-condition",
@@ -951,7 +745,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 12
+      "rankBySourceUse": 10
     },
     {
       "kind": "scp-action",
@@ -1013,7 +807,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 13
+      "rankBySourceUse": 11
     },
     {
       "kind": "scp-condition",
@@ -1075,7 +869,7 @@
         "FUN_00514bd0"
       ],
       "directCalleeTokenCount": 1,
-      "rankBySourceUse": 14
+      "rankBySourceUse": 12
     },
     {
       "kind": "scp-condition",
@@ -1134,7 +928,7 @@
         "FUN_00514ae0"
       ],
       "directCalleeTokenCount": 1,
-      "rankBySourceUse": 15
+      "rankBySourceUse": 13
     },
     {
       "kind": "scp-action",
@@ -1192,7 +986,7 @@
         "FUN_005b3800"
       ],
       "directCalleeTokenCount": 6,
-      "rankBySourceUse": 16
+      "rankBySourceUse": 14
     },
     {
       "kind": "scp-action",
@@ -1243,7 +1037,7 @@
         "FUN_004f8b10"
       ],
       "directCalleeTokenCount": 3,
-      "rankBySourceUse": 17
+      "rankBySourceUse": 15
     },
     {
       "kind": "scp-condition",
@@ -1307,7 +1101,7 @@
         "FUN_0055a1b0"
       ],
       "directCalleeTokenCount": 2,
-      "rankBySourceUse": 18
+      "rankBySourceUse": 16
     },
     {
       "kind": "scp-action",
@@ -1358,7 +1152,7 @@
         "FUN_004f8b10"
       ],
       "directCalleeTokenCount": 3,
-      "rankBySourceUse": 19
+      "rankBySourceUse": 17
     },
     {
       "kind": "scp-action",
@@ -1434,6 +1228,133 @@
         "FUN_006e6b90"
       ],
       "directCalleeTokenCount": 13,
+      "rankBySourceUse": 18
+    },
+    {
+      "kind": "scp-condition",
+      "name": "PlayerInTriggerArea",
+      "spellings": [
+        "PlayerInTriggerArea"
+      ],
+      "sourceUses": 141,
+      "status": "dispatch-only",
+      "address": "0x514fb0",
+      "table": "scp-builtin-conditions",
+      "tableIndex": 19,
+      "tableEntryVa": "0x80184c",
+      "tableThirdWord": "0x52d160",
+      "initializerCandidateAddress": "0x52d160",
+      "initializerQualification": "Condition-table third word points to available native corpus; validate ABI and initialization contract before treating the condition as complete.",
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
+          "line": 22,
+          "state": "Base",
+          "text": "if PlayerInTriggerArea \"Upper\" == 1 and",
+          "args": [
+            "Upper",
+            "1",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
+          "line": 47,
+          "state": "GoToRightBox",
+          "text": "if PlayerInTriggerArea \"Upper\" == 0 and",
+          "args": [
+            "Upper",
+            "0",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
+          "line": 59,
+          "state": "OnRightBox",
+          "text": "if PlayerInTriggerArea \"Upper\" == 0 and",
+          "args": [
+            "Upper",
+            "0",
+            "and"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_514fb0.c",
+      "corpusSha256": "16f24982f27dd2c550e2ae762d2bc29f9323d8a996e3beabec0410f009a00b77",
+      "pseudocodeLines": 24,
+      "directCalleeTokens": [
+        "FUN_00514fb0"
+      ],
+      "directCalleeTokenCount": 1,
+      "rankBySourceUse": 19
+    },
+    {
+      "kind": "git-action",
+      "name": "PlayObstacle",
+      "spellings": [
+        "PlayObstacle"
+      ],
+      "sourceUses": 139,
+      "status": "dispatch-only",
+      "address": "0x465590",
+      "table": "git-actions",
+      "tableIndex": 14,
+      "tableEntryVa": "0x7f8b88",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "initializerQualification": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_B/GUNGAN_B.GIT",
+          "line": 150,
+          "node": 8,
+          "text": "PlayObstacle \"name=obstacle4\" \"FORWARD\"",
+          "args": [
+            "name=obstacle4",
+            "FORWARD"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/DOOKU_B.GIT",
+          "line": 605,
+          "node": 37,
+          "text": "PlayObstacle \"name=PLATCHAIN_1\" \"FORWARD\" \"STAYOPEN\"",
+          "args": [
+            "name=PLATCHAIN_1",
+            "FORWARD",
+            "STAYOPEN"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/DOOKU_B.GIT",
+          "line": 618,
+          "node": 38,
+          "text": "PlayObstacle \"name=PLATCHAIN_2\" \"FORWARD\" \"STAYOPEN\"",
+          "args": [
+            "name=PLATCHAIN_2",
+            "FORWARD",
+            "STAYOPEN"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_465590.c",
+      "corpusSha256": "f640a023adada16a509544d5f75ac4c64b231dbcaee7fd9003167b988f562629",
+      "pseudocodeLines": 87,
+      "directCalleeTokens": [
+        "FUN_00465590",
+        "FUN_004f1ff0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_00557960",
+        "FUN_005579d0",
+        "FUN_00558970",
+        "FUN_00558990",
+        "FUN_0055a020"
+      ],
+      "directCalleeTokenCount": 9,
       "rankBySourceUse": 20
     }
   ],
@@ -9653,14 +9574,13 @@
       "addresses": [
         "0x452570",
         "0x447f00",
-        "0x44d900",
         "0x536700",
         "0x446060",
         "0x515ca0",
         "0x445cf0"
       ],
-      "names": 7,
-      "sourceUses": 2256,
+      "names": 6,
+      "sourceUses": 1722,
       "members": [
         {
           "kind": "scp-action",
@@ -9673,12 +9593,6 @@
           "name": "EngageOpponent",
           "address": "0x447f00",
           "sourceUses": 263
-        },
-        {
-          "kind": "scp-action",
-          "name": "CnxController",
-          "address": "0x44d900",
-          "sourceUses": 534
         },
         {
           "kind": "scp-action",
@@ -9706,23 +9620,6 @@
         }
       ],
       "reason": "High aggregate use, but deeper runtime dependencies. Split lookup/argument contracts from motion, navigation and target-lifecycle effects."
-    },
-    {
-      "label": "Spawn lifecycle",
-      "addresses": [
-        "0x456c10"
-      ],
-      "names": 1,
-      "sourceUses": 653,
-      "members": [
-        {
-          "kind": "scp-action",
-          "name": "CreateCreatures",
-          "address": "0x456c10",
-          "sourceUses": 653
-        }
-      ],
-      "reason": "CreateCreatures remains uncontracted. Kill has an externally owned bounded dispatch contract; downstream death and parts effects remain open."
     }
   ],
   "parserWarnings": {
@@ -11094,6 +10991,23 @@
         }
       ],
       "reason": "Highest expected bounded-fixture yield. Validate native value/sentinel behavior plus condition initializer, not just the small reader body."
+    },
+    {
+      "label": "Spawn lifecycle",
+      "addresses": [
+        "0x456c10"
+      ],
+      "names": 1,
+      "sourceUses": 653,
+      "members": [
+        {
+          "kind": "scp-action",
+          "name": "CreateCreatures",
+          "address": "0x456c10",
+          "sourceUses": 653
+        }
+      ],
+      "reason": "CreateCreatures remains uncontracted. Kill has an externally owned bounded dispatch contract; downstream death and parts effects remain open."
     }
   ],
   "externalCompletedContracts": [
@@ -11103,9 +11017,21 @@
       "address": "0x445230",
       "sourceUses": 202,
       "report": "reverse-engineering/reports/native-combat-kill.json",
-      "checks": 6920,
+      "checks": 7064,
       "includedInGameplayCheckTotals": false,
-      "scope": "Bounded selection and dispatch; world/name/reference/numeric services and parts/death effects retain explicit boundaries."
+      "scope": "Bounded command selection and dispatch only; name/reference/numeric services and downstream parts/death effects remain explicit boundaries.",
+      "countQualification": null
+    },
+    {
+      "name": "CnxController",
+      "kind": "scp-action",
+      "address": "0x44d900",
+      "sourceUses": 534,
+      "report": "reverse-engineering/reports/native-connections-contract.json",
+      "checks": 16443,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Bounded command parsing, constructor, connection matching, pool/list operations, frame-mask building and controller update. World target/path bindings and generic gizmo-output callbacks are explicit adapters; no live pathfinder or locomotion.",
+      "countQualification": "Eight pool-sequence aggregate checks overlap their underlying 528 pool checks; this external total is not an independent-case count and is excluded from gameplay totals."
     }
   ]
 }

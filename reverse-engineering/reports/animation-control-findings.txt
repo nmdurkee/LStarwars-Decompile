@@ -1,0 +1,81 @@
+PC animation control and compact packet recovery
+===============================================
+
+AnimationControl.cs reconstructs five complete helpers and one bounded caller:
+  0x62efb0 -> ExpandMini
+  0x62f030 -> CompactFull
+  0x62f0a0 -> UpdateMini
+  0x62f100 -> IsBlendingFromTo
+  0x62f1a0 -> CurrentAction
+  0x418ca0 -> AdvancePlayerWithoutEvents (explicit restricted branch)
+
+The compact packet is36 bytes at character object+0x7d0. It stores six float
+timers followed by flags, blending and five signed16-bit action IDs. Expansion
+copies these to the corresponding72-byte full packet, clears all three reverse
+bytes and sets overlay action to-1. Other destination bytes remain unchanged.
+The native wrapper expands, calls the existing full packet update with a ZERO
+backwards multiplier, and compacts. Reverse state therefore does not survive
+across compact updates. Native stack bytes outside the initialized fields were
+varied in12,000 fixtures; no effect on the resulting compact packet was observed.
+
+Animate_CHARACTER0x4a8f20 calls this wrapper for secondary packets at+0x7d0.
+MiniAnimationPacket.FromObject/CopyToObject provide that exact bridge. This is
+not a claim that every character selector or attachment behavior is ported.
+
+The blend predicate checks source and target IDs separately, with-1 excluded.
+An absent model skips availability checks only. CurrentAction returns target
+during a blend and current action otherwise; it never returns the blend source.
+
+The bounded main-player wrapper copies current to previous action (also for
+the secondary packet), applies action substitution+0x3ee/+0x3f0, and preserves
+three early returns for absent models/death state. For the active branch:
+  - A present idle clip selects pad+0x34 movement speed.
+  - Without idle, game-character flag0x100000 selects nonnegative horizontal
+    velocity projected onto object+0xf30/+0xf38; otherwise pad+0x28 is selected.
+  - Object+0xef0 bit0x4000 reverses selected movement.
+  - Frame step is seconds*30; blend step is seconds. Backward rate comes from
+    game-character+0x20. Exact PC x87 intermediate rounding is retained.
+
+Its boundaries are enforced by explicit adapter guards. Callback suppression
+bit0x40000 must be set. Positive-speed special-character override, context45
+time scaling, action95 randomized start and clip flags0x100/0x400/0x800 are
+excluded. Original native weapon and footstep helpers are executed in fixtures
+and take inactive paths. No callbacks were replaced and no native instructions
+were patched. Guard exceptions are host API validation, not native semantics.
+Active definitions must resolve even atdt0: the native weapon consumer still
+dereferences its active definition after a zero-step packet update. The fixture
+explicitly enforces this valid-input condition.
+
+Native-vs-independent-model results:
+  MiniToFull1,200; FullToMini1,200; compact update12,000;
+  blend predicate8,000; current action5,000;
+  complete bounded AnimatePlayer calls6,000;
+  authored compact frames1,440 across Qui-Gon, Yoda and R2-D2 configurations.
+  Total34,840 comparisons, zero mismatches, zero fixture failures.
+
+All conversion/packet bytes and query returns were checked. Main-player cases
+check the complete4,312-byte object, including unchanged nonzero sentinels.
+Authored frames use native-loaded definition bytes and source-hashed shipped
+ANI4/ANI5 headers; the frame/request sequence is an explicit test schedule.
+This does not establish native character-loader or live timing equivalence.
+
+The prepared oracle animation-control-cases.bin.gz is4,154,227 bytes compressed
+(61,230,540 uncompressed). SHA256:
+8612eae1c9a838629df9a40553d5231252ccd44698c26c8a49cc7df6a347ee7e
+It contains all34,840 before/after cases, arguments and expected returns, with
+a complete independent schema/length/trailer check in the contract report.
+
+The animation library and managed differential harness compile with AnyCPU.
+Managed execution is still denied by Windows; no managed behavioral pass or
+security-policy workaround is claimed. The combined animation source ledger
+now maps24 native entrypoints;151,380 managed oracle cases are prepared.
+
+Reproduce:
+  python tools/animation-control-native-verify.py
+  python tools/animation-control-evidence.py
+  python tools/animation-source-function-map.py
+  powershell -File reconstructed/animation/build.ps1 -CompileOnly
+
+Machine-readable instruction evidence, hashes, layouts, calling conventions,
+compact-oracle validation and boundaries are in animation-control-contract.json.
+The full native report retains authored provenance and exact counts.

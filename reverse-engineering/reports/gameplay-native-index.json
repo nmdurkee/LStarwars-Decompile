@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-10-12T19:46:08.053Z",
+  "generatedAt": "2026-10-12T20:19:40.829Z",
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "suites": [
+    {
+      "name": "CreateCreatures parser and spawn orchestration",
+      "report": "reverse-engineering/reports/gameplay-createcreatures-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-createcreatures-verify.py",
+      "method": "original PC execution with explicit world/allocation/effect adapters",
+      "checks": 15239,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "World/name/type/candidate/formation/allocation/effect calls are explicit fixture adapters. Original parser, loop, field mutations, scalar evaluator, RNG and cardinal vector helpers execute unchanged.",
+        "Zip-up allocation returns null in these fixtures; successful zip-up setup is external, not verified or implemented.",
+        "Actor comparisons cover documented fields, not every byte or downstream effects.",
+        "Synthetic locator bindings are not the actual level world or source reachability.",
+        "Native negative-count loops, stack overflow inputs, nonfinite numeric operands and full hub loader behavior are outside the bounded core.",
+        "Compiled C# differential execution remains pending under the Windows execution denial."
+      ]
+    },
     {
       "name": "save decoder",
       "report": "reverse-engineering/reports/gameplay-save-format-tests.json",
@@ -215,8 +232,8 @@
     }
   ],
   "totals": {
-    "allChecks": 1056707,
-    "originalPcChecks": 1036255,
+    "allChecks": 1071946,
+    "originalPcChecks": 1051494,
     "mismatches": 0
   },
   "contracts": [
@@ -229,7 +246,8 @@
     "reverse-engineering/reports/gameplay-message-contract.json",
     "reverse-engineering/reports/gameplay-state-command-contract.json",
     "reverse-engineering/reports/gameplay-visibility-contract.json",
-    "reverse-engineering/reports/gameplay-compact-condition-contract.json"
+    "reverse-engineering/reports/gameplay-compact-condition-contract.json",
+    "reverse-engineering/reports/gameplay-createcreatures-contract.json"
   ],
   "data": [
     "reverse-engineering/reports/gameplay-coverage.json",
@@ -269,6 +287,27 @@
         "Instruction audit corrects misleading pseudocode: single and pool paths all reject unordered NaN spawn timers when check_if_dead is enabled.",
         "Authored commands execute against documented synthetic world bindings, not their live levels.",
         "Managed opponent and pool references assume stable canonical bindings during service callbacks; callback mutation of native weak slots or pool membership is outside the contract."
+      ]
+    },
+    {
+      "name": "CnxController",
+      "address": "0x44d900",
+      "report": "reverse-engineering/reports/native-connections-contract.json",
+      "tests": "reverse-engineering/reports/native-connections-tests.json",
+      "source": "reverse-engineering/reconstructed/navigation/ConnectionControllers.cs",
+      "owner": "navigation",
+      "checks": 16443,
+      "checksExcludingPoolReplayAggregates": 16435,
+      "sourceUses": 534,
+      "includedInGameplayTotals": false,
+      "countQualification": "Eight pool-sequence aggregate checks overlap their underlying 528 pool checks; this external total is not an independent-case count and is excluded from gameplay totals.",
+      "scope": "Bounded command parsing, constructor, connection matching, pool/list operations, frame-mask building and controller update. World target/path bindings and generic gizmo-output callbacks are explicit adapters; no live pathfinder or locomotion.",
+      "limits": [
+        "Synthetic world/locator/target bindings, not whole-level reachability.",
+        "Bounded finite numeric fields, valid target pointers, NUL-terminated byte strings and on_frames suffix shorter than native64-byte buffer.",
+        "Update fixtures require end frame>=1 and a nonnull connection; observed invalid fake-ID/null-connection constructor behavior is recorded but not executed in updater.",
+        "No live navigation/pathfinder or character locomotion.",
+        "Compiled portable execution must be reported separately."
       ]
     }
   ],

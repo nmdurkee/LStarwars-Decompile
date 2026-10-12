@@ -1,13 +1,13 @@
 {
-  "updated": "2026-10-12T19:48:09.988026+00:00",
+  "updated": "2026-10-12T20:26:17.945509+00:00",
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "scope": "Every cataloged native entry and its explicit C# mapping/semantic labels. This does not inventory every recovered JavaScript parser or exact original HLSL source artifact.",
   "summary": {
     "recognizedEntries": 14697,
-    "entriesWithPortableMappings": 122,
-    "entriesWithContractLabels": 156,
-    "portableModules": 6,
-    "portableSourceFiles": 21,
+    "entriesWithPortableMappings": 153,
+    "entriesWithContractLabels": 187,
+    "portableModules": 7,
+    "portableSourceFiles": 26,
     "mappedEntriesOutsideCatalog": [],
     "wholeGameBuildable": false,
     "wholeGameEquivalenceEstablished": false
@@ -21,11 +21,17 @@
     "Windows denies newly built managed verifier execution; source compiles, native original-function checks continue."
   ],
   "compilation": {
+    "allManifestHarnessHashesMatchBuild": true,
+    "harnessHashMismatches": [],
+    "buildHarnessCount": 17,
+    "manifestHarnessCount": 17,
+    "libraryHashMatchesBuild": true,
+    "unifiedVerifierHashMatchesBuild": true,
     "report": "reports/reconstructed-build.json",
     "allManifestSourceHashesMatchBuild": true,
     "sourceHashMismatches": [],
-    "buildSourceCount": 21,
-    "manifestSourceCount": 21,
+    "buildSourceCount": 26,
+    "manifestSourceCount": 26,
     "executionStatus": "reports/reconstructed-execution-status.json"
   },
   "functions": [
@@ -1035,9 +1041,26 @@
       "path": "decompiled/corpus-expanded/FUN_407d00.c",
       "evidence": "ev_c99ba83a21253fbea00a1b2af974464e548d813850fcca855330552d9e62c3cd",
       "sha256": "4a42091f771eab4ae5078daab30bfd8767edfd92932b17447f696dc3053c9ba7",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x407d00",
+          "method": "ConnectionFlags.LookupDialect",
+          "coverage": "complete ordered flag lookup for dialect0",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x407d00",
+          "name": "ConnectionFlags.LookupDialect",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x407e20",
@@ -2810,9 +2833,32 @@
       "path": "decompiled/corpus-expanded/FUN_418ca0.c",
       "evidence": "ev_a5c3a3c7ef2e1a12e467fd0202ed50a9ce8374cc5ec0bfb4f993dbf776f2abbe",
       "sha256": "ef3fadb8cfaea0e001fdec366af5cf86e647d15a24b4cd2a9241c83417b5b36c",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "animation",
+          "address": "0x418ca0",
+          "method": "Recovered.Animation.AnimationControl.AdvancePlayerWithoutEvents",
+          "coverage": "bounded complete call: selection callback suppressed, ordinary rate, inactive wake/weapon/footstep effects",
+          "limits": [
+            "Object API flag0x40000 is required; selected action already supplied by caller.",
+            "No special character speed branch, context45 multiplier, action95 randomization or clip flags0x100/0x400/0x800.",
+            "Original effect helpers run their no-op branches in fixtures; effect dispatch remains external.",
+            "Valid active definitions required even atdt0; finite input domain; explicit adapter guards are not native exception semantics."
+          ],
+          "sourceFile": "animation/AnimationControl.cs",
+          "evidence": "reports/animation-control-native-verification.json",
+          "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x418ca0",
+          "name": "Recovered.Animation.AnimationControl.AdvancePlayerWithoutEvents",
+          "evidence": "reports/animation-control-native-verification.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x418fb0",
@@ -3100,7 +3146,7 @@
         {
           "address": "0x41af70",
           "name": "Recovered.Animation.RespawnState.ResetMovesWithoutClips",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-reset-moves-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole function within absent-clip/no-suit/no-companion branch",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -3142,7 +3188,7 @@
         {
           "address": "0x41b420",
           "name": "Recovered.Animation.CharacterContexts.ResetWithoutMoves",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-portable-native-cases.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded resetMoves=0 branch/common tail",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -6072,9 +6118,26 @@
       "path": "decompiled/corpus-expanded/FUN_43cc30.c",
       "evidence": "ev_26d1fac8fd457d7aa06190d117e50b4f3cb6f2e0dd1b5e3302fd798cb5ca6742",
       "sha256": "99644097852ecf9f7aa523c57eb0e06014c6856f6477167f49d17bed25a1661f",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x43cc30",
+          "method": "ConnectionManager.Reset",
+          "coverage": "fixed-capacity manager reset and free-list order; host allocation excluded",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x43cc30",
+          "name": "ConnectionManager.Reset",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x43cca0",
@@ -6082,9 +6145,26 @@
       "path": "decompiled/corpus-expanded/FUN_43cca0.c",
       "evidence": "ev_26d1fac8fd457d7aa06190d117e50b4f3cb6f2e0dd1b5e3302fd798cb5ca6742",
       "sha256": "edf7c741636ac6fef456c7d569afec0567b39620dcc39b17d735ef1199aadde6",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x43cca0",
+          "method": "ConnectionControllers.Create",
+          "coverage": "bounded controller creation with explicit world-target services",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x43cca0",
+          "name": "ConnectionControllers.Create",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x43cf70",
@@ -6092,9 +6172,26 @@
       "path": "decompiled/corpus-expanded/FUN_43cf70.c",
       "evidence": "ev_26d1fac8fd457d7aa06190d117e50b4f3cb6f2e0dd1b5e3302fd798cb5ca6742",
       "sha256": "d716d12fef5c3de3b88a8b020799d5312e907ba160cd854a6daaf3a25195e58e",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x43cf70",
+          "method": "ConnectionManager.Release",
+          "coverage": "valid active controller release and free-list order",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x43cf70",
+          "name": "ConnectionManager.Release",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x43cfb0",
@@ -6102,9 +6199,26 @@
       "path": "decompiled/corpus-expanded/FUN_43cfb0.c",
       "evidence": "ev_26d1fac8fd457d7aa06190d117e50b4f3cb6f2e0dd1b5e3302fd798cb5ca6742",
       "sha256": "cefab0a04f97530ea4da7826d38008c75ae7eadefdd75f4a2ee93e063d27864d",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x43cfb0",
+          "method": "ConnectionControllers.AddFrameRange",
+          "coverage": "inclusive one-based 1024-bit range masks after animation metadata resolution",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x43cfb0",
+          "name": "ConnectionControllers.AddFrameRange",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x43d0c0",
@@ -6112,9 +6226,26 @@
       "path": "decompiled/corpus-expanded/FUN_43d0c0.c",
       "evidence": "ev_26d1fac8fd457d7aa06190d117e50b4f3cb6f2e0dd1b5e3302fd798cb5ca6742",
       "sha256": "3062ac6fdc093f51c1253f9ec578b56074df16a59d0ad3d93ad970f8c4594d3f",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x43d0c0",
+          "method": "ConnectionControllers.Update; ConnectionControllers.IsEnabled",
+          "coverage": "ordered controller activation and connection flags with explicit target projections and gizmo-output service",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x43d0c0",
+          "name": "ConnectionControllers.Update; ConnectionControllers.IsEnabled",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x43d410",
@@ -7172,6 +7303,7 @@
             "Explicit native named resolver boundary; returns the resolved world object or null."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -7201,6 +7333,7 @@
             "Bound object overrides self reference chain; timer update and units remain external."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -7506,6 +7639,7 @@
             "ASCII myset and wrapped integer-prefix selector, restricted to native outputs0..16/-1."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -7545,6 +7679,7 @@
             "Literal/self-set selection and unsigned byte read; host owns count storage and population."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -7724,6 +7859,7 @@
             "Boolean/system, registry and name guards; binds the shared persistent record. Host owns allocation/lifetime."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -7755,6 +7891,7 @@
             "Reads a previously bound record value or returns zero for null."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -8046,6 +8183,7 @@
             "Signed integer converted at SCP float32 storage boundary; host supplies global value."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -9092,6 +9230,7 @@
             "First-call self/group selection, token order and immediate base-script rebind; world registry and named-character callback are explicit adapters."
           ],
           "sourceFile": "gameplay/StateControl.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "5d3989cf50ad8a89c58dae6d9a51d5a4cbaed12724bcb3290a38e2685f3e6781"
         }
       ],
@@ -9635,6 +9774,7 @@
             "Shipped ASCII arguments and finite scalar domain; original first-call, ordered token and mode behavior."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -9676,6 +9816,7 @@
             "Shipped ASCII from/to arguments and raw-bit copy with original lookup side effects."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -9877,6 +10018,7 @@
             "First-call wrapper around the same scene visibility behavior."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -10018,9 +10160,26 @@
       "path": "decompiled/corpus-expanded/FUN_44d870.c",
       "evidence": "ev_89fddb9d43176fe460e635fa694f7b202ecc9b6cc52422bc9fe5e2fbe10c5c63",
       "sha256": "fb4bc277a9c6b773a3e382ebebaab25d56bccd6fb4e305274a89c7f3b9726276",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x44d870",
+          "method": "ConnectionFlags.Lookup",
+          "coverage": "flag lookup with explicit mode and global fallback inputs",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x44d870",
+          "name": "ConnectionFlags.Lookup",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x44d900",
@@ -10028,9 +10187,26 @@
       "path": "decompiled/corpus-expanded/FUN_44d900.c",
       "evidence": "ev_89fddb9d43176fe460e635fa694f7b202ecc9b6cc52422bc9fe5e2fbe10c5c63",
       "sha256": "ab99c7b855436ba0e6226d9cb46ad1059137f499e7a7879f4cd31510f4d5e9fc",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x44d900",
+          "method": "ConnectionControllers.Execute",
+          "coverage": "bounded CnxController command parser/dispatcher with explicit world and numeric-expression services",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x44d900",
+          "name": "ConnectionControllers.Execute",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x44df30",
@@ -11024,6 +11200,7 @@
             "First-call, immediate per-name lookup and whole-token FALSE semantics."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -11125,9 +11302,29 @@
       "path": "decompiled/corpus-expanded/FUN_456c10.c",
       "evidence": "ev_8506f68535ad223f61af74cca875ccd9b44b8142143265b685ac08963c75a37f",
       "sha256": "5eaf63c0a4edc8c88ba6e1569dde8eda7e3c84da5e41585943462b46da5b0d11",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "gameplay",
+          "address": "0x456c10",
+          "method": "CreatureSpawner.Parse; CreatureSpawner.Execute",
+          "coverage": "bounded spawn command with world/effect adapters",
+          "limits": [
+            "Original ordered parser, grouping, spawn arguments and ordinary post-spawn mutation/dispatch. Allocation, world binding, physical effects and successful ZipUp remain adapters."
+          ],
+          "sourceFile": "gameplay/CreateCreatures.cs",
+          "evidence": "reports/gameplay-createcreatures-contract.json",
+          "sourceSha256": "f7c5ebde9971cf65d8511dacceaf5336c743aad10c55837aeb3eeb36559432b8"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x456c10",
+          "name": "CreatureSpawner.Parse; CreatureSpawner.Execute",
+          "evidence": "reports/gameplay-createcreatures-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x457ea0",
@@ -12215,6 +12412,7 @@
             "Original token order and scene-name selection; host owns current scene and renderer propagation."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -12246,6 +12444,7 @@
             "Type/name lookup, false latch and registered visibility/deactivation order."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -12287,6 +12486,7 @@
             "Shipped ASCII argument/name domain; ordinal-ignore-case strings replace native text helper."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -12358,6 +12558,7 @@
             "Valid registry/name/capacity path; throws on failed lookup instead of native null dereference."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -13069,9 +13270,26 @@
       "path": "decompiled/corpus-expanded/FUN_467890.c",
       "evidence": "ev_ea1530849940888f284d0032d7a98207406f19684b2cf3146fa9fb18feca4f87",
       "sha256": "75abf33a9f8a65adab464ca140f7b93936f67050610619417ce92f0d92627172",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x467890",
+          "method": "ConnectionControllers.ForceEnabled",
+          "coverage": "force activation predicate projected from resolved target fields",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x467890",
+          "name": "ConnectionControllers.ForceEnabled",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x4678f0",
@@ -15955,9 +16173,26 @@
       "path": "decompiled/corpus-expanded/FUN_4817e0.c",
       "evidence": "ev_d287e844ea66f87c3c60c812c2454ec5cd238ea97f1ed9ffb4b19045dfabbd11",
       "sha256": "68bff7fd42eff54cdec37083ee003c1962c9f68001772e804ffe2a005953f5d5",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x4817e0",
+          "method": "ConnectionFlags.LookupDialect",
+          "coverage": "complete ordered flag lookup for dialect2",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x4817e0",
+          "name": "ConnectionFlags.LookupDialect",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x481920",
@@ -19199,7 +19434,7 @@
         {
           "address": "0x49c080",
           "name": "Recovered.Animation.CharacterContexts.AdvanceHitContext",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-portable-native-cases.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded contexts21/90/95 through pre-KillParts frontier0x49c1c1",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -19501,7 +19736,7 @@
         {
           "address": "0x49e2b0",
           "name": "Recovered.Animation.CharacterContexts.StartBlockJump",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-context-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "all object writes; audio adapter excluded",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -19903,7 +20138,7 @@
         {
           "address": "0x4a54b0",
           "name": "Recovered.Animation.CharacterContexts.SelectMovementAnimation",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-context-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole selection with resolved clip/suit inputs",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -20105,7 +20340,7 @@
         {
           "address": "0x4a7360",
           "name": "Recovered.Animation.CharacterContexts.SelectJumpAnimation",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-context-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole selection with supplied dt/fallDelay",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -23210,9 +23445,26 @@
       "path": "decompiled/corpus-expanded/FUN_4cbf70.c",
       "evidence": "ev_2c33bc1d2955cf32f461d40ab407fc477c117f7bb728ceb3ddb2ece88215ba87",
       "sha256": "619d17efdd27361c57a0af9799bb803416560f5a5742a5d4abfabca757a3f8c2",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x4cbf70",
+          "method": "ConnectionFlags.LookupDialect",
+          "coverage": "complete ordered flag lookup for dialect1",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x4cbf70",
+          "name": "ConnectionFlags.LookupDialect",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x4cc160",
@@ -30237,6 +30489,7 @@
             "Minus/decimal prefix parser with binary32 stores; finite authored operand fixtures."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -37822,6 +38075,7 @@
             "Ordered first match in shipped ASCII name domain."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38043,6 +38297,7 @@
             "Resolved action links replace raw pointers; first-call flag is preserved."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38074,6 +38329,7 @@
             "Blocked-message preservation, current/pending state and action entry."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38125,6 +38381,7 @@
             "Resolved ScriptDefinition/state and parameter masks; script loading and full opaque scratch reset remain external."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38156,6 +38413,7 @@
             "Four parameter names/values and native param-substring slot-zero behavior; ASCII operand domain."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -38207,6 +38465,7 @@
             "Reads the resolved packet timer."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38248,6 +38507,7 @@
             "Default1 and native decimal-prefix operand, modeled as initialized float instead of raw EAX bits."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -38277,6 +38537,7 @@
             "Reads the resolved initialized float value at the SCP float32 storage boundary."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -38556,6 +38817,7 @@
             "Tests projected script-creature/opponent-reference presence only; lifetime remains host-owned."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -38605,6 +38867,7 @@
             "Cached range or max-finite-float sentinel; finite float32 fixture domain."
           ],
           "sourceFile": "gameplay/CompactConditions.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c"
         }
       ],
@@ -38794,6 +39057,7 @@
             "Actual command argument roles preserved; missing-state error stubs are omitted."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38825,6 +39089,7 @@
             "Single constant and two-draw min/max forms; string/expression parsing remains external."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -38856,6 +39121,7 @@
             "Core wait behavior only; string/expression parsing and arbitrary mixed argument forms remain external."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -39727,9 +39993,26 @@
       "path": "decompiled/corpus-expanded/FUN_51ad80.c",
       "evidence": "ev_fe5af94714569ca149d7ee11beb07ec697c406bef5bd6833183fcd21241d309c",
       "sha256": "28c17542113c14b5bafaa185396d7cc4f4f39ca006730c610381e284986ddabe",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x51ad80",
+          "method": "ConnectionControllers.FindLocator",
+          "coverage": "byte-string name lookup after explicit/default path resolution",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x51ad80",
+          "name": "ConnectionControllers.FindLocator",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x51adf0",
@@ -39737,9 +40020,26 @@
       "path": "decompiled/corpus-expanded/FUN_51adf0.c",
       "evidence": "ev_fe5af94714569ca149d7ee11beb07ec697c406bef5bd6833183fcd21241d309c",
       "sha256": "f4b1308cafbd41fc2c3c50181b6ee659958abc079c9a8764fe3249147500637d",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "navigation",
+          "address": "0x51adf0",
+          "method": "ConnectionControllers.FindConnection",
+          "coverage": "ordered locator adjacency lookup on resolved path; ref direction preserved on failure",
+          "sourceFile": "navigation/ConnectionControllers.cs",
+          "evidence": "reports/native-connections-contract.json",
+          "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x51adf0",
+          "name": "ConnectionControllers.FindConnection",
+          "evidence": "reports/native-connections-contract.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x51aec0",
@@ -42034,6 +42334,7 @@
             "Global-before-state lists, four-frame cap and reference eligibility; source loading and dynamic condition caches are external."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -42065,6 +42366,7 @@
             "State/actions/interrupt/timer ordering; arbitrary condition evaluators, scratch-object effects and animation overrides are adapters."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -47400,6 +47702,7 @@
             "Exact unchecked integer recurrence; all 16-bit initial states have native fixtures."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -49198,6 +49501,7 @@
             "Case-sensitive first type name match and -1 on failure; host owns type table."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -49259,6 +49563,7 @@
             "Ordered first object-name match and all-type fallback; typeIndex==count is rejected."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -49330,6 +49635,7 @@
             "Registered valid-object callback dispatch is represented by nullable delegates; registry/index checks are host-owned."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -49361,6 +49667,7 @@
             "Visibility callback and deactivate-before-hide order; registry/index checks are host-owned."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -49552,6 +49859,7 @@
             "Reverse query/mutation and conditional visibility; valid bound callbacks replace registry lookup."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -50278,7 +50586,7 @@
         {
           "address": "0x55e300",
           "name": "Recovered.Animation.CharacterContexts.SelectStartPositionPointer",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-respawn-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole helper with adapter-provided start-table pointers",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -60322,7 +60630,7 @@
         {
           "address": "0x58dfa0",
           "name": "Recovered.Animation.CharacterContexts.SelectBlockAnimation",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-context-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole selector for PC registry-exact block IDs26/27/28",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -62486,6 +62794,7 @@
             "Fresh gizmo initialization deactivation branch integrated into Initialize."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62517,6 +62826,7 @@
             "Gizmo output branch and mode gates; physical output callbacks remain adapters."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62558,6 +62868,7 @@
             "Cycle-return counting and byte visit marks; valid node indices with host budget."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62589,6 +62900,7 @@
             "Loop counting wrapper includes increment performed by native caller; custom EDI ABI is removed."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62620,6 +62932,7 @@
             "Descendant stamp/reset propagation with original callback semantics and host operation budget."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62651,6 +62964,7 @@
             "All six condition types on resolved inputs; original null condition-data representation maps to All."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62682,6 +62996,7 @@
             "Monitored-condition branch temporarily sets 0x400 and restores that bit."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62713,6 +63028,7 @@
             "Pending parent barriers, visibility/deactivation callbacks and recursive release."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62744,6 +63060,7 @@
             "Includes original first-output-index reuse; actual object reverse callbacks remain adapters."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62775,6 +63092,7 @@
             "Ordered non-null action delegates replace linked action records and argument decoding."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62806,6 +63124,7 @@
             "Action output branch returns completion flag 2."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -62837,6 +63156,7 @@
             "Scheduler branches, cleanup and callback adapters; not a source-GIT loader or every physical gizmo implementation."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -63238,6 +63558,7 @@
             "Exact 81-word state encoding on at most 512 nodes; larger input rejected instead of native overwrite."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -63279,6 +63600,7 @@
             "Fresh and saved-state branches; native 0x59f2a0 name rebinding is explicitly external, not ported."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -63310,6 +63632,7 @@
             "Native runtime node order and byte stamps; operation-budget guard is an intentional host addition."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -63351,6 +63674,7 @@
             "Gizmo activation process branch integrated into Process; valid bound graph."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -63382,6 +63706,7 @@
             "Action process branch integrated into Process; command callbacks remain adapters."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -65163,6 +65488,7 @@
             "Ordered case-insensitive first match, free-record transfer and retained value; host allocation and overlong prefixed-name guard."
           ],
           "sourceFile": "gameplay/Messages.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
         }
       ],
@@ -65844,6 +66170,7 @@
             "Actual animation implementation is ISceneAnimation; valid bound object semantics only."
           ],
           "sourceFile": "gameplay/SpecialGizmo.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "f85727001fc11901c294af5e10fd2d1c3f8780ee53c6b2481e2d76ded5244fef"
         }
       ],
@@ -65875,6 +66202,7 @@
             "Query/mutate and flags reconstructed; ISceneAnimation implements physical playback."
           ],
           "sourceFile": "gameplay/SpecialGizmo.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "f85727001fc11901c294af5e10fd2d1c3f8780ee53c6b2481e2d76ded5244fef"
         }
       ],
@@ -65906,6 +66234,7 @@
             "Visibility delegate forwards to ISceneAnimation.SetVisibility; GameAnimSet and instance rendering are not ported here."
           ],
           "sourceFile": "gameplay/SpecialGizmo.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "f85727001fc11901c294af5e10fd2d1c3f8780ee53c6b2481e2d76ded5244fef"
         }
       ],
@@ -66577,6 +66906,7 @@
             "Valid object and byte-sized GIT output-index domain."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -66628,6 +66958,7 @@
             "Eight weights maximum; integer percentile expression models the PC x87 endpoint behavior; invalid missing RNG fails explicitly."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -66729,6 +67060,7 @@
             "One finite-valued timer record; world timer-array iteration remains host-owned."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -66770,6 +67102,7 @@
             "Enabled and expired predicate; valid bound timer object is required."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -66811,6 +67144,7 @@
             "Shared RNG adapter; random duration uses binary64 intermediates. Exact compiled differential checks remain pending."
           ],
           "sourceFile": "gameplay/FlowRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "d3792445fe9c540a4250fb278ca4c8b988cc73132f449befe16afef29b2610e0"
         }
       ],
@@ -69518,6 +69852,7 @@
             "32-bit LCG and low-mantissa float mapping; host owns the separate shared state."
           ],
           "sourceFile": "gameplay/ScriptRuntime.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
         }
       ],
@@ -74255,7 +74590,7 @@
         {
           "address": "0x5ca470",
           "name": "Recovered.Animation.AnimationPlayback.EndFrame",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-playback-authored-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole valid header helper with supplied byte image",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -74479,6 +74814,7 @@
             "First case-insensitive dynamic instance match; native optional 5c1300 fallback is excluded."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -74510,6 +74846,7 @@
             "Host supplies current static/dynamic item order; dynamic external fallback is excluded."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -74731,6 +75068,7 @@
             "Static/dynamic flag and secondary-byte projection; renderer propagation is host-owned."
           ],
           "sourceFile": "gameplay/Visibility.cs",
+          "evidence": "reports/gameplay-source-function-map.json",
           "sourceSha256": "cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222"
         }
       ],
@@ -77256,6 +77594,7 @@
             "Prepared native plane block replaces globals; far override local instead of temporary global store; finite inputs, nonnegative extents. Shared software x87, compiled execution pending."
           ],
           "sourceFile": "geometry/Clipping.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "326c3019a8790eacb2b5cf0b8962d82f302d78bcd78d9ef4666e304d5739d9d8"
         }
       ],
@@ -77263,7 +77602,7 @@
         {
           "address": "0x5d69a0",
           "name": "NativeFrustum.Classify",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-whole-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -77857,9 +78196,29 @@
       "path": "decompiled/corpus-expanded/FUN_5d91b0.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "839a1d957c04bba2e508717daeabe23ac8000a81b1def94573a41bd2025bdbf8",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5d91b0",
+          "method": "PortalClipVolume.ShallowCopy",
+          "coverage": "bounded-helper-projection",
+          "limits": [
+            "Copied header fields/packed matrices and shared plane-array identity retained. Native arena/list reservation side effects omitted; managed allocation used instead."
+          ],
+          "sourceFile": "geometry/PortalVolumes.cs",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "sourceSha256": "a7ebd5596f5a2515e7568fdf0bcf0803c66747a5573f3c7751be258675d5b703"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5d91b0",
+          "name": "PortalClipVolume.ShallowCopy",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5d9220",
@@ -77877,6 +78236,7 @@
             "Managed finite plane list/point replace room pointers; maximum255planes; shared software x87, compiled execution pending."
           ],
           "sourceFile": "geometry/Clipping.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "326c3019a8790eacb2b5cf0b8962d82f302d78bcd78d9ef4666e304d5739d9d8"
         }
       ],
@@ -77884,7 +78244,7 @@
         {
           "address": "0x5d9220",
           "name": "PortalPredicates.ContainsPoint",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-whole-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -77918,6 +78278,7 @@
             "Managed finite room/link arrays replace pointers; preserves native old-candidate priority/flag ordering and first-shared-portal side. At most six stored overlaps: seventh native store corrupts return address, so managed code throws. Empty debug hook has no effect; compiled execution pending."
           ],
           "sourceFile": "geometry/PortalSelection.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "4ee831efc8b27868e988429b032e4f05ec2a157dbc0601497f79a834269f050e"
         }
       ],
@@ -77925,7 +78286,7 @@
         {
           "address": "0x5d92b0",
           "name": "PortalSelection.SelectRoom",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "bounded-portable-reconstruction-compiled-execution-pending"
         }
       ],
@@ -77937,9 +78298,29 @@
       "path": "decompiled/corpus-expanded/FUN_5d94a0.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "503e1a7bb43cca9403a89536410d642ea6fdefaf3cd4b76f4499de44e2deca62",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5d94a0",
+          "method": "PortalVolumePredicates.ClassifySphere",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Finite prepared planes and sphere, nonnegative radius, signed16 plane count; global camera plane supplied explicitly; compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5d94a0",
+          "name": "PortalVolumePredicates.ClassifySphere",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5d9580",
@@ -77947,9 +78328,29 @@
       "path": "decompiled/corpus-expanded/FUN_5d9580.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "d4f24a65f77417da67d78765a488dec4de225558004c3b106f1279f61a712280",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5d9580",
+          "method": "PortalVolumePredicates.ClassifyMinMax",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Finite ordered min/max and prepared planes; signed16 count consistent with caller; shared exact x87; compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5d9580",
+          "name": "PortalVolumePredicates.ClassifyMinMax",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5d9770",
@@ -77957,9 +78358,29 @@
       "path": "decompiled/corpus-expanded/FUN_5d9770.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "1f572f0c76921d31b5eeef2d2d794a4247ecd25dc1e67d5fadc8328a40fdb866",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5d9770",
+          "method": "PortalVolumePredicates.AcceptCenterExtent",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Finite prepared planes and center/extents, nonnegative extents; signed16 plane count; shared exact x87; compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5d9770",
+          "name": "PortalVolumePredicates.AcceptCenterExtent",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5d9850",
@@ -77967,9 +78388,29 @@
       "path": "decompiled/corpus-expanded/FUN_5d9850.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "20b1cb0fb665b82967001783991d4638649cf1d35be4f377a7e5f1f69a6fa665",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5d9850",
+          "method": "PortalVolumes.Pack",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Prepared finite planes, at least3 and at most32767; packs first8 with explicit camera plane fill. Managed array replaces in-place header matrices."
+          ],
+          "sourceFile": "geometry/PortalVolumes.cs",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "sourceSha256": "a7ebd5596f5a2515e7568fdf0bcf0803c66747a5573f3c7751be258675d5b703"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5d9850",
+          "name": "PortalVolumes.Pack",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5d9a00",
@@ -77997,6 +78438,7 @@
             "Uses recovered recursive caller contract: current room is endpoint, target is other endpoint. Managed finite vertex/plane/priority arrays; count signed16; active bit belongs to caller. Compiled execution pending."
           ],
           "sourceFile": "geometry/Clipping.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "326c3019a8790eacb2b5cf0b8962d82f302d78bcd78d9ef4666e304d5739d9d8"
         }
       ],
@@ -78004,7 +78446,7 @@
         {
           "address": "0x5d9ce0",
           "name": "PortalPredicates.ClassifyPortal",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -78028,9 +78470,29 @@
       "path": "decompiled/corpus-expanded/FUN_5da040.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "5ca4935b5f78fe6c9f4ea030fa13cbe8cac612a2beae5aeb122a07628e78926f",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5da040",
+          "method": "PortalVolumes.IntersectXY",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Finite decoded register inputs; strict comparisons and output XY writes, preserving Z/rejected outputs. No pointer alias side effects or nonfinite x87 comparison domain; compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalVolumes.cs",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "sourceSha256": "a7ebd5596f5a2515e7568fdf0bcf0803c66747a5573f3c7751be258675d5b703"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5da040",
+          "name": "PortalVolumes.IntersectXY",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5da100",
@@ -78038,9 +78500,29 @@
       "path": "decompiled/corpus-expanded/FUN_5da100.c",
       "evidence": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "sha256": "516a241ca42670997ab998462849e3fa9101c120e18546884e09b270a91ad81d",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x5da100",
+          "method": "PortalVolumes.FromPortalEdges",
+          "coverage": "major-plane-construction-component",
+          "limits": [
+            "Normalized edge planes, facing orientation and packing only; original allocator and projection/cache calls replaced by managed allocation and caller-provided screen bounds. Finite intermediate domain, zero-sign bit differences retained, compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalVolumes.cs",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "sourceSha256": "a7ebd5596f5a2515e7568fdf0bcf0803c66747a5573f3c7751be258675d5b703"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x5da100",
+          "name": "PortalVolumes.FromPortalEdges",
+          "evidence": "reports/geometry-portal-volume-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x5da2d0",
@@ -78888,6 +79370,7 @@
             "Managed ordered collection replaces linked list/counter; tie order retained."
           ],
           "sourceFile": "geometry/SceneSubmission.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
         }
       ],
@@ -78895,7 +79378,7 @@
         {
           "address": "0x5de060",
           "name": "SceneSubmission.InsertSortRecord",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole-helper-contract-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -79079,6 +79562,7 @@
             "Only wrapped key bias arithmetic; registration helper is not reconstructed in C#."
           ],
           "sourceFile": "geometry/SceneSubmission.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
         }
       ],
@@ -79086,7 +79570,7 @@
         {
           "address": "0x5ded80",
           "name": "SceneSubmission.ApplyPriorityBias",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "small-extracted-branch",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -79140,6 +79624,7 @@
             "Finite nonnegative distance input domain; host sqrt roundedfloat32; original degenerate output NaN retained; compiled CLR equivalence pending."
           ],
           "sourceFile": "geometry/SceneSubmission.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
         }
       ],
@@ -79147,7 +79632,7 @@
         {
           "address": "0x5df7b0",
           "name": "SceneSubmission.DistanceFade",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-whole-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -79181,6 +79666,7 @@
             "Decoded clip indices and managed item byte array replace pointers; bounds checks added."
           ],
           "sourceFile": "geometry/SceneSubmission.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
         }
       ],
@@ -79188,7 +79674,7 @@
         {
           "address": "0x5df910",
           "name": "SceneSubmission.PatchClipControls",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole-helper-contract-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -79232,6 +79718,7 @@
             "Managed memberships replace pointer chain; mutex excluded; finite signed32 conversion domain."
           ],
           "sourceFile": "geometry/MaterialUv.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "7b27271cc9458a3182c3d91babe8f15e8042420ed1ecc309ba05cd3432db0d29"
         }
       ],
@@ -79239,7 +79726,7 @@
         {
           "address": "0x5dfbd0",
           "name": "MaterialUv.Advance",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-whole-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -82237,6 +82724,7 @@
             "Transient allocator replaced by managed alpha array; frustum supplied by caller; optional debug occlusion excluded; finite input domain. Does not implement scene visibility evaluation."
           ],
           "sourceFile": "geometry/SceneSubmission.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
         }
       ],
@@ -82244,7 +82732,7 @@
         {
           "address": "0x5f5380",
           "name": "SceneSubmission.EvaluateVisibility / SelectLod",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -86195,9 +86683,29 @@
       "path": "decompiled/corpus-expanded/FUN_600be0.c",
       "evidence": "ev_64f3679a1f1e131a29792e896f5cd05cb4870e5bb22e267d9bfafa2e72f365ab",
       "sha256": "f222ed5b1583dc571269357fc3907afe5e21c4ffba27db1bc3f2682d11c064d3",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x600be0",
+          "method": "PortalVisibility.MarkUnclipped",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed valid signed16 membership IDs; modern bitset IDs0..4999, legacy IDs within supplied array; no geometry or flags gate."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x600be0",
+          "name": "PortalVisibility.MarkUnclipped",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x600c60",
@@ -86205,9 +86713,29 @@
       "path": "decompiled/corpus-expanded/FUN_600c60.c",
       "evidence": "ev_64f3679a1f1e131a29792e896f5cd05cb4870e5bb22e267d9bfafa2e72f365ab",
       "sha256": "9fbf498f280efaf66131b76855180b67bd9ffe92adfda535864308849c399747",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x600c60",
+          "method": "PortalVisibility.SetAll(enabled=true)",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed625-byte bitset or uint legacy flags replace globals/80-byte records; caller supplies original nonnull-display branch choice."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x600c60",
+          "name": "PortalVisibility.SetAll(enabled=true)",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x600cb0",
@@ -86215,9 +86743,29 @@
       "path": "decompiled/corpus-expanded/FUN_600cb0.c",
       "evidence": "ev_64f3679a1f1e131a29792e896f5cd05cb4870e5bb22e267d9bfafa2e72f365ab",
       "sha256": "c1ad744bef72f7bd5f9be45f35b04d6208b3aca35c8dc4e3a2702ab2534b459f",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x600cb0",
+          "method": "PortalVisibility.SetAll(enabled=false)",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Managed625-byte bitset or uint legacy flags replace globals/80-byte records; caller supplies original nonnull-display branch choice."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x600cb0",
+          "name": "PortalVisibility.SetAll(enabled=false)",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x600d00",
@@ -86225,9 +86773,29 @@
       "path": "decompiled/corpus-expanded/FUN_600d00.c",
       "evidence": "ev_64f3679a1f1e131a29792e896f5cd05cb4870e5bb22e267d9bfafa2e72f365ab",
       "sha256": "ecce8bf73c186179cac9974214549440dc621d94c220a54d2215e06d10fc6d69",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "geometry",
+          "address": "0x600d00",
+          "method": "PortalVisibility.MarkClipped",
+          "coverage": "bounded-whole-helper-projection",
+          "limits": [
+            "Non-null display scene only, valid parallel decoded arrays and625-byte bitsets; authored mode0x4000 and synthetic alternate mode. No child-volume producer/traversal; compiled execution pending."
+          ],
+          "sourceFile": "geometry/PortalVisibility.cs",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "sourceSha256": "803485bfe411b93166682b8061a542c048cb5a9597d4ac0ef345e0c0b213e1ef"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x600d00",
+          "name": "PortalVisibility.MarkClipped",
+          "evidence": "reports/geometry-portal-visibility-native-validation.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x600f20",
@@ -86285,6 +86853,7 @@
             "Managed registered scenes replace global pointer array."
           ],
           "sourceFile": "geometry/MaterialUv.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "7b27271cc9458a3182c3d91babe8f15e8042420ed1ecc309ba05cd3432db0d29"
         }
       ],
@@ -86292,7 +86861,7 @@
         {
           "address": "0x6012a0",
           "name": "MaterialUv.Tick reset/time tail",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "bounded-whole-helper-projection",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -86316,6 +86885,7 @@
             "Caller-owned state replaces globals; includes recovered6012a0 tail."
           ],
           "sourceFile": "geometry/MaterialUv.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "7b27271cc9458a3182c3d91babe8f15e8042420ed1ecc309ba05cd3432db0d29"
         }
       ],
@@ -86323,7 +86893,7 @@
         {
           "address": "0x601330",
           "name": "MaterialUv.Tick",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole-wrapper-contract",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -87337,6 +87907,7 @@
             "Exact clamp result; pointer dereference/store moved to caller."
           ],
           "sourceFile": "geometry/SceneSubmission.cs",
+          "evidence": "reports/geometry-recovered-source.json",
           "sourceSha256": "13850927d26e783ce07af590ae9dc9d0d4be1166245c2414291983b207a9fecc"
         }
       ],
@@ -87344,7 +87915,7 @@
         {
           "address": "0x603ad0",
           "name": "SceneSubmission.ClampInstanceAlpha",
-          "evidence": "reports/geometry-uv-findings.txt",
+          "evidence": "reports/geometry-recovered-source.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "extracted-pure-result",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -98440,7 +99011,7 @@
         {
           "address": "0x62e040",
           "name": "Recovered.Animation.CharacterContexts.DurationSeconds",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-portable-native-cases.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "scalar sub-contract after model/header resolution",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -98512,7 +99083,7 @@
         {
           "address": "0x62e650",
           "name": "Recovered.Animation.CharacterContexts.ResetAnimationPacket",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-portable-native-cases.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole packet state helper",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -98565,7 +99136,7 @@
         {
           "address": "0x62e760",
           "name": "Recovered.Animation.AnimationPlayback.UpdateTimer",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-playback-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole finite timer with adapter-resolved clip/header",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -98599,7 +99170,7 @@
         {
           "address": "0x62e9b0",
           "name": "Recovered.Animation.AnimationPlayback.UpdatePacket",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-playback-native-verification.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole finite72-byte packet state helper with resolved clip table",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -98613,9 +99184,31 @@
       "path": "decompiled/corpus-expanded/FUN_62efb0.c",
       "evidence": "ev_be89c5742567956971c64ab2441aea6b3f78c2cf42a7c801ad7bb364f9087e2c",
       "sha256": "d57e0b6b3adf05a3bf742c556390d5690f51736388f6819948cdcad5b5f1eb97",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "animation",
+          "address": "0x62efb0",
+          "method": "Recovered.Animation.AnimationControl.ExpandMini",
+          "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+          "limits": [
+            "Native compact packet is36 bytes; full packet is72 bytes.",
+            "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+            "No invalid pointer/action-index behavior claimed; C# execution pending."
+          ],
+          "sourceFile": "animation/AnimationControl.cs",
+          "evidence": "reports/animation-control-native-verification.json",
+          "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x62efb0",
+          "name": "Recovered.Animation.AnimationControl.ExpandMini",
+          "evidence": "reports/animation-control-native-verification.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x62f030",
@@ -98623,9 +99216,31 @@
       "path": "decompiled/corpus-expanded/FUN_62f030.c",
       "evidence": "ev_be89c5742567956971c64ab2441aea6b3f78c2cf42a7c801ad7bb364f9087e2c",
       "sha256": "59e3f418b600228e83e747dfb0d3282202e56a78a618ce08230460e748a6f04c",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "animation",
+          "address": "0x62f030",
+          "method": "Recovered.Animation.AnimationControl.CompactFull",
+          "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+          "limits": [
+            "Native compact packet is36 bytes; full packet is72 bytes.",
+            "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+            "No invalid pointer/action-index behavior claimed; C# execution pending."
+          ],
+          "sourceFile": "animation/AnimationControl.cs",
+          "evidence": "reports/animation-control-native-verification.json",
+          "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x62f030",
+          "name": "Recovered.Animation.AnimationControl.CompactFull",
+          "evidence": "reports/animation-control-native-verification.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x62f0a0",
@@ -98633,9 +99248,31 @@
       "path": "decompiled/corpus-expanded/FUN_62f0a0.c",
       "evidence": "ev_be89c5742567956971c64ab2441aea6b3f78c2cf42a7c801ad7bb364f9087e2c",
       "sha256": "f64034bee140efe574a0c26d104395b19a77f7bc882b16f9749e7a72aebc3abc",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "animation",
+          "address": "0x62f0a0",
+          "method": "Recovered.Animation.AnimationControl.UpdateMini",
+          "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+          "limits": [
+            "Native compact packet is36 bytes; full packet is72 bytes.",
+            "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+            "No invalid pointer/action-index behavior claimed; C# execution pending."
+          ],
+          "sourceFile": "animation/AnimationControl.cs",
+          "evidence": "reports/animation-control-native-verification.json",
+          "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x62f0a0",
+          "name": "Recovered.Animation.AnimationControl.UpdateMini",
+          "evidence": "reports/animation-control-native-verification.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x62f100",
@@ -98643,9 +99280,31 @@
       "path": "decompiled/corpus-expanded/FUN_62f100.c",
       "evidence": "ev_be89c5742567956971c64ab2441aea6b3f78c2cf42a7c801ad7bb364f9087e2c",
       "sha256": "15e85a7597b0dc2df8c513dd63c54b0b49c197eda5aa903ee01d34b5de18a1ef",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "animation",
+          "address": "0x62f100",
+          "method": "Recovered.Animation.AnimationControl.IsBlendingFromTo",
+          "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+          "limits": [
+            "Native compact packet is36 bytes; full packet is72 bytes.",
+            "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+            "No invalid pointer/action-index behavior claimed; C# execution pending."
+          ],
+          "sourceFile": "animation/AnimationControl.cs",
+          "evidence": "reports/animation-control-native-verification.json",
+          "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x62f100",
+          "name": "Recovered.Animation.AnimationControl.IsBlendingFromTo",
+          "evidence": "reports/animation-control-native-verification.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x62f150",
@@ -98671,7 +99330,7 @@
         {
           "address": "0x62f150",
           "name": "Recovered.Animation.CharacterContexts.PlayingTimeOffset",
-          "evidence": "reports/animation-context-contract.json",
+          "evidence": "reports/animation-portable-native-cases.json",
           "status": "reconstructed-method-bounded-scope",
           "coverage": "whole pointer-selection semantics represented by packet-relative offset",
           "qualification": "Descriptive recovered method label, not an original symbol or proof of whole-function equivalence."
@@ -98685,9 +99344,31 @@
       "path": "decompiled/corpus-expanded/FUN_62f1a0.c",
       "evidence": "ev_be89c5742567956971c64ab2441aea6b3f78c2cf42a7c801ad7bb364f9087e2c",
       "sha256": "5d19c4946740e9c2ce6b4be4aced934bc4622e0a6891f05b5e7d7085590e9f7f",
-      "portableMappings": [],
-      "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "portableMappings": [
+        {
+          "module": "animation",
+          "address": "0x62f1a0",
+          "method": "Recovered.Animation.AnimationControl.CurrentAction",
+          "coverage": "whole helper with adapter-resolved finite valid clip inputs where applicable",
+          "limits": [
+            "Native compact packet is36 bytes; full packet is72 bytes.",
+            "UpdateMini discards reverse/overlay state and passes backwards multiplier0 exactly as native wrapper.",
+            "No invalid pointer/action-index behavior claimed; C# execution pending."
+          ],
+          "sourceFile": "animation/AnimationControl.cs",
+          "evidence": "reports/animation-control-native-verification.json",
+          "sourceSha256": "0f57afce0a2fd077ba7503960782addc3b3e2a9c06dfd4e1c15c6363223999b9"
+        }
+      ],
+      "contractLabels": [
+        {
+          "address": "0x62f1a0",
+          "name": "Recovered.Animation.AnimationControl.CurrentAction",
+          "evidence": "reports/animation-control-native-verification.json",
+          "status": "bounded-portable-reconstruction-compiled-execution-pending"
+        }
+      ],
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x62f1c0",

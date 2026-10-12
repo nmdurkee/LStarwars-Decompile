@@ -1,0 +1,162 @@
+{
+  "schema": "native-connections-contract-v1",
+  "updated": "2026-10-12T20:26:13.634Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": "reconstructed/navigation/ConnectionControllers.cs",
+  "sourceSha256": "437e69937e43c422929553d5550137e897242e6f4fd5b2a03e8ababa46720a90",
+  "harness": "reconstructed/navigation/ConnectionDifferential.cs",
+  "harnessSha256": "9c44911ae9822f7c22c54aab59e4987ca51edf8512bd7f374b00fbe6f6c22b75",
+  "scope": "Navigation connection gates used by animated scenery, build/force/obstacle state and gizmo output; not controller input.",
+  "command": {
+    "name": "CnxController",
+    "address": "0x44d900",
+    "authoredUses": 534,
+    "nativeReturn": 1
+  },
+  "mappings": [
+    {
+      "address": "0x407d00",
+      "method": "ConnectionFlags.LookupDialect",
+      "coverage": "complete ordered flag lookup for dialect0",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x4cbf70",
+      "method": "ConnectionFlags.LookupDialect",
+      "coverage": "complete ordered flag lookup for dialect1",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x4817e0",
+      "method": "ConnectionFlags.LookupDialect",
+      "coverage": "complete ordered flag lookup for dialect2",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x44d870",
+      "method": "ConnectionFlags.Lookup",
+      "coverage": "flag lookup with explicit mode and global fallback inputs",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x51ad80",
+      "method": "ConnectionControllers.FindLocator",
+      "coverage": "byte-string name lookup after explicit/default path resolution",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x51adf0",
+      "method": "ConnectionControllers.FindConnection",
+      "coverage": "ordered locator adjacency lookup on resolved path; ref direction preserved on failure",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x43cc30",
+      "method": "ConnectionManager.Reset",
+      "coverage": "fixed-capacity manager reset and free-list order; host allocation excluded",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x43cf70",
+      "method": "ConnectionManager.Release",
+      "coverage": "valid active controller release and free-list order",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x43cca0",
+      "method": "ConnectionControllers.Create",
+      "coverage": "bounded controller creation with explicit world-target services",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x43cfb0",
+      "method": "ConnectionControllers.AddFrameRange",
+      "coverage": "inclusive one-based 1024-bit range masks after animation metadata resolution",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x467890",
+      "method": "ConnectionControllers.ForceEnabled",
+      "coverage": "force activation predicate projected from resolved target fields",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x43d0c0",
+      "method": "ConnectionControllers.Update; ConnectionControllers.IsEnabled",
+      "coverage": "ordered controller activation and connection flags with explicit target projections and gizmo-output service",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    },
+    {
+      "address": "0x44d900",
+      "method": "ConnectionControllers.Execute",
+      "coverage": "bounded CnxController command parser/dispatcher with explicit world and numeric-expression services",
+      "sourceFile": "navigation/ConnectionControllers.cs",
+      "evidence": "reports/native-connections-contract.json"
+    }
+  ],
+  "nativeVerification": {
+    "report": "reports/native-connections-tests.json",
+    "cases": 16443,
+    "mismatches": 0,
+    "failures": 0,
+    "authoredUses": 534,
+    "groups": {
+      "flag_lookup": 192,
+      "command": 2492,
+      "update": 5120,
+      "frame_mask": 8100,
+      "pool-allocation-return": 208,
+      "pool-list-order": 320,
+      "pool_sequence": 8,
+      "shared-edge-update-order": 3
+    },
+    "comparisonRecordsExcludingSequenceReplay": 16435,
+    "note": "Eight pool_sequence records replay the same528 allocation/list checks and are not additional independent coverage.",
+    "vectors": "reports/native-connections-vectors.json",
+    "vectorsSha256": "067c91ac662f74829e154981e96abf83a2e5abf7ffc1309e1b6250d07c3db6b9",
+    "reviewReport": "reports/native-connections-review-tests.json",
+    "reviewComparisons": 587,
+    "reviewMismatches": 0
+  },
+  "adapters": [
+    "FindPath:0x51ad20",
+    "Scene target lookup:0x5cf5b0",
+    "Cutscene target lookup:0x57c920",
+    "BuildIt target lookup:0x58e980",
+    "FlowBox target lookup:0x59f7a0",
+    "Generic target registry:0x55a020",
+    "Gizmo output:0x55a1b0"
+  ],
+  "observations": [
+    "CnxController parser uses ordered case-insensitive substring recognition and returns1 even though the decompiler declares void.",
+    "Target lookup occurs before free-pool availability is checked. Reset and release order influence which record is allocated next.",
+    "on_frames ranges are one-based inclusive; lastframe and lastframe-1 are sentinels. Animation ranges cap at1024frames.",
+    "First matching adjacency endpoint wins. Direction chooses a connection flag word, and bothways modifies both words.",
+    "Controllers update in active-list order. Conflicting controllers sharing an edge use last-writer semantics.",
+    "Exact flag dialect is selected from original mode globals; fallback flags apply only when dialect lookup returnszero."
+  ],
+  "limits": [
+    "World/path-name registries, target binding, animation reference/header resolution, generic gizmo-output evaluation and numeric expression evaluation are explicit host services. These dependencies are not reconstructed by this module.",
+    "Finite float-to-int32 conversion, nonnull valid native records, byte-encoded NUL-terminated strings, locator/adjacency/path counts within byte-index limits. on_frames suffix must fit the original64-byte buffer and token separators must be present.",
+    "Update requires positive animation end frame and nonnull connection. Native fake-animation creation can allocate a null-edge controller even for an otherwise invalid fake ID when endpoint lookup fails; creation is retained, unsafe update is rejected.",
+    "Native allocation/bootstrap, corruption/double-release behavior, invalid pointers, service reentrancy and callback mutation of manager/path lists are outside the contract.",
+    "Animation duration/frame, visibility and force condition helpers execute unchanged in native tests. Portable source uses resolved fields; there is no whole-level pathfinder or character locomotion implementation.",
+    "Original x86 versus Python contract tests do not establish compiled C# equivalence. Managed compilation is separate; ordinary execution remains pending."
+  ],
+  "compiledExecution": {
+    "status": "pending",
+    "reason": "Ordinary generated managed executables are denied by Windows; no alternate host or security changes."
+  }
+}

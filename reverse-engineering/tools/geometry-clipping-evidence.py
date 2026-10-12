@@ -25,8 +25,34 @@ if roomReport.exists():
    gap['next']='Recover camera producer,portal child clipping volumes and recursive bitset propagation,grid/tree evaluation,and full dynamic special/GHG/shadow packet consumers; validate compiled source in ordinary permitted execution.'
   if gap['id']=='compiled-cpu-runtime-verification':
    gap['evidence']+=' PortalSelection.cs and its ordinary harness also compile;15,296 source-bound room-selection cases are prepared but not executed.'
+visibilityReport=R/'geometry-portal-visibility-native-validation.json'
+if visibilityReport.exists():
+ visibility=json.loads(visibilityReport.read_text());assert visibility['passed']
+ for gap in r['gaps']:
+  if gap['id']=='visibility-game-state':
+   gap['status']='native-predicates-room-selection-and-room-bitsets-validated-traversal-incomplete'
+   gap['evidence']+=' Room-to-instance bit propagation adds6,448 authored cases over60PORTscenes/403rooms,1,000 alternate-mode synthetic cases,288 sphere/box boundary checks,and40 initializer/unclipped-room checks,all passing with original predicates unmodified.'
+   gap['next']='Recover recursive portal traversal and child clipping volumes,camera/grid/tree production,and full dynamic special/GHG/shadow packets; validate compiled source in ordinary permitted execution.'
+  if gap['id']=='compiled-cpu-runtime-verification':
+   gap['evidence']+=' PortalVisibility.cs and its harness compile;6,448 authored room-bitset cases are prepared in a1,156,114-byte shared-scene fixture,not executed.'
+volumeReport=R/'geometry-portal-volume-native-validation.json'
+if volumeReport.exists():
+ volume=json.loads(volumeReport.read_text());assert volume['passed']
+ for gap in r['gaps']:
+  if gap['id']=='visibility-game-state':
+   gap['status']='native-predicates-room-bitsets-and-edge-volumes-validated-recursion-incomplete'
+   gap['evidence']+=' Child-volume batch adds3,586 original edge constructions over326portals,256allocator+256shallow-copy+2,000rectangle+208packing cases.57,376plane/114,752packed/21,516projection scalars agree numerically;1,254native-vs-Python signed-zero bit differences preserved,not bit-equivalence. Live projection producer and partial-portal volume path remain open.'
+   gap['next']='Recover recursive traversal,partially clipped portal/FOV volumes,camera/projection/grid/tree production,and dynamic/shadow packets; validate compiled source in ordinary permitted execution.'
+  if gap['id']=='compiled-cpu-runtime-verification':
+   gap['evidence']+=' PortalVolumes.cs and harness compile;3,586 authored edge-volume cases are prepared in223,648bytes,172,128expected scalars,not executed.'
 for name in ['geometry-clipping-native-validation.json','geometry-portal-native-validation.json','geometry-clipping-findings.txt']+(['geometry-room-selection-native-validation.json','geometry-room-selection-managed-check.json','geometry-room-selection-findings.txt']if roomReport.exists()else[]):
  if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
+if visibilityReport.exists():
+ for name in ['geometry-portal-visibility-native-validation.json','geometry-portal-visibility-managed-check.json','geometry-portal-visibility-findings.txt']:
+  if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
+if volumeReport.exists():
+ for name in ['geometry-portal-volume-native-validation.json','geometry-portal-volume-managed-check.json','geometry-portal-volume-findings.txt']:
+  if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
 p.write_text(json.dumps(r,indent=2)+'\n')
 append='''\nPrepared-plane clipping follow-up
 geometry-clipping-findings.txt and the two native validation reports close the
@@ -61,3 +87,28 @@ camera/grid/tree production,shadow/GHG packets and GPU equivalence remain gaps.
   p=R/name;old=p.read_text()
   if 'Room-selection follow-up' not in old:p.write_text(old+followup)
 print(json.dumps({'nativeFrustum':82204,'nativeRoomContainment':18721,'nativePortalClassification':40470,'status':'passed; compiled managed execution pending'}))
+if visibilityReport.exists():
+ followup='''\nRoom-to-instance visibility follow-up
+geometry-portal-visibility-findings.txt closes native room-bitset consumers:
+6,448 authored propagation cases over all403rooms/60PORTscenes,1,000 alternate
+mode synthetic cases,288 sphere/box boundaries and40 clear/set/unclipped cases
+pass,with all original geometry predicates executed unchanged. Portable
+PortalVisibility.cs and its6,448-case ordinary harness compile; managed execution
+remains pending. Recursive traversal and child-volume construction remain open.
+'''
+ for name in ['geometry-findings.txt','geometry-render-integration.txt','geometry-visibility-findings.txt','geometry-clipping-findings.txt']:
+  p=R/name;old=p.read_text()
+  if 'Room-to-instance visibility follow-up' not in old:p.write_text(old+followup)
+if volumeReport.exists():
+ followup='''\nPortal edge-volume follow-up
+geometry-portal-volume-findings.txt documents3,586 original child-edge volumes,
+256allocator/256shallow-copy/2,000rectangle/208packing cases. All326 authored
+portals are covered. Numeric original-vs-Python comparisons pass;1,254 signed
+zero bit differences are explicit and original fixture bytes preserved.
+PortalVolumes.cs and its3,586-case ordinary harness compile; managed execution
+remains pending. Recursive traversal,partial-portal/FOV volumes and the live
+camera/projection producer remain open. No GPU equivalence is claimed.
+'''
+ for name in ['geometry-findings.txt','geometry-render-integration.txt','geometry-visibility-findings.txt','geometry-clipping-findings.txt']:
+  p=R/name;old=p.read_text()
+  if 'Portal edge-volume follow-up' not in old:p.write_text(old+followup)

@@ -1,11 +1,71 @@
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Runtime.InteropServices;
 using Recovered.Animation;
 
 internal static class AnimationDifferentialHarness
 {
     private static float F(uint value) { return PcObjectImage.FromBits(value); }
+    private static PlaybackClip[] ReadControlClips(BinaryReader r)
+    {
+        PlaybackClip[] clips = new PlaybackClip[233]; int count = r.ReadInt32();
+        for (int i = 0; i < count; ++i)
+        {
+            int id = r.ReadInt32(); clips[id] = new PlaybackClip { Flags = r.ReadUInt32(), EndFrame = r.ReadSingle(),
+                BlendIn = r.ReadSingle(), BlendOut = r.ReadSingle(), FramesPerSecond = r.ReadSingle(), MovementReference = r.ReadSingle(), RateCap = r.ReadSingle() };
+        }
+        return clips;
+    }
+    private static int VerifyControl(string file, out int errors)
+    {
+        errors = 0;
+        using (BinaryReader r = new BinaryReader(new GZipStream(File.OpenRead(file), CompressionMode.Decompress)))
+        {
+            if (System.Text.Encoding.ASCII.GetString(r.ReadBytes(8)) != "ACTRL001") throw new Exception("Control oracle signature mismatch");
+            int count = r.ReadInt32();
+            for (int c = 0; c < count; ++c)
+            {
+                int kind = r.ReadInt32(), argLength = r.ReadInt32(); byte[] args = r.ReadBytes(argLength);
+                int beforeLength = r.ReadInt32(), expectedLength = r.ReadInt32(); byte[] before = r.ReadBytes(beforeLength), expected = r.ReadBytes(expectedLength);
+                int expectedReturn = r.ReadInt32(), result = 0; byte[] actual;
+                using (BinaryReader a = new BinaryReader(new MemoryStream(args)))
+                {
+                    if (kind == 0 || kind == 1)
+                    {
+                        byte[] miniBytes = new byte[36], fullBytes = new byte[72]; Array.Copy(before, 0, miniBytes, 0, 36); Array.Copy(before, 36, fullBytes, 0, 72);
+                        MiniAnimationPacket mini = new MiniAnimationPacket(miniBytes); AnimationPacket full = new AnimationPacket(fullBytes);
+                        if (kind == 0) AnimationControl.ExpandMini(mini, full); else AnimationControl.CompactFull(full, mini);
+                        actual = new byte[108]; Array.Copy(mini.Bytes, 0, actual, 0, 36); Array.Copy(full.Bytes, 0, actual, 36, 72);
+                    }
+                    else if (kind == 2)
+                    {
+                        float step = a.ReadSingle(), speed = a.ReadSingle(), blend = a.ReadSingle(); int mode = a.ReadInt32(); PlaybackClip[] clips = ReadControlClips(a);
+                        MiniAnimationPacket mini = new MiniAnimationPacket(before); AnimationControl.UpdateMini(mini, clips, step, speed, blend, mode); actual = mini.Bytes;
+                    }
+                    else if (kind == 3)
+                    {
+                        int source = a.ReadInt32(), target = a.ReadInt32(); bool present = a.ReadUInt32() != 0; uint mask = a.ReadUInt32(); bool[] available = new bool[6];
+                        for (int i = 0; i < 6; ++i) available[i] = (mask & (1u << i)) != 0;
+                        AnimationPacket p = new AnimationPacket(before); result = AnimationControl.IsBlendingFromTo(p, source, target, present, available) ? 1 : 0; actual = p.Bytes;
+                    }
+                    else if (kind == 4)
+                    { AnimationPacket p = new AnimationPacket(before); result = AnimationControl.CurrentAction(p); actual = p.Bytes; }
+                    else if (kind == 5)
+                    {
+                        PlayerAnimationInputs inputs = new PlayerAnimationInputs { Seconds = a.ReadSingle(), InputMagnitude = a.ReadSingle(), MovementSpeed = a.ReadSingle(),
+                            BackwardsMultiplier = a.ReadSingle(), GameCharacterFlags = a.ReadUInt32(), BlendMode = a.ReadInt32() };
+                        PlaybackClip[] clips = ReadControlClips(a); PcObjectImage o = new PcObjectImage(before); AnimationControl.AdvancePlayerWithoutEvents(o, clips, inputs); actual = o.Bytes;
+                    }
+                    else throw new Exception("Unknown control case type");
+                    if (a.BaseStream.Position != a.BaseStream.Length) throw new Exception("Trailing control argument bytes");
+                }
+                if (!Equal(actual, expected) || result != expectedReturn) { ++errors; if (errors <= 10) Console.Error.WriteLine("Control mismatch " + c); }
+            }
+            if (r.BaseStream.ReadByte() != -1) throw new Exception("Trailing control oracle bytes");
+            return count;
+        }
+    }
     private static int VerifyIdle(string file, out int errors)
     {
         errors = 0;
@@ -161,16 +221,18 @@ internal static class AnimationDifferentialHarness
             }
             if (r.BaseStream.Position != r.BaseStream.Length) throw new Exception("Trailing case bytes");
         }
-        int resetErrors, spawnErrors, playbackErrors, idleErrors;
+        int resetErrors, spawnErrors, playbackErrors, idleErrors, controlErrors;
         int resetCases = VerifyResetMoves(Path.Combine(Path.GetDirectoryName(args[0]), "animation-reset-moves-cases.bin"), out resetErrors);
         int spawnCases = VerifySpawnPointers(Path.Combine(Path.GetDirectoryName(args[0]), "animation-spawn-pointer-cases.bin"), out spawnErrors);
         int playbackCases = VerifyPlayback(Path.Combine(Path.GetDirectoryName(args[0]), "animation-playback-cases.bin"), out playbackErrors);
         int idleCases = VerifyIdle(Path.Combine(Path.GetDirectoryName(args[0]), "animation-idle-cases.bin"), out idleErrors);
-        total += resetCases + spawnCases + playbackCases + idleCases; mismatches += resetErrors + spawnErrors + playbackErrors + idleErrors;
+        int controlCases = VerifyControl(Path.Combine(Path.GetDirectoryName(args[0]), "animation-control-cases.bin.gz"), out controlErrors);
+        total += resetCases + spawnCases + playbackCases + idleCases + controlCases; mismatches += resetErrors + spawnErrors + playbackErrors + idleErrors + controlErrors;
         string contractJson = "";
         for (int i = 1; i < 8; ++i) contractJson += (i == 1 ? "" : ",") + "\"" + i + "\":{\"cases\":" + counts[i] + ",\"mismatches\":" + errors[i] + "}";
         string json = "{\"method\":\"Compiled dependency-free C# compared byte-for-byte with original PC function outputs; complete object/packet images, return/effect value and RNG state.\",\"cases\":" + total + ",\"mismatches\":" + mismatches + ",\"contracts\":{" + contractJson + "},\"resetMoves\":{\"cases\":" + resetCases + ",\"mismatches\":" + resetErrors + "},\"spawnPointers\":{\"cases\":" + spawnCases + ",\"mismatches\":" + spawnErrors + "},\"playback\":{\"cases\":" + playbackCases + ",\"mismatches\":" + playbackErrors + "},\"examples\":[" + examples + "]}";
         json = json.Substring(0, json.Length - 1) + ",\"idleScheduling\":{\"cases\":" + idleCases + ",\"mismatches\":" + idleErrors + "}}";
+        json = json.Substring(0, json.Length - 1) + ",\"animationControl\":{\"cases\":" + controlCases + ",\"mismatches\":" + controlErrors + "}}";
         File.WriteAllText(args[1], json); Console.WriteLine(json); return mismatches == 0 ? 0 : 1;
     }
 }

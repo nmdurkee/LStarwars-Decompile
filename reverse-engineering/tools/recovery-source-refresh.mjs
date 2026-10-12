@@ -9,10 +9,10 @@ const byName=Object.fromEntries(manifest.modules.map(m=>[m.name,m]));
 const animation=await read('reports/animation-source-function-map.json');
 byName.animation.mappings=animation.records.map(r=>({address:r.nativeAddress,method:r.csharpMethod,coverage:r.coverage,limits:r.limits,sourceFile:r.source.replace(/^reconstructed\//,''),evidence:r.nativeEvidenceReport}));
 const gameplay=await read('reports/gameplay-source-function-map.json');
-byName.gameplay.mappings=gameplay.mappings.map(r=>({address:r.address,method:r.methods.map(x=>x.name).join('; '),coverage:r.coverage,limits:[r.qualification],sourceFile:r.sourceFile.replace(/^reverse-engineering\/reconstructed\//,'')}));
+byName.gameplay.mappings=gameplay.mappings.map(r=>({address:r.address,method:r.methods.map(x=>x.name).join('; '),coverage:r.coverage,limits:[r.qualification],sourceFile:r.sourceFile.replace(/^reverse-engineering\/reconstructed\//,''),evidence:r.address==='0x456c10'?'reports/gameplay-createcreatures-contract.json':'reports/gameplay-source-function-map.json'}));
 const geometry=await read('reports/geometry-recovered-source.json');
-byName.geometry.mappings=geometry.nativeMappings.map(r=>({address:r.address,method:r.method,coverage:r.coverage,limits:[r.limitations],sourceFile:(r.sourceFile||('geometry/'+(r.method.startsWith('MaterialUv.')?'MaterialUv.cs':'SceneSubmission.cs'))).replace(/^reconstructed\//,'')}));
-for(const m of manifest.modules){m.files=[...new Set(m.mappings.map(r=>r.sourceFile))];for(const f of m.files)await fs.access(path.join(base,'reconstructed',f));}
+byName.geometry.mappings=geometry.nativeMappings.map(r=>({address:r.address,method:r.method,coverage:r.coverage,limits:[r.limitations],sourceFile:(r.sourceFile||('geometry/'+(r.method.startsWith('MaterialUv.')?'MaterialUv.cs':'SceneSubmission.cs'))).replace(/^reconstructed\//,''),evidence:r.sourceFile?.endsWith('PortalVisibility.cs')?'reports/geometry-portal-visibility-native-validation.json':r.sourceFile?.endsWith('PortalVolumes.cs')?'reports/geometry-portal-volume-native-validation.json':'reports/geometry-recovered-source.json'}));
+for(const m of manifest.modules){m.evidence=[...new Set([...(m.evidence||[]),...m.mappings.map(r=>r.evidence).filter(Boolean)])];m.files=[...new Set(m.mappings.map(r=>r.sourceFile))];for(const f of m.files)await fs.access(path.join(base,'reconstructed',f));}
 manifest.updated=new Date().toISOString();
 await write('reconstructed/source-manifest.json',manifest);
 const investigation=await read('INVESTIGATION.json');

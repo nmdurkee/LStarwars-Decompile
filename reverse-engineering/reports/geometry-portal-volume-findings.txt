@@ -1,0 +1,78 @@
+Original PC portal child-volume components
+
+The unmodified0x5da100 edge-volume builder and all its allocator/vector/sqrt/
+projection/packing callees execute in isolated x86.3,586 cases cover all326
+authored portal windings, nine authored camera positions and each portal's
+centroid/first vertex. All authored windings have four vertices. Comparisons
+include57,376 edge-plane scalars,114,752 packed-plane scalars and21,516 projected
+bound scalars. The prepared projection is explicitly diagonal1/1024,homogeneous
+W1; it is not a reconstructed live camera matrix producer.
+
+256 original arena-allocation cases cover plane counts0..15 and all16 initial
+byte alignments.256 original copy cases verify pointer alias and untouched newly
+reserved plane bytes.208 additional packer cases cover counts3..15.2,000 native
+rectangle cases cover strict touch/reject/accept, signed zero, reversed finite
+bounds, output-Z preservation and rejection leaving all output bytes unchanged.
+All numeric comparisons pass; no native function returns were replaced.
+
+Numeric equality versus bit equality
+The Python integer-x87 model agrees numerically with every original edge plane.
+It has1,254 signed-zero bit differences: X226,Y402,Z452,W174. The rational helper
+collapses the sign of zero in intermediate arithmetic; plane orientation may
+subsequently negate it. These are native-vs-Python differences, not measured C#
+results. Exact native plane bytes and packed-matrix bytes are retained as hex
+per fixture, and the native JSON numbers preserve negative zero. The durable
+report has examples and component counts. No exact-bit equivalence is claimed.
+
+Original contracts
+0x5da100 allocates vertexCount planes and records the target signed16 room ID.
+For each winding edge it subtracts the two vertices from the camera, computes
+their cross product, normalizes with observed float32 squared-length/sqrt/
+reciprocal/component stores, and orients the plane by the camera's signed portal
+plane distance. The constant makes the edge plane pass through the camera.
+Zero-length crosses become zero normals, including camera-at-vertex fixtures.
+Source input/plane predicates retain finite bounds; huge overflowing portable
+intermediates are rejected instead of claiming general nonfinite equivalence.
+
+0x5d9850 writes two4x4 plane-column matrices. It always reads the first three
+planes; additional planes fill columns through8; unused columns repeat the
+extra camera plane0x963f78. Counts above8 retain extra scalar planes but do not
+pack them. Counts below3 are unsafe for this caller and excluded from the
+portable packer. The native count is signed16.
+
+0x5d9140 keeps the header at the old arena pointer, aligns the plane pointer to
+align16(old)+160, advances by planeCount*16, stores the count and appends the
+header pointer to the supplied list. Capacity/exhaustion/debug paths are not
+reconstructed.0x5d91b0 first reserves such storage, then copies all160header
+bytes, overwriting the new plane pointer with the source pointer. Its following
+plane-copy loop is therefore source-to-self; the newly reserved plane area
+remains untouched. Portable ShallowCopy copies fields and packed matrices while
+retaining the same fixed-length plane array, not a new plane array. Native
+arena/list accounting remains an explicitly omitted runtime side effect.
+
+0x5d9f50 computes componentwise projected bounds through prepared0x80b888 and
+clamps them to[-1,1]. Its first output is maximum and second is minimum; in the
+resulting clip header+0x84 is minimum,+0x90 maximum. The min/max helper names
+are not available, so output order was checked from original code/results.
+0x5da040 receives minA inECX,maxA inEDI,minB inEDX,maxB inESI. Strict XY overlap
+is required. It writes only XY in its two stack-argument outputs; Z remains.
+
+Portable source and fixture boundary
+PortalVolumes.cs adds four explicit mappings: the major plane/packing component
+of0x5da100, bounded packing0x5d9850, shallow header-copy projection0x5d91b0 and
+finite XY intersection0x5da040. The edge builder takes screen bounds from the
+caller; it does not port5d9f50 or the live projection/inversion-cache owner.
+The six geometry modules and shared animation arithmetic sources compile.
+PortalVolumeHarness.Main(input,output) compiles. Its compact fixture contains
+3,586 cases /326shared portals in223,648bytes with172,128 native plane/packed
+scalar expectations. tools/geometry-portal-volume-check.py supports --harness,
+--module and --compare. It prepares only by default. Compiled C# runtime
+comparison remains pending the existing ordinary Windows execution denial.
+
+Still open
+The full recursive0x5ee940 path remains a static trace, including its depth<16
+guard, ancestor-cycle rejection, room-flag4 propagation and authored depth cap.
+The partial-portal branch0x5ee750 and rectangular/FOV volume producer0x5d9a00
+remain unverified as a chain. Camera state production, projection owner/cache,
+native arena/list capacity behavior, activation, grid/tree, dynamic/shadow
+submission and GPU pixels remain outside this completed component batch.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T19:38:45.495Z",
+  "generatedAt": "2026-10-12T20:14:21.529Z",
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "scope": "Explicit semantic mapping only. Does not count integer constants, transitive native callees, entire classes or adapters as recovered functions.",
   "compiledStatus": "C# core and combined verifier compiled; Windows denied execution of newly generated managed binaries. No compiled differential pass is claimed.",
@@ -10,9 +10,27 @@
     "reverse-engineering/reports/gameplay-message-tests.json",
     "reverse-engineering/reports/gameplay-state-command-tests.json",
     "reverse-engineering/reports/gameplay-visibility-tests.json",
-    "reverse-engineering/reports/gameplay-compact-condition-tests.json"
+    "reverse-engineering/reports/gameplay-compact-condition-tests.json",
+    "reverse-engineering/reports/gameplay-createcreatures-tests.json"
   ],
   "mappings": [
+    {
+      "address": "0x456c10",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/CreateCreatures.cs",
+      "methods": [
+        {
+          "name": "CreatureSpawner.Parse",
+          "line": 146
+        },
+        {
+          "name": "CreatureSpawner.Execute",
+          "line": 231
+        }
+      ],
+      "coverage": "bounded spawn command with world/effect adapters",
+      "qualification": "Original ordered parser, grouping, spawn arguments and ordinary post-spawn mutation/dispatch. Allocation, world binding, physical effects and successful ZipUp remain adapters.",
+      "comparisonStatus": "Native contract verified on bounded fixtures; compiled C# differential execution pending."
+    },
     {
       "address": "0x5151c0",
       "sourceFile": "reverse-engineering/reconstructed/gameplay/CompactConditions.cs",

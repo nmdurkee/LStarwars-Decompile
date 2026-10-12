@@ -1,6 +1,6 @@
 {
   "task": "Recover as much of the supplied LEGO Star Wars: The Complete Saga PC game as feasible; reverse engineering only.",
-  "updated": "2026-10-12T19:48:59.804Z",
+  "updated": "2026-10-12T20:25:53.134Z",
   "originalGame": "../Lego Star Wars Saga",
   "originalsMutable": false,
   "tracks": [
@@ -144,8 +144,7 @@
         "reports/source-completion.json",
         "reports/reconstructed-build.json",
         "reports/reconstructed-execution-status.json"
-      ],
-      "coverage": "122native entries mapped into21core C#files; full game remains incomplete."
+      ]
     },
     {
       "name": "Combat and economy",
@@ -168,11 +167,9 @@
     {
       "name": "World frame dispatcher",
       "status": "bounded-control-flow-subsystems-adapted",
-      "coverage": "384 base dispatcher cases/9600 assertions plus9024branch/helper cases/42176assertions; most subsystem calls remain explicit adapters.",
+      "coverage": "384 native call-order cases and 9600 state assertions; subsystem callees are no-op adapters, not an executed whole frame.",
       "evidence": [
-        "reports/native-frame-dispatch.json",
-        "reports/native-frame-branches.json",
-        "reports/native-frame-source.json"
+        "reports/native-frame-dispatch.json"
       ]
     }
   ],

@@ -49,6 +49,7 @@ reverse-engineering/reconstructed/gameplay/Messages.cs SHA256 44b7db69e7b8c96e9b
 reverse-engineering/reconstructed/gameplay/StateControl.cs SHA256 5d3989cf50ad8a89c58dae6d9a51d5a4cbaed12724bcb3290a38e2685f3e6781
 reverse-engineering/reconstructed/gameplay/Visibility.cs SHA256 cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222
 reverse-engineering/reconstructed/gameplay/CompactConditions.cs SHA256 cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c
+reverse-engineering/reconstructed/gameplay/CreateCreatures.cs SHA256 f7c5ebde9971cf65d8511dacceaf5336c743aad10c55837aeb3eeb36559432b8
 
 Adapters
 GIT text parsing, source Collapse flattening and name binding must construct the runtime graph.
@@ -68,6 +69,11 @@ ConditionActorReference/ConditionObject project the weak-reference chain and off
 ConditionWorld.FreePlayValue and ReadAliveCount supply original global inputs without inventing population/update logic or count-table allocation size.
 ScriptPacket.SetId projects byte+0xb0 and is populated separately by the host.
 General SCP expression/variable binding and malformed source parsing remain outside these six reader bodies.
+SpawnServices resolves runtime type, locator, set, zip, rider and capability references; synthetic fixtures do not establish level reachability.
+Locator selection/visibility/player range tests and set refresh are supplied services; only their argument and call ordering is established.
+Formation/character allocation and state/crate/zip/ride/balloon effects are explicit services. Successful ZipUp is wholly delegated and not exercised.
+Shared integer and float RNG ownership remains host-supplied; native state and draw order are compared in fixtures.
+RotateOffset supplies the angle LUT math. Original PC rotation and addition execute on cardinal fixture inputs; arbitrary angle precision and host LUT generation are not claimed.
 
 Intentional host safety bounds
 Save/restore rejects more than 512 nodes; native code lacks that bound check.
@@ -83,6 +89,11 @@ ASCII token domain; dynamic fallback function is not simulated.
 NumInSetAlive rejects direct selector values outside initializer output0..16/-1; myset still allows any packet byte through its read adapter.
 Required world/count adapters fail explicitly when absent instead of dereferencing unavailable memory.
 Initializer text accepts non-NUL ASCII; extended-byte case folding and signaling NaN payload behavior are outside this source domain.
+Reject negative spawn counts, out-of-int32/nonfinite numeric operands, and group spans beyond positive int32.
+Bound script string to63 non-NUL ASCII characters; native copies into a64-byte stack buffer without a bound.
+Reject a33rd resolved zip and invalid signed-byte locator-set representation rather than corrupting memory.
+Use a configurable operation budget for malformed or excessively large groups.
+Reject negative type-RNG indices and tokens whose fixed skip exceeds their string terminator.
 
 Remaining
 Saved-state tests use at most the 512 nodes representable by each 16-word bit plane; larger counts are not treated as safe native input.
@@ -107,3 +118,9 @@ Literal NumInSetAlive initializer admits 1..16 or myset; myset reads an unchecke
 All scalar reader checks compare values at the float32 storage boundary used by the native SCP evaluator; signaling NaN payload behavior is excluded.
 Eight symbolic comparison RHS occurrences and one malformed gotoUpdate occurrence retain separate source/loader gaps; their condition bodies were still exercised.
 Compiled C# differential execution pending.
+World/name/type/candidate/formation/allocation/effect calls are explicit fixture adapters. Original parser, loop, field mutations, scalar evaluator, RNG and cardinal vector helpers execute unchanged.
+Zip-up allocation returns null in these fixtures; successful zip-up setup is external, not verified or implemented.
+Actor comparisons cover documented fields, not every byte or downstream effects.
+Synthetic locator bindings are not the actual level world or source reachability.
+Native negative-count loops, stack overflow inputs, nonfinite numeric operands and full hub loader behavior are outside the bounded core.
+Compiled C# differential execution remains pending under the Windows execution denial.

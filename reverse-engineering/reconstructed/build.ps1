@@ -12,6 +12,7 @@ $compilerArgs = @('/nologo', '/target:library', '/optimize+', '/platform:anycpu'
 & $compiler @compilerArgs
 if ($LASTEXITCODE -ne 0) { throw 'Recovered library compilation failed.' }
 $harnessBuilt = $false
+$harnessPaths = @()
 if (-not $LibraryOnly) {
     $harnessPaths = @($manifest.harnessFiles | ForEach-Object { [IO.Path]::GetFullPath((Join-Path $reconstructionDirectory $_)) })
     $compilerArgs = @('/nologo', '/target:exe', '/optimize+', '/platform:anycpu', '/r:System.Web.Extensions.dll', '/main:RecoveredSourceVerify', ('/out:' + (Join-Path $buildDirectory 'RecoveredSourceVerify.exe'))) + $sourcePaths + $harnessPaths
@@ -20,6 +21,8 @@ if (-not $LibraryOnly) {
     $harnessBuilt = $true
 }
 $sourceEvidence = @($sourcePaths | ForEach-Object { [ordered]@{path=$_;sha256=(Get-FileHash -Algorithm SHA256 -LiteralPath $_).Hash.ToLowerInvariant()} })
-$report = [ordered]@{updated=[DateTime]::UtcNow.ToString('o');compiler=$compiler;libraryCompiled=$true;unifiedVerifierCompiled=$harnessBuilt;librarySha256=(Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $buildDirectory 'Recovered.Runtime.dll')).Hash.ToLowerInvariant();sources=$sourceEvidence;execution='Build only. Compilation is not an execution or differential verification pass.'}
+$harnessEvidence = @($harnessPaths | ForEach-Object { [ordered]@{path=$_;sha256=(Get-FileHash -Algorithm SHA256 -LiteralPath $_).Hash.ToLowerInvariant()} })
+$verifierHash = if ($harnessBuilt) { (Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $buildDirectory 'RecoveredSourceVerify.exe')).Hash.ToLowerInvariant() } else { $null }
+$report = [ordered]@{updated=[DateTime]::UtcNow.ToString('o');compiler=$compiler;libraryCompiled=$true;unifiedVerifierCompiled=$harnessBuilt;librarySha256=(Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $buildDirectory 'Recovered.Runtime.dll')).Hash.ToLowerInvariant();sources=$sourceEvidence;harnessSources=$harnessEvidence;unifiedVerifierSha256=$verifierHash;execution='Build only. Compilation is not an execution or differential verification pass.'}
 $report | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath (Join-Path $analysisDirectory 'reports/reconstructed-build.json')
 Write-Output ('Compiled recovered library from ' + $sourcePaths.Count + ' source files. Verifier compiled: ' + $harnessBuilt)
