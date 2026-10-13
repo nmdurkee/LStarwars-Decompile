@@ -1,0 +1,88 @@
+{
+  "schema": "bounded-pc-grid-visibility-contract-v1",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x5d6f00",
+      "method": "GridVisibility.Floor",
+      "coverage": "finite float32 floor helper within signed32 result domain",
+      "sourceFile": "geometry/scene-visibility-20261013-GridVisibility.cs"
+    },
+    {
+      "address": "0x5d6f30",
+      "method": "GridVisibility.Produce",
+      "coverage": "resolved finite grid cell selection and exact-length valid RLE0..625-byte decoded masks; global cache alias retained",
+      "sourceFile": "geometry/scene-visibility-20261013-GridVisibility.cs"
+    }
+  ],
+  "fields": {
+    "context": {
+      "gridPointer": "+0x0c (GSNH+0x12c)",
+      "instanceTreeBits": "+0x24 (GSNH+0x144)"
+    },
+    "grid": {
+      "width": "+0x04 signed32",
+      "minimumX": "+0x08 float32",
+      "maximumX": "+0x0c float32",
+      "minimumZ": "+0x10 float32",
+      "maximumZ": "+0x14 float32",
+      "scaleX": "+0x18 float32",
+      "scaleZ": "+0x1c float32",
+      "storageMode": "+0x20 signed32;1 selects RLE,all other values raw",
+      "decodedByteCount": "+0x24 signed32",
+      "cellPointerTable": "+0x2c"
+    },
+    "globals": {
+      "cameraX": "0x973718",
+      "cameraZ": "0x973720",
+      "gridActive": "0x973960",
+      "sharedDecodedMask": "0x966390",
+      "lastCell": "0x80b9e4"
+    }
+  },
+  "contracts": [
+    "Bounds include both ends. Outside leaves context pointer,gridActive,lastCell and decoded bytes unchanged.",
+    "CellIndex=width*floor(float32(x87((cameraZ-minZ)*scaleZ)))+floor(float32(x87((cameraX-minX)*scaleX))). Native does not clamp the cell at the upper endpoint.",
+    "Inside copies cell pointer to context+0x24 and sets global active according to nonnull pointer. Non-RLE mode aliases that pointer. Null RLE cell sets null pointer and active0 while preserving cache.",
+    "RLE nonnull cell always aliases global scratch. Equal cell index skips decode regardless of grid identity or source pointer. Cache invalidation is a caller/lifecycle obligation.",
+    "RLE header length=header>>2 (0..63). Tags0/1 fill00/ff; tags2/3 copy literal bytes. Valid zero-size headers consume a header and make no output progress. Native loops until output>=decodedByteCount; malformed overshoot/truncation has unsafe memory behavior.",
+    "Native RLE cache updates lastCell before decode; portable malformed-input rejection uses a guarded decode then commits the new cache key. Valid input behavior is retained."
+  ],
+  "integration": {
+    "address": "0x5f3c80",
+    "mappedNewSource": false,
+    "evidence": "256 gate combinations with original grid and dispatcher executed;camera,portal/tree callees are declared no-op adapters",
+    "order": [
+      "workspace/global visibility gates",
+      "camera switch0x5d6900",
+      "clear context+20/+24 and flags0x15,count selection",
+      "grid0x5d6f30 if enabled/present",
+      "portal0x5eeb30 when enabled/present,else tree0x5d8fb0 if enabled/present",
+      "camera restoration when mode1"
+    ],
+    "remaining": "SceneScheduling.PrepareVisibility still explicitly rejects grid/tree. This batch supplies tested grid producer and integration contract,not a change to that existing scheduler."
+  },
+  "limitations": [
+    "All cases synthetic; no authored grid asset/catalog recovery asserted.",
+    "625 bytes is portable/test-domain bound,not a recovered native scratch capacity.",
+    "Native unsafe table indices,int32 overflow,NaN/infinite coordinates,RLE overshoot/truncation are excluded.",
+    "Tree producer,camera switching internals,live loading,renderer and GPU equivalence remain incomplete.",
+    "Managed source/harness compile; managed comparison not executed,prior Windows Access denied limitation remains."
+  ],
+  "nativeValidation": "reports/scene-visibility-20261013-native-validation.json",
+  "assembly": "reports/scene-visibility-20261013-assembly.json",
+  "fixture": "reports/scene-visibility-20261013-native-fixtures.json.gz",
+  "harness": "geometry/harness/scene-visibility-20261013-GridVisibilityHarness.cs",
+  "fixtureCoverage": {
+    "totalRetained": 3321,
+    "portableReplayCases": 3065,
+    "portableReplayGroups": {
+      "floors": 2024,
+      "rleAndSelection": 784,
+      "nonUnitCoordinates": 256,
+      "crossGridCache": 1
+    },
+    "preparedManagedAssertions": 4345,
+    "dispatcherEvidenceOnly": 256
+  }
+}

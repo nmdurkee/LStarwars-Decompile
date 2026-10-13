@@ -1,0 +1,16 @@
+Actor flag/input commands —2026-10-13
+
+Nine newly contracted authored names: PressJumpButton22,PrefersPlayers22,CanShootOffScreen21,CanOpenDoors17,CanDefend14,Respawnable13,SetBoss23,SetDontMove16,UnderPlayerControl21:169 source occurrences.
+
+Original PC isolated native checks:28,347 assertions,zero mismatches.7,833 saved cases,24 initializers,296 shipped action calls(first/nonfirst),21 original condition comparisons. Assertion total includes correlated state/return/callback/full prepared actor/input write-confinement checks; it is not a count of independent scenarios.
+
+Recovered distinctions:
+- PressJumpButton and PrefersPlayers ignore firstCall. Jump uses runtime global mask0x802278, writes actor-input+8, and faults if actor's input+0xca4 is null.
+- CanOpenDoors and CanShootOffScreen preserve ordered TRUE/FALSE toggles. PrefersPlayers,CanDefend,SetBoss treat any FALSE as sticky within a call; later TRUE does not restore.
+- Respawnable resets origin bit,sets respawn bit,then origin/FALSE alter independent bits.
+- SetDontMove searches character substrings and advances ten bytes; failed later named resolution clears prior target. Its FALSE test always compares the first operand.
+- UnderPlayerControl binds an explicitly named actor; no operand initializes null,and reader does not fall back to self.
+
+Standalone source and complete saved-fixture harness compile. Managed execution pending; no launch retry. See script-phase3-20261013-contract.json for exact VAs,offsets,masks,memory and callback limits;script-phase3-20261013-source-map.json for root integration.
+
+Suggested next batches:AddToSet0x4499b0 ordered set/counter mutation,OnSpeederBike0x443200 named/fallback vehicle check,SetDoomedEscapeLocator0x446b30 named locator orchestration.

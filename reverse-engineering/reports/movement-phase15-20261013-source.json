@@ -1,0 +1,33 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase15-20261013-ScaleOverride.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x44c750",
+      "method": "ScaleOverrideCommands.SetScaleOverride",
+      "sourceFile": "gameplay/movement-phase15-20261013-ScaleOverride.cs",
+      "coverage": "Full finite command, originalfirst/nonfirst,selfreference/actor gates; ordered reset/min/max/time/plainnumeric parsing. Bothmin/max non1e9 triggeronefloatdraw overridingplainvalue. Native time keyis substringtime withfixedskip5. Zero time directset leaves oldpacket timer/rate unchanged. Nonzero time caches F32time/rate using extended difference/division; negative time returnscompletedaftercachecommit. Everycall then reads cachedpositive timer: Delta<timer updatescurrentScale+Delta*rate andremaining timer returns0, elseconsumesremaining timer, clearscachetime returns1. NegativeDelta reverses interpolation withoutcompletion."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase15-20261013-contract.json",
+    "reports/movement-phase15-20261013-tests.json",
+    "reports/movement-phase15-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase15-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase15-20261013",
+  "verifierClass": "MovementPhase1520261013Verify",
+  "fixture": "reports/movement-phase15-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase15-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SetScaleOverride",
+      "function": "0x44c750",
+      "sourceUses": 15,
+      "scope": "Full finite command, originalfirst/nonfirst,selfreference/actor gates; ordered reset/min/max/time/plainnumeric parsing. Bothmin/max non1e9 triggeronefloatdraw overridingplainvalue. Native time keyis substringtime withfixedskip5. Zero time directset leaves oldpacket timer/rate unchanged. Nonzero time caches F32time/rate using extended difference/division; negative time returnscompletedaftercachecommit. Everycall then reads cachedpositive timer: Delta<timer updatescurrentScale+Delta*rate andremaining timer returns0, elseconsumesremaining timer, clearscachetime returns1. NegativeDelta reverses interpolation withoutcompletion."
+    }
+  ]
+}

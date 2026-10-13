@@ -1,0 +1,27 @@
+{
+  "schema": "original-dirty-viewport-camera-v1",
+  "passed": true,
+  "checks": 9664,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "resetCases": 4096,
+    "pixelDepthTransformCases": 512,
+    "cameraCompositionCases": 320,
+    "retainedPortableReplayCases": 4928,
+    "earlyCleanViewportCases": 241,
+    "zeroViewportServices": 3241
+  },
+  "errors": [],
+  "adapters": {
+    "0x6e57b0": "Recorded six raw deviceviewport words and ownstate at boundary, with no GPU operation. Successfulservice return; caller ignores result.",
+    "0x715718": "Explicit sequential binary64 matrix multiply spilledfloat32, onlycamera composition.",
+    "0x6e56a0": "No calls in ApplyNormal-only composition; hook declared for dependency reuse and devicebackend remains external."
+  },
+  "limits": [
+    "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+    "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+    "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+    "Native/Python ownstate differential passed; managed replay remains separate and pending."
+  ],
+  "fixtureFile": "scene-phase5-20261013-viewport-native-fixtures.json.gz"
+}

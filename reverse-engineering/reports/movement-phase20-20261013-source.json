@@ -1,0 +1,36 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase20-20261013-PodCurve.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x40eff0",
+      "method": "PodCurveEvaluation.Normalized",
+      "sourceFile": "gameplay/movement-phase20-20261013-PodCurve.cs",
+      "coverage": "Boundedfinite raw2..64point normalizedcurve. F32scaled(count-1)*parameter thenoriginalFTOL, F32fractionbeforeindexadjustment. Nonpositiveindex usesnormalized10-unit extrapolatedprepoint; index>count-1 clamps toCOUNT, exposingrawheader/nextbacking. Postghost fromlasttwo controls. EveryXYZ polynomialterm hasoriginalF32spill boundaries; squarestoresF32 butcube usesretainedwide square. XYZwrites precedelateW reads, preserving shiftedoutput/inputaliases."
+    },
+    {
+      "address": "0x40f450",
+      "method": "PodCurveEvaluation.Distance",
+      "sourceFile": "gameplay/movement-phase20-20261013-PodCurve.cs",
+      "coverage": "Boundedfinite physicaldistance remap: distance>=length directlyu1; otherwise firststrict cumulative>end match usespreviouscumulative(or0), extendedratio storedF32 then(ratio+index)/COUNT storedF32. No match passesoriginaldistance unchangedasnormalizedparameter. Composesactualnormalized evaluator."
+    },
+    {
+      "address": "0x5b3b30",
+      "method": "PodCurveEvaluation.NormalizeStored",
+      "sourceFile": "gameplay/movement-phase20-20261013-PodCurve.cs",
+      "coverage": "Refines existing finite unitvector output projection with exactx8764 XYZsquares/sum,F32square/sqrt, F32reciprocal andproductstores. Zero vector supported; valuevector/inplace callers only, no shiftedrawoutputaliasABI ororiginal FPUlengthreturn claim."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase20-20261013-contract.json",
+    "reports/movement-phase20-20261013-tests.json",
+    "reports/movement-phase20-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase20-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase20-20261013",
+  "verifierClass": "MovementPhase2020261013Verify",
+  "fixture": "reports/movement-phase20-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase20-20261013-managed-check.json"
+}

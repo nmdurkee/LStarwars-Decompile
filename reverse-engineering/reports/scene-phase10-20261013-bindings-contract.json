@@ -1,0 +1,71 @@
+{
+  "schema": "original-target-screen-origin-binding-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entry": "0x6e3720",
+  "method": "RenderTargetDimensionBinding.Apply",
+  "abi": "thiscall ECX backend, stack surface/uint slot, ret8; opaque EAX from final bind or refresh service.",
+  "backendFields": {
+    "width": "0x138 signed32",
+    "height": "0x13c signed32",
+    "flag": "0x638 uint",
+    "primary": "0x6b0 opaque handle",
+    "secondary": "0x6c4 opaque handle",
+    "active": "0x6e8 opaque handle"
+  },
+  "surfaceFields": {
+    "handle": "0x8 opaque handle",
+    "width": "0x14 unsigned16",
+    "height": "0x16 unsigned16"
+  },
+  "globalWrites": {
+    "screen": [
+      "0x973900",
+      "0x973904"
+    ],
+    "origin": [
+      "0x80202c",
+      "0x802030"
+    ]
+  },
+  "flow": [
+    "Present surface with nonzero handle binds requested slot. Slot0 then reads its unsigned dimensions after bind, writes screen and truncating half origin, and refreshes context.",
+    "Null surface or zero handle with nonzero slot binds that slot to handle0 and returns its opaque result, without own dimension writes.",
+    "Fallback slot0 selects primary or secondary from pre-call backend flag. Primary path also sets render state168 to0. Active handle is read from the selected backend field after those services.",
+    "Fallback dimensions are signed32, read after binding/state callbacks, and halve toward zero. Refresh runs after all own global writes and may mutate supplied state."
+  ],
+  "defaults": {
+    "source": [
+      640,
+      224
+    ],
+    "origin": [
+      320,
+      240
+    ],
+    "aim": [
+      0,
+      0,
+      -1
+    ],
+    "direction": [
+      0,
+      0,
+      1
+    ],
+    "colorWords": [
+      1065353216,
+      1065353216,
+      1065353216,
+      1065353216
+    ]
+  },
+  "references": "reports/scene-phase10-20261013-bindings-references.json contains encoded literal address candidates within scanned code. Source dimensions640x224 have only observed direct reads; this does not rule out indirect initialization/writes.",
+  "boundaries": [
+    "Original complete6e3720 caller executes unchanged with concrete source field layouts and real screen/origin globals. Host calls are explicit services, not reconstructed device behavior.",
+    "Valid separate backend/surface records; surface width/height are unsigned16. Backend width/height all Int32 with signed truncating half.",
+    "Any nonzero slot retains original dimension/active writes gate, including0xffffffff. Surface-null or handle-zero fallbacks retained.",
+    "Callbacks may change fields before later reads; branch decisions and argument values retain original evaluation order. Register volatile clobbers and ret8 verified.",
+    "Literal source/origin/light references and original PE defaults provide binding evidence only; no exhaustive indirect writer or authored frame provenance claim.",
+    "Native/Python caller own-state differential passed; managed execution pending."
+  ]
+}

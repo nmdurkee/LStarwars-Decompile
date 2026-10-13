@@ -1,0 +1,47 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": [
+    "0x4d94f0",
+    "0x5b3690"
+  ],
+  "abi": {
+    "heading": "ESI pod; cdecl(direction pointer, factor float, mode int)",
+    "vectorZ": "cdecl(output pointer, input pointer, signed Int32 angle)"
+  },
+  "bounds": [
+    "Finite used matrix/vector/curve/factor/delta words and arithmetic results; representable float-to-int conversions.",
+    "Exact supplied 32,768 runtime sine floats and 513 original angle words; table initialization remains external.",
+    "Caller scratch is 48 disjoint bytes outside all retained source/matrix storage; native stack-local allocation is projected into this buffer.",
+    "No machine flags, FPU status/exception masks, register clobber, partial memory faults or NaN behavior equivalence claim.",
+    "CreatePod orchestration and actor creator remain unrecovered in this batch."
+  ],
+  "behavior": [
+    "Transform direction through current pod matrix, publish sign-extended short yaw/pitch at +74/+70, apply in-place Y then X rotations.",
+    "Nonzero mode applies fixed roll 512 and skips bank calculation. Mode zero rereads direction after matrix writes, including aliases.",
+    "Curve angle is truncated to Int32 then signed16 before adding 0x4000; local unit X rotates Z, X, Y, then transforms through updated matrix.",
+    "Clamp bank first against 24000*delta, then -24000*delta; every clamp truncates and wraps signed16, preserving negative delta and wrap effects.",
+    "Factor >2 sets bank zero; factor >1 scales by 2-factor with F32 spill; <=1 preserves bank. Final signed16 conversion feeds negated in-place Z rotation.",
+    "Z-vector rotation caches X but rereads input Y after X store and Z after Y store; shifted alias behavior retained."
+  ],
+  "validation": {
+    "nativeCases": 953,
+    "nativeWholeImageChecks": 953,
+    "nativeMismatches": 0,
+    "preparedManagedAssertions": 953,
+    "managedExecution": false
+  },
+  "source": "reconstructed/gameplay/movement-phase22-20261013-PodHeading.cs",
+  "harness": "tools/movement-phase22-20261013-portable-verify.cs",
+  "compilation": {
+    "inputs": 234,
+    "target": "Library with 232 registered cores plus new core and harness",
+    "dllSha256": "9f2007260f82756cff0c991c8e854635013f97f394e099a6a5bbeb35dbcd43df",
+    "managedExecution": false
+  },
+  "hashes": {
+    "reconstructed/gameplay/movement-phase22-20261013-PodHeading.cs": "60f3b6bb4d3de95f745f81d3750d9e8416c77c7488fd2da2bb1f355a87ae4197",
+    "tools/movement-phase22-20261013-portable-verify.cs": "6184bb130f9165ec95c1eeee1093c047f642b6d3e8f5f6f65d82f04af17f6335",
+    "tools/movement-phase22-20261013-native.py": "06dffb2e3241939048ee9c9bf9dce53b6eb9f354d9957dd98451229295779af4",
+    "reports/movement-phase22-20261013-fixtures.json.gz": "255c8ba8b157518b7211044b3a8fa8f5172197c70d956053d9278f0afdf58997"
+  }
+}

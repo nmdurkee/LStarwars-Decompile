@@ -1,0 +1,32 @@
+Independent reverse-engineering audit: reverse-phase8-20261013
+
+No native/source mismatch found within the reviewed bounded contracts.
+All 1,350 additional checks passed: 1,202 original instruction/body/constant checks, 90 targeted native edges, 55 original authored reader-body occurrences and three retained coverage/fault integrity checks. Suite assertions and compiler hashes remain separate. All 429 compiler-input hashes (212 core + 217 harness sources) and the current DLL match. C# replay remains pending; no generated program launched.
+
+Frozen coverage and prepared comparison counts
+- Viewport: 4,928 cases (4,096 reset, 512 pixel/depth, 320 camera composition), 9,664 native checks, 22,073 prepared portable assertions. All 4,156 device viewport events retained; 241 clean early gates and 3,241 zero-rectangle service scenarios.
+- Camera reuse: 1,792 cases (1,024 clip + 768 camera), 4,352 native checks, 4,353 prepared portable assertions. Culling mode changed in 512 cases; 683 clipping calls ignored null/poison camera pointers.
+- Ejection: 697 full cases / 2,091 full assertions, plus 65,536 exact original speed-prefix cases / 196,608 native assertions, totaling 198,699 correlated native assertions. Portable harness prepares 67,627 comparisons: 2,091 full-state groups + 65,536 actual private Speed-stage comparisons. The exact prefix stop-PC and second RNG-state checks are native-only; no C# prefix execution claimed. Seven full fault scenarios retained.
+- Pose bridge: 1,449 cases / 4,347 assertions, no native adapters. Existing numeric address is refined, not newly counted. Includes all 256 signed context values and 24 newly produced pose/context-table aliases. 101 fault scenarios: 48 late registry, 48 early type, four early fallback model and one null actor.
+- Runtime readers: 4,931 cases / 14,793 groups; 535 range, 4,118 help, 278 music. Full 458,752-byte image, fault and return retained. The 1,921 faults represent two structural mechanisms: one null referenced actor and 1,920 null-global-world combinations. All 55 authored occurrences are direct body cases; enclosing condition initialization/comparison remains excluded.
+
+Prefix boundary scrutiny
+The early reused-emulator sample crossed a new stop boundary because a previously translated full-function block was cached. Its invalid 0x561c34 sample is documented as a harness observation and excluded from behavior claims. Final native evidence uses a separate prefix-only machine, restores context and asserts EIP=0x5a0237 for every initial state before reading the stored speed. Independent tests used eight distinct seeds plus four repeats, with null actor pointers, and matched exact EIP, speed and second RNG state. All 65,536 retained states are present once in order.
+
+Confirmed edges
+Two RNG draws precede null actor fault. Audio sees temporary velocities and may change later pointer/class/height/RNG reads. An input alias clears the rider pointer on the first write, then faults on the next reread after partial state changes. Negative sqrt arguments clamp to +0; gravity +0/-0 produces the expected sqrt -0/+0.
+
+Pose writes its initial flag before faults, retains lazy fallback-model behavior, commits numeric outputs before registry lookup and reads context aliases from those new outputs. The reused frozen input is isolated by PcObjectImage byte-array cloning. Whole-state/fault stages are established; individual native write tracing is not claimed.
+
+Viewport dirty/correction state changes precede its device callback. Later pixel/depth/clip-scale calculations reread callback-mutated inputs. Cached camera skips the dirty viewport and preserves old projection even after later culling-mode invalidation; cached clipping ignores camera pointer. Reader guard order and signed-block indexing match, and every nonzero music byte is active.
+
+Integration
+763 mapping rows / 744 distinct entries; 212 core files / 217 harness files; 170 bounded command names / 19,286 uses of 20,836. Delta from phase7: six distinct entries, 11 rows, five cores, five harnesses, three names and 55 uses.
+DLL SHA256: 30ef83dc6c20d4aedc1de92b56e723d3b04de042f9681e30a171c4c78de4d217
+Verifier build SHA256: fb75d09486f821c9b36b1675de261a0e4e63c793d744d15e440ba648bba8400e
+Root ordinary coverage refresh reports all current input/artifact hashes matching, with no artifact-read failures. Auditor independently checked all inputs and DLL without verifier reread or launch. Prior normal actor-next spawn EPERM remains unresolved. Whole-game buildability/equivalence remain false.
+
+Limits
+Prepared finite active math and explicit device/D3DX/renderer/audio services; no live GPU/frame or installed CPU-policy claim. Pose requires complete actor backing and bounded valid point indexes; deliberately inactive NaN fields remain lazy. Reader memory/producers and enclosing condition parsing/comparison remain external. New movement12/13 and world9/10 work remain outside this frozen snapshot. No source correction required; no shared edits, commits, pushes, remote writes, binary launches or settings changes.
+
+Detailed checks, exact probe code and hashes: reverse-phase8-20261013-audit.json.

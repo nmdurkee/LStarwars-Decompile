@@ -1,0 +1,30 @@
+{
+  "schema": "original-raw-viewport-forwarding-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": {
+    "0x6e2470": "ViewportCpuProduction.Apply",
+    "0x6e57b0": "ViewportCpuProduction.Global"
+  },
+  "layouts": {
+    "backendDevice": "backend+4",
+    "backendViewport": "backend+0x170..0x184",
+    "sourcePacket": "six raw UInt32 words: x,y,width,height,minDepth,maxDepth",
+    "screenGlobals": "0x973900/0x973904 compared as unsigned words",
+    "globalBackend": "0x29765c8"
+  },
+  "flow": [
+    "Copy six source words to a separate local packet and clamp only width/height to unsigned raw screen dimensions.",
+    "Call COM vtable+0xbc with backend device token and local packet. Opaque HRESULT is ignored.",
+    "Read and write each ORIGINAL source word forward into backend viewport after the COM call, retaining callback source mutations and shifted/unaligned overlap propagation.",
+    "Return the final source word read. The global wrapper ignores caller this and selects fixed global backend; null input returns0 without call."
+  ],
+  "boundaries": [
+    "Original6e2470 and6e57b0 execute unchanged. All copied/clamped words use integer instructions; raw nonfinite depth payloads are not converted.",
+    "Local device packet clamps only width/height using unsigned comparisons against raw screen words. X/Y/depth remain raw.",
+    "After COM, backend cache receives original source words with actual forward read/write order, including shifted/unaligned aliases and callback source mutation. Local packet mutations do not alter that copy.",
+    "COM HRESULT is discarded. Return equals last original source word read after prior writes; wrapper null input returns0 without call.",
+    "Global wrapper routes to fixed backend29765c8. Backend/COM lifecycle, actual device acceptance and runtime source initialization remain external.",
+    "Native/Python own-state differential passed; managed execution pending."
+  ],
+  "next": "Compose actual context refresh6e2510 with depth/position/extent setters and recovered viewport reset5ff390; source dimension initialization and backend/COM lifetime remain explicit."
+}

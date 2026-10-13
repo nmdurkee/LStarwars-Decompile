@@ -1,0 +1,202 @@
+{
+  "generatedAt": "2026-10-13T16:20:44.873Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "purpose": "Recover actual level text production and original comment normalization, composed with whole-file read control flow. Transport/lifecycle and the fixedCRTfilename formatter remain explicit services; this is not a loaded whole level.",
+  "nativeEntries": {
+    "0x57a420": {
+      "label": "Level text producer",
+      "arguments": [
+        "world pointer"
+      ],
+      "details": [
+        "Clear ONLY the first byte of fixed processed-text global92B0C8. Remaining bytes are untouched on a failed/empty read. Ghidra DAT naming does not establish DWORD width.",
+        "Format world+80 base filename using exact%s.txt pattern into128-byte native stack local. OriginalCRTformatter6E69EF reaches unavailable imported target3EE702; this fixed pattern is an explicit bounded adapter. Cookie check6E693A executes unchanged.",
+        "Align world+104 cursor up to4, store aligned value, then call original4FD5D0(filename,cursor,0x10000). Store returned raw signed32-bit value at world+10C. No arena-end/capacity check exists here.",
+        "For strictly positive return, write NUL at current world+104 plus returned length, then invoke original54BE70(cursor,92B0C8,1). Replace+10C with normalization return. The current cursor is read again after transport services.",
+        "Normalization return includes its copied NUL. Therefore+10C is normalized count including terminator, not the raw input size. A second NUL follows that count. The producer keeps raw input at the aligned arena cursor and does not advance the cursor past it.",
+        "No parser record is allocated by57A420. Downstream4FC900 callers receive this global processed text and perform their own record lifecycle; prior portal-door recovery handles that separate boundary."
+      ],
+      "assemblyWitnesses": [
+        "0x57a44d MOV BYTE processed global,0",
+        "0x57a454 formatter call",
+        "0x57a462 AND cursor,FFFFFFFC",
+        "0x57a465 push10000 read limit",
+        "0x57a486 JLE skips normalization for nonpositive return",
+        "0x57a490 terminator atcursor+return",
+        "0x57a4a0 original54BE70",
+        "0x57a4b8 original cookie guard"
+      ]
+    },
+    "0x54be70": {
+      "label": "Byte-oriented comment/separator normalizer",
+      "arguments": [
+        "terminated byte input pointer",
+        "output pointer",
+        "full32-bit separator conversion flag"
+      ],
+      "result": "Signed32-bit count including copied terminating NUL; additional NUL stored after that count.",
+      "details": [
+        "Original4F1FF0 computes length up to firstNUL. Unsigned end-address wrap below input causes output[0]=0 and return0; prepared tests use nonwrapping addresses.",
+        "Semicolon, hash, and double slash remove bytes through the nextCR/LF/NUL. That stopping byte is then copied. No quote tracking exists: comment markers inside quoted strings still start comments.",
+        "A single slash advances input before checking the second slash. If the second byte is not slash it is copied normally; the first slash disappears. A slash before semicolon/hash does not re-evaluate that following byte as a comment marker in the same iteration.",
+        "Nonzero conversion flag turns both= andcomma into space, including inside quotes. Zero leaves them unchanged. Any nonzero32-bit value behaves alike.",
+        "Process through the first terminatingNUL inclusively and then append an extraNUL. Exact in-place normalization executes unchanged; disjoint output also tested. Overlap where output overwrites unread input is outside prepared fixtures."
+      ],
+      "assemblyWitnesses": [
+        "0x54be79 originalstrlen",
+        "0x54be85 unsigned address-wrap guard",
+        "0x54bea1 unconditional advance forslash",
+        "0x54bea8..0x54bec5 comment scan",
+        "0x54bed0/0x54bed5 separator comparisons",
+        "0x54bee6 inclusive unsigned end bound",
+        "0x54beec extra trailingNUL"
+      ]
+    },
+    "0x4fd5d0": {
+      "label": "Archive-first whole-file read control flow",
+      "arguments": [
+        "filename byte pointer",
+        "destination pointer",
+        "signed32-bit maximum size"
+      ],
+      "details": [
+        "Reset DWORD error91EEA4 to0. If archive91EE88 is nonzero, call original-interface archive reader4FB960. An error valueFFFFFFFF overrides its result and returns0 without fallback; any other nonzero result returns immediately, including a negative result.",
+        "An archive miss result0 falls through to existence4FF120 and open4FA3F0. Missing path sets errorFFFFFFFE; failed open setsFFFFFFFD. Fallback success does not clear an archive-supplied error value other than the blockedFFFFFFFF sentinel.",
+        "A nonzero special-mode91EE94 uses4FCC60(handle,destination,limit), closes handle4F99E0 and returns its signed result. Ordinary mode requests file length4F6B40.",
+        "Ordinary length>signedlimit or exactly0 sets errorFFFFFFFF, returns0 after closing handle, and never reads bytes. Valid nonnegative prepared lengths are bounded; invalid negative file lengths are not repaired or claimed here.",
+        "Ordinary4FB550 reads advertised length. Any nonnegative result ends the read, and the caller returns advertised file length rather than the actual result. Partial reads can leave original destination bytes; this behavior is preserved.",
+        "A negative read enters pump4EF7B0/seek4F6DE0 retry. Seek(handle,0,0,0) returns signed64-bitEDX:EAX; repeat pump/seek while negative, then read again. Repeat until read nonnegative, close and return length. Native code supplies no retry limit; fixture services eventually complete."
+      ],
+      "assemblyWitnesses": [
+        "0x4fd5e4 errorDWORDreset",
+        "0x4fd5fc archiveerror sentinel overridesresult",
+        "0x4fd615 original existence entry4FF120",
+        "0x4fd654 specialread",
+        "0x4fd678 signed length-limit compare",
+        "0x4fd691 nonnegative read exits",
+        "0x4fd69f seek64bit result",
+        "0x4fd6a7..0x4fd6cd EDX:EAX signed64 condition",
+        "0x4fd702 return advertised length"
+      ]
+    }
+  },
+  "validation": {
+    "nativeCases": 1328,
+    "mismatches": 0,
+    "groups": {
+      "Normalize": 120,
+      "Read": 156,
+      "Produce": 1052
+    },
+    "bytesHashedPerCase": 458780,
+    "comparison": "Full ordered prepared-memory-region SHA256; exact raw return, error, producer count/cursor, mutable backend trace and read/seek consumption. Memory diffs retained on mismatch.",
+    "originalComposition": [
+      "0x57a420",
+      "0x4fd5d0",
+      "0x54be70",
+      "0x4f1ff0",
+      "0x6e693a"
+    ],
+    "adapters": [
+      {
+        "address": "0x6e69ef",
+        "role": "Exact fixed%s.txt formatter; originalCRTimported target unavailable."
+      },
+      {
+        "address": "0x4fb960",
+        "role": "Prepared archive byte transport/error outcome."
+      },
+      {
+        "address": "0x4ff120",
+        "role": "Prepared path existence result."
+      },
+      {
+        "address": "0x4fa3f0",
+        "role": "Prepared open handle result."
+      },
+      {
+        "address": "0x4fcc60",
+        "role": "Prepared special byte transport result."
+      },
+      {
+        "address": "0x4f6b40",
+        "role": "Advertised file length."
+      },
+      {
+        "address": "0x4fb550",
+        "role": "Actual supplied input bytes and prepared read result sequence."
+      },
+      {
+        "address": "0x4f99e0",
+        "role": "Observed close lifecycle; noOShandle executes."
+      },
+      {
+        "address": "0x4ef7b0",
+        "role": "Observed pump callback."
+      },
+      {
+        "address": "0x4f6de0",
+        "role": "Prepared signed64-bit seek results and argument trace."
+      }
+    ],
+    "authored": {
+      "completeFiles": 568,
+      "executed": 568,
+      "withinReadLimit": 568,
+      "excluded": 0,
+      "rawBytes": 3622952,
+      "maxRawBytes": 62235,
+      "normalizedCountsIncludingNUL": 3289073,
+      "provenance": "reports/world-phase4-20261013-authored-provenance.json",
+      "qualification": "Complete original supplied rawbytes fed with no Python preprocessing; all source hashes retained. This does not execute original archive/OS transport or live level resource loading."
+    },
+    "portableCompile": "Core fragment and retained saved-native replay harness compile with current source dependencies.",
+    "managedReplay": "Pending; no generated executable launch retried.",
+    "expectedManagedAssertions": 6916
+  },
+  "source": {
+    "path": "reverse-engineering/reconstructed/gameplay/world-phase4-20261013-level-text.cs",
+    "sha256": "c1fe181322e4f37b36519a8ed267750c3cb18f891de30960d89475a0fed7525c",
+    "harness": "reverse-engineering/tools/world-phase4-20261013-portable-verify.cs",
+    "fixture": "reports/world-phase4-20261013-vectors.json"
+  },
+  "limits": [
+    "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only.",
+    "Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000.",
+    "Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success.",
+    "Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL.",
+    "Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed.",
+    "Managed replay remains pending; no generated executable retry."
+  ],
+  "nextWork": [
+    {
+      "address": "0x48ce00",
+      "task": "Recover resource-loading phase and failure state93D840 around actual text producer, scene load and final world+110 populated commit."
+    },
+    {
+      "addresses": [
+        "0x5ef7f0",
+        "0x5f4f00"
+      ],
+      "task": "Recover actual scene carrier loading/arena ownership, replacing the major graphics resource boundary."
+    },
+    {
+      "addresses": [
+        "0x55fe10",
+        "0x66b8c0"
+      ],
+      "task": "Recover terrain resource binding into world+295C and its catalog fields/allocator contract."
+    },
+    {
+      "addresses": [
+        "0x55fe90",
+        "0x55ff30"
+      ],
+      "task": "Recover optionalGRA/BRI asset existence/load pipeline and handle ownership."
+    },
+    {
+      "address": "0x55f6c0",
+      "task": "Recover exact resource teardown/reset on both successful transitions and48CE00 abort paths."
+    }
+  ]
+}

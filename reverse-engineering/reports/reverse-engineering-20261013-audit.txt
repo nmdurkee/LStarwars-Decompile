@@ -1,0 +1,16 @@
+INDEPENDENT BATCH AUDIT — 2026-10-13
+
+No confirmed source/native mismatch in the documented bounded domains.
+The grid replay retention gap was corrected: 3,321 retained cases (2,024 floors, 784 grid, 256 coordinates, 1 cross-grid, 256 dispatcher evidence). Portable replay prepares 3,065 cases and 4,345 assertions; execution remains pending.
+
+Additional audit checks: 303 primary checks (276 byte provenance, 13 selector edges, 14 floor edges), plus 213 world assembly instruction checks; 516 total, zero failures. These counts are separate from native suite counts and do not imply managed execution. Numeric frame serialization and signed variants were reviewed.
+
+Native suite counts remain frame 208 cases / 1,280 assertion groups; script 7,132 assertions and 147 shipped comparisons; world 1,568 case checks; grid 8,153 assertions across 3,321 cases.
+
+All 177 core and 183 harness source hashes match the final integrated build. Runtime DLL hash independently matches 51d28284af16e24779b4d03388f01d242fc85cabfb2ca0ddf88d767c7e1ba050. Verifier EXE reread denied EPERM; its compiler-side hash was not independently reread. Compilation is recorded; managed behavior remains unexecuted.
+
+Shared manifest has 630 mapping rows, 626 distinct native entries, and 177 core files. Batch 15 rows add 13 distinct entries: frame 0x491d50 and initializer 0x441f90 already existed. Grid dispatcher 0x5f3c80 is evidence only; SceneScheduling does not integrate grid/tree yet.
+
+Bounds remain explicit: synthetic world/scene/registry memory, resource/teardown callbacks, static rigid resolution, ASCII names, finite arithmetic, valid RLE 0..625 bytes. No loader, renderer, GPU, whole-frame or whole-game equivalence is inferred.
+
+JSON companion records input hashes, review limitations, edge vectors and exact audit Python code.

@@ -1,0 +1,61 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase13-20261013-backend-init.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e1930",
+      "method": "RenderBackendInitialization.Apply",
+      "coverage": "Whole original backend constructor over resolved writable image, raw/partial writes, finite original aspect constant, actual memset ranges and preserved bytes.",
+      "sourceFile": "geometry/scene-phase13-20261013-backend-init.cs",
+      "evidence": "reports/scene-phase13-20261013-backend-init-native-validation.json",
+      "limitations": [
+        "Original6e1930 and actual memset6e6950 run unchanged; no helper, device, arithmetic or COM adapters.",
+        "Receiver is a resolved writable0x800-byte image. All source bytes are raw and all unassigned image bytes remain unchanged. Original finite aspect constant7519a8 is exactly3faaaaab.",
+        "Constructor clears device pointer, dimensions, viewport, selected handles and four target cache cells. It does not produce a live device, populate real target dimensions or initialize separate render-state/viewport calibration globals.",
+        "Original pointer return is represented as receiver identity in portable source. Native/Python differential passed; managed execution pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase13-20261013-backend-init-native-validation.json",
+    "reports/scene-phase13-20261013-backend-init-assembly.json",
+    "reports/scene-phase13-20261013-backend-init-contract.json",
+    "reports/scene-phase13-20261013-backend-init-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase13-20261013-backend-init.cs",
+      "sha256": "af34d6dac3b59a23e58a9842293238086e50f17b7abf77d95105990b5becf755"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase13-20261013-backend-init-harness.cs"
+  ],
+  "harnessSha256": "9401f615b95cb58846b68b69951e2b3a23795ade27b1c68281b0622c06b1cae5",
+  "fixture": "reports/scene-phase13-20261013-backend-init-native-fixtures.json.gz",
+  "fixtureSha256": "fafbd42faa4ec93128ed4f62102e4aa175f40a2a861f21422aa23970291299b9",
+  "nativeTool": "tools/scene-phase13-20261013-backend-init-native.py",
+  "nativeToolSha256": "d327877c25b76ea39316a7f8a82e1119a3a90cb2cb2f92b1b72b06d93dff60da",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "constructorCases": 2048,
+    "unalignedReceiverCases": 1536,
+    "retainedPortableReplayCases": 2048,
+    "preparedManagedAssertions": 4096
+  },
+  "verifier": {
+    "module": "scene-phase13-20261013-backend-init",
+    "entrypoint": "BackendInitializationPhase13Harness",
+    "fixture": "reports/scene-phase13-20261013-backend-init-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    }
+  ]
+}

@@ -1,0 +1,1892 @@
+{
+  "updated": "2026-10-13T16:20:45.196Z",
+  "scope": "Third local bounded recovery batch. Whole-game source/behavior recovery remains incomplete and work continues.",
+  "git": {
+    "commitsCreated": 0,
+    "pushesPerformed": 0,
+    "remoteWrites": 0
+  },
+  "previousCheckpoint": {
+    "portableEntries": 648,
+    "coreFiles": 181,
+    "harnessFiles": 187,
+    "boundedCommandNames": 135,
+    "boundedCommandUses": 18379
+  },
+  "currentCheckpoint": {
+    "portableEntries": 680,
+    "coreFiles": 187,
+    "harnessFiles": 193,
+    "boundedCommandNames": 155,
+    "boundedCommandUses": 18772,
+    "totalCommandUses": 20836
+  },
+  "newNativeEntries": 32,
+  "newCoreFiles": 6,
+  "newCommandNames": 20,
+  "newAuthoredUsesWithBoundedContracts": 393,
+  "suites": [
+    {
+      "report": "reports/script-phase3-20261013-tests.json",
+      "checks": 28347,
+      "mismatches": 0,
+      "groups": {
+        "actor-actions-gates-token-order-unrelated-bits-return": 6144,
+        "actor-actions-gates-token-order-unrelated-bits-state": 6144,
+        "actor-actions-gates-token-order-unrelated-bits-callbacks": 6144,
+        "actor-actions-gates-token-order-unrelated-bits-write-confinement": 6144,
+        "jump-runtime-global-mask-return": 192,
+        "jump-runtime-global-mask-state": 192,
+        "jump-runtime-global-mask-callbacks": 192,
+        "jump-runtime-global-mask-write-confinement": 192,
+        "jump-missing-input-native-fault": 1,
+        "dont-move-named-selection-first-token-false-return": 176,
+        "dont-move-named-selection-first-token-false-state": 176,
+        "dont-move-named-selection-first-token-false-callbacks": 176,
+        "dont-move-named-selection-first-token-false-write-confinement": 176,
+        "under-player-control-bound-flags": 1024,
+        "under-player-control-original-initializer": 24,
+        "under-player-control-initializer-callback-gates": 24,
+        "shipped-PressJumpButton-return": 44,
+        "shipped-PressJumpButton-state": 44,
+        "shipped-PressJumpButton-callbacks": 44,
+        "shipped-PressJumpButton-write-confinement": 44,
+        "shipped-CanOpenDoors-return": 34,
+        "shipped-CanOpenDoors-state": 34,
+        "shipped-CanOpenDoors-callbacks": 34,
+        "shipped-CanOpenDoors-write-confinement": 34,
+        "shipped-Respawnable-return": 26,
+        "shipped-Respawnable-state": 26,
+        "shipped-Respawnable-callbacks": 26,
+        "shipped-Respawnable-write-confinement": 26,
+        "shipped-PrefersPlayers-return": 44,
+        "shipped-PrefersPlayers-state": 44,
+        "shipped-PrefersPlayers-callbacks": 44,
+        "shipped-PrefersPlayers-write-confinement": 44,
+        "shipped-SetBoss-return": 46,
+        "shipped-SetBoss-state": 46,
+        "shipped-SetBoss-callbacks": 46,
+        "shipped-SetBoss-write-confinement": 46,
+        "shipped-CanShootOffScreen-return": 42,
+        "shipped-CanShootOffScreen-state": 42,
+        "shipped-CanShootOffScreen-callbacks": 42,
+        "shipped-CanShootOffScreen-write-confinement": 42,
+        "shipped-SetDontMove-return": 32,
+        "shipped-SetDontMove-state": 32,
+        "shipped-SetDontMove-callbacks": 32,
+        "shipped-SetDontMove-write-confinement": 32,
+        "shipped-CanDefend-return": 28,
+        "shipped-CanDefend-state": 28,
+        "shipped-CanDefend-callbacks": 28,
+        "shipped-CanDefend-write-confinement": 28,
+        "shipped-UnderPlayerControl-body": 21,
+        "shipped-UnderPlayerControl-original-comparison": 21
+      },
+      "savedCases": 7833,
+      "savedInitializers": 24,
+      "shippedOccurrences": 169,
+      "limits": [
+        "No world loading, actor lifetime, input consumption, movement or AI consumer recovery.",
+        "Actions use prepared token arrays and counts matching array lengths; invalid external argc/argv memory is outside scope.",
+        "ASCII tokens only in portable source. Character-substring operands require at least one following delimiter byte before name+10.",
+        "Jump input pointer is unchecked by native after actor gates; actual memory fault saved, portable source raises explicit exception.",
+        "UnderPlayerControl uses only initialized named actor and has no self fallback on missing operand.",
+        "Standalone C# compilation does not establish managed behavioral execution; no launch retry under known EPERM restriction."
+      ]
+    },
+    {
+      "report": "reports/script-phase4-20261013-tests.json",
+      "checks": 21191,
+      "mismatches": 0,
+      "groups": {
+        "set-token-packet-self-gates-return": 2816,
+        "set-token-packet-self-gates-set-and-counts": 2816,
+        "set-token-packet-self-gates-actor-write-confinement": 2816,
+        "set-same-membership-all-count-byte-wraps-return": 4096,
+        "set-same-membership-all-count-byte-wraps-set-and-counts": 4096,
+        "set-same-membership-all-count-byte-wraps-actor-write-confinement": 4096,
+        "set-ordered-reassignment-reset-without-decrement-return": 3,
+        "set-ordered-reassignment-reset-without-decrement-set-and-counts": 3,
+        "set-ordered-reassignment-reset-without-decrement-actor-write-confinement": 3,
+        "bike-bound-precedence-fallback-pointer-context-type-fault": 48,
+        "bike-bound-precedence-fallback-pointer-context-type": 144,
+        "bike-runtime-signed-word-global": 30,
+        "bike-original-initializer": 24,
+        "bike-original-initializer-callback-gates": 24,
+        "shipped-AddToSet-return": 48,
+        "shipped-AddToSet-set-and-counts": 48,
+        "shipped-AddToSet-actor-write-confinement": 48,
+        "shipped-OnSpeederBike-body": 16,
+        "shipped-OnSpeederBike-original-comparison": 16
+      },
+      "savedInitializers": 24,
+      "savedSetCases": 6963,
+      "savedBikeCases": 222,
+      "shippedOccurrences": 40,
+      "limits": [
+        "Original functions execute in isolated x86 Unicorn; no game/world execution.",
+        "Native assertions include correlated return/state/write-confinement checks,not independent scenarios.",
+        "Finite float32 numeric values within int32 conversion range only; unchecked long integer/NaN/infinity conversion behavior outside source contract.",
+        "Named/numeric/script packet inputs and reference lifetimes are host-owned.",
+        "Alive-count backing synthetic selected indices1..16; actual table allocation and per-frame count population are not established.",
+        "OnSpeederBike fallback dereferences null creature when initialized target is absent; original faults saved and portable exception preserves the boundary.",
+        "Vehicle object creation,link updates,context assignment and type-global initialization are external.",
+        "Managed behavioral execution pending; no launch retry under known EPERM restriction."
+      ]
+    },
+    {
+      "report": "reports/script-phase5-20261013-tests.json",
+      "checks": 6097,
+      "mismatches": 0,
+      "groups": {
+        "player-reference-identity-not-object-alias": 384,
+        "finished-spline-complete-byte-and-null-domain": 4096,
+        "alive-solo-omits-active-bit": 30,
+        "alive-missing-definition-fault": 1,
+        "alive-ordered-group-precedes-solo": 72,
+        "alive-group-complete-dead-byte": 256,
+        "alive-255-slot-member-count-boundary": 2,
+        "num-baddies-array-stride-and-three-bit-gates": 27,
+        "num-baddies-random-prepared-array": 160,
+        "num-baddies-original-zero-initializer": 1,
+        "my-set-complete-byte-domain-and-packet-fault-fault": 256,
+        "my-set-complete-byte-domain-and-packet-fault": 256,
+        "baddies-seeing-signed-dword-to-float32": 266,
+        "reference-original-initializers-null-system-allowed": 48,
+        "reference-original-initializer-callback-gates": 48,
+        "shipped-NumBaddies-body": 20,
+        "shipped-NumBaddies-original-comparison": 20,
+        "shipped-EitherPlayerIs-body": 15,
+        "shipped-EitherPlayerIs-original-comparison": 15,
+        "shipped-IsAlive-body": 19,
+        "shipped-IsAlive-original-comparison": 19,
+        "shipped-FinishedSpline-body": 17,
+        "shipped-FinishedSpline-original-comparison": 17,
+        "shipped-MySet-body": 12,
+        "shipped-MySet-original-comparison": 12,
+        "shipped-NumBaddiesThatCanSeePlayers-body": 12,
+        "shipped-NumBaddiesThatCanSeePlayers-original-comparison": 12,
+        "shipped-Player1Is-body": 1,
+        "shipped-Player1Is-original-comparison": 1,
+        "shipped-Player2Is-body": 1,
+        "shipped-Player2Is-original-comparison": 1
+      },
+      "savedCases": 5806,
+      "savedInitializers": 49,
+      "shippedOccurrences": 97,
+      "limits": [
+        "No game execution,reference lifetime,group construction,spline updates or population of aggregate globals.",
+        "IsAlive reads initialized record+4 definition without guard; missing definition faults native and portable source throws explicitly.",
+        "Solo IsAlive tests live bit1000 without active bit1; grouped members need both. An existing zero-count group overrides solo liveness.",
+        "MySet has no packet-null guard; actual faults saved,portable source throws explicitly.",
+        "Prepared group member arrays honor uint8 count through255; generic malformed/out-of-backing memory is outside scope.",
+        "Actor array uses original stride0x10d8; counted records and liveness fields must be prepared.",
+        "Global NumBaddiesThatCanSeePlayers is signed dword read; tests compare float32 storage boundary used by SCP evaluator.",
+        "ASCII names only in portable source; alias policy and callback side effects beyond fixture resolution external.",
+        "Managed execution pending under existing EPERM restriction; no launch retry."
+      ]
+    },
+    {
+      "report": "reports/scene-phase3-20261013-native-validation.json",
+      "checks": 3928,
+      "counts": {
+        "predicateCases": 2808,
+        "treeCases": 168,
+        "retainedPortableReplayCases": 2976,
+        "originalPredicateEntries": 4228,
+        "externalMatrixAdapterCalls": 586,
+        "explicitFiniteStackSeedCases": 120,
+        "distinctRetainedStackWords": 6
+      },
+      "preparedManagedAssertions": 5068,
+      "limits": [
+        "Synthetic trees and finite nonnegative extents;valid u16indices,acyclic graphs and native100-entry pending-node stack.",
+        "Native predicate reads an uninitialized fourth radius at local+0x3c because0x5b30a0 writes only XYZ. Exact prior-stack word captured percall and supplied explicitly to portable model; no initialized intended4D radius invented.",
+        "No authored tree loader or live camera producer claim.",
+        "Prepared-plane portable projection excludes reconstruction of0x5d86f0/0x5d8950 numeric producers;original producers run in native fixture generation."
+      ]
+    },
+    {
+      "report": "reports/world-phase3-20261013-native-tests.json",
+      "cases": 1300,
+      "mismatches": 0,
+      "groups": {
+        "Update": 1093,
+        "Mutate": 90,
+        "Duration": 117
+      },
+      "nativeCalls": 1863,
+      "bytesComparedPerNativeCall": 262144,
+      "limits": [
+        "Prepared valid scene/reference/animation/portal backing; signed door count may<=0, portal count unsigned bounded0..6. No actual scene loading, animation advancement or rendered portal visibility.",
+        "Normal reference points through valid matrix+48; dynamic0/-1 animation means unavailable. Clip indices0/7 have prepared tables.",
+        "Quiet NaNs/infinities and signed zero preserve native comparison behavior; signalingNaN payload/exception semantics are outside fixtures.",
+        "Other caller/environment portal producers are external. State cache intentionally suppresses redundant mutations even if portal state is changed elsewhere.",
+        "Managed comparison harness compilation is separate; execution remains pending."
+      ]
+    },
+    {
+      "report": "reports/movement-phase3-20261013-tests.json",
+      "cases": 2195,
+      "assertions": 12502,
+      "groups": {
+        "Request": 648,
+        "RequestComposition": 20,
+        "ToLocator": 1440,
+        "AuthoredBigJump": 87
+      },
+      "limits": [
+        "Finite positions,durations,speed factors and arithmetic; valid loaded actor/reference/pad/definition/locator images.",
+        "Explicit clip/reset boundaries, sound IDs-1 so native feedback selector performs no actual playback.",
+        "All87 cataloged authored forms exercised against prepared matching locator names, not original scene positions/reachability.",
+        "Original printf undefined format/overflow behavior and fixed random substring skips past terminator excluded.",
+        "Original native/Python own-state contract verified; C# compiled replay remains separate and pending."
+      ]
+    }
+  ],
+  "independentAudit": {
+    "report": "reports/reverse-phase3-20261013-audit.json",
+    "countsSeparateFromPrimarySuites": true,
+    "additionalAudit": {
+      "checks": 1075,
+      "byteInstructionProvenance": 989,
+      "focusedEdgeChecks": 86,
+      "failures": [],
+      "phase3": {
+        "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+        "checks": 665,
+        "groups": {
+          "script-independent-first-token-false": 3,
+          "script-independent-repeat-call-jump": 1,
+          "script-independent-token-order": 16,
+          "script-native-byte-provenance": 10,
+          "tree-independent-uninitialized-residue": 3,
+          "tree-native-byte-provenance": 486,
+          "world-independent-raw-duration-header": 3,
+          "world-independent-signed-id-all-matches": 15,
+          "world-native-instruction-provenance": 128
+        },
+        "failures": [],
+        "edgeProbes": [
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847317
+            ],
+            "want": [
+              1,
+              2712847317
+            ],
+            "context": {
+              "entry": "0x44ede0",
+              "tokens": [
+                "FALSE",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x44ede0",
+              "tokens": [
+                "TRUE",
+                "FALSE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847317
+            ],
+            "want": [
+              1,
+              2712847317
+            ],
+            "context": {
+              "entry": "0x44ede0",
+              "tokens": [
+                "FALSEtail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847317
+            ],
+            "want": [
+              1,
+              2712847317
+            ],
+            "context": {
+              "entry": "0x44ede0",
+              "tokens": [
+                "FALSE\u0000tail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x44ee70",
+              "tokens": [
+                "FALSE",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847312
+            ],
+            "want": [
+              1,
+              2712847312
+            ],
+            "context": {
+              "entry": "0x44ee70",
+              "tokens": [
+                "TRUE",
+                "FALSE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x44ee70",
+              "tokens": [
+                "FALSEtail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x44ee70",
+              "tokens": [
+                "FALSE\u0000tail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x4445c0",
+              "tokens": [
+                "FALSE",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x4445c0",
+              "tokens": [
+                "TRUE",
+                "FALSE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847318
+            ],
+            "want": [
+              1,
+              2712847318
+            ],
+            "context": {
+              "entry": "0x4445c0",
+              "tokens": [
+                "FALSEtail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x4445c0",
+              "tokens": [
+                "FALSE\u0000tail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x4448c0",
+              "tokens": [
+                "FALSE",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x4448c0",
+              "tokens": [
+                "TRUE",
+                "FALSE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2847065044
+            ],
+            "want": [
+              1,
+              2847065044
+            ],
+            "context": {
+              "entry": "0x4448c0",
+              "tokens": [
+                "FALSEtail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-token-order",
+            "passed": true,
+            "got": [
+              1,
+              2712847316
+            ],
+            "want": [
+              1,
+              2712847316
+            ],
+            "context": {
+              "entry": "0x4448c0",
+              "tokens": [
+                "FALSE\u0000tail",
+                "TRUE"
+              ]
+            }
+          },
+          {
+            "group": "script-independent-first-token-false",
+            "passed": true,
+            "got": [
+              1,
+              305397776
+            ],
+            "want": [
+              1,
+              305397776
+            ],
+            "context": [
+              "TRUE",
+              "FALSE"
+            ]
+          },
+          {
+            "group": "script-independent-first-token-false",
+            "passed": true,
+            "got": [
+              1,
+              305397760
+            ],
+            "want": [
+              1,
+              305397760
+            ],
+            "context": [
+              "FALSE",
+              "TRUE"
+            ]
+          },
+          {
+            "group": "script-independent-first-token-false",
+            "passed": true,
+            "got": [
+              1,
+              305397760
+            ],
+            "want": [
+              1,
+              305397760
+            ],
+            "context": [
+              "FALSE"
+            ]
+          },
+          {
+            "group": "script-independent-repeat-call-jump",
+            "passed": true,
+            "got": 4788,
+            "want": 4788,
+            "context": "0x802278"
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              0,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              0,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": -128,
+              "mode": 0
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": -128,
+              "mode": 1
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": -128,
+              "mode": -2
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": 128,
+              "mode": 0
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": 128,
+              "mode": 1
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": 128,
+              "mode": -2
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              0,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              0,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": -1,
+              "mode": 0
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": -1,
+              "mode": 1
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": -1,
+              "mode": -2
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": 255,
+              "mode": 0
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": 255,
+              "mode": 1
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483648,
+              4
+            ],
+            "context": {
+              "target": 255,
+              "mode": -2
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              0,
+              0
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              0,
+              0
+            ],
+            "context": {
+              "target": 7,
+              "mode": 0
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483649,
+              5
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483649,
+              5
+            ],
+            "context": {
+              "target": 7,
+              "mode": 1
+            }
+          },
+          {
+            "group": "world-independent-signed-id-all-matches",
+            "passed": true,
+            "got": [
+              2271560481,
+              4294967295,
+              2147483649,
+              5
+            ],
+            "want": [
+              2271560481,
+              4294967295,
+              2147483649,
+              5
+            ],
+            "context": {
+              "target": 7,
+              "mode": -2
+            }
+          },
+          {
+            "group": "world-independent-raw-duration-header",
+            "passed": true,
+            "got": 1207959296,
+            "want": 1207959296,
+            "context": "0x414e4934"
+          },
+          {
+            "group": "world-independent-raw-duration-header",
+            "passed": true,
+            "got": 1199570688,
+            "want": 1199570688,
+            "context": "0x414e4935"
+          },
+          {
+            "group": "world-independent-raw-duration-header",
+            "passed": true,
+            "got": 1095649587,
+            "want": 1095649587,
+            "context": "0x414e4933"
+          },
+          {
+            "group": "tree-independent-uninitialized-residue",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": -100
+          },
+          {
+            "group": "tree-independent-uninitialized-residue",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": -1
+          },
+          {
+            "group": "tree-independent-uninitialized-residue",
+            "passed": true,
+            "got": 2,
+            "want": 2,
+            "context": 100
+          }
+        ]
+      },
+      "phase4": {
+        "checks": 18,
+        "groups": {
+          "phase4-independent-bound-precedence-type-word": 6,
+          "phase4-independent-ordered-count-wrap": 6,
+          "phase4-native-byte-provenance": 6
+        },
+        "failures": [],
+        "edgeProbes": [
+          {
+            "group": "phase4-independent-ordered-count-wrap",
+            "passed": true,
+            "got": [
+              1,
+              4,
+              [
+                255,
+                255,
+                255,
+                255,
+                2,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "want": [
+              1,
+              4,
+              [
+                255,
+                255,
+                255,
+                255,
+                2,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "context": {
+              "tokens": [
+                "4",
+                "4",
+                "Reset",
+                "4"
+              ],
+              "first": 1
+            }
+          },
+          {
+            "group": "phase4-independent-ordered-count-wrap",
+            "passed": true,
+            "got": [
+              1,
+              0,
+              [
+                255,
+                255,
+                255,
+                255,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "want": [
+              1,
+              0,
+              [
+                255,
+                255,
+                255,
+                255,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "context": {
+              "tokens": [
+                "4",
+                "Reset"
+              ],
+              "first": 1
+            }
+          },
+          {
+            "group": "phase4-independent-ordered-count-wrap",
+            "passed": true,
+            "got": [
+              1,
+              9,
+              [
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "want": [
+              1,
+              9,
+              [
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "context": {
+              "tokens": [
+                "4",
+                "Reset",
+                "4"
+              ],
+              "first": 0
+            }
+          },
+          {
+            "group": "phase4-independent-ordered-count-wrap",
+            "passed": true,
+            "got": [
+              1,
+              16,
+              [
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                0
+              ]
+            ],
+            "want": [
+              1,
+              16,
+              [
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                0
+              ]
+            ],
+            "context": {
+              "tokens": [
+                "16.999998"
+              ],
+              "first": 1
+            }
+          },
+          {
+            "group": "phase4-independent-ordered-count-wrap",
+            "passed": true,
+            "got": [
+              1,
+              1,
+              [
+                255,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "want": [
+              1,
+              1,
+              [
+                255,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "context": {
+              "tokens": [
+                "0.99999994"
+              ],
+              "first": 1
+            }
+          },
+          {
+            "group": "phase4-independent-ordered-count-wrap",
+            "passed": true,
+            "got": [
+              1,
+              1,
+              [
+                255,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "want": [
+              1,
+              1,
+              [
+                255,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255
+              ]
+            ],
+            "context": {
+              "tokens": [
+                "1tail"
+              ],
+              "first": 1
+            }
+          },
+          {
+            "group": "phase4-independent-bound-precedence-type-word",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "bound": true,
+              "creature": false,
+              "boundContext": 59,
+              "boundType": -1,
+              "globalType": -1
+            }
+          },
+          {
+            "group": "phase4-independent-bound-precedence-type-word",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "bound": true,
+              "creature": true,
+              "boundContext": 58,
+              "boundType": 7,
+              "globalType": 7
+            }
+          },
+          {
+            "group": "phase4-independent-bound-precedence-type-word",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "bound": true,
+              "creature": true,
+              "boundContext": 59,
+              "boundType": -32768,
+              "globalType": -32768
+            }
+          },
+          {
+            "group": "phase4-independent-bound-precedence-type-word",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "bound": true,
+              "creature": true,
+              "boundContext": 59,
+              "boundType": -1,
+              "globalType": 7
+            }
+          },
+          {
+            "group": "phase4-independent-bound-precedence-type-word",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "bound": false,
+              "creature": true,
+              "boundContext": 59,
+              "boundType": 7,
+              "globalType": 7
+            }
+          },
+          {
+            "group": "phase4-independent-bound-precedence-type-word",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "bound": false,
+              "creature": true,
+              "boundContext": 59,
+              "boundType": 7,
+              "globalType": -1
+            }
+          }
+        ]
+      },
+      "movement": {
+        "checks": 358,
+        "groups": {
+          "movement-independent-null-chain-completion": 3,
+          "movement-independent-repeat-call-context-byte": 5,
+          "movement-independent-request-definition-gate": 1,
+          "movement-independent-request-unavailable-context": 1,
+          "movement-native-byte-provenance": 348
+        },
+        "failures": [],
+        "edgeProbes": [
+          {
+            "group": "movement-independent-repeat-call-context-byte",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 0
+          },
+          {
+            "group": "movement-independent-repeat-call-context-byte",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 30
+          },
+          {
+            "group": "movement-independent-repeat-call-context-byte",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": 31
+          },
+          {
+            "group": "movement-independent-repeat-call-context-byte",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 32
+          },
+          {
+            "group": "movement-independent-repeat-call-context-byte",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 255
+          },
+          {
+            "group": "movement-independent-null-chain-completion",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 0
+          },
+          {
+            "group": "movement-independent-null-chain-completion",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 1
+          },
+          {
+            "group": "movement-independent-null-chain-completion",
+            "passed": true,
+            "got": 1,
+            "want": 1,
+            "context": 2
+          },
+          {
+            "group": "movement-independent-request-unavailable-context",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": -1
+          },
+          {
+            "group": "movement-independent-request-definition-gate",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": "definition0x200000"
+          }
+        ]
+      },
+      "movementSignedZero": {
+        "checks": 8,
+        "failures": [],
+        "probes": [
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 0,
+              "factor": 0,
+              "speed": 0,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              0,
+              0
+            ],
+            "want": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 1067450368,
+              "factor": 0,
+              "speed": 0,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              0,
+              0
+            ],
+            "want": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 0,
+              "factor": 2147483648,
+              "speed": 0,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              0,
+              2147483648
+            ],
+            "want": [
+              1,
+              0,
+              2147483648
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 1067450368,
+              "factor": 2147483648,
+              "speed": 0,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              0,
+              2147483648
+            ],
+            "want": [
+              1,
+              0,
+              2147483648
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 0,
+              "factor": 0,
+              "speed": 2147483648,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              2147483648,
+              0
+            ],
+            "want": [
+              1,
+              2147483648,
+              0
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 1067450368,
+              "factor": 0,
+              "speed": 2147483648,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              2147483648,
+              0
+            ],
+            "want": [
+              1,
+              2147483648,
+              0
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 0,
+              "factor": 2147483648,
+              "speed": 2147483648,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              2147483648,
+              2147483648
+            ],
+            "want": [
+              1,
+              2147483648,
+              2147483648
+            ]
+          },
+          {
+            "passed": true,
+            "input": {
+              "context": 31,
+              "definitionFlags": 0,
+              "duration": 1067450368,
+              "factor": 2147483648,
+              "speed": 2147483648,
+              "directed": 0,
+              "mode": 0,
+              "animation": -3,
+              "controlSeed": 12345
+            },
+            "got": [
+              1,
+              2147483648,
+              2147483648
+            ],
+            "want": [
+              1,
+              2147483648,
+              2147483648
+            ]
+          }
+        ]
+      },
+      "countingPolicy": "These1,075 independent native/provenance checks are separate from suite counts. Correlated return/state/confinement assertions, repeated structural fault samples, original calls, authored forms and independent scenarios are not interchangeable.",
+      "phase5": {
+        "checks": 26,
+        "groups": {
+          "phase5-independent-SCP-float32-spill": 3,
+          "phase5-independent-group-precedence-active-gate": 5,
+          "phase5-independent-missing-spline-self-minus1": 1,
+          "phase5-independent-reference-not-object-alias": 6,
+          "phase5-native-byte-provenance": 11
+        },
+        "failures": [],
+        "edgeProbes": [
+          {
+            "group": "phase5-independent-reference-not-object-alias",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "entry": "0x440f30",
+              "alias": true
+            }
+          },
+          {
+            "group": "phase5-independent-reference-not-object-alias",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "entry": "0x440f60",
+              "alias": true
+            }
+          },
+          {
+            "group": "phase5-independent-reference-not-object-alias",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "entry": "0x440f80",
+              "alias": true
+            }
+          },
+          {
+            "group": "phase5-independent-reference-not-object-alias",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "entry": "0x440f30",
+              "alias": false
+            }
+          },
+          {
+            "group": "phase5-independent-reference-not-object-alias",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "entry": "0x440f60",
+              "alias": false
+            }
+          },
+          {
+            "group": "phase5-independent-reference-not-object-alias",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "entry": "0x440f80",
+              "alias": false
+            }
+          },
+          {
+            "group": "phase5-independent-group-precedence-active-gate",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "group": false,
+              "count": 0,
+              "flags": 0,
+              "dead": 0,
+              "soloFlags": 4096
+            }
+          },
+          {
+            "group": "phase5-independent-group-precedence-active-gate",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "group": true,
+              "count": 0,
+              "flags": 4097,
+              "dead": 0,
+              "soloFlags": 4096
+            }
+          },
+          {
+            "group": "phase5-independent-group-precedence-active-gate",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "group": true,
+              "count": 1,
+              "flags": 4096,
+              "dead": 0,
+              "soloFlags": 4096
+            }
+          },
+          {
+            "group": "phase5-independent-group-precedence-active-gate",
+            "passed": true,
+            "got": 1065353216,
+            "want": 1065353216,
+            "context": {
+              "group": true,
+              "count": 1,
+              "flags": 4097,
+              "dead": 0,
+              "soloFlags": 0
+            }
+          },
+          {
+            "group": "phase5-independent-group-precedence-active-gate",
+            "passed": true,
+            "got": 0,
+            "want": 0,
+            "context": {
+              "group": true,
+              "count": 1,
+              "flags": 4097,
+              "dead": 255,
+              "soloFlags": 4096
+            }
+          },
+          {
+            "group": "phase5-independent-missing-spline-self-minus1",
+            "passed": true,
+            "got": 3212836864,
+            "want": 3212836864,
+            "context": null
+          },
+          {
+            "group": "phase5-independent-SCP-float32-spill",
+            "passed": true,
+            "got": true,
+            "want": true,
+            "context": {
+              "rawInt": 16777217,
+              "threshold": 16777216,
+              "operator": 0
+            }
+          },
+          {
+            "group": "phase5-independent-SCP-float32-spill",
+            "passed": true,
+            "got": false,
+            "want": false,
+            "context": {
+              "rawInt": 16777217,
+              "threshold": 16777216,
+              "operator": 2
+            }
+          },
+          {
+            "group": "phase5-independent-SCP-float32-spill",
+            "passed": true,
+            "got": true,
+            "want": true,
+            "context": {
+              "rawInt": 16777217,
+              "threshold": 16777216,
+              "operator": 4
+            }
+          }
+        ]
+      }
+    }
+  },
+  "build": {
+    "report": "reports/reconstructed-build.json",
+    "compiled": true,
+    "coreSourceCount": 187,
+    "harnessSourceCount": 193,
+    "allInputHashesMatch": true,
+    "libraryHashMatches": true,
+    "currentVerifierHashMatches": null,
+    "recordedVerifierBuildSha256": "280e2fbb5ec62993d8ec8780df83e31de85d7a9db9c58d9d916df05af36e1c07",
+    "note": "Current verifier artifact read denied; build-time hash retained without a current artifact claim."
+  },
+  "managedExecution": {
+    "executed": false,
+    "status": "ordinary-launch-unavailable",
+    "priorAttemptEvidence": "reports/reverse-next-20261013-launch.json",
+    "note": "No new launch attempt. Prepared managed assertions are not managed execution results."
+  },
+  "integration": "reports/reverse-phase3-20261013-registration.json",
+  "nextWork": [
+    "Whole text-file producer/read/normalization pipeline in progress.",
+    "ForceAtEnd, hints producer/readers, socket distance in progress.",
+    "Plane producers and caller stack lifetime in progress.",
+    "GoToOrigin, FollowPath and formation intent recovery continuing.",
+    "World resource loader, teardown, populated scene consumers and game-wide behavior integration remain open.",
+    "Managed replay pending ordinary executable access."
+  ]
+}

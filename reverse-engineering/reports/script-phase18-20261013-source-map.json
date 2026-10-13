@@ -1,0 +1,48 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x415000",
+      "method": "PreparedScriptBinding.Rebind",
+      "scope": "Existing Rebind expanded by ordered idle/system/default/enter/tail hydration using unchanged typed Bind core.",
+      "file": "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs",
+      "evidence": "reports/script-phase18-20261013-contract.json"
+    },
+    {
+      "address": "0x514640",
+      "method": "PreparedScriptBinding.Bind",
+      "scope": "Existing supplied-nonnull-script binding with optional character profile, live override-mask aliases and lazy Base/first-action reads; resolver branch external.",
+      "file": "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs",
+      "evidence": "reports/script-phase18-20261013-contract.json"
+    },
+    {
+      "address": "0x52cc90",
+      "method": "PreparedScriptDispatcher.Tick",
+      "scope": "Existing native dispatcher control flow with exact callback identity/rereads/first-call scratch, reference/deadline transitions and lower evaluator/handler ports.",
+      "file": "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs",
+      "evidence": "reports/script-phase18-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase18-20261013-contract.json",
+    "reports/script-phase18-20261013-tests.json",
+    "reports/script-phase18-20261013-assembly.json",
+    "reports/script-phase18-20261013-fixture-replay.json"
+  ],
+  "harnessFile": "../tools/script-phase18-20261013-portable-verify.cs",
+  "verifierModule": "script-phase18-20261013",
+  "verifierClass": "ScriptPhase1820261013Verify",
+  "fixture": "reports/script-phase18-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase18-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "Zero new address/command credit: existing415000,514640,52cc90 expanded to prepared-memory/interoperation scope.",
+    "36 Rebind+461 dispatcher+18 original full pipeline cases retained;1545 correlated native checks/0. Additional1545 same-model readback checks/0 not added to native evidence.",
+    "One original nonprogress callback observation retained under10000-instruction host budget,222 child events, outside paired completion domain.",
+    "Uses immutable phases13-17 and existing ScriptRuntime.cs. Root owns shared registration/build. No worker bin outputs or managed launch.",
+    "Next substantive gap: actual52caf0 reference evaluator/custom packet register, then52c880 condition evaluator bridge; root currently owns actor initializer41c7c0, no overlap."
+  ]
+}

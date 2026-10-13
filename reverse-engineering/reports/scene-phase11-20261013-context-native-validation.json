@@ -1,0 +1,25 @@
+{
+  "schema": "original-target-cache-caller-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "checks": 20480,
+  "errors": [],
+  "counts": {
+    "sequences": 2048,
+    "targetCalls": 4096,
+    "retainedPortableReplayCases": 4096,
+    "COMCalls": 1683,
+    "failedCallsSuppressedOnRepeat": 326
+  },
+  "adapters": {
+    "vtable+0x94": "Recorded COM SetRenderTarget(device,raw slot,opaque handle), stdcall3 args; declared opaque HRESULT and backend/configuration mutations. No device action."
+  },
+  "limits": [
+    "Original6e2880 executes unchanged. Finite/float conversion is irrelevant: every cache operand is raw integer data.",
+    "Slot limit uses signed comparison; address scaling/addition wraps at32bits. Only calls whose selected cell resolves inside supplied0x800-byte backend image are retained, including negative and wrapped aliases.",
+    "Configuration global2974d1c, backend flag638 and ushort countf8 control max slot. Above-limit and same-handle calls return raw slot with no COM call.",
+    "Handle is cached before COM dispatch. HRESULT is returned without rollback; callback mutation remains visible, and device pointer is read after cache write.",
+    "Backend/COM object lifetime, device implementation, source dimension initialization and authored frame setup remain external.",
+    "Native/Python own-state differential passed; managed execution pending."
+  ]
+}

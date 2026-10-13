@@ -1,0 +1,72 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x536330",
+      "method": "OriginPathCommands.GoToOrigin",
+      "coverage": "Native guards, spawn position/callback choice, ordered first-call parsing, one-draw wait, actual intent/formation and yaw/distance composition, float32 threshold stores and delayed zero-wait completion; producers/scheduler explicit.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    },
+    {
+      "address": "0x536dc0",
+      "method": "OriginPathCommands.FollowPath",
+      "coverage": "Native guard distinctions, ordered first-call token parsing, exact two-draw timer with double spill, actual formation expansion and timer completion; scheduler/token/world producers explicit.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    },
+    {
+      "address": "0x52fda0",
+      "method": "OriginPathCommands.FormationIntent",
+      "coverage": "Full finite byte-indexed formation intent: actual unsigned count/slot rules, spacing/side flags, supplied runtime yaw table, raw six-word orientation copies, goal/radius/mode/facing/lookpointer writes.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    },
+    {
+      "address": "0x52fcb0",
+      "method": "OriginPathCommands.SetIntent",
+      "coverage": "Refines existing ordinary intent projection by composing actual recovered formation expansion and exact owner callback selection51cbc0/51c6a0.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    }
+  ],
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "FollowPath",
+      "function": "0x536dc0",
+      "sourceUses": 77,
+      "scope": "Native guard distinctions, ordered first-call token parsing, exact two-draw timer with double spill, actual formation expansion and timer completion; scheduler/token/world producers explicit."
+    },
+    {
+      "kind": "scp-action",
+      "name": "GoToOrigin",
+      "function": "0x536330",
+      "sourceUses": 71,
+      "scope": "Native guards, spawn position/callback choice, ordered first-call parsing, one-draw wait, actual intent/formation and yaw/distance composition, float32 threshold stores and delayed zero-wait completion; producers/scheduler explicit."
+    }
+  ],
+  "nativeEvidence": "Original instructions execute with explicit callback boundaries; complete65536byte image, RNG, callback order and returns compared.",
+  "cases": 4968,
+  "assertionGroups": 16800,
+  "adapters": [
+    "Movement-token callback modes walk17/run34; absent callback tested.",
+    "Origin-position callback returns prepared point or null, with callback absence.",
+    "0x51d130 scheduler dispatch captured as explicit callback boundary; selected cases mutate formation spacing/flags before actual expansion.",
+    "Runtime yaw table supplied as finite32768 float32 input; table producer not recovered here."
+  ],
+  "limits": [
+    "Finite fast numeric token parser and finite nonoverflowing vector/timing arithmetic; no malformed token memory/NaN exceptions claim.",
+    "Prepared valid formation rows0..3 and unsigned boundary early returns; valid nonnull memory pointers except guarded chains.",
+    "Resource/path/spawn/formation producers, scheduler body and movement consumers remain outside this contract."
+  ],
+  "rounding": [
+    "GoToOrigin stores padding+goal asfloat32 before adding delta*speed and storing threshold; distance isfloat32, threshold square remains extended.",
+    "FollowPath uses two independent5b9dd0 draws; first(1-r1)*min term spills tofloat64 before r2*max addition andfloat32 store.",
+    "GoToOrigin clamps negative decremented wait to0 but returnsfalse thiscall; subsequent in-range call atwait0 completes. FollowPath immediately completes when positive wait crosses through0.",
+    "Yaw lookup uses signedshift andmask32767, preserves native float32 in-place stores, finite64-bit x87 arithmetic and signedzero."
+  ],
+  "managedReplay": "Prepared separate replay; compilation and native own-state verification do not claim managed execution.",
+  "statefulEvidence": {
+    "sequences": 12,
+    "stepsPerSequence": 8,
+    "retainedSteps": 96,
+    "note": "Steps are included in4968case count; not96independent sequences."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": [
+    "0x443390",
+    "0x442d10",
+    "0x443dc0"
+  ],
+  "nativeCases": 4931,
+  "nativeAssertionGroups": 14793,
+  "mismatches": 0,
+  "authoredOccurrences": {
+    "LastAttackerRange": 19,
+    "HelpWithTriggers": 18,
+    "MusicOn": 18
+  },
+  "faultCases": 1921,
+  "faultMechanisms": [
+    "HelpWithTriggers dereferences null global world before creature/reference guards:1,920 correlated grid cases.",
+    "LastAttackerRange null referenced actor is not guarded:1 case."
+  ],
+  "contracts": {
+    "LastAttackerRange": "Null creature/reference or absent attacker returns exactF32 1e9(4e6e6b28). Null referenced actor faults. Actor self-alias returns zero. Actual5becc0/sqrt execute unchanged; portable code composes existing finite distance implementation.",
+    "HelpWithTriggers": "Global world+4678 read first. Physics/creature/reference guards then reference+28d unsigned byte index. Physics+42c0+index255 alone means inactive; signedbyte at+4280+index selectsblock*214+20e and any nonzero16bit state returns1. Backing includes allnegative signedblocks.",
+    "MusicOn": "Every nonzero raw global music byte returns1, zero returns0; no creature/world guard."
+  },
+  "evidence": "Full458,752 byte retained memory image, native fault outcome and wrapperF32 result checked for each case. No native adapters. Explicit ABI wrappers captureFPU return and preserve result slot on faults.",
+  "limits": [
+    "Finite coordinate inputs and finite squared-distance domain. Prepared complete reference/actor/negative-block backing; explicit nullnative fault cases retained.",
+    "All256 music/index bytes andsignedblock boundarysamples; active slot255 is unique sentinel.",
+    "Authored condition forms are retained as body occurrence inputs; wholeSCP comparison/init execution is not claimed.",
+    "Current musicflag, trigger blocks and last-attacker pointer producers/consumers remain external."
+  ],
+  "managedReplay": {
+    "preparedAssertionGroups": 14793,
+    "executed": false
+  }
+}

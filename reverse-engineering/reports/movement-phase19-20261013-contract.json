@@ -1,0 +1,38 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "totalNativeCases": 3249,
+  "totalNativeAssertionGroups": 6772,
+  "mismatches": 0,
+  "sourceDefinedNativeCases": 3033,
+  "preparedSourceAssertionGroups": 6340,
+  "sourceExcludedProbeRows": 216,
+  "faultCases": 6,
+  "sourceDefinedFaultCases": 4,
+  "contracts": [
+    {
+      "address": "0x4d94b0",
+      "method": "PodMemoryHelpers.FindFree",
+      "scope": "Raw pod16-slot free selector: globalracebase+ A694 +row*A0 firststatusword0 returnsbase+A600+row*A0, allnonzero statusesoccupied. No writes/reservation; nullrace faults."
+    },
+    {
+      "address": "0x4d8280",
+      "method": "PodMemoryHelpers.CopyFloatMatrix",
+      "scope": "ImplicitEAXsource/ECXtarget originalordered16 FLD/FSTP memoryprojection: finite,Inf,qNaN,signedzero/subnormal words preserved with forwardunaligned/shiftedalias semantics andfirst/partialpointerfaultcommits. sNaN cases excluded dueemulator/hardware uncertainty; sourceguard rejects beforethatwordstore. No FPUstatusflags orincidentalregisterreturn claim."
+    }
+  ],
+  "nativeAdapters": 0,
+  "limits": [
+    "Default masked x87CW037F; floatcopy memory output andfault ordering only, FPUstatus/exception flags excluded.",
+    "Emulated signalingNaN payload preservation is probe-only; actualhardware conversion notcertified andportablecontract excludes these rows. qNaN,infinity,signedzero,subnormal sourcewords supported.16 orderedfloatloads/stores; physical pointer/OS backing remains external.",
+    "A singleguardpage in isolated emulatorData+65536 isunmapped forpartial nativefaults, matching supplied finiteportableimage boundary. No host/OS changes.",
+    "No CreatePod command credit yet; curve andheading/spawn composition remains unrecovered."
+  ],
+  "correction": "Initial unsealed model assumed sNaN quietbit conversion. Originalinstruction execution inUnicorn retained signalingpayloads, exposing216 mismatches. Correctednativeprobeoracle torawemulatorcopy, excluded216 signalingNaN affectedrows fromportable equivalence andpreparedcounts, andsource rejects signalingNaN inputs. No hardware equivalence asserted for those cases. Prior sealed files unchanged.",
+  "managedReplay": {
+    "executed": false,
+    "preparedAssertionGroups": 6340,
+    "preparedCases": 3033,
+    "probeOnlyRowsSkipped": 216
+  },
+  "createPodCommandCredit": 0
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "original-target-depth-reset-consumers-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "checks": 14336,
+  "errors": [],
+  "counts": {
+    "restoreCalls": 1792,
+    "clearAdditionalCalls": 1792,
+    "retainedPortableReplayCases": 3584,
+    "COMCalls": 13739,
+    "targetCOMCalls": 2987,
+    "depthCOMCalls": 3584,
+    "viewportCOMCalls": 7168
+  },
+  "adapters": {
+    "vtable+0x94": "Final raw target COM call with opaque HRESULT and declared backend/configuration/capability/bias mutations.",
+    "vtable+0x9c": "Final raw depth-surface COM call with opaque HRESULT and declared backend/configuration/capability/bias mutations.",
+    "vtable+0xbc": "Final local viewport COM call, opaque HRESULT and raw source/argument/backend mutations; numeric viewport globals stable."
+  },
+  "limits": [
+    "Original6e33a0/6e3650/6e2880/6e2510 and viewport setters/reset/forwarders/CRT run unchanged over one fixed backend29765c8. No intermediate helper or arithmetic adapters.",
+    "Restore selects initial flag branch once, then rereads capabilities and target cache gates per extra slot. Active handle is reread after initial target callback.",
+    "Clear-additional rereads signed configuration, current flag and ushort count per slot. Changed cache cells zero before direct COM; opaque HRESULT never causes rollback.",
+    "Depth target always forwarded after target calls; fresh backend dimensions then populate screen/origin globals and feed actual context refresh. Both callers tail-jump to actual refresh and return its final raw word.",
+    "Finite viewport numeric globals and fitting mode0 integer conversion; nonzero calibration source axes. Raw handles/cache/source packet words opaque, resolved device/image lifetimes supplied externally.",
+    "Device/capability/mode-table bootstrap, authored scene/frame binding and real COM/GPU actions remain external. Native/Python differential passed; managed execution pending."
+  ]
+}

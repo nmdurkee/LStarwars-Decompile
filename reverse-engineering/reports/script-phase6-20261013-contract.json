@@ -1,0 +1,133 @@
+{
+  "title": "Hint producer/reader interoperation, Force outputs and socket scalar distance",
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sources": [
+    "reconstructed/gameplay/script-phase6-20261013-Hints.cs",
+    "reconstructed/gameplay/script-phase6-20261013-WorldConditions.cs"
+  ],
+  "nativeTests": "reports/script-phase6-20261013-tests.json",
+  "nativeFixtures": "reports/script-phase6-20261013-native-fixtures.json",
+  "assembly": "reports/script-phase6-20261013-assembly.json",
+  "commands": [
+    {
+      "name": "SetHint",
+      "kind": "scp-action",
+      "function": "0x44d470",
+      "uses": 13,
+      "scope": "First-call token parser searches case-insensitive substring id then advances3bytes, with last numeric selector winning. ignore_done_flag only checked when id substring absent. Composes actual registered hint request/activation, pointer/presentation/bitmap/cooldown updates and QRAND variant rejection loop. Null token faults before request; source throws. Finite int32 numeric conversion scope.",
+      "method": "Phase6HintCommands.SetHint"
+    },
+    {
+      "name": "CurrentHintId",
+      "kind": "scp-condition",
+      "function": "0x442a10",
+      "uses": 13,
+      "scope": "Returns active hint signed-int16 ID or-1 when active pointer absent, via0x576460 and signed x87 integer conversion. Hint state producers are recovered in same module; UI and future timer ticks remain external.",
+      "method": "Phase6HintCommands.CurrentHintId"
+    },
+    {
+      "name": "ForceAtEnd",
+      "kind": "scp-condition",
+      "function": "0x440a90",
+      "initializer": "0x440a30",
+      "uses": 15,
+      "scope": "Initializer returns named Force gizmo registry record using runtime type0x7f8cc4. Reader invokes registered output0/includeInactive1 then converts nonzero to float1. Actual Force output0 requires playback group present and state2 regardless of reverse flag; differs from ForceFinished. Generic registered type/name table and finite Force state supplied by host.",
+      "method": "Phase6WorldConditions.ForceAtEnd"
+    },
+    {
+      "name": "SockDistanceToPlayer",
+      "kind": "scp-condition",
+      "function": "0x442790",
+      "uses": 21,
+      "scope": "Guards creature/self reference/primary player, rejects player socket-1 and unequal socket byte. Null referenced self target faults after player-sentinel gate. Uses signed socket/segment affine rows from0x53f7a0, with x87 precision64 multiply/add then float32 store for each scalar, and player-minus-self float32 distance. Finite operands/stored scalars only; signedzero preserved.",
+      "method": "Phase6WorldConditions.SockDistanceToPlayer"
+    }
+  ],
+  "hintContracts": {
+    "Request": "0x576910 first preserves active same signed-ID request. Negative or missing registration dword clears only active pointer. Registered but missing sentinel-list ID leaves current active unchanged. Found ID tail-calls activation while preserving force/ignore flags.",
+    "Activate": "0x576860 active same pointer is no-op. Null target clears only active pointer. Unless force-display, done flag blocks unless ignore-done and timer must be<=0 or quiet NaN. Acceptance resets presentation dwords9514c8/cc topositivezero, sets active pointer, optionally marks completion14/bitmap when target flags2bit1 and not force-display. Draws original QRAND repeatedly until draw/16384 differs from previous variant byte9514bd, writes variant, and copies cooldown0xc float32 to timer0x18.",
+    "MarkDone": "0x5766e0 scans first signed-ID match in0x1c-stride list until-1; bitmap uses ordinal>>5, lower5bits shift, and signed declared word-count bound. Matching by ID rather than record identity preserves duplicate-ID behavior.",
+    "Current": "0x576460 returns signed active ID or-1; wrapper442a10 FILD converts full returned int to x87 then evaluator float32."
+  },
+  "forceContracts": {
+    "Initializer": "0x440a30 uses global0x7f8cc4 and world+0x2ac8 before original55a020. Returns registry record; does not unwrap physical target.",
+    "Dispatcher": "0x55a1b0 existing source requires table/registry/record,record type byte+6<count,callback+0x48; ForceAtEnd output0/includeInactive1 prepared tables invoke actual467b40.",
+    "Output": "0x467b40 dereferences target first, then unless includeInactive requires ((flagsA0bit2 or mode88!=-1) and flagsA0bit1). Outputs0/1/2 query group+0x28 state2/nonzero/0; outputs3/4 link+0x40 flags+0x24 bits2/4; output5 flagsA0bit10000; output6 actual467890 finite completion; output7 flagsA0bit200000. Unknown output returns0. ForceAtEnd groupstate2 intentionally differs from reverse ForceFinished helper."
+  },
+  "socketContracts": {
+    "Helper": "0x53f7a0 null registry or socket sentinel-1 returns0. Signed byte socket and signed-short segment index select socket stride0x13c pointer+0x34 and segment stride0x80 fields+0x78/+0x7c. Evaluate scale*progress+offset in x87 precision64 then one float32 store.",
+    "Reader": "0x442790 guards creature/reference/player, then tests player socket byte before dereferencing self target. Equal non-sentinel socket performs two original affine queries, subtracts stored player scalar minus self scalar, stores float32. Source uses shared FiniteX87 and preserves exact negativezero affine sums.",
+    "Bounds": "Negative socket/segment indices only claimed where explicitly prepared table backing exists; real allocation limits and socket producers are external."
+  },
+  "offsets": {
+    "hintList": "0x9514b4",
+    "activeHint": "0x9514b8",
+    "lastVariant": "0x9514bd",
+    "doneBitmapPointer": "0x9514c0",
+    "doneWordCount": "0x9514c4",
+    "presentationCounters": "0x9514c8/0x9514cc",
+    "registrationBackingPointer": "0x926c20",
+    "sharedRandomState": "0x80253c",
+    "hintRecordStride": "0x1c",
+    "hintId": "0 signed16",
+    "hintFlags": "2 byte",
+    "hintCooldown": "0xc float32",
+    "hintComplete": "0x14 byte",
+    "hintTimer": "0x18 float32",
+    "actorSocketPlacement": "0x670",
+    "actorSocketIndex": "0x671 signed8",
+    "placementSegment": "2 signed16",
+    "placementProgress": "4 float32",
+    "worldSocketRegistry": "0x2988",
+    "primaryPlayerGlobal": "0x93d810"
+  },
+  "verification": {
+    "nativeAssertions": 15354,
+    "mismatches": 0,
+    "savedHintCases": 1342,
+    "savedCurrentCases": 522,
+    "savedForceCases": 10273,
+    "savedSocketCases": 2296,
+    "savedInitializers": 20,
+    "authoredOccurrences": 62,
+    "originalShippedConditionComparisons": 48,
+    "nativeReplacedCallees": 0,
+    "negativeZeroAffineFixtures": 34,
+    "interpretation": "Counts include correlated producer-state,return/helper-reader assertions, not independent whole-game scenarios.",
+    "managedCompilation": "Both core sources and complete saved-fixture harness compile against public QRandom,MessageNumbers,Scenery bindings,Force state and FiniteX87 APIs.",
+    "managedExecution": "Pending; no generated executable launch retry under known EPERM restriction."
+  },
+  "comparisonOmissions": [
+    {
+      "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/DAGOBAH/DAGOBAH_E/AI/PARTY.SCP",
+      "line": 57,
+      "text": "if ForceAtEnd \"name=force11\" goto GotoLocator1",
+      "reason": "No explicit comparator or numeric RHS; source loader default/validity not inferred."
+    }
+  ],
+  "adapters": [],
+  "limits": [
+    "Synthetic prepared hint/registry/socket records and registration backing; loader and reference lifetimes external.",
+    "Hint state updates are recovered, not UI rendering, audio playback or future timer ticks.",
+    "Quiet NaN timer/cooldown input cases included; signaling NaN/x87 exception policy outside contract.",
+    "SetHint numeric conversion finite float32 within int32 range; keyid substring then3-byte advance, valid terminated tokens required.",
+    "Socket affine inputs and stored scalar results finite; original64-bit x87 rounding modeled before singlefloat32 store. Final distance overflow to infinity may be preserved.",
+    "Negative socket/segment indices exercised only where synthetic backing explicitly exists; no claim about actual live table allocation ranges.",
+    "Force completion output6 uses previously recovered finite Force state contract; actual Force simulation external.",
+    "Native count includes producer-state/return/assertion correlations; not a whole-game scenario count.",
+    "Managed comparison execution pending under established EPERM restriction; no launch retry."
+  ],
+  "additionalLimits": [
+    "Source Force registry callbacks are bound to recovered ForceOutput; registration/type counts and name rows must be supplied from loader/host.",
+    "One Dagobah ForceAtEnd occurrence omits explicit comparator; loader default or source validity is not inferred. Its literal-name/body fixture remains retained without stripping name= or silently repairing source.",
+    "Source SetHint requires valid token arrays; null token and id+3 beyond token terminator are explicit fault/bounds conditions.",
+    "Hint record fields can carry quiet NaN timer/cooldown bits; signaling NaN/payload exception behavior outside contract.",
+    "Force output6 adopts previously verified finite completion policy; no Force simulation or animation advancement in this module."
+  ],
+  "nextRealGap": {
+    "function": "0x4882d0",
+    "topic": "Full takeover release/vehicle restoration producer",
+    "reason": "Root already recovered ReleaseTakeOver command dispatch; downstream actor restoration and context/player/vehicle mutation remains a valuable actual state producer."
+  }
+}

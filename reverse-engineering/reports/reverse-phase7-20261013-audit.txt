@@ -1,0 +1,31 @@
+Independent reverse-engineering audit: reverse-phase7-20261013
+
+No native/source mismatch found within the reviewed bounded contracts.
+All 2,599 additional checks passed: 2,042 original binary/instruction/constant checks, 402 authored SPL file/retained-byte checks, 55 authored command-line/input matches, two saved stack-writer aggregate checks and 98 targeted native edge checks. These remain separate from original suite counts. All 419 compiler-input hashes (207 core + 212 harness sources) and the current DLL match. C# replay remains pending; no generated program launched.
+
+Frozen retained coverage
+- Camera: 3,392 cases / 7,844 native checks. Cases: 768 inverse, 512 projection, 1,024 clip, 512 ordinary frustum, 384 camera and 192 dispatcher. Saved dispatcher predicate calls: 2,084; 1,372 read CRT sqrt return word 0x6e9540, and 712 retain an external seed. Portable harness prepares 9,771 assertions, including 774 device-event assertions; compiled only.
+- SPL parser/buffered reader:317 cases (282 loads, 35 direct buffered reads), 206,094 observed original entry calls. Full 266,284-byte image hash/result/transport trace/state; 1,233 prepared portable assertions. All three raw authored SPL files retained in 36 load cases.
+- Published SPL consumers: 580 actual producer/consumer compositions, including 360 complete raw authored-file compositions. 7,172 consumer/comparator/fallback calls and 58,248 producer/reader calls are instrumentation counts, not assertion counts. Full 266,284-byte hash plus return vector/transport trace/state; 2,320 prepared portable assertions. No scene attachment claim.
+- Context/audio:792 cases (416 Sound, 376 Enter), 2,376 assertions; 52 correlated fault scenarios with actor state before fault retained. Terminal audio only is adapted.
+- MoveForward/OriginRange:1,599 cases (940 forward, 659 range), 7,995 groups; full 65,536-byte image/RNG/callback/return retained. All 36 MoveForward forms and 19 OriginRange direct-body inputs match original authored files. Full condition loader/comparison excluded.
+
+Confirmed behavior
+Original CRT call at 0x6e953b pushes 0x6e9540 into the later predicate's reused fourth-radius stack slot. Three dispatcher routes reproduced retained visits/bits; 28 current observations confirmed this writer. The predicate does not calculate that radius; the portable boundary still supplies each exact word. D3DX/device/light/cache host boundaries and runtime template remain explicit.
+
+SPL publishes the raw cursor before alignment. Name/point overruns write before reporting failure; base is then cleared but final count and advertised end cursor still commit. Open failure leaves the old count. Published catalog lookup precedes scene fallback, preserves duplicate order/capacity/address identity and does not attach records to scene.
+
+MoveForward captures the actor before callbacks and rereads mutated heading for turn processing. The exact qword scale is 182.04444885253906, with integer truncation before and after scaling: 12.9 becomes 12 then 2,184 angle units. Origin callbacks precede world/spawn fallback guards and require no self reference chain.
+
+Context uses full-DWORD checks for context sentinel/mode 3 or 4 and low-byte 6 or 7 sound suppression. Mandatory tail runs even with context -1. Sound flag 0x40 has priority over 0x08; signed 16-bit IDs and player-tail/world-call argument counts match.
+
+Integration
+752 mapping rows / 738 distinct entries; 207 core files / 212 harness files; 167 bounded command names / 19,231 uses of 20,836. Delta from phase6: 19 distinct entries, 20 rows, five core files, five harness files, two names, 55 uses.
+DLL SHA256: 9d9b30973ccdd86a617dfb0a47819ebdee922638de91b79fda22cd936bebac45
+Verifier build SHA256: e630af6f4bf1352e208a193d531172e0f977fcb71b386f7ad79a74c4dd4cb337
+Root's current source-completion refresh reports source/harness/DLL/EXE hashes matching and no artifact-read failures. Auditor independently checked every compiler input and DLL, without EXE reread or launch. Prior ordinary actor-next launch returned spawn EPERM before creation; whole-game buildability/equivalence remain false.
+
+Limits
+Normal finite clean-viewport camera path and populated synthetic trees only; no reflected/reuse path, authored tree loading, full GPU/frame submission or installed D3DX CPU policy. SPL transport adapted with ordinary read/archive 0; bounded malformed arenas and finite/infinity/quiet-NaN data, signaling NaNs excluded. Catalog bridge requires all scene names readable and ASCII. Audio/movement/origin callbacks remain external. Fresh script phase11 ejection, viewport/reflected work and later commands remain outside this snapshot. No commits, pushes or GitHub writes.
+
+Detailed checks, probe code, exact hashes and qualifications: reverse-phase7-20261013-audit.json.

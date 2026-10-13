@@ -1,0 +1,51 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase9-20261013-RandomSpline.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x449f70",
+      "method": "RandomSplineSelection.Select",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Whole bounded candidate selection: first-call global reset, ordered32capacity exact/prefix candidates with duplicates, actor eligibility marks/filter/cleanup, original16bit QRAND and nativeinteger stride selection."
+    },
+    {
+      "address": "0x5d0690",
+      "method": "RandomSplineSelection.Find",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Full prepared signed-count scene spline table first exact ASCII name lookup."
+    },
+    {
+      "address": "0x5d0740",
+      "method": "RandomSplineSelection.FindPrefix",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Full prepared signed-count/capacity scene table prefix matching via originalstrlen(pattern), including empty-prefix one-byte compare."
+    },
+    {
+      "address": "0x4f8b80",
+      "method": "RandomSplineSelection.Compare",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Whole bounded ASCII/null/length comparator: signedreturn, explicit0 length, runtime -1/-2 lengths and othernegative termination, terminator/first byte behavior. Extendedbyte folding and invalidmemory outside bounds."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase9-20261013-contract.json",
+    "reports/movement-phase9-20261013-tests.json",
+    "reports/movement-phase9-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase9-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase9-20261013",
+  "verifierClass": "MovementPhase920261013Verify",
+  "fixture": "reports/movement-phase9-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase9-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SelectRandomSpline",
+      "function": "0x449f70",
+      "sourceUses": 36,
+      "scope": "Whole bounded candidate selection: first-call global reset, ordered32capacity exact/prefix candidates with duplicates, actor eligibility marks/filter/cleanup, original16bit QRAND and nativeinteger stride selection."
+    }
+  ]
+}

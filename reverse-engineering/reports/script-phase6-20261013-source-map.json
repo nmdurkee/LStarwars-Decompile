@@ -1,0 +1,137 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase6-20261013-Hints.cs",
+    "gameplay/script-phase6-20261013-WorldConditions.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x44d470",
+      "method": "Phase6HintCommands.SetHint",
+      "file": "gameplay/script-phase6-20261013-Hints.cs",
+      "scope": "First-call parser composed with actual hint producer state.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x576910",
+      "method": "Phase6HintCommands.Request",
+      "file": "gameplay/script-phase6-20261013-Hints.cs",
+      "scope": "0x576910 first preserves active same signed-ID request. Negative or missing registration dword clears only active pointer. Registered but missing sentinel-list ID leaves current active unchanged. Found ID tail-calls activation while preserving force/ignore flags.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x576860",
+      "method": "Phase6HintCommands.Activate",
+      "file": "gameplay/script-phase6-20261013-Hints.cs",
+      "scope": "0x576860 active same pointer is no-op. Null target clears only active pointer. Unless force-display, done flag blocks unless ignore-done and timer must be<=0 or quiet NaN. Acceptance resets presentation dwords9514c8/cc topositivezero, sets active pointer, optionally marks completion14/bitmap when target flags2bit1 and not force-display. Draws original QRAND repeatedly until draw/16384 differs from previous variant byte9514bd, writes variant, and copies cooldown0xc float32 to timer0x18.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x5766e0",
+      "method": "Phase6HintCommands.MarkDone",
+      "file": "gameplay/script-phase6-20261013-Hints.cs",
+      "scope": "0x5766e0 scans first signed-ID match in0x1c-stride list until-1; bitmap uses ordinal>>5, lower5bits shift, and signed declared word-count bound. Matching by ID rather than record identity preserves duplicate-ID behavior.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x576460",
+      "method": "Phase6HintCommands.CurrentHintIdValue",
+      "file": "gameplay/script-phase6-20261013-Hints.cs",
+      "scope": "Signed-short active ID reader or-1.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x442a10",
+      "method": "Phase6HintCommands.CurrentHintId",
+      "file": "gameplay/script-phase6-20261013-Hints.cs",
+      "scope": "Returns active hint signed-int16 ID or-1 when active pointer absent, via0x576460 and signed x87 integer conversion. Hint state producers are recovered in same module; UI and future timer ticks remain external.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x440a30",
+      "method": "Phase6WorldConditions.BindForceAtEnd",
+      "file": "gameplay/script-phase6-20261013-WorldConditions.cs",
+      "scope": "0x440a30 uses global0x7f8cc4 and world+0x2ac8 before original55a020. Returns registry record; does not unwrap physical target.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x440a90",
+      "method": "Phase6WorldConditions.ForceAtEnd",
+      "file": "gameplay/script-phase6-20261013-WorldConditions.cs",
+      "scope": "Initializer returns named Force gizmo registry record using runtime type0x7f8cc4. Reader invokes registered output0/includeInactive1 then converts nonzero to float1. Actual Force output0 requires playback group present and state2 regardless of reverse flag; differs from ForceFinished. Generic registered type/name table and finite Force state supplied by host.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x467b40",
+      "method": "Phase6WorldConditions.ForceOutput",
+      "file": "gameplay/script-phase6-20261013-WorldConditions.cs",
+      "scope": "0x467b40 dereferences target first, then unless includeInactive requires ((flagsA0bit2 or mode88!=-1) and flagsA0bit1). Outputs0/1/2 query group+0x28 state2/nonzero/0; outputs3/4 link+0x40 flags+0x24 bits2/4; output5 flagsA0bit10000; output6 actual467890 finite completion; output7 flagsA0bit200000. Unknown output returns0. ForceAtEnd groupstate2 intentionally differs from reverse ForceFinished helper.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x53f7a0",
+      "method": "Phase6WorldConditions.SocketScalar",
+      "file": "gameplay/script-phase6-20261013-WorldConditions.cs",
+      "scope": "0x53f7a0 null registry or socket sentinel-1 returns0. Signed byte socket and signed-short segment index select socket stride0x13c pointer+0x34 and segment stride0x80 fields+0x78/+0x7c. Evaluate scale*progress+offset in x87 precision64 then one float32 store.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    },
+    {
+      "address": "0x442790",
+      "method": "Phase6WorldConditions.SockDistanceToPlayer",
+      "file": "gameplay/script-phase6-20261013-WorldConditions.cs",
+      "scope": "Guards creature/self reference/primary player, rejects player socket-1 and unequal socket byte. Null referenced self target faults after player-sentinel gate. Uses signed socket/segment affine rows from0x53f7a0, with x87 precision64 multiply/add then float32 store for each scalar, and player-minus-self float32 distance. Finite operands/stored scalars only; signedzero preserved.",
+      "evidence": "reports/script-phase6-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase6-20261013-contract.json",
+    "reports/script-phase6-20261013-tests.json",
+    "reports/script-phase6-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase6-20261013-portable-verify.cs",
+  "verifierModule": "script-phase6-20261013",
+  "verifierClass": "ScriptPhase620261013Verify",
+  "fixture": "reports/script-phase6-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase6-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SetHint",
+      "function": "0x44d470",
+      "report": "reverse-engineering/reports/script-phase6-20261013-contract.json",
+      "scope": "First-call token parser searches case-insensitive substring id then advances3bytes, with last numeric selector winning. ignore_done_flag only checked when id substring absent. Composes actual registered hint request/activation, pointer/presentation/bitmap/cooldown updates and QRAND variant rejection loop. Null token faults before request; source throws. Finite int32 numeric conversion scope.",
+      "sourceUses": 13
+    },
+    {
+      "kind": "scp-condition",
+      "name": "CurrentHintId",
+      "function": "0x442a10",
+      "report": "reverse-engineering/reports/script-phase6-20261013-contract.json",
+      "scope": "Returns active hint signed-int16 ID or-1 when active pointer absent, via0x576460 and signed x87 integer conversion. Hint state producers are recovered in same module; UI and future timer ticks remain external.",
+      "sourceUses": 13
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ForceAtEnd",
+      "function": "0x440a90",
+      "report": "reverse-engineering/reports/script-phase6-20261013-contract.json",
+      "scope": "Initializer returns named Force gizmo registry record using runtime type0x7f8cc4. Reader invokes registered output0/includeInactive1 then converts nonzero to float1. Actual Force output0 requires playback group present and state2 regardless of reverse flag; differs from ForceFinished. Generic registered type/name table and finite Force state supplied by host.",
+      "sourceUses": 15
+    },
+    {
+      "kind": "scp-condition",
+      "name": "SockDistanceToPlayer",
+      "function": "0x442790",
+      "report": "reverse-engineering/reports/script-phase6-20261013-contract.json",
+      "scope": "Guards creature/self reference/primary player, rejects player socket-1 and unequal socket byte. Null referenced self target faults after player-sentinel gate. Uses signed socket/segment affine rows from0x53f7a0, with x87 precision64 multiply/add then float32 store for each scalar, and player-minus-self float32 distance. Finite operands/stored scalars only; signedzero preserved.",
+      "sourceUses": 21
+    }
+  ],
+  "integrationNotes": [
+    "Four new authored-name contracts,62 uses;11 native mappings subject to address deduplication.",
+    "Both core files depend on existing runtime public helpers; shared helper entrypoints are composed, not counted again.",
+    "One malformed authored ForceAtEnd comparator is an explicit source/loader gap; do not describe all49condition occurrences as comparison-verified (48 are).",
+    "Actual native callees/QRAND/registered callbacks execute; no instruction hooks/adapters replace native behavior.",
+    "No commits,pushes or managed EXE retry."
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "updated": "2026-10-13T16:54:04.777Z",
+  "batch": "reverse-phase5-20261013",
+  "descriptors": [
+    "reports/movement-phase6-20261013-source.json",
+    "reports/movement-phase7-20261013-source.json",
+    "reports/world-phase5-20261013-integration.json",
+    "reports/script-phase7-20261013-source-map.json"
+  ],
+  "registrations": [
+    {
+      "name": "movement-phase6-20261013",
+      "cls": "MovementPhase620261013Verify",
+      "fixture": "reports/movement-phase6-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase6-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase6-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase6-20261013-contract.json",
+        "reports/movement-phase6-20261013-tests.json",
+        "reports/movement-phase6-20261013-rng-tests.json",
+        "reports/movement-phase6-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x446b30",
+          "method": "DoomedLocatorActions.Set",
+          "sourceFile": "gameplay/movement-phase6-20261013-DoomedLocator.cs",
+          "coverage": "First-call and nonzero-token gates, guarded self and ordered character retargeting, substring token precedence/fixed skips, final name formatting precedence, native integerRNG, lookup and actor EF0bit800/F14 own-state. Actor/locator producers and escape/damage consumers outside this contract."
+        },
+        {
+          "address": "0x5b9e90",
+          "method": "LocatorIntegerRandom.Next",
+          "sourceFile": "gameplay/movement-phase6-20261013-DoomedLocator.cs",
+          "coverage": "Full32bit integer RNG body: localzero-to1 normalization only for nonnull state, optional globalstate, signeddivision/truncation and wraparoundmultiply/subtraction/negativeadjust/XORreturn."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase6-20261013-DoomedLocator.cs"
+      ],
+      "harnessFile": "../tools/movement-phase6-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase7-20261013",
+      "cls": "MovementPhase720261013Verify",
+      "fixture": "reports/movement-phase7-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase7-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase7-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase7-20261013-contract.json",
+        "reports/movement-phase7-20261013-tests.json",
+        "reports/movement-phase7-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x454150",
+          "method": "CreatureAlerts.Alert",
+          "sourceFile": "gameplay/movement-phase7-20261013-CreatureAlerts.cs",
+          "coverage": "Whole first-call target selection and real4399e0 producer composition; zero-token self alerts, ordered character= retargeting with guarded reference/firstobject extraction, unconditional parentreturn1. Actor/definition producers and downstream alert consumers external."
+        },
+        {
+          "address": "0x4399e0",
+          "method": "CreatureAlerts.Produce",
+          "sourceFile": "gameplay/movement-phase7-20261013-CreatureAlerts.cs",
+          "coverage": "Full own-state alert source/position/timer word copy guarded by native active1/live1000/mask5/type8000 rules; nullactor position-only alert, exact short-circuit null definition/type faults. Inputs copiedraw including nonfinite bits; no arithmetic."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase7-20261013-CreatureAlerts.cs"
+      ],
+      "harnessFile": "../tools/movement-phase7-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase5-20261013",
+      "cls": "WorldPhase520261013Verify",
+      "fixture": "reports/world-phase5-20261013-vectors.json",
+      "output": "reports/world-phase5-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase5-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase5-20261013-native-tests.json",
+        "reports/world-phase5-20261013-source-map.json",
+        "reports/world-phase5-20261013-contract.json",
+        "reports/world-phase5-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x48ce00",
+          "method": "WorldSceneLoaderPhase.Run",
+          "coverage": "initial text/scene/pictures phase through48d063 handoff plus complete actual abort cleanup; remainder of loader excluded",
+          "sourceFile": "gameplay/world-phase5-20261013-scene-teardown.cs",
+          "qualification": "48ce00 coverage ends at48d063, before auxiliary resource allocation5a05b0. Handoff is not full loader success or populated+110 commit. Failure cleanup executes original code through return. Scene/pictures payload loading and subsystem release semantics are explicit mutable service fixtures, not real graphics/audio/terrain backends. Title helper489aa0 output is a bounded prepared64-byte service; original copy/append routines execute. Prepared world/catalog/arena/group/registry backing, nonnegative or sentinel signed group counts, fixed resource pointer lists and valid service mutations. Resource callbacks may change live group count/handle fields/scene pointers; native rereads are preserved. Normal prefix resource return pointers reside in prepared arena; teardown alternative resources have prepared external backing. Fixed cache-force global87b71c is0. Loaded-marker abort cases exercise original repeated teardown. The reused fixed%s.txt CRT formatter/I/O services remain adapted, as documented in phase4. Managed replay remains pending; no executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase5-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase5-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x55f6c0",
+          "method": "WorldResourceTeardown.Run",
+          "coverage": "whole own-state resource teardown order with explicit mutable subsystem/release services",
+          "sourceFile": "gameplay/world-phase5-20261013-scene-teardown.cs",
+          "qualification": "48ce00 coverage ends at48d063, before auxiliary resource allocation5a05b0. Handoff is not full loader success or populated+110 commit. Failure cleanup executes original code through return. Scene/pictures payload loading and subsystem release semantics are explicit mutable service fixtures, not real graphics/audio/terrain backends. Title helper489aa0 output is a bounded prepared64-byte service; original copy/append routines execute. Prepared world/catalog/arena/group/registry backing, nonnegative or sentinel signed group counts, fixed resource pointer lists and valid service mutations. Resource callbacks may change live group count/handle fields/scene pointers; native rereads are preserved. Normal prefix resource return pointers reside in prepared arena; teardown alternative resources have prepared external backing. Fixed cache-force global87b71c is0. Loaded-marker abort cases exercise original repeated teardown. The reused fixed%s.txt CRT formatter/I/O services remain adapted, as documented in phase4. Managed replay remains pending; no executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase5-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase5-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase5-20261013-scene-teardown.cs"
+      ],
+      "harnessFile": "../tools/world-phase5-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase7-20261013",
+      "cls": "ScriptPhase720261013Verify",
+      "fixture": "reports/script-phase7-20261013-native-fixtures.json",
+      "output": "reports/script-phase7-20261013-managed-check.json",
+      "descriptor": "reports/script-phase7-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase7-20261013-contract.json",
+        "reports/script-phase7-20261013-tests.json",
+        "reports/script-phase7-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x4882d0",
+          "method": "TakeoverRelease.Release",
+          "coverage": "inline producer with explicit downstream service boundaries; preserved EAX RET ABI at486f20",
+          "sourceFile": "gameplay/script-phase7-20261013-TakeoverRelease.cs"
+        },
+        {
+          "address": "0x4871a0",
+          "method": "TakeoverRelease.SeatPosition",
+          "coverage": "prepared signed seat index/matrix gate; alias-preserving raw matrix copy and finite stored-F32 fallback",
+          "sourceFile": "gameplay/script-phase7-20261013-TakeoverRelease.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase7-20261013-TakeoverRelease.cs"
+      ],
+      "harnessFile": "../tools/script-phase7-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x4882d0",
+    "0x4871a0"
+  ],
+  "newCoreFiles": 1,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

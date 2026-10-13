@@ -1,0 +1,49 @@
+{
+  "module": "gameplay",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original inline takeover release producer 0x4882d0 and seat projection 0x4871a0 in prepared memory with explicit downstream service contracts.",
+  "functions": [
+    {
+      "address": "0x4882d0",
+      "method": "TakeoverRelease.Release",
+      "bodyBytes": 864,
+      "roles": "Rider is input when input.context7b5 == 59; otherwise input.linkedCd0. Other is the remaining actor. Aliasing is preserved.",
+      "snapshots": "Capture both packets +0x2c8 (0xcc bytes) and flags1fc bit0x100 BEFORE optional mode1 transfer; EF4 bit2 skips transfer. Failed transfer retains callee mutations and exits.",
+      "stubAbi": "0x486f20 is one RET byte C3. Caller EAX remains other at 0x488381; it is not an allocator, lookup or factory. Both definition-name loads still execute and can fault.",
+      "packetUpdates": "rider packet receives saved other; other receives saved rider; rider.set378 restored saved rider[b0], other.set378 saved other[b0]. Then Rebind(other), followed by bit0x100 exchange from original snapshots.",
+      "seatUpdates": "Read rider.linked again after service. Real 0x4871a0 writes rider+5c. Then reread link; zero words278/27c and copy linked.heading58 individually into rider27a/58/5a. RefreshPose runs before linked/context clear.",
+      "ejection": "If other.short1064 equals global7f1914 and world128 equals global87b234, DistanceFactor feeds separately stored F32 duration/speed into DirectedJump, then Camera2. Otherwise Eject(rider,other).",
+      "vehicle": "other.def54->class24 float28 >0 subtracts rider.velocity6c * binary64 constant0.5 from other.velocity6c using x87 precision then F32 store. Else class.flags94 bit20000 invokes VehicleResponse(other,rider). Quiet NaN class float goes to this latter branch.",
+      "tail": "Clear other link, both E20 top bits, rider ushort42e low bit. Copy other position rawbits into10bc/10c0/10c4. Camera0.3 when either byte280 !=ff. For rider then other, ChangeReleasedState(packet,\"ReleasedTakeOver\"), then successful transition RunScript(world2ae8,actor,packet,packet,dt925018). Service mutations can affect later reads."
+    },
+    {
+      "address": "0x4871a0",
+      "method": "TakeoverRelease.SeatPosition",
+      "bodyBytes": 93,
+      "index": "Sign-extend class+113 byte. Only -1 is sentinel; other signed indices use explicitly prepared native backing.",
+      "matrixGate": "actor.model50 + 0x14 + index*4 dword nonzero, then raw DWORDs actor+0x834+index*0x40 copied in ordered x/y/z writes; output overlap preserved.",
+      "fallback": "Stored-F32 actor x5c, top194, z64 in ordered FLD/FSTP operations. Portable fallback domain finite F32; matrix branch copies arbitrary raw bits."
+    }
+  ],
+  "serviceBoundaries": {
+    "0x4876a0": "Transfer mode1 with arguments (rider,other,1,0,0)",
+    "0x415000": "Base script rebind",
+    "0x55d2b0": "Pose/collision update",
+    "0x5a01f0": "Ejection state/physics",
+    "0x5a0320": "Vehicle animation response",
+    "0x4c99b0": "Stored-F32 distance factor",
+    "0x561e20": "Directed jump",
+    "0x54a3e0": "Camera transition",
+    "0x52c790": "ReleasedTakeOver script state change",
+    "0x52cc90": "Immediate script update"
+  },
+  "nativeTests": "reports/script-phase7-20261013-tests.json",
+  "fixtures": "reports/script-phase7-20261013-native-fixtures.json",
+  "portableHarness": "tools/script-phase7-20261013-portable-verify.cs",
+  "limits": [
+    "Downstream calls are recorded service adapters in most release fixtures; they are not recovered by this batch. One original blocked mode1 transfer executes its gate; seat and identity RET are unmodified native.",
+    "Prepared memory ownership/pointers and finite arithmetic/seat fallback only. Native null-input and missing-definition faults plus state before fault are retained. Matrix branch preserves arbitrary bit patterns.",
+    "No managed EXE execution attempted; source and comparator compilation only.",
+    "No new authored command coverage: existing ReleaseTakeOver wrapper mapping already counted."
+  ]
+}

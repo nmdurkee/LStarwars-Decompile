@@ -1,0 +1,7 @@
+Recovered actual viewport COM forwarder 0x6e2470 and global wrapper0x6e57b0.
+
+Native/Python differential passed 12,288 checks with zero errors across3,072 calls and2,560 COM events. The forwarder clamps unsigned width/height only in a separate local packet, then after COM copies ORIGINAL source words to backend+0x170 with ordered forward reads/writes. Callback source changes, unaligned/shifted aliases and local argument mutation are retained. All copying uses integer instructions, including raw nonfinite depth payloads.
+
+COM HRESULT is discarded: return is the last original source word read after prior writes. Wrappernull returns0; nonnull selects fixed backend0x29765c8 independently of callerthis. Actual device acceptance and backend lifetime remain external.
+
+Independent 241-input core and harness compile, preparing11,776 assertions; managed execution pending. Original game not launched, no settings changed, no Git writes, no prior/shared file edits.

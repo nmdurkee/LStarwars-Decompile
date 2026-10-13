@@ -1,0 +1,180 @@
+{
+  "title": "Player-reference identities, solo/group liveness and aggregate SCP readers",
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": "reconstructed/gameplay/script-phase5-20261013-Conditions.cs",
+  "nativeTests": "reports/script-phase5-20261013-tests.json",
+  "nativeFixtures": "reports/script-phase5-20261013-native-fixtures.json",
+  "assembly": "reports/script-phase5-20261013-assembly.json",
+  "conditions": [
+    {
+      "name": "EitherPlayerIs",
+      "kind": "scp-condition",
+      "function": "0x440f30",
+      "sourceUses": 15,
+      "scope": "Requires nonnull system and initialized reference; compares exact reference identity against system+0x138c or+0x1390. Shared physical object/name is insufficient.",
+      "method": "Phase5Conditions.EitherPlayerIs",
+      "initializer": "0x440f10",
+      "initializerMethod": "Phase5Conditions.BindReference"
+    },
+    {
+      "name": "Player1Is",
+      "kind": "scp-condition",
+      "function": "0x440f60",
+      "sourceUses": 1,
+      "scope": "Same gates as EitherPlayerIs but only system+0x138c reference identity.",
+      "method": "Phase5Conditions.Player1Is",
+      "initializer": "0x440f10",
+      "initializerMethod": "Phase5Conditions.BindReference"
+    },
+    {
+      "name": "Player2Is",
+      "kind": "scp-condition",
+      "function": "0x440f80",
+      "sourceUses": 1,
+      "scope": "Same gates as EitherPlayerIs but only system+0x1390 reference identity.",
+      "method": "Phase5Conditions.Player2Is",
+      "initializer": "0x440f10",
+      "initializerMethod": "Phase5Conditions.BindReference"
+    },
+    {
+      "name": "FinishedSpline",
+      "kind": "scp-condition",
+      "function": "0x4429d0",
+      "sourceUses": 17,
+      "scope": "Guards creature/reference/physical actor self chain; missing chain returns float-1. Valid actor returns0 iff spline pointer+0xe64 nonnull and status byte+0xe6b==0; otherwise1. Does not advance spline.",
+      "method": "Phase5Conditions.FinishedSpline"
+    },
+    {
+      "name": "NumBaddies",
+      "kind": "scp-condition",
+      "function": "0x442270",
+      "sourceUses": 20,
+      "scope": "Signed actor-count global0x93d500 bounds an original0x10d8-stride array at0x93d504. Counts rows with flags+0x1fc both1/0x1000 and flags+0x1f8 bit1. Nonpositive count returns0. Does not construct/populate actor table.",
+      "method": "Phase5Conditions.NumBaddies",
+      "initializer": "0x442260",
+      "initializerMethod": "Phase5Conditions.BindNumBaddies"
+    },
+    {
+      "name": "IsAlive",
+      "kind": "scp-condition",
+      "function": "0x4416b0",
+      "sourceUses": 19,
+      "scope": "Null initialized record returns0; definition pointer at+4 is otherwise read unchecked, then group pointer definition+0x144. No group: record live bit0x1000 and dead byte+0x28b==0, without active-bit1 requirement. Group present: first nonnull member with active/live mask0x1001 and dead byte0 succeeds, using group uint8 count+7 and pointer slots+0xc. Zero-count group returns0 regardless of solo record flags. Does not update lifetime or groups.",
+      "method": "Phase5Conditions.IsAlive",
+      "initializer": "0x441690",
+      "initializerMethod": "Phase5Conditions.BindReference"
+    },
+    {
+      "name": "MySet",
+      "kind": "scp-condition",
+      "function": "0x440b30",
+      "sourceUses": 12,
+      "scope": "Loads uint8 script packet+0xb0 without null guard and returns float0..255. This is packet set ID, not actor membership byte+0x378.",
+      "method": "Phase5Conditions.MySet"
+    },
+    {
+      "name": "NumBaddiesThatCanSeePlayers",
+      "kind": "scp-condition",
+      "function": "0x442d00",
+      "sourceUses": 12,
+      "scope": "FILD reads signed dword global0x876840; portable result models subsequent float32 storage boundary used by SCP evaluator. Does not calculate visibility or count seeing actors.",
+      "method": "Phase5Conditions.NumBaddiesThatCanSeePlayers"
+    }
+  ],
+  "namedInitializerContract": "0x440f10 and0x441690 require operand and global name callback0x923904; both allow null system, return reference record without dereferencing first-pointer physical object. Null/failed names initialize0. Alias resolution and lifetimes are callback adapters.",
+  "offsets": {
+    "systemPlayer1Reference": "0x138c",
+    "systemPlayer2Reference": "0x1390",
+    "creatureSelfReference": "0xd0",
+    "referenceWorldObject": "0",
+    "initializedDefinition": "4",
+    "definitionLifeGroup": "0x144",
+    "groupCount": "7 uint8",
+    "groupMemberPointers": "0xc+4*index",
+    "actorLiveActiveFlags": "0x1fc",
+    "actorBaddieFlags": "0x1f8",
+    "actorDeadByte": "0x28b",
+    "actorSplinePointer": "0xe64",
+    "actorSplineCompletionByte": "0xe6b",
+    "packetSetId": "0xb0",
+    "actorArrayStride": "0x10d8",
+    "actorCountGlobal": "0x93d500",
+    "actorArrayPointerGlobal": "0x93d504",
+    "seeingCountGlobal": "0x876840"
+  },
+  "verification": {
+    "nativeAssertions": 6097,
+    "mismatches": 0,
+    "savedCases": 5806,
+    "savedInitializers": 49,
+    "authoredOccurrences": 97,
+    "originalShippedComparisons": 97,
+    "managedCompilation": "Core and saved-fixture harness compile against existing ScriptPacket public API.",
+    "managedExecution": "Pending; no executable launch retry under established EPERM restriction."
+  },
+  "adapters": [
+    {
+      "globalAddress": "0x923904",
+      "fixtureAddress": "0x10200100",
+      "scope": "ASCII names map to reference records or null; callback retains null-system calls. References that share physical-object first pointer remain distinct."
+    }
+  ],
+  "limits": [
+    "No game execution,reference lifetime,group construction,spline updates or population of aggregate globals.",
+    "IsAlive reads initialized record+4 definition without guard; missing definition faults native and portable source throws explicitly.",
+    "Solo IsAlive tests live bit1000 without active bit1; grouped members need both. An existing zero-count group overrides solo liveness.",
+    "MySet has no packet-null guard; actual faults saved,portable source throws explicitly.",
+    "Prepared group member arrays honor uint8 count through255; generic malformed/out-of-backing memory is outside scope.",
+    "Actor array uses original stride0x10d8; counted records and liveness fields must be prepared.",
+    "Global NumBaddiesThatCanSeePlayers is signed dword read; tests compare float32 storage boundary used by SCP evaluator.",
+    "ASCII names only in portable source; alias policy and callback side effects beyond fixture resolution external.",
+    "Managed execution pending under existing EPERM restriction; no launch retry."
+  ],
+  "assemblyFindings": [
+    {
+      "address": "0x440f10",
+      "detail": "Named initializer checks only operand/callback; system parameter is passed to callback even when0. Unlike UnderPlayerControl and OnSpeederBike named initializers, it does not require a nonnull system."
+    },
+    {
+      "address": "0x4416b0",
+      "detail": "Reads initialized record definition+4 before any pointer-null guard; group and solo paths intentionally use different live/active-bit gates."
+    },
+    {
+      "address": "0x440b30",
+      "detail": "Packet+0xb0 is loaded with uint8 zero extension; no packet-null guard or actor fallback."
+    },
+    {
+      "address": "0x442d00",
+      "detail": "Original fild dword[0x876840] establishes signed integer storage despite Ghidra ambiguous global type."
+    },
+    {
+      "address": "shipped FinishedSpline comparator form",
+      "detail": "One authored threshold uses1.0f. Retained scalar comparison uses recovered native decimal-prefix parser semantics; source text/loader reachability remains external."
+    }
+  ],
+  "nextCandidates": [
+    {
+      "name": "ForceAtEnd",
+      "function": "0x440a90",
+      "initializer": "0x440a30",
+      "sourceUses": 15,
+      "reason": "Named gizmo registry output0,includeInactive1; can compose recovered Force output callback while preserving type-global initializer."
+    },
+    {
+      "name": "SetHint / CurrentHintId",
+      "functions": [
+        "0x44d470",
+        "0x442a10"
+      ],
+      "sourceUses": 26,
+      "reason": "Complete hint request/matching state around already recovered availability/completion read paths."
+    },
+    {
+      "name": "SockDistanceToPlayer",
+      "function": "0x442790",
+      "sourceUses": 21,
+      "reason": "Same-socket identity and native scalar range projections; needs helper0x53f7a0 and explicit null-actor fault."
+    }
+  ]
+}

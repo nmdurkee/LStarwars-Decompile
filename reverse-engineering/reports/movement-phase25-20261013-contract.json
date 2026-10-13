@@ -1,0 +1,41 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "newEntries": [
+    "0x54a5a0",
+    "0x55ccd0",
+    "0x414ca0",
+    "0x414ce0"
+  ],
+  "existingRefinement": "0x55e300",
+  "behavior": [
+    "Animation allocator scans 64 records of stride 60 and sets only bit1 in the preserved flag word at +5a, returns first free record or zero; complete repeated reservations through exhaustion retained.",
+    "Dimension stores: base radius*scale ->a4; radius*scale is explicitly F32-spilled before ac and b0; b4 uses unspilled top-bottom difference times height scale. Type pointer is captured and later fields are reread after earlier stores.",
+    "Install tuning uses four ordered FLD/FSTP-equivalent finite word copies to a8/ffc/ff0/ff4, then tail-calls dimension production which rereads actor type pointer. Metadata/output aliases retained.",
+    "Type flag uses implicit EAX actor: actor54 -> type24 -> data90 bit8000 sets/clears actor1f8 bit20000.",
+    "Raw start pointer hydration reuses existing CharacterContexts.SelectStartPositionPointer with 8 table pointer words; signed player0..7 wins, otherwise fallback byte modulo8; null selected pointer falls back to row0."
+  ],
+  "bounds": [
+    "Valid complete raw pointer and lookup table backing; finite consumed dimension tuning and finite outputs, signed zeros included.",
+    "Original start pointer table is copied into caller-owned 128-byte lookup storage outside retained image for portable replay. Broader world table producers remain external.",
+    "NaN/infinity numeric or signaling-NaN float copies and partial fault/machine-state behavior are excluded. Allocation flag words and unused raw bytes preserve arbitrary bits.",
+    "Full character initializer and actor creation are still pending; no new authored command credit."
+  ],
+  "validation": {
+    "nativeCases": 5150,
+    "nativeAssertionGroups": 9250,
+    "mismatches": 0,
+    "preparedManagedAssertions": 9250,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 242,
+    "dllSha256": "91cf8cc303297c9e399ceca83e7823f158bf5f1627bf602917192805da1cec61",
+    "execution": false
+  },
+  "hashes": {
+    "reconstructed/gameplay/movement-phase25-20261013-ActorPrimitives.cs": "e4979a9012999fe93d562e6b83a10090745f84b9cb489b24b0a966efc4095757",
+    "tools/movement-phase25-20261013-portable-verify.cs": "c2eba9a2a9a11bb29f873d6ff9ead1bf7db399e304a7afa01a95fb3a73f8edf0",
+    "tools/movement-phase25-20261013-native.py": "8e54df6a4ade146e776450caf9f366ad13e89f9e3b493175df6b2057827ddd88",
+    "reports/movement-phase25-20261013-fixtures.json.gz": "f343222b338f200c117ef55d9c29937b6d2510f8bf45427ee7b804a9926841f9"
+  }
+}

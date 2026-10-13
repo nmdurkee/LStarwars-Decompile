@@ -1,0 +1,53 @@
+LEVEL TEXT PRODUCER, NORMALIZER AND FILE CONTROL - 2026-10-13
+
+Recovered57a420 LevelTextLoading.Produce,54be70 Normalize,4fd5d0 ReadWhole.
+1328 native cases pass, zero mismatches:120 Normalize,156 Read,1052 Produce.
+Each hashes458780bytes of prepared memory and compares exact return/error,
+producer count/cursor and mutable backend trace. Source plus saved-native replay
+harness compile. Managed execution remains pending; no executable launch retry.
+
+568 complete raw LEVELS TXTfiles execute through original producer, whole-file
+control flow, original normalization and strlen. All fit the native0x10000 byte
+limit. Original rawfile hashes and every complete input remain in retained
+provenance/fixtures; no Python comment stripping or line extraction is applied.
+
+Important native details:
+- Producer clears only firstBYTE92B0C8. It aligns arena cursor+104 to4, reads
+  max0x10000, terminates positive reads and replaces+10C with normalized count.
+  Cursor is not advanced beyond alignment. No parser record is allocated here.
+- Normalizer is quote-unaware. Semicolon/hash/doubleslash strip toCR/LF/NUL.
+  A single slash also advances input and loses that slash. Nonzero conversion
+  turns= andcomma into spaces, including inside quotes. Copied terminatingNUL
+  participates in the return count, then anotherNUL is stored.
+- Archive-first errorFFFFFFFF blocks fallback. Missing path givesFFFFFFFE;
+  failed openFFFFFFFD; ordinary empty/oversized readFFFFFFFF. Successful fallback
+  may retain another archive-supplied error. Return and error are separate.
+- Ordinary nonnegative shortread returns advertised file length. Negative reads
+  pump/rewind/retry; seek returns signed64-bit EDX:EAX. Fixtures supply finite
+  completion. Original code has no retry limit or capacity repair.
+
+I/O transport and handle lifecycle remain explicit providers. OriginalCRTformatter
+6E69EF reaches an unavailable imported target3EE702 in isolated emulation, so
+only its fixed%s.txt pattern is adapted. Original cookie guard6E693A executes.
+These limitations are recorded per native/source mapping; no full native file
+backend or complete playable level loader is claimed.
+
+Next resource boundary is48ce00 phase/failure orchestration, followed by actual
+GSC scene load5ef7f0/5f4f00, terrain55fe10/66b8c0, optionalGRA/BRI resource
+pipelines55fe90/55ff30 and teardown55f6c0.
+
+Evidence/reproduction:
+ reports/world-phase4-20261013-contract.json
+ reports/world-phase4-20261013-native-tests.json
+ reports/world-phase4-20261013-assembly.json
+ reports/world-phase4-20261013-vectors.json
+ reports/world-phase4-20261013-authored-provenance.json
+ reports/world-phase4-20261013-source-map.json
+ reports/world-phase4-20261013-execution-status.json
+ reports/world-phase4-20261013-integration.json
+ tools/world-phase4-20261013-inspect.py
+ tools/world-phase4-20261013-verify.py
+ tools/world-phase4-20261013-portable-verify.cs
+ reconstructed/gameplay/world-phase4-20261013-level-text.cs
+
+Shared files, original game files and Git were untouched by this agent.

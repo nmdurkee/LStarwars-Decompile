@@ -1,0 +1,15 @@
+Eight bounded SCP conditions — 2026-10-13
+
+New authored-name contracts: OpponentIsAThreat (32 uses), ForceBeingUsed (24), ForceFinished (2), PlayerCategoryIs (14), InContext (16), OpponentContext (2), HintAvailable (12), HintComplete (8): 110 preserved occurrences.
+
+Validation: 8,471 isolated original-PC assertions; zero mismatches. Every meaningful fixture is retained: 8,112 body/helper/fault cases, 139 initializers, and all 110 authored body/comparison pairs. Fixture assertion counts are not independent game scenarios or completion percentages. Original executable is never launched. Synthetic Force name-accessor callback is the only native-call adapter.
+
+Key recovered behavior:
+- Threat reader tests script-creature+0x1e8 bit0x800, without requiring a live opponent.
+- ForceBeingUsed tests physical-target+0xa0 bit0x200000 or target+0x3c pointer presence.
+- ForceFinished wrapper null=>0; helper0x467860 null=>1. A target with no playback group succeeds; a group must reach state0 for flag0x40, otherwise state2. ForceComplete has additional unrelated gates.
+- Context initializer recognizes eleven names; unknown or null=>100. Both readers sign-extend object+0x7b5 byte and compare the entire initialized int. OpponentContext omits the self-reader's object-null guard; a saved native memory fault is preserved as an explicit source exception.
+- Hint list IDs are signed-short, first-match, stride0x1c and sentinel-1. Completion reads full uint8+0x14. Hint wrappers reject ID0 although helper ID0 can succeed.
+- HintAvailable accepts quiet NaN timer because native x87 status-bit parity test treats unordered comparison as available. The portable source checks Single.IsNaN explicitly. Global0x926c20 holds registration backing pointer; the dword read is [backing+id*4].
+
+Both standalone portable core and saved-fixture verifier compile with the installed .NET Framework compiler. Managed behavioral execution remains pending under the already established EPERM restriction; no launch retry or security change was made. Full native addresses, offset contracts, adapters and memory limits are in script-next-20261013-contract.json. Integration descriptor is script-next-20261013-source-map.json.

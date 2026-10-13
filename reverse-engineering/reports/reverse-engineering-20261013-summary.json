@@ -1,0 +1,92 @@
+{
+  "updated": "2026-10-13T14:58:23.618Z",
+  "scope": "Bounded original-PC reverse-engineering recovery; not whole-game completion.",
+  "agents": {
+    "dispatched": 4,
+    "scheduling": "Three subsystem agents plus root concurrently, fourth independent audit after one slot freed."
+  },
+  "previous": {
+    "portableEntries": 613,
+    "coreFiles": 173,
+    "boundedScriptUses": 18007
+  },
+  "current": {
+    "portableEntries": 626,
+    "coreFiles": 177,
+    "harnessFiles": 183,
+    "boundedScriptUses": 18154,
+    "totalScriptUses": 20836
+  },
+  "addedDistinctNativeEntries": 13,
+  "addedCoreFiles": 4,
+  "addedScriptConditions": 5,
+  "addedAuthoredScriptUses": 147,
+  "suites": [
+    {
+      "name": "script conditions",
+      "report": "reports/script-contract-20261013-tests.json",
+      "nativeChecks": 7132,
+      "mismatches": 0,
+      "authoredOccurrences": 147,
+      "qualification": "Checks include body/comparator checks; authored count is not added to checks."
+    },
+    {
+      "name": "world loader and arenas",
+      "report": "reports/world-loading-20261013-native-tests.json",
+      "nativeCases": 1568,
+      "mismatches": 0,
+      "fullWorldComparisons": 3136,
+      "fullArenaComparisons": 3136,
+      "qualification": "Original own-state/call-order checks with resource/teardown/audio adapters; case and memory-comparison counts are separate."
+    },
+    {
+      "name": "visibility grid",
+      "report": "reports/scene-visibility-20261013-native-validation.json",
+      "nativeAssertions": 8153,
+      "nativeCases": 3321,
+      "errors": 0,
+      "retainedNativeCases": 3321,
+      "portableReplayCases": 3065,
+      "portableReplayPreparedAssertions": 4345,
+      "dispatcherEvidenceOnlyCases": 256
+    },
+    {
+      "name": "paused frame",
+      "report": "reports/frame-paused-20261013-tests.json",
+      "nativeCases": 208,
+      "nativeAssertionGroups": 1280,
+      "failures": 0
+    }
+  ],
+  "independentAudit": {
+    "report": "reports/reverse-engineering-20261013-audit.json",
+    "additionalChecks": 516,
+    "failures": 0,
+    "scope": "Targeted native provenance/edge checks and source/report review; separate from primary suite counts."
+  },
+  "build": {
+    "report": "reports/reconstructed-build.json",
+    "libraryCompiled": true,
+    "unifiedVerifierCompiled": true,
+    "sourceAndHarnessHashesMatch": true,
+    "libraryHashMatches": true,
+    "verifierCurrentHashMatches": null,
+    "verifierHashQualification": "Hash captured by direct compiler build tool; subsequent independent reread denied EPERM."
+  },
+  "managedExecution": {
+    "status": "pending-launch-denied",
+    "evidence": [
+      "reports/script-contract-20261013-compile.json",
+      "reports/world-loading-20261013-execution-status.json"
+    ],
+    "note": "Ordinary standalone generated verifier launch denied EPERM; no compiled behavioral pass is inferred from native tests or compilation."
+  },
+  "registration": "reports/reverse-engineering-20261013-registration.json",
+  "remaining": [
+    "Actual world resource loader0x48ce00 and teardown0x55f6c0 side effects.",
+    "Integrated scene grid/tree/portal behavior with authored carriers; dispatcher0x5f3c80 only evidence.",
+    "Full frame dispatcher, renderer and player context implementation beyond paused presentation branch.",
+    "Outstanding script commands and state producers; indexed/dynamic RigidAnimFrame lookup.",
+    "Managed behavioral replay in an environment allowing ordinary generated verifier launch."
+  ]
+}

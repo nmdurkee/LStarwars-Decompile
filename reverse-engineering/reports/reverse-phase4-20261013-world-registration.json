@@ -1,0 +1,69 @@
+{
+  "updated": "2026-10-13T16:21:50.673Z",
+  "batch": "reverse-phase4-20261013",
+  "descriptors": [
+    "reports/world-phase4-20261013-integration.json"
+  ],
+  "registrations": [
+    {
+      "name": "world-phase4-20261013",
+      "cls": "WorldPhase420261013Verify",
+      "fixture": "reports/world-phase4-20261013-vectors.json",
+      "output": "reports/world-phase4-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase4-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase4-20261013-native-tests.json",
+        "reports/world-phase4-20261013-source-map.json",
+        "reports/world-phase4-20261013-contract.json",
+        "reports/world-phase4-20261013-execution-status.json",
+        "reports/world-phase4-20261013-authored-provenance.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x57a420",
+          "method": "LevelTextLoading.Produce",
+          "coverage": "whole own-state level text producer with explicit fixedfilename formatter and I/O services",
+          "sourceFile": "gameplay/world-phase4-20261013-level-text.cs",
+          "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x54be70",
+          "method": "LevelTextLoading.Normalize",
+          "coverage": "whole byte-oriented comment/separator normalization on bounded terminated memory",
+          "sourceFile": "gameplay/world-phase4-20261013-level-text.cs",
+          "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x4fd5d0",
+          "method": "LevelTextLoading.ReadWhole",
+          "coverage": "whole native archive/fallback file-control flow with explicit mutable transport/lifecycle services",
+          "sourceFile": "gameplay/world-phase4-20261013-level-text.cs",
+          "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase4-20261013-level-text.cs"
+      ],
+      "harnessFile": "../tools/world-phase4-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x57a420",
+    "0x54be70",
+    "0x4fd5d0"
+  ],
+  "newCoreFiles": 1,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "pc-visibility-preparation-composition-v1",
+  "nativeEntry": "0x5f3c80",
+  "nativeRange": "0x5f3c80..0x5f3d58 exclusive",
+  "mapping": {
+    "address": "0x5f3c80",
+    "method": "SceneVisibilityPreparation.Prepare",
+    "sourceFile": "geometry/scene-next-20261013-VisibilityPreparation.cs",
+    "coverage": "refines existing dispatcher projection with actual bounded grid production and recovered portal entry; stateful camera/tree/restore service edges; preserves gates,ordering,state,andcache",
+    "evidence": "reports/scene-next-20261013-native-validation.json",
+    "limitations": [
+      "No additional native entry:refinement of existing SceneScheduling.PrepareVisibility mapping.",
+      "Camera switch/restore and tree traversal internals remain explicit host services.",
+      "New actual portal cases cover empty required-count attachment/preservation; inherited PortalEntry.Run finite modern traversal is separately evidenced.",
+      "Grid finite valid resolved-domain restrictions and shared index-only cache retained.",
+      "Existing SceneScheduling.Run still retains original restrictions; callers must use the new Prepare API for this dispatcher composition.",
+      "Managed harness compiled,not executed; no GPU or full-renderer equivalence asserted."
+    ]
+  },
+  "fields": {
+    "sceneContext": "GSNH+0x120",
+    "contextCount": "+0x00",
+    "gridPointer": "+0x0c",
+    "treePointer": "+0x14",
+    "portalMarker": "+0x18",
+    "portalBits": "+0x1c",
+    "scratchWorkspace": "+0x20",
+    "instanceTreeBits": "+0x24",
+    "flags": "+0x28"
+  },
+  "globals": {
+    "visibilityEnabled": "0x80b6f4",
+    "gridEnabled": "0x80b6f8",
+    "portalsEnabled": "0x80ba58",
+    "treeEnabled": "0x80ba14",
+    "requestedCameraMode": "0x973940",
+    "currentCameraMode": "0x97394c",
+    "visibilityActive": "0x97393c",
+    "cameraRestoreBuffer": "0x973760"
+  },
+  "callOrder": [
+    "Check nonzero workspace/global visibility before any service or state write.",
+    "Camera-switch service0x5d6900(requestedMode) executes before clearing/count selection; its updates are visible.",
+    "Clearcontext+20/+24;choose legacy scene+1c or alternate scene+128->+1c count;AND flagsffffffea,set visibilityActive1.",
+    "Grid0x5d6f30 executes if enabled/present,including when portal follows.",
+    "Portal0x5eeb30 has precedence over tree when marker/enabled. Otherwise tree0x5d8fb0(context,GSNH) receives workspace stored+20;OR flag1 after its return,retaining other servicechanges.",
+    "Restore0x603cc0(global0x973760) only when currentMode==1 after previous services. Return alias of originalcontext."
+  ],
+  "typedComposition": [
+    "SchedulingScene/SchedulingOptions/SchedulingState reused from existing SceneScheduling.",
+    "GridVisibility.Produce receives the same shared VisibilityGridCache, preserving index-only cache across calls/grids.",
+    "PortalEntry.Run is default portal consumer; explicit optional EnterPortal host boundary is separately declared.",
+    "VisibilityInputs returns tree and portal bit arrays by reference. Its scalar marker/enabled fields project final resolved scene/global state."
+  ],
+  "nativeTests": {
+    "portalEntriesExecuted": 32,
+    "gridEntriesExecuted": 35,
+    "treeAdapterCalls": 24,
+    "cameraSwitchAdapterCalls": 131,
+    "cameraRestoreAdapterCalls": 65,
+    "cases": 512,
+    "sequenceSteps": 4
+  },
+  "assertions": 2153,
+  "portableReplayCases": 516,
+  "preparedManagedAssertions": 3151,
+  "adapters": {
+    "0x5d6900": "Stateful camera service setsmode/position,updates counts and initial context before native reset. No camera-matrix equivalence claimed.",
+    "0x5d8fb0": "Stateful tree service observes nativearguments/contextthen changescount/scratch/pointer/flags; actual tree traversal not claimed.",
+    "0x603cc0": "Stateful camera restore observes fixedglobalargument and changesposition; actual camera restore not claimed."
+  }
+}

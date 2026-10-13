@@ -1,0 +1,30 @@
+{
+  "schema": "original-finite-light-producer-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "checks": 20480,
+  "errors": [],
+  "counts": {
+    "producerCases": 2048,
+    "retainedPortableReplayCases": 2048
+  },
+  "branches": {
+    "0x5ff9ab": 1940,
+    "0x5ffa03": 108,
+    "0x5ffa3e": 965,
+    "0x5ffb6e": 1083,
+    "0x5ffab3": 531,
+    "0x5ffad9": 434,
+    "0x5ffb32": 539,
+    "0x5ffb50": 426
+  },
+  "adapters": {},
+  "limits": [
+    "Original5ff840 and all internal CPU math/CRT/cache helpers execute unchanged. No D3DX/device/CRT adapters.",
+    "Finite camera30, light direction3, aim3, template16, stored/intermediate float arithmetic; raw color4 remains opaque. Valid separate sources and globals.",
+    "Original x87 multiply/add/divide order and every visible float spill retained. Exact signed-zero output and minimum-normal horizontal threshold preserved.",
+    "Full original light output compared independently before raw cache packing; unit color/source copies and counter/dirty writes also checked.",
+    "Original CRT sqrt path is modeled as finite rounded square root using the already-recovered helper contract; installed renderer/GPU/authored scene binding is not asserted.",
+    "Native/Python own-state differential passed; managed execution remains pending."
+  ]
+}

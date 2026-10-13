@@ -1,0 +1,109 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase5-20261013-viewport.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5ff390",
+      "method": "CameraViewport.Reset",
+      "coverage": "dirty gate, signed wrapping clipping rectangle, correction arithmetic, ordered raw device viewport edge and camera global updates",
+      "sourceFile": "geometry/scene-phase5-20261013-viewport.cs",
+      "evidence": "reports/scene-phase5-20261013-viewport-native-validation.json",
+      "limitations": [
+        "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+        "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+        "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+        "Native/Python ownstate differential passed; managed replay remains separate and pending."
+      ]
+    },
+    {
+      "address": "0x5ff2d0",
+      "method": "CameraViewport.PixelDepth",
+      "coverage": "finite pixel/depth transform with Int32-to-float32 screen spills and minimumdepth rawword copy",
+      "sourceFile": "geometry/scene-phase5-20261013-viewport.cs",
+      "evidence": "reports/scene-phase5-20261013-viewport-native-validation.json",
+      "limitations": [
+        "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+        "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+        "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+        "Native/Python ownstate differential passed; managed replay remains separate and pending."
+      ]
+    },
+    {
+      "address": "0x5ed540",
+      "method": "CameraViewport.ApplyNormal",
+      "coverage": "refines normal camera producer through actual dirty viewport reset before projection/frustum generation",
+      "sourceFile": "geometry/scene-phase5-20261013-viewport.cs",
+      "evidence": "reports/scene-phase5-20261013-viewport-native-validation.json",
+      "limitations": [
+        "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+        "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+        "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+        "Native/Python ownstate differential passed; managed replay remains separate and pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 2,
+  "evidence": [
+    "reports/scene-phase5-20261013-viewport-native-validation.json",
+    "reports/scene-phase5-20261013-viewport-contract.json",
+    "reports/scene-phase5-20261013-viewport-assembly.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-viewport.cs",
+      "sha256": "b680b8b969a13889fa6da74d6ec9f9a70a4daf32d9bef7b39c8c10cb73436782"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase5-20261013-viewport-harness.cs"
+  ],
+  "harnessSha256": "6ffe2ed82b8b6cfb8aaa4b95fde5cf7d17257640a5ec1fdc9cae4bc8b878d42a",
+  "fixture": "reports/scene-phase5-20261013-viewport-native-fixtures.json.gz",
+  "fixtureSha256": "3f44ecee80aa0dfccaaa52aed3eb2992e0a16355fe1f8206985e08fbfa73636f",
+  "nativeTool": "tools/scene-phase5-20261013-viewport-native.py",
+  "nativeToolSha256": "a7e2012cc79f77ef1187cb7387f7b38864073525afa519efc5c8a95a8f8306e4",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "resetCases": 4096,
+    "pixelDepthTransformCases": 512,
+    "cameraCompositionCases": 320,
+    "retainedPortableReplayCases": 4928,
+    "earlyCleanViewportCases": 241,
+    "zeroViewportServices": 3241,
+    "retained": 4928,
+    "portableReplayCases": 4928,
+    "preparedManagedAssertions": 22073,
+    "retainedViewportServiceEvents": 4156
+  },
+  "verifier": {
+    "module": "scene-phase5-20261013-viewport",
+    "entrypoint": "CameraViewportPhase5Harness",
+    "fixture": "reports/scene-phase5-20261013-viewport-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "tools/scene-phase5-20261013-native.py",
+      "sha256": "cb238c1a10102cbda563510105d5178e830b3ab472c43b34d165dd00f96bbae1"
+    },
+    {
+      "path": "tools/scene-phase4-20261013-native.py",
+      "sha256": "f55dfc2d864d2b55f52c1131ea82eb6f6bcdb9a9501bcba0284e7a17ceb03e75"
+    },
+    {
+      "path": "references/native-animation-sine-table.f32",
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    }
+  ],
+  "nextGaps": [
+    "Camera param2 projection reuse, reflected view973944 branches and light/cache renderer bytes remain unresolved.",
+    "Actual deviceviewport acceptance/errors and imported D3DX physicalCPU policy remain host boundaries.",
+    "Bind authored scene/context/tree assets and complete frame submission beyond recovered camera and visibility producers."
+  ]
+}

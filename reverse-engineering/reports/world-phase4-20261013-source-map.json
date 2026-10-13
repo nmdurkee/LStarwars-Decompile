@@ -1,0 +1,59 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x57a420",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/world-phase4-20261013-level-text.cs",
+      "sourceSha256": "c1fe181322e4f37b36519a8ed267750c3cb18f891de30960d89475a0fed7525c",
+      "methods": [
+        {
+          "name": "LevelTextLoading.Produce",
+          "line": 84
+        }
+      ],
+      "coverage": "whole own-state level text producer with explicit fixedfilename formatter and I/O services",
+      "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+      "comparisonStatus": "Original native/independent Python memory contract passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x54be70",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/world-phase4-20261013-level-text.cs",
+      "sourceSha256": "c1fe181322e4f37b36519a8ed267750c3cb18f891de30960d89475a0fed7525c",
+      "methods": [
+        {
+          "name": "LevelTextLoading.Normalize",
+          "line": 28
+        }
+      ],
+      "coverage": "whole byte-oriented comment/separator normalization on bounded terminated memory",
+      "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+      "comparisonStatus": "Original native/independent Python memory contract passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4fd5d0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/world-phase4-20261013-level-text.cs",
+      "sourceSha256": "c1fe181322e4f37b36519a8ed267750c3cb18f891de30960d89475a0fed7525c",
+      "methods": [
+        {
+          "name": "LevelTextLoading.ReadWhole",
+          "line": 52
+        }
+      ],
+      "coverage": "whole native archive/fallback file-control flow with explicit mutable transport/lifecycle services",
+      "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+      "comparisonStatus": "Original native/independent Python memory contract passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+      ]
+    }
+  ]
+}

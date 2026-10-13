@@ -1,0 +1,40 @@
+{
+  "updated": "2026-10-13T14:52:53.277Z",
+  "descriptors": [
+    "reports/frame-paused-20261013-integration.json",
+    "reports/script-contract-20261013-source-map.json",
+    "reports/world-loading-20261013-integration.json",
+    "reports/scene-visibility-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "frame-paused",
+      "cls": "FramePausedPresentationVerify",
+      "fixture": "reports/frame-paused-20261013-tests.json",
+      "output": "reports/frame-paused-csharp-validation.json",
+      "descriptor": "reports/frame-paused-20261013-integration.json"
+    },
+    {
+      "name": "script-contract-20261013",
+      "cls": "ScriptContract20261013Verify",
+      "fixture": "reports/script-contract-20261013-native-fixtures.json",
+      "output": "reports/script-contract-20261013-managed-check.json",
+      "descriptor": "reports/script-contract-20261013-source-map.json"
+    },
+    {
+      "name": "world-loading-20261013",
+      "cls": "WorldLoading20261013Verify",
+      "fixture": "reports/world-loading-20261013-vectors.json",
+      "output": "reports/world-loading-20261013-managed-tests.json",
+      "descriptor": "reports/world-loading-20261013-integration.json"
+    },
+    {
+      "name": "grid-visibility-20261013",
+      "cls": "GridVisibility20261013Harness",
+      "fixture": "reports/scene-visibility-20261013-native-fixtures.json.gz",
+      "output": "reports/grid-visibility-20261013-csharp-validation.json",
+      "descriptor": "reports/scene-visibility-20261013-source.json"
+    }
+  ],
+  "policy": "Bounded mappings; compilation and original native evidence do not establish managed execution or whole-game equivalence."
+}

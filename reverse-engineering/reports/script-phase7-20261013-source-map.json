@@ -1,0 +1,39 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase7-20261013-TakeoverRelease.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x4882d0",
+      "method": "TakeoverRelease.Release",
+      "file": "gameplay/script-phase7-20261013-TakeoverRelease.cs",
+      "scope": "inline producer with explicit downstream service boundaries; preserved EAX RET ABI at486f20",
+      "evidence": "reports/script-phase7-20261013-contract.json"
+    },
+    {
+      "address": "0x4871a0",
+      "method": "TakeoverRelease.SeatPosition",
+      "file": "gameplay/script-phase7-20261013-TakeoverRelease.cs",
+      "scope": "prepared signed seat index/matrix gate; alias-preserving raw matrix copy and finite stored-F32 fallback",
+      "evidence": "reports/script-phase7-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase7-20261013-contract.json",
+    "reports/script-phase7-20261013-tests.json",
+    "reports/script-phase7-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase7-20261013-portable-verify.cs",
+  "verifierModule": "script-phase7-20261013",
+  "verifierClass": "ScriptPhase720261013Verify",
+  "fixture": "reports/script-phase7-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase7-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "No new authored uses; existing ReleaseTakeOver wrapper now has evidence-backed inline release implementation available.",
+    "No duplicate mapping for486f20: preserved-register stub is documented inside4882d0 scope.",
+    "No managed EXE launch; standalone source/harness compilation succeeded. Root owns combined registration/build.",
+    "Next genuine gap: existing PlayerTransfer supports4876a0 mode0 only; takeover mode1 remains service boundary."
+  ]
+}

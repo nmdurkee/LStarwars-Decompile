@@ -1,0 +1,68 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "c7fd327e0c080d356701adacf0b5a48f37430841d1f0150ea09e458053949de5",
+  "files": [
+    {
+      "file": "gameplay/world-phase16-20261013-ptl-records.cs",
+      "sha256": "c7fd327e0c080d356701adacf0b5a48f37430841d1f0150ea09e458053949de5"
+    }
+  ],
+  "mappings": [
+    {
+      "address": "0x66a190",
+      "method": "PtlPhysicalRecords.Decode",
+      "coverage": "complete prepared PTL physical record decoding for accepted versions5..41",
+      "qualification": "Complete own-state 1064-byte physical PTL record decoder for accepted loader versions 5..41 on readable prepared destinations and buffered streams, sound counts 0..4 and retained finite scalar/color inputs. Byte fields, signed HALF legacy rate conversion (multiply60 or truncating -60/rate), five legacy time HALF/60 conversions, minimum on-duration reciprocal, version gates, 8-node raw binary32 curves, legacy three-byte truncating RGB vs four-byte RGBA, defaults and untouched padding are preserved. Version18/19 type6 scale correction, version36 minimum4 correction, old/new late byte encodings and sound records are retained. Original 66a190 executes unchanged 4,437 times in 463 composed bank cases, including every accepted version in both byte orders and all229 unchanged authored PTL inputs/4,210 physical records (versions26/27/33..41). Sound names execute original650e40 against prepared readable audio catalogs derived from exact declared requests; 81 native audio calls and their argument SHA/count are retained. Audio catalog production/playback remains separate. Managed float copies model retained finite/quiet binary32 values; general signaling-NaN quieting, x87 status flags and pathological arithmetic are not claimed. Source and both portable harnesses compile as library; managed replay pending without generated executable launch.",
+      "sourceFile": "gameplay/world-phase16-20261013-ptl-records.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase16-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase16-20261013-consumer-tests.json",
+        "reverse-engineering/reports/world-phase16-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x68df20",
+      "method": "PtlRecordPublication.Load",
+      "coverage": "bounded original modes0/5/6 physical record-bank publication with real decoder and explicit normalization/selection services",
+      "qualification": "Bounded original 68df20 own-state record-bank publication for original low-byte modes0/5/6 with archive selector global2962a28=0, readable512-slot registry backing and coherent used/capacity counters. Mode0 uses bank0, mode5 bank1, mode6 searches2..7 and rewrites physical record mode to1. Flags and scene pointers publish before reading records. Accepted records occupy first free pointer slot starting1, receive bank byte+17, clear+2a8/+2ac, publish actual pool pointer, invoke explicit Normalize(record), then increment live used count. Overflow records are fully decoded into1064-byte temporary backing excluded from image capture. Capacity overflow sets diagnostic296293c=300. File close precedes explicit Select(1.0 bits), then mode0/5 current-bank publication. Exhausted banks/failed open/invalid versions returnFFFFFFFF; success returns selected bank0..7. Original physical decoder/readers/audio lookups execute unchanged; file transport, normalization68cfd0 and emitter selection661f60 are adapted explicit no-op services with preserved arguments/order. Source does not parse mode1/2 trailing emitter/instance rows or archive mode2 transport, and does not claim full PTL load success/render/emission. All229 authored inputs are passed unchanged as transport payloads; decoding stops after physical records, leaving trailing records outside this batch. The463 retained cases compare return, complete captured image, audio argument SHA/count, service order, file trace and state. A second closure verifies all463 saved native image hashes, then executes3,508 original658330/658490 lookups against their actual published record tables (first up to8 occupied records), with3,971 checks and no skipped unterminated names. This establishes producer-to-consumer table identity without fabricated particle catalog names. Source/harnesses compile as library; managed replay remains pending.",
+      "sourceFile": "gameplay/world-phase16-20261013-ptl-records.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase16-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase16-20261013-consumer-tests.json",
+        "reverse-engineering/reports/world-phase16-20261013-assembly.json"
+      ]
+    }
+  ],
+  "relatedProjections": [
+    {
+      "address": "0x650e40",
+      "method": "ParLoadedAssets.Sound",
+      "sourceFile": "gameplay/world-phase15-20261013-loaded-assets.cs",
+      "coverage": "original loaded audio lookup composed unchanged over declared PTL requests; already mapped, no extra credit"
+    },
+    {
+      "address": "0x658330",
+      "method": "ParLoadedAssets.Particle",
+      "sourceFile": "gameplay/world-phase15-20261013-loaded-assets.cs",
+      "coverage": "original general consumer runs against exact verified PTL-published table; no extra mapping credit"
+    },
+    {
+      "address": "0x658490",
+      "method": "ParLoadedAssets.Particle",
+      "sourceFile": "gameplay/world-phase15-20261013-loaded-assets.cs",
+      "coverage": "original fast consumer runs against exact verified PTL-published table; no extra mapping credit"
+    },
+    {
+      "address": "0x68cfd0",
+      "method": "IPtlRecordServices.Normalize",
+      "sourceFile": "gameplay/world-phase16-20261013-ptl-records.cs",
+      "coverage": "explicit record normalization service boundary; actual callee body not recovered here"
+    },
+    {
+      "address": "0x661f60",
+      "method": "IPtlRecordServices.Select",
+      "sourceFile": "gameplay/world-phase16-20261013-ptl-records.cs",
+      "coverage": "explicit emitter-selection service boundary; actual callee body not recovered here"
+    }
+  ]
+}

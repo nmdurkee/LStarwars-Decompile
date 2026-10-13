@@ -1,0 +1,129 @@
+{
+  "title": "Five bounded original PC script conditions",
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "nativeTests": "reports/script-contract-20261013-tests.json",
+  "nativeFixtures": "reports/script-contract-20261013-native-fixtures.json",
+  "assemblyEvidence": "reports/script-contract-20261013-assembly.json",
+  "portableSource": "reconstructed/gameplay/script-contract-20261013-Conditions.cs",
+  "conditions": [
+    {
+      "name": "PartyUnderCover",
+      "kind": "scp-condition",
+      "function": "0x442cf0",
+      "initializer": null,
+      "sourceUses": 55,
+      "scope": "Returns float 1 iff the complete dword at 0x876cc8 is nonzero. Does not compute party cover state.",
+      "offsets": {
+        "global": "0x876cc8"
+      },
+      "method": "ScriptContractConditions.PartyUnderCover"
+    },
+    {
+      "name": "CannotReachDestination",
+      "kind": "scp-condition",
+      "function": "0x442dc0",
+      "initializer": null,
+      "sourceUses": 27,
+      "scope": "Null script creature returns zero; otherwise float 1 iff script-creature +0x1e8 has mask 0x400000. Does not run pathfinding or assign the flag.",
+      "offsets": {
+        "scriptCreatureFlags": "0x1e8",
+        "mask": "0x400000"
+      },
+      "method": "ScriptContractConditions.CannotReachDestination"
+    },
+    {
+      "name": "RigidAnimFrame",
+      "kind": "scp-condition",
+      "function": "0x442630",
+      "initializer": "0x4425e0",
+      "sourceUses": 30,
+      "scope": "Static scene linear name resolution initializer to animation pointer; null initialized animation returns float 1; otherwise loads float32 +0x4c. Does not advance frames or implement indexed/dynamic scene resolution.",
+      "offsets": {
+        "worldScene": "0x13c",
+        "sceneCount": "0x24",
+        "sceneRecords": "0x28",
+        "sceneIndexedMode": "0x110",
+        "recordStride": "0x4c",
+        "recordName": "0x44",
+        "recordAttachment": "0x40",
+        "attachmentAnimation": "0x48",
+        "animationFrame": "0x4c"
+      },
+      "methods": [
+        "ScriptContractConditions.BindRigidAnimFrame",
+        "ScriptContractConditions.RigidAnimFrame"
+      ],
+      "helpers": [
+        "0x5cf5b0 static branch",
+        "0x5cfac0",
+        "0x5d0420"
+      ]
+    },
+    {
+      "name": "BuildItComplete",
+      "kind": "scp-condition",
+      "function": "0x441610",
+      "initializer": "0x4415e0",
+      "sourceUses": 28,
+      "scope": "Initializer uses world registry +0x2ac8 and runtime type global 0x804e44 then 0x55a020 ordered name lookup. Reader follows initialized registry record first word to current target; returns float 1 iff target byte +0x6d is exactly 2. Build creation and completion transitions are external.",
+      "offsets": {
+        "worldRegistry": "0x2ac8",
+        "runtimeTypeGlobal": "0x804e44",
+        "typeGlobal": "0x93b268",
+        "typeStride": "0x9c",
+        "nameAccessor": "0x44",
+        "bucketStride": "0x14",
+        "bucketCount": "0x4",
+        "bucketRecords": "0xc",
+        "recordStride": "0x8",
+        "recordTarget": "0x0",
+        "targetCompletion": "0x6d"
+      },
+      "methods": [
+        "ScriptContractConditions.BindBuildItComplete",
+        "ScriptContractConditions.BuildItComplete"
+      ],
+      "helpers": [
+        "0x55a020"
+      ],
+      "assemblyCorrection": "Ghidra initializer pseudocode omits the copied type selector dword read at 0x4415e8 from 0x804e44. Original assembly explicitly writes it to the tail-call second argument at esp+8."
+    },
+    {
+      "name": "IsSetAlive",
+      "kind": "scp-condition",
+      "function": "0x441fd0",
+      "initializer": "0x441f90",
+      "sourceUses": 7,
+      "scope": "Shared NumInSetAlive initializer returns literal selectors 1..16, -1 for case-insensitive myset, otherwise 0; decimal-prefix parsing wraps int32. Reader converts selected global byte presence to float 0/1, unlike NumInSetAlive count reader. myset replaces -1 with script packet byte +0xb0.",
+      "offsets": {
+        "packetSet": "0xb0",
+        "globalCounts": "0x876847+index"
+      },
+      "methods": [
+        "ScriptContractConditions.BindIsSetAlive",
+        "ScriptContractConditions.IsSetAlive"
+      ],
+      "sharedInitializerAlreadyRecovered": "reports/gameplay-compact-condition-contract.json"
+    }
+  ],
+  "verification": {
+    "nativeAssertions": 7132,
+    "mismatches": 0,
+    "shippedOccurrences": 147,
+    "originalShippedComparisons": 147,
+    "managedCompilation": "Core and saved-fixture harness compiled independently with Framework csc.",
+    "managedExecution": "Pending: newly generated executable launch returned spawn EPERM."
+  },
+  "limits": [
+    "Native tests execute original bytes in isolated Unicorn x86 memory, not the Windows game.",
+    "World state producers, object/reference lifetime and build state transitions are external.",
+    "Build registry name-accessor callback maps synthetic fixture records to names; generic lookup and predicates remain native.",
+    "Rigid scene contract supports static linear lookup only, excludes 0x5cf510 accelerated/dynamic resolver.",
+    "Finite float32 frame values including signed zero and subnormals; signaling NaN exception/payload behavior excluded.",
+    "Only ASCII names/operands in portable source.",
+    "Alive byte table synthetic backing covers all packet byte indices and establishes no actual table allocation size.",
+    "Prepared registry type slot at type==count must exist: original lookup takes indexed path for equality.",
+    "Script loader/source reachability is not established by exercising preserved source occurrences."
+  ]
+}

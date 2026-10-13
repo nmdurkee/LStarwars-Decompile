@@ -1,0 +1,37 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": [
+    "0x55cd20",
+    "0x55cc40"
+  ],
+  "behavior": [
+    "Height factor captures type pointer, performs ordered finite bottom/top stores, retains F32-spilled top, zero radius yields positive zero, otherwise exact x87 (top-bottom)/(radius+radius) with final F32 store.",
+    "Collision radius gates enabled byte -> exact mode1 -> metadata clip !=-1 -> signed clip table pointer -> ready byte. Negative clip bytes other than -1 use actual signed indexing; no unsigned clamp.",
+    "Special radius product explicitly F32-spills and stores 1e0 before 1dc; fallback stores ac->1dc before rereading b0->1e0.",
+    "Optional 93d508 tail callback receives actor only after radius stores; trace observes final values and callback mutations are retained.",
+    "Raw all-IEEE mode words, including signaling NaN, only participate in gate comparison and are never stored; unordered gates use fallback without model dereference."
+  ],
+  "bounds": [
+    "Valid complete raw pointer and signed clip-index backing; finite consumed numeric tuning/scales and arithmetic outputs. Null model permitted only in native-proven lazy bypass branches.",
+    "Finite float copy projection excludes signaling-NaN/NaN/infinity stores; callbacks can write arbitrary bits after all producer computation ends.",
+    "No partial memory fault, native flags/register return, FPU status/exception state, scene initialization or complete actor/frame lifecycle claim."
+  ],
+  "validation": {
+    "nativeCases": 9007,
+    "nativeAssertionGroups": 17477,
+    "mismatches": 0,
+    "preparedManagedAssertions": 17477,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 242,
+    "dllSha256": "d59561e49afb919800b0bbd5a1d13c6f99c3fb61bb58358686ca9f8408d58c0c",
+    "execution": false
+  },
+  "hashes": {
+    "reconstructed/gameplay/movement-phase26-20261013-CollisionDimensions.cs": "aaee5948b25b5dd61c1ca5bdb45625c77e05a5fedb3702cb6ae8d956f45c3a8a",
+    "tools/movement-phase26-20261013-portable-verify.cs": "d01fc3e656faf491347ac92ce8b835749bb3217179fff0c9e87c1f407921a9d3",
+    "tools/movement-phase26-20261013-native.py": "d99b55ea3cd648c3df84a58143ddf565d7d9a1cadc0fe23efd8a8d4c431efe0f",
+    "reports/movement-phase26-20261013-fixtures.json.gz": "16a2720dd0af38e8a738896bda77358220cbb3154d4de397e546246f9a9723cc"
+  }
+}

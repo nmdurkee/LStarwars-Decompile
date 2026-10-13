@@ -1,0 +1,103 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "a633881098c40f3427be8156fc665487621f537d77c9a5cfbed428e6256c1ba8",
+  "procedures": [
+    {
+      "address": "0x650e40",
+      "endExclusive": "0x650e8d",
+      "bytesSha256": "6d0e68bf481629596ae023cea2bfb7b5cbdaca5a35f34351ee26826210530d53"
+    },
+    {
+      "address": "0x658330",
+      "endExclusive": "0x658463",
+      "bytesSha256": "94912684658a61fc05840c98a8045cd65895393549abbbb47b3fe31f3fe30d57"
+    },
+    {
+      "address": "0x658490",
+      "endExclusive": "0x65859a",
+      "bytesSha256": "7a50f2c5a81906c5ea24cb191dcf8db38f23a086cc2253c6eb72092b49eaf613"
+    },
+    {
+      "address": "0x64fdb0",
+      "endExclusive": "0x64fdb1",
+      "bytesSha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e"
+    }
+  ],
+  "qualification": "Complete own-state 0x650e40 audio name lookup over a prepared readable 1,600-row table at global 0x2947b74, stride 64, name pointer at row+0. Every row, including indices 0 and 1599 and rows with no other initialization, is eligible. First bounded case-folded match wins; null name pointers are skipped by comparison, null query never matches, and missing query returns 0xffffffff after original RET-only diagnostic 0x64fdb0. Raw comparison preserves null precedence, lengths 0/-1/-2/other negatives, terminator behavior, signed-byte ordering, ASCII lowercase and e0..ff folding. Query/catalog names require readable backing for all accesses; PAR calls provide exact 16-byte arrays with length 16, including nonterminated full16-byte queries. Negative/dynamic length fixtures provide terminated names. 976 direct native cases include 631 particle and 345 audio cases, with unchanged original comparators/lookup bodies. Existing 0x658330/0x658490 mappings receive no duplicate credit: a new PAR byte-array adapter projects actual three-pass/general vs two-pass/fast loaded registry behavior, reserved index 0, exclusion, low-byte preferred bank, active group 0/1 fallback and signed group-byte third pass, including prepared signed flag backing outside nominal eight groups. Particle query names must be terminated inside the provided array; all authored particle requests satisfy this. Composed 224 cases run all 112 unchanged authored PAR files through both general/group2 and fast/preferred-group5 prepared catalogs, along with phase14 loaded sprites and phase13 recovered activation/selection. Original native loader/record/sprite/particle/audio/comparison/runtime bodies execute; only local file transport is adapted. Full 843,784-byte image, asset argument SHA/counts, runtime/transport traces, transport state and EAX are retained. Model images matching native hashes contain 12,228 resolved particle references, 9,784 audio references and 3,726 sprite slots. Catalogs are prepared from exact input binding requests, not recovered original assets or producers. Existing phase13 finite/x87 projection limits remain. Renderer, audio playback and particle emission are not implemented. Source and both portable harnesses compile as library; managed fixture execution is pending, with no generated executable launch.",
+  "layouts": {
+    "audioTablePointer": "0x2947b74",
+    "audioRows": 1600,
+    "audioStride": 64,
+    "audioNamePointerOffset": 0,
+    "particleCount": "0x2962098",
+    "particleTablePointer": "0x296209c",
+    "particleGroupFlags": "0x2924b10",
+    "particleGroupOffset": 17,
+    "particleReservedIndex": 0
+  },
+  "validation": {
+    "directCases": 976,
+    "particleDirectCases": 631,
+    "audioDirectCases": 345,
+    "directAssertions": 1952,
+    "directMismatches": 0,
+    "directCapturedBytes": 263180,
+    "directEntryCalls": {
+      "0x658330": 317,
+      "0x4f8b10": 749,
+      "0x658490": 314,
+      "0x650e40": 345,
+      "0x4f8b80": 316272,
+      "0x64fdb0": 143
+    },
+    "composedCases": 224,
+    "composedAssertions": 1568,
+    "composedMismatches": 0,
+    "composedCapturedBytes": 843784,
+    "composedEntryCalls": {
+      "0x4f8b10": 17164,
+      "0x4f8b80": 19854,
+      "0x5da840": 3726,
+      "0x5da860": 42016,
+      "0x5cfac0": 42016,
+      "0x5cfa50": 42016,
+      "0x644000": 224,
+      "0x64ae50": 112,
+      "0x5b9d90": 110,
+      "0x6e6b90": 114,
+      "0x5b3800": 112
+    },
+    "composedPhysicalAndAssetCalls": {
+      "0x64ba10": 2448,
+      "0x6488e0": 282356,
+      "0x658330": 6114,
+      "0x650e40": 9784,
+      "0x658490": 6114
+    },
+    "authoredInputsUnchanged": true,
+    "authoredFiles": 112,
+    "authoredPasses": 2,
+    "physicalRecordsAcrossPasses": 2448,
+    "resolvedParticleReferences": 12228,
+    "resolvedAudioReferences": 9784,
+    "resolvedSpriteSlots": 3726,
+    "totalNativeCases": 1200,
+    "expectedPortableAssertions": 3520
+  },
+  "behavior": [
+    "Sound has no row activity filter or reserved index; index 0 is a valid match.",
+    "Sound reads the live table pointer for every row and compares first name pointer only. All 1,600 rows are searched on failure.",
+    "Particle ignores reserved index 0. General preferred pass, active groups 0/1 pass, then any signed active group pass differ from fast lookup, which has no third pass.",
+    "General lookup excludes the requested index in every pass; fast lookup has no exclusion argument.",
+    "Preferred particle group uses only low 8 bits; signed stored group byte is used only for the general third-pass flag address.",
+    "Particle/audio matching folds ASCII a-z and bytes e0-ff by subtracting 32, with signed byte ordering in comparator projections.",
+    "PAR loaded asset adapter directly resolves sprite, particle and audio names, removing the prior explicit empty Other binding from these prepared contexts."
+  ],
+  "remaining": [
+    "Original scene/backend sprite table producer and asset payload materialization.",
+    "Original PTL particle producer 0x68df20 and bank/registry activation lifecycle.",
+    "Original audio descriptor/name table producer and playback/emitter resources.",
+    "Renderer, audio playback and particle emission services downstream of resolved indices.",
+    "General x87 activation/selection precision outside phase13 retained finite bounds."
+  ]
+}

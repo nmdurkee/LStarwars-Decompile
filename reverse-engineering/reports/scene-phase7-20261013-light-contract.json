@@ -1,0 +1,34 @@
+{
+  "schema": "original-light-cache-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entry": "0x5fcc10",
+  "argumentOrder": [
+    "vector3 raw words",
+    "matrix16 raw words",
+    "color3 raw words"
+  ],
+  "writes": {
+    "0x986930": "matrix16 raw words",
+    "0x986970": "color3 raw words",
+    "0x98697c": "vector3 raw words",
+    "0x9868c0": "shared uint counter +1 modulo2^32",
+    "0x9868c4": "light ushort counter +1 modulo2^16",
+    "0x9868d4": "zero"
+  },
+  "rawCopy": "Integer REP MOVSD and MOV only; no floating interpretation or signaling-NaN conversion.",
+  "cameraBinding": "Explicit supplied LightRenderInputs producer; 384 actual original finite 5ff840 calls captured inputs at true 5fcc10 entry. Full light numeric producer not ported or claimed.",
+  "additionalEvidence": {
+    "0x5ff820": "xor eax,eax; ret stub, not newly mapped",
+    "0x5ff830": "ret stub, not newly mapped",
+    "0x751528": "Float32 0.5 light interpolation factor",
+    "0x76a7e8": "Float32 minimum positive normal horizontal-basis threshold"
+  },
+  "boundaries": [
+    "5fcc10 all22 output words are original integer REP MOVSD / MOV; raw nonfinite payloads have no FLD/FSTP conversion. Valid disjoint resolved source/global regions.",
+    "384 actual original 5ff840 calls execute CPU helpers unchanged and capture consumed vector/matrix/color and cache receiver state at 5fcc10 entry. No D3DX, device or CRT adapters.",
+    "The full finite light orientation/blending producer is captured as original evidence, not ported or independently modeled in this batch.",
+    "Optional source direction/color copy native probes retained; color is opaque raw four-word input, while consumed arithmetic is finite.",
+    "Shared uint counter9868c0 and light-specific ushort counter9868c4 wrap. Light dirty flag9868d4 clears; camera-specific ushort9868cc is distinct.",
+    "Native/Python consumer differential passed; managed replay remains pending."
+  ]
+}

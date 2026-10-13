@@ -1,0 +1,42 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase21-20261013-PodMatrix.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5b5060",
+      "method": "PodMatrixMath.RotateY",
+      "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+      "coverage": "In-place finite matrixrow0/row2 XYZ rotation: row0=c*A-s*B,row2=c*B+s*A; cachesoldrows,signed32angle tableindices wrap,andpreservesW/otherrows."
+    },
+    {
+      "address": "0x5b4dd0",
+      "method": "PodMatrixMath.RotateX",
+      "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+      "coverage": "In-place finite matrixrow1/row2 XYZ rotation: row1=c*A+s*B,row2=c*B-s*A; original runtime32768 sinewords andexactx87 finalF32 stores."
+    },
+    {
+      "address": "0x5b5240",
+      "method": "PodMatrixMath.RotateZ",
+      "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+      "coverage": "In-place finite matrixrow0/row1 XYZ rotation: row0=c*A+s*B,row1=c*B-s*A. No constructor/identity simplification; untouched matrixwords preserved."
+    },
+    {
+      "address": "0x5b3470",
+      "method": "PodMatrixMath.TransformVector",
+      "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+      "coverage": "Actual three-argument row3x3 vectortransform, not a copy. Nativecomputes andspillsY/Z outputs beforeXstore; allthree source/matrix-dependent results prefetched. Aliasedoutput/input/matrix including shiftedoverlap retained; originalX termorderYproduct+Xproduct+Zproduct, Y/Z usualXYZ."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase21-20261013-contract.json",
+    "reports/movement-phase21-20261013-tests.json",
+    "reports/movement-phase21-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase21-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase21-20261013",
+  "verifierClass": "MovementPhase2120261013Verify",
+  "fixture": "reports/movement-phase21-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase21-20261013-managed-check.json"
+}

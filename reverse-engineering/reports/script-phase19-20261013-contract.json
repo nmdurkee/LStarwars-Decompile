@@ -1,0 +1,78 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "addresses": {
+    "0x52c880": "PreparedScriptConditions.Evaluate; EAX bank, cdecl(system,list,actor,packet)",
+    "0x52c800": "PreparedScriptConditions.Finish; EDI bank, ECX current, cdecl(list,actor,packet)",
+    "0x52caf0": "PreparedScriptReferences.Scan; ESI packet, cdecl(system,actor)"
+  },
+  "conditionLayout": {
+    "next": 0,
+    "constant": 8,
+    "operatorSignedByte": 12,
+    "slotSignedByte": 13,
+    "flagsWord": 14,
+    "expression": 16,
+    "arg14": 20,
+    "arg18": 24,
+    "descriptor": 28,
+    "target": 36,
+    "alternateCondition": 40,
+    "descriptorHandler": 4
+  },
+  "packetLayout": {
+    "currentScript": 4,
+    "currentState": 8,
+    "parameters": 20,
+    "cache": "packet + 4*(slot + bank*5 + 10), signed slot, unchecked address",
+    "cacheFlag": "packet + 0x38 + bank*20",
+    "finishFlag": "packet + 0x39 + bank*20",
+    "referenceStack": "packet + 0x54 + 4*signedDepth",
+    "depth": 100
+  },
+  "orderedSemantics": [
+    "Local left float begins positive zero and is updated only when the left predicate handler executes. A later null handler preserves it. Alternate right handler receives the CURRENT condition arguments, arg18 read before arg14, not alternate node arguments.",
+    "Right alternate descriptor path wins over flags. Otherwise flags8 selects expression/cache; flags4 selects parameter; otherwise constant. Signed slots can alias cache flags, parameters, reference stack or other prepared memory.",
+    "Expressions finish before slot rereads/cache writes. Failure of an AND chain skips predicate comparisons but may evaluate expression nodes, then reads the cache again and writes their constant8. A successful terminal condition invokes finish starting AFTER that condition. Exhaustion invokes finish from list head. Finish clears flag39 after traversing, caller clears flag38 afterward; faults retain prior writes.",
+    "Comparisons0 eq,1 lt,2 gt,3 le,4 ge,5 ne. QuietNaNs fail ordered operators and satisfy ne; invalid signed operator bytes fail groups. x87 status flags are outside contract.",
+    "Reference scan checks signed depth<4, sets guard bank flags before reading guard head, then default bank flags before idle condition evaluation. Script list advancement rereads currentScript even though linked next helper only consumes node.next. State reference head base is cached once.",
+    "Successful references store node at live signed depth, increment live depth after the store, reread match target24 then reference scriptC, and execute unchanged PreparedScriptBinding.Bind with zero profile. Binding late faults retain reference stack/cache writes.",
+    "Fresh RecoveredConditionDispatcherServices captures the packet passed as native ESI for each Tick. Existing phase18 References signature remains the native cdecl two-argument shape. Pipeline RunScript keeps original callers third/fourth packet pointers by invoking Tick with packet as actor and packet."
+  ],
+  "domains": [
+    "Banks0/1; acyclic bounded prepared lists; finite/infinity/quietNaN condition operands, signalingNaN payloads/status excluded.",
+    "Predicate and expression ports return already float32 stored result bits, preserving callback mutation order. Their body and game symbol/environment hydration are explicit remaining boundaries.",
+    "Reference binding supplied nonnull script/target and finite copied defaults; native resolver/null target Base path remains existing phase18 boundary.",
+    "24 original dispatcher interoperations use zero delta, no actions; broad finite scheduler arithmetic/actions are covered by sealed phase18 evidence, not counted anew here."
+  ],
+  "nativeEvidence": {
+    "cases": 1922,
+    "checks": 7635,
+    "mismatches": 0,
+    "counts": {
+      "Evaluate": 1804,
+      "Finish": 24,
+      "Scan": 70,
+      "Tick": 24
+    },
+    "faultCases": 5,
+    "fixtureBytes": 36619128,
+    "fixtureReplay": "7635 same-model readback comparisons/0, not additional native evidence"
+  },
+  "credit": {
+    "newAddresses": 2,
+    "authoredCommands": 0,
+    "existingAddresses": [
+      "0x52caf0"
+    ],
+    "newMappedAddresses": [
+      "0x52c880",
+      "0x52c800"
+    ],
+    "note": "Audit confirms condition evaluator/cache finish had no prior portable mapping; reference scan previously mapped. Source/harness/fixture unchanged."
+  },
+  "compile": {
+    "sourceAndHarnessCompiled": true,
+    "managedExecution": false,
+    "output": "reports/script-phase19-20261013-compile.dll"
+  }
+}

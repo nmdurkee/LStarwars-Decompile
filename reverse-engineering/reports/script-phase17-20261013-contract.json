@@ -1,0 +1,155 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "functions": [
+    {
+      "address": "0x5a03d0",
+      "endExclusive": "0x5a043e",
+      "scope": "Original vehicle response timer and tail re-entry; reuses sealed response producer and shared64-significand arithmetic.",
+      "ordering": [
+        "Load full signed DWORD0x8028a8. If not-1 compare sign-extended actor context byte7b5 to full DWORD, not truncated context.",
+        "Match: read actor timer77c and global925018; subtract in64-significand x87, spillfloat32 then writeactor77c. Clear context toFF iff storedfloat <=0, including either zero sign.",
+        "Mismatch or configured-1: re-read bytecontext7b5. OnlyFF with full nonzero retry reads linkedactorCD0 and tailcalls original5a0320(actor,link).",
+        "Nullactor still faults on fallback context read even if globalconfigured-1. Re-entry configuration sentinel in5a0320 is consulted after link read."
+      ],
+      "floatDomain": "Timer and delta finite whenever the matching branch consumes them. Exact signed-zero and float32 commit retained; nonfinite timer arithmetic/status outside scope.",
+      "fields": {
+        "signedContext": "0x7b5",
+        "timer": "0x77c",
+        "link": "0xcd0",
+        "deltaGlobal": "0x925018",
+        "configuredContext": "0x8028a8"
+      }
+    },
+    {
+      "address": "0x52c790",
+      "endExclusive": "0x52c7f7",
+      "scope": "Existing base-state entry expanded to lazy prepared-memory hydration, reusing unchanged ActorActivation.ChangeBaseState and ScriptMachine EnterState/Bind.",
+      "ordering": [
+        "Null name or packet returns0; packet currentScript+4==0 returns0 before baseScript read.",
+        "Read baseScript pointerpacket0 and its first state head+10 before touching requested name bytes. Traverse ordered native next links; candidate name+18 null is a mismatch without reading requested bytes.",
+        "ASCII case-insensitive comparison interleaves requested and candidate reads and stops at first mismatch or terminator. Stop at first matching node; later nodes/names unread.",
+        "Reread packet base/current after lookup. Reference equality selects same-script enter versus supplied-base/supplied-state bind.",
+        "Different-script prefix: clearflag4 at50, resetWORD B2, testbase0 beforewriting current4 andpending10; copy four defaults sequentially fromscript1c+i*8 topacket14+i*4. Aliases see preceding writes.",
+        "Unchanged typed core is called with hydrated identity/state/defaults. Internal PrepareConditionBank hook commits raw enter prefix before lazy first-action hydration: conditionally resetB2, clearflag4, storeselectednode8/actionC=0/pending10=0/bankbyte38=1.",
+        "Read first action head from live selectedstate+10 only after prefix writes. Nonzero firstaction setsflag1 and storesactionC; zero action does not newly setflag1.",
+        "Different-script tail: B4byte0, B8DWORD0, B5byte0, BC/C0DWORD0, then wrapper depth64DWORD0. Same-script path preserves defaults/deadline/depth and keepsblockedB2 whenflag4 was set."
+      ],
+      "nativeDependencies": [
+        "0x512fc0 ordered lookup",
+        "0x4f1440 list head",
+        "0x4f1460 next node",
+        "0x4f8b10 name compare",
+        "0x5145a0 state enter",
+        "0x514640 supplied-base/supplied-state bind",
+        "0x514550 first action advance"
+      ],
+      "limits": [
+        "ASCII NUL-terminated names and acyclic linked lists. Extended byte folding/cyclic data not claimed.",
+        "Fixed52c790 bind path supplies baseScript and selectedstate; resolver, character overrides, arbitrary binding modes outside this bridge.",
+        "Bound default float moves finite, including signed zero. Nonfinite float-store payload/status behavior outside scope."
+      ],
+      "helperAddressCredit": 0
+    }
+  ],
+  "composition": "RecoveredBaseStatePipelinePorts removes52c790 adapter from immutable recovered release/transfer/selector/bounds/ejection/cleanup/vehicle/camera pipeline. Driver, notification, Rebind, actual RunScript and special jump/audio remain explicit.",
+  "nativeEvidence": {
+    "checks": 2242,
+    "mismatches": 0,
+    "timerCases": 661,
+    "stateCases": 47,
+    "pipelineCases": 26,
+    "standaloneFaults": 11,
+    "pipelineFaults": 2,
+    "allSignedContextBytes": 256,
+    "irregularTimerPairs": 256,
+    "assertionsAreCorrelated": true,
+    "actualEntries": {
+      "VehicleTimer": 669,
+      "VehicleResponse": 47,
+      "Feedback": 41,
+      "Convert": 41,
+      "LegacyConversion": 41,
+      "Duration": 42,
+      "EndFrame": 42,
+      "ChangeBaseState": 124,
+      "FindState": 119,
+      "ListHead": 220,
+      "CompareName": 185,
+      "ListNext": 80,
+      "BindState": 44,
+      "AdvanceAction": 101,
+      "EnterState": 58,
+      "Release": 27,
+      "Transfer": 25,
+      "ClearAction": 25,
+      "ResetActor": 25,
+      "StopActor": 25,
+      "ResetControls": 25,
+      "QRAND": 75,
+      "PrepareActor": 25,
+      "Selector": 25,
+      "Seat": 26,
+      "Bounds": 26,
+      "Eject": 25,
+      "Context": 25,
+      "SoundRouter": 25,
+      "ResetPacket": 25,
+      "SquareRoot": 25,
+      "Camera": 39,
+      "FinishAction": 6
+    }
+  },
+  "fixtureReadback": {
+    "checks": 2242,
+    "mismatches": 0,
+    "scope": "Same-model replay of retained backing, not additional native evidence.",
+    "fixtureBytes": 101844715
+  },
+  "remainingAdapters": {
+    "0x698900": {
+      "name": "ControllerRequest",
+      "argc": 5
+    },
+    "0x10200400": {
+      "name": "Notify",
+      "argc": 1
+    },
+    "0x415000": {
+      "name": "Rebind",
+      "argc": 1
+    },
+    "0x52cc90": {
+      "name": "RunScript",
+      "argc": 5
+    },
+    "0x4c99b0": {
+      "name": "DistanceFactor",
+      "argc": 2
+    },
+    "0x561e20": {
+      "name": "DirectedJump",
+      "argc": 6
+    },
+    "0x681e90": {
+      "name": "PlayerSound",
+      "argc": 2
+    },
+    "0x681eb0": {
+      "name": "WorldSound",
+      "argc": 3
+    }
+  },
+  "addressCredit": {
+    "new": [
+      "0x5a03d0"
+    ],
+    "existingExpanded": [
+      "0x52c790"
+    ],
+    "authoredCommands": 0
+  },
+  "wholeRuntimeLimitations": [
+    "Original isolated x86 bodies and helpers execute; no Windows game or OS backend execution.",
+    "Managed portable harness saved, combined compilation pending root; managed execution not attempted."
+  ]
+}

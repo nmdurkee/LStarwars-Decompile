@@ -1,0 +1,36 @@
+PAUSED FRAME PRESENTATION RECOVERY — 2026-10-13
+
+Native entry 0x491d50, bounded instructions 0x492115–0x4921cc.
+Source: reconstructed/frame/FramePausedPresentation.cs.
+Native tests: tools/frame-paused-20261013-verify.py.
+Saved-fixture C# harness: tools/frame-paused-20261013-portable-verify.cs.
+
+The pause gate checks nonzero global pause, zero force-update, then calls the
+pause-override helper lazily. Assembly tests AL, so EAX=0x100 permits this branch
+while EAX=0x101 selects ordinary update. The service interface returns byte to
+preserve this ABI distinction.
+
+The paused branch calls scale(0), mask(2), paused-mode(1), copies sixteen raw
+32-bit camera words from camera+0xb8 to the current matrix pointer, applies the
+matrix, updates player contexts at 0x9253b0 with mode1, presents only the first
+two non-null player slots, then calls finish(mode1). Each player forwards
+actor+0x7fc, (flags at actor+0x1fc >>7)&1, and a sign-extended byte at actor+0x280.
+Players in native slots2–7 are deliberately not presented by this loop.
+
+The optional level callback occurs after this branch rejoins the dispatcher.
+Tests confirm it receives the world pointer after camera copying and before
+the separate output word is cleared. The native world first word remains intact;
+this respects the previously documented correction to Ghidra's one-argument
+signature. Callback implementations are adapters; no callback gameplay semantics
+are claimed.
+
+208 original-function cases and1280 assertion groups passed with zero failures:
+16 pause-gate cases plus192 player/camera/callback cases. Raw matrix bit patterns
+include signed zero and NaN payloads. Native fixtures execute the complete
+dispatcher with the existing explicit no-op subsystem boundaries. They establish
+only the selected branch's order, arguments and own memory operations. Managed
+source execution is recorded separately and is not inferred from native tests.
+
+The portable API projects native data into host arrays and objects. Valid,
+distinct camera arrays are required. This is not a native struct layout, complete
+frame implementation, renderer, or running-game equivalence result.

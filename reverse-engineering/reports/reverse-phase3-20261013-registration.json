@@ -1,0 +1,394 @@
+{
+  "updated": "2026-10-13T16:13:25.622Z",
+  "batch": "reverse-phase3-20261013",
+  "descriptors": [
+    "reports/movement-phase3-20261013-source.json",
+    "reports/script-phase3-20261013-source-map.json",
+    "reports/script-phase4-20261013-source-map.json",
+    "reports/script-phase5-20261013-source-map.json",
+    "reports/world-phase3-20261013-integration.json",
+    "reports/scene-phase3-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "movement-phase3-20261013",
+      "cls": "MovementPhase320261013Verify",
+      "fixture": "reports/movement-phase3-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase3-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase3-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase3-20261013-contract.json",
+        "reports/movement-phase3-20261013-tests.json",
+        "reports/movement-phase3-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x446450",
+          "method": "BigJumpActions.ToLocator",
+          "sourceFile": "gameplay/movement-phase3-20261013-BigJump.cs",
+          "coverage": "whole bounded command including original completion return actor context!=31, ordered locator formatting, actual jump/control/heading composition; broader reset/model resolution/feedback services explicit"
+        },
+        {
+          "address": "0x561e20",
+          "method": "BigJumpActions.Request",
+          "sourceFile": "gameplay/movement-phase3-20261013-BigJump.cs",
+          "coverage": "own jump request state writes with actual loaded control reset and heading; broader actor reset,clip metadata dispatch,invalidation,feedback remain services"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase3-20261013-BigJump.cs"
+      ],
+      "harnessFile": "../tools/movement-phase3-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase3-20261013",
+      "cls": "ScriptPhase320261013Verify",
+      "fixture": "reports/script-phase3-20261013-native-fixtures.json",
+      "output": "reports/script-phase3-20261013-managed-check.json",
+      "descriptor": "reports/script-phase3-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase3-20261013-contract.json",
+        "reports/script-phase3-20261013-tests.json",
+        "reports/script-phase3-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x449970",
+          "method": "Phase3ActorCommands.PressJumpButton",
+          "coverage": "Ignores firstCall and operands. Null creature/reference/world actor chain skips write; valid actor requires input pointer+0xca4 and ORs the runtime global mask0x802278 into input+8. No jump execution or input consumption.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x44f1b0",
+          "method": "Phase3ActorCommands.PrefersPlayers",
+          "coverage": "Ignores firstCall. Valid self actor flags+0xeec bit0x40000000 set by default on every call; any whole case-insensitive FALSE token clears it, and later TRUE cannot restore within that call. Does not choose opponents.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x44ee70",
+          "method": "Phase3ActorCommands.CanShootOffScreen",
+          "coverage": "Requires firstCall and valid self actor. Flags+0x1044 bit4 set by default, TRUE sets/FALSE clears in token order, unknown tokens ignored. Does not execute shooting or determine screen visibility.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x44ede0",
+          "method": "Phase3ActorCommands.CanOpenDoors",
+          "coverage": "Same firstCall/self/token rules as CanShootOffScreen, using flags+0x1044 bit1. Does not identify doors or implement opening.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x4445c0",
+          "method": "Phase3ActorCommands.CanDefend",
+          "coverage": "Requires firstCall and valid self actor. Flags+0xeec bit2 set by default; any whole FALSE clears, TRUE does not restore within call. Does not execute defense.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x4447a0",
+          "method": "Phase3ActorCommands.Respawnable",
+          "coverage": "Requires firstCall and valid self actor. Clears flags+0xeec origin bit0x200000 and sets respawn bit0x100000 by default. Each origin token sets origin bit; each FALSE clears respawn bit; independent bits persist through remaining tokens. Does not respawn objects.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x4448c0",
+          "method": "Phase3ActorCommands.SetBoss",
+          "coverage": "Requires firstCall and valid self actor. Flags+0xeec bit0x8000000 set by default; any whole FALSE clears, TRUE does not restore within call. Does not implement boss behavior.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x445b70",
+          "method": "Phase3ActorCommands.SetDontMove",
+          "coverage": "Requires firstCall; defaults target to guarded self actor. Every case-insensitive character substring selects name starting ten bytes from match via native name-reference callback; absent callback or failed/null-target reference clears selection. Non-character branch compares FALSE against first operand, not current. Final valid selected actor flags+0xef0 bit0x10 set/cleared. Does not execute locomotion.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x443280",
+          "method": "Phase3ActorCommands.UnderPlayerControl",
+          "coverage": "Initializer0x443250 requires operand,system and name callback; returns referenced actor first pointer. Predicate returns0 for null initialized actor with no self fallback; otherwise float1 iff actor byte+0x1fc bit0x80. Does not assign player control.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        },
+        {
+          "address": "0x443250",
+          "method": "Phase3ActorCommands.BindUnderPlayerControl",
+          "coverage": "Named actor initializer with system/operand/callback gates and reference first-pointer extraction; no name alias/lifetime recovery.",
+          "sourceFile": "gameplay/script-phase3-20261013-ActorCommands.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase3-20261013-ActorCommands.cs"
+      ],
+      "harnessFile": "../tools/script-phase3-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase4-20261013",
+      "cls": "ScriptPhase420261013Verify",
+      "fixture": "reports/script-phase4-20261013-native-fixtures.json",
+      "output": "reports/script-phase4-20261013-managed-check.json",
+      "descriptor": "reports/script-phase4-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase4-20261013-contract.json",
+        "reports/script-phase4-20261013-tests.json",
+        "reports/script-phase4-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x4499b0",
+          "method": "Phase4ScriptCommands.AddToSet",
+          "coverage": "First-call gated and self creature/reference/actor guarded. Whole case-insensitive Reset sets actor byte+0x378=0 without count decrement. Other operands use original packet numeric resolver, truncate float32 toward zero, and accept only1..16. Each accepted token assigns actor byte+0x378 and increments global byte0x876847+index modulo256. Repeated memberships and reassignments increment independently without correcting previous counts.",
+          "sourceFile": "gameplay/script-phase4-20261013-SetVehicle.cs"
+        },
+        {
+          "address": "0x4431d0",
+          "method": "Phase4ScriptCommands.BindOnSpeederBike",
+          "coverage": "System/operand/callback gates, then reference first-pointer extraction; callback alias/lifetime service explicit.",
+          "sourceFile": "gameplay/script-phase4-20261013-SetVehicle.cs"
+        },
+        {
+          "address": "0x443200",
+          "method": "Phase4ScriptCommands.OnSpeederBike",
+          "coverage": "Initializer gates operand,system and callback, extracts named-reference first pointer. Reader uses initialized actor if nonnull, otherwise dereferences unchecked script-creature+0xd0 and guards its reference/actor. Requires actor link+0xcd0, actor byte context+0x7b5==0x3b and linked object word+0x1064 equal runtime global word0x7f1948. Missing name falls back to self; null creature with null initialized actor faults native.",
+          "sourceFile": "gameplay/script-phase4-20261013-SetVehicle.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase4-20261013-SetVehicle.cs"
+      ],
+      "harnessFile": "../tools/script-phase4-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase5-20261013",
+      "cls": "ScriptPhase520261013Verify",
+      "fixture": "reports/script-phase5-20261013-native-fixtures.json",
+      "output": "reports/script-phase5-20261013-managed-check.json",
+      "descriptor": "reports/script-phase5-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase5-20261013-contract.json",
+        "reports/script-phase5-20261013-tests.json",
+        "reports/script-phase5-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x440f30",
+          "method": "Phase5Conditions.EitherPlayerIs",
+          "coverage": "Requires nonnull system and initialized reference; compares exact reference identity against system+0x138c or+0x1390. Shared physical object/name is insufficient.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x440f60",
+          "method": "Phase5Conditions.Player1Is",
+          "coverage": "Same gates as EitherPlayerIs but only system+0x138c reference identity.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x440f80",
+          "method": "Phase5Conditions.Player2Is",
+          "coverage": "Same gates as EitherPlayerIs but only system+0x1390 reference identity.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x4429d0",
+          "method": "Phase5Conditions.FinishedSpline",
+          "coverage": "Guards creature/reference/physical actor self chain; missing chain returns float-1. Valid actor returns0 iff spline pointer+0xe64 nonnull and status byte+0xe6b==0; otherwise1. Does not advance spline.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x442270",
+          "method": "Phase5Conditions.NumBaddies",
+          "coverage": "Signed actor-count global0x93d500 bounds an original0x10d8-stride array at0x93d504. Counts rows with flags+0x1fc both1/0x1000 and flags+0x1f8 bit1. Nonpositive count returns0. Does not construct/populate actor table.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x4416b0",
+          "method": "Phase5Conditions.IsAlive",
+          "coverage": "Null initialized record returns0; definition pointer at+4 is otherwise read unchecked, then group pointer definition+0x144. No group: record live bit0x1000 and dead byte+0x28b==0, without active-bit1 requirement. Group present: first nonnull member with active/live mask0x1001 and dead byte0 succeeds, using group uint8 count+7 and pointer slots+0xc. Zero-count group returns0 regardless of solo record flags. Does not update lifetime or groups.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x440b30",
+          "method": "Phase5Conditions.MySet",
+          "coverage": "Loads uint8 script packet+0xb0 without null guard and returns float0..255. This is packet set ID, not actor membership byte+0x378.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x442d00",
+          "method": "Phase5Conditions.NumBaddiesThatCanSeePlayers",
+          "coverage": "FILD reads signed dword global0x876840; portable result models subsequent float32 storage boundary used by SCP evaluator. Does not calculate visibility or count seeing actors.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x440f10",
+          "method": "Phase5Conditions.BindReference",
+          "coverage": "Operand/callback gates and exact named reference return; null system allowed.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x441690",
+          "method": "Phase5Conditions.BindReference",
+          "coverage": "IsAlive named reference binding; null system allowed, reference pointer preserved.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        },
+        {
+          "address": "0x442260",
+          "method": "Phase5Conditions.BindNumBaddies",
+          "coverage": "Zero-valued initializer; no operand reads or state changes.",
+          "sourceFile": "gameplay/script-phase5-20261013-Conditions.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase5-20261013-Conditions.cs"
+      ],
+      "harnessFile": "../tools/script-phase5-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase3-20261013",
+      "cls": "WorldPhase320261013Verify",
+      "fixture": "reports/world-phase3-20261013-vectors.json",
+      "output": "reports/world-phase3-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase3-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase3-20261013-native-tests.json",
+        "reports/world-phase3-20261013-source-map.json",
+        "reports/world-phase3-20261013-contract.json",
+        "reports/world-phase3-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x55fac0",
+          "method": "PortalDoorRuntime.Update",
+          "coverage": "whole portal-door transition updater composed with bounded scene/animation/portal records",
+          "sourceFile": "gameplay/world-phase3-20261013-portal-runtime.cs",
+          "qualification": "Prepared valid scene/reference/animation/portal backing; signed door count may<=0, portal count unsigned bounded0..6. No actual scene loading, animation advancement or rendered portal visibility. Normal reference points through valid matrix+48; dynamic0/-1 animation means unavailable. Clip indices0/7 have prepared tables. Quiet NaNs/infinities and signed zero preserve native comparison behavior; signalingNaN payload/exception semantics are outside fixtures. Other caller/environment portal producers are external. State cache intentionally suppresses redundant mutations even if portal state is changed elsewhere. Managed comparison harness compilation is separate; execution remains pending. Native5d0420 is reused, not a new mapping. No computational adapters in native suite. Managed replay remains pending.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase3-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase3-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x5d9060",
+          "method": "PortalDoorRuntime.SetPortalState",
+          "coverage": "whole unsigned-count portal mutator on prepared bounded backing",
+          "sourceFile": "gameplay/world-phase3-20261013-portal-runtime.cs",
+          "qualification": "Prepared valid scene/reference/animation/portal backing; signed door count may<=0, portal count unsigned bounded0..6. No actual scene loading, animation advancement or rendered portal visibility. Normal reference points through valid matrix+48; dynamic0/-1 animation means unavailable. Clip indices0/7 have prepared tables. Quiet NaNs/infinities and signed zero preserve native comparison behavior; signalingNaN payload/exception semantics are outside fixtures. Other caller/environment portal producers are external. State cache intentionally suppresses redundant mutations even if portal state is changed elsewhere. Managed comparison harness compilation is separate; execution remains pending. Native5d0420 is reused, not a new mapping. No computational adapters in native suite. Managed replay remains pending.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase3-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase3-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x5ca4b0",
+          "method": "PortalDoorRuntime.DurationValue",
+          "coverage": "whole duration decoder for rawfloat or exact rawheader tags",
+          "sourceFile": "gameplay/world-phase3-20261013-portal-runtime.cs",
+          "qualification": "Prepared valid scene/reference/animation/portal backing; signed door count may<=0, portal count unsigned bounded0..6. No actual scene loading, animation advancement or rendered portal visibility. Normal reference points through valid matrix+48; dynamic0/-1 animation means unavailable. Clip indices0/7 have prepared tables. Quiet NaNs/infinities and signed zero preserve native comparison behavior; signalingNaN payload/exception semantics are outside fixtures. Other caller/environment portal producers are external. State cache intentionally suppresses redundant mutations even if portal state is changed elsewhere. Managed comparison harness compilation is separate; execution remains pending. Native5d0420 is reused, not a new mapping. No computational adapters in native suite. Managed replay remains pending.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase3-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase3-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase3-20261013-portal-runtime.cs"
+      ],
+      "harnessFile": "../tools/world-phase3-20261013-portable-verify.cs"
+    },
+    {
+      "name": "scene-phase3-20261013",
+      "cls": "TreeVisibilityPhase3Harness",
+      "fixture": "reports/scene-phase3-20261013-native-fixtures.json.gz",
+      "output": "reports/scene-phase3-20261013-csharp-validation.json",
+      "descriptor": "reports/scene-phase3-20261013-source.json",
+      "evidence": [
+        "reports/scene-phase3-20261013-native-validation.json",
+        "reports/scene-phase3-20261013-contract.json",
+        "reports/scene-phase3-20261013-stack-dependency.json",
+        "reports/scene-phase3-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5d8b60",
+          "method": "TreeVisibility.Classify",
+          "coverage": "finite scalar predicate with prepared outer/inner/depth planes and exact explicit native fourth-radius residue word",
+          "sourceFile": "geometry/scene-phase3-20261013-TreeVisibility.cs",
+          "evidence": "reports/scene-phase3-20261013-native-validation.json",
+          "limitations": [
+            "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+            "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+            "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+            "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+            "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+            "Managed harness compiled but not executed under the inherited executable-launch restriction."
+          ]
+        },
+        {
+          "address": "0x5d8e20",
+          "method": "TreeVisibility.TraverseRoot",
+          "coverage": "actual bounded LIFO tree root walk and packedtwo-bit OR output;root index customECX ABI;perpredicate finite stack residue supplied",
+          "sourceFile": "geometry/scene-phase3-20261013-TreeVisibility.cs",
+          "evidence": "reports/scene-phase3-20261013-native-validation.json",
+          "limitations": [
+            "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+            "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+            "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+            "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+            "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+            "Managed harness compiled but not executed under the inherited executable-launch restriction."
+          ]
+        },
+        {
+          "address": "0x5d8fb0",
+          "method": "TreeVisibility.ProducePrepared",
+          "coverage": "tree context flag gate/current-context/initflag and descendingroot composition with supplied prepared plane state; numeric plane producers outside scope",
+          "sourceFile": "geometry/scene-phase3-20261013-TreeVisibility.cs",
+          "evidence": "reports/scene-phase3-20261013-native-validation.json",
+          "limitations": [
+            "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+            "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+            "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+            "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+            "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+            "Managed harness compiled but not executed under the inherited executable-launch restriction."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase3-20261013-TreeVisibility.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase3-20261013-TreeVisibilityHarness.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x446450",
+    "0x561e20",
+    "0x449970",
+    "0x44f1b0",
+    "0x44ee70",
+    "0x44ede0",
+    "0x4445c0",
+    "0x4447a0",
+    "0x4448c0",
+    "0x445b70",
+    "0x443280",
+    "0x443250",
+    "0x4499b0",
+    "0x4431d0",
+    "0x443200",
+    "0x440f30",
+    "0x440f60",
+    "0x440f80",
+    "0x4429d0",
+    "0x442270",
+    "0x4416b0",
+    "0x440b30",
+    "0x442d00",
+    "0x440f10",
+    "0x441690",
+    "0x442260",
+    "0x55fac0",
+    "0x5d9060",
+    "0x5ca4b0",
+    "0x5d8b60",
+    "0x5d8e20",
+    "0x5d8fb0"
+  ],
+  "newCoreFiles": 6,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

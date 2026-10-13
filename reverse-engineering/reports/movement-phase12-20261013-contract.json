@@ -1,0 +1,52 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "cases": 2726,
+  "assertionGroups": 8178,
+  "mismatches": 0,
+  "faultCases": 1,
+  "contracts": [
+    {
+      "address": "0x443610",
+      "method": "TakeOverRange",
+      "scope": "Null creature/reference/actor/target yields exactF32 1e9. Actual distance uses target actor+5c versus reference+5c, not selfactor+5c; finite ordered squared-distance/sqrt composition."
+    },
+    {
+      "address": "0x515790",
+      "method": "StuckTime",
+      "scope": "Null creature/reference returns positivezero, otherwise reads reference+1d8 F32 without actor dereference. Finite andInf/signedzero payload words retained."
+    },
+    {
+      "address": "0x440be0",
+      "method": "TurretAlive",
+      "scope": "Native argument5 turret pointer; null returnszero; word+13a bits0x30 suppress result. Allother lowbyte and sampled upperbyte patterns unchanged."
+    },
+    {
+      "address": "0x442b30",
+      "method": "CheatProgress",
+      "scope": "Complete original PC stub returns positivezero for every argument, without memory access."
+    },
+    {
+      "address": "0x515580",
+      "method": "OpponentToLocatorY",
+      "scope": "Creature/opponent first guards return maxfiniteF32. Explicit argument5 locator precedes packet+a4 fallback; absent packet faults only whenfallback readneeded. Difference opponent+60 minus locator+14 storesF32."
+    }
+  ],
+  "nativeAdapters": 0,
+  "authoredOccurrences": {
+    "StuckTime": 14,
+    "CheatProgress": 14,
+    "OpponentToLocatorY": 12,
+    "TurretAlive": 14,
+    "TakeOverRange": 17
+  },
+  "limits": [
+    "Finite squared-distance inputs. Stored time finite/Inf rawbits; signaling/quietNaN hardware payload behavior excluded.",
+    "Valid actor/reference/locator/turret backing and explicit nullpacket fault; invalid arbitrary pointers excluded.",
+    "Original argument5 turret/locator carried through ABI wrappers; authored inputs are condition-body occurrences, not wholeSCP comparison execution."
+  ],
+  "managedReplay": {
+    "executed": false,
+    "preparedAssertions": 8178
+  },
+  "dependency": "Sealed movementphase11 exact x87 quantizer reused by native tool; existing portable finite distance composition reused unmodified."
+}

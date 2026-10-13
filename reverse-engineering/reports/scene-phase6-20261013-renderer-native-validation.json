@@ -1,0 +1,30 @@
+{
+  "schema": "original-render-cache-native-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "checks": 16896,
+  "errors": [],
+  "counts": {
+    "offsetCases": 2048,
+    "extentCases": 2048,
+    "cacheCases": 1152,
+    "directCacheCases": 1024,
+    "actualCameraCallbackCases": 128,
+    "retainedPortableReplayCases": 5248
+  },
+  "constants": {
+    "unit": 0.0625,
+    "widthDiv": 640.0,
+    "heightDiv": 224.0
+  },
+  "adapters": {
+    "cameraCompositionOnly": "0x715718 imported D3DX uses declared sequential binary64 / float32 matrix policy for 128 actual producer captures; direct cache/offset/extent routines have no adapters."
+  },
+  "limits": [
+    "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+    "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+    "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+    "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+    "Native/Python exact own-state comparison passed; managed replay pending."
+  ]
+}

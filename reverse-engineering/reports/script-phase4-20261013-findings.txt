@@ -1,0 +1,13 @@
+Set membership counters and vehicle state — 2026-10-13
+
+AddToSet0x4499b0 (24 authored uses) and OnSpeederBike0x443200 / initializer0x4431d0 (16 uses):40 source occurrences.
+
+21,191 original native assertions pass;zero mismatches.6,963 retained set cases,222 bike cases(including48 actual null-creature fallback faults),24 initializers,48 shipped first/nonfirst action calls and16 original condition comparisons. Counts include correlated return/state/confinement assertions,not independent scenarios.
+
+AddToSet resets actor byte+0x378 without decrementing any count. Each numeric token1..16 assigns that byte and increments its global count modulo256,including duplicate memberships and successive reassignment. Scalar values use the existing packet-name resolver. The retained0.99999994operand resolves tofloat1 after stepwise numerator rounding and therefore increments set1; host float.parse semantics would differ. Native decimal parser explicitly stores/reloads binary32 before integer truncation.
+
+OnSpeederBike named actor takes precedence. Failed/no name falls back to self;this fallback faults if the script creature is null. The actor needs link+0xcd0,context byte+0x7b5==59,and linked object's word+0x1064 must match runtime global word0x7f1948. No fixed vehicle ID is invented.
+
+Source+harness compile against existing recovered packet-number source. Managed execution pending;no launch retry. Producers,lifetimes,actual global count allocation,nonfinite/out-of-range numeric conversion,and vehicle setup remain explicit boundaries.
+
+Next compact work:EitherPlayerIs/Player1Is/Player2Is exact-reference predicates,ForceAtEnd and FinishedSpline. Root retains SetDoomedEscapeLocator for formatting/locator orchestration.

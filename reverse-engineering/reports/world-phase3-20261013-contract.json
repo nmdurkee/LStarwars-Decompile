@@ -1,0 +1,131 @@
+{
+  "generatedAt": "2026-10-13T15:50:22.400Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "purpose": "Recover portal-door animation threshold updates and real scene portal record mutation. Original resource loading, scene advancement and rendering remain outside this bounded composition.",
+  "nativeEntries": {
+    "0x55fac0": {
+      "label": "Portal-door runtime transition updater",
+      "arguments": [
+        "world pointer"
+      ],
+      "details": [
+        "Read world+5048 table pointer; null returns. Iterate16-byte entries while signed index<count at world+504c. Zero/negative count performs no work.",
+        "Use original5d0420 selector: nonzero entry+4 static reference follows special+40 then matrix+48. Otherwise entry+8 dynamic reference reads special+C4; dynamic0/-1 means unavailable. Normal/static reference takes precedence when both are present.",
+        "For an available animation state, select clip from entry.scene+54 pointer table using unsigned WORD animation+5C. Always decode duration through original5ca4b0, even when configured bit0 is absent.",
+        "Current animation scalar is float32 at animation+4C. Configured entry WORD+C bit0 absent: enabled iff current>1. Bit0 set: enabled iff current>=decoded duration. Equality opens only the configured end-mode branch. QuietNaN unordered comparisons choose disabled; Infinity follows ordinary ordered comparison. No time unit is inferred.",
+        "On enabled state with cached mask2 absent, call5d9060(world.scene+13C, zero-extended entry byte+E,1); then clear mask4 and set mask2. Existing mask2 suppresses redundant calls even if mask4 is also set.",
+        "On disabled state, call mutator mode0 if mask2 is present or mask4 absent; then clear mask2 and set mask4. An already-disabled mask4 with mask2 clear suppresses repeated calls. Preserve configured bit0 and all other flags.",
+        "Mutation target uses world scene+13C, while clip selection uses each entry.scene. Prepared alternate-world-scene cases verify this distinction. Cached door transitions still update when no portal id matches."
+      ],
+      "assemblyWitnesses": [
+        "0x55fac6 table read",
+        "0x55fadd signed count guard",
+        "0x55fae5 original5d0420",
+        "0x55fb04 original5ca4b0",
+        "0x55fb14 configured mask1",
+        "0x55fb27/0x55fb30 x87 ordered/unordered parity masks",
+        "0x55fb35 cached mask2 suppression",
+        "0x55fb3a MOVZX portal id byte",
+        "0x55fb48 original scene portal mutator",
+        "0x55fb63 cached mask4 suppression"
+      ]
+    },
+    "0x5d9060": {
+      "label": "Scene portal flag mutator",
+      "arguments": [
+        "scene pointer",
+        "full signed32-bit id",
+        "full32-bit mode;0disables, any nonzero enables"
+      ],
+      "details": [
+        "Scene+6C is unsigned count. Scene+70 points to0x20-stride portal records. Counts0..6 with complete prepared backing are tested; invalid enormous counts remain outside bounds.",
+        "MOVSX sign-extends each portal record byte+1A and compares it to the full id argument. Every matching record is changed; it does not stop after the first match.",
+        "Mode0 replaces the entire portal DWORD+1C with0. Nonzero mode applies DWORD|=1 and preserves other bits. No other record fields are mutated.",
+        "Door updater MOVZX produces ids0..255; ids128..255 cannot match signed byte portal ids-128..-1. Direct mutator callers can pass negative ids and match them. This is recovered native behavior, not a claim that shipped authored portals use those values."
+      ],
+      "assemblyWitnesses": [
+        "0x5d906a unsigned count JBE",
+        "0x5d9083 MOVSX stored byte id",
+        "0x5d9093 OR DWORD,1",
+        "0x5d909e MOV DWORD,0",
+        "0x5d90af unsigned count JB"
+      ]
+    },
+    "0x5ca4b0": {
+      "label": "Raw clip duration decoder",
+      "arguments": [
+        "clip record pointer"
+      ],
+      "result": "x87float return; scalar has no inferred unit.",
+      "details": [
+        "Load rawDWORD header. Exactly414E4934 or414E4935 uses metadata; every other header is interpreted as rawfloat32. The Ghidra floating cast shown in pseudocode is not the assembly operation.",
+        "Metadata uses unsignedWORD+16 when nonzero. Otherwise return unsignedWORD+A plus unsignedWORD+E; possible sum131070 does not truncate to16 bits.",
+        "Both metadata paths convert integer to x87; the raw branch loads float32 directly. Standalone fixtures capture returned ST0 using FSTP into prepared output memory."
+      ],
+      "assemblyWitnesses": [
+        "0x5ca4b4 rawDWORD load",
+        "0x5ca4b6..0x5ca4c4 exact rawtag range",
+        "0x5ca4c6 overrideWORD+16",
+        "0x5ca4db/0x5ca4df unsigned sum operands",
+        "0x5ca4ee FLD rawfloat32"
+      ]
+    }
+  },
+  "validation": {
+    "cases": 1300,
+    "entrypointCalls": 1863,
+    "mismatches": 0,
+    "groups": {
+      "Update": 1093,
+      "Mutate": 90,
+      "Duration": 117
+    },
+    "bytesComparedAfterEveryEntrypointCall": 262144,
+    "comparison": "Complete prepared byte image compared directly against an independent Python memory contract after every step; saved fixture stores final SHA256 and actual call trace for managed replay.",
+    "nativeComposition": [
+      "0x55fac0",
+      "0x5d0420",
+      "0x5ca4b0",
+      "0x5d9060"
+    ],
+    "computationalAdapters": [],
+    "instrumentation": "Observational5d9060 entry hook records actual arguments without intercepting execution. Standalone duration return captured from ST0 with FSTP at the stop address.",
+    "portableCompile": "Core fragment and retained saved-native replay harness compile with current source dependencies.",
+    "managedReplay": "Pending. No generated executable launch retry after known restrictions."
+  },
+  "source": {
+    "path": "reverse-engineering/reconstructed/gameplay/world-phase3-20261013-portal-runtime.cs",
+    "sha256": "7fb885d09f5e2acfdb54566a61a830724e62e4e62275795055afdbdba550e599",
+    "harness": "reverse-engineering/tools/world-phase3-20261013-portable-verify.cs",
+    "fixture": "reports/world-phase3-20261013-vectors.json"
+  },
+  "priorBoundary": "world-next-20261013 recovered portal table loading/reset separately. This batch begins from prepared loader-format references; it does not claim an end-to-end loaded game.",
+  "limits": [
+    "Prepared valid scene/reference/animation/portal backing; signed door count may<=0, portal count unsigned bounded0..6. No actual scene loading, animation advancement or rendered portal visibility.",
+    "Normal reference points through valid matrix+48; dynamic0/-1 animation means unavailable. Clip indices0/7 have prepared tables.",
+    "Quiet NaNs/infinities and signed zero preserve native comparison behavior; signalingNaN payload/exception semantics are outside fixtures.",
+    "Other caller/environment portal producers are external. State cache intentionally suppresses redundant mutations even if portal state is changed elsewhere.",
+    "Managed comparison harness compilation is separate; execution remains pending."
+  ],
+  "nextWork": [
+    {
+      "address": "0x57a420",
+      "task": "Recover actual level text producer: aligned arena input, file-read max10000, parsed count+10C and global92B0C8."
+    },
+    {
+      "address": "0x54be70",
+      "task": "Recover original comment/separator normalization composed with57a420 and complete authored level text; verify newline/comment/single-slash edge behavior."
+    },
+    {
+      "address": "0x48ce00",
+      "task": "Recover scene and subsystem resource-loading phase order, abort checks and actual loaded marker+110 producer."
+    },
+    {
+      "address": "0x55f6c0",
+      "task": "Recover original resource teardown side effects and allocator ownership."
+    },
+    {
+      "task": "Join prior authored53portal definitions to actual decoded scene animation and portal records; integrate real animation advancement and rendered scene visibility."
+    }
+  ]
+}

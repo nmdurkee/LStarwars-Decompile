@@ -1,0 +1,412 @@
+{
+  "schema": "independent-reconstruction-batch-audit-v1",
+  "updated": "2026-10-13T14:57:10.507Z",
+  "scope": "2026-10-13 paused frame, five script predicates, world cache/staging, bounded grid visibility; source/assembly/fixture evidence audit",
+  "conclusion": "No confirmed mismatch within documented portable domains. Fixture retention gap found and corrected during audit. Managed source execution remains pending.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "findings": [
+    {
+      "id": "grid-replay-retention",
+      "severity": "coverage-gap",
+      "status": "resolved",
+      "observation": "Initial grid gzip omitted 256 non-unit-coordinate cases and one cross-grid cache case; native checks had executed them.",
+      "resolution": "Producer now retains coordinates and crossGrid arrays; portable harness now replays both groups.",
+      "finalFixtureGroups": {
+        "floors": 2024,
+        "grid": 784,
+        "coordinates": 256,
+        "crossGrid": 1,
+        "dispatcher": 256
+      },
+      "retainedCases": 3321,
+      "portableReplayCases": 3065,
+      "preparedManagedAssertions": 4345,
+      "dispatcherEvidenceOnly": 256
+    },
+    {
+      "id": "mapped-address-count",
+      "status": "confirmed",
+      "detail": "15 batch mapping rows add 13 distinct new native entries. 0x491d50 and shared initializer 0x441f90 were already mapped. Native dispatcher0x5f3c80 is evidence only.",
+      "manifestRows": 630,
+      "manifestDistinctAddresses": 626,
+      "coreFiles": 177
+    },
+    {
+      "id": "frame-numeric-replay",
+      "status": "reviewed",
+      "detail": "UInt32 decimal JSON values and signed variants agree across saved native fixture and harness serialization; callback rejoins after mapped instructions and is extra native evidence only."
+    },
+    {
+      "id": "script-selector-edge",
+      "status": "confirmed-native",
+      "detail": "NUL termination, int32 decimal overflow, signed prefix and no whitespace/plus skipping agree with reviewed source."
+    }
+  ],
+  "recordedSuites": {
+    "frame": {
+      "nativeCases": 208,
+      "assertionGroups": 1280,
+      "retainedGateVectors": 16,
+      "retainedPresentationVectors": 192
+    },
+    "script": {
+      "nativeAssertions": 7132,
+      "retainedBodyVectors": 6763,
+      "retainedInitializerVectors": 69,
+      "retainedShippedUses": 147,
+      "originalLiteralComparisons": 147
+    },
+    "world": {
+      "nativeCaseChecks": 1568,
+      "fullWorldComparisons": 3136,
+      "fullArenaComparisons": 3136
+    },
+    "grid": {
+      "nativeAssertions": 8153,
+      "nativeCases": 3321,
+      "portableReplayCases": 3065,
+      "preparedManagedAssertions": 4345
+    }
+  },
+  "additionalAuditChecks": {
+    "primaryReview": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 303,
+      "failures": [],
+      "groups": {
+        "independent-floor-edge": 14,
+        "independent-selector-edge": 13,
+        "native-frame-instruction-provenance": 48,
+        "native-grid-instruction-provenance": 218,
+        "native-script-byte-provenance": 10
+      },
+      "probes": [
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 1,
+          "expected": 1,
+          "context": "1\u0000tail"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 4294967295,
+          "expected": 4294967295,
+          "context": "myset\u0000tail"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 1,
+          "expected": 1,
+          "context": "-4294967295x"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 1,
+          "expected": 1,
+          "context": "18446744073709551617"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 16,
+          "expected": 16,
+          "context": "4294967312"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": "4294967313"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 16,
+          "expected": 16,
+          "context": "16.7"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": "\t1"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": " 1"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": "+16"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": "--1"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": "-0"
+        },
+        {
+          "kind": "independent-selector-edge",
+          "passed": true,
+          "got": 4294967295,
+          "expected": 4294967295,
+          "context": "MYSET"
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": -2147483648,
+          "expected": -2147483648,
+          "context": {
+            "value": -2147483648,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": -2147483648,
+          "expected": -2147483648,
+          "context": {
+            "value": -2147483648,
+            "conversion": 1
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 2147483520,
+          "expected": 2147483520,
+          "context": {
+            "value": 2147483520,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 2147483520,
+          "expected": 2147483520,
+          "context": {
+            "value": 2147483520,
+            "conversion": 1
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": {
+            "value": 0,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": {
+            "value": 0,
+            "conversion": 1
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": -1,
+          "expected": -1,
+          "context": {
+            "value": -1.401298464324817e-45,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": -1,
+          "expected": -1,
+          "context": {
+            "value": -1.401298464324817e-45,
+            "conversion": 1
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": {
+            "value": 1.401298464324817e-45,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": {
+            "value": 1.401298464324817e-45,
+            "conversion": 1
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": -2,
+          "expected": -2,
+          "context": {
+            "value": -1.0000001192092896,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": -2,
+          "expected": -2,
+          "context": {
+            "value": -1.0000001192092896,
+            "conversion": 1
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": {
+            "value": 0.9999999403953552,
+            "conversion": 0
+          }
+        },
+        {
+          "kind": "independent-floor-edge",
+          "passed": true,
+          "got": 0,
+          "expected": 0,
+          "context": {
+            "value": 0.9999999403953552,
+            "conversion": 1
+          }
+        }
+      ]
+    },
+    "worldAssemblyReview": {
+      "checks": 213,
+      "failures": []
+    },
+    "total": 516,
+    "countingPolicy": "516 audit checks are separate from suite counts:303 primary byte/edge checks and213 additional world instruction checks. These are native provenance/edge reviews, not managed execution."
+  },
+  "buildReview": {
+    "coreSources": 177,
+    "harnessSources": 183,
+    "all360InputHashesMatch": true,
+    "mismatches": [],
+    "libraryCompiled": true,
+    "unifiedVerifierCompiled": true,
+    "librarySha256": "51d28284af16e24779b4d03388f01d242fc85cabfb2ca0ddf88d767c7e1ba050",
+    "libraryOutputHashIndependentlyMatches": true,
+    "unifiedVerifierSha256Reported": "4926fb76f5c6e4841f8247755ddda3773f2a16eeec8df59db8a3b0ee83075a7b",
+    "unifiedVerifierOutputHashIndependentStatus": "Read denied EPERM through Node filesystem; reported compiler-side hash retained without independent output reread.",
+    "managedExecution": "Not attempted by audit. Prior generated executable launch EPERM is recorded in suite reports."
+  },
+  "reviewLimits": [
+    "Synthetic prepared native memory does not establish live loader/resource behavior or source-use reachability.",
+    "0x48ce00 resource loader, teardown and object state producers remain explicit adapters.",
+    "Grid625-byte bound is a tested portable domain, not native scratch capacity; malformed RLE and unsafe indices excluded.",
+    "SceneScheduling still excludes grid/tree; native dispatcher camera/portal/tree adapters are evidence boundaries.",
+    "Rigid binding covers static linear resolution and ASCII names; indexed/dynamic lookup excluded.",
+    "Compilation and native contract tests do not prove C# runtime equivalence or whole-game completion."
+  ],
+  "inputHashes": [
+    {
+      "path": "reconstructed/frame/FramePausedPresentation.cs",
+      "sha256": "2bb291b1683cab5f572d854cdc5b4334d761cffbc9c3ff87502f30cedca12205"
+    },
+    {
+      "path": "reconstructed/gameplay/script-contract-20261013-Conditions.cs",
+      "sha256": "d5cdec82cbee9d3bdbb1f473df4bdf100e22ac55d49f9dc682a4a69946cbe384"
+    },
+    {
+      "path": "reconstructed/gameplay/world-loading-20261013-contracts.cs",
+      "sha256": "bd31ed3073584bafb70fa7f8f98a6665b43cfd8e3527ac1b43e72f4b92065361"
+    },
+    {
+      "path": "reconstructed/geometry/scene-visibility-20261013-GridVisibility.cs",
+      "sha256": "85219f881383c573b2e7790321bc504966eba13286665add9e80e275b0d85c35"
+    },
+    {
+      "path": "tools/frame-paused-20261013-portable-verify.cs",
+      "sha256": "76b1ce3c810065c30fa59ca5e18545eb6c153da99acacb813d2bd9beae8587dc"
+    },
+    {
+      "path": "tools/script-contract-20261013-portable-verify.cs",
+      "sha256": "3ae8463ee757a09b89219c4896756ad4c7a268451fd67eb392ea5faffb712a9a"
+    },
+    {
+      "path": "tools/world-loading-20261013-portable-verify.cs",
+      "sha256": "a68e2442edbaed1e73bb49f6e7b6e00526e8288d6a733051616f045a1c2b5db0"
+    },
+    {
+      "path": "reconstructed/geometry/harness/scene-visibility-20261013-GridVisibilityHarness.cs",
+      "sha256": "5be6e2ab7f6cfa7708e98e1589c2518296870d72f7df80f83e1164caeeeae37e"
+    },
+    {
+      "path": "reports/frame-paused-20261013-tests.json",
+      "sha256": "fa184a7dde0aad26a9445aa7aa0e2ec7f6db5f504ab8b9a0bf6c3a1fca40f13b"
+    },
+    {
+      "path": "reports/script-contract-20261013-tests.json",
+      "sha256": "a97923f2c7ce96427ca69cca551fc25a2197e355ab79264f76fcf62b3d8e890d"
+    },
+    {
+      "path": "reports/world-loading-20261013-native-tests.json",
+      "sha256": "4478ee834b30f55a4e3a289280a7d39f5391553f9730c3404dc8066be8b9490b"
+    },
+    {
+      "path": "reports/scene-visibility-20261013-native-validation.json",
+      "sha256": "75a0fd37cf1c8cd8e1aaa1ef932324a7ca21c6872df015d787a36efd1043ae5e"
+    },
+    {
+      "path": "reports/scene-visibility-20261013-native-fixtures.json.gz",
+      "sha256": "b191ac661d6913b2fc5210359d54b45936c614480092041f0eadf66a4d5c08e0"
+    },
+    {
+      "path": "reports/reconstructed-build.json",
+      "sha256": "d2bcf0b4c27e39f35db3febce04ff7fb5edb4eb8283a93d2e6145c5326cb039d"
+    },
+    {
+      "path": "reconstructed/source-manifest.json",
+      "sha256": "560972687316b6886b8b2c131c39d027a165cd8f140bd64019e94f5b61a66113"
+    }
+  ],
+  "reproduction": {
+    "pythonExecutable": "C:/Program Files/Microsoft SDKs/Azure/CLI2/python.exe",
+    "primaryPythonCode": "import sys,importlib.util,json,struct,hashlib\nfrom pathlib import Path\nbase=Path(r'C:/Users/NathanDurkee/OneDrive - SpectrumVoIP/Desktop/SW/reverse-engineering')\nspec=importlib.util.spec_from_file_location('audit_native',base/'tools/native-x86.py'); m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m); n=m.NativeX86()\nchecks=[]\ndef add(kind,got,expected,context):\n checks.append(dict(kind=kind,passed=got==expected,got=got,expected=expected,context=context))\nfor row in json.loads((base/'reports/script-contract-20261013-assembly.json').read_text()):\n add('native-script-byte-provenance',n.read(int(row['entry'],16),row['size']).hex(),row['bytes'],row['entry'])\nfor name,rows in json.loads((base/'reports/scene-visibility-20261013-assembly.json').read_text())['functions'].items():\n for row in rows:\n  add('native-grid-instruction-provenance',n.read(int(row['address'],16),len(row['bytes'])//2).hex(),row['bytes'],row['address'])\nfor row in json.loads((base/'reports/frame-paused-20261013-tests.json').read_text())['assembly']:\n add('native-frame-instruction-provenance',n.read(int(row['address'],16),len(row['bytes'])//2).hex(),row['bytes'],row['address'])\nfor operand,want in [('1\\x00tail',1),('myset\\x00tail',0xffffffff),('-4294967295x',1),('18446744073709551617',1),('4294967312',16),('4294967313',0),('16.7',16),('\t1',0),(' 1',0),('+16',0),('--1',0),('-0',0),('MYSET',0xffffffff)]:\n n.write(n.DATA,operand.encode('ascii')+b'\\0');got=n.call(0x441f90,[0,n.DATA]);add('independent-selector-edge',got,want,operand)\nfor v in [-2147483648.,2147483520.,-0.,-1.401298464324817e-45,1.401298464324817e-45,-1.0000001192092896,0.9999999403953552]:\n bits=struct.unpack('<I',struct.pack('<f',v))[0]\n for conversion in [0,1]:\n  n.pack('<I',0x29a9c48,conversion);got=n.call(0x5d6f00,[bits]);got=got-0x100000000 if got&0x80000000 else got\n  import math\n  add('independent-floor-edge',got,math.floor(v),dict(value=v,conversion=conversion))\nprint(json.dumps(dict(binarySha256=n.sha256,checks=len(checks),failures=[x for x in checks if not x['passed']],groups={k:sum(x['kind']==k for x in checks)for k in sorted({x['kind']for x in checks})},probes=[x for x in checks if x['kind'].startswith('independent-')]),allow_nan=False))\n",
+    "worldAssemblyPythonCode": "import sys,importlib.util,json,struct,hashlib\nfrom pathlib import Path\nbase=Path(r'C:/Users/NathanDurkee/OneDrive - SpectrumVoIP/Desktop/SW/reverse-engineering')\nspec=importlib.util.spec_from_file_location('audit_native',base/'tools/native-x86.py'); m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m); n=m.NativeX86()\nfrom capstone import Cs,CS_ARCH_X86,CS_MODE_32\nmd=Cs(CS_ARCH_X86,CS_MODE_32);checks=0;errors=[]\nfor p in json.loads((base/'reports/world-loading-20261013-assembly.json').read_text())['procedures']:\n for row in p['instructions']:\n  a=int(row['address'],16);i=next(md.disasm(n.read(a,15),a));checks+=1\n  if i.mnemonic!=row['mnemonic'] or i.op_str!=row['operands']:errors.append(dict(address=row['address'],expected=[row['mnemonic'],row['operands']],actual=[i.mnemonic,i.op_str]))\nprint(json.dumps(dict(checks=checks,failures=errors)))\n"
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "schema": "native-tree-fourth-radius-stack-dependency-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "predicate": "0x5d8b60",
+  "radiusHelper": "0x5b30a0",
+  "observation": "Radius helper writes exactlyXYZ. Predicate later consumes fourth radius at local+0x3c without initializing it. Exact incoming stack word is a behavioral input.",
+  "fourthRadiusSlot": "((entryESP-4)&~15)-4",
+  "assemblyEvidence": "reports/scene-phase3-20261013-assembly.json",
+  "controlledPriorStackGroups": 24,
+  "groupsWhoseOriginalResultChanges": 15,
+  "examples": [
+    {
+      "geometry": [
+        [
+          -20,
+          -5,
+          20
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        50,
+        1
+      ],
+      "variants": [
+        {
+          "scratchWord": 3267887104,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 3212836864,
+          "nativeResult": 1
+        },
+        {
+          "scratchWord": 0,
+          "nativeResult": 1
+        },
+        {
+          "scratchWord": 1065353216,
+          "nativeResult": 1
+        },
+        {
+          "scratchWord": 1120403456,
+          "nativeResult": 2
+        }
+      ]
+    },
+    {
+      "geometry": [
+        [
+          -20,
+          -5,
+          20
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        50,
+        1
+      ],
+      "variants": [
+        {
+          "scratchWord": 3267887104,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 3212836864,
+          "nativeResult": 2
+        },
+        {
+          "scratchWord": 0,
+          "nativeResult": 2
+        },
+        {
+          "scratchWord": 1065353216,
+          "nativeResult": 2
+        },
+        {
+          "scratchWord": 1120403456,
+          "nativeResult": 2
+        }
+      ]
+    },
+    {
+      "geometry": [
+        [
+          -20,
+          5,
+          20
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        50,
+        1
+      ],
+      "variants": [
+        {
+          "scratchWord": 3267887104,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 3212836864,
+          "nativeResult": 1
+        },
+        {
+          "scratchWord": 0,
+          "nativeResult": 1
+        },
+        {
+          "scratchWord": 1065353216,
+          "nativeResult": 1
+        },
+        {
+          "scratchWord": 1120403456,
+          "nativeResult": 2
+        }
+      ]
+    },
+    {
+      "geometry": [
+        [
+          -20,
+          5,
+          20
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        50,
+        1
+      ],
+      "variants": [
+        {
+          "scratchWord": 3267887104,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 3212836864,
+          "nativeResult": 2
+        },
+        {
+          "scratchWord": 0,
+          "nativeResult": 2
+        },
+        {
+          "scratchWord": 1065353216,
+          "nativeResult": 2
+        },
+        {
+          "scratchWord": 1120403456,
+          "nativeResult": 2
+        }
+      ]
+    },
+    {
+      "geometry": [
+        [
+          0,
+          -5,
+          0.1
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        50,
+        1
+      ],
+      "variants": [
+        {
+          "scratchWord": 3267887104,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 3212836864,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 0,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 1065353216,
+          "nativeResult": 0
+        },
+        {
+          "scratchWord": 1120403456,
+          "nativeResult": 2
+        }
+      ]
+    }
+  ],
+  "portablePolicy": "Require an explicit finite raw fourth-radius word per predicate call. No substitute fourth extent transform or implicit zero initialization.",
+  "remaining": "Inspect representative caller stack lifetimes and authored tree loaders before asserting live-tree behavior; numeric plane production is also still supplied."
+}

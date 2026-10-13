@@ -1,0 +1,58 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x4505d0",
+      "method": "PathConnectionFlagCommands.Set",
+      "sourceFile": "gameplay/movement-phase8-20261013-ConnectionFlags.cs",
+      "coverage": "Full bounded first-call/world/header gates, ordered from/to substring and mask-token parsing, three existing native flag dialects/global fallback composition, ordered real path/edge lookup, directional/opposite mask writes with automatic/bothways behavior. No computational service adapters."
+    }
+  ],
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SetPathCnxFlag",
+      "function": "0x4505d0",
+      "sourceUses": 51,
+      "scope": "Full bounded first-call/world/header gates, ordered from/to substring and mask-token parsing, three existing native flag dialects/global fallback composition, ordered real path/edge lookup, directional/opposite mask writes with automatic/bothways behavior. No computational service adapters."
+    }
+  ],
+  "cases": 891,
+  "assertionGroups": 1782,
+  "groups": {
+    "guard-gates": 40,
+    "whole-token-dialects": 198,
+    "opposite-mask-precedence": 432,
+    "ordered-edge-lookup": 162,
+    "ordered-substrings": 8,
+    "authored": 51
+  },
+  "adapters": [],
+  "composition": {
+    "existingSource": "navigation/ConnectionControllers.cs",
+    "actualNativeDependencies": [
+      "0x44d870",
+      "0x407d00",
+      "0x4cbf70",
+      "0x4817e0",
+      "0x51ad80",
+      "0x51adf0",
+      "0x4f8a70",
+      "0x4f8b10"
+    ],
+    "newDistinctEntries": 1
+  },
+  "rules": [
+    "from substring skip5 precedes to substring skip3 and mask lookup; DONTTOGGLE contains to and is consumed as a destination token in this command.",
+    "FALSE is sticky; laterTRUE cannot restore enable. bothways is sticky and automatic for OBSTACLE unless runtime opposite-mask comparisons take precedence.",
+    "Enable firstORs requestedmask then clears accumulatedopposite mask; disable clears onlyrequestedmask and preservesopposite bits.",
+    "First matchingadjacent edge wins; endpoint0target impliessecond flagsword, endpoint1target impliesfirst flagsword.",
+    "Duplicate names selectfirst locator, and same resolvednode for from/to refusesedge lookup."
+  ],
+  "limits": [
+    "Prepared valid ASCIIstrings and byte-counted path/adjacency backing. Native world/path allocation/loading and consumer scheduling remain external.",
+    "Three flag dialects and explicit global fallback/opposite masks; normal mode/global producer state is provided, not inferred.",
+    "Native parser from/to substring skips use valid prepared offsets; malformed unterminated or out-of-bounds strings excluded."
+  ],
+  "managedReplay": "Prepared full65536byte images andreturn checks; unexecuted."
+}

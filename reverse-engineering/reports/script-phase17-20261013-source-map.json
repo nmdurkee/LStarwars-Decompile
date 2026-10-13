@@ -1,0 +1,41 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase17-20261013-VehicleStateBridge.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x5a03d0",
+      "method": "VehicleResponseTimer.Update",
+      "scope": "Finite vehicle timer/re-entry; signed byte/full DWORD match, float32 commit then expiry, original sealed response composition.",
+      "file": "gameplay/script-phase17-20261013-VehicleStateBridge.cs",
+      "evidence": "reports/script-phase17-20261013-contract.json"
+    },
+    {
+      "address": "0x52c790",
+      "method": "PreparedBaseScriptState.Change",
+      "scope": "Existing entry expanded by lazy ASCII list/packet hydration and ordered default/enter/deadline/depth commits using unchanged typed state core; zero extra credit.",
+      "file": "gameplay/script-phase17-20261013-VehicleStateBridge.cs",
+      "evidence": "reports/script-phase17-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase17-20261013-contract.json",
+    "reports/script-phase17-20261013-tests.json",
+    "reports/script-phase17-20261013-assembly.json",
+    "reports/script-phase17-20261013-fixture-replay.json"
+  ],
+  "harnessFile": "../tools/script-phase17-20261013-portable-verify.cs",
+  "verifierModule": "script-phase17-20261013",
+  "verifierClass": "ScriptPhase1720261013Verify",
+  "fixture": "reports/script-phase17-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase17-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "One new entry5a03d0;52c790 and lookup/enter/bind helpers existing entries broadened scope only. No authored command credit.",
+    "661 timer cases+47 state cases+26 original full pipeline cases retained;2242 correlated native assertions/0. Additional2242 same-model fixture readback checks/0 not added to native evidence.",
+    "Includes all256 signed contextbytes,256 irregular timer pairs, repeated expiry/re-entry, null and live callback boundaries, same/different script identity, sequential default aliases, late first-action/default-copy faults, and empty-list/name-null lazy read guards.",
+    "Uses immutable phases13-16 plus existing ActorActivation.cs/ScriptRuntime.cs. Root owns registration and combined build; no worker bin changes or managed launch.",
+    "Worker slot released for requested phase12 independent audit. Next substantive hydration candidate: existing415000 Rebind, then actual52cc90 script dispatcher if recovery scope remains bounded."
+  ]
+}

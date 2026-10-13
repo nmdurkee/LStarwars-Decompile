@@ -1,0 +1,35 @@
+{
+  "schema": "original-stateful-visibility-dispatcher-v1",
+  "passed": true,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "checks": 2153,
+  "counts": {
+    "portalEntriesExecuted": 32,
+    "gridEntriesExecuted": 35,
+    "treeAdapterCalls": 24,
+    "cameraSwitchAdapterCalls": 131,
+    "cameraRestoreAdapterCalls": 65,
+    "cases": 512,
+    "sequenceSteps": 4
+  },
+  "errors": [],
+  "adapters": {
+    "0x5d6900": "Stateful camera service setsmode/position,updates counts and initial context before native reset. No camera-matrix equivalence claimed.",
+    "0x5d8fb0": "Stateful tree service observes nativearguments/contextthen changescount/scratch/pointer/flags; actual tree traversal not claimed.",
+    "0x603cc0": "Stateful camera restore observes fixedglobalargument and changesposition; actual camera restore not claimed."
+  },
+  "unchangedNative": [
+    "0x5f3c80",
+    "0x5d6f30",
+    "0x5d6f00",
+    "0x5eeb30",
+    "0x600bd0",
+    "0x6e6b90",
+    "0x6e6950"
+  ],
+  "portalScope": "Actual portal entry executes empty required counts:visibilityattachment and preserved bits; recursion covered separately,not newly asserted here.",
+  "fixtureFile": "scene-next-20261013-native-fixtures.json.gz",
+  "retention": "Every case and sequence step retained including before/after, call order and service-edge observations.",
+  "portableReplayCases": 516,
+  "preparedManagedAssertions": 3151
+}

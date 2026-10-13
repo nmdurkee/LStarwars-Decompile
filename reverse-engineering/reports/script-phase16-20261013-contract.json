@@ -1,0 +1,112 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "functions": [
+    {
+      "address": "0x54a3e0",
+      "endExclusive": "0x54a50a",
+      "scope": "Original camera transition state producer, raw pointer aliases and exact load/store fault ordering.",
+      "ordering": [
+        "If camera argument is zero, load default pointer 0x8021b4 before testing duration. Duration must compare greater than zero: negative/zero/any NaN skips all camera reads; positive infinity passes.",
+        "Byte camera+0x22c=0xff suppresses all state writes. Cache WORD+0x21e and WORD+0x222 before first blend store at +0x1c4.",
+        "Write cached21e to21c then float +0 at1bc; read226 before storing duration1c0 and cached222 to220/226 to224.",
+        "Read22d before writing22b=(mode!=0)+1. Read140 before writing22e. Position/vector copy reads and writes retain native instruction order, including late unmapped-source faults.",
+        "Copies source140/144/148 to134/138/13c and14c/150/154, source128/12c/130 to164/168/16c and17c/180/184; source words21e/222/226 to21c/220/224, byte22d to22e;22a=1 immediately before final184 store."
+      ],
+      "faultEvidence": "Prepared upper page at0x10301000 with unmapped lower page; four camera bases exercise pre-write and progressively committed state. Native and source do not hydrate whole camera before writes.",
+      "floatDomain": "Duration predicate supports finite, infinity and NaN gates. Written blend fields support finite/infinite/quiet-NaN float moves; signaling-NaN store payload semantics excluded."
+    },
+    {
+      "address": "0x54a850",
+      "endExclusive": "0x54a892",
+      "scope": "Original controller feedback wrapper with actual compiler conversion executed natively; terminal698900 driver backend explicit.",
+      "ordering": [
+        "Null controller exits before loading/converting duration and before reading conversion-dispatch global. Forwarded caller mode is unused.",
+        "Original qword constant0x7531f8 equals255. Multiply float32 duration with64-significand x87 intermediate; actual6e6b90 conversion reads0x29a9c48 and truncates.",
+        "Only signed integer results above255 are capped. Negative values remain two-complement bits. Source reuses PlaybackWide.TruncateInt32 for the bounded finite scaled range.",
+        "Backend698900 receives(controller,0,amount,0,original duration float32 bits)."
+      ],
+      "limits": [
+        "Nonnull-controller duration finite and scaled truncation result fits Int32. Nonfinite/overflow conversion results and FPU status are outside bounded source projection.",
+        "Null controller tested with infinities and both quiet/signaling NaN, with no duration conversion.",
+        "Both original SSE/qword-store and legacy FISTP/correction branches execute in retained fixtures; no standalone address credit for compiler6e6b90."
+      ]
+    },
+    {
+      "address": "0x54a8a0",
+      "endExclusive": "0x54a8c8",
+      "scope": "Original adjacent controller scalar wrapper to the same terminal backend.",
+      "ordering": [
+        "Null controller skips all scalar moves and backend call.",
+        "Otherwise backend receives(controller,supplied float32 scalar,0,0,0). Finite/infinite/quiet-NaN moves retained; signaling-NaN stores excluded."
+      ]
+    }
+  ],
+  "composition": "RecoveredCleanupEffectServices replaces camera and feedback services in immutable phase15 vehicle/action/cleanup adapters; RecoveredCameraPipelinePorts replaces the outer pipeline camera port. Backend698900 and dynamic95660c notification remain explicit.",
+  "nativeEvidence": {
+    "checks": 3429,
+    "mismatches": 0,
+    "standaloneCases": 1124,
+    "pipelineCases": 19,
+    "standaloneFaults": 6,
+    "pipelineFaults": 3,
+    "originalSSEConversionEntries": 300,
+    "originalLegacyConversionEntries": 294,
+    "randomFeedbackCases": 512,
+    "allByteCameraGates": 256,
+    "assertionsAreCorrelated": true
+  },
+  "unsupportedObservations": {
+    "count": 14,
+    "retainedIn": "native-fixtures.unsupportedObservations",
+    "reason": "Original isolated Unicorn FLD/FSTP retained signaling-NaN payload bits, differing from a candidate quiet-store reference model. The managed source rejects such stores. Another execution backend is required before claiming payload semantics.",
+    "coverageCredit": 0
+  },
+  "fixtureReadback": {
+    "checks": 3429,
+    "mismatches": 0,
+    "scope": "Same contract model replay, not new native evidence."
+  },
+  "remainingAdapters": {
+    "0x698900": {
+      "name": "ControllerRequest",
+      "argc": 5
+    },
+    "0x10200400": {
+      "name": "Notify",
+      "argc": 1
+    },
+    "0x415000": {
+      "name": "Rebind",
+      "argc": 1
+    },
+    "0x52c790": {
+      "name": "ChangeState",
+      "argc": 2
+    },
+    "0x52cc90": {
+      "name": "RunScript",
+      "argc": 5
+    },
+    "0x4c99b0": {
+      "name": "DistanceFactor",
+      "argc": 2
+    },
+    "0x561e20": {
+      "name": "DirectedJump",
+      "argc": 6
+    },
+    "0x681e90": {
+      "name": "PlayerSound",
+      "argc": 2
+    },
+    "0x681eb0": {
+      "name": "WorldSound",
+      "argc": 3
+    }
+  },
+  "authoredCommandCredit": 0,
+  "wholeRuntimeLimitations": [
+    "Controller hardware/driver, audio, dynamic notification and script dispatch are explicit ports. No Windows game execution.",
+    "Prepared isolated memory has native branch/fault behavior within documented scalar domain; FPU status is outside exported state."
+  ]
+}

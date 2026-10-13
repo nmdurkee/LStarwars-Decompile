@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-13T14:31:02.241067+00:00",
+  "generatedAt": "2026-10-13T20:57:16.301724+00:00",
   "auditMode": "Refreshed from the semantic ledger after the currently established bounded command contracts. No new native implementation or execution occurs in this prioritization refresh.",
   "inputs": [
     {
       "file": "reverse-engineering/reports/gameplay-command-semantic-coverage.json",
-      "sha256": "4b6266e9e72f5ada2b7842050e52960f5e8c3b0161c8caa7177508b4bbd44fe2"
+      "sha256": "ac3a8dc47b9480f8909e319310086f7ff79b47b34961d7d679495147e153e02c"
     },
     {
       "file": "reverse-engineering/reports/gameplay-dispatch-contract.json",
@@ -12,20 +12,20 @@
     },
     {
       "file": "reverse-engineering/reports/gameplay-native-index.json",
-      "sha256": "9cea5b121ce50908d94d1461a7563c5315ea73a24ec29041cee879ba916bd8df"
+      "sha256": "dd7ab8f7156f258ff31752adb5be3c350ed615687e67e258ded0b317e896c4b6"
     }
   ],
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "counts": {
     "catalogNames": 434,
-    "boundedContractNames": 119,
-    "uncontractedNames": 315,
-    "uncontractedSourceUses": 2829,
-    "nativeBoundButUncontractedNames": 277,
+    "boundedContractNames": 190,
+    "uncontractedNames": 244,
+    "uncontractedSourceUses": 1257,
+    "nativeBoundButUncontractedNames": 206,
     "missingNativeBindingNames": 38,
     "missingNativeBindingSourceUses": 227,
-    "top20SourceUses": 886,
-    "top20MissingBindings": 2,
+    "top20SourceUses": 353,
+    "top20MissingBindings": 4,
     "sharedHandlerClusters": 3,
     "sharedHandlerSourceUses": 506,
     "sameSpellingDifferentHandlerGroups": 7,
@@ -33,556 +33,6 @@
   },
   "countPolicy": "A recovered dispatch pointer is not a semantic implementation. Only explicitly established entrypoint contracts are marked bounded-native-contract. Helper/animation/character-parser evidence is not promoted to unrelated command semantics. Source uses count this source-preserving catalog, including shipped alternate files; counts may differ from filtered literal-argument fixture datasets.",
   "top20": [
-    {
-      "kind": "scp-action",
-      "name": "BigJumpToLocator",
-      "spellings": [
-        "BigJumpToLocator"
-      ],
-      "sourceUses": 87,
-      "status": "dispatch-only",
-      "address": "0x446450",
-      "table": "scp-game-actions",
-      "tableIndex": 9,
-      "tableEntryVa": "0x7f70cc",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
-          "line": 100,
-          "state": "BigJumpRight",
-          "text": "BigJumpToLocator \"name=Top_Right\" \"jump_factor=0.5\"",
-          "args": [
-            "name=Top_Right",
-            "jump_factor=0.5"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
-          "line": 160,
-          "state": "BigJumpLeft",
-          "text": "BigJumpToLocator \"name=Top_Left\" \"jump_factor=0.5\"",
-          "args": [
-            "name=Top_Left",
-            "jump_factor=0.5"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
-          "line": 173,
-          "state": "GoToBigJumpLocator",
-          "text": "BigJumpToLocator",
-          "args": []
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_446450.c",
-      "corpusSha256": "6a060232d01d9010dc63b3ecb64f9080bb8bdbc3d40686c5a585e76c55146ab8",
-      "pseudocodeLines": 120,
-      "directCalleeTokens": [
-        "FUN_00446450",
-        "FUN_004f8a70",
-        "FUN_005147c0",
-        "FUN_0051ac10",
-        "FUN_00561e20",
-        "FUN_005b9e90",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 7,
-      "rankBySourceUse": 1
-    },
-    {
-      "kind": "scp-action",
-      "name": "FollowPath",
-      "spellings": [
-        "FollowPath"
-      ],
-      "sourceUses": 77,
-      "status": "dispatch-only",
-      "address": "0x536dc0",
-      "table": "scp-builtin-actions",
-      "tableIndex": 38,
-      "tableEntryVa": "0x801b88",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LAUNCH_TIE.SCP",
-          "line": 48,
-          "state": "Retreat3",
-          "text": "FollowPath",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/BONUS_GUNSHIP/BONUS_GUNSHIP_A/AI/VEHICLE.SCP",
-          "line": 26,
-          "state": "Base",
-          "text": "FollowPath \"WALK\"",
-          "args": [
-            "WALK"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/BONUS_GUNSHIP/BONUS_GUNSHIP_A/AI/VEHICLE.SCP",
-          "line": 36,
-          "state": "Update",
-          "text": "FollowPath \"WALK\"",
-          "args": [
-            "WALK"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_536dc0.c",
-      "corpusSha256": "05bda23f91d6e5a57e2172d4663e192c11eaf0955d4a34d324f49a60c135438c",
-      "pseudocodeLines": 87,
-      "directCalleeTokens": [
-        "FUN_004f8a70",
-        "FUN_00514920",
-        "FUN_0051c6a0",
-        "FUN_0051d130",
-        "FUN_0052fda0",
-        "FUN_00536dc0",
-        "FUN_005b9dd0"
-      ],
-      "directCalleeTokenCount": 7,
-      "rankBySourceUse": 2
-    },
-    {
-      "kind": "scp-action",
-      "name": "GoToOrigin",
-      "spellings": [
-        "GoToOrigin"
-      ],
-      "sourceUses": 71,
-      "status": "dispatch-only",
-      "address": "0x536330",
-      "table": "scp-builtin-actions",
-      "tableIndex": 34,
-      "tableEntryVa": "0x801b58",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/FISHING.SCP",
-          "line": 49,
-          "state": "WaitBeforeFishing",
-          "text": "GoToOrigin \"mintime=3\" \"maxtime=5\"",
-          "args": [
-            "mintime=3",
-            "maxtime=5"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/MISSIONNEUTRAL.SCP",
-          "line": 22,
-          "state": "WalkToOrigin",
-          "text": "GoToOrigin \"waittime=10\" \"walk\"",
-          "args": [
-            "waittime=10",
-            "walk"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/DARTHMAUL.SCP",
-          "line": 82,
-          "state": "WaitForDroidsToBeKilled",
-          "text": "GoToOrigin",
-          "args": []
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_536330.c",
-      "corpusSha256": "51fca81f0b11b9de3f682e58e08a868309c791988d6f290683bc3aa1123a9943",
-      "pseudocodeLines": 129,
-      "directCalleeTokens": [
-        "FUN_004f1ff0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_00514920",
-        "FUN_0052fcb0",
-        "FUN_00536330",
-        "FUN_005b3620",
-        "FUN_005b37d0",
-        "FUN_005b3c50",
-        "FUN_005b3cf0",
-        "FUN_005b9dd0"
-      ],
-      "directCalleeTokenCount": 11,
-      "rankBySourceUse": 3
-    },
-    {
-      "kind": "scp-action",
-      "name": "AlertCreatures",
-      "spellings": [
-        "AlertCreatures"
-      ],
-      "sourceUses": 67,
-      "status": "dispatch-only",
-      "address": "0x454150",
-      "table": "scp-game-actions",
-      "tableIndex": 151,
-      "tableEntryVa": "0x7f7774",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/MTT_DROID.SCP",
-          "line": 25,
-          "state": "Base",
-          "text": "AlertCreatures \"character=player\"",
-          "args": [
-            "character=player"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_C/AI/KAMINODROID.SCP",
-          "line": 24,
-          "state": "Base",
-          "text": "AlertCreatures \"character=player\"",
-          "args": [
-            "character=player"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/ATTACK.SCP",
-          "line": 9,
-          "state": "Base",
-          "text": "AlertCreatures \"character=player\"",
-          "args": [
-            "character=player"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_454150.c",
-      "corpusSha256": "36274f4710940ec085dff37a91c64144d603d75e47fe0455e001dc201b4a3761",
-      "pseudocodeLines": 44,
-      "directCalleeTokens": [
-        "FUN_004399e0",
-        "FUN_00454150",
-        "FUN_004f8a70"
-      ],
-      "directCalleeTokenCount": 3,
-      "rankBySourceUse": 4
-    },
-    {
-      "kind": "scp-condition",
-      "name": "PartyUnderCover",
-      "spellings": [
-        "PartyUnderCover"
-      ],
-      "sourceUses": 55,
-      "status": "dispatch-only",
-      "address": "0x442cf0",
-      "table": "scp-game-conditions",
-      "tableIndex": 44,
-      "tableEntryVa": "0x7f6a68",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/STORM.SCP",
-          "line": 3,
-          "state": "Base",
-          "text": "if PartyUnderCover == 0 and",
-          "args": [
-            "0",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/STORM.SCP",
-          "line": 6,
-          "state": "Base",
-          "text": "if PartyUnderCover == 0 and",
-          "args": [
-            "0",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/STORM.SCP",
-          "line": 28,
-          "state": "Approach",
-          "text": "if PartyUnderCover == 1 goto Base",
-          "args": [
-            "1",
-            "goto",
-            "Base"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_442cf0.c",
-      "corpusSha256": "c8e88dba01f361dda21b13ef042b499424845a7ed8ff1fa6865e8c1ac1728506",
-      "pseudocodeLines": 15,
-      "directCalleeTokens": [
-        "FUN_00442cf0"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 5
-    },
-    {
-      "kind": "scp-action",
-      "name": "EnableSock",
-      "spellings": [
-        "EnableSock"
-      ],
-      "sourceUses": 55,
-      "status": "dispatch-only",
-      "address": "0x44ce00",
-      "table": "scp-game-actions",
-      "tableIndex": 104,
-      "tableEntryVa": "0x7f7540",
-      "tableThirdWord": "0x1",
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/LEVEL.SCP",
-          "line": 20,
-          "state": "Lap1",
-          "text": "EnableSock \"ix=0\" \"TRUE\"",
-          "args": [
-            "ix=0",
-            "TRUE"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/LEVEL.SCP",
-          "line": 21,
-          "state": "Lap1",
-          "text": "EnableSock \"ix=1\" \"FALSE\"",
-          "args": [
-            "ix=1",
-            "FALSE"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_B/AI/LEVEL.SCP",
-          "line": 22,
-          "state": "Lap1",
-          "text": "EnableSock \"ix=2\" \"FALSE\"",
-          "args": [
-            "ix=2",
-            "FALSE"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44ce00.c",
-      "corpusSha256": "a11af2bdc9cac5854991195912558252ff6c238bc92aa4f77464c3d5b3a72143",
-      "pseudocodeLines": 55,
-      "directCalleeTokens": [
-        "FUN_0044ce00",
-        "FUN_004f8a70",
-        "FUN_005147c0",
-        "FUN_0053f7e0",
-        "FUN_00541430",
-        "FUN_00541460",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 7,
-      "rankBySourceUse": 6
-    },
-    {
-      "kind": "scp-action",
-      "name": "SetPathCnxFlag",
-      "spellings": [
-        "SetPathCnxFlag"
-      ],
-      "sourceUses": 51,
-      "status": "dispatch-only",
-      "address": "0x4505d0",
-      "table": "scp-game-actions",
-      "tableIndex": 114,
-      "tableEntryVa": "0x7f75b8",
-      "tableThirdWord": "0x1",
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 175,
-          "state": "Phase2_GoToPlatform1",
-          "text": "SetPathCnxFlag \"from=platform1a\" \"to=platform1b\" \"on_flag=DBLJUMP\" \"bothways\"",
-          "args": [
-            "from=platform1a",
-            "to=platform1b",
-            "on_flag=DBLJUMP",
-            "bothways"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 210,
-          "state": "Phase2_GoToPlatform2",
-          "text": "SetPathCnxFlag \"from=platform2a\" \"to=platform2b\" \"on_flag=DBLJUMP\" \"bothways\"",
-          "args": [
-            "from=platform2a",
-            "to=platform2b",
-            "on_flag=DBLJUMP",
-            "bothways"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 245,
-          "state": "Phase2_GoToPlatform3",
-          "text": "SetPathCnxFlag \"from=platform3a\" \"to=platform3b\" \"on_flag=DBLJUMP\" \"bothways\"",
-          "args": [
-            "from=platform3a",
-            "to=platform3b",
-            "on_flag=DBLJUMP",
-            "bothways"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4505d0.c",
-      "corpusSha256": "5589dab980e740780a22feede3b411376ee990ba5ca27bfbdba5ab0b76cb3057",
-      "pseudocodeLines": 99,
-      "directCalleeTokens": [
-        "FUN_0044d870",
-        "FUN_004505d0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_0051adf0"
-      ],
-      "directCalleeTokenCount": 5,
-      "rankBySourceUse": 7
-    },
-    {
-      "kind": "scp-action",
-      "name": "CreatePod",
-      "spellings": [
-        "CreatePod"
-      ],
-      "sourceUses": 46,
-      "status": "dispatch-only",
-      "address": "0x4dd810",
-      "table": "scp-game-actions",
-      "tableIndex": 197,
-      "tableEntryVa": "0x7f799c",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/LEVEL.SCP",
-          "line": 18,
-          "state": "StartLap1",
-          "text": "CreatePod \"spline_id=1\" \"type=MiscPod\" \"spline_start=0.2\" \"spline_end=1\" \"pacemaker\"",
-          "args": [
-            "spline_id=1",
-            "type=MiscPod",
-            "spline_start=0.2",
-            "spline_end=1",
-            "pacemaker"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/LEVEL.SCP",
-          "line": 19,
-          "state": "StartLap1",
-          "text": "CreatePod \"spline_id=2\" \"type=MiscPod2\" \"spline_start=0.15\" \"spline_end=0.95\"",
-          "args": [
-            "spline_id=2",
-            "type=MiscPod2",
-            "spline_start=0.15",
-            "spline_end=0.95"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_A/AI/LEVEL.SCP",
-          "line": 20,
-          "state": "StartLap1",
-          "text": "CreatePod \"spline_id=3\" \"type=AnotherMiscPod\" \"spline_start=0.1\" \"spline_end=0.9\"",
-          "args": [
-            "spline_id=3",
-            "type=AnotherMiscPod",
-            "spline_start=0.1",
-            "spline_end=0.9"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4dd810.c",
-      "corpusSha256": "b3aec5912cacd883d2925e065a303881e06d765d5d080befc00f9c815b1cb1c3",
-      "pseudocodeLines": 190,
-      "directCalleeTokens": [
-        "FUN_0040f450",
-        "FUN_0043d890",
-        "FUN_004d8280",
-        "FUN_004d94b0",
-        "FUN_004d94f0",
-        "FUN_004dd810",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_005147c0",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 10,
-      "rankBySourceUse": 8
-    },
-    {
-      "kind": "scp-action",
-      "name": "SetDoomedEscapeLocator",
-      "spellings": [
-        "SetDoomedEscapeLocator"
-      ],
-      "sourceUses": 40,
-      "status": "dispatch-only",
-      "address": "0x446b30",
-      "table": "scp-game-actions",
-      "tableIndex": 11,
-      "tableEntryVa": "0x7f70e4",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 14,
-          "state": "Base",
-          "text": "SetDoomedEscapeLocator \"name=Recover3\"",
-          "args": [
-            "name=Recover3"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/JANGO.SCP",
-          "line": 50,
-          "state": "StartFight",
-          "text": "SetDoomedEscapeLocator \"name=CENTRE\"",
-          "args": [
-            "name=CENTRE"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_F/AI/JANGO.SCP",
-          "line": 40,
-          "state": "GotoWait1",
-          "text": "SetDoomedEscapeLocator \"name=jango_1\"",
-          "args": [
-            "name=jango_1"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_446b30.c",
-      "corpusSha256": "b4ade46414b2e7c53dab4d48493f334c7a72c299f8767b9dfcb43b9ca9b79990",
-      "pseudocodeLines": 119,
-      "directCalleeTokens": [
-        "FUN_00446b30",
-        "FUN_004f8a70",
-        "FUN_005147c0",
-        "FUN_0051ac10",
-        "FUN_005b9e90",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 6,
-      "rankBySourceUse": 9
-    },
     {
       "kind": "scp-action",
       "name": "SetDefensive",
@@ -940,416 +390,7 @@
       ],
       "lexicalNearMatchesNotBindings": [],
       "qualification": "No exact native table binding in the current source-preserving catalog. Near matches are spelling leads only; this audit does not correct source, invent aliases, or declare occurrences unreachable.",
-      "rankBySourceUse": 10
-    },
-    {
-      "kind": "scp-action",
-      "name": "MoveForward",
-      "spellings": [
-        "MoveForward"
-      ],
-      "sourceUses": 36,
-      "status": "dispatch-only",
-      "address": "0x4527e0",
-      "table": "scp-game-actions",
-      "tableIndex": 132,
-      "tableEntryVa": "0x7f7690",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LAUNCH_TIE.SCP",
-          "line": 57,
-          "state": "Retreat",
-          "text": "MoveForward \"min_turn=30\" \"max_turn=60\" \"rand_turn_dir\"",
-          "args": [
-            "min_turn=30",
-            "max_turn=60",
-            "rand_turn_dir"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/E1VEHICLEBONUS/E1VEHICLEBONUS_A/AI/ENEMY.SCP",
-          "line": 70,
-          "state": "Retreat",
-          "text": "MoveForward \"min_turn=30\" \"max_turn=60\" \"rand_turn_dir\"",
-          "args": [
-            "min_turn=30",
-            "max_turn=60",
-            "rand_turn_dir"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/E2VEHICLEBONUS/E2VEHICLEBONUS_A/AI/ENEMY.SCP",
-          "line": 70,
-          "state": "Retreat",
-          "text": "MoveForward \"min_turn=30\" \"max_turn=60\" \"rand_turn_dir\"",
-          "args": [
-            "min_turn=30",
-            "max_turn=60",
-            "rand_turn_dir"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4527e0.c",
-      "corpusSha256": "16c0cab73ddf933d8e36e8707ddef5c0d70103a562ddb8faab0f4211dc31542e",
-      "pseudocodeLines": 102,
-      "directCalleeTokens": [
-        "FUN_004527e0",
-        "FUN_004f8a70",
-        "FUN_005147c0",
-        "FUN_0052fcb0",
-        "FUN_005b3620",
-        "FUN_005b37d0",
-        "FUN_005b9dd0",
-        "FUN_005b9e90",
-        "FUN_005be590",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 10,
-      "rankBySourceUse": 11
-    },
-    {
-      "kind": "scp-action",
-      "name": "SelectRandomSpline",
-      "spellings": [
-        "SelectRandomSpline"
-      ],
-      "sourceUses": 36,
-      "status": "dispatch-only",
-      "address": "0x449f70",
-      "table": "scp-game-actions",
-      "tableIndex": 78,
-      "tableEntryVa": "0x7f7408",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/AI/LEVEL.SCP",
-          "line": 16,
-          "state": "Start",
-          "text": "SelectRandomSpline \"splines=ai\" \"unused\"",
-          "args": [
-            "splines=ai",
-            "unused"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/AI/LEVEL.SCP",
-          "line": 20,
-          "state": "Start",
-          "text": "SelectRandomSpline \"splines=ai\" \"unused\"",
-          "args": [
-            "splines=ai",
-            "unused"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_A/AI/LEVEL.SCP",
-          "line": 24,
-          "state": "Start",
-          "text": "SelectRandomSpline \"splines=ai\" \"unused\"",
-          "args": [
-            "splines=ai",
-            "unused"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_449f70.c",
-      "corpusSha256": "c66eb5d814e81df5d2fce5b6e13f0871634613dbf97a043ed3314e472cfbcef9",
-      "pseudocodeLines": 104,
-      "directCalleeTokens": [
-        "FUN_00449f70",
-        "FUN_004f8a70",
-        "FUN_0054fa60",
-        "FUN_005d0690",
-        "FUN_005d0740"
-      ],
-      "directCalleeTokenCount": 5,
-      "rankBySourceUse": 12
-    },
-    {
-      "kind": "scp-condition",
-      "name": "OpponentIsAThreat",
-      "spellings": [
-        "OpponentIsAThreat"
-      ],
-      "sourceUses": 32,
-      "status": "dispatch-only",
-      "address": "0x440df0",
-      "table": "scp-game-conditions",
-      "tableIndex": 62,
-      "tableEntryVa": "0x7f6b40",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_B/AI/PARTY.SCP",
-          "line": 32,
-          "state": "UpdateJedi",
-          "text": "if OpponentIsAThreat == 1",
-          "args": [
-            "1"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/E2CHARACTERBONUS/E2CHARACTERBONUS_A/AI/BLASTER.SCP",
-          "line": 52,
-          "state": "BlasterAlert",
-          "text": "if OpponentIsAThreat == 1 and",
-          "args": [
-            "1",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/E2CHARACTERBONUS/E2CHARACTERBONUS_A/AI/BLASTER.SCP",
-          "line": 55,
-          "state": "BlasterAlert",
-          "text": "if OpponentIsAThreat == 0 and",
-          "args": [
-            "0",
-            "and"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_440df0.c",
-      "corpusSha256": "41f289896551b9cbf28fc7234d2152d756cfaea253d4650a53aa6f075f05fa9d",
-      "pseudocodeLines": 22,
-      "directCalleeTokens": [
-        "FUN_00440df0"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 13
-    },
-    {
-      "kind": "scp-action",
-      "name": "ReleaseTakeOver",
-      "spellings": [
-        "ReleaseTakeOver"
-      ],
-      "sourceUses": 31,
-      "status": "dispatch-only",
-      "address": "0x4545d0",
-      "table": "scp-game-actions",
-      "tableIndex": 155,
-      "tableEntryVa": "0x7f77a4",
-      "tableThirdWord": "0x1",
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/AI/THIEF.SCP",
-          "line": 88,
-          "state": "GetOutSpeeder",
-          "text": "ReleaseTakeOver",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/THIEF.SCP",
-          "line": 91,
-          "state": "GetOutSpeeder",
-          "text": "ReleaseTakeOver",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/USEDJAWA.SCP",
-          "line": 286,
-          "state": "GetOutSpeeder",
-          "text": "ReleaseTakeOver",
-          "args": []
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4545d0.c",
-      "corpusSha256": "64c327253dcd16496455aaab0450899ae9b18c5c879ac8a85d5e399491ed37ae",
-      "pseudocodeLines": 44,
-      "directCalleeTokens": [
-        "FUN_004545d0",
-        "FUN_004882d0",
-        "FUN_004f8a70"
-      ],
-      "directCalleeTokenCount": 3,
-      "rankBySourceUse": 14
-    },
-    {
-      "kind": "scp-condition",
-      "name": "RigidAnimFrame",
-      "spellings": [
-        "RigidAnimFrame"
-      ],
-      "sourceUses": 30,
-      "status": "dispatch-only",
-      "address": "0x442630",
-      "table": "scp-game-conditions",
-      "tableIndex": 91,
-      "tableEntryVa": "0x7f6c9c",
-      "tableThirdWord": "0x4425e0",
-      "initializerCandidateAddress": "0x4425e0",
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 181,
-          "state": "Phase2_JumpToPlatform1",
-          "text": "if RigidAnimFrame \"form_1_c_1\" > 30 goto Phase2_SelectNextPlatform",
-          "args": [
-            "form_1_c_1",
-            ">",
-            "30",
-            "goto",
-            "Phase2_SelectNextPlatform"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 216,
-          "state": "Phase2_JumpToPlatform2",
-          "text": "if RigidAnimFrame \"form_2_c_1\" > 30 goto Phase2_SelectNextPlatform",
-          "args": [
-            "form_2_c_1",
-            ">",
-            "30",
-            "goto",
-            "Phase2_SelectNextPlatform"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
-          "line": 251,
-          "state": "Phase2_JumpToPlatform3",
-          "text": "if RigidAnimFrame \"form_3_c_1\" > 30 goto Phase2_SelectNextPlatform",
-          "args": [
-            "form_3_c_1",
-            ">",
-            "30",
-            "goto",
-            "Phase2_SelectNextPlatform"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_442630.c",
-      "corpusSha256": "1dc312645d0d7845d2855c6f803b203924017fa9a32faa68145a046719badf44",
-      "pseudocodeLines": 17,
-      "directCalleeTokens": [
-        "FUN_00442630"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 15
-    },
-    {
-      "kind": "scp-action",
-      "name": "CannotBeSeen",
-      "spellings": [
-        "CannotBeSeen"
-      ],
-      "sourceUses": 29,
-      "status": "dispatch-only",
-      "address": "0x44ccd0",
-      "table": "scp-game-actions",
-      "tableIndex": 99,
-      "tableEntryVa": "0x7f7504",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/MAULDROID.SCP",
-          "line": 68,
-          "state": "Approach",
-          "text": "CannotBeSeen \"FALSE\"",
-          "args": [
-            "FALSE"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_F/AI/HIDDENDECKA.SCP",
-          "line": 15,
-          "state": "Base",
-          "text": "CannotBeSeen",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_F/AI/HIDDENDECKA.SCP",
-          "line": 36,
-          "state": "Approach",
-          "text": "CannotBeSeen \"FALSE\"",
-          "args": [
-            "FALSE"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44ccd0.c",
-      "corpusSha256": "2cb16ddb19739ec4af523b3c4a263b689faf2b01ccdaf9df02ef8e7f02b843d1",
-      "pseudocodeLines": 35,
-      "directCalleeTokens": [
-        "FUN_0044ccd0",
-        "FUN_004f8b10"
-      ],
-      "directCalleeTokenCount": 2,
-      "rankBySourceUse": 16
-    },
-    {
-      "kind": "scp-condition",
-      "name": "BuildItComplete",
-      "spellings": [
-        "BuildItComplete",
-        "BuilditComplete"
-      ],
-      "sourceUses": 28,
-      "status": "dispatch-only",
-      "address": "0x441610",
-      "table": "scp-game-conditions",
-      "tableIndex": 58,
-      "tableEntryVa": "0x7f6b10",
-      "tableThirdWord": "0x4415e0",
-      "initializerCandidateAddress": "0x4415e0",
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_C/AI/LEVEL.SCP",
-          "line": 74,
-          "state": "Update",
-          "text": "if BuildItComplete \"buildit1\" == 0 and",
-          "args": [
-            "buildit1",
-            "0",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_C/AI/LEVEL1.SCP",
-          "line": 20,
-          "state": "Update",
-          "text": "if BuildItComplete \"buildit1\" == 0 and",
-          "args": [
-            "buildit1",
-            "0",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_C/AI/LEVEL1.SCP",
-          "line": 25,
-          "state": "Update",
-          "text": "if BuildItComplete \"buildit1\" == 0 and",
-          "args": [
-            "buildit1",
-            "0",
-            "and"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_441610.c",
-      "corpusSha256": "97fd5563449c15ba4c837536a2aa48ad637037a277bafb13f921de3569145edc",
-      "pseudocodeLines": 18,
-      "directCalleeTokens": [
-        "FUN_00441610"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 17
+      "rankBySourceUse": 1
     },
     {
       "kind": "scp-action",
@@ -1642,128 +683,1280 @@
       ],
       "lexicalNearMatchesNotBindings": [],
       "qualification": "No exact native table binding in the current source-preserving catalog. Near matches are spelling leads only; this audit does not correct source, invent aliases, or declare occurrences unreachable.",
-      "rankBySourceUse": 18
+      "rankBySourceUse": 2
     },
     {
-      "kind": "scp-condition",
-      "name": "CannotReachDestination",
+      "kind": "git-action",
+      "name": "HitBlowup",
       "spellings": [
-        "CannotReachDestination"
+        "HitBlowup"
       ],
-      "sourceUses": 27,
+      "sourceUses": 24,
       "status": "dispatch-only",
-      "address": "0x442dc0",
-      "table": "scp-game-conditions",
-      "tableIndex": 122,
-      "tableEntryVa": "0x7f6e10",
+      "address": "0x465af0",
+      "table": "git-actions",
+      "tableIndex": 20,
+      "tableEntryVa": "0x7f8bb8",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_A/DEATHSTAR2BATTLE_A.GIT",
+          "line": 361,
+          "node": 22,
+          "text": "HitBlowup \"name=turret1\" \"TURRET\" \"damage=-1\"",
+          "args": [
+            "name=turret1",
+            "TURRET",
+            "damage=-1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_A/DEATHSTAR2BATTLE_A.GIT",
+          "line": 362,
+          "node": 22,
+          "text": "HitBlowup \"name=turret2\" \"TURRET\" \"damage=-1\"",
+          "args": [
+            "name=turret2",
+            "TURRET",
+            "damage=-1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_A/DEATHSTAR2BATTLE_A.GIT",
+          "line": 363,
+          "node": 22,
+          "text": "HitBlowup \"name=turret3\" \"TURRET\" \"damage=-1\"",
+          "args": [
+            "name=turret3",
+            "TURRET",
+            "damage=-1"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_465af0.c",
+      "corpusSha256": "64469ce0699e546ea0a01c4d078067d12f5d5e78e141903de7e875b6f0d69b75",
+      "pseudocodeLines": 70,
+      "directCalleeTokens": [
+        "FUN_00465af0",
+        "FUN_004f1ff0",
+        "FUN_004f28e0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_0055a020",
+        "FUN_00567800",
+        "FUN_005ad540",
+        "FUN_006e6b90"
+      ],
+      "directCalleeTokenCount": 9,
+      "rankBySourceUse": 3
+    },
+    {
+      "kind": "scp-action",
+      "name": "CycleCharacter",
+      "spellings": [
+        "CycleCharacter"
+      ],
+      "sourceUses": 20,
+      "status": "dispatch-only",
+      "address": "0x44d5c0",
+      "table": "scp-game-actions",
+      "tableIndex": 118,
+      "tableEntryVa": "0x7f75e8",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_A/AI/NOTUSEDANYMORE_FREEPLAY.SCP",
+          "line": 47,
+          "state": "BlastWayOut",
+          "text": "CycleCharacter \"time=0.5\" \"Category=Blaster\"",
+          "args": [
+            "time=0.5",
+            "Category=Blaster"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_B/AI/NOTUSEDANYMORE_FREEPLAY.SCP",
+          "line": 27,
+          "state": "BlastWayOut",
+          "text": "CycleCharacter \"time=0.5\" \"Category=Blaster\"",
+          "args": [
+            "time=0.5",
+            "Category=Blaster"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/AI/FREEPLAY.SCP",
+          "line": 40,
+          "state": "GoToRightBox",
+          "text": "CycleCharacter \"time=0.5\" \"Category=Jedi\"",
+          "args": [
+            "time=0.5",
+            "Category=Jedi"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44d5c0.c",
+      "corpusSha256": "f706ad3aea2b2a4686cece1e5f42b726f8937908e3827d058c867a51941bcbcb",
+      "pseudocodeLines": 111,
+      "directCalleeTokens": [
+        "FUN_0044d5c0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_0055bc20",
+        "FUN_0055bc80"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 4
+    },
+    {
+      "kind": "scp-action",
+      "name": "FollowCharacter",
+      "spellings": [
+        "FollowCharacter"
+      ],
+      "sourceUses": 18,
+      "status": "dispatch-only",
+      "address": "0x452400",
+      "table": "scp-game-actions",
+      "tableIndex": 130,
+      "tableEntryVa": "0x7f7678",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/BLOCKADERUNNER/BLOCKADERUNNER_B/AI/REBEL_STRANGLED.SCP",
+          "line": 24,
+          "state": "Base",
+          "text": "FollowCharacter \"character=ai_vader\"",
+          "args": [
+            "character=ai_vader"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/AI/THIEF.SCP",
+          "line": 50,
+          "state": "SneekIn",
+          "text": "FollowCharacter \"TakeOverTarget\" \"TIPTOE\" \"ignore_radius\" \"can_go_off_path\"",
+          "args": [
+            "TakeOverTarget",
+            "TIPTOE",
+            "ignore_radius",
+            "can_go_off_path"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/ATSTTROOPER.SCP",
+          "line": 24,
+          "state": "Base",
+          "text": "FollowCharacter \"character=BuildItATST\"",
+          "args": [
+            "character=BuildItATST"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_452400.c",
+      "corpusSha256": "497f10762b6c9bf05597a2b864c0a18563933b2007b651b122f26def630c0d22",
+      "pseudocodeLines": 72,
+      "directCalleeTokens": [
+        "FUN_00452400",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_00534e10"
+      ],
+      "directCalleeTokenCount": 5,
+      "rankBySourceUse": 5
+    },
+    {
+      "kind": "scp-action",
+      "name": "TakeOver",
+      "spellings": [
+        "TakeOver",
+        "takeover"
+      ],
+      "sourceUses": 18,
+      "status": "dispatch-only",
+      "address": "0x4543e0",
+      "table": "scp-game-actions",
+      "tableIndex": 154,
+      "tableEntryVa": "0x7f7798",
+      "tableThirdWord": "0x1",
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/AI/THIEF.SCP",
+          "line": 62,
+          "state": "StealSpeeder",
+          "text": "TakeOver",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/ATSTTROOPER.SCP",
+          "line": 49,
+          "state": "Enter",
+          "text": "TakeOver \"target=BuildItATST\"",
+          "args": [
+            "target=BuildItATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/STORMTHIEF.SCP",
+          "line": 50,
+          "state": "StealATST",
+          "text": "TakeOver",
+          "args": []
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4543e0.c",
+      "corpusSha256": "f68c6d0eb190d8357ce6d51076398a8fa88c246c63c9adb618738f72061f83e4",
+      "pseudocodeLines": 105,
+      "directCalleeTokens": [
+        "FUN_004543e0",
+        "FUN_004882d0",
+        "FUN_00488730",
+        "FUN_004f8a70",
+        "FUN_005147c0",
+        "FUN_006e6b90"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 6
+    },
+    {
+      "kind": "scp-action",
+      "name": "MoveAwayFromLastAttacker",
+      "spellings": [
+        "MoveAwayFromLastAttacker"
+      ],
+      "sourceUses": 17,
+      "status": "dispatch-only",
+      "address": "0x44e470",
+      "table": "scp-game-actions",
+      "tableIndex": 149,
+      "tableEntryVa": "0x7f775c",
       "tableThirdWord": null,
       "initializerCandidateAddress": null,
       "sourceExamples": [
         {
           "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/MISSIONNEUTRAL.SCP",
-          "line": 57,
-          "state": "ZapOpponent",
-          "text": "if CannotReachDestination == 1 goto Base",
+          "line": 110,
+          "state": "RunAway",
+          "text": "MoveAwayFromLastAttacker \"99\"",
           "args": [
-            "1",
-            "goto",
-            "Base"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_A/AI/MISSIONNEUTRAL.SCP",
-          "line": 67,
-          "state": "GoToLocator",
-          "text": "if CannotReachDestination == 1 goto ChooseNewLocator",
-          "args": [
-            "1",
-            "goto",
-            "ChooseNewLocator"
+            "99"
           ]
         },
         {
           "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_C/AI/MISSIONNEUTRAL.SCP",
-          "line": 57,
-          "state": "ZapOpponent",
-          "text": "if CannotReachDestination == 1 goto Base",
+          "line": 110,
+          "state": "RunAway",
+          "text": "MoveAwayFromLastAttacker \"99\"",
           "args": [
-            "1",
-            "goto",
-            "Base"
+            "99"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/FACTORY/FACTORY_F/AI/MISSIONNEUTRAL.SCP",
+          "line": 110,
+          "state": "RunAway",
+          "text": "MoveAwayFromLastAttacker \"99\"",
+          "args": [
+            "99"
           ]
         }
       ],
       "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_442dc0.c",
-      "corpusSha256": "80d2e9ea6015b6953145b362af849bd46bb53e6e94ec636a3e89dfb03f4554f4",
-      "pseudocodeLines": 15,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44e470.c",
+      "corpusSha256": "ec2d2eb78ac6c34dfed19495014f7f695dbaa211227f8534472d17836cc3bafb",
+      "pseudocodeLines": 49,
       "directCalleeTokens": [
-        "FUN_00442dc0"
+        "FUN_0044e470",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_0052fcb0"
+      ],
+      "directCalleeTokenCount": 4,
+      "rankBySourceUse": 7
+    },
+    {
+      "kind": "scp-action",
+      "name": "GizmoActivate",
+      "spellings": [
+        "GizmoActivate"
+      ],
+      "sourceUses": 17,
+      "status": "dispatch-only",
+      "address": "0x456290",
+      "table": "scp-game-actions",
+      "tableIndex": 189,
+      "tableEntryVa": "0x7f793c",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL1.SCP",
+          "line": 63,
+          "state": "Pad1Pressed",
+          "text": "GizmoActivate \"name=pad2\"",
+          "args": [
+            "name=pad2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL1.SCP",
+          "line": 113,
+          "state": "Pad2Pressed",
+          "text": "GizmoActivate \"name=pad3\"",
+          "args": [
+            "name=pad3"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_D/AI/LEVEL1.SCP",
+          "line": 165,
+          "state": "Pad3Pressed",
+          "text": "GizmoActivate \"name=pad4\"",
+          "args": [
+            "name=pad4"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_456290.c",
+      "corpusSha256": "3f362c45f30941befaf2c96388130ba9363945e9f4b0a5e16b07d571f6bf7eec",
+      "pseudocodeLines": 41,
+      "directCalleeTokens": [
+        "FUN_00456290",
+        "FUN_004f1ff0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_0055a020",
+        "FUN_0055a250"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 8
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetTakeOverTarget",
+      "spellings": [
+        "SetTakeOverTarget"
+      ],
+      "sourceUses": 17,
+      "status": "dispatch-only",
+      "address": "0x443fc0",
+      "table": "scp-game-actions",
+      "tableIndex": 157,
+      "tableEntryVa": "0x7f77bc",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_A/AI/THIEF.SCP",
+          "line": 49,
+          "state": "SneekIn",
+          "text": "SetTakeOverTarget \"type=Speeder_Land\"",
+          "args": [
+            "type=Speeder_Land"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/STORMTHIEF.SCP",
+          "line": 38,
+          "state": "SneekIn",
+          "text": "SetTakeOverTarget \"type=ATST\"",
+          "args": [
+            "type=ATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/TAKEOVER.SCP",
+          "line": 22,
+          "state": "CheckEmpty",
+          "text": "SetTakeOverTarget \"type=ATST\" \"maxrange=20\"",
+          "args": [
+            "type=ATST",
+            "maxrange=20"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_443fc0.c",
+      "corpusSha256": "23772f044e27cb84ac92dcee718cd2cc1a4e4eed5489dcdf66334b086b1d5b9a",
+      "pseudocodeLines": 131,
+      "directCalleeTokens": [
+        "FUN_00443fc0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_005b3800",
+        "FUN_005b3b00"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 9
+    },
+    {
+      "kind": "scp-action",
+      "name": "PlayCutScene",
+      "spellings": [
+        "PlayCutScene"
+      ],
+      "sourceUses": 16,
+      "status": "dispatch-only",
+      "address": "0x44d320",
+      "table": "scp-game-actions",
+      "tableIndex": 109,
+      "tableEntryVa": "0x7f757c",
+      "tableThirdWord": "0x1",
+      "initializerCandidateAddress": null,
+      "initializerQualification": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/LEVEL.SCP",
+          "line": 23,
+          "state": "PlayCutscene",
+          "text": "PlayCutScene \"name=ep1_invasionofnaboo_gungana_outro1\"",
+          "args": [
+            "name=ep1_invasionofnaboo_gungana_outro1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+          "line": 65,
+          "state": "PlayTuskanCutScene",
+          "text": "PlayCutScene \"name=ep1_podsprint_tuskenraiders\"",
+          "args": [
+            "name=ep1_podsprint_tuskenraiders"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+          "line": 78,
+          "state": "PlayMushroomCutScene0",
+          "text": "PlayCutScene \"name=Ep1_Podsprint_Mushroom0\"",
+          "args": [
+            "name=Ep1_Podsprint_Mushroom0"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44d320.c",
+      "corpusSha256": "5b05dd489e9a5377a7d8e65b98c7043208447b46b18d2e327fd858925f485211",
+      "pseudocodeLines": 32,
+      "directCalleeTokens": [
+        "FUN_0044d320",
+        "FUN_004f8a70",
+        "FUN_0057cd30"
+      ],
+      "directCalleeTokenCount": 3,
+      "rankBySourceUse": 10
+    },
+    {
+      "kind": "scp-action",
+      "name": "ClearTakeOverTarget",
+      "spellings": [
+        "ClearTakeOverTarget"
+      ],
+      "sourceUses": 16,
+      "status": "dispatch-only",
+      "address": "0x4442b0",
+      "table": "scp-game-actions",
+      "tableIndex": 158,
+      "tableEntryVa": "0x7f77c8",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/TAKEOVER.SCP",
+          "line": 79,
+          "state": "CheckFight",
+          "text": "ClearTakeOverTarget",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_B/AI/TAKEOVER.SCP",
+          "line": 111,
+          "state": "TakenHit",
+          "text": "ClearTakeOverTarget",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_D/AI/PARTY.SCP",
+          "line": 29,
+          "state": "NormalUpdate",
+          "text": "ClearTakeOverTarget",
+          "args": []
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4442b0.c",
+      "corpusSha256": "8511b3ee0214295adc947554a547a5423ab24f6fb7b8eb0e209e6cdb9914ffea",
+      "pseudocodeLines": 22,
+      "directCalleeTokens": [
+        "FUN_004442b0"
       ],
       "directCalleeTokenCount": 1,
+      "rankBySourceUse": 11
+    },
+    {
+      "kind": "scp-action",
+      "name": "PartyCanBeUnderCover",
+      "spellings": [
+        "PartyCanBeUnderCover"
+      ],
+      "sourceUses": 15,
+      "status": "dispatch-only",
+      "address": "0x456850",
+      "table": "scp-game-actions",
+      "tableIndex": 195,
+      "tableEntryVa": "0x7f7984",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/LEVEL.SCP",
+          "line": 14,
+          "state": "Base",
+          "text": "PartyCanBeUnderCover \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_D/AI/LEVEL.SCP",
+          "line": 11,
+          "state": "Base",
+          "text": "PartyCanBeUnderCover \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/LEVEL.SCP",
+          "line": 9,
+          "state": "Base",
+          "text": "PartyCanBeUnderCover \"FALSE\"",
+          "args": [
+            "FALSE"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_456850.c",
+      "corpusSha256": "5de97a139e226c77192337e79281a9008e134ab36a68be075a19220c5b4e6ba2",
+      "pseudocodeLines": 33,
+      "directCalleeTokens": [
+        "FUN_00456850",
+        "FUN_004f8b10"
+      ],
+      "directCalleeTokenCount": 2,
+      "rankBySourceUse": 12
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetOpponent",
+      "spellings": [
+        "SetOpponent"
+      ],
+      "sourceUses": 15,
+      "status": "dispatch-only",
+      "address": "0x4477c0",
+      "table": "scp-game-actions",
+      "tableIndex": 38,
+      "tableEntryVa": "0x7f7228",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/BLOCKADERUNNER/BLOCKADERUNNER_C/AI/LIFT_TROOPER.SCP",
+          "line": 34,
+          "state": "Normal_Start",
+          "text": "SetOpponent \"opponent=RebelFriend\"",
+          "args": [
+            "opponent=RebelFriend"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_C/AI/AI_DARTH.SCP",
+          "line": 26,
+          "state": "FightObi",
+          "text": "SetOpponent \"opponent=Obi\"",
+          "args": [
+            "opponent=Obi"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARESCAPE/DEATHSTARESCAPE_C/AI/AI_OBI.SCP",
+          "line": 46,
+          "state": "FightDarth",
+          "text": "SetOpponent \"opponent=Darth\"",
+          "args": [
+            "opponent=Darth"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4477c0.c",
+      "corpusSha256": "fc8e71223c844e99f604ecd6c1a5beceda6147a5b9ed78acc0045cc235d0c4d4",
+      "pseudocodeLines": 130,
+      "directCalleeTokens": [
+        "FUN_00440120",
+        "FUN_004477c0",
+        "FUN_004f8a70",
+        "FUN_004f8b10"
+      ],
+      "directCalleeTokenCount": 4,
+      "rankBySourceUse": 13
+    },
+    {
+      "kind": "git-action",
+      "name": "CompleteLevel",
+      "spellings": [
+        "CompleteLevel"
+      ],
+      "sourceUses": 15,
+      "status": "dispatch-only",
+      "address": "0x465340",
+      "table": "git-actions",
+      "tableIndex": 11,
+      "tableEntryVa": "0x7f8b70",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "initializerQualification": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/ANAKINSFLIGHT_C.GIT",
+          "line": 1602,
+          "node": 107,
+          "text": "CompleteLevel \"newlevel=anakinsflight_outro1\"",
+          "args": [
+            "newlevel=anakinsflight_outro1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS_GUNSHIP/BONUS_GUNSHIP_B/BONUS_GUNSHIP_B.GIT",
+          "line": 743,
+          "node": 48,
+          "text": "CompleteLevel \"cutscene=ep2_bonus_gunshipcavalry_outro\"",
+          "args": [
+            "cutscene=ep2_bonus_gunshipcavalry_outro"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/GUNSHIP/GUNSHIP_B/GUNSHIP_B.GIT",
+          "line": 882,
+          "node": 59,
+          "text": "CompleteLevel \"cutscene=ep2_gunshipcavalry_outro\"",
+          "args": [
+            "cutscene=ep2_gunshipcavalry_outro"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_465340.c",
+      "corpusSha256": "58a5cdf67f543f24f89cce306d1b3e14f8140d0d38a9c0d1d6de1044a4e2946a",
+      "pseudocodeLines": 58,
+      "directCalleeTokens": [
+        "FUN_00465340",
+        "FUN_004f1ff0",
+        "FUN_004f8a70",
+        "FUN_00578da0",
+        "FUN_0057a580",
+        "FUN_0057a5b0",
+        "FUN_0057cd30"
+      ],
+      "directCalleeTokenCount": 7,
+      "rankBySourceUse": 14
+    },
+    {
+      "kind": "scp-action",
+      "name": "UnLockDoor",
+      "spellings": [
+        "UnLockDoor",
+        "UnlockDoor"
+      ],
+      "sourceUses": 14,
+      "status": "unbound-name",
+      "address": null,
+      "table": null,
+      "tableIndex": null,
+      "tableEntryVa": null,
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "initializerQualification": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP",
+          "line": 18,
+          "state": "OpenLeftDoor",
+          "text": "UnLockDoor \"door_5\"",
+          "args": [
+            "door_5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL2.SCP",
+          "line": 18,
+          "state": "OpenRightDoor",
+          "text": "UnLockDoor \"door_7\"",
+          "args": [
+            "door_7"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 40,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"landslide\"",
+          "args": [
+            "landslide"
+          ]
+        }
+      ],
+      "allSourceUses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL1.SCP",
+          "line": 18,
+          "state": "OpenLeftDoor",
+          "text": "UnLockDoor \"door_5\"",
+          "args": [
+            "door_5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_B/AI/LEVEL2.SCP",
+          "line": 18,
+          "state": "OpenRightDoor",
+          "text": "UnLockDoor \"door_7\"",
+          "args": [
+            "door_7"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 40,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"landslide\"",
+          "args": [
+            "landslide"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 41,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"slide01\"",
+          "args": [
+            "slide01"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 42,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"slide02\"",
+          "args": [
+            "slide02"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODRACE/PODRACE_C/AI/LEVEL.SCP",
+          "line": 43,
+          "state": "StartLap2",
+          "text": "UnLockDoor \"slide03\"",
+          "args": [
+            "slide03"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 61,
+          "state": "DropStartPlatforms",
+          "text": "UnlockDoor \"path_enter\"",
+          "args": [
+            "path_enter"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 76,
+          "state": "StartDroidekas",
+          "text": "UnLockDoor \"pad1\"",
+          "args": [
+            "pad1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/KASHYYYK/KASHYYYK_C/AI/LEVEL.SCP",
+          "line": 78,
+          "state": "StartDroidekas",
+          "text": "UnLockDoor \"pad2\"",
+          "args": [
+            "pad2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 35,
+          "state": "OpenLift",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/E4CHARACTERBONUS/E4CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 54,
+          "state": "NormalDoor",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 38,
+          "state": "OpenLift",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+          "line": 57,
+          "state": "NormalDoor",
+          "text": "UnLockDoor \"gen_door6\"",
+          "args": [
+            "gen_door6"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/DEATHSTAR2BATTLE/DEATHSTAR2BATTLE_B/AI/LEVEL.SCP",
+          "line": 37,
+          "state": "OpenBigDoor",
+          "text": "UnLockDoor \"bigdoor\"",
+          "args": [
+            "bigdoor"
+          ]
+        }
+      ],
+      "lexicalNearMatchesNotBindings": [],
+      "qualification": "No exact native table binding in the current source-preserving catalog. Near matches are spelling leads only; this audit does not correct source, invent aliases, or declare occurrences unreachable.",
+      "rankBySourceUse": 15
+    },
+    {
+      "kind": "scp-action",
+      "name": "ForcePush",
+      "spellings": [
+        "ForcePush"
+      ],
+      "sourceUses": 14,
+      "status": "dispatch-only",
+      "address": "0x450340",
+      "table": "scp-game-actions",
+      "tableIndex": 53,
+      "tableEntryVa": "0x7f72dc",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 365,
+          "state": "Phase3_StartForceAttack",
+          "text": "ForcePush \"target=opponent\"",
+          "args": [
+            "target=opponent"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 381,
+          "state": "Phase3_ForceAttackObiWan",
+          "text": "ForcePush \"target=ObiWanKenobi\"",
+          "args": [
+            "target=ObiWanKenobi"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_F/AI/DARTHMAUL.SCP",
+          "line": 396,
+          "state": "Phase3_FinalForceAttackFreeplay",
+          "text": "ForcePush",
+          "args": []
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_450340.c",
+      "corpusSha256": "d7e3ac8a9cb23bd29fdf5f5bcd345564477ec965bdb35371c992ddb82a3e8408",
+      "pseudocodeLines": 95,
+      "directCalleeTokens": [
+        "FUN_00440120",
+        "FUN_00450340",
+        "FUN_004a3270",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_0055bc80"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 16
+    },
+    {
+      "kind": "scp-action",
+      "name": "AddPartDebris",
+      "spellings": [
+        "AddPartDebris"
+      ],
+      "sourceUses": 14,
+      "status": "dispatch-only",
+      "address": "0x44b950",
+      "table": "scp-game-actions",
+      "tableIndex": 90,
+      "tableEntryVa": "0x7f7498",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/GRIEVOUS/GRIEVOUS_A/AI/GRIEVOUS.SCP",
+          "line": 73,
+          "state": "Stage1_Wait",
+          "text": "AddPartDebris \"name=ROCK_FALL\" \"character=player0\" \"y=4\"",
+          "args": [
+            "name=ROCK_FALL",
+            "character=player0",
+            "y=4"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/GRIEVOUS/GRIEVOUS_A/AI/GRIEVOUS.SCP",
+          "line": 74,
+          "state": "Stage1_Wait",
+          "text": "AddPartDebris \"name=ROCK_FALL\" \"character=player1\" \"y=4\"",
+          "args": [
+            "name=ROCK_FALL",
+            "character=player1",
+            "y=4"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_III/GRIEVOUS/GRIEVOUS_A/AI/GRIEVOUS.SCP",
+          "line": 130,
+          "state": "Stage2_SlamJump",
+          "text": "AddPartDebris \"name=ROCK_FALL\" \"character=player0\" \"y=4\"",
+          "args": [
+            "name=ROCK_FALL",
+            "character=player0",
+            "y=4"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44b950.c",
+      "corpusSha256": "22671512fa57eb1e99f4f741ae347a19243ebe493a08094589293972f9b4f567",
+      "pseudocodeLines": 92,
+      "directCalleeTokens": [
+        "FUN_00440120",
+        "FUN_0044b950",
+        "FUN_004f8a70",
+        "FUN_005147c0",
+        "FUN_005b37d0",
+        "FUN_0064afd0",
+        "FUN_0064b370"
+      ],
+      "directCalleeTokenCount": 7,
+      "rankBySourceUse": 17
+    },
+    {
+      "kind": "scp-action",
+      "name": "AnimTimeRandom",
+      "spellings": [
+        "AnimTimeRandom"
+      ],
+      "sourceUses": 13,
+      "status": "dispatch-only",
+      "address": "0x44e8c0",
+      "table": "scp-game-actions",
+      "tableIndex": 15,
+      "tableEntryVa": "0x7f7114",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/FISHING.SCP",
+          "line": 11,
+          "state": "Base",
+          "text": "AnimTimeRandom",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_B/AI/LAZYDROID.SCP",
+          "line": 14,
+          "state": "Base",
+          "text": "AnimTimeRandom",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_G/AI/UNDERGUARD1.SCP",
+          "line": 23,
+          "state": "Captive",
+          "text": "AnimTimeRandom",
+          "args": []
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44e8c0.c",
+      "corpusSha256": "a08082e2e2e0e206c3b6606cc157249b124d2f05f65c87920f0f30c51b4d817f",
+      "pseudocodeLines": 18,
+      "directCalleeTokens": [
+        "FUN_0044e8c0",
+        "FUN_0062e6c0"
+      ],
+      "directCalleeTokenCount": 2,
+      "rankBySourceUse": 18
+    },
+    {
+      "kind": "scp-action",
+      "name": "TriggerBlowUp",
+      "spellings": [
+        "TriggerBlowUp"
+      ],
+      "sourceUses": 13,
+      "status": "dispatch-only",
+      "address": "0x4502b0",
+      "table": "scp-game-actions",
+      "tableIndex": 52,
+      "tableEntryVa": "0x7f72d0",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_D/AI/LEVEL.SCP",
+          "line": 88,
+          "state": "OpenGate",
+          "text": "TriggerBlowUp \"name=big_gate_pop31\"",
+          "args": [
+            "name=big_gate_pop31"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/MOSEISLEY/MOSEISLEY_D/AI/LEVEL.SCP",
+          "line": 89,
+          "state": "OpenGate",
+          "text": "TriggerBlowUp \"name=big_gate_pop41\"",
+          "args": [
+            "name=big_gate_pop41"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYESCAPE/CLOUDCITYESCAPE_A/AI/LEVEL.SCP",
+          "line": 162,
+          "state": "StairHack_Blowup",
+          "text": "TriggerBlowUp \"name=blowup_switch1\"",
+          "args": [
+            "name=blowup_switch1"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4502b0.c",
+      "corpusSha256": "b24e5c955bae1b35df251d1958d72ad5c43478db7a2bd88e09c5f25e54c0b796",
+      "pseudocodeLines": 35,
+      "directCalleeTokens": [
+        "FUN_004502b0",
+        "FUN_004f8a70",
+        "FUN_0055a020",
+        "FUN_00567800"
+      ],
+      "directCalleeTokenCount": 4,
       "rankBySourceUse": 19
     },
     {
-      "kind": "scp-condition",
-      "name": "ForceBeingUsed",
+      "kind": "scp-action",
+      "name": "SetObstacleChainPhase",
       "spellings": [
-        "ForceBeingUsed"
+        "SetObstacleChainPhase"
       ],
-      "sourceUses": 24,
-      "status": "dispatch-only",
-      "address": "0x441300",
-      "table": "scp-game-conditions",
-      "tableIndex": 52,
-      "tableEntryVa": "0x7f6ac8",
-      "tableThirdWord": "0x440ff0",
-      "initializerCandidateAddress": "0x440ff0",
-      "initializerQualification": "Condition-table third word points to available native corpus; validate ABI and initialization contract before treating the condition as complete.",
+      "sourceUses": 13,
+      "status": "unbound-name",
+      "address": null,
+      "table": null,
+      "tableIndex": null,
+      "tableEntryVa": null,
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "initializerQualification": null,
       "sourceExamples": [
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
-          "line": 48,
-          "state": "Pace1",
-          "text": "if ForceBeingUsed \"force1\" == 1 goto Retreat1",
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_CANNON1.SCP",
+          "line": 13,
+          "state": "BeenKilled",
+          "text": "SetObstacleChainPhase \"T_cannon_pop2\" \"phase=4\"",
           "args": [
-            "force1",
-            "1",
-            "goto",
-            "Retreat1"
+            "T_cannon_pop2",
+            "phase=4"
           ]
         },
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
-          "line": 49,
-          "state": "Pace1",
-          "text": "if ForceBeingUsed \"force2\" == 1 goto Retreat1",
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_B/AI/LEVEL.SCP",
+          "line": 36,
+          "state": "BlowUpWindow",
+          "text": "SetObstacleChainPhase \"window\" \"phase=2\"",
           "args": [
-            "force2",
-            "1",
-            "goto",
-            "Retreat1"
+            "window",
+            "phase=2"
           ]
         },
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
-          "line": 66,
-          "state": "Menace1",
-          "text": "if ForceBeingUsed \"force1\" == 1 goto Retreat1",
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 209,
+          "state": "Throne_Flee",
+          "text": "SetObstacleChainPhase \"slam_part1a\" \"phase=2\"",
           "args": [
-            "force1",
-            "1",
-            "goto",
-            "Retreat1"
+            "slam_part1a",
+            "phase=2"
           ]
         }
       ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_441300.c",
-      "corpusSha256": "302cc1eb84a94f5d271dd27ec2b774093734146b525661544a0e17b168ab8432",
-      "pseudocodeLines": 19,
-      "directCalleeTokens": [
-        "FUN_00441300"
+      "allSourceUses": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/AI/AI_CANNON1.SCP",
+          "line": 13,
+          "state": "BeenKilled",
+          "text": "SetObstacleChainPhase \"T_cannon_pop2\" \"phase=4\"",
+          "args": [
+            "T_cannon_pop2",
+            "phase=4"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_B/AI/LEVEL.SCP",
+          "line": 36,
+          "state": "BlowUpWindow",
+          "text": "SetObstacleChainPhase \"window\" \"phase=2\"",
+          "args": [
+            "window",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 209,
+          "state": "Throne_Flee",
+          "text": "SetObstacleChainPhase \"slam_part1a\" \"phase=2\"",
+          "args": [
+            "slam_part1a",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/AI/AI_EMPEROR.SCP",
+          "line": 471,
+          "state": "LiftLower_GoToUpper",
+          "text": "SetObstacleChainPhase \"slam_part2a\" \"phase=2\"",
+          "args": [
+            "slam_part2a",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 432,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_chainbits\" \"phase=2\"",
+          "args": [
+            "AT1_chainbits",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 433,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_flow1\" \"phase=2\"",
+          "args": [
+            "AT1_flow1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 434,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_flow2\" \"phase=2\"",
+          "args": [
+            "AT1_flow2",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 435,
+          "state": "Stage2_StartLockIn",
+          "text": "SetObstacleChainPhase \"AT1_allbits\" \"phase=2\"",
+          "args": [
+            "AT1_allbits",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 779,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_ATflow1\" \"phase=2\"",
+          "args": [
+            "clear4_ATflow1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 780,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_ATflow2\" \"phase=2\"",
+          "args": [
+            "clear4_ATflow2",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 781,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_spin1\" \"phase=2\"",
+          "args": [
+            "clear4_spin1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 782,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_ATbits1\" \"phase=2\"",
+          "args": [
+            "clear4_ATbits1",
+            "phase=2"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/SPEEDERCHASE/SPEEDERCHASE_A/AI/LEVEL.SCP",
+          "line": 783,
+          "state": "Stage4_StartLockIn",
+          "text": "SetObstacleChainPhase \"clear4_allAT1\" \"phase=2\"",
+          "args": [
+            "clear4_allAT1",
+            "phase=2"
+          ]
+        }
       ],
-      "directCalleeTokenCount": 1,
+      "lexicalNearMatchesNotBindings": [],
+      "qualification": "No exact native table binding in the current source-preserving catalog. Near matches are spelling leads only; this audit does not correct source, invent aliases, or declare occurrences unreachable.",
       "rankBySourceUse": 20
     }
   ],
@@ -2359,7 +2552,7 @@
     {
       "normalizedName": "enablesock",
       "sourceUses": 64,
-      "remainingSourceUses": 64,
+      "remainingSourceUses": 9,
       "members": [
         {
           "kind": "scp-action",
@@ -2368,7 +2561,7 @@
             "EnableSock"
           ],
           "sourceUses": 55,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x44ce00",
           "table": "scp-game-actions",
           "tableIndex": 104,
@@ -2491,7 +2684,7 @@
     {
       "normalizedName": "helpwithtriggers",
       "sourceUses": 23,
-      "remainingSourceUses": 23,
+      "remainingSourceUses": 5,
       "members": [
         {
           "kind": "scp-condition",
@@ -2500,7 +2693,7 @@
             "HelpWithTriggers"
           ],
           "sourceUses": 18,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x442d10",
           "table": "scp-game-conditions",
           "tableIndex": 115,
@@ -3348,7 +3541,7 @@
             "IsSetAlive"
           ],
           "sourceUses": 7,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x441fd0",
           "table": "scp-game-conditions",
           "tableIndex": 74,
@@ -3414,7 +3607,7 @@
       ],
       "directCalleeTokenCount": 2,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 7
+      "remainingSourceUses": 0
     },
     {
       "address": "0x4408b0",
@@ -4052,7 +4245,7 @@
             "PlayerCategoryIs"
           ],
           "sourceUses": 14,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440c70",
           "table": "scp-game-conditions",
           "tableIndex": 70,
@@ -4117,7 +4310,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 14
+      "remainingSourceUses": 0
     },
     {
       "address": "0x440ff0",
@@ -4254,7 +4447,7 @@
             "ForceBeingUsed"
           ],
           "sourceUses": 24,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x441300",
           "table": "scp-game-conditions",
           "tableIndex": 52,
@@ -4319,7 +4512,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 24
+      "remainingSourceUses": 0
     },
     {
       "address": "0x443a00",
@@ -4794,7 +4987,7 @@
             "ForceFinished"
           ],
           "sourceUses": 2,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x4415c0",
           "table": "scp-game-conditions",
           "tableIndex": 57,
@@ -4848,7 +5041,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 2
+      "remainingSourceUses": 0
     },
     {
       "address": "0x52d1e0",
@@ -4924,7 +5117,7 @@
             "OpponentToLocatorY"
           ],
           "sourceUses": 12,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x515580",
           "table": "scp-builtin-conditions",
           "tableIndex": 37,
@@ -4985,7 +5178,7 @@
             "OpponentToLocatorXZ"
           ],
           "sourceUses": 11,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x515530",
           "table": "scp-builtin-conditions",
           "tableIndex": 36,
@@ -5051,7 +5244,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 29
+      "remainingSourceUses": 6
     },
     {
       "address": "0x442a20",
@@ -5064,7 +5257,7 @@
             "HintAvailable"
           ],
           "sourceUses": 12,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x442a40",
           "table": "scp-game-conditions",
           "tableIndex": 99,
@@ -5127,7 +5320,7 @@
             "HintComplete"
           ],
           "sourceUses": 8,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x442a60",
           "table": "scp-game-conditions",
           "tableIndex": 100,
@@ -5193,7 +5386,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 20
+      "remainingSourceUses": 0
     },
     {
       "address": "0x442060",
@@ -5206,7 +5399,7 @@
             "InContext"
           ],
           "sourceUses": 16,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x442180",
           "table": "scp-game-conditions",
           "tableIndex": 77,
@@ -5268,7 +5461,7 @@
             "OpponentContext"
           ],
           "sourceUses": 2,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x4421b0",
           "table": "scp-game-conditions",
           "tableIndex": 78,
@@ -5321,7 +5514,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 18
+      "remainingSourceUses": 0
     },
     {
       "address": "0x440f10",
@@ -5334,7 +5527,7 @@
             "EitherPlayerIs"
           ],
           "sourceUses": 15,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440f30",
           "table": "scp-game-conditions",
           "tableIndex": 71,
@@ -5395,7 +5588,7 @@
             "Player1Is"
           ],
           "sourceUses": 1,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440f60",
           "table": "scp-game-conditions",
           "tableIndex": 72,
@@ -5433,7 +5626,7 @@
             "Player2Is"
           ],
           "sourceUses": 1,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440f80",
           "table": "scp-game-conditions",
           "tableIndex": 73,
@@ -5472,7 +5665,7 @@
       "directCalleeTokens": [],
       "directCalleeTokenCount": 0,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 17
+      "remainingSourceUses": 0
     },
     {
       "address": "0x52d200",
@@ -5485,7 +5678,7 @@
             "NearestPlayerToLocator"
           ],
           "sourceUses": 12,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x515620",
           "table": "scp-builtin-conditions",
           "tableIndex": 39,
@@ -5618,7 +5811,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 16
+      "remainingSourceUses": 4
     },
     {
       "address": "0x4408e0",
@@ -11426,6 +11619,282 @@
       "includedInGameplayCheckTotals": false,
       "scope": "Finite scene fields and effective playback rates, valid acyclic member lists, explicit registry/world/reference bindings. Membership/target aliases preserve iteration order. No animation tick, rendering, collision world or reference lifetime implementation. Missing-name null dereference in LockedShut and malformed missing-operand source line are outside the contract.",
       "countQualification": "Primary native comparisons and independent additional review comparisons are recorded separately, excluded from gameplay-owned totals to avoid double counting root-owned evidence."
+    },
+    {
+      "name": "Five script conditions recovered 2026-10-13",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 147,
+      "report": "reverse-engineering/reports/script-contract-20261013-contract.json",
+      "checks": 7132,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Five bounded condition readers plus static rigid initializer and explicit build-registry name accessor. Producers, reference lifetime and dynamic scene resolver remain external.",
+      "countQualification": "7132 assertion groups include147 original shipped comparisons and147 body checks, not7132 independent authored commands. Excluded from historical gameplay suite totals."
+    },
+    {
+      "name": "Three actor state/Sock commands recovered 2026-10-13",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 115,
+      "report": "reverse-engineering/reports/actor-next-20261013-contract.json",
+      "checks": 1233,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Three first-call actor/Sock command handlers and fixed64-entry name/index/bit helpers. Full takeover release, raw-world population and Sock consumers remain external.",
+      "countQualification": "1233 case groups include115 authored commands; no independent authored count is added to checks. Excluded from historical gameplay suite totals."
+    },
+    {
+      "name": "Eight script conditions recovered in second 2026-10-13 batch",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 110,
+      "report": "reverse-engineering/reports/script-next-20261013-contract.json",
+      "checks": 8471,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Threat,Force use/completion,category,context and hint readers/initializers within prepared domains; registry/world/state producers external.",
+      "countQualification": "Assertion groups include110 authored body checks and110 original comparisons; initializers/helpers recorded separately. Excluded from historical gameplay suite totals."
+    },
+    {
+      "name": "BigJumpToLocator",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 87,
+      "report": "reverse-engineering/reports/movement-phase3-20261013-contract.json",
+      "checks": 12502,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "First-call selected or ordered named/indexed/personal/random locator request; jump factor lower clamp, actual control reset/heading and own jump fields, unconditional post-request locator orientation/position copies. Completion reads actor context byte!=31 even on subsequent calls. No complete airborne movement/collision or clip/world lifetime implementation.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "PressJumpButton, PrefersPlayers, CanShootOffScreen, CanOpenDoors, CanDefend, Respawnable, SetBoss, SetDontMove, UnderPlayerControl",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 169,
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "checks": 28347,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Ignores firstCall and operands. Null creature/reference/world actor chain skips write; valid actor requires input pointer+0xca4 and ORs the runtime global mask0x802278 into input+8. No jump execution or input consumption. Ignores firstCall. Valid self actor flags+0xeec bit0x40000000 set by default on every call; any whole case-insensitive FALSE token clears it, and later TRUE cannot restore within that call. Does not choose opponents. Requires firstCall and valid self actor. Flags+0x1044 bit4 set by default, TRUE sets/FALSE clears in token order, unknown tokens ignored. Does not execute shooting or determine screen visibility. Same firstCall/self/token rules as CanShootOffScreen, using flags+0x1044 bit1. Does not identify doors or implement opening. Requires firstCall and valid self actor. Flags+0xeec bit2 set by default; any whole FALSE clears, TRUE does not restore within call. Does not execute defense. Requires firstCall and valid self actor. Clears flags+0xeec origin bit0x200000 and sets respawn bit0x100000 by default. Each origin token sets origin bit; each FALSE clears respawn bit; independent bits persist through remaining tokens. Does not respawn objects. Requires firstCall and valid self actor. Flags+0xeec bit0x8000000 set by default; any whole FALSE clears, TRUE does not restore within call. Does not implement boss behavior. Requires firstCall; defaults target to guarded self actor. Every case-insensitive character substring selects name starting ten bytes from match via native name-reference callback; absent callback or failed/null-target reference clears selection. Non-character branch compares FALSE against first operand, not current. Final valid selected actor flags+0xef0 bit0x10 set/cleared. Does not execute locomotion. Initializer0x443250 requires operand,system and name callback; returns referenced actor first pointer. Predicate returns0 for null initialized actor with no self fallback; otherwise float1 iff actor byte+0x1fc bit0x80. Does not assign player control.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "AddToSet, OnSpeederBike",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 40,
+      "report": "reverse-engineering/reports/script-phase4-20261013-contract.json",
+      "checks": 21191,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "First-call gated and self creature/reference/actor guarded. Whole case-insensitive Reset sets actor byte+0x378=0 without count decrement. Other operands use original packet numeric resolver, truncate float32 toward zero, and accept only1..16. Each accepted token assigns actor byte+0x378 and increments global byte0x876847+index modulo256. Repeated memberships and reassignments increment independently without correcting previous counts. Initializer gates operand,system and callback, extracts named-reference first pointer. Reader uses initialized actor if nonnull, otherwise dereferences unchecked script-creature+0xd0 and guards its reference/actor. Requires actor link+0xcd0, actor byte context+0x7b5==0x3b and linked object word+0x1064 equal runtime global word0x7f1948. Missing name falls back to self; null creature with null initialized actor faults native.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "EitherPlayerIs, Player1Is, Player2Is, FinishedSpline, NumBaddies, IsAlive, MySet, NumBaddiesThatCanSeePlayers",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 97,
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "checks": 6097,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Requires nonnull system and initialized reference; compares exact reference identity against system+0x138c or+0x1390. Shared physical object/name is insufficient. Same gates as EitherPlayerIs but only system+0x138c reference identity. Same gates as EitherPlayerIs but only system+0x1390 reference identity. Guards creature/reference/physical actor self chain; missing chain returns float-1. Valid actor returns0 iff spline pointer+0xe64 nonnull and status byte+0xe6b==0; otherwise1. Does not advance spline. Signed actor-count global0x93d500 bounds an original0x10d8-stride array at0x93d504. Counts rows with flags+0x1fc both1/0x1000 and flags+0x1f8 bit1. Nonpositive count returns0. Does not construct/populate actor table. Null initialized record returns0; definition pointer at+4 is otherwise read unchecked, then group pointer definition+0x144. No group: record live bit0x1000 and dead byte+0x28b==0, without active-bit1 requirement. Group present: first nonnull member with active/live mask0x1001 and dead byte0 succeeds, using group uint8 count+7 and pointer slots+0xc. Zero-count group returns0 regardless of solo record flags. Does not update lifetime or groups. Loads uint8 script packet+0xb0 without null guard and returns float0..255. This is packet set ID, not actor membership byte+0x378. FILD reads signed dword global0x876840; portable result models subsequent float32 storage boundary used by SCP evaluator. Does not calculate visibility or count seeing actors.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "FollowPath, GoToOrigin",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 148,
+      "report": "reverse-engineering/reports/movement-phase4-20261013-contract.json",
+      "checks": 4968,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Native guard distinctions, ordered first-call token parsing, exact two-draw timer with double spill, actual formation expansion and timer completion; scheduler/token/world producers explicit. Native guards, spawn position/callback choice, ordered first-call parsing, one-draw wait, actual intent/formation and yaw/distance composition, float32 threshold stores and delayed zero-wait completion; producers/scheduler explicit.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SetHint, CurrentHintId, ForceAtEnd, SockDistanceToPlayer",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 62,
+      "report": "reverse-engineering/reports/script-phase6-20261013-contract.json",
+      "checks": 15354,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "First-call token parser searches case-insensitive substring id then advances3bytes, with last numeric selector winning. ignore_done_flag only checked when id substring absent. Composes actual registered hint request/activation, pointer/presentation/bitmap/cooldown updates and QRAND variant rejection loop. Null token faults before request; source throws. Finite int32 numeric conversion scope. Returns active hint signed-int16 ID or-1 when active pointer absent, via0x576460 and signed x87 integer conversion. Hint state producers are recovered in same module; UI and future timer ticks remain external. Initializer returns named Force gizmo registry record using runtime type0x7f8cc4. Reader invokes registered output0/includeInactive1 then converts nonzero to float1. Actual Force output0 requires playback group present and state2 regardless of reverse flag; differs from ForceFinished. Generic registered type/name table and finite Force state supplied by host. Guards creature/self reference/primary player, rejects player socket-1 and unequal socket byte. Null referenced self target faults after player-sentinel gate. Uses signed socket/segment affine rows from0x53f7a0, with x87 precision64 multiply/add then float32 store for each scalar, and player-minus-self float32 distance. Finite operands/stored scalars only; signedzero preserved.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SetDoomedEscapeLocator",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 40,
+      "report": "reverse-engineering/reports/movement-phase6-20261013-contract.json",
+      "checks": 686,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "First-call and nonzero-token gates, guarded self and ordered character retargeting, substring token precedence/fixed skips, final name formatting precedence, native integerRNG, lookup and actor EF0bit800/F14 own-state. Actor/locator producers and escape/damage consumers outside this contract.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "AlertCreatures",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 67,
+      "report": "reverse-engineering/reports/movement-phase7-20261013-contract.json",
+      "checks": 727,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Whole first-call target selection and real4399e0 producer composition; zero-token self alerts, ordered character= retargeting with guarded reference/firstobject extraction, unconditional parentreturn1. Actor/definition producers and downstream alert consumers external.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SetPathCnxFlag",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 51,
+      "report": "reverse-engineering/reports/movement-phase8-20261013-contract.json",
+      "checks": 891,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Full bounded first-call/world/header gates, ordered from/to substring and mask-token parsing, three existing native flag dialects/global fallback composition, ordered real path/edge lookup, directional/opposite mask writes with automatic/bothways behavior. No computational service adapters.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SelectRandomSpline",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 36,
+      "report": "reverse-engineering/reports/movement-phase9-20261013-contract.json",
+      "checks": 1315,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Whole bounded candidate selection: first-call global reset, ordered32capacity exact/prefix candidates with duplicates, actor eligibility marks/filter/cleanup, original16bit QRAND and nativeinteger stride selection.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "MoveForward, OriginRange",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 55,
+      "report": "reverse-engineering/reports/movement-phase10-20261013-contract.json",
+      "checks": 1599,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Whole finite bounded command: player/self guards, captured actor identity, first heading/token turn preprocessing, exact qword turn scale and two truncations, separate float/integer RNG rules, node-gated real yaw/vector/intent/formation composition. Never completes itself; callback and sine-table inputs explicit. Full finite body: callback before world/spawn fallback guards, no reference-chain gate, fresh creature position/spawn reads after mutation and actual null-scratch distance/sqrt composition. Whole condition loader/comparator outside this batch.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "LastAttackerRange, HelpWithTriggers, MusicOn",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 55,
+      "report": "reverse-engineering/reports/movement-phase11-20261013-contract.json",
+      "checks": 4931,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Null creature/reference or absent attacker returns exactF32 1e9(4e6e6b28). Null referenced actor faults. Actor self-alias returns zero. Actual5becc0/sqrt execute unchanged; portable code composes existing finite distance implementation. Authored body occurrences only; enclosing condition parsing/comparison remains separate. Global world+4678 read first. Physics/creature/reference guards then reference+28d unsigned byte index. Physics+42c0+index255 alone means inactive; signedbyte at+4280+index selectsblock*214+20e and any nonzero16bit state returns1. Backing includes allnegative signedblocks. Authored body occurrences only; enclosing condition parsing/comparison remains separate. Every nonzero raw global music byte returns1, zero returns0; no creature/world guard. Authored body occurrences only; enclosing condition parsing/comparison remains separate.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "TakeOverRange, StuckTime, TurretAlive, CheatProgress, OpponentToLocatorY",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 71,
+      "report": "reverse-engineering/reports/movement-phase12-20261013-contract.json",
+      "checks": 2726,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Null creature/reference/actor/target yields exactF32 1e9. Actual distance uses target actor+5c versus reference+5c, not selfactor+5c; finite ordered squared-distance/sqrt composition. Retained authored body occurrences; enclosing comparisons separate. Null creature/reference returns positivezero, otherwise reads reference+1d8 F32 without actor dereference. Finite andInf/signedzero payload words retained. Retained authored body occurrences; enclosing comparisons separate. Native argument5 turret pointer; null returnszero; word+13a bits0x30 suppress result. Allother lowbyte and sampled upperbyte patterns unchanged. Retained authored body occurrences; enclosing comparisons separate. Complete original PC stub returns positivezero for every argument, without memory access. Retained authored body occurrences; enclosing comparisons separate. Creature/opponent first guards return maxfiniteF32. Explicit argument5 locator precedes packet+a4 fallback; absent packet faults only whenfallback readneeded. Difference opponent+60 minus locator+14 storesF32. Retained authored body occurrences; enclosing comparisons separate.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SetForceBack",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 24,
+      "report": "reverse-engineering/reports/movement-phase13-20261013-contract.json",
+      "checks": 603,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "First-call command only; self-chain capture before ordered character/locator/radius/FALSE/type parsing. Character callback can mutate live locator table and packet numericparameters. Failedlocator preserves previouspoint; FALSE sticky; actor orlocator requiredtopublish. Callsactualstateproducer(actor,locatorPoint,radius,type), returns1.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SnapWeaponOut, SetGravityHeight",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 29,
+      "report": "reverse-engineering/reports/movement-phase14-20261013-contract.json",
+      "checks": 1025,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Firstcall captures ownactor before orderedcharacter callback/keep_out/FALSE parsing. keep_out fixedskip9: only TRUE suffix sets holdbit; FALSE sticky. Enabled sets E20bit10000 and D3c1, optionallyEECbit10. Disabledclearsbothbits and D3c0, preservingotherwords. Return1. Selfreference/object gates beforefirstcall; firstcallclearsEECsignbit andsets1028exact1e9. resettoken skipsafterinitialreset; min/max substrings fixedskip4 orplainnativeNumber. RNG draws exactlyonce onlybothbounds differ1e9, overridingdirectvalue; x8764 (1-r)*min+max*r storesF32 includingnegativezero. Return1.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "SetScaleOverride",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 15,
+      "report": "reverse-engineering/reports/movement-phase15-20261013-contract.json",
+      "checks": 1759,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Full finite command, originalfirst/nonfirst,selfreference/actor gates; ordered reset/min/max/time/plainnumeric parsing. Bothmin/max non1e9 triggeronefloatdraw overridingplainvalue. Native time keyis substringtime withfixedskip5. Zero time directset leaves oldpacket timer/rate unchanged. Nonzero time caches F32time/rate using extended difference/division; negative time returnscompletedaftercachecommit. Everycall then reads cachedpositive timer: Delta<timer updatescurrentScale+Delta*rate andremaining timer returns0, elseconsumesremaining timer, clearscachetime returns1. NegativeDelta reverses interpolation withoutcompletion.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "IsVisible",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 15,
+      "report": "reverse-engineering/reports/movement-phase16-20261013-contract.json",
+      "checks": 703,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Original IsVisible condition body takes nameargument5; dereferencesglobalworld+13c before all lookup guards. Composes originalstatic/dynamic scene lookup, validity andvisibilitygetter without adapters. Dynamicrecords dominate when scene+110nonzero, firstcase-insensitive namewins. Staticflags model+44 bit1; dynamicrecord+B8 bit2. Nullworld faults evennullname/noScene; nullstaticmodel faults onlyafter successfulstaticselection. Actualdiagnostic5c1300 isRET-only; diagnostic0/1misses covered. Portable bridge reusesCameraSceneLookup,PathReferenceAliases.Valid andPathSceneBindings.Visible unchanged withexplicitloaded-record projection.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "CutSceneFinished, RaceLap, CanHearRadio, BeingTowed, ForcePushing, OnGround, PathBlocked",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 70,
+      "report": "reverse-engineering/reports/movement-phase17-20261013-contract.json",
+      "checks": 2396,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Nullargument5record orrecord+4state returns0, else actual500210bit12 test normalizedtofloat1. Retained authored body occurrences; init/comparison separate. Signedglobal882a70 FILD then F32wrapperstorage. Int32rounding boundaries +/-16777217 and +/-2147483648 retained. Retained authored body occurrences; init/comparison separate. Rawglobal87b9d0 word:anynonzero=>float1, zero=>0 withnoactor gate. Retained authored body occurrences; init/comparison separate. Nullcreature=>0. OtherwiseD0reference andfirstactor dereferencedwithoutnullguards; actorEF4bit200=>float1. Retained authored body occurrences; init/comparison separate. Explicitargument5actor bypasses selfchain guards; else nullablecreature/D0reference/firstactor. Actor7b5byte mustexactly1b. Retained authored body occurrences; init/comparison separate. Creature/D0reference/firstactor nullguards. Actor281 or282 anynonzero byte=>1, lazy secondread. Retained authored body occurrences; init/comparison separate. Onlycreatureguard; creature1e8bit400000=>float1. Retained authored body occurrences; init/comparison separate.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "OpponentToLocatorXZ, NearestPlayerToLocator",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 23,
+      "report": "reverse-engineering/reports/movement-phase18-20261013-contract.json",
+      "checks": 1439,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Creature/opponent guards yieldmaxfiniteF32. Explicitargument5locator winsbeforepacket+a4 fallback; nullpacketfaultonlywhenreadrequired, missinglocator=>maxfinite. Physicalopponent+5c versuslocator+10 XZ difference/squaredstore/sqrt; no selfreferencegate. ReusesSpatialConditions.DistanceXZ. Authored condition-body inputs; init/comparison separate. Creaturepresence thenworldpresence guards, no reference/object guard. Explicitargument5locator orpacket+a4 fallback. World138c/1390playerptrs, fullXYZ distances tolocator+10, compareF32squares beforeonesqrt, exactmaxfinite sentinel retained. Aliasedplayers andequal-distance ties retained. Portablecode projects rawplayers/locator intoexistingSpatialConditions.NearestPlayerRange. Authored condition-body inputs; init/comparison separate.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
+    },
+    {
+      "name": "CreatePod",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 46,
+      "report": "reverse-engineering/reports/movement-phase23-20261013-contract.json",
+      "checks": 760,
+      "reviewChecks": 0,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Bounded authored command body composed with recovered curve, matrix and heading; type lookup and actor creation services explicit, runtime data/scratch supplied, full pod lifecycle remains open.",
+      "countQualification": "Primary suite units are explicit in linked reports, with authored checks included. Excluded from historical gameplay suite totals; not a whole-game or managed-equivalence count."
     }
   ]
 }

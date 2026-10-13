@@ -1,0 +1,72 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x68cfd0",
+      "method": "PtlEmitterRuntime.Normalize",
+      "coverage": "bounded finite terminating physical-record duty normalization and original attached-emitter scan",
+      "qualification": "Original own-body duty normalization on readable physical records and512-row emitter/table backing. Lifetime>0 requires finite positive on+variation cycle, nonnegative finite gap, terminating binary32 progression, finite intermediate stores and integral product fittingInt32. Exact64-bit x87 arithmetic projects each observed binary32 spill: remaining duration, active accumulator, on completion, gap remainder, total completion and duty fraction. Rate is signed16; conversion truncates the unspilled fraction*rate*lifetime, then wraps signed16, clamps below1 and multiplies by signed8 extra+1 with low16 wrap. Nonpositive finite lifetime follows original invalid-conversion low-word0 then clamp1; no FPU status claim. Scan reads live emitter/table globals per eligible row, filters-1/99999, uses signed16 particle index and pointer identity, rereads normalized count before each real SetCount. Mutable allocation callback may retarget future emitter base, count and final row. Actual original6e6b90 executes660 times unchanged in direct fixtures. NaN/Infinity arithmetic operands, arbitrary Int64 conversion, stalled cycles, negative gaps, machine flags and partial-fault effects are outside source projection.",
+      "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase17-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase17-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x683e90",
+      "method": "PtlEmitterRuntime.SetCount",
+      "coverage": "complete prepared emitter chunk/count state with explicit allocation683560 service",
+      "qualification": "Own-body emitter count preparation on readable backing for arbitrary signed32 counts and raw integer fields. Captures physical pointer through signed16 particle index before writing count low16; rereads physical type for12-particle type7 or32-particle chunks, preserving signed32 addition wrap and truncating division. Chunk low16 is compared signed against32; cap stores384(type7) or1024(other), current/requested compare uses raw16 equality, equal updates active count, only requested nonzero/currentzero calls explicit mutable allocation683560. Allocation return is ignored. The child allocation body, arena publication and live particle storage remain unrecovered.",
+      "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase17-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase17-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x661f60",
+      "method": "PtlEmitterRuntime.Select",
+      "coverage": "complete prepared512-row nearest emitter selection for finite coordinates and raw threshold bits",
+      "qualification": "Own-body selection on readable512-row backing, selected index-1 or0..511 and finite coordinates whose subtraction and squared-distance stores remain finite. Original5b3800 executes1,860 direct calls unchanged. Subtraction spills each coordinate binary32; x8764-bit square/add order is(y*y+x*x)+z*z, final distance spillsbinary32. Current valid row at exactzero retains prior selection, independent of threshold. IDs-1/99999 are skipped; strict squared threshold, negative-threshold first acceptance and stable first ties retained. All raw threshold variants prepared include±0,±Infinity and quietNaN; exceptional coordinate arithmetic and signaling-NaN quieting/FPU flags excluded. No instance creation, rendering or emission claim.",
+      "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase17-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase17-20261013-assembly.json"
+      ]
+    }
+  ],
+  "relatedProjections": [
+    {
+      "address": "0x68df20",
+      "method": "PtlRecoveredEmitterServices",
+      "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+      "coverage": "IPtlRecordServices adapter for sealed phase16 publication; composition verification separate, no extra mapping credit"
+    },
+    {
+      "address": "0x683560",
+      "method": "Action<SoundSetupImage,uint> allocate",
+      "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+      "coverage": "explicit mutable child allocation port; actual body not recovered"
+    }
+  ],
+  "evidence": [
+    "reports/world-phase17-20261013-native-tests.json",
+    "reports/world-phase17-20261013-contract.json",
+    "reports/world-phase17-20261013-assembly.json",
+    "reports/world-phase17-20261013-execution-status.json"
+  ],
+  "harnessFile": "../tools/world-phase17-20261013-portable-verify.cs",
+  "verifierModule": "world-phase17-20261013",
+  "verifierClass": "WorldPhase1720261013Verify",
+  "fixture": "reports/world-phase17-20261013-vectors.json",
+  "managedOutput": "reports/world-phase17-20261013-managed-tests.json",
+  "nativeCases": 1152,
+  "nativeMismatches": 0,
+  "expectedManagedAssertions": 4608,
+  "dependsOn": [
+    "gameplay/world-phase16-20261013-ptl-records.cs"
+  ]
+}

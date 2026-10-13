@@ -1,0 +1,122 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase6-20261013-renderer.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5dad10",
+      "method": "CameraRenderCacheProduction.Offsets",
+      "coverage": "Whole finite signed viewport offset producer including zero branches and actual float32 integer-ratio spills.",
+      "sourceFile": "geometry/scene-phase6-20261013-renderer.cs",
+      "evidence": "reports/scene-phase6-20261013-renderer-native-validation.json",
+      "limitations": [
+        "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+        "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+        "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+        "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+        "Native/Python exact own-state comparison passed; managed replay pending.",
+        "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+        "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+      ]
+    },
+    {
+      "address": "0x5daef0",
+      "method": "CameraRenderCacheProduction.Extents",
+      "coverage": "Whole finite viewport extent producer with unspilled x87 screen/source ratio.",
+      "sourceFile": "geometry/scene-phase6-20261013-renderer.cs",
+      "evidence": "reports/scene-phase6-20261013-renderer-native-validation.json",
+      "limitations": [
+        "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+        "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+        "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+        "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+        "Native/Python exact own-state comparison passed; managed replay pending.",
+        "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+        "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+      ]
+    },
+    {
+      "address": "0x5fcc80",
+      "method": "CameraRenderCacheProduction.Update",
+      "coverage": "Whole resolved CPU cache producer with raw view, finite sampled projection, exact scales and wrap counters.",
+      "sourceFile": "geometry/scene-phase6-20261013-renderer.cs",
+      "evidence": "reports/scene-phase6-20261013-renderer-native-validation.json",
+      "limitations": [
+        "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+        "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+        "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+        "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+        "Native/Python exact own-state comparison passed; managed replay pending.",
+        "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+        "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 3,
+  "evidence": [
+    "reports/scene-phase6-20261013-renderer-native-validation.json",
+    "reports/scene-phase6-20261013-renderer-contract.json",
+    "reports/scene-phase6-20261013-renderer-assembly.json",
+    "reports/scene-phase6-20261013-renderer-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase6-20261013-renderer.cs",
+      "sha256": "e103067182c256391106fc9251e8364789b8ba7c8d003d7a09bfa7bce1d77dc1"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase6-20261013-renderer-harness.cs"
+  ],
+  "harnessSha256": "b8f1b792fa86183064e7292b03629078260499922609f432b3cf787c2a59e004",
+  "fixture": "reports/scene-phase6-20261013-renderer-native-fixtures.json.gz",
+  "fixtureSha256": "052ecfa253840efc3b411ee72cbcf26a812873cdbfe87141ddf1a071b796d254",
+  "nativeTool": "tools/scene-phase6-20261013-renderer-native.py",
+  "nativeToolSha256": "2fe1f6e8de71fa8fe7761a5da43394707f1b887aa6b42ff5c00b0db4eb5c13fc",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "offsetCases": 2048,
+    "extentCases": 2048,
+    "cacheCases": 1152,
+    "directCacheCases": 1024,
+    "actualCameraCallbackCases": 128,
+    "retainedPortableReplayCases": 5248,
+    "retained": 5248,
+    "portableReplayCases": 5248,
+    "preparedManagedAssertions": 9856
+  },
+  "verifier": {
+    "module": "scene-phase6-20261013-renderer",
+    "entrypoint": "CameraRenderCachePhase6Harness",
+    "fixture": "reports/scene-phase6-20261013-renderer-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "reconstructed/animation/AnimationPlayback.cs",
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "reports/scene-phase5-20261013-native-fixtures.json.gz",
+      "sha256": "520e21e3b8d8e11bdbea12665f5b31013628174821f6af4c4df25f5015285c00"
+    }
+  ],
+  "nextGaps": [
+    "Recover remaining original light producer 0x5ff840 and camera helper 0x5ff820 / 0x5ff830 writes.",
+    "Bind runtime source/origin dimensions to authored scene/frame setup paths.",
+    "Establish installed D3DX numerical policy before whole renderer equivalence."
+  ]
+}

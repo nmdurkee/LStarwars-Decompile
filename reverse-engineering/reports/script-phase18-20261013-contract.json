@@ -1,0 +1,185 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "functions": [
+    {
+      "address": "0x415000",
+      "endExclusive": "0x415044",
+      "scope": "Existing Rebind expanded to ordered prepared-memory binding with unchanged typed ScriptMachine.Bind/EnterState core.",
+      "ordering": [
+        "Read actor+2c8 base script; zero returns before idle/global-system reads. Null actor still faults on mandatory base read.",
+        "Read script+38 idle state BEFORE global802c54 and pointed system+2ae8. Global system read is retained although supplied-script binding does not use its value.",
+        "Execute supplied-script514640 packet=actor+2c8 with no character profile and supplied idle state; only completed return clears actor+32c depth.",
+        "Idle state zero triggers lazy Base lookup after default copies. Empty/missing Base skips enter but still resets bind deadline fields; existing state/action remain when enter is skipped."
+      ]
+    },
+    {
+      "address": "0x514640",
+      "endExclusive": "0x5147c0",
+      "scope": "Existing binding helper expanded for supplied nonnull script, optional character profile, optional supplied state. Resolver branch external.",
+      "ordering": [
+        "Clear flag4 atpacket50, reset blocked WORD B2 BEFORE script/current/pending/default operations. Supplied script is required in this bridge; script resolver branch not recovered.",
+        "Test packetbase0 BEFORE writes tocurrent4/pending10; only empty base writes supplied script tobase0.",
+        "No profile: sequential float default copies fromscript1c+i*8 topacket14+i*4.",
+        "With profile: sequential four float copies fromprofile64+i*4, then read profile mask48 anew for each slot; defaults apply iff mask&(2<<i)==0. Aliases can change later source/default/mask reads.",
+        "Null supplied state performs Base lookup in live packetcurrent4 after copies; supplied state avoids all name/list reads.",
+        "Unchanged ScriptMachine.Bind is composed with a raw prefix/default snapshot and an internal condition-bank hydration hook. Enter prefix commits before first-action head read, preserving late faults.",
+        "Bind deadline tail writes B4byte0,B8DWORD0,B5byte0,BC/C0DWORD0 in original order. Bind preserves depth64; Rebind clears it after successful completion."
+      ],
+      "limits": [
+        "Nonnull supplied script, finite copied defaults/overrides (signed zero retained), ASCII NUL-terminated Base names and acyclic list. Resolver, character-string mode and other arbitrary bind modes not claimed."
+      ]
+    },
+    {
+      "address": "0x52cc90",
+      "endExclusive": "0x52d06d",
+      "scope": "Existing dispatcher expanded to original prepared-memory body with explicit child evaluator/command ports.",
+      "ordering": [
+        "Null packet/currentScript0 returns before timer. Read packet timer24 and initial signed depth64 BEFORE float32 timer commit.",
+        "Walk positive initial stack depth, reading reference guard-list head before calling52c880 with custom EAX bank1. Loop bound/depth is live after callbacks. Guard failure stores depth index before selecting return profile/state/script and binding.",
+        "Nonzero live depth, no pending state, and current script idle38==packetstate8 performs top reference return. Depth decrement commits before profile/return-field reads.",
+        "Pending state enters then pending10 cleared again; absent state takes first script state head. Enter/advance helpers execute unmodified in evidence.",
+        "Action pointer is cached across scratch/animation callbacks; descriptor and metadata are re-read from that cached action afterward. Handler reads argument C before8 and target function pointer afterward.",
+        "First-call action reset commits exact packet/actor scratch fields before callback9238ac. Actor-null skips its writes/global callback read. Clear flag1 after scratch callback, then inspect live descriptor animation byte.",
+        "Null descriptor/handler clears first-call flag and advances; dynamic command0 yields before advance. Nonzero command advances only if live flag1 is clear; live packet action/state pointers can change through callbacks.",
+        "Always call52caf0 references after action stage; nonzero return skips deadline/state-condition tail.",
+        "Positive old deadline is decremented/stored float32. Crossing <=0 with nonnull target enters, then clears deadline targetBC and markerB4, returning before state conditions.",
+        "Otherwise active state calls52c880 custom EAX bank0; match WORD E controls flag4 before reading live target24 and entering."
+      ],
+      "childPorts": [
+        "52c880 condition evaluator with EAX bank",
+        "52caf0 reference evaluator with native dispatcher packet context",
+        "9238ac dynamic scratch callback",
+        "53db30 animation request",
+        "dynamic command handler7cdecl arguments",
+        "terminal controller/audio/notification/special jump from prior stages"
+      ],
+      "limits": [
+        "Finite consumed timer/delta/deadline floats and bounded-progress action callbacks. Source preserves native live rereads/old-action identity; cycles/nonprogress completion is not claimed.",
+        "Child evaluator/command bodies and OS/game backends remain explicit. Existing typed ScriptMachine.Tick remains unchanged; new raw dispatcher is necessary for byte/pointer aliases and commit-before-fault order."
+      ]
+    }
+  ],
+  "composition": "RecoveredScriptPipelinePorts removes whole Rebind/RunScript adapters from immutable phase13-17 pipeline. Lower condition/reference/scratch/animation/command ports remain explicit; zero authored command coverage.",
+  "nativeEvidence": {
+    "checks": 1545,
+    "mismatches": 0,
+    "rebindCases": 36,
+    "dispatcherCases": 461,
+    "pipelineCases": 18,
+    "standaloneFaults": 13,
+    "pipelineFaults": 2,
+    "irregularTimerDeadlinePairs": 256,
+    "overrideMasks": "0..31,80000000,ffffffff plus prepared aliases",
+    "assertionsAreCorrelated": true,
+    "originalEntries": {
+      "Rebind": 86,
+      "BindState": 185,
+      "AdvanceAction": 304,
+      "ListHead": 544,
+      "FindState": 70,
+      "CompareName": 129,
+      "ListNext": 564,
+      "EnterState": 138,
+      "Dispatcher": 511,
+      "Release": 19,
+      "Transfer": 17,
+      "ChangeBaseState": 50,
+      "ClearAction": 16,
+      "ResetActor": 16,
+      "StopActor": 16,
+      "ResetControls": 16,
+      "QRAND": 48,
+      "PrepareActor": 16,
+      "Selector": 16,
+      "Seat": 17,
+      "Bounds": 17,
+      "Eject": 16,
+      "Context": 16,
+      "SoundRouter": 16,
+      "ResetPacket": 16,
+      "SquareRoot": 16,
+      "VehicleResponse": 17,
+      "Feedback": 17,
+      "Convert": 17,
+      "LegacyConversion": 17,
+      "Duration": 17,
+      "EndFrame": 17,
+      "Camera": 22,
+      "FinishAction": 3
+    }
+  },
+  "unsupportedObservations": {
+    "count": 1,
+    "location": "native-fixtures.unsupportedObservations",
+    "kind": "Out-of-domain nonprogress callback",
+    "hostInstructionBudget": 10000,
+    "originalStop": "Instruction limit in function 0x52cc90",
+    "retainedChildEvents": 222,
+    "coverageCredit": 0
+  },
+  "fixtureReadback": {
+    "checks": 1545,
+    "mismatches": 0,
+    "scope": "Same-model retained backing replay, not additional native evidence.",
+    "fixtureBytes": 119368034
+  },
+  "remainingAdapters": {
+    "0x52c880": {
+      "name": "Conditions",
+      "argc": 4
+    },
+    "0x52caf0": {
+      "name": "References",
+      "argc": 2
+    },
+    "0x53db30": {
+      "name": "Animation",
+      "argc": 2
+    },
+    "0x10200500": {
+      "name": "Scratch",
+      "argc": 3
+    },
+    "0x10200600": {
+      "name": "Command",
+      "argc": 7
+    },
+    "0x698900": {
+      "name": "ControllerRequest",
+      "argc": 5
+    },
+    "0x10200400": {
+      "name": "Notify",
+      "argc": 1
+    },
+    "0x4c99b0": {
+      "name": "DistanceFactor",
+      "argc": 2
+    },
+    "0x561e20": {
+      "name": "DirectedJump",
+      "argc": 6
+    },
+    "0x681e90": {
+      "name": "PlayerSound",
+      "argc": 2
+    },
+    "0x681eb0": {
+      "name": "WorldSound",
+      "argc": 3
+    }
+  },
+  "addressCredit": {
+    "new": [],
+    "existingExpanded": [
+      "0x415000",
+      "0x514640",
+      "0x52cc90"
+    ],
+    "authoredCommands": 0
+  },
+  "wholeRuntimeLimitations": [
+    "No Windows game/backend or managed executable execution. Original isolated x86 body and native bind/enter/advance/name lookup execute.",
+    "Source/harness saved for root combined compilation. Unsupported nonprogress observation is not passed to the portable comparison loop."
+  ]
+}

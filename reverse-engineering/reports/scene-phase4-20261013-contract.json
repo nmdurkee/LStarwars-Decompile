@@ -1,0 +1,92 @@
+{
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "producerCases": 1600,
+    "transformCases": 1632,
+    "composedTreeToClipCases": 192,
+    "retainedPortableReplayCases": 3424,
+    "nestedPredicateCalls": 3076,
+    "externalMatrixAdapterCalls": 3648,
+    "sameGeometryStackGroups": 48,
+    "sameGeometryGroupsWithChangedBits": 46
+  },
+  "checks": 17705,
+  "source": {
+    "path": "reconstructed/geometry/scene-phase4-20261013-PlaneProduction.cs",
+    "sha256": "03a9d8ddce9951ce0131707ae6a0eb3690f5bfed10320f7579315c28c32c943a"
+  },
+  "harness": {
+    "path": "reconstructed/geometry/harness/scene-phase4-20261013-PlaneProductionHarness.cs",
+    "sha256": "57bc4b706c50d8064ba6a37da23dc5dfe9aa9adb07c0ae5b928d07a4bbb5ec4f",
+    "entrypoint": "TreeVisibilityPhase4Harness",
+    "preparedAssertions": 11268,
+    "compiled": true,
+    "executed": false
+  },
+  "fixture": {
+    "path": "reports/scene-phase4-20261013-native-fixtures.json.gz",
+    "sha256": "0e316ba218ed6264c5b9446a5d78b97882d5a3b9968c5895d98bff8bb69e4e2b"
+  },
+  "nativeTool": {
+    "path": "tools/scene-phase4-20261013-native.py",
+    "sha256": "f55dfc2d864d2b55f52c1131ea82eb6f6bcdb9a9501bcba0284e7a17ceb03e75"
+  },
+  "inputs": {
+    "near": "0x973730",
+    "far": "0x973734",
+    "scales": [
+      "0x966378",
+      "0x97313c",
+      "0x966270",
+      "0x96dce4"
+    ],
+    "template": "16 raw finite float words copied from0x95e600 through original5b44c0",
+    "view": "16 float words at0x80b708",
+    "direction": "XYZ0x973708",
+    "position": "XYZ0x973718"
+  },
+  "outputs": {
+    "localOuter": "0x96d8b0",
+    "localInner": "0x96d980",
+    "outer": "0x96e4f0",
+    "inner": "0x96d940",
+    "absOuter": "0x971ac0",
+    "absInner": "0x971660",
+    "depth": "0x971880",
+    "absDepth": "0x96e540",
+    "initialized": "0x973984"
+  },
+  "contracts": [
+    "0x5d86f0 copies all16 template words, then overwrites indices0,1,6,7,8,9,10,11. No literal identity matrix is inferred.",
+    "Width/height and near squared each spill tofloat32; squaredcomponent+nearSquared spills before original5c0240; root rounds tofloat32 before reciprocal and coefficient stores.",
+    "Outer/inner matrices use same runtime template, separate scalar sizes; signs and signed zero retained.",
+    "0x5d8950 calls explicit D3DX dependency twice asView*LocalOuter thenView*LocalInner; original full output matrix retained.",
+    "Depth dot uses Yproduct+Xproduct+Zproduct, thenfloat32 spill and unary sign flip. DepthXYZ copies direction.",
+    "Absolute plane matrices take sign-cleared first12 transformedwords and clear last4words; absolute depth XYZ sign-cleared andW0.",
+    "Original full tree wrapper runs native local/transform producers and original root/predicate calls; same packed clip buffer reaches original5df910.",
+    "Original clip-control writer compares complete32-bit words and patches only changed words; selectedmesh andprecedingtransform control bytes both0/3, preserving all other itembytes."
+  ],
+  "stack": {
+    "lastWriteInstructions": {
+      "initial stack seed": 3076
+    },
+    "wordCounts": {
+      "0xc2c80000": 240,
+      "0x0": 796,
+      "0x3f800000": 804,
+      "0x42c80000": 1236
+    },
+    "scope": "Whole actual0x5d8fb0->0x5d8e20->0x5d8b60 call chain with seeded prior stack. Writer provenance observes only this chain; seed reflects external prior stack. Fourth-radius dependence remains explicit, not replaced by zero."
+  },
+  "adapters": {
+    "0x5c1240": "Explicit finite scalar D3DX 4x4 multiply: each dot evaluated in binary64 then spilled to float32. Platform D3DX implementation is not recovered; original wrappers/producers/predicate/tree/clip-control instructions execute unchanged."
+  },
+  "validationStatus": "Original native/Python own-state differential passed; isolated C# core and replay compile passed; managed execution pending under inherited restriction.",
+  "limits": [
+    "Finite near>0;finite coefficients/matrix/direction/position with finite nonzero norm and finite intermediate outputs. Runtime0x95e600 copied template supplied explicitly;initialization/lifetime of template outside scope.",
+    "D3DX arithmetic remains explicit matrix adapter; not an assertion of imported D3DX CPU/GPU numerical equivalence.",
+    "Populated valid synthetic u16 trees,finite nonnegative extents,acyclic/pendingstack<=100. Exact finite fourth-radius residue supplied perpredicate. No live camera or authored tree loader claim.",
+    "Tree packed output is intentionally bound to selected scene clip buffer for original5df910 consumption; this verifies these contracts composed, not complete5f3c80/context resolver or scene submission.",
+    "Native/Python own-state contract verified; C# compiled replay remains separate and pending."
+  ]
+}

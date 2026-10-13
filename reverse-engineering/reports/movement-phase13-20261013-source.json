@@ -1,0 +1,45 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase13-20261013-ForceBack.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x451d50",
+      "method": "ForceBackCommands.SetForceBack",
+      "sourceFile": "gameplay/movement-phase13-20261013-ForceBack.cs",
+      "coverage": "First-call command only; self-chain capture before ordered character/locator/radius/FALSE/type parsing. Character callback can mutate live locator table and packet numericparameters. Failedlocator preserves previouspoint; FALSE sticky; actor orlocator requiredtopublish. Callsactualstateproducer(actor,locatorPoint,radius,type), returns1."
+    },
+    {
+      "address": "0x4a4900",
+      "method": "ForceBackCommands.Publish",
+      "sourceFile": "gameplay/movement-phase13-20261013-ForceBack.cs",
+      "coverage": "Raw state projection: actor87b8c8; origin87b8cc actor+80 with uintwrapping orrawfallback; extra87b8d0; radius87b890 andsingleF32 radiusSquared87b894 via x87 arithmetic. No actor pointer dereference."
+    },
+    {
+      "address": "0x4a48f0",
+      "method": "ForceBackCommands.Clear",
+      "sourceFile": "gameplay/movement-phase13-20261013-ForceBack.cs",
+      "coverage": "Clears exactly actor87b8c8 andorigin87b8cc whilepreserving radius/radiusSquared/extra."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase13-20261013-contract.json",
+    "reports/movement-phase13-20261013-tests.json",
+    "reports/movement-phase13-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase13-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase13-20261013",
+  "verifierClass": "MovementPhase1320261013Verify",
+  "fixture": "reports/movement-phase13-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase13-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SetForceBack",
+      "function": "0x451d50",
+      "sourceUses": 24,
+      "scope": "First-call command only; self-chain capture before ordered character/locator/radius/FALSE/type parsing. Character callback can mutate live locator table and packet numericparameters. Failedlocator preserves previouspoint; FALSE sticky; actor orlocator requiredtopublish. Callsactualstateproducer(actor,locatorPoint,radius,type), returns1."
+    }
+  ]
+}

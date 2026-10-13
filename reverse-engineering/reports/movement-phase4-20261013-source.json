@@ -1,0 +1,58 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase4-20261013-OriginPath.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x536330",
+      "method": "OriginPathCommands.GoToOrigin",
+      "coverage": "Native guards, spawn position/callback choice, ordered first-call parsing, one-draw wait, actual intent/formation and yaw/distance composition, float32 threshold stores and delayed zero-wait completion; producers/scheduler explicit.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    },
+    {
+      "address": "0x536dc0",
+      "method": "OriginPathCommands.FollowPath",
+      "coverage": "Native guard distinctions, ordered first-call token parsing, exact two-draw timer with double spill, actual formation expansion and timer completion; scheduler/token/world producers explicit.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    },
+    {
+      "address": "0x52fda0",
+      "method": "OriginPathCommands.FormationIntent",
+      "coverage": "Full finite byte-indexed formation intent: actual unsigned count/slot rules, spacing/side flags, supplied runtime yaw table, raw six-word orientation copies, goal/radius/mode/facing/lookpointer writes.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    },
+    {
+      "address": "0x52fcb0",
+      "method": "OriginPathCommands.SetIntent",
+      "coverage": "Refines existing ordinary intent projection by composing actual recovered formation expansion and exact owner callback selection51cbc0/51c6a0.",
+      "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase4-20261013-contract.json",
+    "reports/movement-phase4-20261013-tests.json",
+    "reports/movement-phase4-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase4-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase4-20261013",
+  "verifierClass": "MovementPhase420261013Verify",
+  "fixture": "reports/movement-phase4-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase4-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "FollowPath",
+      "function": "0x536dc0",
+      "sourceUses": 77,
+      "scope": "Native guard distinctions, ordered first-call token parsing, exact two-draw timer with double spill, actual formation expansion and timer completion; scheduler/token/world producers explicit."
+    },
+    {
+      "kind": "scp-action",
+      "name": "GoToOrigin",
+      "function": "0x536330",
+      "sourceUses": 71,
+      "scope": "Native guards, spawn position/callback choice, ordered first-call parsing, one-draw wait, actual intent/formation and yaw/distance composition, float32 threshold stores and delayed zero-wait completion; producers/scheduler explicit."
+    }
+  ]
+}

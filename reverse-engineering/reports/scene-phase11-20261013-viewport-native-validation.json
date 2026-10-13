@@ -1,0 +1,26 @@
+{
+  "schema": "original-viewport-com-forwarder-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "checks": 12288,
+  "errors": [],
+  "counts": {
+    "viewportCalls": 3072,
+    "retainedPortableReplayCases": 3072,
+    "COMCalls": 2560,
+    "globalWrapperCases": 1024,
+    "nullWrapperCases": 512,
+    "shiftedAliasedSourceCases": 1365
+  },
+  "adapters": {
+    "vtable+0xbc": "Recorded COM SetViewport(device,local six-word packet), stdcall2 args. Opaque HRESULT plus explicit backend/source/argument/global-screen mutations; no device action."
+  },
+  "limits": [
+    "Original6e2470 and6e57b0 execute unchanged. All copied/clamped words use integer instructions; raw nonfinite depth payloads are not converted.",
+    "Local device packet clamps only width/height using unsigned comparisons against raw screen words. X/Y/depth remain raw.",
+    "After COM, backend cache receives original source words with actual forward read/write order, including shifted/unaligned aliases and callback source mutation. Local packet mutations do not alter that copy.",
+    "COM HRESULT is discarded. Return equals last original source word read after prior writes; wrapper null input returns0 without call.",
+    "Global wrapper routes to fixed backend29765c8. Backend/COM lifecycle, actual device acceptance and runtime source initialization remain external.",
+    "Native/Python own-state differential passed; managed execution pending."
+  ]
+}

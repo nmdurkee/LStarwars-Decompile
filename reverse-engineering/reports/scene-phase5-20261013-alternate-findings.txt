@@ -1,0 +1,9 @@
+ALTERNATE CAMERA VIEW AND RAW FORWARD COPY
+
+One new native entry, 0x5c19d0, plus a refinement of camera 0x5ed540. Original native/Python passed 1,792 grouped checks across 1,792 retained cases: 1,024 raw overlap-copy cases and 768 complete camera cases. The camera cases cover 192 normal conversions, 192 Y-reflection conversions and 384 other nonzero conversions. C# core and harness compile; 2,561 prepared assertions remain unexecuted.
+
+Conversion mode 0x973944 is separate from selected-camera mode 0x97394c. Mode 1 overwrites runtime template word 5 with -1 and inserts that Y-reflection between inverseReference and Reference. Other nonzero modes still compose inverseReference * Reference * inverseCamera. They omit normal camera XYZ column scaling. Nonorthogonal references are not simplified to identity. Existing native-proven affine and inverse helpers compose this behavior.
+
+The EAX/ECX copier reads and writes each of sixteen words in native order. Shifted overlapping outputs preserve forward-copy propagation, and raw NaN/FFFF patterns survive unchanged. Mode 1 erases its poisoned Y-diagonal word before numerical use; unused templates in other modes may contain raw nonfinite words.
+
+Fresh projection, clipping, frustum and camera numeric images compare against the complete original call. Imported D3DX and renderer light/cache output services remain explicit. Alternate-view dirty viewport/reuse composition, authored scene loading and full GPU/frame behavior remain open.

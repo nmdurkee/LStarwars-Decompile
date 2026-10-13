@@ -1,0 +1,46 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "371731951157a0786a2c4177032efc335d4e2c689ebcc4511712024e8cac420f",
+  "files": [
+    {
+      "file": "gameplay/world-phase12-20261013-par-loader.cs",
+      "sha256": "371731951157a0786a2c4177032efc335d4e2c689ebcc4511712024e8cac420f"
+    }
+  ],
+  "mappings": [
+    {
+      "address": "0x64c300",
+      "method": "ParResourceLoading.Load",
+      "coverage": "complete own-state PAR loader with original downstream record/resolver composition and explicit runtime services",
+      "sourceFile": "gameplay/world-phase12-20261013-par-loader.cs",
+      "qualification": "Complete own-state 0x64c300 PAR loader over valid prepared records, instances, scene table and buffered streams; activation 0x64ae50, selection 0x644000 and managed asset resolution remain explicit services. All 112 authored PAR files are unchanged and fed completely as transport inputs; original record decoder 0x64ba10, resolver 0x64b020, buffered readers and sprite/particle/audio lookup bodies execute unchanged in native comparison. Asset contexts contain empty particle registry, 1,600 NULL audio name pointers and scene sprite tables with zero records; no loaded-asset lookup or runtime activation/nearest-selection implementation is claimed. The 200 retained cases cover all versions 1..16 in both byte orders, low-byte mode dispatch, bank selection, record/instance capacity, full scene table, failed/occupied opens, empty record names, negative counts, missing instance names and runtime callback mutation order. Captured 843,768-byte region image, asset argument SHA and counts, runtime service trace, transport trace and state, and raw EAX are compared for every case. Discarded overflow records use a 376-byte temporary outside captured regions; discarded bytes are not a stack-layout reconstruction. Finite/signed-zero instance coordinates are covered; general x87 exceptional-value conversion is not claimed. Source and portable harness compile as a library; managed fixture replay is pending, with no generated executable launch.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase12-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase12-20261013-assembly.json"
+      ]
+    }
+  ],
+  "relatedProjections": [
+    {
+      "address": "0x64c6c0",
+      "method": "ParResourceLoading.Load",
+      "coverage": "one-scene forwarding wrapper: original bytes document preserved EAX; no extra mapping credit",
+      "sourceFile": "gameplay/world-phase12-20261013-par-loader.cs",
+      "qualification": "Complete own-state 0x64c300 PAR loader over valid prepared records, instances, scene table and buffered streams; activation 0x64ae50, selection 0x644000 and managed asset resolution remain explicit services. All 112 authored PAR files are unchanged and fed completely as transport inputs; original record decoder 0x64ba10, resolver 0x64b020, buffered readers and sprite/particle/audio lookup bodies execute unchanged in native comparison. Asset contexts contain empty particle registry, 1,600 NULL audio name pointers and scene sprite tables with zero records; no loaded-asset lookup or runtime activation/nearest-selection implementation is claimed. The 200 retained cases cover all versions 1..16 in both byte orders, low-byte mode dispatch, bank selection, record/instance capacity, full scene table, failed/occupied opens, empty record names, negative counts, missing instance names and runtime callback mutation order. Captured 843,768-byte region image, asset argument SHA and counts, runtime service trace, transport trace and state, and raw EAX are compared for every case. Discarded overflow records use a 376-byte temporary outside captured regions; discarded bytes are not a stack-layout reconstruction. Finite/signed-zero instance coordinates are covered; general x87 exceptional-value conversion is not claimed. Source and portable harness compile as a library; managed fixture replay is pending, with no generated executable launch."
+    },
+    {
+      "address": "0x64ba10",
+      "method": "ParPhysicalRecords.Decode",
+      "coverage": "sealed decoder composed unchanged in original and managed loader; no extra mapping credit",
+      "sourceFile": "gameplay/world-phase11-20261013-par-records.cs",
+      "qualification": "Complete own-state 0x64c300 PAR loader over valid prepared records, instances, scene table and buffered streams; activation 0x64ae50, selection 0x644000 and managed asset resolution remain explicit services. All 112 authored PAR files are unchanged and fed completely as transport inputs; original record decoder 0x64ba10, resolver 0x64b020, buffered readers and sprite/particle/audio lookup bodies execute unchanged in native comparison. Asset contexts contain empty particle registry, 1,600 NULL audio name pointers and scene sprite tables with zero records; no loaded-asset lookup or runtime activation/nearest-selection implementation is claimed. The 200 retained cases cover all versions 1..16 in both byte orders, low-byte mode dispatch, bank selection, record/instance capacity, full scene table, failed/occupied opens, empty record names, negative counts, missing instance names and runtime callback mutation order. Captured 843,768-byte region image, asset argument SHA and counts, runtime service trace, transport trace and state, and raw EAX are compared for every case. Discarded overflow records use a 376-byte temporary outside captured regions; discarded bytes are not a stack-layout reconstruction. Finite/signed-zero instance coordinates are covered; general x87 exceptional-value conversion is not claimed. Source and portable harness compile as a library; managed fixture replay is pending, with no generated executable launch."
+    },
+    {
+      "address": "0x64b020",
+      "method": "WorldParameterBank.Resolve",
+      "coverage": "sealed resolver composed unchanged in original and managed loader; no extra mapping credit",
+      "sourceFile": "gameplay/world-phase10-20261013-parameter-bank.cs",
+      "qualification": "Complete own-state 0x64c300 PAR loader over valid prepared records, instances, scene table and buffered streams; activation 0x64ae50, selection 0x644000 and managed asset resolution remain explicit services. All 112 authored PAR files are unchanged and fed completely as transport inputs; original record decoder 0x64ba10, resolver 0x64b020, buffered readers and sprite/particle/audio lookup bodies execute unchanged in native comparison. Asset contexts contain empty particle registry, 1,600 NULL audio name pointers and scene sprite tables with zero records; no loaded-asset lookup or runtime activation/nearest-selection implementation is claimed. The 200 retained cases cover all versions 1..16 in both byte orders, low-byte mode dispatch, bank selection, record/instance capacity, full scene table, failed/occupied opens, empty record names, negative counts, missing instance names and runtime callback mutation order. Captured 843,768-byte region image, asset argument SHA and counts, runtime service trace, transport trace and state, and raw EAX are compared for every case. Discarded overflow records use a 376-byte temporary outside captured regions; discarded bytes are not a stack-layout reconstruction. Finite/signed-zero instance coordinates are covered; general x87 exceptional-value conversion is not claimed. Source and portable harness compile as a library; managed fixture replay is pending, with no generated executable launch."
+    }
+  ]
+}

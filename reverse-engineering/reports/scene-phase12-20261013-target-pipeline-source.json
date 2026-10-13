@@ -1,0 +1,159 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase12-20261013-target-pipeline.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e5340",
+      "method": "RenderStateCacheProduction.Apply",
+      "coverage": "Whole original integer render-state cache caller,12 recovered enum mappings, cache-hit result and pre/post-COM publication order.",
+      "sourceFile": "geometry/scene-phase12-20261013-target-pipeline.cs",
+      "evidence": "reports/scene-phase12-20261013-target-pipeline-native-validation.json",
+      "limitations": [
+        "Original6e3720/6e2880/6e5340/6e2510 and viewport setters/reset/forwarders/CRT execute unchanged, sharing fixed backend29765c8. No intermediate callee/arithmetic/D3DX adapters.",
+        "Bounded resolved backend/surface/device lifetime and explicit initialization/configuration/cache globals. Signed negative/wrapped target slots retained where address resolves inside0x800 bytes.",
+        "Finite viewport setter/runtime arithmetic, nonzero source axes, mode0 converter and fitting Int32 results; numeric viewport globals stable at viewport COM edge. Raw packet/depth mutations remain opaque integer words.",
+        "Failures publish caches and do not cause rollback. COM mutations of target dimensions/flag/surface/cache/bias before refresh are read at their original points.",
+        "No authored frame initialization, hardware COM/GPU behavior or whole-world rendering claim. Native/Python differential passed; managed execution pending."
+      ]
+    },
+    {
+      "address": "0x6e3720",
+      "method": "RenderTargetPipeline.Apply",
+      "coverage": "Whole bounded single-backend dimension caller composed with actual target/cache/state/refresh CPU implementations; final COM edges explicit.",
+      "sourceFile": "geometry/scene-phase12-20261013-target-pipeline.cs",
+      "evidence": "reports/scene-phase12-20261013-target-pipeline-native-validation.json",
+      "limitations": [
+        "Original6e3720/6e2880/6e5340/6e2510 and viewport setters/reset/forwarders/CRT execute unchanged, sharing fixed backend29765c8. No intermediate callee/arithmetic/D3DX adapters.",
+        "Bounded resolved backend/surface/device lifetime and explicit initialization/configuration/cache globals. Signed negative/wrapped target slots retained where address resolves inside0x800 bytes.",
+        "Finite viewport setter/runtime arithmetic, nonzero source axes, mode0 converter and fitting Int32 results; numeric viewport globals stable at viewport COM edge. Raw packet/depth mutations remain opaque integer words.",
+        "Failures publish caches and do not cause rollback. COM mutations of target dimensions/flag/surface/cache/bias before refresh are read at their original points.",
+        "No authored frame initialization, hardware COM/GPU behavior or whole-world rendering claim. Native/Python differential passed; managed execution pending."
+      ]
+    }
+  ],
+  "refinements": [
+    {
+      "address": "0x6e2880",
+      "method": "RenderTargetCacheProduction.Apply",
+      "coverage": "Real target cache used inside original dimension caller on same backend image; negative/wrapped slots and callback mutations retained."
+    },
+    {
+      "address": "0x6e2510",
+      "method": "ContextViewportRefresh.Refresh",
+      "coverage": "Real setter/reset/viewport refresh chain shares target caller/backend image, with supplied finite mode0 runtime."
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase12-20261013-target-pipeline-native-validation.json",
+    "reports/scene-phase12-20261013-target-pipeline-assembly.json",
+    "reports/scene-phase12-20261013-target-pipeline-contract.json",
+    "reports/scene-phase12-20261013-target-pipeline-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase12-20261013-target-pipeline.cs",
+      "sha256": "65245b2ae473f7df8d29e4024b3d6739993864cd381b1068937679b3a1edfe7d"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase12-20261013-target-pipeline-harness.cs"
+  ],
+  "harnessSha256": "18af2e9d618a7f6f3d64600208d5acb167eb86246730b966c52486a7c0e31246",
+  "fixture": "reports/scene-phase12-20261013-target-pipeline-native-fixtures.json.gz",
+  "fixtureSha256": "a925f6a4d1e35c481c00eb7f40e2fbe140652d3b45d22714c3d967bf1bf8fcae",
+  "nativeTool": "tools/scene-phase12-20261013-target-pipeline-native.py",
+  "nativeToolSha256": "1b3ea20aca5fc0df6e4a226e19e9f3cf89fccfc7bed618237d4081d66dd67fac",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "stateSequences": 1024,
+    "pipelineSequences": 1024,
+    "retainedPortableReplayCases": 4096,
+    "COMCalls": 3210,
+    "targetCOMCalls": 649,
+    "stateCOMCalls": 1529,
+    "viewportCOMCalls": 1032,
+    "retainedCalls": 4096,
+    "pipelineSlots": [
+      0,
+      1,
+      2,
+      7,
+      4294967295,
+      4294967294,
+      4294967280,
+      4294967264,
+      2147483648,
+      2147483649
+    ],
+    "stateIndices": [
+      168,
+      190,
+      191,
+      192,
+      7,
+      14,
+      23,
+      22,
+      15,
+      27,
+      19,
+      20,
+      0,
+      6,
+      8,
+      193,
+      4294967295,
+      2147483648
+    ],
+    "failedStateCallsSuppressedOnRepeat": 141,
+    "pipelineRefreshCalls": 516,
+    "preparedManagedAssertions": 35092
+  },
+  "verifier": {
+    "module": "scene-phase12-20261013-target-pipeline",
+    "entrypoint": "TargetPipelinePhase12Harness",
+    "fixture": "reports/scene-phase12-20261013-target-pipeline-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-context.cs",
+      "sha256": "fd9dda0abd692efba4c150ea79267a0eff3b934abb78dd044b5fbedb945947a0"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-refresh.cs",
+      "sha256": "8527dbb877e06c08e05bc92212e589110e83b4fad0d7be60e8e27c2aa10aa469"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-viewport.cs",
+      "sha256": "5ab3c7d3af358b1c407cfd03542e8278b6939325a7b80d7f91cfa834fe6f0f35"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-viewport.cs",
+      "sha256": "b680b8b969a13889fa6da74d6ec9f9a70a4daf32d9bef7b39c8c10cb73436782"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "tools/scene-phase11-20261013-refresh-native.py",
+      "sha256": "f8ed50e4190698ac9ad7bf1a6277486f9973ecb90c47dbbd23c3558b5edebc47"
+    },
+    {
+      "path": "tools/scene-phase5-20261013-viewport-native.py",
+      "sha256": "a7e2012cc79f77ef1187cb7387f7b38864073525afa519efc5c8a95a8f8306e4"
+    }
+  ]
+}

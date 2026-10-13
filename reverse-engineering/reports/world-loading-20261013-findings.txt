@@ -1,0 +1,51 @@
+WORLD CACHE / ARENA / STAGING CONTRACTS - 2026-10-13
+
+Four original PC x86 entries recovered as bounded portable C#:
+  0x55ffb0 WorldLoadingContracts.Initialize
+  0x55f470 WorldLoadingContracts.AssignArenaEnds
+  0x55f500 WorldLoadingContracts.OtherCachedLevel
+  0x560630 WorldLoadingContracts.Stage
+
+1568 original native cases passed, zero mismatches. The tests compare both full
+20908-byte world records, both256-byte prepared arenas, selected globals and
+external call order/arguments against an independent Python contract. There are
+1032 initializer,384 arena assignment,128 staging and24 opposite-cache cases.
+Native string copy/append and memset execute unchanged. Resource teardown,
+audio/platform callbacks and the actual48ce00 resource loader are explicit
+adapters. This is not a complete or running level loader.
+
+Recovered details that pseudocode alone can obscure:
+- World records are0x51ac bytes at93d858 and942a04. Rebuild preserves arena start
+  +100/end+108, rewinds cursor+104 and clears only a positive signed end-start.
+- Initializer return1 requests rebuilding. It clears+110; it does not report a
+  successful populated level. A cache hit returns0 and retains the world.
+- Level and area records have strides130 and9c. Area+A3 and area-record+86 are
+  sign-extended bytes, not unsigned ordinals. Native pointer calculations have
+  no lower guard for negative non-sentinel values.
+- Save slot+C8 rejects exactly-1 and signed>=12. Values-128 through-2 compute
+  pointers before the save base. Tests use readable prepared catalog backing;
+  no pointed save record is dereferenced and no shipped negative slot is claimed.
+- Arena assignment compares addresses unsigned (JAE/JBE). Endpoint arithmetic
+  wraps32 bits; high-bit regression cases distinguish this from Ghidra int types.
+- Staging toggles the fixed worlds only for equal current/staging pointers and
+  absent area bit8. Full resource loading remains an external48ce00 callback.
+
+C# fragment and fixture verifier compile. Generated executable launch and read
+receive Windows EPERM. Saved-native managed replay remains pending.
+
+Evidence and reproduction:
+  reports/world-loading-20261013-contract.json
+  reports/world-loading-20261013-native-tests.json
+  reports/world-loading-20261013-assembly.json
+  reports/world-loading-20261013-vectors.json
+  reports/world-loading-20261013-source-map.json
+  reports/world-loading-20261013-execution-status.json
+  reports/world-loading-20261013-integration.json
+  tools/world-loading-20261013-inspect.py
+  tools/world-loading-20261013-verify.py
+  tools/world-loading-20261013-portable-verify.cs
+  reconstructed/gameplay/world-loading-20261013-contracts.cs
+
+Run the two Python tools from the workspace with local Capstone/Unicorn packages.
+They import existing native-x86.py and operate only on isolated emulated memory.
+The original game files are unchanged.

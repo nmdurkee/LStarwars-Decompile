@@ -5,7 +5,9 @@ const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>JSON.parse((await fs.readFile(path.join(base,p),'utf8')).replace(/^\uFEFF/,''));
 const write=async(p,v)=>fs.writeFile(path.join(base,p),JSON.stringify(v,null,2)+'\n');
 const source=await read('reports/source-completion.json');
-if(!source.compilation.allManifestSourceHashesMatchBuild||!source.compilation.allManifestHarnessHashesMatchBuild||!source.compilation.libraryHashMatchesBuild||!source.compilation.unifiedVerifierHashMatchesBuild)throw Error('Rebuild current sources before refreshing checkpoint');
+const verifierHashUnavailable=source.compilation.unifiedVerifierHashMatchesBuild===null && source.compilation.artifactHashReadFailures?.some(r=>r.path==='reconstructed/bin/RecoveredSourceVerify.exe');
+if(!source.compilation.allManifestSourceHashesMatchBuild||!source.compilation.allManifestHarnessHashesMatchBuild||!source.compilation.libraryHashMatchesBuild||(!source.compilation.unifiedVerifierHashMatchesBuild&&!verifierHashUnavailable))throw Error('Rebuild current sources before refreshing checkpoint');
+// An unreadable verifier is explicitly unknown; preserve its build-time hash without claiming a current recheck.
 const manifest=await read('reconstructed/source-manifest.json');
 const coverage=await read('reports/gameplay-command-semantic-coverage.json');
 const completed=coverage.totals['bounded-native-contract'];

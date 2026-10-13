@@ -1,0 +1,51 @@
+{
+  "schema": "actual-context-refresh-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": {
+    "0x5dabf0": "ContextViewportRefresh.Depth",
+    "0x5dac70": "ContextViewportRefresh.Position",
+    "0x5ef9a0": "ContextViewportRefresh.Physical",
+    "0x5dae80": "ContextViewportRefresh.Extent",
+    "0x6e2510": "ContextViewportRefresh.Refresh"
+  },
+  "globals": {
+    "source": [
+      "0x80e694",
+      "0x80e698"
+    ],
+    "origin": [
+      "0x80202c",
+      "0x802030"
+    ],
+    "scale": [
+      "0x80e248",
+      "0x80e24c"
+    ],
+    "bias": [
+      "0x80e250",
+      "0x80e254"
+    ],
+    "rectangle": "0x963e10..0x963e1c",
+    "depth": "0x963e20/0x963e24",
+    "dirty": "0x95e674",
+    "converterMode": "0x29a9c48=0",
+    "globalBackend": "0x29765c8"
+  },
+  "flow": [
+    "Depth sets dirty1 unconditionally and copies two finite float32 values through original FLD/FSTP.",
+    "Position spills bias+input float32, then uses wide signed screen/source ratio and origin-minus-arithmetic-shift-half before times16 and fitting mode0 integer truncation.",
+    "Physical position first computes guarded float32 screen/source ratios and delta spills, then calls actual position setter. Rounding round trip is retained.",
+    "Extent spills scale*input float32, then computes signed wide screen/source ratio and times16 before mode0 integer conversion.",
+    "Refresh writes caller viewport0,0,screenWidth,screenHeight,depth0..1; sets depth0..1, physical0,0 and extent640,224; calls real dirty reset5ff390 through actual global CPU viewport forwarding. It then rebuilds caller viewport and forwards it a second time. Caller/global backend may be the same byte image.",
+    "Final return is actual viewport forwarding last source word, with COM HRESULT ignored."
+  ],
+  "boundaries": [
+    "Original setter/refresh/viewport/reset/helper/CRT chain executes unchanged. No device/D3DX actions or imported arithmetic adapters.",
+    "Finite setter floats/global scale/bias and stored results; nonzero source axes; integer conversion0x6e6b90 mode0 with truncated result fitting Int32. Other conversion modes/overflow not asserted.",
+    "Source640x224 calibration and original global scale/bias addresses remain explicit runtime inputs; indirect initialization unresolved.",
+    "Original context refresh begins with caller viewport0,0,screenWidth,screenHeight,depth0..1; forces depth/position/extent setters and real dirty reset, then repopulates caller viewport and forwards to fixed global backend.",
+    "Numeric viewport globals remain stable at COM boundary in refresh fixtures; raw source/local packets and backend viewport words may mutate. General numeric-global mutation is not newly asserted.",
+    "Standalone depth FLD/FSTP tests are finite only. Raw viewport COM packet copies remain integer-only; nonfinite source packet mutations are opaque.",
+    "Native/Python own-state differential passed; managed execution pending."
+  ]
+}

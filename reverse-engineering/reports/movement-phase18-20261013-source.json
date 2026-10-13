@@ -1,0 +1,46 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase18-20261013-LocatorDistance.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x515530",
+      "method": "LocatorDistanceConditions.OpponentToLocatorXZ",
+      "sourceFile": "gameplay/movement-phase18-20261013-LocatorDistance.cs",
+      "coverage": "Creature/opponent guards yieldmaxfiniteF32. Explicitargument5locator winsbeforepacket+a4 fallback; nullpacketfaultonlywhenreadrequired, missinglocator=>maxfinite. Physicalopponent+5c versuslocator+10 XZ difference/squaredstore/sqrt; no selfreferencegate. ReusesSpatialConditions.DistanceXZ."
+    },
+    {
+      "address": "0x515620",
+      "method": "LocatorDistanceConditions.NearestPlayerToLocator",
+      "sourceFile": "gameplay/movement-phase18-20261013-LocatorDistance.cs",
+      "coverage": "Creaturepresence thenworldpresence guards, no reference/object guard. Explicitargument5locator orpacket+a4 fallback. World138c/1390playerptrs, fullXYZ distances tolocator+10, compareF32squares beforeonesqrt, exactmaxfinite sentinel retained. Aliasedplayers andequal-distance ties retained. Portablecode projects rawplayers/locator intoexistingSpatialConditions.NearestPlayerRange."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase18-20261013-contract.json",
+    "reports/movement-phase18-20261013-tests.json",
+    "reports/movement-phase18-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase18-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase18-20261013",
+  "verifierClass": "MovementPhase1820261013Verify",
+  "fixture": "reports/movement-phase18-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase18-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-condition",
+      "name": "OpponentToLocatorXZ",
+      "function": "0x515530",
+      "sourceUses": 11,
+      "scope": "Creature/opponent guards yieldmaxfiniteF32. Explicitargument5locator winsbeforepacket+a4 fallback; nullpacketfaultonlywhenreadrequired, missinglocator=>maxfinite. Physicalopponent+5c versuslocator+10 XZ difference/squaredstore/sqrt; no selfreferencegate. ReusesSpatialConditions.DistanceXZ. Authored condition-body inputs; init/comparison separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "NearestPlayerToLocator",
+      "function": "0x515620",
+      "sourceUses": 12,
+      "scope": "Creaturepresence thenworldpresence guards, no reference/object guard. Explicitargument5locator orpacket+a4 fallback. World138c/1390playerptrs, fullXYZ distances tolocator+10, compareF32squares beforeonesqrt, exactmaxfinite sentinel retained. Aliasedplayers andequal-distance ties retained. Portablecode projects rawplayers/locator intoexistingSpatialConditions.NearestPlayerRange. Authored condition-body inputs; init/comparison separate."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase11-20261013-RuntimeReaders.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x443390",
+      "method": "RuntimeStateReaders.LastAttackerRange",
+      "sourceFile": "gameplay/movement-phase11-20261013-RuntimeReaders.cs",
+      "coverage": "Null creature/reference or absent attacker returns exactF32 1e9(4e6e6b28). Null referenced actor faults. Actor self-alias returns zero. Actual5becc0/sqrt execute unchanged; portable code composes existing finite distance implementation."
+    },
+    {
+      "address": "0x442d10",
+      "method": "RuntimeStateReaders.HelpWithTriggers",
+      "sourceFile": "gameplay/movement-phase11-20261013-RuntimeReaders.cs",
+      "coverage": "Global world+4678 read first. Physics/creature/reference guards then reference+28d unsigned byte index. Physics+42c0+index255 alone means inactive; signedbyte at+4280+index selectsblock*214+20e and any nonzero16bit state returns1. Backing includes allnegative signedblocks."
+    },
+    {
+      "address": "0x443dc0",
+      "method": "RuntimeStateReaders.MusicOn",
+      "sourceFile": "gameplay/movement-phase11-20261013-RuntimeReaders.cs",
+      "coverage": "Every nonzero raw global music byte returns1, zero returns0; no creature/world guard."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase11-20261013-contract.json",
+    "reports/movement-phase11-20261013-tests.json",
+    "reports/movement-phase11-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase11-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase11-20261013",
+  "verifierClass": "MovementPhase1120261013Verify",
+  "fixture": "reports/movement-phase11-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase11-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-condition",
+      "name": "LastAttackerRange",
+      "function": "0x443390",
+      "sourceUses": 19,
+      "scope": "Null creature/reference or absent attacker returns exactF32 1e9(4e6e6b28). Null referenced actor faults. Actor self-alias returns zero. Actual5becc0/sqrt execute unchanged; portable code composes existing finite distance implementation. Authored body occurrences only; enclosing condition parsing/comparison remains separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "HelpWithTriggers",
+      "function": "0x442d10",
+      "sourceUses": 18,
+      "scope": "Global world+4678 read first. Physics/creature/reference guards then reference+28d unsigned byte index. Physics+42c0+index255 alone means inactive; signedbyte at+4280+index selectsblock*214+20e and any nonzero16bit state returns1. Backing includes allnegative signedblocks. Authored body occurrences only; enclosing condition parsing/comparison remains separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "MusicOn",
+      "function": "0x443dc0",
+      "sourceUses": 18,
+      "scope": "Every nonzero raw global music byte returns1, zero returns0; no creature/world guard. Authored body occurrences only; enclosing condition parsing/comparison remains separate."
+    }
+  ]
+}

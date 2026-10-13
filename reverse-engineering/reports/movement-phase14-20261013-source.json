@@ -1,0 +1,46 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase14-20261013-WeaponGravity.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x44efc0",
+      "method": "WeaponGravityCommands.SnapWeaponOut",
+      "sourceFile": "gameplay/movement-phase14-20261013-WeaponGravity.cs",
+      "coverage": "Firstcall captures ownactor before orderedcharacter callback/keep_out/FALSE parsing. keep_out fixedskip9: only TRUE suffix sets holdbit; FALSE sticky. Enabled sets E20bit10000 and D3c1, optionallyEECbit10. Disabledclearsbothbits and D3c0, preservingotherwords. Return1."
+    },
+    {
+      "address": "0x44c5f0",
+      "method": "WeaponGravityCommands.SetGravityHeight",
+      "sourceFile": "gameplay/movement-phase14-20261013-WeaponGravity.cs",
+      "coverage": "Selfreference/object gates beforefirstcall; firstcallclearsEECsignbit andsets1028exact1e9. resettoken skipsafterinitialreset; min/max substrings fixedskip4 orplainnativeNumber. RNG draws exactlyonce onlybothbounds differ1e9, overridingdirectvalue; x8764 (1-r)*min+max*r storesF32 includingnegativezero. Return1."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase14-20261013-contract.json",
+    "reports/movement-phase14-20261013-tests.json",
+    "reports/movement-phase14-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase14-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase14-20261013",
+  "verifierClass": "MovementPhase1420261013Verify",
+  "fixture": "reports/movement-phase14-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase14-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SnapWeaponOut",
+      "function": "0x44efc0",
+      "sourceUses": 15,
+      "scope": "Firstcall captures ownactor before orderedcharacter callback/keep_out/FALSE parsing. keep_out fixedskip9: only TRUE suffix sets holdbit; FALSE sticky. Enabled sets E20bit10000 and D3c1, optionallyEECbit10. Disabledclearsbothbits and D3c0, preservingotherwords. Return1."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetGravityHeight",
+      "function": "0x44c5f0",
+      "sourceUses": 14,
+      "scope": "Selfreference/object gates beforefirstcall; firstcallclearsEECsignbit andsets1028exact1e9. resettoken skipsafterinitialreset; min/max substrings fixedskip4 orplainnativeNumber. RNG draws exactlyonce onlybothbounds differ1e9, overridingdirectvalue; x8764 (1-r)*min+max*r storesF32 includingnegativezero. Return1."
+    }
+  ]
+}

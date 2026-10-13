@@ -1,0 +1,40 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase6-20261013-DoomedLocator.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x446b30",
+      "method": "DoomedLocatorActions.Set",
+      "sourceFile": "gameplay/movement-phase6-20261013-DoomedLocator.cs",
+      "coverage": "First-call and nonzero-token gates, guarded self and ordered character retargeting, substring token precedence/fixed skips, final name formatting precedence, native integerRNG, lookup and actor EF0bit800/F14 own-state. Actor/locator producers and escape/damage consumers outside this contract."
+    },
+    {
+      "address": "0x5b9e90",
+      "method": "LocatorIntegerRandom.Next",
+      "sourceFile": "gameplay/movement-phase6-20261013-DoomedLocator.cs",
+      "coverage": "Full32bit integer RNG body: localzero-to1 normalization only for nonnull state, optional globalstate, signeddivision/truncation and wraparoundmultiply/subtraction/negativeadjust/XORreturn."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase6-20261013-contract.json",
+    "reports/movement-phase6-20261013-tests.json",
+    "reports/movement-phase6-20261013-rng-tests.json",
+    "reports/movement-phase6-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase6-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase6-20261013",
+  "verifierClass": "MovementPhase620261013Verify",
+  "fixture": "reports/movement-phase6-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase6-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SetDoomedEscapeLocator",
+      "function": "0x446b30",
+      "sourceUses": 40,
+      "scope": "First-call and nonzero-token gates, guarded self and ordered character retargeting, substring token precedence/fixed skips, final name formatting precedence, native integerRNG, lookup and actor EF0bit800/F14 own-state. Actor/locator producers and escape/damage consumers outside this contract."
+    }
+  ]
+}

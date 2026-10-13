@@ -1,0 +1,129 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "functions": [
+    {
+      "address": "0x5a0320",
+      "endExclusive": "0x5a03c8",
+      "scope": "Original vehicle response producer; feedback and dynamic callback explicit.",
+      "ordering": [
+        "Full DWORD 0x8028a8=-1 exits before animation and actor reads; WORD 0x804d08=-1 exits before actor reads.",
+        "Signed animation WORD indexes actor.model[+0xc] backing. Zero slot exits before other reads.",
+        "Nonzero other dereferences other+0xca4 then its first DWORD and calls 54a850(controller,float32(0.6),0).",
+        "After feedback reread byte 0x8028a8 and write actor+0x7b5. Reread animation WORD, read signed actor type WORD+0x1064 before writing animation WORD+0x7aa.",
+        "Actual 62e040(type,animation,0,0,1) executes; only completed return is stored actor+0x77c. Earlier context/animation writes persist on lookup faults.",
+        "Reread 0x95660c after timer commit; nonzero dynamic callback receives actor. Callback mutation and identity retained."
+      ],
+      "fields": {
+        "model": "0x50",
+        "controllerPointer": "0xca4",
+        "context": "0x7b5",
+        "animation": "0x7aa",
+        "timer": "0x77c",
+        "signedType": "0x1064"
+      },
+      "globals": [
+        "0x8028a8 DWORD",
+        "0x804d08 WORD",
+        "0x95660c callback pointer"
+      ]
+    },
+    {
+      "address": "0x4a1f50",
+      "endExclusive": "0x4a1fa6",
+      "scope": "Full action-finish body; terminal camera service explicit.",
+      "ordering": [
+        "Null actor skips all actor reads. API flag 0x40000 at actor+0x1f8 skips all actor writes.",
+        "Otherwise actor+0xe20 &= 0xfffdffff; actor+0xd14=0; actor+0xd18=0; context byte+0x7b5=0xff.",
+        "Always call camera(global 0x8021b4,0.5,0,1), including null actor and blocked actor. Forwarded second caller argument is unused."
+      ]
+    },
+    {
+      "address": "0x62e040",
+      "endExclusive": "0x62e184",
+      "scope": "Prepared registry hydration plus fixed vehicle-response (0,0,1) arithmetic. Previously mapped address; zero additional credit.",
+      "ordering": [
+        "Negative signed type returns +0 before registry read. Registry pointer at 0x29130e4 precedes signed type count gate; then negative/out-of-range animation returns +0.",
+        "Registry +0x1c type mapping WORD is sign extended, only -1 skips; model row is registry+0x18 + signedSlot*0x54.",
+        "Model+0xc clip pointer array; zero entry returns +0. Actual 5ca470 header query executes. ANI4/ANI5 loads WORD+0xe before WORD+0xa; legacy header first DWORD is float frame count.",
+        "Fixed zero start/end chooses frameCount-1, stores float32 span. Model+8 timing pointer array is read afterward.",
+        "FPS at timing+0x18: x87 division by qword 30, reciprocal, multiplication by qword promoted float32(1/30), then stored float32 seconds. Reuses PlaybackWide 64-significand arithmetic.",
+        "Blend bits timing+0x14 are committed to global 0x29a99a4; subtract from stored seconds and store float32 before caller timer commit."
+      ],
+      "limits": [
+        "Finite frame count/span and pre-blend seconds, positive finite FPS, finite blend. Returned finite arithmetic may underflow; signed zero preserved. NaN, infinity, zero or negative FPS and x87 status/control behavior are outside this bounded bridge.",
+        "Host DurationForResponse is the fixed response call, not arbitrary start/end/subtract arguments. Existing CharacterContexts.DurationSeconds remains unchanged.",
+        "Dynamic callback and feedback are adapters with prepared dispatch behavior; arbitrary native callback machine code is not recovered."
+      ]
+    },
+    {
+      "address": "0x5ca470",
+      "endExclusive": "0x5ca4aa",
+      "scope": "Already recovered AnimationPlayback.EndFrame reused unchanged; native body retained as timing dependency, no new mapping/credit."
+    }
+  ],
+  "composition": "RecoveredVehicleResponsePorts around RecoveredCleanupPipelinePorts using RecoveredActionFinishServices joins immutable phase 13 pipeline. Other ports remain explicit.",
+  "nativeEvidence": {
+    "checks": 2679,
+    "mismatches": 0,
+    "standaloneCases": 878,
+    "pipelineCases": 15,
+    "precisionCases": 512,
+    "retainedStandaloneFaults": 13,
+    "retainedPipelineFaults": 1,
+    "assertionsAreCorrelated": true
+  },
+  "portableFixtureBacking": {
+    "bytes": 103778971,
+    "readbackChecks": 2679,
+    "readbackMismatches": 0,
+    "standalone": "Every byte used or compared retained; unrelated pipeline-only backing omitted.",
+    "pipeline": "All prepared pipeline backing retained."
+  },
+  "remainingAdapters": {
+    "0x54a850": {
+      "name": "Feedback",
+      "argc": 3
+    },
+    "0x10200400": {
+      "name": "Notify",
+      "argc": 1
+    },
+    "0x415000": {
+      "name": "Rebind",
+      "argc": 1
+    },
+    "0x52c790": {
+      "name": "ChangeState",
+      "argc": 2
+    },
+    "0x52cc90": {
+      "name": "RunScript",
+      "argc": 5
+    },
+    "0x4c99b0": {
+      "name": "DistanceFactor",
+      "argc": 2
+    },
+    "0x561e20": {
+      "name": "DirectedJump",
+      "argc": 6
+    },
+    "0x54a3e0": {
+      "name": "Camera",
+      "argc": 4
+    },
+    "0x681e90": {
+      "name": "PlayerSound",
+      "argc": 2
+    },
+    "0x681eb0": {
+      "name": "WorldSound",
+      "argc": 3
+    }
+  },
+  "authoredCommandCredit": 0,
+  "wholeRuntimeLimitations": [
+    "No Windows game, rendering, audio/controller driver, scene loop, or dynamic script execution.",
+    "Native x86 isolated prepared-memory execution; original recovered bodies and timing/header helpers execute unmodified."
+  ]
+}

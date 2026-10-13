@@ -1,0 +1,30 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase22-20261013-PodHeading.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x4d94f0",
+      "method": "PodHeadingCommands.Apply",
+      "sourceFile": "gameplay/movement-phase22-20261013-PodHeading.cs",
+      "coverage": "Finite prepared actual pod heading: matrix-relative yaw/pitch, in-place rotations, fresh aliased direction reads, signed16 curve/bank wrap, ordered time clamps and factor attenuation; exact supplied lookup tables and disjoint scratch."
+    },
+    {
+      "address": "0x5b3690",
+      "method": "PodHeadingCommands.VectorZ",
+      "sourceFile": "gameplay/movement-phase22-20261013-PodHeading.cs",
+      "coverage": "Finite point rotation with full signed Int32 lookup-index wrapping, cached original X and sequential input Y/Z rereads after output stores, including shifted aliases."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase22-20261013-contract.json",
+    "reports/movement-phase22-20261013-tests.json",
+    "reports/movement-phase22-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase22-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase22-20261013",
+  "verifierClass": "MovementPhase2220261013Verify",
+  "fixture": "reports/movement-phase22-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase22-20261013-managed-check.json"
+}

@@ -1,0 +1,145 @@
+{
+  "schema": "single-backend-target-pipeline-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "backendAddress": "0x29765c8",
+  "sourceFile": "reconstructed/geometry/scene-phase12-20261013-target-pipeline.cs",
+  "actualCpuChain": [
+    "0x6e3720",
+    "0x6e2880",
+    "0x6e5340",
+    "0x6e2510",
+    "0x5dabf0",
+    "0x5ef9a0",
+    "0x5dac70",
+    "0x5dae80",
+    "0x5ff390",
+    "0x6e57b0",
+    "0x6e2470",
+    "0x6e6b90"
+  ],
+  "renderStateCache": {
+    "enabled": "byte0x8282b4",
+    "values": "uint12 at0x297c098",
+    "marker": "uint0x297c094",
+    "lastResult": "uint0x297bea0",
+    "enumToIndex": {
+      "7": 4,
+      "14": 5,
+      "15": 8,
+      "19": 10,
+      "20": 11,
+      "22": 7,
+      "23": 6,
+      "27": 9,
+      "168": 0,
+      "190": 1,
+      "191": 2,
+      "192": 3
+    },
+    "cacheHit": "Returns raw cache index; no COM or marker/result write.",
+    "cacheMiss": "Value cached before dispatch; markerFFFFFFFF written before COM; returned HRESULT overwrites LastResult afterCOM. No failed-call rollback."
+  },
+  "runtimeInputs": {
+    "backend": "One stable resolved byte image shared by caller, target cache, viewport forwarding and context refresh.",
+    "surface": "Optional resolved byte record: handle8, ushort dimensions14/16; dimensions read after target call.",
+    "targetConfiguration": "Signed int at0x2974d1c; ushort target countf8 and flag638; negative/wrapped selected cell must resolve inside image.",
+    "numericGlobals": "Finite viewport/source/scale/bias/ranges and original template state, source axes nonzero, mode0 integer conversion with fitting Int32 result. Source calibration/initialization remains supplied.",
+    "screenOrigin": "Shared fixed screen and origin arrays, overwritten by caller from fresh post-service dimensions, with halves truncated toward zero.",
+    "callbacks": "Final target/state/viewport COM callbacks may mutate declared backend/surface/cache data. Numeric viewport globals stable at viewport COM; target/state bias mutation retained before refresh. Fixed array/image references remain stable."
+  },
+  "finalEdges": {
+    "vtable+0x94": "Final raw SetRenderTarget COM edge, opaque HRESULT and declared mutations.",
+    "vtable+0xe4": "Final raw SetRenderState COM edge, opaque HRESULT and declared mutations.",
+    "vtable+0xbc": "Final local-packet SetViewport COM edge, source/argument/backend mutations; no numeric viewport global mutation."
+  },
+  "limitations": [
+    "Original6e3720/6e2880/6e5340/6e2510 and viewport setters/reset/forwarders/CRT execute unchanged, sharing fixed backend29765c8. No intermediate callee/arithmetic/D3DX adapters.",
+    "Bounded resolved backend/surface/device lifetime and explicit initialization/configuration/cache globals. Signed negative/wrapped target slots retained where address resolves inside0x800 bytes.",
+    "Finite viewport setter/runtime arithmetic, nonzero source axes, mode0 converter and fitting Int32 results; numeric viewport globals stable at viewport COM edge. Raw packet/depth mutations remain opaque integer words.",
+    "Failures publish caches and do not cause rollback. COM mutations of target dimensions/flag/surface/cache/bias before refresh are read at their original points.",
+    "No authored frame initialization, hardware COM/GPU behavior or whole-world rendering claim. Native/Python differential passed; managed execution pending."
+  ],
+  "fixtureCoverage": {
+    "stateSequences": 1024,
+    "pipelineSequences": 1024,
+    "retainedPortableReplayCases": 4096,
+    "COMCalls": 3210,
+    "targetCOMCalls": 649,
+    "stateCOMCalls": 1529,
+    "viewportCOMCalls": 1032,
+    "retainedCalls": 4096,
+    "pipelineSlots": [
+      0,
+      1,
+      2,
+      7,
+      4294967295,
+      4294967294,
+      4294967280,
+      4294967264,
+      2147483648,
+      2147483649
+    ],
+    "stateIndices": [
+      168,
+      190,
+      191,
+      192,
+      7,
+      14,
+      23,
+      22,
+      15,
+      27,
+      19,
+      20,
+      0,
+      6,
+      8,
+      193,
+      4294967295,
+      2147483648
+    ],
+    "failedStateCallsSuppressedOnRepeat": 141,
+    "pipelineRefreshCalls": 516,
+    "preparedManagedAssertions": 35092
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-context.cs",
+      "sha256": "fd9dda0abd692efba4c150ea79267a0eff3b934abb78dd044b5fbedb945947a0"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-refresh.cs",
+      "sha256": "8527dbb877e06c08e05bc92212e589110e83b4fad0d7be60e8e27c2aa10aa469"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-viewport.cs",
+      "sha256": "5ab3c7d3af358b1c407cfd03542e8278b6939325a7b80d7f91cfa834fe6f0f35"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-viewport.cs",
+      "sha256": "b680b8b969a13889fa6da74d6ec9f9a70a4daf32d9bef7b39c8c10cb73436782"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "tools/scene-phase11-20261013-refresh-native.py",
+      "sha256": "f8ed50e4190698ac9ad7bf1a6277486f9973ecb90c47dbbd23c3558b5edebc47"
+    },
+    {
+      "path": "tools/scene-phase5-20261013-viewport-native.py",
+      "sha256": "a7e2012cc79f77ef1187cb7387f7b38864073525afa519efc5c8a95a8f8306e4"
+    }
+  ]
+}

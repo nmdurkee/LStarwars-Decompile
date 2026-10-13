@@ -1,0 +1,56 @@
+PORTAL-DOOR RUNTIME, PORTAL FLAGS AND DURATION - 2026-10-13
+
+Original55fac0 runtime updater composes unchanged5d0420 animation selection,
+5ca4b0 duration decoding and5d9060 real scene portal mutation. No computational
+adapters are used.1300 independent cases /1863 entrypoint calls pass with zero
+mismatches; complete262144-byte prepared images compare byte-for-byte after each
+call. Multiple frames verify repeated-write suppression and subsequent transitions.
+
+New portable entry mappings:
+ 0x55fac0 PortalDoorRuntime.Update
+ 0x5d9060 PortalDoorRuntime.SetPortalState
+ 0x5ca4b0 PortalDoorRuntime.DurationValue
+
+Updater configured flagbit0 chooses current>=duration; ordinary mode chooses
+current>1. Equality activates only end mode. QuietNaN unordered comparisons
+choose disabled; signed zero and infinities retain native comparison behavior.
+Static animation references precede dynamic ones, and unavailable dynamic0/-1
+animation is skipped. Entry.scene supplies the clip; world.scene+13C supplies
+portal mutations. No time unit is inferred for current/duration scalars.
+
+Entry flagmask2 caches enabled and mask4 caches disabled. New enabled state
+clears4/sets2; disabled state clears2/sets4. Cached matching states suppress
+redundant portal changes, including conflicting flags. Other bits are preserved.
+
+Scene portal records are32bytes at scene+70, with unsigned count+6C, signed byte
+id+1A and DWORDstate+1C. All matching ids are changed. Enabling ORs1 into state;
+disabling zeroes the entireDWORD. MOVSX stored ids compare against a full32-bit
+argument. Door updater MOVZX byte+E produces ids128..255 that cannot match the
+stored negative ids-128..-1. Direct negative-id mutator calls do match. Shipped
+high portal ids are not asserted by these synthetic regression cases.
+
+Duration tests rawDWORD tags414E4934/414E4935, not a float-to-int cast. These
+use nonzero unsignedWORD+16, otherwise unsignedWORD+A plusWORD+E, including
+sum131070. All other headers are rawfloat32. Ghidra's apparent numeric cast is
+not the native instruction contract.
+
+Source and saved-native replay harness compile. Managed replay remains pending;
+no generated executable launch retry. Actual scene loading, animation advancement
+and rendered portal visibility are still external. The next useful loader producer
+is57a420 with its original54be70 comment/separator normalization, followed by
+48ce00 resource-loading and55f6c0 teardown ownership.
+
+Evidence/reproduction:
+ reports/world-phase3-20261013-contract.json
+ reports/world-phase3-20261013-native-tests.json
+ reports/world-phase3-20261013-assembly.json
+ reports/world-phase3-20261013-vectors.json
+ reports/world-phase3-20261013-source-map.json
+ reports/world-phase3-20261013-execution-status.json
+ reports/world-phase3-20261013-integration.json
+ tools/world-phase3-20261013-inspect.py
+ tools/world-phase3-20261013-verify.py
+ tools/world-phase3-20261013-portable-verify.cs
+ reconstructed/gameplay/world-phase3-20261013-portal-runtime.cs
+
+Game files, shared manifests and Git are untouched by this agent.

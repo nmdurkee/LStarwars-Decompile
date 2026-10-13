@@ -1,0 +1,106 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase8-20261013-light.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5ff840",
+      "method": "LightNumericProduction.Apply",
+      "coverage": "Whole finite resolved light CPU producer: optional sources, original vector transform/interpolation/normalization, horizontal basis and signed dot^32 blend, inverse-vector output and actual raw cache packing.",
+      "sourceFile": "geometry/scene-phase8-20261013-light.cs",
+      "evidence": "reports/scene-phase8-20261013-light-native-validation.json",
+      "limitations": [
+        "Original5ff840 and all internal CPU math/CRT/cache helpers execute unchanged. No D3DX/device/CRT adapters.",
+        "Finite camera30, light direction3, aim3, template16, stored/intermediate float arithmetic; raw color4 remains opaque. Valid separate sources and globals.",
+        "Original x87 multiply/add/divide order and every visible float spill retained. Exact signed-zero output and minimum-normal horizontal threshold preserved.",
+        "Full original light output compared independently before raw cache packing; unit color/source copies and counter/dirty writes also checked.",
+        "Original CRT sqrt path is modeled as finite rounded square root using the already-recovered helper contract; installed renderer/GPU/authored scene binding is not asserted.",
+        "Native/Python own-state differential passed; managed execution remains pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase8-20261013-light-native-validation.json",
+    "reports/scene-phase8-20261013-light-contract.json",
+    "reports/scene-phase7-20261013-light-assembly.json",
+    "reports/scene-phase8-20261013-light-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase8-20261013-light.cs",
+      "sha256": "61fea195ae6d72496afe3607d5576055e846b6f641e85b56a66e1c4965bdb9ed"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase8-20261013-light-harness.cs"
+  ],
+  "harnessSha256": "30d7a50f63be558b94635b05c211783d96345740a453285e496bd812ced0d541",
+  "fixture": "reports/scene-phase8-20261013-light-native-fixtures.json.gz",
+  "fixtureSha256": "ceed6cf0335fe3dbcbff2a4e10e4cd4b78cd6b4823f56eb35870dd627d94d4bb",
+  "nativeTool": "tools/scene-phase8-20261013-light-native.py",
+  "nativeToolSha256": "e6edfe0dde5f54cb198b73a951007a90f4beb5cdbd3b18815ed06b542aef6b26",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "producerCases": 2048,
+    "retainedPortableReplayCases": 2048,
+    "retained": 2048,
+    "portableReplayCases": 2048,
+    "nullSourceCameraBindings": 342,
+    "preparedManagedAssertions": 20822
+  },
+  "verifier": {
+    "module": "scene-phase8-20261013-light",
+    "entrypoint": "LightNumericPhase8Harness",
+    "fixture": "reports/scene-phase8-20261013-light-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase6-20261013-renderer.cs",
+      "sha256": "e103067182c256391106fc9251e8364789b8ba7c8d003d7a09bfa7bce1d77dc1"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase7-20261013-light.cs",
+      "sha256": "3256131629a66a0bd6a9ccdbbba7fa47573c7d7d4ff24d4a1978e5e300e92e38"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "reconstructed/animation/AnimationPlayback.cs",
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    {
+      "path": "reconstructed/gameplay/BuildEffectSound.cs",
+      "sha256": "de4c1908b3f9482d61473ad929e8c9c2b5166c7544ea887f949ad9aacba55875"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "tools/scene-phase8-20261013-light-probe.py",
+      "sha256": "b28533811e9264e787ed022b60c7571622616cc3d5615b5be7a56ab390e73932"
+    },
+    {
+      "path": "reports/scene-phase7-20261013-light-assembly.json",
+      "sha256": "492ded7ec0e5dd757191ae15b3193061d358be9f55091a7d49327b777518d239"
+    },
+    {
+      "path": "reports/scene-phase5-20261013-native-fixtures.json.gz",
+      "sha256": "520e21e3b8d8e11bdbea12665f5b31013628174821f6af4c4df25f5015285c00"
+    }
+  ],
+  "nextGaps": [
+    "Compose full camera/viewport/reuse/visibility pipeline with recovered real CPU light and camera caches using shared renderer counters.",
+    "Recover actual runtime source/origin/light globals initialization and authored scene/frame bindings.",
+    "Establish installed D3DX policy and downstream device/renderer consumers."
+  ]
+}

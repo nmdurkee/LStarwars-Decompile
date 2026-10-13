@@ -1,0 +1,31 @@
+{
+  "schema": "original-finite-light-producer-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entry": "0x5ff840",
+  "method": "LightNumericProduction.Apply",
+  "globals": {
+    "camera": "0x9736e8",
+    "aim3": "0x80e9bc",
+    "color4": "0x80e9c8",
+    "direction3": "0x80e9d8",
+    "identity16": "0x806680"
+  },
+  "flow": [
+    "Optional raw 3-word direction / 4-word color copies, otherwise preserve stored sources.",
+    "Original inverse direction transform 5b3470, interpolate toward aim with float0.5 using original subtract/multiply/add spills, forward direction transform5b3200, normalize transformed and source directions.",
+    "Build horizontal basis from normalized transformed X/Z; compare rounded sqrt to float0x00800000. On fallback preserve unassigned runtime template words.",
+    "Set matrix words12 and13 to float0.5. Compare normalized original source direction with negated raw camera direction.",
+    "For negative dot, square five times with a float32 store after every square. Set remaining weight to float32(1-dot^32). Blend first two matrix columns toward signed normalized source direction according to each original wide dot sign.",
+    "Negate original inverse direction, keep raw color first3 words, then call actual light cache packer5fcc10."
+  ],
+  "numerics": "Exact finite x8764 arithmetic order, float spill points and signed-zero rules; recovered finite scalar sqrt helper contract reused. Does not reuse approximate generic FacingMath.Normalize.",
+  "boundaries": [
+    "Original5ff840 and all internal CPU math/CRT/cache helpers execute unchanged. No D3DX/device/CRT adapters.",
+    "Finite camera30, light direction3, aim3, template16, stored/intermediate float arithmetic; raw color4 remains opaque. Valid separate sources and globals.",
+    "Original x87 multiply/add/divide order and every visible float spill retained. Exact signed-zero output and minimum-normal horizontal threshold preserved.",
+    "Full original light output compared independently before raw cache packing; unit color/source copies and counter/dirty writes also checked.",
+    "Original CRT sqrt path is modeled as finite rounded square root using the already-recovered helper contract; installed renderer/GPU/authored scene binding is not asserted.",
+    "Native/Python own-state differential passed; managed execution remains pending."
+  ],
+  "cameraBinding": "Existing camera producer UpdateLight callback can bind LightNumericProduction.CameraCallback; it consumes camera.Current with both optional sources null. GPU and authored-global lifecycle remain outside this CPU module."
+}

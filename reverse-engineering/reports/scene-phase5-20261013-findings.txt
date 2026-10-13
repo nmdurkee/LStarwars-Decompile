@@ -1,0 +1,11 @@
+NORMAL CAMERA PRODUCERS AND POPULATED VISIBILITY PREPARATION
+
+Recovered eight native entrypoints and refined existing visibility preparation. Original native/Python numeric contract passed 7,844 checks across 3,392 retained replay cases: 768 transpose/translation cases, 512 projections, 1,024 clipping cases, 512 ordinary frustum builds, 384 camera apply/restore/switch cases, and 192 complete populated visibility-preparation calls. The dispatcher cases contain 2,084 nested tree predicates, not 2,084 independent scenarios. C# core and harness compilation passed; 9,771 prepared managed assertions remain unexecuted.
+
+The copied matrix template at 0x95e600 lies beyond .data raw bytes in the PE virtual tail, establishing loader-initialized zero values. An exhaustive encoded aligned-word reference scan found only the copier's read address. Indirect later writes are not ruled out; the portable host can supply a later template value.
+
+Tree direction and position are camera words 8..10 and 12..14. Normal view uses transpose/negative-translation and column scales. Original projection, symmetric/asymmetric clipping, ordinary frustum, and camera copy/switch/restore paths now compose into the actual populated dispatcher. Nonzero requests apply the base camera even when the mode did not change; zero requests change only the mode.
+
+The deeper caller stack trace identifies 1,372 fourth-radius words written by the original CRT sqrt call at 0x6e953b: its return address 0x6e9540. Another 712 predicates retain an external seed. The predicate still reads an undefined fourth radius; exact prior words remain explicit.
+
+Imported D3DX uses an explicitly sequential binary64 scalar adapter. Device transforms are recorded. Native light/render-cache helpers run unchanged, while their renderer-global byte images remain outside the portable numeric camera projection. Reflected camera, dirty viewport, projection reuse, authored tree loading, full frame submission and GPU equivalence remain open.

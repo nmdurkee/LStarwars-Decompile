@@ -1,0 +1,281 @@
+{
+  "updated": "2026-10-13T18:05:06.481Z",
+  "batch": "reverse-phase9-20261013",
+  "descriptors": [
+    "reports/world-phase9-20261013-integration.json",
+    "reports/world-phase10-20261013-integration.json",
+    "reports/scene-phase5-20261013-alternate-source.json",
+    "reports/movement-phase12-20261013-source.json",
+    "reports/movement-phase13-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "world-phase9-20261013",
+      "cls": "WorldPhase920261013Verify",
+      "fixture": "reports/world-phase9-20261013-vectors.json",
+      "output": "reports/world-phase9-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase9-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase9-20261013-native-tests.json",
+        "reports/world-phase9-20261013-source-map.json",
+        "reports/world-phase9-20261013-contract.json",
+        "reports/world-phase9-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x559610",
+          "method": "WorldRuntimeAllocation.Allocate16",
+          "coverage": "whole strict prealignment16-byte allocator body",
+          "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+          "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x59a620",
+          "method": "WorldRuntimeAllocation.CreatePool",
+          "coverage": "whole24-byte header/64-byte transient pool construction",
+          "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+          "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x59a6b0",
+          "method": "WorldRuntimeAllocation.ReleasePoolNode",
+          "coverage": "whole active/free list removal including nonmember count decrement",
+          "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+          "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x5598e0",
+          "method": "WorldRuntimeAllocation.CreateDispatchState",
+          "coverage": "whole dispatch-owned header/row/buffer allocation with explicit mutable callback services",
+          "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+          "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase9-20261013-runtime-allocation.cs"
+      ],
+      "harnessFile": "../tools/world-phase9-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase10-20261013",
+      "cls": "WorldPhase1020261013Verify",
+      "fixture": "reports/world-phase10-20261013-vectors.json",
+      "output": "reports/world-phase10-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase10-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase10-20261013-native-tests.json",
+        "reports/world-phase10-20261013-source-map.json",
+        "reports/world-phase10-20261013-contract.json",
+        "reports/world-phase10-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x64b020",
+          "method": "WorldParameterBank.Resolve",
+          "coverage": "whole fixed128-record preferred-bank/fallback16-byte name lookup on ASCII names",
+          "sourceFile": "gameplay/world-phase10-20261013-parameter-bank.cs",
+          "qualification": "Prepared disjoint raw world/level/arena/cursor/end/name tables and complete128-record registry at2913a58 with376-byte stride. Lookup names/queries are readable ASCII for the bounded16-byte comparison, including equal16-byte prefixes with differing suffixes. Cache copy sources are NUL terminated at most15 bytes; capacities0..64, signed explicit counts including negative and bounded over-capacity values have enough physical backing. End reference deliberately unused; wrapped zero-header return tested. Status+B0 is signed byte; bank+B2 preferred matching uses full32-bit preferred value1..7 (no low-byte narrowing) and bank0 fallback is exact case-sensitive. Original native cache/lookup/handle-binding/copy/compare/memset/cookie execute unchanged. Fixed%s.par formatter6e69ef/exists4ff120/PARpayload64c6c0 are explicit mutable service fixtures; real64c300/64ba10 payload decoding and112 authored PAR files remain unprocessed, not claimed completed. Stage low flagsE0 skips cache while retaining world138/cursor; particle handle binding still happens. Backend can mutate live scene/cursor/global authored table/count/registry before real cache construction. Managed source/harness compiles; execution pending with no EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase10-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase10-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x571890",
+          "method": "WorldParameterBank.CreateCache",
+          "coverage": "whole aligned20-byte PAR-name cache with signed registry filter and optional authored table",
+          "sourceFile": "gameplay/world-phase10-20261013-parameter-bank.cs",
+          "qualification": "Prepared disjoint raw world/level/arena/cursor/end/name tables and complete128-record registry at2913a58 with376-byte stride. Lookup names/queries are readable ASCII for the bounded16-byte comparison, including equal16-byte prefixes with differing suffixes. Cache copy sources are NUL terminated at most15 bytes; capacities0..64, signed explicit counts including negative and bounded over-capacity values have enough physical backing. End reference deliberately unused; wrapped zero-header return tested. Status+B0 is signed byte; bank+B2 preferred matching uses full32-bit preferred value1..7 (no low-byte narrowing) and bank0 fallback is exact case-sensitive. Original native cache/lookup/handle-binding/copy/compare/memset/cookie execute unchanged. Fixed%s.par formatter6e69ef/exists4ff120/PARpayload64c6c0 are explicit mutable service fixtures; real64c300/64ba10 payload decoding and112 authored PAR files remain unprocessed, not claimed completed. Stage low flagsE0 skips cache while retaining world138/cursor; particle handle binding still happens. Backend can mutate live scene/cursor/global authored table/count/registry before real cache construction. Managed source/harness compiles; execution pending with no EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase10-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase10-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x571a50",
+          "method": "WorldParameterBank.Load",
+          "coverage": "whole own-state PAR path/handle/cache stage with explicit payload backend",
+          "sourceFile": "gameplay/world-phase10-20261013-parameter-bank.cs",
+          "qualification": "Prepared disjoint raw world/level/arena/cursor/end/name tables and complete128-record registry at2913a58 with376-byte stride. Lookup names/queries are readable ASCII for the bounded16-byte comparison, including equal16-byte prefixes with differing suffixes. Cache copy sources are NUL terminated at most15 bytes; capacities0..64, signed explicit counts including negative and bounded over-capacity values have enough physical backing. End reference deliberately unused; wrapped zero-header return tested. Status+B0 is signed byte; bank+B2 preferred matching uses full32-bit preferred value1..7 (no low-byte narrowing) and bank0 fallback is exact case-sensitive. Original native cache/lookup/handle-binding/copy/compare/memset/cookie execute unchanged. Fixed%s.par formatter6e69ef/exists4ff120/PARpayload64c6c0 are explicit mutable service fixtures; real64c300/64ba10 payload decoding and112 authored PAR files remain unprocessed, not claimed completed. Stage low flagsE0 skips cache while retaining world138/cursor; particle handle binding still happens. Backend can mutate live scene/cursor/global authored table/count/registry before real cache construction. Managed source/harness compiles; execution pending with no EXE launch retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase10-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase10-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase10-20261013-parameter-bank.cs"
+      ],
+      "harnessFile": "../tools/world-phase10-20261013-portable-verify.cs"
+    },
+    {
+      "name": "scene-phase5-20261013-alternate",
+      "cls": "CameraAlternatePhase5Harness",
+      "fixture": "reports/scene-phase5-20261013-alternate-native-fixtures.json.gz",
+      "output": "reports/scene-phase5-20261013-alternate-csharp-validation.json",
+      "descriptor": "reports/scene-phase5-20261013-alternate-source.json",
+      "evidence": [
+        "reports/scene-phase5-20261013-alternate-native-validation.json",
+        "reports/scene-phase5-20261013-alternate-contract.json",
+        "reports/scene-phase5-20261013-alternate-assembly.json",
+        "reports/scene-phase5-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5c19d0",
+          "method": "CameraAlternateProduction.CopyRaw",
+          "coverage": "whole valid16-word raw forwardcopier, EAXsource/ECXdestination, all-bit data and shifted-overlap order",
+          "sourceFile": "geometry/scene-phase5-20261013-alternate.cs",
+          "evidence": "reports/scene-phase5-20261013-alternate-native-validation.json",
+          "limitations": [
+            "Freshparam2=0 andcleanviewport95e674=0. Mode0retainsnormalviewcolumnscales;nonzero view modesuseactualreference transformcompositionwithoutcolumnscales.",
+            "Finitecamera/reference/storednumeric outputs. Mode1templatefiniteafterunconditionalword5overwrite; unusedtemplatewords mayberawnonfinite inothernonzero modes.",
+            "Raw16-word copy retainsallbits andactualforward shifted-overlap behavior;valid64wordresolvedimageonly.",
+            "Normalfresh projection/frustum andrenderer services inheritprimarycamera limitations. Reflectedreuse anddirtyviewport composition notnewlyasserted here.",
+            "ImportedphysicalD3DXpolicy,unportedrenderer byte outputs,authoredworld andGPU remainseparate.",
+            "Native/Python ownstate differential passed; managedreplay remainsseparate andpending."
+          ]
+        },
+        {
+          "address": "0x5ed540",
+          "method": "CameraAlternateProduction.ApplyFresh",
+          "coverage": "extends freshcamera numeric producer through actual alternate conversion/reference/Yreflection paths with recovered affine/inverse composition",
+          "sourceFile": "geometry/scene-phase5-20261013-alternate.cs",
+          "evidence": "reports/scene-phase5-20261013-alternate-native-validation.json",
+          "limitations": [
+            "Freshparam2=0 andcleanviewport95e674=0. Mode0retainsnormalviewcolumnscales;nonzero view modesuseactualreference transformcompositionwithoutcolumnscales.",
+            "Finitecamera/reference/storednumeric outputs. Mode1templatefiniteafterunconditionalword5overwrite; unusedtemplatewords mayberawnonfinite inothernonzero modes.",
+            "Raw16-word copy retainsallbits andactualforward shifted-overlap behavior;valid64wordresolvedimageonly.",
+            "Normalfresh projection/frustum andrenderer services inheritprimarycamera limitations. Reflectedreuse anddirtyviewport composition notnewlyasserted here.",
+            "ImportedphysicalD3DXpolicy,unportedrenderer byte outputs,authoredworld andGPU remainseparate.",
+            "Native/Python ownstate differential passed; managedreplay remainsseparate andpending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase5-20261013-alternate.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase5-20261013-alternate-harness.cs"
+    },
+    {
+      "name": "movement-phase12-20261013",
+      "cls": "MovementPhase1220261013Verify",
+      "fixture": "reports/movement-phase12-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase12-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase12-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase12-20261013-contract.json",
+        "reports/movement-phase12-20261013-tests.json",
+        "reports/movement-phase12-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x443610",
+          "method": "CompactRuntimeConditions.TakeOverRange",
+          "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+          "coverage": "Null creature/reference/actor/target yields exactF32 1e9. Actual distance uses target actor+5c versus reference+5c, not selfactor+5c; finite ordered squared-distance/sqrt composition."
+        },
+        {
+          "address": "0x515790",
+          "method": "CompactRuntimeConditions.StuckTime",
+          "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+          "coverage": "Null creature/reference returns positivezero, otherwise reads reference+1d8 F32 without actor dereference. Finite andInf/signedzero payload words retained."
+        },
+        {
+          "address": "0x440be0",
+          "method": "CompactRuntimeConditions.TurretAlive",
+          "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+          "coverage": "Native argument5 turret pointer; null returnszero; word+13a bits0x30 suppress result. Allother lowbyte and sampled upperbyte patterns unchanged."
+        },
+        {
+          "address": "0x442b30",
+          "method": "CompactRuntimeConditions.CheatProgress",
+          "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+          "coverage": "Complete original PC stub returns positivezero for every argument, without memory access."
+        },
+        {
+          "address": "0x515580",
+          "method": "CompactRuntimeConditions.OpponentToLocatorY",
+          "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+          "coverage": "Creature/opponent first guards return maxfiniteF32. Explicit argument5 locator precedes packet+a4 fallback; absent packet faults only whenfallback readneeded. Difference opponent+60 minus locator+14 storesF32."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase12-20261013-CompactConditions.cs"
+      ],
+      "harnessFile": "../tools/movement-phase12-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase13-20261013",
+      "cls": "MovementPhase1320261013Verify",
+      "fixture": "reports/movement-phase13-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase13-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase13-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase13-20261013-contract.json",
+        "reports/movement-phase13-20261013-tests.json",
+        "reports/movement-phase13-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x451d50",
+          "method": "ForceBackCommands.SetForceBack",
+          "sourceFile": "gameplay/movement-phase13-20261013-ForceBack.cs",
+          "coverage": "First-call command only; self-chain capture before ordered character/locator/radius/FALSE/type parsing. Character callback can mutate live locator table and packet numericparameters. Failedlocator preserves previouspoint; FALSE sticky; actor orlocator requiredtopublish. Callsactualstateproducer(actor,locatorPoint,radius,type), returns1."
+        },
+        {
+          "address": "0x4a4900",
+          "method": "ForceBackCommands.Publish",
+          "sourceFile": "gameplay/movement-phase13-20261013-ForceBack.cs",
+          "coverage": "Raw state projection: actor87b8c8; origin87b8cc actor+80 with uintwrapping orrawfallback; extra87b8d0; radius87b890 andsingleF32 radiusSquared87b894 via x87 arithmetic. No actor pointer dereference."
+        },
+        {
+          "address": "0x4a48f0",
+          "method": "ForceBackCommands.Clear",
+          "sourceFile": "gameplay/movement-phase13-20261013-ForceBack.cs",
+          "coverage": "Clears exactly actor87b8c8 andorigin87b8cc whilepreserving radius/radiusSquared/extra."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase13-20261013-ForceBack.cs"
+      ],
+      "harnessFile": "../tools/movement-phase13-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x559610",
+    "0x59a620",
+    "0x59a6b0",
+    "0x5598e0",
+    "0x64b020",
+    "0x571890",
+    "0x571a50",
+    "0x443610",
+    "0x515790",
+    "0x440be0",
+    "0x442b30",
+    "0x515580",
+    "0x451d50",
+    "0x4a4900",
+    "0x4a48f0",
+    "0x5c19d0"
+  ],
+  "newCoreFiles": 5,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

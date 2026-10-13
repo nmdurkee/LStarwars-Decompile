@@ -1,0 +1,36 @@
+Independent reverse-engineering audit: reverse-phase9-20261013
+
+No native/source mismatch found within the reviewed bounded contracts.
+All 1,244 additional checks passed: 1,056 original instruction/body/constant provenance checks, 93 targeted native edge checks and 95 original authored source occurrence/input matches. These are separate from suite counts. All 439 registered compiler-input hashes (217 core + 222 harness sources) and the current DLL match. Unregistered work was excluded. C# replay remains pending; no generated program launched.
+
+Frozen retained coverage
+- Runtime allocator/pool/dispatch: 1,216 cases (485 allocator, 340 pool, 73 removal, 318 dispatch), 1,948 observed original entries and 545 prepared callbacks. Full 196,616-byte memory hashes plus return/trace; 3,575 prepared portable assertions. Callback ABI is one argument, world; descriptor/entry are EBX/ESI observation context.
+- PAR lookup/cache/stage: 742 cases (380 lookup, 182 cache, 180 stage), 105,243 nested original entries. Full 244,748-byte memory hash, raw returns and services; 2,046 prepared assertions. Thirteen payload backend calls; zero authored PAR files decoded by this frozen stage module.
+- Alternate camera: 1,792 native cases/checks, comprising 1,024 raw forward copies and 768 camera cases (192 normal, 192 Y-reflection, 384 other nonzero modes). Full 64-word copy images retained. Portable prepares 2,561 assertions; compiler pass only.
+- Compact predicates: 2,726 cases / 8,178 groups, no native adapters. Cases: 547 takeover range, 42 stuck time, 1,563 turret, 32 cheat stub, 542 opponent height. One null-packet fallback fault. All 71 authored condition occurrences retained as direct body inputs; enclosing initialization/comparison is excluded.
+- ForceBack: 603 cases / 1,836 groups: 315 commands, 256 raw publications, 32 clears. Full 65,536-byte image plus 20-byte global state/callbacks/return retained; all 24 authored token forms match original files. Locator helper is reused without new entry credit.
+
+Confirmed behavior
+Strict allocator tests raw cursor before alignment; pool accepts exact aligned fill. Capacity three links only the first two slots. An unmatched nonmember removal still decrements active count and can underflow. Dispatch reads live registry count while advancing the captured descriptor base; later allocation can erase already written overlapping row fields.
+
+PAR preferred bank uses full DWORD values 1..7 and folded 16-byte comparison; bank-zero fallback is case-sensitive. Resolver ignores status, while cache filters signed positive status. Equal first 16 bytes match despite different suffixes. Null authored table preserves the header count. Stage flags E0 preserve cursor/cache while still binding the particle handle; negative Exists results do not load payload.
+
+Alternate raw copies preserve forward overlap propagation. Nonzero camera modes omit normal column scaling; mode one overwrites the Y template diagonal, other modes do not numerically consume template words. Nonorthogonal inverse-reference/reference composition is retained, not simplified to identity.
+
+TakeOverRange uses reference position, not self-actor position. StuckTime reads reference state even with null actor. Explicit fifth-argument locator bypasses packet fallback; null packet faults only when needed. Upper turret flag bytes are ignored; cheat stub performs no memory access.
+
+ForceBack's corrected producer order (actor, locator point, radius, type) was independently confirmed, including raw pointer wrapping. Failed locator lookup keeps the previous point; callback mutations affect current packet/table reads; FALSE is sticky and Clear preserves nonpointer fields. The earlier 76 draft mismatches are documented before correction and excluded from final pass claims.
+
+Audit probe correction
+A new nonorthogonal reference test initially gave its oracle unrounded Python decimal values while native memory stored float32. After rounding both inputs to the actual stored representation, the ULP discrepancy disappeared. This was an independent probe error; no source or sealed evidence correction was required.
+
+Integration
+780 mapping rows / 760 distinct entries; 217 core files / 222 harness files; 176 bounded command names / 19,381 uses of 20,836. Delta from phase8: 16 distinct entries, 17 rows, five cores, five harnesses, six names and 95 uses.
+DLL SHA256: f4a4d05688c0852546948be53bc5d183b77f73d683e3e49f5f0a9b4535eecfe2
+Verifier build-time SHA256: d869389486652b75b469b02832df1209a0595fcee5fa11c6416c01025c1b9c46
+Current verifier hash is unavailable: ordinary root refresh read denied, matching status null. Auditor did not reread or launch it. Prior normal actor-next spawn EPERM remains unresolved. Whole-game buildability/equivalence remain false.
+
+Limits
+Prepared bounded memory, acyclic pool links and explicitly mutable callbacks; no real dispatch payload construction. PAR payload/formatter/exists services remain adapted, with zero authored PAR decoding in this snapshot. Alternate camera is fresh/clean only, with D3DX/renderer/GPU policy external. Finite numeric domains, bounded ASCII and explicit predicate-body coverage apply. Later movement14/15/16, world11 and camera composition work remain unregistered and outside this audit. No shared edits, Git/remote writes, executable launches or settings changes.
+
+Detailed checks, exact probes and artifact hashes: reverse-phase9-20261013-audit.json.

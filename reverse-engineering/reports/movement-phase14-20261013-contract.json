@@ -1,0 +1,40 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "cases": 1025,
+  "assertionGroups": 4100,
+  "mismatches": 0,
+  "authoredOccurrences": {
+    "SnapWeaponOut": 15,
+    "SetGravityHeight": 14
+  },
+  "contracts": [
+    {
+      "address": "0x44efc0",
+      "method": "WeaponGravityCommands.SnapWeaponOut",
+      "scope": "Firstcall captures ownactor before orderedcharacter callback/keep_out/FALSE parsing. keep_out fixedskip9: only TRUE suffix sets holdbit; FALSE sticky. Enabled sets E20bit10000 and D3c1, optionallyEECbit10. Disabledclearsbothbits and D3c0, preservingotherwords. Return1."
+    },
+    {
+      "address": "0x44c5f0",
+      "method": "WeaponGravityCommands.SetGravityHeight",
+      "scope": "Selfreference/object gates beforefirstcall; firstcallclearsEECsignbit andsets1028exact1e9. resettoken skipsafterinitialreset; min/max substrings fixedskip4 orplainnativeNumber. RNG draws exactlyonce onlybothbounds differ1e9, overridingdirectvalue; x8764 (1-r)*min+max*r storesF32 includingnegativezero. Return1."
+    }
+  ],
+  "nativeAdapters": [
+    "Terminal character-reference callback only forweapon; native parsers/numericresolver/RNG execute unchanged."
+  ],
+  "limits": [
+    "Finite numeric inputs representable inF32 and finite blended heights; valid packet and actor backing.",
+    "UnorderedNaN/sNaN hardware handling and arbitrary invalid pointers excluded.",
+    "Authored commandtokens retained; actual weapon/gravity consumers and physics/frame integration remain external."
+  ],
+  "numericPolicy": "Original4f28e0 decimal parser accumulates allinteger/fractional digits into onevalue, withF32 stores aftereachmultiply/add anddivisor multiplication. ExistingMessageNumbers source reused unchanged. SharedPlaybackWide blend withlocal signedzero carrier, no shared numeric helper edits.",
+  "verificationCorrection": "Initial randomdecimal oracle used separatedinteger/fractional accumulation, exposing142 boundednative mismatches; tracedoriginal4f28e0 andcorrectedthefixtureoracle toexistingC#numericpolicy. Final1,025cases/4,100groups pass. Earliersealedfiles unchanged.",
+  "managedReplay": {
+    "executed": false,
+    "preparedAssertionGroups": 4100
+  },
+  "dependencies": [
+    "tools/movement-phase13-20261013-native.py stableprefix setup/callback",
+    "tools/movement-phase4-20261013-native.py exactfinite x87 quantizer"
+  ]
+}

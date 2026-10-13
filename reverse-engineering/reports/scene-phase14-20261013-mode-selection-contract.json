@@ -1,0 +1,63 @@
+{
+  "schema": "display-mode-cpu-helper-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "modeSelect": {
+    "entry": "0x6e1b70",
+    "count": "backend uint618 captured once",
+    "pointer": "backend61c resolves stable disjoint contiguous16-byte records without wrapping address range; explicit byte-array resolution external. Null pointer rejected when count or mutable flag requires table access.",
+    "mutable": "backend byte65c",
+    "algorithm": "Three passes: width, then height restricted to best width, then nonzero requested refresh restricted to best width/height. Each best value begins10000; signed wrapped subtraction/absolute-value comparisons use <=, so equal ties prefer later records and INT_MIN distance remains negative.",
+    "zeroCount": "Returns0. Mutable flag nonzero still writes physical record0 width/height; record0 must resolve even with zero count.",
+    "writes": "Only chosen record width/height fields, and only if unequal. Refresh/format and all other table/backend bytes preserved.",
+    "result": "Raw selected index in EAX; ret12. Counts that fit supplied stable array only; device/mode enumeration not performed."
+  },
+  "aspect": {
+    "entry": "0x6e1d00",
+    "domain": "Unsigned width and nonzero unsigned height; all intermediate stores finite.",
+    "targetWords": [
+      "0x3faaaaab",
+      "0x3fe38e39",
+      "0x3fcccccd"
+    ],
+    "targetAddresses": [
+      "0x75d168",
+      "0x776f48",
+      "0x76f8b0"
+    ],
+    "targetPolicy": "Qword constants are exact widened float32 values, not mathematical rational aspect values.",
+    "algorithm": "Exact x87 unsigned integer conversion/division, float32 ratio and differences,1000 initial best-distance sentinel, strict less-than choice; first/second ties preserve earlier mode.",
+    "diagnostics": "Original writes stack argument words at ESP+4/8. Portable result exposes both raw words explicitly alongside EAX mode. This does not assign managed stack storage or later original caller stack residue lifetime.",
+    "result": "EAX0/1/2 and raw scratch words; ret8."
+  },
+  "bootstrapBoundary": "Actual6e3940 call sites use these CPU helpers, but mode enumeration, selected mode/device/capability setup and authored scene/frame binding remain external. Constructor count/pointer zeros cannot substitute for initialized mode table.",
+  "coverage": {
+    "modeSequences": 2048,
+    "modeCalls": 4096,
+    "aspectCases": 4096,
+    "retainedPortableReplayCases": 8192,
+    "unalignedModeReceiverSequences": 1536,
+    "preparedManagedAssertions": 20480,
+    "zeroCountModeSequences": 63
+  },
+  "limits": [
+    "Original6e1b70 and6e1d00 execute unchanged, with no helper/arithmetic/COM adapters.",
+    "Mode count618 captured once, pointer61c bound to stable disjoint resolved16-byte records. Full raw signed integer values, wrapped subtraction/absolute value including INT_MIN,10000 sentinels and latest equal-distance selection preserved.",
+    "Zero count returns index0; if mutable65c is nonzero, physical record0 must still resolve and its width/height are updated. Opaque record refresh/format words and backend bytes preserved.",
+    "Aspect uses unsigned dimensions with nonzero height; actual ratio/difference float32 spills and widened float32 target constants retained. Return mode and overwritten argument words are compared. Portable stack diagnostics do not assign later original caller stack residue lifetime.",
+    "Mode enumeration, backend/device creation, capability/bootstrap globals, authored scene/frame binding and real GPU behavior remain external. Native/Python differential passed; managed execution pending."
+  ],
+  "dependencies": [
+    {
+      "path": "reconstructed/animation/AnimationPlayback.cs",
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    }
+  ]
+}

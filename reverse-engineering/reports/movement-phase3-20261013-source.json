@@ -1,0 +1,44 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase3-20261013-BigJump.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x446450",
+      "method": "BigJumpActions.ToLocator",
+      "sourceFile": "gameplay/movement-phase3-20261013-BigJump.cs",
+      "coverage": "whole bounded command including original completion return actor context!=31, ordered locator formatting, actual jump/control/heading composition; broader reset/model resolution/feedback services explicit"
+    },
+    {
+      "address": "0x561e20",
+      "method": "BigJumpActions.Request",
+      "sourceFile": "gameplay/movement-phase3-20261013-BigJump.cs",
+      "coverage": "own jump request state writes with actual loaded control reset and heading; broader actor reset,clip metadata dispatch,invalidation,feedback remain services"
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase3-20261013-contract.json",
+    "reports/movement-phase3-20261013-tests.json",
+    "reports/movement-phase3-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase3-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase3-20261013",
+  "verifierClass": "MovementPhase320261013Verify",
+  "fixture": "reports/movement-phase3-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase3-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "BigJumpToLocator",
+      "function": "0x446450",
+      "sourceUses": 87,
+      "report": "reverse-engineering/reports/movement-phase3-20261013-contract.json",
+      "scope": "First-call selected or ordered named/indexed/personal/random locator request; jump factor lower clamp, actual control reset/heading and own jump fields, unconditional post-request locator orientation/position copies. Completion reads actor context byte!=31 even on subsequent calls. No complete airborne movement/collision or clip/world lifetime implementation."
+    }
+  ],
+  "nativeCases": 2195,
+  "nativeAssertionGroups": 12502,
+  "authoredForms": 87,
+  "managedExecution": "pending-known-launch-denial"
+}

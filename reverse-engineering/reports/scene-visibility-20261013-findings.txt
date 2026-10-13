@@ -1,0 +1,45 @@
+PC GRID VISIBILITY PRODUCER — 2026-10-13
+
+0x5d6f30 selects camera-X/Z grid masks into visibility-context+0x24.
+0x5d6f00 is a finite float32 floor helper whose stack argument is missing
+from generated pseudocode. Assembly records preserve the corrected ABI.
+
+8,153 assertions pass against unchanged original instructions in isolated
+x86 memory:2,024 floor cases,640 valid RLE masks,144 selection/boundary cases,
+256 non-unit-scale coordinate cases,256 dispatcher gate combinations and
+one cross-grid cache-identity check. Native memset/memmove and conversion
+helpers execute unchanged. Dispatcher camera/portal/tree callees are explicit
+no-op adapters; their internal behavior is not established here.
+
+RLE tags0/1 fill00/ff; tags2/3 copy literals. Run size is header>>2.
+Zero-size headers are valid when followed by terminating positive runs.
+Masks0..625bytes,including zero length,retain canaries.625 is a tested portable
+bound,not a recovered capacity of global0x966390. Malformed streams are not
+fed to native code; the portable decoder rejects truncation and overshoot.
+
+Grid cell bounds include endpoints. Native does not clamp final cell indices.
+Each coordinate subtract/multiply uses x87 then spills tofloat32 before floor.
+Out-of-bounds camera leaves pointer and active/cache state unchanged. Inside,
+null selects null/inactive; raw modes alias original mask bytes. Compressed
+nonnull masks alias one shared buffer. Global cache0x80b9e4 keys only the cell
+index. Reusing the same index in another grid demonstrably retains stale bytes;
+there is no grid-identity key. Callers must preserve native invalidation rules.
+
+0x5f3c80 resets context+0x24 before grid production,then selects portal or tree.
+Grid production happens even on the portal branch. Tree selection sets flag1
+and context+0x20 to workspace. The existing SceneScheduling projection still
+rejects grid/tree; no shared scheduling source was modified in this batch.
+
+Portable source:reconstructed/geometry/scene-visibility-20261013-GridVisibility.cs.
+Two new native mappings are supplied in the separate source descriptor.
+Standalone harness compiles with existing manifested cores and covers saved
+3,065 original floor/RLE/selection/non-unit-coordinate/cross-grid-cache fixtures
+(4,345 prepared assertions). The gzip retains all3,321 native cases, including
+256 separately labelled dispatcher evidence-only cases. Managed execution remains pending under
+the existing Windows launch-denial limitation; no C# behavioral equivalence
+claim is made. All newly tested grids are synthetic. Authored grid loader,
+tree traversal,camera production and GPU behavior remain unresolved.
+
+Reproduce from workspace root using available Python plus retained packages:
+python reverse-engineering/tools/scene-visibility-20261013-native.py
+Standalone harness arguments:native-fixtures.json.gz result.json.

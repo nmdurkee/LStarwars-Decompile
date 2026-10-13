@@ -1,0 +1,323 @@
+{
+  "updated": "2026-10-13T20:30:27.361Z",
+  "batch": "reverse-phase14-20261013",
+  "descriptors": [
+    "reports/world-phase15-20261013-integration.json",
+    "reports/world-phase15-20261013-composed-integration.json",
+    "reports/scene-phase11-20261013-refresh-source.json",
+    "reports/scene-phase12-20261013-target-pipeline-source.json",
+    "reports/scene-phase13-20261013-backend-init-source.json",
+    "reports/script-phase18-20261013-source-map.json",
+    "reports/movement-phase27-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "world-phase15-20261013",
+      "cls": "WorldPhase1520261013Verify",
+      "fixture": "reports/world-phase15-20261013-vectors.json",
+      "output": "reports/world-phase15-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase15-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase15-20261013-native-tests.json",
+        "reports/world-phase15-20261013-composed-tests.json",
+        "reports/world-phase15-20261013-replay-summary.json",
+        "reports/world-phase15-20261013-contract.json",
+        "reports/world-phase15-20261013-source-map.json",
+        "reports/world-phase15-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x650e40",
+          "method": "ParLoadedAssets.Sound",
+          "coverage": "complete prepared 1600-row audio name lookup with raw comparator composition",
+          "sourceFile": "gameplay/world-phase15-20261013-loaded-assets.cs",
+          "qualification": "Complete own-state 0x650e40 audio name lookup over a prepared readable 1,600-row table at global 0x2947b74, stride 64, name pointer at row+0. Every row, including indices 0 and 1599 and rows with no other initialization, is eligible. First bounded case-folded match wins; null name pointers are skipped by comparison, null query never matches, and missing query returns 0xffffffff after original RET-only diagnostic 0x64fdb0. Raw comparison preserves null precedence, lengths 0/-1/-2/other negatives, terminator behavior, signed-byte ordering, ASCII lowercase and e0..ff folding. Query/catalog names require readable backing for all accesses; PAR calls provide exact 16-byte arrays with length 16, including nonterminated full16-byte queries. Negative/dynamic length fixtures provide terminated names. 976 direct native cases include 631 particle and 345 audio cases, with unchanged original comparators/lookup bodies. Existing 0x658330/0x658490 mappings receive no duplicate credit: a new PAR byte-array adapter projects actual three-pass/general vs two-pass/fast loaded registry behavior, reserved index 0, exclusion, low-byte preferred bank, active group 0/1 fallback and signed group-byte third pass, including prepared signed flag backing outside nominal eight groups. Particle query names must be terminated inside the provided array; all authored particle requests satisfy this. Composed 224 cases run all 112 unchanged authored PAR files through both general/group2 and fast/preferred-group5 prepared catalogs, along with phase14 loaded sprites and phase13 recovered activation/selection. Original native loader/record/sprite/particle/audio/comparison/runtime bodies execute; only local file transport is adapted. Full 843,784-byte image, asset argument SHA/counts, runtime/transport traces, transport state and EAX are retained. Model images matching native hashes contain 12,228 resolved particle references, 9,784 audio references and 3,726 sprite slots. Catalogs are prepared from exact input binding requests, not recovered original assets or producers. Existing phase13 finite/x87 projection limits remain. Renderer, audio playback and particle emission are not implemented. Source and both portable harnesses compile as library; managed fixture execution is pending, with no generated executable launch.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase15-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase15-20261013-composed-tests.json",
+            "reverse-engineering/reports/world-phase15-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase15-20261013-loaded-assets.cs"
+      ],
+      "harnessFile": "../tools/world-phase15-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase15-composed-20261013",
+      "cls": "WorldPhase15Composed20261013Verify",
+      "fixture": "reports/world-phase15-20261013-composed-vectors.json",
+      "output": "reports/world-phase15-20261013-composed-managed-tests.json",
+      "descriptor": "reports/world-phase15-20261013-composed-integration.json",
+      "evidence": [
+        "reports/world-phase15-20261013-composed-tests.json",
+        "reports/world-phase15-20261013-replay-summary.json",
+        "reports/world-phase15-20261013-contract.json",
+        "reports/world-phase15-20261013-execution-status.json"
+      ],
+      "mappings": [],
+      "coreFiles": [],
+      "harnessFile": "../tools/world-phase15-20261013-composed-portable-verify.cs"
+    },
+    {
+      "name": "scene-phase11-20261013-refresh",
+      "cls": "ContextRefreshPhase11Harness",
+      "fixture": "reports/scene-phase11-20261013-refresh-native-fixtures.json.gz",
+      "output": "reports/scene-phase11-20261013-refresh-csharp-validation.json",
+      "descriptor": "reports/scene-phase11-20261013-refresh-source.json",
+      "evidence": [
+        "reports/scene-phase11-20261013-refresh-native-validation.json",
+        "reports/scene-phase11-20261013-refresh-contract.json",
+        "reports/scene-phase11-20261013-refresh-assembly.json",
+        "reports/scene-phase11-20261013-refresh-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5dabf0",
+          "method": "ContextViewportRefresh.Depth",
+          "coverage": "Whole bounded finite setter with real float spills, runtime globals and original mode0/fitting integer conversion policy.",
+          "sourceFile": "geometry/scene-phase11-20261013-refresh.cs",
+          "evidence": "reports/scene-phase11-20261013-refresh-native-validation.json",
+          "limitations": [
+            "Original setter/refresh/viewport/reset/helper/CRT chain executes unchanged. No device/D3DX actions or imported arithmetic adapters.",
+            "Finite setter floats/global scale/bias and stored results; nonzero source axes; integer conversion0x6e6b90 mode0 with truncated result fitting Int32. Other conversion modes/overflow not asserted.",
+            "Source640x224 calibration and original global scale/bias addresses remain explicit runtime inputs; indirect initialization unresolved.",
+            "Original context refresh begins with caller viewport0,0,screenWidth,screenHeight,depth0..1; forces depth/position/extent setters and real dirty reset, then repopulates caller viewport and forwards to fixed global backend.",
+            "Numeric viewport globals remain stable at COM boundary in refresh fixtures; raw source/local packets and backend viewport words may mutate. General numeric-global mutation is not newly asserted.",
+            "Standalone depth FLD/FSTP tests are finite only. Raw viewport COM packet copies remain integer-only; nonfinite source packet mutations are opaque.",
+            "Native/Python own-state differential passed; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x5dac70",
+          "method": "ContextViewportRefresh.Position",
+          "coverage": "Whole bounded finite setter with real float spills, runtime globals and original mode0/fitting integer conversion policy.",
+          "sourceFile": "geometry/scene-phase11-20261013-refresh.cs",
+          "evidence": "reports/scene-phase11-20261013-refresh-native-validation.json",
+          "limitations": [
+            "Original setter/refresh/viewport/reset/helper/CRT chain executes unchanged. No device/D3DX actions or imported arithmetic adapters.",
+            "Finite setter floats/global scale/bias and stored results; nonzero source axes; integer conversion0x6e6b90 mode0 with truncated result fitting Int32. Other conversion modes/overflow not asserted.",
+            "Source640x224 calibration and original global scale/bias addresses remain explicit runtime inputs; indirect initialization unresolved.",
+            "Original context refresh begins with caller viewport0,0,screenWidth,screenHeight,depth0..1; forces depth/position/extent setters and real dirty reset, then repopulates caller viewport and forwards to fixed global backend.",
+            "Numeric viewport globals remain stable at COM boundary in refresh fixtures; raw source/local packets and backend viewport words may mutate. General numeric-global mutation is not newly asserted.",
+            "Standalone depth FLD/FSTP tests are finite only. Raw viewport COM packet copies remain integer-only; nonfinite source packet mutations are opaque.",
+            "Native/Python own-state differential passed; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x5ef9a0",
+          "method": "ContextViewportRefresh.Physical",
+          "coverage": "Whole bounded finite setter with real float spills, runtime globals and original mode0/fitting integer conversion policy.",
+          "sourceFile": "geometry/scene-phase11-20261013-refresh.cs",
+          "evidence": "reports/scene-phase11-20261013-refresh-native-validation.json",
+          "limitations": [
+            "Original setter/refresh/viewport/reset/helper/CRT chain executes unchanged. No device/D3DX actions or imported arithmetic adapters.",
+            "Finite setter floats/global scale/bias and stored results; nonzero source axes; integer conversion0x6e6b90 mode0 with truncated result fitting Int32. Other conversion modes/overflow not asserted.",
+            "Source640x224 calibration and original global scale/bias addresses remain explicit runtime inputs; indirect initialization unresolved.",
+            "Original context refresh begins with caller viewport0,0,screenWidth,screenHeight,depth0..1; forces depth/position/extent setters and real dirty reset, then repopulates caller viewport and forwards to fixed global backend.",
+            "Numeric viewport globals remain stable at COM boundary in refresh fixtures; raw source/local packets and backend viewport words may mutate. General numeric-global mutation is not newly asserted.",
+            "Standalone depth FLD/FSTP tests are finite only. Raw viewport COM packet copies remain integer-only; nonfinite source packet mutations are opaque.",
+            "Native/Python own-state differential passed; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x5dae80",
+          "method": "ContextViewportRefresh.Extent",
+          "coverage": "Whole bounded finite setter with real float spills, runtime globals and original mode0/fitting integer conversion policy.",
+          "sourceFile": "geometry/scene-phase11-20261013-refresh.cs",
+          "evidence": "reports/scene-phase11-20261013-refresh-native-validation.json",
+          "limitations": [
+            "Original setter/refresh/viewport/reset/helper/CRT chain executes unchanged. No device/D3DX actions or imported arithmetic adapters.",
+            "Finite setter floats/global scale/bias and stored results; nonzero source axes; integer conversion0x6e6b90 mode0 with truncated result fitting Int32. Other conversion modes/overflow not asserted.",
+            "Source640x224 calibration and original global scale/bias addresses remain explicit runtime inputs; indirect initialization unresolved.",
+            "Original context refresh begins with caller viewport0,0,screenWidth,screenHeight,depth0..1; forces depth/position/extent setters and real dirty reset, then repopulates caller viewport and forwards to fixed global backend.",
+            "Numeric viewport globals remain stable at COM boundary in refresh fixtures; raw source/local packets and backend viewport words may mutate. General numeric-global mutation is not newly asserted.",
+            "Standalone depth FLD/FSTP tests are finite only. Raw viewport COM packet copies remain integer-only; nonfinite source packet mutations are opaque.",
+            "Native/Python own-state differential passed; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x6e2510",
+          "method": "ContextViewportRefresh.Refresh",
+          "coverage": "Whole finite context refresh CPU setter/reset/forwarding chain with caller/global backend alias and explicit COM service.",
+          "sourceFile": "geometry/scene-phase11-20261013-refresh.cs",
+          "evidence": "reports/scene-phase11-20261013-refresh-native-validation.json",
+          "limitations": [
+            "Original setter/refresh/viewport/reset/helper/CRT chain executes unchanged. No device/D3DX actions or imported arithmetic adapters.",
+            "Finite setter floats/global scale/bias and stored results; nonzero source axes; integer conversion0x6e6b90 mode0 with truncated result fitting Int32. Other conversion modes/overflow not asserted.",
+            "Source640x224 calibration and original global scale/bias addresses remain explicit runtime inputs; indirect initialization unresolved.",
+            "Original context refresh begins with caller viewport0,0,screenWidth,screenHeight,depth0..1; forces depth/position/extent setters and real dirty reset, then repopulates caller viewport and forwards to fixed global backend.",
+            "Numeric viewport globals remain stable at COM boundary in refresh fixtures; raw source/local packets and backend viewport words may mutate. General numeric-global mutation is not newly asserted.",
+            "Standalone depth FLD/FSTP tests are finite only. Raw viewport COM packet copies remain integer-only; nonfinite source packet mutations are opaque.",
+            "Native/Python own-state differential passed; managed execution pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase11-20261013-refresh.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase11-20261013-refresh-harness.cs"
+    },
+    {
+      "name": "scene-phase12-20261013-target-pipeline",
+      "cls": "TargetPipelinePhase12Harness",
+      "fixture": "reports/scene-phase12-20261013-target-pipeline-native-fixtures.json.gz",
+      "output": "reports/scene-phase12-20261013-target-pipeline-csharp-validation.json",
+      "descriptor": "reports/scene-phase12-20261013-target-pipeline-source.json",
+      "evidence": [
+        "reports/scene-phase12-20261013-target-pipeline-native-validation.json",
+        "reports/scene-phase12-20261013-target-pipeline-assembly.json",
+        "reports/scene-phase12-20261013-target-pipeline-contract.json",
+        "reports/scene-phase12-20261013-target-pipeline-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x6e5340",
+          "method": "RenderStateCacheProduction.Apply",
+          "coverage": "Whole original integer render-state cache caller,12 recovered enum mappings, cache-hit result and pre/post-COM publication order.",
+          "sourceFile": "geometry/scene-phase12-20261013-target-pipeline.cs",
+          "evidence": "reports/scene-phase12-20261013-target-pipeline-native-validation.json",
+          "limitations": [
+            "Original6e3720/6e2880/6e5340/6e2510 and viewport setters/reset/forwarders/CRT execute unchanged, sharing fixed backend29765c8. No intermediate callee/arithmetic/D3DX adapters.",
+            "Bounded resolved backend/surface/device lifetime and explicit initialization/configuration/cache globals. Signed negative/wrapped target slots retained where address resolves inside0x800 bytes.",
+            "Finite viewport setter/runtime arithmetic, nonzero source axes, mode0 converter and fitting Int32 results; numeric viewport globals stable at viewport COM edge. Raw packet/depth mutations remain opaque integer words.",
+            "Failures publish caches and do not cause rollback. COM mutations of target dimensions/flag/surface/cache/bias before refresh are read at their original points.",
+            "No authored frame initialization, hardware COM/GPU behavior or whole-world rendering claim. Native/Python differential passed; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x6e3720",
+          "method": "RenderTargetPipeline.Apply",
+          "coverage": "Whole bounded single-backend dimension caller composed with actual target/cache/state/refresh CPU implementations; final COM edges explicit.",
+          "sourceFile": "geometry/scene-phase12-20261013-target-pipeline.cs",
+          "evidence": "reports/scene-phase12-20261013-target-pipeline-native-validation.json",
+          "limitations": [
+            "Original6e3720/6e2880/6e5340/6e2510 and viewport setters/reset/forwarders/CRT execute unchanged, sharing fixed backend29765c8. No intermediate callee/arithmetic/D3DX adapters.",
+            "Bounded resolved backend/surface/device lifetime and explicit initialization/configuration/cache globals. Signed negative/wrapped target slots retained where address resolves inside0x800 bytes.",
+            "Finite viewport setter/runtime arithmetic, nonzero source axes, mode0 converter and fitting Int32 results; numeric viewport globals stable at viewport COM edge. Raw packet/depth mutations remain opaque integer words.",
+            "Failures publish caches and do not cause rollback. COM mutations of target dimensions/flag/surface/cache/bias before refresh are read at their original points.",
+            "No authored frame initialization, hardware COM/GPU behavior or whole-world rendering claim. Native/Python differential passed; managed execution pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase12-20261013-target-pipeline.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase12-20261013-target-pipeline-harness.cs"
+    },
+    {
+      "name": "scene-phase13-20261013-backend-init",
+      "cls": "BackendInitializationPhase13Harness",
+      "fixture": "reports/scene-phase13-20261013-backend-init-native-fixtures.json.gz",
+      "output": "reports/scene-phase13-20261013-backend-init-csharp-validation.json",
+      "descriptor": "reports/scene-phase13-20261013-backend-init-source.json",
+      "evidence": [
+        "reports/scene-phase13-20261013-backend-init-native-validation.json",
+        "reports/scene-phase13-20261013-backend-init-assembly.json",
+        "reports/scene-phase13-20261013-backend-init-contract.json",
+        "reports/scene-phase13-20261013-backend-init-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x6e1930",
+          "method": "RenderBackendInitialization.Apply",
+          "coverage": "Whole original backend constructor over resolved writable image, raw/partial writes, finite original aspect constant, actual memset ranges and preserved bytes.",
+          "sourceFile": "geometry/scene-phase13-20261013-backend-init.cs",
+          "evidence": "reports/scene-phase13-20261013-backend-init-native-validation.json",
+          "limitations": [
+            "Original6e1930 and actual memset6e6950 run unchanged; no helper, device, arithmetic or COM adapters.",
+            "Receiver is a resolved writable0x800-byte image. All source bytes are raw and all unassigned image bytes remain unchanged. Original finite aspect constant7519a8 is exactly3faaaaab.",
+            "Constructor clears device pointer, dimensions, viewport, selected handles and four target cache cells. It does not produce a live device, populate real target dimensions or initialize separate render-state/viewport calibration globals.",
+            "Original pointer return is represented as receiver identity in portable source. Native/Python differential passed; managed execution pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase13-20261013-backend-init.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase13-20261013-backend-init-harness.cs"
+    },
+    {
+      "name": "script-phase18-20261013",
+      "cls": "ScriptPhase1820261013Verify",
+      "fixture": "reports/script-phase18-20261013-native-fixtures.json",
+      "output": "reports/script-phase18-20261013-managed-check.json",
+      "descriptor": "reports/script-phase18-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase18-20261013-contract.json",
+        "reports/script-phase18-20261013-tests.json",
+        "reports/script-phase18-20261013-assembly.json",
+        "reports/script-phase18-20261013-fixture-replay.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x415000",
+          "method": "PreparedScriptBinding.Rebind",
+          "coverage": "Existing Rebind expanded by ordered idle/system/default/enter/tail hydration using unchanged typed Bind core.",
+          "sourceFile": "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs"
+        },
+        {
+          "address": "0x514640",
+          "method": "PreparedScriptBinding.Bind",
+          "coverage": "Existing supplied-nonnull-script binding with optional character profile, live override-mask aliases and lazy Base/first-action reads; resolver branch external.",
+          "sourceFile": "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs"
+        },
+        {
+          "address": "0x52cc90",
+          "method": "PreparedScriptDispatcher.Tick",
+          "coverage": "Existing native dispatcher control flow with exact callback identity/rereads/first-call scratch, reference/deadline transitions and lower evaluator/handler ports.",
+          "sourceFile": "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase18-20261013-ScriptRuntimeBridge.cs"
+      ],
+      "harnessFile": "../tools/script-phase18-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase27-20261013",
+      "cls": "MovementPhase2720261013Verify",
+      "fixture": "reports/movement-phase27-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase27-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase27-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase27-20261013-contract.json",
+        "reports/movement-phase27-20261013-expanded-tests.json",
+        "reports/movement-phase27-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x41c7c0",
+          "method": "ActorInitialization.Initialize",
+          "sourceFile": "gameplay/movement-phase27-20261013-ActorInitialization.cs",
+          "coverage": "Complete prepared initializer own control/field body composed with actual start/animation/dimension/type flag and QRandom helpers. Ordered child callbacks, captured spawn/fresh metadata/model/type reads,233-entry clip default scan and final position/flag commits. Loaded reset/suit/clip/moves/geometry/bounds/special child services remain explicit; no whole actor/game claim."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase27-20261013-ActorInitialization.cs"
+      ],
+      "harnessFile": "../tools/movement-phase27-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x650e40",
+    "0x41c7c0",
+    "0x5dabf0",
+    "0x5dac70",
+    "0x5ef9a0",
+    "0x5dae80",
+    "0x6e2510",
+    "0x6e5340",
+    "0x6e1930"
+  ],
+  "newCoreFiles": 6,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate.",
+  "auditCorrections": [
+    {
+      "descriptor": "reports/movement-phase27-20261013-source.json",
+      "issue": "Intermediate 246-case report was linked rather than authoritative final 316-case/1,896-group report.",
+      "resolution": "Relinked final expanded report without source/harness/build/fixture changes or new execution."
+    }
+  ]
+}

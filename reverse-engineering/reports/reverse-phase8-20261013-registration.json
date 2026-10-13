@@ -1,0 +1,226 @@
+{
+  "updated": "2026-10-13T17:51:31.344Z",
+  "batch": "reverse-phase8-20261013",
+  "descriptors": [
+    "reports/scene-phase5-20261013-viewport-source.json",
+    "reports/scene-phase5-20261013-reuse-source.json",
+    "reports/script-phase11-20261013-source-map.json",
+    "reports/script-phase12-20261013-source-map.json",
+    "reports/movement-phase11-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "scene-phase5-20261013-viewport",
+      "cls": "CameraViewportPhase5Harness",
+      "fixture": "reports/scene-phase5-20261013-viewport-native-fixtures.json.gz",
+      "output": "reports/scene-phase5-20261013-viewport-csharp-validation.json",
+      "descriptor": "reports/scene-phase5-20261013-viewport-source.json",
+      "evidence": [
+        "reports/scene-phase5-20261013-viewport-native-validation.json",
+        "reports/scene-phase5-20261013-viewport-contract.json",
+        "reports/scene-phase5-20261013-viewport-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5ff390",
+          "method": "CameraViewport.Reset",
+          "coverage": "dirty gate, signed wrapping clipping rectangle, correction arithmetic, ordered raw device viewport edge and camera global updates",
+          "sourceFile": "geometry/scene-phase5-20261013-viewport.cs",
+          "evidence": "reports/scene-phase5-20261013-viewport-native-validation.json",
+          "limitations": [
+            "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+            "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+            "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+            "Native/Python ownstate differential passed; managed replay remains separate and pending."
+          ]
+        },
+        {
+          "address": "0x5ff2d0",
+          "method": "CameraViewport.PixelDepth",
+          "coverage": "finite pixel/depth transform with Int32-to-float32 screen spills and minimumdepth rawword copy",
+          "sourceFile": "geometry/scene-phase5-20261013-viewport.cs",
+          "evidence": "reports/scene-phase5-20261013-viewport-native-validation.json",
+          "limitations": [
+            "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+            "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+            "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+            "Native/Python ownstate differential passed; managed replay remains separate and pending."
+          ]
+        },
+        {
+          "address": "0x5ed540",
+          "method": "CameraViewport.ApplyNormal",
+          "coverage": "refines normal camera producer through actual dirty viewport reset before projection/frustum generation",
+          "sourceFile": "geometry/scene-phase5-20261013-viewport.cs",
+          "evidence": "reports/scene-phase5-20261013-viewport-native-validation.json",
+          "limitations": [
+            "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+            "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+            "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+            "Native/Python ownstate differential passed; managed replay remains separate and pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase5-20261013-viewport.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase5-20261013-viewport-harness.cs"
+    },
+    {
+      "name": "scene-phase5-20261013-reuse",
+      "cls": "CameraProjectionReusePhase5Harness",
+      "fixture": "reports/scene-phase5-20261013-reuse-native-fixtures.json.gz",
+      "output": "reports/scene-phase5-20261013-reuse-csharp-validation.json",
+      "descriptor": "reports/scene-phase5-20261013-reuse-source.json",
+      "evidence": [
+        "reports/scene-phase5-20261013-reuse-native-validation.json",
+        "reports/scene-phase5-20261013-reuse-contract.json",
+        "reports/scene-phase5-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5ed300",
+          "method": "CameraProjectionReuse.CachedSymmetric",
+          "coverage": "completes symmetric clipping with original nonzero reuse branch and ignored camera pointer",
+          "sourceFile": "geometry/scene-phase5-20261013-reuse.cs",
+          "evidence": "reports/scene-phase5-20261013-reuse-native-validation.json",
+          "limitations": [
+            "Nonzero param2cachedprojection with normalconversion973944=0 andfinitevalidresolvedcamera/cachematrices. All originalcachedcamera computation executesunchanged.",
+            "Fresh projection remains sealedcamera/viewportmodule. Modechangecanresetreuseflag onlyafterprojectionblock hasalreadybeenskipped; capturedoldprojection remainsunchanged.",
+            "Native light/rendercache helperrenderer-byte outputs areexcludedfromportable numeric scope, with explicit hostcallbacks.",
+            "Importedphysical D3DXCPU policy, reflectedcamera, device/GPU andauthoredscene integration remainoutside coverage.",
+            "Native/Python ownstate differential passed; compiled C#replay remains separate andpending."
+          ]
+        },
+        {
+          "address": "0x5ed420",
+          "method": "CameraProjectionReuse.CachedAsymmetric",
+          "coverage": "completes asymmetric clipping with original nonzero reuse branch and ignored camera pointer",
+          "sourceFile": "geometry/scene-phase5-20261013-reuse.cs",
+          "evidence": "reports/scene-phase5-20261013-reuse-native-validation.json",
+          "limitations": [
+            "Nonzero param2cachedprojection with normalconversion973944=0 andfinitevalidresolvedcamera/cachematrices. All originalcachedcamera computation executesunchanged.",
+            "Fresh projection remains sealedcamera/viewportmodule. Modechangecanresetreuseflag onlyafterprojectionblock hasalreadybeenskipped; capturedoldprojection remainsunchanged.",
+            "Native light/rendercache helperrenderer-byte outputs areexcludedfromportable numeric scope, with explicit hostcallbacks.",
+            "Importedphysical D3DXCPU policy, reflectedcamera, device/GPU andauthoredscene integration remainoutside coverage.",
+            "Native/Python ownstate differential passed; compiled C#replay remains separate andpending."
+          ]
+        },
+        {
+          "address": "0x5ed540",
+          "method": "CameraProjectionReuse.ApplyCached",
+          "coverage": "extends normal camera through nonzero projection reuse, deferred cullingmode invalidation and preserved early projection block",
+          "sourceFile": "geometry/scene-phase5-20261013-reuse.cs",
+          "evidence": "reports/scene-phase5-20261013-reuse-native-validation.json",
+          "limitations": [
+            "Nonzero param2cachedprojection with normalconversion973944=0 andfinitevalidresolvedcamera/cachematrices. All originalcachedcamera computation executesunchanged.",
+            "Fresh projection remains sealedcamera/viewportmodule. Modechangecanresetreuseflag onlyafterprojectionblock hasalreadybeenskipped; capturedoldprojection remainsunchanged.",
+            "Native light/rendercache helperrenderer-byte outputs areexcludedfromportable numeric scope, with explicit hostcallbacks.",
+            "Importedphysical D3DXCPU policy, reflectedcamera, device/GPU andauthoredscene integration remainoutside coverage.",
+            "Native/Python ownstate differential passed; compiled C#replay remains separate andpending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase5-20261013-reuse.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase5-20261013-reuse-harness.cs"
+    },
+    {
+      "name": "script-phase11-20261013",
+      "cls": "ScriptPhase1120261013Verify",
+      "fixture": "reports/script-phase11-20261013-native-fixtures.json",
+      "output": "reports/script-phase11-20261013-managed-check.json",
+      "descriptor": "reports/script-phase11-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase11-20261013-contract.json",
+        "reports/script-phase11-20261013-tests.json",
+        "reports/script-phase11-20261013-assembly.json",
+        "reports/script-phase11-20261013-prefix-boundary-observation.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5a01f0",
+          "method": "VehicleEjection.Eject",
+          "coverage": "prepared finite stored-F32 x87 ejection, two QRANDdraws, actualphase10 context/router/reset andexistingfiniteSquareRoot; terminalaudio boundary",
+          "sourceFile": "gameplay/script-phase11-20261013-VehicleEjection.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase11-20261013-VehicleEjection.cs"
+      ],
+      "harnessFile": "../tools/script-phase11-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase12-20261013",
+      "cls": "ScriptPhase1220261013Verify",
+      "fixture": "reports/script-phase12-20261013-native-fixtures.json",
+      "output": "reports/script-phase12-20261013-managed-check.json",
+      "descriptor": "reports/script-phase12-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase12-20261013-contract.json",
+        "reports/script-phase12-20261013-tests.json",
+        "reports/script-phase12-20261013-assembly.json",
+        "reports/animation-character-bounds-contract.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x55d2b0",
+          "method": "PreparedCharacterBounds.Refresh",
+          "coverage": "prepared lazy pointer hydration, fullfinite numericcore reuse, initialflagwrites/pre-context commit/latefaults andcontexttable producer-reader aliases",
+          "sourceFile": "gameplay/script-phase12-20261013-PreparedCharacterBounds.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase12-20261013-PreparedCharacterBounds.cs"
+      ],
+      "harnessFile": "../tools/script-phase12-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase11-20261013",
+      "cls": "MovementPhase1120261013Verify",
+      "fixture": "reports/movement-phase11-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase11-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase11-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase11-20261013-contract.json",
+        "reports/movement-phase11-20261013-tests.json",
+        "reports/movement-phase11-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x443390",
+          "method": "RuntimeStateReaders.LastAttackerRange",
+          "sourceFile": "gameplay/movement-phase11-20261013-RuntimeReaders.cs",
+          "coverage": "Null creature/reference or absent attacker returns exactF32 1e9(4e6e6b28). Null referenced actor faults. Actor self-alias returns zero. Actual5becc0/sqrt execute unchanged; portable code composes existing finite distance implementation."
+        },
+        {
+          "address": "0x442d10",
+          "method": "RuntimeStateReaders.HelpWithTriggers",
+          "sourceFile": "gameplay/movement-phase11-20261013-RuntimeReaders.cs",
+          "coverage": "Global world+4678 read first. Physics/creature/reference guards then reference+28d unsigned byte index. Physics+42c0+index255 alone means inactive; signedbyte at+4280+index selectsblock*214+20e and any nonzero16bit state returns1. Backing includes allnegative signedblocks."
+        },
+        {
+          "address": "0x443dc0",
+          "method": "RuntimeStateReaders.MusicOn",
+          "sourceFile": "gameplay/movement-phase11-20261013-RuntimeReaders.cs",
+          "coverage": "Every nonzero raw global music byte returns1, zero returns0; no creature/world guard."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase11-20261013-RuntimeReaders.cs"
+      ],
+      "harnessFile": "../tools/movement-phase11-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x5a01f0",
+    "0x443390",
+    "0x442d10",
+    "0x443dc0",
+    "0x5ff390",
+    "0x5ff2d0"
+  ],
+  "newCoreFiles": 5,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

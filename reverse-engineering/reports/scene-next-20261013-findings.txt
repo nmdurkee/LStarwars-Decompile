@@ -1,0 +1,41 @@
+STATEFUL PC VISIBILITY DISPATCHER COMPOSITION — 2026-10-13
+
+SceneVisibilityPreparation.Prepare refines the existing0x5f3c80 mapping.
+It reuses SchedulingScene/Options/State and actually calls GridVisibility.Produce,
+then recovered PortalEntry.Run or the explicitly supplied tree service.
+Camera switch/restore remain host services. Existing SceneScheduling.Run was
+not edited and retains its earlier grid/tree restrictions.
+
+512 synthetic gate/mode cases plus4 retained stateful steps pass2,153 native
+assertions. Original dispatcher and grid functions execute unchanged.32 actual
+portal entries execute0x5eeb30/0x600bd0 on empty required-count scenes; they
+attach portal visibility and preserve bits. This batch does not newly claim
+populated portal recursion,which has its own prior suite and portable source.
+
+Camera services mutate position,mode,instance counts and pre-reset context.
+Tree services observe arguments/context,then mutate pointer/count/scratch/flags.
+Restore services observe the fixed0x973760 buffer argument and update position.
+These are explicit adapters,not reconstructed camera or tree implementations.
+They verify service ordering and preservation beyond no-op call counting:
+count selection reads camera-updated state; grid uses updated camera; tree
+sees workspace and grid mask; caller ORs bit1 after tree mutation; restore
+runs only for post-service currentMode1. Early gates preserve all scene bytes.
+
+The four-step sequence retains shared compressed-cache ownership across a
+second grid with the same cell index,a null-workspace return,and an outside-grid
+camera. No implicit cache invalidation is added. All516 original case/step
+records retain before/after state,call order and service-edge observations.
+Standalone harness covers all516 cases with3,151 prepared assertions; it also
+checks returned array aliases. Harness compiles with current recovered cores.
+Managed execution remains pending under the existing launch-denial limitation.
+
+This adds one core file and one harness. It adds no distinct native address;
+0x5f3c80 is already counted through SceneScheduling.PrepareVisibility. The new
+source is a richer dependency composition,not a whole renderer or scene loader.
+Source descriptor,contract,assembly,fixture hashes and compile report use the
+scene-next-20261013 prefix. Shared manifests/checkpoints and existing sources
+were not modified. No commits,pushes or GitHub writes occurred.
+
+Reproduce from workspace root:
+python reverse-engineering/tools/scene-next-20261013-native.py
+Harness arguments:native-fixtures.json.gz result.json.

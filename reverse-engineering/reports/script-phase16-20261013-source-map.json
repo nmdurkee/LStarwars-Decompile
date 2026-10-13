@@ -1,0 +1,48 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase16-20261013-CleanupEffects.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x54a3e0",
+      "method": "CleanupEffects.Transition",
+      "scope": "Camera transition producer with lazy duration/index gates, original ordered loads/writes, prepared partial faults and aliases.",
+      "file": "gameplay/script-phase16-20261013-CleanupEffects.cs",
+      "evidence": "reports/script-phase16-20261013-contract.json"
+    },
+    {
+      "address": "0x54a850",
+      "method": "CleanupEffects.Feedback",
+      "scope": "Finite bounded controller feedback scaling/truncation/top-only clamp; terminal driver backend explicit.",
+      "file": "gameplay/script-phase16-20261013-CleanupEffects.cs",
+      "evidence": "reports/script-phase16-20261013-contract.json"
+    },
+    {
+      "address": "0x54a8a0",
+      "method": "CleanupEffects.Forward",
+      "scope": "Controller scalar request wrapper with null gate and exact backend float argument slots.",
+      "file": "gameplay/script-phase16-20261013-CleanupEffects.cs",
+      "evidence": "reports/script-phase16-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase16-20261013-contract.json",
+    "reports/script-phase16-20261013-tests.json",
+    "reports/script-phase16-20261013-assembly.json",
+    "reports/script-phase16-20261013-fixture-replay.json"
+  ],
+  "harnessFile": "../tools/script-phase16-20261013-portable-verify.cs",
+  "verifierModule": "script-phase16-20261013",
+  "verifierClass": "ScriptPhase1620261013Verify",
+  "fixture": "reports/script-phase16-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase16-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "Three new native entries; compiler conversion6e6b90 retained as dependency, zero standalone conversion or authored command credit.",
+    "1124 standalone +19 full pipeline cases;3429 correlated native assertions/0. All meaningful fixtures retained, including14 signaling-NaN store observations explicitly outside paired coverage.",
+    "Additional3429 same-model fixture readback checks/0, not added to native coverage.",
+    "Source/harness depends on immutable phases13/14/15; root owns combined compilation/registration. Worker made no bin outputs and launched no managed executable.",
+    "Next vehicle liveness gap:5a03d0 timer/update/re-entry body. Existing52c790 base-state producer can later be hydrated to close another pipeline port without extra address credit."
+  ]
+}

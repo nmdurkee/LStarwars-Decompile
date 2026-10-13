@@ -1,0 +1,359 @@
+{
+  "updated": "2026-10-13T19:28:40.588Z",
+  "batch": "reverse-phase12-20261013",
+  "descriptors": [
+    "reports/world-phase12-20261013-integration.json",
+    "reports/world-phase13-20261013-integration.json",
+    "reports/world-phase13-20261013-composed-integration.json",
+    "reports/scene-phase9-20261013-renderer-composition-source.json",
+    "reports/scene-phase10-20261013-bindings-source.json",
+    "reports/script-phase15-20261013-source-map.json",
+    "reports/script-phase16-20261013-source-map.json",
+    "reports/movement-phase22-20261013-source.json",
+    "reports/movement-phase23-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "world-phase12-20261013",
+      "cls": "WorldPhase1220261013Verify",
+      "fixture": "reports/world-phase12-20261013-vectors.json",
+      "output": "reports/world-phase12-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase12-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase12-20261013-native-tests.json",
+        "reports/world-phase12-20261013-source-map.json",
+        "reports/world-phase12-20261013-contract.json",
+        "reports/world-phase12-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x64c300",
+          "method": "ParResourceLoading.Load",
+          "coverage": "complete own-state PAR loader with original downstream record/resolver composition and explicit runtime services",
+          "sourceFile": "gameplay/world-phase12-20261013-par-loader.cs",
+          "qualification": "Complete own-state 0x64c300 PAR loader over valid prepared records, instances, scene table and buffered streams; activation 0x64ae50, selection 0x644000 and managed asset resolution remain explicit services. All 112 authored PAR files are unchanged and fed completely as transport inputs; original record decoder 0x64ba10, resolver 0x64b020, buffered readers and sprite/particle/audio lookup bodies execute unchanged in native comparison. Asset contexts contain empty particle registry, 1,600 NULL audio name pointers and scene sprite tables with zero records; no loaded-asset lookup or runtime activation/nearest-selection implementation is claimed. The 200 retained cases cover all versions 1..16 in both byte orders, low-byte mode dispatch, bank selection, record/instance capacity, full scene table, failed/occupied opens, empty record names, negative counts, missing instance names and runtime callback mutation order. Captured 843,768-byte region image, asset argument SHA and counts, runtime service trace, transport trace and state, and raw EAX are compared for every case. Discarded overflow records use a 376-byte temporary outside captured regions; discarded bytes are not a stack-layout reconstruction. Finite/signed-zero instance coordinates are covered; general x87 exceptional-value conversion is not claimed. Source and portable harness compile as a library; managed fixture replay is pending, with no generated executable launch.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase12-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase12-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase12-20261013-par-loader.cs"
+      ],
+      "harnessFile": "../tools/world-phase12-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase13-20261013",
+      "cls": "WorldPhase1320261013Verify",
+      "fixture": "reports/world-phase13-20261013-vectors.json",
+      "output": "reports/world-phase13-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase13-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase13-20261013-native-tests.json",
+        "reports/world-phase13-20261013-composed-tests.json",
+        "reports/world-phase13-20261013-contract.json",
+        "reports/world-phase13-20261013-source-map.json",
+        "reports/world-phase13-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x64ae50",
+          "method": "ParInstanceRuntime.Activate",
+          "coverage": "bounded finite own-state activation including original timing and RNG composition",
+          "qualification": "Recovered 0x64ae50 own-state activation on valid indices (or -1), bounded finite time/start/duration and positive finite rate; periodic fixtures require positive duration and nonnegative gap. Timing stores preserve original binary32 rounding points, cycle index truncation, catch-up order, quantized sample time and last update time. Randomized branch reuses sealed SoundPlayback.RandomFraction over global 0x8102e8; original native RNG 0x5b9d90 and truncation 0x6e6b90 run unchanged. Managed double intermediates project native x87 extended precision; all finite-domain claims are limited to retained fixtures, and extreme/exceptional arithmetic or arbitrary double-rounding cases are not claimed. Zero/negative periodic durations and negative gaps can prevent native catch-up progress and remain outside source projection. The 955 direct activation cases compare all prepared record/instance/timing/RNG bytes. Whole-loader replay additionally processes all 112 unchanged authored PAR files with original activation and selection; their 56 accepted instances have rate 1..64 and time/start 0. No graphics/audio/emission simulation is claimed. Source and both portable harnesses compile as library; managed replay remains pending with no generated executable launch.",
+          "sourceFile": "gameplay/world-phase13-20261013-par-runtime.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase13-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase13-20261013-composed-tests.json",
+            "reverse-engineering/reports/world-phase13-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x644000",
+          "method": "ParInstanceRuntime.Select",
+          "coverage": "prepared-table nearest selection with original subtraction, strict ties, pointer identity and zero-distance retention",
+          "qualification": "Recovered 0x644000 own-state nearest-instance selection on valid prepared 40-row instance table and selected index -1 or 0..39. Binary32 vector differences and final squared distance, strict threshold, first equal-distance tie, negative initial threshold, invalid instances, selected/record pointer identity and exact-zero current-selection early return are preserved. The early return leaves existing pointer globals untouched. The 742 direct cases include finite quarter-unit positions, negative/zero/infinite/quiet-NaN thresholds and infinite/quiet-NaN candidates. Managed double dot-product intermediates project native x87 extended precision; arbitrary extreme-distance or double-rounding equivalence is not claimed. Native vector subtraction 0x5b3800 runs unchanged. Whole-loader replay additionally processes all 112 unchanged authored PAR files with original activation and selection. No world/scene origin producer, loaded graphics/audio assets or emission update implementation is claimed. Source and both portable harnesses compile as library; managed replay remains pending with no generated executable launch.",
+          "sourceFile": "gameplay/world-phase13-20261013-par-runtime.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase13-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase13-20261013-composed-tests.json",
+            "reverse-engineering/reports/world-phase13-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase13-20261013-par-runtime.cs"
+      ],
+      "harnessFile": "../tools/world-phase13-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase13-composed-20261013",
+      "cls": "WorldPhase13Composed20261013Verify",
+      "fixture": "reports/world-phase13-20261013-composed-vectors.json",
+      "output": "reports/world-phase13-20261013-composed-managed-tests.json",
+      "descriptor": "reports/world-phase13-20261013-composed-integration.json",
+      "evidence": [
+        "reports/world-phase13-20261013-composed-tests.json",
+        "reports/world-phase13-20261013-contract.json",
+        "reports/world-phase13-20261013-execution-status.json"
+      ],
+      "mappings": [],
+      "coreFiles": [],
+      "harnessFile": "../tools/world-phase13-20261013-composed-portable-verify.cs"
+    },
+    {
+      "name": "scene-phase9-20261013-renderer-composition",
+      "cls": "CameraCpuRendererCompositionPhase9Harness",
+      "fixture": "reports/scene-phase9-20261013-renderer-composition-native-fixtures.json.gz",
+      "output": "reports/scene-phase9-20261013-renderer-composition-csharp-validation.json",
+      "descriptor": "reports/scene-phase9-20261013-renderer-composition-source.json",
+      "evidence": [
+        "reports/scene-phase9-20261013-renderer-composition-native-validation.json",
+        "reports/scene-phase9-20261013-renderer-composition-contract.json",
+        "reports/scene-phase9-20261013-renderer-composition-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5ed540",
+          "method": "CameraCpuRendererServices.Bind",
+          "coverage": "Composes recovered camera/view/viewport/reuse/alternate/visibility numeric paths with actual CPU light and render-cache byte outputs and shared counters.",
+          "sourceFile": "geometry/scene-phase9-20261013-renderer-composition.cs",
+          "evidence": "reports/scene-phase9-20261013-renderer-composition-native-validation.json",
+          "limitations": [
+            "Finite numeric cameras, alternate references, cached matrices, light direction/aim/template and output stores, with nonzero renderer screen/source dimensions.",
+            "Raw color, camera-view copies and unused second viewport depth word remain opaque under original respective integer-copy boundaries.",
+            "Device/D3DX edges are supplied numerical or argument adapters; GPU operation and installed matrix numerical implementation remain unestablished.",
+            "Grid/portal disabled valid synthetic populated tree; exact finite caller fourth word supplied per predicate. Authored world/frame bindings and external prior stack lifetime remain open.",
+            "Compiled replay prepares 18794 assertions; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x603cc0",
+          "method": "CameraCpuRendererServices.Bind",
+          "coverage": "Composes recovered camera/view/viewport/reuse/alternate/visibility numeric paths with actual CPU light and render-cache byte outputs and shared counters.",
+          "sourceFile": "geometry/scene-phase9-20261013-renderer-composition.cs",
+          "evidence": "reports/scene-phase9-20261013-renderer-composition-native-validation.json",
+          "limitations": [
+            "Finite numeric cameras, alternate references, cached matrices, light direction/aim/template and output stores, with nonzero renderer screen/source dimensions.",
+            "Raw color, camera-view copies and unused second viewport depth word remain opaque under original respective integer-copy boundaries.",
+            "Device/D3DX edges are supplied numerical or argument adapters; GPU operation and installed matrix numerical implementation remain unestablished.",
+            "Grid/portal disabled valid synthetic populated tree; exact finite caller fourth word supplied per predicate. Authored world/frame bindings and external prior stack lifetime remain open.",
+            "Compiled replay prepares 18794 assertions; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x5d6900",
+          "method": "CameraCpuRendererServices.Bind",
+          "coverage": "Composes recovered camera/view/viewport/reuse/alternate/visibility numeric paths with actual CPU light and render-cache byte outputs and shared counters.",
+          "sourceFile": "geometry/scene-phase9-20261013-renderer-composition.cs",
+          "evidence": "reports/scene-phase9-20261013-renderer-composition-native-validation.json",
+          "limitations": [
+            "Finite numeric cameras, alternate references, cached matrices, light direction/aim/template and output stores, with nonzero renderer screen/source dimensions.",
+            "Raw color, camera-view copies and unused second viewport depth word remain opaque under original respective integer-copy boundaries.",
+            "Device/D3DX edges are supplied numerical or argument adapters; GPU operation and installed matrix numerical implementation remain unestablished.",
+            "Grid/portal disabled valid synthetic populated tree; exact finite caller fourth word supplied per predicate. Authored world/frame bindings and external prior stack lifetime remain open.",
+            "Compiled replay prepares 18794 assertions; managed execution pending."
+          ]
+        },
+        {
+          "address": "0x5f3c80",
+          "method": "CameraCpuRendererServices.Bind",
+          "coverage": "Composes recovered camera/view/viewport/reuse/alternate/visibility numeric paths with actual CPU light and render-cache byte outputs and shared counters.",
+          "sourceFile": "geometry/scene-phase9-20261013-renderer-composition.cs",
+          "evidence": "reports/scene-phase9-20261013-renderer-composition-native-validation.json",
+          "limitations": [
+            "Finite numeric cameras, alternate references, cached matrices, light direction/aim/template and output stores, with nonzero renderer screen/source dimensions.",
+            "Raw color, camera-view copies and unused second viewport depth word remain opaque under original respective integer-copy boundaries.",
+            "Device/D3DX edges are supplied numerical or argument adapters; GPU operation and installed matrix numerical implementation remain unestablished.",
+            "Grid/portal disabled valid synthetic populated tree; exact finite caller fourth word supplied per predicate. Authored world/frame bindings and external prior stack lifetime remain open.",
+            "Compiled replay prepares 18794 assertions; managed execution pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase9-20261013-renderer-composition.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase9-20261013-renderer-composition-harness.cs"
+    },
+    {
+      "name": "scene-phase10-20261013-bindings",
+      "cls": "RenderTargetBindingPhase10Harness",
+      "fixture": "reports/scene-phase10-20261013-bindings-native-fixtures.json.gz",
+      "output": "reports/scene-phase10-20261013-bindings-csharp-validation.json",
+      "descriptor": "reports/scene-phase10-20261013-bindings-source.json",
+      "evidence": [
+        "reports/scene-phase10-20261013-bindings-native-validation.json",
+        "reports/scene-phase10-20261013-bindings-contract.json",
+        "reports/scene-phase10-20261013-bindings-assembly.json",
+        "reports/scene-phase10-20261013-bindings-references.json",
+        "reports/scene-phase10-20261013-bindings-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x6e3720",
+          "method": "RenderTargetDimensionBinding.Apply",
+          "coverage": "Whole resolved render-target caller control/state with unsigned target dimensions, signed fallback size/origin, callback mutation order and opaque return; callee device/refresh services explicit.",
+          "sourceFile": "geometry/scene-phase10-20261013-bindings.cs",
+          "evidence": "reports/scene-phase10-20261013-bindings-native-validation.json",
+          "limitations": [
+            "Original complete6e3720 caller executes unchanged with concrete source field layouts and real screen/origin globals. Host calls are explicit services, not reconstructed device behavior.",
+            "Valid separate backend/surface records; surface width/height are unsigned16. Backend width/height all Int32 with signed truncating half.",
+            "Any nonzero slot retains original dimension/active writes gate, including0xffffffff. Surface-null or handle-zero fallbacks retained.",
+            "Callbacks may change fields before later reads; branch decisions and argument values retain original evaluation order. Register volatile clobbers and ret8 verified.",
+            "Literal source/origin/light references and original PE defaults provide binding evidence only; no exhaustive indirect writer or authored frame provenance claim.",
+            "Native/Python caller own-state differential passed; managed execution pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase10-20261013-bindings.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase10-20261013-bindings-harness.cs"
+    },
+    {
+      "name": "script-phase15-20261013",
+      "cls": "ScriptPhase1520261013Verify",
+      "fixture": "reports/script-phase15-20261013-native-fixtures.json",
+      "output": "reports/script-phase15-20261013-managed-check.json",
+      "descriptor": "reports/script-phase15-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase15-20261013-contract.json",
+        "reports/script-phase15-20261013-tests.json",
+        "reports/script-phase15-20261013-assembly.json",
+        "reports/script-phase15-20261013-fixture-replay.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5a0320",
+          "method": "VehicleResponseProducer.Respond",
+          "coverage": "Vehicle response with signed clip indexing, live feedback rereads, committed timing then dynamic callback.",
+          "sourceFile": "gameplay/script-phase15-20261013-VehicleResponse.cs"
+        },
+        {
+          "address": "0x4a1f50",
+          "method": "VehicleResponseProducer.Finish",
+          "coverage": "Action cleanup with null/flag guards and unconditional camera call; unused mode preserved.",
+          "sourceFile": "gameplay/script-phase15-20261013-VehicleResponse.cs"
+        },
+        {
+          "address": "0x62e040",
+          "method": "VehicleResponseProducer.DurationForResponse",
+          "coverage": "Existing scalar timing address expanded by registry hydration for fixed (0,0,1) response call; zero extra credit.",
+          "sourceFile": "gameplay/script-phase15-20261013-VehicleResponse.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase15-20261013-VehicleResponse.cs"
+      ],
+      "harnessFile": "../tools/script-phase15-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase16-20261013",
+      "cls": "ScriptPhase1620261013Verify",
+      "fixture": "reports/script-phase16-20261013-native-fixtures.json",
+      "output": "reports/script-phase16-20261013-managed-check.json",
+      "descriptor": "reports/script-phase16-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase16-20261013-contract.json",
+        "reports/script-phase16-20261013-tests.json",
+        "reports/script-phase16-20261013-assembly.json",
+        "reports/script-phase16-20261013-fixture-replay.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x54a3e0",
+          "method": "CleanupEffects.Transition",
+          "coverage": "Camera transition producer with lazy duration/index gates, original ordered loads/writes, prepared partial faults and aliases.",
+          "sourceFile": "gameplay/script-phase16-20261013-CleanupEffects.cs"
+        },
+        {
+          "address": "0x54a850",
+          "method": "CleanupEffects.Feedback",
+          "coverage": "Finite bounded controller feedback scaling/truncation/top-only clamp; terminal driver backend explicit.",
+          "sourceFile": "gameplay/script-phase16-20261013-CleanupEffects.cs"
+        },
+        {
+          "address": "0x54a8a0",
+          "method": "CleanupEffects.Forward",
+          "coverage": "Controller scalar request wrapper with null gate and exact backend float argument slots.",
+          "sourceFile": "gameplay/script-phase16-20261013-CleanupEffects.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase16-20261013-CleanupEffects.cs"
+      ],
+      "harnessFile": "../tools/script-phase16-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase22-20261013",
+      "cls": "MovementPhase2220261013Verify",
+      "fixture": "reports/movement-phase22-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase22-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase22-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase22-20261013-contract.json",
+        "reports/movement-phase22-20261013-tests.json",
+        "reports/movement-phase22-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x4d94f0",
+          "method": "PodHeadingCommands.Apply",
+          "sourceFile": "gameplay/movement-phase22-20261013-PodHeading.cs",
+          "coverage": "Finite prepared actual pod heading: matrix-relative yaw/pitch, in-place rotations, fresh aliased direction reads, signed16 curve/bank wrap, ordered time clamps and factor attenuation; exact supplied lookup tables and disjoint scratch."
+        },
+        {
+          "address": "0x5b3690",
+          "method": "PodHeadingCommands.VectorZ",
+          "sourceFile": "gameplay/movement-phase22-20261013-PodHeading.cs",
+          "coverage": "Finite point rotation with full signed Int32 lookup-index wrapping, cached original X and sequential input Y/Z rereads after output stores, including shifted aliases."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase22-20261013-PodHeading.cs"
+      ],
+      "harnessFile": "../tools/movement-phase22-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase23-20261013",
+      "cls": "MovementPhase2320261013Verify",
+      "fixture": "reports/movement-phase23-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase23-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase23-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase23-20261013-contract.json",
+        "reports/movement-phase23-20261013-tests.json",
+        "reports/movement-phase23-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x4dd810",
+          "method": "PodCreationCommands.Create",
+          "sourceFile": "gameplay/movement-phase23-20261013-CreatePod.cs",
+          "coverage": "Ordered authored CreatePod command body with actual curve/matrix/heading helpers; argument 3 numeric context, low-byte definition and signed16 type, last-row scan fallback, 16-slot reservation, time-rate and actor flags. Terminal actor creation remains explicit service; exact runtime tables/template and disjoint scratch supplied."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase23-20261013-CreatePod.cs"
+      ],
+      "harnessFile": "../tools/movement-phase23-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x64c300",
+    "0x64ae50",
+    "0x644000",
+    "0x5a0320",
+    "0x4a1f50",
+    "0x54a3e0",
+    "0x54a850",
+    "0x54a8a0",
+    "0x4d94f0",
+    "0x5b3690",
+    "0x4dd810",
+    "0x6e3720"
+  ],
+  "newCoreFiles": 8,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

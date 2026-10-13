@@ -1,0 +1,65 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "nativeChecks": 3429,
+  "checks": {
+    "effects-fault-Transition": 475,
+    "effects-state-Transition": 475,
+    "effects-driver-arguments-Transition": 475,
+    "effects-fault-Feedback": 615,
+    "effects-state-Feedback": 615,
+    "effects-driver-arguments-Feedback": 615,
+    "effects-fault-Forward": 34,
+    "effects-state-Forward": 34,
+    "effects-driver-arguments-Forward": 34,
+    "pipeline-native-fault-state": 19,
+    "pipeline-complete-prepared-state": 19,
+    "pipeline-callback-alias-order": 19
+  },
+  "mismatches": 0,
+  "errors": [],
+  "unitCases": 1124,
+  "pipelineCases": 19,
+  "unsupportedObservations": 14,
+  "remainingAdapters": {
+    "0x698900": {
+      "name": "ControllerRequest",
+      "argc": 5
+    },
+    "0x10200400": {
+      "name": "Notify",
+      "argc": 1
+    },
+    "0x415000": {
+      "name": "Rebind",
+      "argc": 1
+    },
+    "0x52c790": {
+      "name": "ChangeState",
+      "argc": 2
+    },
+    "0x52cc90": {
+      "name": "RunScript",
+      "argc": 5
+    },
+    "0x4c99b0": {
+      "name": "DistanceFactor",
+      "argc": 2
+    },
+    "0x561e20": {
+      "name": "DirectedJump",
+      "argc": 6
+    },
+    "0x681e90": {
+      "name": "PlayerSound",
+      "argc": 2
+    },
+    "0x681eb0": {
+      "name": "WorldSound",
+      "argc": 3
+    }
+  },
+  "limits": [
+    "Original camera and feedback wrappers/conversion helpers execute unmodified; driver backend698900 and dynamic notification/remaining script/audio/jump ports explicit.",
+    "Feedback finite scaled value with Int32 truncation range. Camera duration comparison covers finite/infinite/quiet and signaling NaN; written blend/forward moves limited to finite/infinite/quiet NaN. Signaling-NaN store discrepancies retained separately; FPU status outside state contract."
+  ]
+}

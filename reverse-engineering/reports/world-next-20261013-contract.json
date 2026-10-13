@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-10-13T15:15:08.235Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "purpose": "Recover the actual portal-door table construction downstream of world resource loader48ce00 and its transition-bit reset. This is a bounded loader fragment, not a loaded whole world.",
+  "nativeEntries": {
+    "0x55f960": {
+      "label": "Portal-door table loader",
+      "arguments": [
+        "world pointer",
+        "preprocessed text pointer"
+      ],
+      "details": [
+        "Always zero world+5048 table pointer and+504c count. Scene pointer+13c zero exits without touching the arena cursor or opening a parser.",
+        "Open parser with name \"portaldoors\", source pointer and lengthFFFF. Null parser exits without aligning the cursor. The test service prepares a text parser record; allocator/handle lifecycle is external.",
+        "Align world+104 cursor up to4 and tentatively assign world+5048 to that aligned address. Each line starts with original case-insensitive token compare against \"portaldoor\".",
+        "A recognized line zeroes exactly16bytes at the candidate output BEFORE checking whether the following name token exists or matches. Missing/failed bindings leave that candidate slot zeroed but do not increment count or advance the local output.",
+        "Successful scene lookup writes a12-byte reference (scene, static special, dynamic special). Static lookup scans0x4c-stride records; dynamic display takes precedence and scans0xd0-stride records. Existing lookup contracts are reused rather than counted as newly recovered entries.",
+        "The next original integer-reader result is narrowed to low8bits at entry+E. Decimal minus/wrapping, $hex and0xhex syntax remain original native behavior. Missing number gives0 on the prepared text branch.",
+        "Remaining tokens are consumed until token return count0. Case-insensitive \"trigger_at_end\" sets WORD+C bit0. An empty quoted token ends option scanning, so a later trigger_at_end token is ignored.",
+        "Only successful reference bindings increment count and advance local output by16. A recognized failed line after successful lines can zero the next unused candidate slot beyond the committed table.",
+        "Close parser after EOF. Positive count rounds end cursor up to16 and retains table pointer. Zero count clears table pointer; cursor retains its earlier4-byte alignment. No arena end/capacity validation is present."
+      ],
+      "assemblyWitnesses": [
+        "0x55f96e/0x55f974 unconditional table/count reset",
+        "0x55f9a9/0x55f9ac alignment4",
+        "0x55f9f3..0x55f9fc zero candidate16bytes",
+        "0x55fa2e narrow index AL into+E",
+        "0x55fa58 OR configured flagbit0",
+        "0x55fa69/0x55fa6f commit count and stride16",
+        "0x55fa96/0x55fa99 alignment16"
+      ]
+    },
+    "0x55fbb0": {
+      "label": "Reset portal-door transition flags",
+      "details": [
+        "Null table pointer and signed count<=0 do nothing. For each16-byte record in a positive-count table, apply WORD+C &=FFF9. Configured bit0 and every bit other than masks2/4 remain intact.",
+        "This helper does not release memory or reset pointer/count/cursor. The runtime consumer55fac0 owns state transitions and portal visibility calls; it is not implemented or exercised in this batch."
+      ],
+      "assemblyWitnesses": [
+        "0x55fbd0 AND WORD,FFF9",
+        "0x55fbd8 stride16",
+        "0x55fbe1 signed JL against count"
+      ]
+    }
+  },
+  "entryLayout": {
+    "bytes": 16,
+    "fields": [
+      {
+        "offset": 0,
+        "kind": "scene pointer"
+      },
+      {
+        "offset": 4,
+        "kind": "static special pointer, or0"
+      },
+      {
+        "offset": 8,
+        "kind": "dynamic special pointer, or0"
+      },
+      {
+        "offset": 12,
+        "kind": "WORDflags; bit0 configured trigger_at_end, masks2/4 runtime state"
+      },
+      {
+        "offset": 14,
+        "kind": "byte portal ordinal from narrowed integer parser result"
+      },
+      {
+        "offset": 15,
+        "kind": "zero from candidate initialization"
+      }
+    ]
+  },
+  "validation": {
+    "nativeCases": 738,
+    "loadCases": 682,
+    "resetCases": 56,
+    "mismatches": 0,
+    "completePreparedMemoryBytesPerCase": 196612,
+    "comparison": "Complete image SHA256 and selected outputs; stream-read requests, byte consumption and parser lifecycle trace. Memory diffs retained on mismatch.",
+    "unchangedNativeComposition": [
+      "0x55f960",
+      "0x55fbb0",
+      "0x4fc5b0",
+      "0x4fc2d0",
+      "0x4f7fb0",
+      "0x4f9e70",
+      "0x4f8b10",
+      "0x5cf5b0",
+      "0x5cf510"
+    ],
+    "adapters": [
+      {
+        "address": "0x4fc900",
+        "purpose": "Prepare/return parser record, or failure0. Records name/source/FFFF request."
+      },
+      {
+        "address": "0x4fb550",
+        "purpose": "Feed exact supplied text bytes, with prepared7/4096byte chunks; records consumption and refill sizes."
+      },
+      {
+        "address": "0x4fa300",
+        "purpose": "Record close and clear parser firstDWORD; no real handle close/free executes."
+      }
+    ],
+    "authored": {
+      "activeLines": 53,
+      "sourceFiles": 17,
+      "cases": 106,
+      "provenance": "reports/world-next-20261013-authored-provenance.json",
+      "qualification": "Each exact active definition uses a prepared matching scene name in both static and dynamic tests. Does not establish actual loaded scene joins or portal visibility."
+    },
+    "portableCompile": "Core fragment and saved-native fixture harness compile successfully with current core source dependencies.",
+    "managedReplay": "Pending. No generated executable launch retried after confirmed restrictions."
+  },
+  "source": {
+    "path": "reverse-engineering/reconstructed/gameplay/world-next-20261013-portal-doors.cs",
+    "sha256": "ccfa1297f3242ae6d1e0eccfb169b1918e11c020d0ed68a12e516143a66c9413",
+    "harness": "reverse-engineering/tools/world-next-20261013-portable-verify.cs",
+    "fixture": "reports/world-next-20261013-vectors.json"
+  },
+  "limits": [
+    "Disjoint prepared byte image and scene records; optional diagnostic lookup global97388c disabled. No scene carrier loading or animation/portal visibility execution.",
+    "Text-mode parser only, capacities4096/512, numeric tokens<64bytes, lines/tokens fit backing. Input is post-comment-stripping caller text; active authored definition lines are retained exactly.",
+    "Prepared matching scene names provide controlled bind success; authored operand coverage does not prove binding to live shipped scene objects.",
+    "No arena end/capacity checks exist in55f960; fixtures provide enough backing. No managed replay claim."
+  ],
+  "nextWork": [
+    "Recover55fac0 animated threshold/portal toggle orchestration and5d9060 native portal mutation.",
+    "Join53authored definitions to decoded actual scene references instead of prepared matching scene records.",
+    "Recover scene loader and original48ce00 resource loading/failure/teardown behavior.",
+    "Run saved native fixture replay against compiled C# when ordinary generated executable launches become available."
+  ]
+}

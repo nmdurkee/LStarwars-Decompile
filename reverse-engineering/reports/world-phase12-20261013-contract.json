@@ -1,0 +1,107 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "371731951157a0786a2c4177032efc335d4e2c689ebcc4511712024e8cac420f",
+  "entry": "0x64c300",
+  "endExclusive": "0x64c6b2",
+  "bytesSha256": "2a07d09d26211b418644db64fdea6b769a1973afcbd3e0ffa9ca6ca73fe98dc4",
+  "nativeArguments": [
+    "path pointer",
+    "mode (only low byte used)",
+    "scene pointer list",
+    "signed scene count"
+  ],
+  "managedExtraArguments": [
+    "376-byte discarded-record backing",
+    "ISplineFileTransport",
+    "IParRecordBindings",
+    "IParRuntimeServices"
+  ],
+  "returns": {
+    "success": "selected bank 0..7",
+    "noFreeBank": "0xffffffff",
+    "openFailure": "0xffffffff",
+    "invalidVersion": "0xffffffff"
+  },
+  "limits": {
+    "banks": 8,
+    "nonzeroModeFirstBank": 1,
+    "sceneSlots": 32,
+    "sceneProbeBackingWords": 33,
+    "records": 128,
+    "recordStride": 376,
+    "instances": 40,
+    "instanceStride": 108
+  },
+  "globals": {
+    "banks": "0x292089c",
+    "scenes": "0x29208d0",
+    "sceneBanks": "0x291f688",
+    "records": "0x2913a58",
+    "instances": "0x291f7a8",
+    "recordCount": "0x2920a94",
+    "instanceCount": "0x2920a98",
+    "bankZeroFlag": "0x2913a2c",
+    "modeZeroCurrent": "0x296292c",
+    "modeOneCurrent": "0x8109d0"
+  },
+  "ordering": [
+    "Choose bank before scene/file mutations; nonzero mode searches banks 1..7, zero mode reuses bank 0.",
+    "Register nonnull scene pointers before file open; failed opens retain registrations. Read scene slot 32 before upper-bound check.",
+    "Decode accepted records into first zero-name-byte slots; publish bank/mode and increment count only when decoded name is nonempty.",
+    "Fully decode excess records into temporary backing. Clamp instances to remaining capacity without consuming excess instance payloads.",
+    "Resolve each instance name against preferred bank then bank 0; write signed HALF orientation values as raw bits in order +48, +46, +44. Version 11 adds HALF fields +68, +70.",
+    "Read record audio IDs/flags even for unresolved index -1; readable 376-byte prefix backing is required.",
+    "For resolved instances increment count, call Activate(index,0), then set instance byte +61 to 1; service mutations are visible.",
+    "Close file, call Select(1.0 bits), then publish bank loaded flag and mode-specific current bank; service changes to these fields are overwritten in this order."
+  ],
+  "qualification": "Complete own-state 0x64c300 PAR loader over valid prepared records, instances, scene table and buffered streams; activation 0x64ae50, selection 0x644000 and managed asset resolution remain explicit services. All 112 authored PAR files are unchanged and fed completely as transport inputs; original record decoder 0x64ba10, resolver 0x64b020, buffered readers and sprite/particle/audio lookup bodies execute unchanged in native comparison. Asset contexts contain empty particle registry, 1,600 NULL audio name pointers and scene sprite tables with zero records; no loaded-asset lookup or runtime activation/nearest-selection implementation is claimed. The 200 retained cases cover all versions 1..16 in both byte orders, low-byte mode dispatch, bank selection, record/instance capacity, full scene table, failed/occupied opens, empty record names, negative counts, missing instance names and runtime callback mutation order. Captured 843,768-byte region image, asset argument SHA and counts, runtime service trace, transport trace and state, and raw EAX are compared for every case. Discarded overflow records use a 376-byte temporary outside captured regions; discarded bytes are not a stack-layout reconstruction. Finite/signed-zero instance coordinates are covered; general x87 exceptional-value conversion is not claimed. Source and portable harness compile as a library; managed fixture replay is pending, with no generated executable launch.",
+  "validation": {
+    "cases": 200,
+    "authoredFiles": 112,
+    "syntheticCases": 88,
+    "capturedBytes": 843768,
+    "assertions": 1400,
+    "runtimeCalls": 394,
+    "activationCalls": 202,
+    "selectionCalls": 192,
+    "authoredInputsMatchSealedPhase11": true,
+    "nativeMismatches": 0,
+    "outerCalls": 200,
+    "nativeDecoderAndAssetCalls": {
+      "0x64ba10": 1391,
+      "0x6488e0": 149623,
+      "0x658330": 6867,
+      "0x650e40": 5464
+    },
+    "authoredRecords": 1224,
+    "authoredAcceptedInstances": 56
+  },
+  "adaptedServices": [
+    {
+      "address": "0x4fa3f0",
+      "role": "local prepared file open"
+    },
+    {
+      "address": "0x4fb550",
+      "role": "local prepared file read"
+    },
+    {
+      "address": "0x4f99e0",
+      "role": "local prepared file close"
+    },
+    {
+      "address": "0x64ae50",
+      "role": "explicit instance activation and mutable memory service"
+    },
+    {
+      "address": "0x644000",
+      "role": "explicit nearest-instance selection and mutable memory service"
+    }
+  ],
+  "remaining": [
+    "Actual activation 0x64ae50 timer/float/RNG and record flag behavior.",
+    "Actual selection 0x644000 and its scene/instance distance consumers.",
+    "Loaded sprite, particle and sound asset contexts and real renderer/audio services.",
+    "Connect existing world loader payload seam 0x64c6c0 to this composed parser with real runtime services."
+  ]
+}

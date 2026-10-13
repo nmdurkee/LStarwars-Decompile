@@ -1,0 +1,168 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase3-20261013-ActorCommands.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x449970",
+      "method": "Phase3ActorCommands.PressJumpButton",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Ignores firstCall and operands. Null creature/reference/world actor chain skips write; valid actor requires input pointer+0xca4 and ORs the runtime global mask0x802278 into input+8. No jump execution or input consumption.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x44f1b0",
+      "method": "Phase3ActorCommands.PrefersPlayers",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Ignores firstCall. Valid self actor flags+0xeec bit0x40000000 set by default on every call; any whole case-insensitive FALSE token clears it, and later TRUE cannot restore within that call. Does not choose opponents.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x44ee70",
+      "method": "Phase3ActorCommands.CanShootOffScreen",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Requires firstCall and valid self actor. Flags+0x1044 bit4 set by default, TRUE sets/FALSE clears in token order, unknown tokens ignored. Does not execute shooting or determine screen visibility.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x44ede0",
+      "method": "Phase3ActorCommands.CanOpenDoors",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Same firstCall/self/token rules as CanShootOffScreen, using flags+0x1044 bit1. Does not identify doors or implement opening.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x4445c0",
+      "method": "Phase3ActorCommands.CanDefend",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Requires firstCall and valid self actor. Flags+0xeec bit2 set by default; any whole FALSE clears, TRUE does not restore within call. Does not execute defense.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x4447a0",
+      "method": "Phase3ActorCommands.Respawnable",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Requires firstCall and valid self actor. Clears flags+0xeec origin bit0x200000 and sets respawn bit0x100000 by default. Each origin token sets origin bit; each FALSE clears respawn bit; independent bits persist through remaining tokens. Does not respawn objects.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x4448c0",
+      "method": "Phase3ActorCommands.SetBoss",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Requires firstCall and valid self actor. Flags+0xeec bit0x8000000 set by default; any whole FALSE clears, TRUE does not restore within call. Does not implement boss behavior.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x445b70",
+      "method": "Phase3ActorCommands.SetDontMove",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Requires firstCall; defaults target to guarded self actor. Every case-insensitive character substring selects name starting ten bytes from match via native name-reference callback; absent callback or failed/null-target reference clears selection. Non-character branch compares FALSE against first operand, not current. Final valid selected actor flags+0xef0 bit0x10 set/cleared. Does not execute locomotion.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x443280",
+      "method": "Phase3ActorCommands.UnderPlayerControl",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Initializer0x443250 requires operand,system and name callback; returns referenced actor first pointer. Predicate returns0 for null initialized actor with no self fallback; otherwise float1 iff actor byte+0x1fc bit0x80. Does not assign player control.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    },
+    {
+      "address": "0x443250",
+      "method": "Phase3ActorCommands.BindUnderPlayerControl",
+      "file": "gameplay/script-phase3-20261013-ActorCommands.cs",
+      "scope": "Named actor initializer with system/operand/callback gates and reference first-pointer extraction; no name alias/lifetime recovery.",
+      "evidence": "reports/script-phase3-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase3-20261013-contract.json",
+    "reports/script-phase3-20261013-tests.json",
+    "reports/script-phase3-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase3-20261013-portable-verify.cs",
+  "verifierModule": "script-phase3-20261013",
+  "verifierClass": "ScriptPhase320261013Verify",
+  "fixture": "reports/script-phase3-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase3-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "PressJumpButton",
+      "function": "0x449970",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Ignores firstCall and operands. Null creature/reference/world actor chain skips write; valid actor requires input pointer+0xca4 and ORs the runtime global mask0x802278 into input+8. No jump execution or input consumption.",
+      "sourceUses": 22
+    },
+    {
+      "kind": "scp-action",
+      "name": "PrefersPlayers",
+      "function": "0x44f1b0",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Ignores firstCall. Valid self actor flags+0xeec bit0x40000000 set by default on every call; any whole case-insensitive FALSE token clears it, and later TRUE cannot restore within that call. Does not choose opponents.",
+      "sourceUses": 22
+    },
+    {
+      "kind": "scp-action",
+      "name": "CanShootOffScreen",
+      "function": "0x44ee70",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Requires firstCall and valid self actor. Flags+0x1044 bit4 set by default, TRUE sets/FALSE clears in token order, unknown tokens ignored. Does not execute shooting or determine screen visibility.",
+      "sourceUses": 21
+    },
+    {
+      "kind": "scp-action",
+      "name": "CanOpenDoors",
+      "function": "0x44ede0",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Same firstCall/self/token rules as CanShootOffScreen, using flags+0x1044 bit1. Does not identify doors or implement opening.",
+      "sourceUses": 17
+    },
+    {
+      "kind": "scp-action",
+      "name": "CanDefend",
+      "function": "0x4445c0",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Requires firstCall and valid self actor. Flags+0xeec bit2 set by default; any whole FALSE clears, TRUE does not restore within call. Does not execute defense.",
+      "sourceUses": 14
+    },
+    {
+      "kind": "scp-action",
+      "name": "Respawnable",
+      "function": "0x4447a0",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Requires firstCall and valid self actor. Clears flags+0xeec origin bit0x200000 and sets respawn bit0x100000 by default. Each origin token sets origin bit; each FALSE clears respawn bit; independent bits persist through remaining tokens. Does not respawn objects.",
+      "sourceUses": 13
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetBoss",
+      "function": "0x4448c0",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Requires firstCall and valid self actor. Flags+0xeec bit0x8000000 set by default; any whole FALSE clears, TRUE does not restore within call. Does not implement boss behavior.",
+      "sourceUses": 23
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetDontMove",
+      "function": "0x445b70",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Requires firstCall; defaults target to guarded self actor. Every case-insensitive character substring selects name starting ten bytes from match via native name-reference callback; absent callback or failed/null-target reference clears selection. Non-character branch compares FALSE against first operand, not current. Final valid selected actor flags+0xef0 bit0x10 set/cleared. Does not execute locomotion.",
+      "sourceUses": 16
+    },
+    {
+      "kind": "scp-condition",
+      "name": "UnderPlayerControl",
+      "function": "0x443280",
+      "report": "reverse-engineering/reports/script-phase3-20261013-contract.json",
+      "scope": "Initializer0x443250 requires operand,system and name callback; returns referenced actor first pointer. Predicate returns0 for null initialized actor with no self fallback; otherwise float1 iff actor byte+0x1fc bit0x80. Does not assign player control.",
+      "sourceUses": 21
+    }
+  ],
+  "integrationNotes": [
+    "Nine previously dispatch-only command names;169 preserved authored occurrences.",
+    "10 mappings; deduplicate native addresses against current manifest before counting new entries.",
+    "Native assertions include correlated return,state,callback and full prepared-memory write-confinement checks; do not describe as28347independent native scenarios.",
+    "No original game execution or managed launch retry; source+harness individually compile."
+  ]
+}

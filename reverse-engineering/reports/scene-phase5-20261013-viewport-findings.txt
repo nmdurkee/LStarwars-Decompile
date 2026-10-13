@@ -1,0 +1,9 @@
+DIRTY VIEWPORT AND CAMERA COMPOSITION
+
+Recovered actual dirty viewport reset 0x5ff390 and pixel/depth transform 0x5ff2d0, plus a dirty-viewport refinement of normal camera 0x5ed540. Native/Python own-state differential passed 9,664 checks across 4,928 retained cases: 4,096 resets, 512 transforms, and 320 complete camera compositions. C# core and harness compile. The 22,073 prepared replay assertions remain unexecuted.
+
+Viewport clipping uses signed Int32 wrapping arithmetic and sixteenths of a pixel. Clipped denominator dimensions spill to float32; integer source dimensions and differences remain exact x87 loads. Raw six-word device arguments retain both depth words, including opaque second-word NaN/FFFF patterns. Clean dirty flags preserve state. Empty, negative and overflowed rectangle branches emit a zero-size viewport. These branches describe native control behavior rather than physical device acceptance.
+
+The device callback sees the dirty flag already cleared and correction values updated. Identity-copy, pixel/depth transform and relative clip-scale changes happen afterwards. This ordering is retained in portable source and prepared replay. Actual normal camera instructions consume these updated globals before generating projection, clipping and frustum matrices.
+
+Device services, imported D3DX policy, reflected camera, projection reuse, renderer light/cache bytes, authored scene loading and complete frame submission remain open.

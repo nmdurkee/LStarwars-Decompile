@@ -1,0 +1,137 @@
+{
+  "title": "Ordered AddToSet mutation and OnSpeederBike vehicle predicate",
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": "reconstructed/gameplay/script-phase4-20261013-SetVehicle.cs",
+  "nativeTests": "reports/script-phase4-20261013-tests.json",
+  "nativeFixtures": "reports/script-phase4-20261013-native-fixtures.json",
+  "assembly": "reports/script-phase4-20261013-assembly.json",
+  "conditions": [
+    {
+      "name": "AddToSet",
+      "kind": "scp-action",
+      "function": "0x4499b0",
+      "sourceUses": 24,
+      "method": "Phase4ScriptCommands.AddToSet",
+      "scope": "First-call gated and self creature/reference/actor guarded. Whole case-insensitive Reset sets actor byte+0x378=0 without count decrement. Other operands use original packet numeric resolver, truncate float32 toward zero, and accept only1..16. Each accepted token assigns actor byte+0x378 and increments global byte0x876847+index modulo256. Repeated memberships and reassignments increment independently without correcting previous counts.",
+      "helpers": [
+        "0x5147c0",
+        "0x4f28e0",
+        "0x6e6b90"
+      ],
+      "offsets": {
+        "scriptCreatureSelfReference": "0xd0",
+        "referenceActor": "0",
+        "actorSetByte": "0x378",
+        "globalCountByte": "0x876847+selector",
+        "packetCurrentScript": "0x4",
+        "packetParameters": "0x14+4*index",
+        "scriptParameterNamePointer": "0x18+8*index"
+      },
+      "numericContract": "Finite float32 within int32 conversion range. Existing MessageNumbers.Resolve supplies packet parameter0 for any case-insensitive param substring, first matching named parameter among4, otherwise decimal-prefix parser. Final native division explicitly stores/reloads float32 before integer conversion."
+    },
+    {
+      "name": "OnSpeederBike",
+      "kind": "scp-condition",
+      "function": "0x443200",
+      "initializer": "0x4431d0",
+      "sourceUses": 16,
+      "methods": [
+        "Phase4ScriptCommands.BindOnSpeederBike",
+        "Phase4ScriptCommands.OnSpeederBike"
+      ],
+      "scope": "Initializer gates operand,system and callback, extracts named-reference first pointer. Reader uses initialized actor if nonnull, otherwise dereferences unchecked script-creature+0xd0 and guards its reference/actor. Requires actor link+0xcd0, actor byte context+0x7b5==0x3b and linked object word+0x1064 equal runtime global word0x7f1948. Missing name falls back to self; null creature with null initialized actor faults native.",
+      "offsets": {
+        "scriptCreatureSelfReference": "0xd0",
+        "referenceActor": "0",
+        "actorContextByte": "0x7b5",
+        "actorVehicleLink": "0xcd0",
+        "linkedTypeWord": "0x1064",
+        "runtimeBikeTypeGlobal": "0x7f1948",
+        "nameCallback": "0x923904"
+      }
+    }
+  ],
+  "assemblyFindings": [
+    {
+      "address": "0x449a05",
+      "detail": "Reset branch stores AL=0 directly into actor+0x378; it does not update any global count."
+    },
+    {
+      "address": "0x449a2d",
+      "detail": "add byte ptr[eax+0x876847],1 for every accepted numeric token; no old-membership comparison or decrement."
+    },
+    {
+      "address": "0x4f2993",
+      "detail": "Final decimal division is stored with fstp dword[esp+0xc], then reloaded at0x4f2997. AddToSet integer conversion therefore sees stored binary32; existing MessageNumbers.Resolve composition is appropriate for bounded numeric inputs."
+    },
+    {
+      "address": "0x44320c",
+      "detail": "Fallback reads [eax+0xd0] without null-checking the creature argument; initialized actor bypasses this read."
+    },
+    {
+      "address": "0x443236",
+      "detail": "cmp cx,word ptr[0x7f1948] uses the runtime word global, not an assumed constant vehicle ID. The retained analysis image starts with-1; host initialization is external."
+    },
+    {
+      "address": "0x4f291b..0x4f2997",
+      "detail": "Retained operand0.99999994 rounds natively tofloat1 because decimal numerator accumulation stores each multiply/add tofloat32; AddToSet therefore chooses1. Host float.parse of original text is not the parser contract."
+    }
+  ],
+  "verification": {
+    "nativeAssertions": 21191,
+    "mismatches": 0,
+    "savedSetCases": 6963,
+    "savedBikeCases": 222,
+    "savedInitializers": 24,
+    "authoredOccurrences": 40,
+    "shippedActionCalls": 48,
+    "shippedConditionComparisons": 16,
+    "interpretation": "Each AddToSet case includes correlated return,set/count state and complete prepared actor byte-confinement assertions; total is not independent scenarios.",
+    "managedCompilation": "Source and saved-fixture harness compile against the existing Recovered.Runtime.dll packet-number implementation.",
+    "managedExecution": "Pending under established EPERM restriction; no launch retry."
+  },
+  "adapters": [
+    {
+      "globalAddress": "0x923904",
+      "fixtureAddress": "0x10200100",
+      "scope": "Synthetic callback maps ASCII names to references; original initializer extracts target first pointer. Names,world lifetime and alias policy remain external."
+    }
+  ],
+  "limits": [
+    "Original functions execute in isolated x86 Unicorn; no game/world execution.",
+    "Native assertions include correlated return/state/write-confinement checks,not independent scenarios.",
+    "Finite float32 numeric values within int32 conversion range only; unchecked long integer/NaN/infinity conversion behavior outside source contract.",
+    "Named/numeric/script packet inputs and reference lifetimes are host-owned.",
+    "Alive-count backing synthetic selected indices1..16; actual table allocation and per-frame count population are not established.",
+    "OnSpeederBike fallback dereferences null creature when initialized target is absent; original faults saved and portable exception preserves the boundary.",
+    "Vehicle object creation,link updates,context assignment and type-global initialization are external.",
+    "Managed behavioral execution pending; no launch retry under known EPERM restriction."
+  ],
+  "nextCandidates": [
+    {
+      "name": "EitherPlayerIs / Player1Is / Player2Is",
+      "functions": [
+        "0x440f30",
+        "0x440f60",
+        "0x440f80"
+      ],
+      "initializer": "0x440f10",
+      "sourceUses": 17,
+      "reason": "Exact initialized-reference identity against system player-reference fields+0x138c/+0x1390; distinct initializer gating."
+    },
+    {
+      "name": "ForceAtEnd",
+      "function": "0x440a90",
+      "initializer": "0x440a30",
+      "sourceUses": 15,
+      "reason": "Named Force target and reduced state/end checks; distinguish from ForceComplete/ForceFinished."
+    },
+    {
+      "name": "FinishedSpline",
+      "function": "0x4429d0",
+      "sourceUses": 17,
+      "reason": "Actor spline/runtime field reader may compose prepared actor-state contracts."
+    }
+  ]
+}

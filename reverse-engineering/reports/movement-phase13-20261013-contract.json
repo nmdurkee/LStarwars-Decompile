@@ -1,0 +1,41 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "cases": 603,
+  "assertionGroups": 1836,
+  "commandCases": 315,
+  "directPublisherCases": 256,
+  "directClearCases": 32,
+  "mismatches": 0,
+  "authoredOccurrences": 24,
+  "contracts": [
+    {
+      "address": "0x451d50",
+      "method": "ForceBackCommands.SetForceBack",
+      "scope": "First-call command only; self-chain capture before ordered character/locator/radius/FALSE/type parsing. Character callback can mutate live locator table and packet numericparameters. Failedlocator preserves previouspoint; FALSE sticky; actor orlocator requiredtopublish. Callsactualstateproducer(actor,locatorPoint,radius,type), returns1."
+    },
+    {
+      "address": "0x4a4900",
+      "method": "ForceBackCommands.Publish",
+      "scope": "Raw state projection: actor87b8c8; origin87b8cc actor+80 with uintwrapping orrawfallback; extra87b8d0; radius87b890 andsingleF32 radiusSquared87b894 via x87 arithmetic. No actor pointer dereference."
+    },
+    {
+      "address": "0x4a48f0",
+      "method": "ForceBackCommands.Clear",
+      "scope": "Clears exactly actor87b8c8 andorigin87b8cc whilepreserving radius/radiusSquared/extra."
+    }
+  ],
+  "relatedExistingEntry": "0x51ac10 raw locator lookup, no new entry credit",
+  "nativeAdapters": [
+    "Terminal character-reference callback only; can mutate reference, numeric parameter and locator table. All parsing/numeric/lookup/publication/clear routines execute unchanged."
+  ],
+  "limits": [
+    "Finite representable radius and radiusSquared; bounded valid ASCII tokens and prepared native table/packet backing.",
+    "Native command publishes(actor,locatorPoint,radius,type) raw argumentwords to4a4900; no invented semantic type/locator reinterpretation.",
+    "Authored occurrences are retained command tokens; no engine force consumer/frame side effects claimed."
+  ],
+  "managedReplay": {
+    "executed": false,
+    "preparedAssertionGroups": 1836
+  },
+  "verificationCorrection": "Initial own-state oracle/portable draft reversed locator/type arguments basedon mistaken stackfield tracking. Actual x86 publication exposed76 mismatches across315 commandcases; correctedbothmodels before sealing. Final603cases/1836groups pass; no older sealed files changed."
+}

@@ -1,0 +1,15 @@
+Player references, liveness and aggregate readers — 2026-10-13
+
+Eight new bounded authored-name contracts,97uses:EitherPlayerIs15,Player1Is1,Player2Is1,FinishedSpline17,NumBaddies20,IsAlive19,MySet12,NumBaddiesThatCanSeePlayers12.
+
+6,097 original native assertions pass;zero mismatches.5,806savedcases,49initializercases,all97original authored comparisons retained. Named callback alone adapted.
+
+Player predicates compare exact initialized reference against system+0x138c/+0x1390,not underlying physical-object identity. Their named initializer allows null system; UnderPlayerControl's initializer does not.
+
+IsAlive solo path needs live bit1000/deadbyte0 but omits activebit1. Grouped path scans uint8-count members for active/live mask1001/deadbyte0; even a zero-count group overrides solo liveness. Missing definition pointer faults native and is an explicit portable exception.
+
+FinishedSpline returns-1 for missing self. MySet reads packet+0xb0 and faults on null packet. NumBaddies scans stride0x10d8 active/live/baddie flags. NumBaddiesThatCanSeePlayers loads a signed global dword; it does not compute visibility.
+
+Source and complete saved-fixture harness compile against ScriptPacket API. Managed behavioral run pending;no launch retry. Exact addresses,offsets,producer/lifetime constraints are in script-phase5-20261013-contract.json.
+
+Next meaningful cluster:ForceAtEnd named output dispatch,SetHint/CurrentHintId request/read composition,SockDistanceToPlayer socket-relative scalar helper.

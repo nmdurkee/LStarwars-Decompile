@@ -1,0 +1,167 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase5-20261013-Conditions.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x440f30",
+      "method": "Phase5Conditions.EitherPlayerIs",
+      "scope": "Requires nonnull system and initialized reference; compares exact reference identity against system+0x138c or+0x1390. Shared physical object/name is insufficient.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x440f60",
+      "method": "Phase5Conditions.Player1Is",
+      "scope": "Same gates as EitherPlayerIs but only system+0x138c reference identity.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x440f80",
+      "method": "Phase5Conditions.Player2Is",
+      "scope": "Same gates as EitherPlayerIs but only system+0x1390 reference identity.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x4429d0",
+      "method": "Phase5Conditions.FinishedSpline",
+      "scope": "Guards creature/reference/physical actor self chain; missing chain returns float-1. Valid actor returns0 iff spline pointer+0xe64 nonnull and status byte+0xe6b==0; otherwise1. Does not advance spline.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x442270",
+      "method": "Phase5Conditions.NumBaddies",
+      "scope": "Signed actor-count global0x93d500 bounds an original0x10d8-stride array at0x93d504. Counts rows with flags+0x1fc both1/0x1000 and flags+0x1f8 bit1. Nonpositive count returns0. Does not construct/populate actor table.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x4416b0",
+      "method": "Phase5Conditions.IsAlive",
+      "scope": "Null initialized record returns0; definition pointer at+4 is otherwise read unchecked, then group pointer definition+0x144. No group: record live bit0x1000 and dead byte+0x28b==0, without active-bit1 requirement. Group present: first nonnull member with active/live mask0x1001 and dead byte0 succeeds, using group uint8 count+7 and pointer slots+0xc. Zero-count group returns0 regardless of solo record flags. Does not update lifetime or groups.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x440b30",
+      "method": "Phase5Conditions.MySet",
+      "scope": "Loads uint8 script packet+0xb0 without null guard and returns float0..255. This is packet set ID, not actor membership byte+0x378.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x442d00",
+      "method": "Phase5Conditions.NumBaddiesThatCanSeePlayers",
+      "scope": "FILD reads signed dword global0x876840; portable result models subsequent float32 storage boundary used by SCP evaluator. Does not calculate visibility or count seeing actors.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x440f10",
+      "method": "Phase5Conditions.BindReference",
+      "scope": "Operand/callback gates and exact named reference return; null system allowed.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x441690",
+      "method": "Phase5Conditions.BindReference",
+      "scope": "IsAlive named reference binding; null system allowed, reference pointer preserved.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    },
+    {
+      "address": "0x442260",
+      "method": "Phase5Conditions.BindNumBaddies",
+      "scope": "Zero-valued initializer; no operand reads or state changes.",
+      "file": "gameplay/script-phase5-20261013-Conditions.cs",
+      "evidence": "reports/script-phase5-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase5-20261013-contract.json",
+    "reports/script-phase5-20261013-tests.json",
+    "reports/script-phase5-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase5-20261013-portable-verify.cs",
+  "verifierModule": "script-phase5-20261013",
+  "verifierClass": "ScriptPhase520261013Verify",
+  "fixture": "reports/script-phase5-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase5-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-condition",
+      "name": "EitherPlayerIs",
+      "function": "0x440f30",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Requires nonnull system and initialized reference; compares exact reference identity against system+0x138c or+0x1390. Shared physical object/name is insufficient.",
+      "sourceUses": 15
+    },
+    {
+      "kind": "scp-condition",
+      "name": "Player1Is",
+      "function": "0x440f60",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Same gates as EitherPlayerIs but only system+0x138c reference identity.",
+      "sourceUses": 1
+    },
+    {
+      "kind": "scp-condition",
+      "name": "Player2Is",
+      "function": "0x440f80",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Same gates as EitherPlayerIs but only system+0x1390 reference identity.",
+      "sourceUses": 1
+    },
+    {
+      "kind": "scp-condition",
+      "name": "FinishedSpline",
+      "function": "0x4429d0",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Guards creature/reference/physical actor self chain; missing chain returns float-1. Valid actor returns0 iff spline pointer+0xe64 nonnull and status byte+0xe6b==0; otherwise1. Does not advance spline.",
+      "sourceUses": 17
+    },
+    {
+      "kind": "scp-condition",
+      "name": "NumBaddies",
+      "function": "0x442270",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Signed actor-count global0x93d500 bounds an original0x10d8-stride array at0x93d504. Counts rows with flags+0x1fc both1/0x1000 and flags+0x1f8 bit1. Nonpositive count returns0. Does not construct/populate actor table.",
+      "sourceUses": 20
+    },
+    {
+      "kind": "scp-condition",
+      "name": "IsAlive",
+      "function": "0x4416b0",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Null initialized record returns0; definition pointer at+4 is otherwise read unchecked, then group pointer definition+0x144. No group: record live bit0x1000 and dead byte+0x28b==0, without active-bit1 requirement. Group present: first nonnull member with active/live mask0x1001 and dead byte0 succeeds, using group uint8 count+7 and pointer slots+0xc. Zero-count group returns0 regardless of solo record flags. Does not update lifetime or groups.",
+      "sourceUses": 19
+    },
+    {
+      "kind": "scp-condition",
+      "name": "MySet",
+      "function": "0x440b30",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "Loads uint8 script packet+0xb0 without null guard and returns float0..255. This is packet set ID, not actor membership byte+0x378.",
+      "sourceUses": 12
+    },
+    {
+      "kind": "scp-condition",
+      "name": "NumBaddiesThatCanSeePlayers",
+      "function": "0x442d00",
+      "report": "reverse-engineering/reports/script-phase5-20261013-contract.json",
+      "scope": "FILD reads signed dword global0x876840; portable result models subsequent float32 storage boundary used by SCP evaluator. Does not calculate visibility or count seeing actors.",
+      "sourceUses": 12
+    }
+  ],
+  "integrationNotes": [
+    "Eight newly contracted names,97 authored uses;11 native entry mappings, subject to manifest address deduplication.",
+    "Original source form1.0f threshold uses known native decimal-prefix numeric semantics; no source loader/reachability claim.",
+    "MySet composes existing ScriptPacket.SetId public field, distinct from AddToSet actor byte.",
+    "Standalone source/harness compile; no commits,pushes or managed launch retry."
+  ]
+}

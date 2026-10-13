@@ -1,0 +1,34 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase9-20261013-TakeoverAnimation.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x487270",
+      "method": "TakeoverAnimationSelector.Select",
+      "file": "gameplay/script-phase9-20261013-TakeoverAnimation.cs",
+      "scope": "full prepared-memory selector customECX/EDI inputs; runtime type priority, actual current-action reader and clip-presence branches",
+      "evidence": "reports/script-phase9-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase9-20261013-contract.json",
+    "reports/script-phase9-20261013-tests.json",
+    "reports/script-phase9-20261013-interop-tests.json",
+    "reports/script-phase9-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase9-20261013-portable-verify.cs",
+  "verifierModule": "script-phase9-20261013",
+  "verifierClass": "ScriptPhase920261013Verify",
+  "fixture": "reports/script-phase9-20261013-combined-fixtures.json",
+  "managedReport": "reports/script-phase9-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "One new native address487270; existing62f1a0 helper scope unchanged. No new authored command coverage.",
+    "Core uses phase7 TakeoverReleaseMemory. Harness uses phase8 TakeoverTransfer for36 actual producer/selector cases.",
+    "No native adapters in1,156 direct selector cases. Remaining script/animation/camera service boundaries explicit in36 producer cases.",
+    "Source/harness compile; no managed EXE execution. Root owns registration/combined build.",
+    "Next genuine gap: actual ejection/pose producers5a01f0 and55d2b0 remain release services; can recover compact ejection +context561ba0 cluster next."
+  ]
+}

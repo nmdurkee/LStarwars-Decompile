@@ -1,0 +1,63 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase4-20261013-SetVehicle.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x4499b0",
+      "method": "Phase4ScriptCommands.AddToSet",
+      "scope": "First-call gated and self creature/reference/actor guarded. Whole case-insensitive Reset sets actor byte+0x378=0 without count decrement. Other operands use original packet numeric resolver, truncate float32 toward zero, and accept only1..16. Each accepted token assigns actor byte+0x378 and increments global byte0x876847+index modulo256. Repeated memberships and reassignments increment independently without correcting previous counts.",
+      "file": "gameplay/script-phase4-20261013-SetVehicle.cs",
+      "evidence": "reports/script-phase4-20261013-contract.json"
+    },
+    {
+      "address": "0x4431d0",
+      "method": "Phase4ScriptCommands.BindOnSpeederBike",
+      "scope": "System/operand/callback gates, then reference first-pointer extraction; callback alias/lifetime service explicit.",
+      "file": "gameplay/script-phase4-20261013-SetVehicle.cs",
+      "evidence": "reports/script-phase4-20261013-contract.json"
+    },
+    {
+      "address": "0x443200",
+      "method": "Phase4ScriptCommands.OnSpeederBike",
+      "scope": "Initializer gates operand,system and callback, extracts named-reference first pointer. Reader uses initialized actor if nonnull, otherwise dereferences unchecked script-creature+0xd0 and guards its reference/actor. Requires actor link+0xcd0, actor byte context+0x7b5==0x3b and linked object word+0x1064 equal runtime global word0x7f1948. Missing name falls back to self; null creature with null initialized actor faults native.",
+      "file": "gameplay/script-phase4-20261013-SetVehicle.cs",
+      "evidence": "reports/script-phase4-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase4-20261013-contract.json",
+    "reports/script-phase4-20261013-tests.json",
+    "reports/script-phase4-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase4-20261013-portable-verify.cs",
+  "verifierModule": "script-phase4-20261013",
+  "verifierClass": "ScriptPhase420261013Verify",
+  "fixture": "reports/script-phase4-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase4-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "AddToSet",
+      "function": "0x4499b0",
+      "report": "reverse-engineering/reports/script-phase4-20261013-contract.json",
+      "scope": "First-call gated and self creature/reference/actor guarded. Whole case-insensitive Reset sets actor byte+0x378=0 without count decrement. Other operands use original packet numeric resolver, truncate float32 toward zero, and accept only1..16. Each accepted token assigns actor byte+0x378 and increments global byte0x876847+index modulo256. Repeated memberships and reassignments increment independently without correcting previous counts.",
+      "sourceUses": 24
+    },
+    {
+      "kind": "scp-condition",
+      "name": "OnSpeederBike",
+      "function": "0x443200",
+      "report": "reverse-engineering/reports/script-phase4-20261013-contract.json",
+      "scope": "Initializer gates operand,system and callback, extracts named-reference first pointer. Reader uses initialized actor if nonnull, otherwise dereferences unchecked script-creature+0xd0 and guards its reference/actor. Requires actor link+0xcd0, actor byte context+0x7b5==0x3b and linked object word+0x1064 equal runtime global word0x7f1948. Missing name falls back to self; null creature with null initialized actor faults native.",
+      "sourceUses": 16
+    }
+  ],
+  "integrationNotes": [
+    "Two newly contracted authored names,40 uses;three new native-entry mappings, subject to root manifest address deduplication.",
+    "Source depends on existing public ScriptPacket and MessageNumbers.Resolve; these helpers are composed and not counted as new native mappings.",
+    "Native count21,191 includes correlated state/return/byte-confinement assertions.",
+    "No commits,pushes,game execution or managed executable launch retry."
+  ]
+}

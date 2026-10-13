@@ -1,0 +1,75 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase11-20261013-context.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e2880",
+      "method": "RenderTargetCacheProduction.Apply",
+      "coverage": "Whole bounded resolved integer target-cache caller, signed/wrapping slots, same-handle gate, cache publication before COM and opaque result persistence.",
+      "sourceFile": "geometry/scene-phase11-20261013-context.cs",
+      "evidence": "reports/scene-phase11-20261013-context-native-validation.json",
+      "limitations": [
+        "Original6e2880 executes unchanged. Finite/float conversion is irrelevant: every cache operand is raw integer data.",
+        "Slot limit uses signed comparison; address scaling/addition wraps at32bits. Only calls whose selected cell resolves inside supplied0x800-byte backend image are retained, including negative and wrapped aliases.",
+        "Configuration global2974d1c, backend flag638 and ushort countf8 control max slot. Above-limit and same-handle calls return raw slot with no COM call.",
+        "Handle is cached before COM dispatch. HRESULT is returned without rollback; callback mutation remains visible, and device pointer is read after cache write.",
+        "Backend/COM object lifetime, device implementation, source dimension initialization and authored frame setup remain external.",
+        "Native/Python own-state differential passed; managed execution pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase11-20261013-context-native-validation.json",
+    "reports/scene-phase11-20261013-context-contract.json",
+    "reports/scene-phase11-20261013-context-assembly.json",
+    "reports/scene-phase11-20261013-context-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-context.cs",
+      "sha256": "fd9dda0abd692efba4c150ea79267a0eff3b934abb78dd044b5fbedb945947a0"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase11-20261013-context-harness.cs"
+  ],
+  "harnessSha256": "33de29eda5e49bad72e3d23fa10a5b214f302aa9bd4a0777d1b07f70ae290a20",
+  "fixture": "reports/scene-phase11-20261013-context-native-fixtures.json.gz",
+  "fixtureSha256": "2fe403e0ca046e97191741af33537e2d6687435445b778c302c49b6b8f95032d",
+  "nativeTool": "tools/scene-phase11-20261013-context-native.py",
+  "nativeToolSha256": "261201717f4f217c68bb25a0acefd16c95bdb305339b18db582d1153599b790d",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "sequences": 2048,
+    "targetCalls": 4096,
+    "retainedPortableReplayCases": 4096,
+    "COMCalls": 1683,
+    "failedCallsSuppressedOnRepeat": 326,
+    "retained": 4096,
+    "portableReplayCases": 4096,
+    "preparedManagedAssertions": 13971
+  },
+  "verifier": {
+    "module": "scene-phase11-20261013-context",
+    "entrypoint": "RenderTargetCachePhase11Harness",
+    "fixture": "reports/scene-phase11-20261013-context-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/scene-phase11-20261013-context-evidence.py",
+      "sha256": "7bb764cf1404a4db0eee563f11b90c34f4fc048961ab8b4ee097686e9cea15e6"
+    }
+  ],
+  "nextGaps": [
+    "Recover concrete context refresh6e2510 CPU setters and compose into actual6e3720 target-binding caller.",
+    "Backend/COM object lifetime and authored frame setup; indirect renderer source dimension initialization remains open."
+  ]
+}

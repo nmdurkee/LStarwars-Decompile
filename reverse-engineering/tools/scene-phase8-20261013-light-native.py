@@ -1,0 +1,29 @@
+"""Original finite CPU light producer through real raw cache consumer."""
+import importlib.util,struct,json,gzip,random,ast,math
+from pathlib import Path
+P=Path(__file__).resolve().parent;B=P.parent;R=B/'reports';PREFIX='scene-phase8-20261013-light'
+exec((P/'scene-phase8-20261013-light-probe.py').read_text().split('f=json.loads')[0])
+s=importlib.util.spec_from_file_location('nx',P/'native-x86.py');nx=importlib.util.module_from_spec(s);s.loader.exec_module(nx);n=nx.NativeX86()
+from unicorn import UC_HOOK_CODE
+from unicorn.x86_const import UC_X86_REG_ESP
+rng=random.Random(0x5ff840);checks=0;errors=[];captures=[];cases=[];branches={hex(a):0 for a in(0x5ff9ab,0x5ffa03,0x5ffa3e,0x5ffb6e,0x5ffab3,0x5ffad9,0x5ffb32,0x5ffb50)}
+def ck(a,e,label):
+ global checks
+ checks+=1
+ if a!=e and len(errors)<40:errors.append({'label':label,'native':a,'expected':e})
+def readCache():return {'imageWords':list(n.unpack('<22I',0x986930)),'counter':n.unpack('<I',0x9868c0)[0],'shortCounter':n.unpack('<H',0x9868c4)[0],'dirty':n.unpack('<I',0x9868d4)[0]}
+def hook(mu,address,size,_):
+ if address in(0x5fcc10,):
+  sp=mu.reg_read(UC_X86_REG_ESP);_,vector,matrix,color=n.unpack('<4I',sp);captures.append({'vectorWords':list(n.unpack('<3I',vector)),'matrixWords':list(n.unpack('<16I',matrix)),'colorWords':list(n.unpack('<3I',color))})
+ else:branches[hex(address)]+=1
+for a in[0x5fcc10]+[int(v,16)for v in branches]:n.mu.hook_add(UC_HOOK_CODE,hook,begin=a,end=a)
+prior=json.loads(gzip.decompress((R/'scene-phase5-20261013-native-fixtures.json.gz').read_bytes()))['cameraCases'];directions=[[0.,0.,0.],[-0.,-0.,-0.],[0.,1.,0.],[0.,-1.,0.],[1.,0.,0.],[-1.,0.,0.],[0.,0.,1.],[0.,0.,-1.],[1.,1.,1.],[-1.,-1.,-1.]]
+for i in range(2048):
+ camera=floats(prior[i%len(prior)]['cameraWords']);identity=[1. if j%5==0 else 0. for j in range(16)]
+ if i<512:camera[:16]=identity[:]
+ elif i%5==0:camera[0]*=1.5;camera[5]*=.75;camera[10]*=1.25
+ direction=directions[i%len(directions)][:] if i<512 else [rng.uniform(-8,8)for _ in range(3)];aim=[0.,0.,0.] if i<256 else [rng.uniform(-4,4)for _ in range(3)];color=[rng.getrandbits(32)for _ in range(4)];optionalDirection=words(directions[(i//4)%len(directions)]) if i<512 else words([rng.uniform(-8,8)for _ in range(3)]);optionalColor=[rng.getrandbits(32)for _ in range(4)];dirPointer=n.DATA if i%2 else 0;colorPointer=n.DATA+0x100 if i%3 else 0
+ if i%3==0:identity=[rng.choice([-0.,0.,1.,-1.,.25,-.5])for _ in range(16)]
+ n.pack('<30f',0x9736e8,*camera);n.pack('<16f',0x806680,*identity);n.pack('<3f',0x80e9d8,*direction);n.pack('<3f',0x80e9bc,*aim);n.pack('<4I',0x80e9c8,*color);n.pack('<3I',n.DATA,*optionalDirection);n.pack('<4I',n.DATA+0x100,*optionalColor);n.pack('<22I',0x986930,*[rng.getrandbits(32)for _ in range(22)]);n.pack('<I',0x9868c0,rng.getrandbits(32));n.pack('<H',0x9868c4,rng.getrandbits(16));n.pack('<I',0x9868d4,rng.getrandbits(32));before=readCache();beforeDirection=list(n.unpack('<3I',0x80e9d8));beforeColor=list(n.unpack('<4I',0x80e9c8));expectedDirection=optionalDirection if dirPointer else beforeDirection;expectedColor=optionalColor if colorPointer else beforeColor
+ c={'cameraWords':list(n.unpack('<30I',0x9736e8)),'aimWords':list(n.unpack('<3I',0x80e9bc)),'identityWords':list(n.unpack('<16I',0x806680)),'beforeDirectionWords':beforeDirection,'beforeColorWords':beforeColor,'inputDirectionWords':optionalDirection if dirPointer else None,'inputColorWords':optionalColor if colorPointer else None,'nativeDirectionWords':expectedDirection,'nativeColorWords':expectedColor,'before':before};expectedMatrix,expectedVector=model(c);captures.clear();result=n.call(0x5ff840,[dirPointer,colorPointer]);ck(len(captures),1,'real cache consumer count '+str(i));ck(result,1,'producer return '+str(i));actual=captures[0];ck(actual['matrixWords'],expectedMatrix,'light matrix '+str(i));ck(actual['vectorWords'],expectedVector,'light inverse vector '+str(i));ck(list(n.unpack('<3I',0x80e9d8)),expectedDirection,'light source copy '+str(i));ck(list(n.unpack('<4I',0x80e9c8)),expectedColor,'light color copy '+str(i));after=readCache();ck(after['imageWords'],expectedMatrix+expectedColor[:3]+expectedVector,'light complete cache '+str(i));ck(after['counter'],(before['counter']+1)&0xffffffff,'shared counter '+str(i));ck(after['shortCounter'],(before['shortCounter']+1)&0xffff,'light counter '+str(i));ck(after['dirty'],0,'light dirty '+str(i));c.update(native=after,nativeResult=result,matrixWords=actual['matrixWords'],vectorWords=actual['vectorWords'],colorWords=actual['colorWords']);cases.append(c)
+fixture={'cases':cases};(R/(PREFIX+'-native-fixtures.json.gz')).write_bytes(gzip.compress(json.dumps(fixture,separators=(',',':')).encode(),mtime=0));report={'schema':'original-finite-light-producer-v1','binarySHA256':n.sha256,'passed':not errors,'checks':checks,'errors':errors,'counts':{'producerCases':2048,'retainedPortableReplayCases':2048},'branches':branches,'adapters':{},'limits':['Original5ff840 and all internal CPU math/CRT/cache helpers execute unchanged. No D3DX/device/CRT adapters.','Finite camera30, light direction3, aim3, template16, stored/intermediate float arithmetic; raw color4 remains opaque. Valid separate sources and globals.','Original x87 multiply/add/divide order and every visible float spill retained. Exact signed-zero output and minimum-normal horizontal threshold preserved.','Full original light output compared independently before raw cache packing; unit color/source copies and counter/dirty writes also checked.','Original CRT sqrt path is modeled as finite rounded square root using the already-recovered helper contract; installed renderer/GPU/authored scene binding is not asserted.','Native/Python own-state differential passed; managed execution remains pending.']};(R/(PREFIX+'-native-validation.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

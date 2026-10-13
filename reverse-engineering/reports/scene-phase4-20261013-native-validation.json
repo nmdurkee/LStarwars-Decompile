@@ -1,0 +1,40 @@
+{
+  "schema": "original-plane-producer-tree-consumer-v1",
+  "passed": true,
+  "checks": 17705,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "producerCases": 1600,
+    "transformCases": 1632,
+    "composedTreeToClipCases": 192,
+    "retainedPortableReplayCases": 3424,
+    "nestedPredicateCalls": 3076,
+    "externalMatrixAdapterCalls": 3648,
+    "sameGeometryStackGroups": 48,
+    "sameGeometryGroupsWithChangedBits": 46
+  },
+  "errors": [],
+  "adapters": {
+    "0x5c1240": "Explicit finite scalar D3DX 4x4 multiply: each dot evaluated in binary64 then spilled to float32. Platform D3DX implementation is not recovered; original wrappers/producers/predicate/tree/clip-control instructions execute unchanged."
+  },
+  "stackResidue": {
+    "lastWriteInstructions": {
+      "initial stack seed": 3076
+    },
+    "wordCounts": {
+      "0xc2c80000": 240,
+      "0x0": 796,
+      "0x3f800000": 804,
+      "0x42c80000": 1236
+    },
+    "scope": "Whole actual0x5d8fb0->0x5d8e20->0x5d8b60 call chain with seeded prior stack. Writer provenance observes only this chain; seed reflects external prior stack. Fourth-radius dependence remains explicit, not replaced by zero."
+  },
+  "limits": [
+    "Finite near>0;finite coefficients/matrix/direction/position with finite nonzero norm and finite intermediate outputs. Runtime0x95e600 copied template supplied explicitly;initialization/lifetime of template outside scope.",
+    "D3DX arithmetic remains explicit matrix adapter; not an assertion of imported D3DX CPU/GPU numerical equivalence.",
+    "Populated valid synthetic u16 trees,finite nonnegative extents,acyclic/pendingstack<=100. Exact finite fourth-radius residue supplied perpredicate. No live camera or authored tree loader claim.",
+    "Tree packed output is intentionally bound to selected scene clip buffer for original5df910 consumption; this verifies these contracts composed, not complete5f3c80/context resolver or scene submission.",
+    "Native/Python own-state contract verified; C# compiled replay remains separate and pending."
+  ],
+  "fixtureFile": "scene-phase4-20261013-native-fixtures.json.gz"
+}

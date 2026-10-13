@@ -1,0 +1,43 @@
+{
+  "module": "gameplay",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Actual jump/ejection context producer561ba0, full sound router547f30 and already-mapped reset62e650 with prepared memory. Terminal audio backends are explicit services.",
+  "functions": [
+    {
+      "address": "0x561ba0",
+      "method": "JumpContextProducer.Enter",
+      "bodyBytes": 244,
+      "initial": "Read full DWORD802838. Onlyffffffff sentinel skips first block; all other values truncate to context7b5 byte, including255/511. Store mode lowbyte7b8, animation WORD804bec,77c=0.",
+      "flags": "Cache7bc; stored-F32 height17c->78c;788=0;7b9=1;7bc=(original&fffe6fff)|10000 only when FULL uintmode exactly3/4. Lowbyte3/4 in e.g103/104 does not set bit.",
+      "sound": "Call full547f30(actor,0) unless LOW byte mode6/7; e.g106/107 suppress sound. Audio callback changes affect subsequent mandatory tail reads.",
+      "tail": "Read actor.definition54 first, clear281 byte/1050 word, then read definition.class24 and stored-F32 class2c. E20|100000, velocity6c=impulse, D48/D2C/D1C zero. Actual62e650(actor+8,-1) resets packet, then278/27c wordszero,107a byte2. Tail executes even with contextffffffff.",
+      "faultOrder": "Missing definition/class native faults after early281/1050 clears, possibly after first-block/sound callbacks. No invented actor/type guards. Full actor state before native faults retained."
+    },
+    {
+      "address": "0x547f30",
+      "method": "JumpContextProducer.Sound",
+      "bodyBytes": 210,
+      "priority": "definitionFlags+4 bit40 ->worldshort15a beforebit8. No bit8 ->158. Withbit8 and no40, fullUNSIGNEDmode must be0..4: slots15c,15e,164,160,162. Invalidmode returns without world pointer dereference.",
+      "selection": "Worldpointer8020bc->slot signed16bit ID. Only-1 sentinel omits backend; other negativeIDs preserved/signextended. AfterIDgate, actorflags1fc bit80 OR EEC08000000 selects681e90; else681eb0.",
+      "abi": "681e90 tail-jump rewrites two stackargs(id,actor+19c), preserves original return. 681eb0 receives(id,actor+19c,storedF32 .5). Backends are named PlayerSound/WorldSound as host service labels; their actual audio implementations are not recovered.",
+      "switch": "Original switch data separate fromcode at548004, five DWORD targets retained in assembly report."
+    }
+  ],
+  "reset": "62e650 already recovered CharacterContexts.ResetAnimationPacket. Private prepared-memory projection retains exact writes/action=-1; no duplicate distinct mapping.",
+  "verification": {
+    "nativeAssertions": 2376,
+    "mismatches": 0,
+    "cases": 792,
+    "contextCases": 376,
+    "soundCases": 416,
+    "adapters": "Terminal audio681e90/681eb0 only. Original561ba0,547f30 and62e650 execute unmodified.",
+    "fixtures": "reports/script-phase10-20261013-native-fixtures.json",
+    "portableHarness": "tools/script-phase10-20261013-portable-verify.cs"
+  },
+  "limits": [
+    "Finite stored-F32 height17c and classimpulse2c; subnormal and bothzero signs retained. Nonfinite copiedFPU values excluded.",
+    "Prepared world/definition/class chains and runtime signed sound IDs; live object/table bounds not inferred.",
+    "Two new native addresses561ba0 and547f30. No authoredcommand uses claimed;62e650 alreadymapped.",
+    "Standalone source/harness compile. No managed EXE execution attempted dueknownenvironmentEPERM."
+  ]
+}

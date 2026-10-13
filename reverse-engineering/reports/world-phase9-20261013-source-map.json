@@ -1,0 +1,70 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "01b873432b3aadcb55fd9f1e475253365e538bb7eeb6c6e3dce90de2b147c138",
+  "files": [
+    {
+      "file": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+      "sha256": "01b873432b3aadcb55fd9f1e475253365e538bb7eeb6c6e3dce90de2b147c138"
+    }
+  ],
+  "mappings": [
+    {
+      "address": "0x559610",
+      "method": "WorldRuntimeAllocation.Allocate16",
+      "coverage": "whole strict prealignment16-byte allocator body",
+      "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+      "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+      ],
+      "line": 9
+    },
+    {
+      "address": "0x59a620",
+      "method": "WorldRuntimeAllocation.CreatePool",
+      "coverage": "whole24-byte header/64-byte transient pool construction",
+      "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+      "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+      ],
+      "line": 14
+    },
+    {
+      "address": "0x59a6b0",
+      "method": "WorldRuntimeAllocation.ReleasePoolNode",
+      "coverage": "whole active/free list removal including nonmember count decrement",
+      "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+      "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+      ],
+      "line": 23
+    },
+    {
+      "address": "0x5598e0",
+      "method": "WorldRuntimeAllocation.CreateDispatchState",
+      "coverage": "whole dispatch-owned header/row/buffer allocation with explicit mutable callback services",
+      "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+      "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase9-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase9-20261013-assembly.json"
+      ],
+      "line": 31
+    }
+  ],
+  "relatedProjections": [
+    {
+      "address": "0x559570",
+      "method": "WorldRuntimeAllocation.CreateDispatchState",
+      "coverage": "actual RET-only failure notification no-op,76 executions; no wrapper-only entry credit",
+      "sourceFile": "gameplay/world-phase9-20261013-runtime-allocation.cs",
+      "qualification": "Prepared disjoint raw arena/cursor/end/world/registry/descriptor backing. Bounded physical allocations even when declared end is exceeded after alignment. Huge/negative-size clears and invalid addresses excluded; wrapping count multiplications are tested only when resulting allocation size and iteration count remain bounded, including safe negative stored pool capacities and callback item-count multiples wrapping to0/8. Pool removal inputs use readable finite acyclic active/free links; nonmember and repeated removals retained. Original allocator, pool construction/removal, dispatch construction and memset execute unchanged. Dynamic callbacks are explicit prepared services with original ABI callback(world); descriptor/entry values in fixture trace are observed EBX/ESI context, not additional native arguments. Service mutations preserve readable backing but can replace registry/count/cursor/end/later callback/extra-size fields and can make new rows overlap later arena allocation. Native behavior is retained without invented guards. Descriptor stride156 is captured before callback iteration and advances independently of live registry replacement; loop count is reread through live global93b268. No real dispatch callback payload/object construction semantics claimed. Managed source/harness compiles; execution pending, no generated EXE launch retry."
+    }
+  ],
+  "fixtureSha256": "e1f5aa99ea12f9e93ff1a1456c0b9f1c7b891b09d7f46adc88b03a03891b6e40"
+}

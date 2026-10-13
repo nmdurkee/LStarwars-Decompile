@@ -1,0 +1,65 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-loading-20261013-contracts.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x55ffb0",
+      "method": "WorldLoadingContracts.Initialize",
+      "coverage": "cache-or-rebuild world reset with external teardown/audio callbacks",
+      "sourceFile": "gameplay/world-loading-20261013-contracts.cs",
+      "qualification": "Prepared readable32-bit memory; original resource teardown/loading side effects remain explicit callbacks. ASCII paths fit128-byte slots. Managed saved-native replay compiles but Windows denies launching the generated executable.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-loading-20261013-native-tests.json",
+        "reverse-engineering/reports/world-loading-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x55f470",
+      "method": "WorldLoadingContracts.AssignArenaEnds",
+      "coverage": "whole own-state double-world arena-end selection",
+      "sourceFile": "gameplay/world-loading-20261013-contracts.cs",
+      "qualification": "Prepared readable32-bit memory; original resource teardown/loading side effects remain explicit callbacks. ASCII paths fit128-byte slots. Managed saved-native replay compiles but Windows denies launching the generated executable.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-loading-20261013-native-tests.json",
+        "reverse-engineering/reports/world-loading-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x55f500",
+      "method": "WorldLoadingContracts.OtherCachedLevel",
+      "coverage": "whole fixed-opposite-world cached-level helper",
+      "sourceFile": "gameplay/world-loading-20261013-contracts.cs",
+      "qualification": "Prepared readable32-bit memory; original resource teardown/loading side effects remain explicit callbacks. ASCII paths fit128-byte slots. Managed saved-native replay compiles but Windows denies launching the generated executable.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-loading-20261013-native-tests.json",
+        "reverse-engineering/reports/world-loading-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x560630",
+      "method": "WorldLoadingContracts.Stage",
+      "coverage": "staging control flow with external resource loader",
+      "sourceFile": "gameplay/world-loading-20261013-contracts.cs",
+      "qualification": "Prepared readable32-bit memory; original resource teardown/loading side effects remain explicit callbacks. ASCII paths fit128-byte slots. Managed saved-native replay compiles but Windows denies launching the generated executable.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-loading-20261013-native-tests.json",
+        "reverse-engineering/reports/world-loading-20261013-assembly.json"
+      ]
+    }
+  ],
+  "evidence": [
+    "reports/world-loading-20261013-native-tests.json",
+    "reports/world-loading-20261013-source-map.json",
+    "reports/world-loading-20261013-contract.json",
+    "reports/world-loading-20261013-execution-status.json"
+  ],
+  "harnessFile": "../tools/world-loading-20261013-portable-verify.cs",
+  "verifierModule": "world-loading-20261013",
+  "verifierClass": "WorldLoading20261013Verify",
+  "fixture": "reports/world-loading-20261013-vectors.json",
+  "managedOutput": "reports/world-loading-20261013-managed-tests.json",
+  "nativeCases": 1568,
+  "nativeMismatches": 0
+}

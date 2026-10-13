@@ -1,0 +1,79 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase10-20261013-bindings.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e3720",
+      "method": "RenderTargetDimensionBinding.Apply",
+      "coverage": "Whole resolved render-target caller control/state with unsigned target dimensions, signed fallback size/origin, callback mutation order and opaque return; callee device/refresh services explicit.",
+      "sourceFile": "geometry/scene-phase10-20261013-bindings.cs",
+      "evidence": "reports/scene-phase10-20261013-bindings-native-validation.json",
+      "limitations": [
+        "Original complete6e3720 caller executes unchanged with concrete source field layouts and real screen/origin globals. Host calls are explicit services, not reconstructed device behavior.",
+        "Valid separate backend/surface records; surface width/height are unsigned16. Backend width/height all Int32 with signed truncating half.",
+        "Any nonzero slot retains original dimension/active writes gate, including0xffffffff. Surface-null or handle-zero fallbacks retained.",
+        "Callbacks may change fields before later reads; branch decisions and argument values retain original evaluation order. Register volatile clobbers and ret8 verified.",
+        "Literal source/origin/light references and original PE defaults provide binding evidence only; no exhaustive indirect writer or authored frame provenance claim.",
+        "Native/Python caller own-state differential passed; managed execution pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase10-20261013-bindings-native-validation.json",
+    "reports/scene-phase10-20261013-bindings-contract.json",
+    "reports/scene-phase10-20261013-bindings-assembly.json",
+    "reports/scene-phase10-20261013-bindings-references.json",
+    "reports/scene-phase10-20261013-bindings-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase10-20261013-bindings.cs",
+      "sha256": "960adbb8a3e5413351dd65fdc1424a1480772490e2b18bcc3daa32aee47f8cb1"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase10-20261013-bindings-harness.cs"
+  ],
+  "harnessSha256": "403adaf6c787b6baca6cdfe86b1cdcab4e6cff85eb16b31e3304a94e7489ff8c",
+  "fixture": "reports/scene-phase10-20261013-bindings-native-fixtures.json.gz",
+  "fixtureSha256": "41f24ef84a51e8fdd34cc448a148db4275808ab27ec9fafa9db55b39a95bdea2",
+  "nativeTool": "tools/scene-phase10-20261013-bindings-native.py",
+  "nativeToolSha256": "766b3ea704b5bbb5f7e365420387b50f9bc25255c412fc928e59fd0fb605e991",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "bindingCases": 2048,
+    "retainedPortableReplayCases": 2048,
+    "serviceEvents": 3141,
+    "retained": 2048,
+    "portableReplayCases": 2048,
+    "preparedManagedAssertions": 9285
+  },
+  "verifier": {
+    "module": "scene-phase10-20261013-bindings",
+    "entrypoint": "RenderTargetBindingPhase10Harness",
+    "fixture": "reports/scene-phase10-20261013-bindings-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/scene-phase10-20261013-bindings-evidence.py",
+      "sha256": "0fa204231d5f04fd1cb5d6c196fc3f9075dd34cffd3d9a8ea900a6e9fffdc8fb"
+    },
+    {
+      "path": "tools/scene-phase10-20261013-bindings-assembly.py",
+      "sha256": "31450e727f0bd956b3781b6bf129241d8b59e1ec7b9cee5a969bbc514d9d824b"
+    }
+  ],
+  "nextGaps": [
+    "Recover actual device context refresh6e2510 and target binding6e2880 CPU/COM effects.",
+    "Trace indirect source dimension initialization and caller frame/render-target lifecycle.",
+    "Compose concrete backend surface bindings into authored scene renderer after recovering real runtime objects."
+  ]
+}

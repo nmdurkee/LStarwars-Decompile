@@ -1,0 +1,34 @@
+{
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "tool": {
+    "path": "tools/scene-phase4-20261013-native.py",
+    "sha256": "f55dfc2d864d2b55f52c1131ea82eb6f6bcdb9a9501bcba0284e7a17ceb03e75"
+  },
+  "observation": "Byte-granular UC_HOOK_MEM_WRITE captures every stack write during actual wrapper/root/predicate chain. No byte of fourth-radius scratch word is written by any instruction in this chain before any captured predicate call. Reads in both outer/inner native branches match entry word.",
+  "frame": {
+    "formula": "((predicateEntryESP-4)&~15)-4; aligned frame+0x3c after savedESI/EDI",
+    "nativeHarnessAddress": "0x1000de2c",
+    "addressMeaning": "Address applies only to NativeX86 fixed entry ESP0x1000e000; portable API accepts residue word rather than this address."
+  },
+  "counts": {
+    "producerCases": 1600,
+    "transformCases": 1632,
+    "composedTreeToClipCases": 192,
+    "retainedPortableReplayCases": 3424,
+    "nestedPredicateCalls": 3076,
+    "externalMatrixAdapterCalls": 3648,
+    "sameGeometryStackGroups": 48,
+    "sameGeometryGroupsWithChangedBits": 46
+  },
+  "writeProvenance": {
+    "initial stack seed": 3076
+  },
+  "seedWords": {
+    "0xc2c80000": 240,
+    "0x0": 796,
+    "0x3f800000": 804,
+    "0x42c80000": 1236
+  },
+  "sameGeometry": "48 groups repeat identical camera,tree,bounds,priorbits andpreviousclipbits using finite priorstack seeds-100/0/1/100.46groups produce different packed clip visibility; producerinitialized branches vary but resulting plane words remain equal.",
+  "boundary": "External stack history before wrapper entry remains unresolved. Matrix plane preparation does not repair or initialize the fourth radius. Exact finite prior word is still a required explicit reconstruction input."
+}

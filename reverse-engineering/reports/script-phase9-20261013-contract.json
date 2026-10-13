@@ -1,0 +1,54 @@
+{
+  "module": "gameplay",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Unmodified original487270 takeover animation selector and actual62f1a0 helper, prepared runtime ID/model backing. Source maps487270;62f1a0 already recovered as AnimationControl.CurrentAction.",
+  "entryAbi": "ECX=vehicle, EDI=rider; no stack arguments. Vehicle and rider identities may alias.",
+  "bodyBytes": 344,
+  "runtimeTypeGlobals": [
+    "7f1814",
+    "7f1850",
+    "7f1934",
+    "7f1938",
+    "7f193c",
+    "7f1940",
+    "7f1aa4",
+    "7f1944",
+    "7f1948",
+    "7f194c",
+    "7f1950",
+    "7f1954",
+    "7f19bc",
+    "7f1920"
+  ],
+  "priority": [
+    "Compare vehicle.type1064 WORD against global7f1814 ->action70; else7f1850 ->83, before global gate/type-definition access.",
+    "Other IDs require global DWORD7f39e4 nonzero; zero writes fallback6c directly without model/definition chain.",
+    "Vehicle definition54 ->class24 subtype byte116==12 overrides all later IDs: current action3 or23 ->C4, elseC3. Query62f1a0 exactly once for action3 and twice otherwise.",
+    "Other runtime ID matches in order:1934/1938 ->70,193c->83,1940/1aa4->84,1944->86,1948->C0,194c/1950->C1,1954->conditionalC2/C1,19bc->C1,1920->C0. Unmatched writes6c directly.",
+    "1954 candidate checks rider.model50 ->clipsC +308 (C2*4): nonzero selectsC2, zero selectsC1. Then standard selected-clip gate still applies.",
+    "Each candidate requires rider.model50 ->clipsC [action*4] DWORD nonzero; otherwise writes6c. Fallback6c itself is never checked for clip presence."
+  ],
+  "currentAction": "62f1a0(vehicle+8): embedded byte31 !=0 chooses signed short34, else signedshort36. Source private projection repeats reads exactly like native; already public AnimationControl reader remains unchanged.",
+  "writes": "Only rider short7aa; complete0x1100-byte vehicle/rider state compared. No model/definition null guards invented: priority protects some invalid chains, native faults at required chains retained.",
+  "verification": {
+    "selectorCases": 1156,
+    "selectorAssertions": 3468,
+    "producerSelectorCases": 36,
+    "producerSelectorAssertions": 144,
+    "totalAssertions": 3612,
+    "mismatches": 0,
+    "selectorAdapters": [],
+    "producer": "Original4876a0 mode1 calls original487270,62f1a0,reset4a4ca0,auxclear466820. Remaining script/animation/camera callbacks are recorded services, not recovered by this batch.",
+    "fixture": "reports/script-phase9-20261013-combined-fixtures.json",
+    "tools": [
+      "tools/script-phase9-20261013-verify.py",
+      "tools/script-phase9-20261013-interop-verify.py"
+    ],
+    "reproduction": "Run unit verifier then interoperation verifier to regenerate combined fixtures; portable Main compares combined fixture."
+  },
+  "limits": [
+    "Prepared pointer chains/runtime type IDs, full ushort IDs and signed action words; no invented live model bounds or fixed character IDs.",
+    "One new distinct native address487270. No new authored commands. Current-action helper62f1a0 was already mapped.",
+    "Source/harness compilation succeeded. Managed execution not attempted due known environment EPERM."
+  ]
+}

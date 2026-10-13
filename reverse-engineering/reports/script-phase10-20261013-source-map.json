@@ -1,0 +1,39 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase10-20261013-JumpContext.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x561ba0",
+      "method": "JumpContextProducer.Enter",
+      "file": "gameplay/script-phase10-20261013-JumpContext.cs",
+      "scope": "prepared finite stored-F32 context producer, full/low mode branching and mandatory tail with actual resetprojection/audio boundary",
+      "evidence": "reports/script-phase10-20261013-contract.json"
+    },
+    {
+      "address": "0x547f30",
+      "method": "JumpContextProducer.Sound",
+      "file": "gameplay/script-phase10-20261013-JumpContext.cs",
+      "scope": "full runtime signed sound ID router and exact terminal audio ABI",
+      "evidence": "reports/script-phase10-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase10-20261013-contract.json",
+    "reports/script-phase10-20261013-tests.json",
+    "reports/script-phase10-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase10-20261013-portable-verify.cs",
+  "verifierModule": "script-phase10-20261013",
+  "verifierClass": "ScriptPhase1020261013Verify",
+  "fixture": "reports/script-phase10-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase10-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "Two new distinct native addresses561ba0/547f30; already-mapped62e650 reset projection private, no new authoredcommand coverage.",
+    "Core depends on phase7 prepared memory API. Terminal audio services required only when routing selects a non-sentinel ID.",
+    "792 nativefixtures retained inclcallbackmutations/faultstate.2376 correlatedassertions/0; source/harness compile, no managedlaunch.",
+    "Next actual ejection5a01f0 can compose this context/router plus QRAND and finite height/sqrt math, preserving temporary velocities/audio observations."
+  ]
+}

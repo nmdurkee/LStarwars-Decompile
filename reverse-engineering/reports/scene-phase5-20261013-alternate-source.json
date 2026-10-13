@@ -1,0 +1,107 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase5-20261013-alternate.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5c19d0",
+      "method": "CameraAlternateProduction.CopyRaw",
+      "coverage": "whole valid16-word raw forwardcopier, EAXsource/ECXdestination, all-bit data and shifted-overlap order",
+      "sourceFile": "geometry/scene-phase5-20261013-alternate.cs",
+      "evidence": "reports/scene-phase5-20261013-alternate-native-validation.json",
+      "limitations": [
+        "Freshparam2=0 andcleanviewport95e674=0. Mode0retainsnormalviewcolumnscales;nonzero view modesuseactualreference transformcompositionwithoutcolumnscales.",
+        "Finitecamera/reference/storednumeric outputs. Mode1templatefiniteafterunconditionalword5overwrite; unusedtemplatewords mayberawnonfinite inothernonzero modes.",
+        "Raw16-word copy retainsallbits andactualforward shifted-overlap behavior;valid64wordresolvedimageonly.",
+        "Normalfresh projection/frustum andrenderer services inheritprimarycamera limitations. Reflectedreuse anddirtyviewport composition notnewlyasserted here.",
+        "ImportedphysicalD3DXpolicy,unportedrenderer byte outputs,authoredworld andGPU remainseparate.",
+        "Native/Python ownstate differential passed; managedreplay remainsseparate andpending."
+      ]
+    },
+    {
+      "address": "0x5ed540",
+      "method": "CameraAlternateProduction.ApplyFresh",
+      "coverage": "extends freshcamera numeric producer through actual alternate conversion/reference/Yreflection paths with recovered affine/inverse composition",
+      "sourceFile": "geometry/scene-phase5-20261013-alternate.cs",
+      "evidence": "reports/scene-phase5-20261013-alternate-native-validation.json",
+      "limitations": [
+        "Freshparam2=0 andcleanviewport95e674=0. Mode0retainsnormalviewcolumnscales;nonzero view modesuseactualreference transformcompositionwithoutcolumnscales.",
+        "Finitecamera/reference/storednumeric outputs. Mode1templatefiniteafterunconditionalword5overwrite; unusedtemplatewords mayberawnonfinite inothernonzero modes.",
+        "Raw16-word copy retainsallbits andactualforward shifted-overlap behavior;valid64wordresolvedimageonly.",
+        "Normalfresh projection/frustum andrenderer services inheritprimarycamera limitations. Reflectedreuse anddirtyviewport composition notnewlyasserted here.",
+        "ImportedphysicalD3DXpolicy,unportedrenderer byte outputs,authoredworld andGPU remainseparate.",
+        "Native/Python ownstate differential passed; managedreplay remainsseparate andpending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase5-20261013-alternate-native-validation.json",
+    "reports/scene-phase5-20261013-alternate-contract.json",
+    "reports/scene-phase5-20261013-alternate-assembly.json",
+    "reports/scene-phase5-20261013-assembly.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-alternate.cs",
+      "sha256": "7d0e65e5a45bfada638fa17c3d7279c2e8ed0688cbef8c4af5aef0e78c3431f8"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase5-20261013-alternate-harness.cs"
+  ],
+  "harnessSha256": "0e4cfe79136d08f34b92ad83ada3e4682965afcfbd94c0da04b378a2c3c35339",
+  "fixture": "reports/scene-phase5-20261013-alternate-native-fixtures.json.gz",
+  "fixtureSha256": "8c3a9b277cb1df98b7ecb98a03e528067d348d9ae5aea552daa47e479edb4b65",
+  "nativeTool": "tools/scene-phase5-20261013-alternate-native.py",
+  "nativeToolSha256": "3c6e3459921155fce348a2622f5d46c07eed51d44456f3f9ad4dcb666fef6ff3",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "rawForwardCopyCases": 1024,
+    "cameraCases": 768,
+    "retainedPortableReplayCases": 1792,
+    "normalCases": 192,
+    "YReflectionCases": 192,
+    "otherNonzeroModeCases": 384,
+    "retained": 1792,
+    "portableReplayCases": 1792,
+    "preparedManagedAssertions": 2561
+  },
+  "verifier": {
+    "module": "scene-phase5-20261013-alternate",
+    "entrypoint": "CameraAlternatePhase5Harness",
+    "fixture": "reports/scene-phase5-20261013-alternate-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/ShadowCamera.cs",
+      "sha256": "8aab76d351ec56f76e72289dba314f2d1519692b9c422cb42e4a9cf1675587c5"
+    },
+    {
+      "path": "reconstructed/geometry/DynamicBounds.cs",
+      "sha256": "d6a8888d4a0f6c98e8b0dd6ccc6f64bf08632d98d15ec3fac4c1989c51e23dc8"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "tools/scene-phase5-20261013-native.py",
+      "sha256": "cb238c1a10102cbda563510105d5178e830b3ab472c43b34d165dd00f96bbae1"
+    },
+    {
+      "path": "tools/scene-phase4-20261013-native.py",
+      "sha256": "f55dfc2d864d2b55f52c1131ea82eb6f6bcdb9a9501bcba0284e7a17ceb03e75"
+    },
+    {
+      "path": "references/native-animation-sine-table.f32",
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    }
+  ],
+  "nextGaps": [
+    "Compose alternate view with actual dirty viewport andnonzero projection reuse before asserting entire973944/param2 product domain.",
+    "Recover light/rendercache renderer bytes, installed D3DX numerical policy and authored scene/frame bindings."
+  ]
+}

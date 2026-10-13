@@ -1,0 +1,47 @@
+PORTAL-DOOR TABLE LOADING AND RESET - 2026-10-13
+
+Recovered actual table construction0x55f960 downstream of world loader48ce00,
+plus transition-state reset0x55fbb0. Portable sources and native saved-fixture
+harness compile.738 original native cases pass, zero mismatches:682 loader cases
+and56 reset cases. Each compares196612bytes of prepared memory through SHA256,
+selected outputs, parser lifecycle and exact refill requests/consumption.
+
+Original line/refill/token/integer parsing and static/dynamic scene lookup execute
+unchanged. Only parser open, file byte feeding and parser close are services.
+53 active authored definition lines are preserved exactly and have106 controlled
+static/dynamic scene binding cases. Their source hashes are recorded separately.
+Prepared scene-name matches do not establish live scene-carrier or portal joins.
+
+World+5048 holds a table pointer and+504c its signed count. Entries are16bytes:
+three scene-reference DWORDs, WORD flags+C, low8-bit parsed portal ordinal+E.
+The loader rounds its initial arena cursor up to4; positive tables round their
+committed end up to16. Zero successful entries clear the table pointer while
+retaining the initial4-byte cursor alignment.
+
+Recognized lines clear the next16-byte candidate BEFORE validating a name or
+binding. Failed entries do not commit count/advance. Candidate clears remain
+observable beyond the committed table. Numbers narrow modulo256. Configured
+trigger_at_end is flagbit0; an empty quoted option token stops the option loop.
+Native table construction has no arena-capacity guard. Reset applies flags&FFF9
+without releasing memory or changing count/cursor.
+
+Runtime consumer55fac0, portal mutation5d9060, original scene/resource loading
+and teardown remain outside this batch. Managed saved-native replay is pending;
+no generated executable launch retry was attempted after confirmed restrictions.
+
+Evidence/reproduction:
+ reports/world-next-20261013-contract.json
+ reports/world-next-20261013-native-tests.json
+ reports/world-next-20261013-assembly.json
+ reports/world-next-20261013-vectors.json
+ reports/world-next-20261013-authored-lines.json
+ reports/world-next-20261013-authored-provenance.json
+ reports/world-next-20261013-source-map.json
+ reports/world-next-20261013-execution-status.json
+ reports/world-next-20261013-integration.json
+ tools/world-next-20261013-inspect.py
+ tools/world-next-20261013-verify.py
+ tools/world-next-20261013-portable-verify.cs
+ reconstructed/gameplay/world-next-20261013-portal-doors.cs
+
+Original game files are unchanged. Shared manifests and README are root-owned.

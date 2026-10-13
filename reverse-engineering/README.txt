@@ -1,5 +1,5 @@
 LEGO STAR WARS: THE COMPLETE SAGA - PC REVERSE ENGINEERING
-Updated 2026-10-12
+Updated 2026-10-13
 
 All seven supplied DAT archives are recovered. Every one of the 12,459 files,
 9,692,364,695 expanded bytes, matches an independent decoder byte for byte.
@@ -12,6 +12,8 @@ project or a complete playable reconstruction. Current work is reverse engineeri
 only. Unity/Quest work has not started. Original game files were not modified.
 
 START HERE (paths relative to this folder)
+ reports/reverse-next-20261013-summary.txt   latest local continuation and independent audit
+ reports/reverse-engineering-20261013-summary.txt  earlier recovery batch
  reports/source-completion.txt              portable source status and missing work
  reconstructed/README.txt                   build and native-reference verifier commands
  reports/archive-format.txt                 verified archive/codec specification
@@ -173,10 +175,21 @@ superseded coverage limits. Use this README and subsystem findings above for the
 current recovery state.
 
 PORTABLE SOURCE CHECKPOINT
-Build: & .\reconstructed\build.ps1 (from this directory).
+Build: node reconstructed/build.mjs (from this directory).
 Source map: reconstructed/source-manifest.json and reports/source-completion.json.
 Current compile and execution evidence: reports/reconstructed-build.json and
 reports/reconstructed-execution-status.json. Compilation is not behavioral proof.
 Detailed new work: native-combat-contract.json, animation-source-function-map.json,
 gameplay-scp-transition-contract.json, geometry-visibility-native-validation.json,
 and native-frame-dispatch.json in reports/. All are bounded contracts.
+
+CONTINUOUS LOCAL RECOVERY (2026-10-13)
+Current compiled checkpoint: 719 distinct mapped native entries, 202 core source
+files and 207 replay harness files. 165 bounded command names cover 19,176 of
+20,836 authored uses. Current report: reports/reverse-phase6-20261013-summary.json.
+The phase6 independent audit passed 2,519 additional checks for this snapshot. Original native checks and compilation are separate
+from managed replay, which remains unexecuted. Current verifier hash read was
+denied after build; its recorded build-time hash remains in the build report.
+Whole game/source equivalence is incomplete. Local recovery continues through
+scene/camera producers, .SPL loading, context/audio and movement integration.
+No commits or pushes have been made for this local work.

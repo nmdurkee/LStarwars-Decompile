@@ -1,0 +1,45 @@
+{
+  "module": "gameplay",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original5a01f0 vehicle ejection with complete stored-F32/x87 arithmetic, existingQRAND/context/router/reset/sqrt sources, prepared memory and terminal audio services.",
+  "function": {
+    "address": "0x5a01f0",
+    "method": "VehicleEjection.Eject",
+    "bodyBytes": 294,
+    "random": "Two original54fa60 draws updateglobal80253c before any actor dereference. First draw sets sineangle; second draw computes stored-F32 speed from qword751700 *qword7586e8 +qword7531a8, rounding each arithmetic stage to x87 precision64 and thenF32.",
+    "constants": "Assembly report retains exact qword bytes. Ratio751700=1.5259021893143654e-05;7586e8=promotedF32 0.09;7531a8=promotedF32 0.01;751788=promotedF32 0.1;7598e8=-2.",
+    "temporary": "Set rider68=sine[(angle>>1)]*storedspeed, rider70=storedspeed*sine[((angle+4000)>>1)&7fff], storedF32. These temporary values are observable in context sound callback before zeroing. Sine negativezero preserved.",
+    "context": "Compose sealedphase10 JumpContextProducer.Enter(rider,0), includingactual sound547f30/reset62e650. Terminal audio callbacks can mutate pointers, classvalues, vehicleheight andRNG state consumed by subsequent reads.",
+    "postContext": "rider7c5|1;zero68;readinputCA4;zero70;D1C=vehicle;clearinput+4, thenrereadCA4 andclearinput+8. Alias input+4==riderCA4 causes firstclear to zero pointer then native secondclearfault; retained.",
+    "height": "Store vehicle.top194 toF32; inspect vehicledef/class94. If bit20000, storeF32(global805714 +top). Then storeF32(top -riderbottom1a0), then separately storeF32(that +qword751788). Source does not fuse the stores.",
+    "launch": "If riderclass34 threshold <storedDelta (quietNaN threshold skips), storeF32((riderclass24 gravity *qword-2) *delta) with x87 precision64. Original5c0240 clamps negative argument to+0, otherwise CRTsqrt thenstoredF32. Source composes existingBuildEffectSound.SquareRoot. Both zero signs preserved.",
+    "faults": "No invented actor/input/vehicle/type guards. RNG advancesbefore nullrider fault. Null/alias input faults aftercontext/transientclear/linkset. Missing vehicle/type faults afterinput clears. Full native state and audio events beforefault retained."
+  },
+  "reuse": {
+    "0x54fa60": "QRandom.Next, already mapped",
+    "0x561ba0": "JumpContextProducer.Enter sealedphase10",
+    "0x547f30": "JumpContextProducer.Sound sealedphase10",
+    "0x62e650": "Animation reset already mapped; phase10 preparedprojection",
+    "0x5c0240": "BuildEffectSound.SquareRoot already mapped",
+    "PlaybackWide": "Shared internal finite x87 arithmetic, not an additional recovered address"
+  },
+  "verification": {
+    "fullCases": 697,
+    "fullAssertions": 2091,
+    "exhaustiveSpeedCases": 65536,
+    "exhaustiveSpeedAssertions": 196608,
+    "totalCorrelatedAssertions": 198699,
+    "mismatches": 0,
+    "originalExecution": "Full5a01f0/QRAND/context/router/reset/sqrt execute. Only terminal audio681e90/681eb0 are adapter boundaries.",
+    "prefix": "Separate fresh NativeX86 instance runs original5a01f0 through exactEIP5a0237 (afterFSTP speed), beforeactor/sine access; all16-bit initial RNG states retainfirstdraw,seconddraw,storedspeed, exactstop/state assertions.",
+    "harnessObservation": "Early reused-emulator stop-boundary issue retained separately inprefix-boundary-observation.json; finalprobe uses isolatedcontext and verifiesEIP before sampling.",
+    "portable": "All697 fullcases plus everystoredspeed comparison through actual privateSpeed stage; no duplicate test arithmetic."
+  },
+  "limits": [
+    "Prepared finite F32 operands/intermediates/sineentries and original embedded constants. QuietNaN thresholdclassification tested; nonfinite arithmetic inputs/results excluded.",
+    "Class/sine/input backing and originalimage mapped addresses explicitlyprepared, no live range assumptions.",
+    "Actor/input/class/RNG state and audio observations compared; CRTFPstatus/errno sideeffects outsideportable actor contract.",
+    "One new distinct native address5a01f0. No authoredcommand uses added.",
+    "Requires combinedroot assemblybuild withinternalPlaybackWide andsealedphase10 source. Worker did not create or changeexecutables/bin outputs. Managedexecution notattempted."
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase10-20261013-ForwardOrigin.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x4527e0",
+      "method": "ForwardOriginCommands.MoveForward",
+      "sourceFile": "gameplay/movement-phase10-20261013-ForwardOrigin.cs",
+      "coverage": "Whole finite bounded command: player/self guards, captured actor identity, first heading/token turn preprocessing, exact qword turn scale and two truncations, separate float/integer RNG rules, node-gated real yaw/vector/intent/formation composition. Never completes itself; callback and sine-table inputs explicit."
+    },
+    {
+      "address": "0x515360",
+      "method": "ForwardOriginCommands.OriginRange",
+      "sourceFile": "gameplay/movement-phase10-20261013-ForwardOrigin.cs",
+      "coverage": "Full finite body: callback before world/spawn fallback guards, no reference-chain gate, fresh creature position/spawn reads after mutation and actual null-scratch distance/sqrt composition. Whole condition loader/comparator outside this batch."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase10-20261013-contract.json",
+    "reports/movement-phase10-20261013-tests.json",
+    "reports/movement-phase10-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase10-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase10-20261013",
+  "verifierClass": "MovementPhase1020261013Verify",
+  "fixture": "reports/movement-phase10-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase10-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "MoveForward",
+      "function": "0x4527e0",
+      "sourceUses": 36,
+      "scope": "Whole finite bounded command: player/self guards, captured actor identity, first heading/token turn preprocessing, exact qword turn scale and two truncations, separate float/integer RNG rules, node-gated real yaw/vector/intent/formation composition. Never completes itself; callback and sine-table inputs explicit."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "OriginRange",
+      "function": "0x515360",
+      "sourceUses": 19,
+      "scope": "Full finite body: callback before world/spawn fallback guards, no reference-chain gate, fresh creature position/spawn reads after mutation and actual null-scratch distance/sqrt composition. Whole condition loader/comparator outside this batch."
+    }
+  ]
+}

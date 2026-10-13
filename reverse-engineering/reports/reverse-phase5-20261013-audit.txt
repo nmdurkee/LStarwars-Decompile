@@ -1,0 +1,27 @@
+Independent reverse-engineering audit: reverse-phase5-20261013
+
+No native/source mismatch found within the reviewed bounded contracts.
+1,040 additional audit checks passed: 868 original body/instruction provenance checks, 107 authored-file plus saved-input checks, and 65 targeted native edge checks. These are separate from suite counts. All 399 compiler input hashes (197 core + 202 harness sources) and the current library hash matched. C# differential execution remains pending; no managed program launched in this batch or audit.
+
+Sealed retained coverage
+- Movement6: SetDoomedEscapeLocator686 action cases /2,744 groups, including all40 authored forms; integer RNG20,012 cases /40,024 groups. RNG uses10,006 selected/random seeds in each local/global mode, not exhaustive2^32 coverage. Both4,312-byte actor images, callback order and RNG state are retained. Prepared combined replay42,768 groups.
+- Movement7: AlertCreatures/real alert producer727 cases /3,341 groups;294 producer and433 command cases. Six faults cover two definition/type fault mechanisms. All67 authored forms, both actors unchanged and full48-byte global state retained. Position/duration raw bits include nonfinite and signed zero.
+- World5:748 cases (428 prefix,320 direct teardown),134 bounded handoffs,294 actual abort returns,632 original teardown executions including18 loaded-abort second teardowns. Each full region hash covers721,088 bytes. Saved replay prepares4,488 assertions. Handoff48d063 precedes auxiliary allocation; it is not complete loader success.
+- Script7:355 inline release cases plus40 real seat cases;1,109 native checks and1,105 prepared portable checks. Four RET/EAX probes remain native-only. Two saved fault cases, two self-link cases and one actual blocked-transfer gate are retained. No new authored coverage counted.
+
+Confirmed edge behavior
+Global RNG zero returns408360806; local zero becomes1 and returns408344269, without modifying the other state. Final retarget callbacks determine the affected actor/address; null reference first words stay null and subsequent retargets can revive an initially missing self. Alert eligibility guards short circuit invalid type chains. Release reads the current definition/type chain after callbacks and preserves faults plus preceding writes. Two fresh seat aliases confirm sequential copies can overwrite a later input word. Loader reads backend mode after channel callback; teardown rereads group count, handles and rebound scene pointers. Loaded abort repeats actual teardown before world/arena reset.
+
+Resolved evidence concern
+The owner added eight doom reference-first-word cases. Contract counts initially remained678/2,712; final counts now consistently686/2,744. Source action unchanged; portable callback now extracts a null Self correctly. No source correction was required by this audit.
+
+Integration snapshot
+720 manifest mapping rows /708 distinct mapped entries,197 core files,202 harness files;163 bounded command names /19,089 uses of20,836. Delta from phase4:8 distinct entries,4 core files,4 harness files,2 names and107 uses.
+Library SHA256:5c4aea863eee950330b6815c27ccc0e41608e00164100d768567c95835f58529
+Verifier build SHA256:cc91fd852293727b9a5c46bb8f2d58808b45526ea9cbb63d43eb186b6197cdbd
+Current source-completion reports core/harness/library/verifier hashes all matching, no hash-read failures. Prior ordinary actor-next process creation returned spawn EPERM. This batch made no managed launch attempt. Whole-game buildability/equivalence remain false.
+
+Limits
+Character-reference lookup, bounded formatting, title output, I/O transport, scene payloads and resource stop/free behavior remain explicit adapters. Release downstream transfer mode1, pose/ejection/vehicle/camera/script calls remain services, with one original blocked gate. Arithmetic/seat fallback is finite and matrix copies arbitrary bits. New movement8, script8 and world6 work is outside this sealed snapshot. No commits, pushes or GitHub writes.
+
+Detailed checks, exact probe code, source/compiler hashes and retained-evidence hashes: reverse-phase5-20261013-audit.json.

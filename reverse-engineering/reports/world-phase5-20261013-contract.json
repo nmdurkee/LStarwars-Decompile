@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-10-13T16:52:09.851Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "purpose": "Recover the initial scene resource phase and actual failure cleanup of48ce00, plus complete55f6c0 caller-owned teardown behavior. Resource payload/release backends remain explicit mutable services.",
+  "nativeEntries": {
+    "0x48ce00": {
+      "label": "Initial text/scene/pictures phase with actual abort path",
+      "coverage": {
+        "initialRange": {
+          "start": "0x48ce00",
+          "endExclusive": "0x48d063"
+        },
+        "handoff": "0x48d063 before auxiliary5a05b0 allocation",
+        "abortRange": {
+          "start": "0x48d64d",
+          "endExclusive": "0x48d660"
+        },
+        "epilogueRange": {
+          "start": "0x48d695",
+          "endExclusive": "0x48d6ae"
+        },
+        "excluded": "Remaining auxiliary/particle/audio/AI/script/resource allocation and full success commit+110=1."
+      },
+      "details": [
+        "Always run original57a420 text production before examining global failure93D840. An initial failure still executes the text producer, then original abort cleanup.",
+        "For positive signed world+10C, call578F60(level pointer+128,processed text92B0C8,opaque951BA8), then check failure. Empty/missing text can skip metadata yet continue scene loading; file-reader error91EEA4 is distinct from loader failure93D840.",
+        "Catalog low flags byte+64 bit4 gates primary scene load. Align cursor+104 to4. Catalog identity951B88 chooses levels\\titles\\ plus a bounded64-byte489AA0 output; other catalogs use world+80 base path. Original string copy/append adds.gsc unchanged.",
+        "Before primary load, SceneTag2854D4C=unsigned catalog byte+A0 plus1. Channel selector checks exactly11 catalog pointers at87B060, then4 at87B164; first list forces1, second3, otherwise signed catalog byte+A2 plus1. A match in both lists takes the first list.",
+        "After channel call6D34C0, read live8264BC. Exactly2 selects5F4F00(cursor ref,end value,path,2); all other values select5EF7F0(cursor ref,end value,path). Scene backends may mutate the cursor and return a pointer or0. Store returned scene at world+13C.",
+        "Call6D34C0(0), reset SceneTag to0, then call48C270(scene,world+15C,1) and5528B0(the current scene). Call48C630(world) only if live world+13C is nonzero. Loader failure is checked only AFTER these calls, including failures set by the scene backend.",
+        "Scene pointer changes by48C270/5528B0 alter later arguments and conditional calls; source/native fixtures preserve fresh reads rather than caching the original scene pointer. Metadata mutations can also change catalog flags/pointer and backend selection.",
+        "Catalog identity951B88 or951B9C loads levels\\titles\\pictures.gsc through ordinary5EF7F0, even if primary graphicsbit4 is absent. Store world+140 and check failure. This caller does not reset SceneTag after the pictures call; service mutations remain visible.",
+        "Any covered failure invokes ORIGINAL55F6C0(world), then ORIGINAL55FFB0(world,-1), through the normal cookie-checked return. Handoff instrumentation stops original execution at48D063 and records caller state; it does not execute the remainder or declare full loader success."
+      ],
+      "assemblyWitnesses": [
+        "0x48ce5a text producer before failure check",
+        "0x48ce76 signed metadata count guard",
+        "0x48cea5 low flags bytebit4",
+        "0x48cee1 title output inEAX custom register ABI",
+        "0x48cf26 unsignedA0",
+        "0x48cf41..0x48cf61 exact11/4 pointer scans",
+        "0x48cf63 signedA2",
+        "0x48cf76 backend selection after callback",
+        "0x48cfb7 store primary scene",
+        "0x48cfdc/0x48cfe8 postload calls before fail check",
+        "0x48d002 deferred failure check",
+        "0x48d048 pictures scene load",
+        "0x48d063 explicit handoff",
+        "0x48d64e/0x48d656 original teardown/reset cleanup"
+      ]
+    },
+    "0x55f6c0": {
+      "label": "Full own-state resource teardown controller",
+      "details": [
+        "Call5934D0(global955870,world). If world+2AB0 group exists and signed group count+4 is positive, walk its pointer array and pass each object+4 handle to652B40. Re-read live group pointer/count after callbacks; decreases can stop the loop and increases can extend it over valid prepared backing.",
+        "Call59A030(world),55B5B0(world),57CF00(live group pointer). If glyph/resource+2964 is nonzero, call5EF880(pointer) then force+2964=0.",
+        "Each handle guard compares fullDWORD toFFFFFFFF. Handles+2A98,+2A9C,+2AA4,+2AA8 pass zero-extended LOWBYTE to their subsystem calls. Re-read the byte between paired callbacks. Handle+2AA0 passes fullDWORD to65A5C0/65A5D0, again re-read between calls.",
+        "If global7FAC04 is0, scan terrain registry2948EB0 indexes2..7 and auxiliary registry2913A2C indexes1..7. Active nonzero entries invoke paired callbacks. The next registry entry is tested after prior callbacks, so callback mutation can suppress later releases.",
+        "Call5A29D0(world) before reading scene pointers. Then each nonzero live world+13C/+140 invokes5EF880 and is forced to0 afterward. Callback rebinds affect which pointer is released.",
+        "Caller-owned teardown clears+2964,+13C,+140; it does not directly clear handles, group pointer, loaded marker+110, cursor or world memory. Actual resource free/stop semantics remain external.",
+        "Prepared aborts with loaded marker left nonzero by resource services cause55FFB0 to invoke another55F6C0 before clearing the world/arena. This conditional duplicate teardown is observed in18cases; it is not asserted for all real backends, which can mutate loaded state themselves."
+      ],
+      "assemblyWitnesses": [
+        "0x55f6f0..0x55f713 live group pointer/count reads",
+        "0x55f743 glyph pointer clear",
+        "0x55f750 fullDWORD sentinel",
+        "0x55f758/0x55f765 fresh zero-extended BYTE pair args",
+        "0x55f7e1/0x55f7e7 fullDWORD pair args",
+        "0x55f804/0x55f830 live pool entry tests",
+        "0x55f852 scene teardown callback before pointer read",
+        "0x55f86d/0x55f88a forced scene pointer clears"
+      ]
+    }
+  },
+  "validation": {
+    "nativeCases": 748,
+    "mismatches": 0,
+    "prefixCases": 428,
+    "directTeardownCases": 320,
+    "handoffs": 134,
+    "actualAbortedPrefixes": 294,
+    "totalOriginalTeardownExecutions": 632,
+    "extraTeardownExecutionsFromLoadedAbort": 18,
+    "bytesHashedPerCase": 721088,
+    "comparison": "Complete ordered prepared-region SHA256, exact mutable service argument/ordering trace, handoff/abort outcome, nested teardown count, I/O consumption and resource provider state. Memory diffs retained on mismatch.",
+    "originalComposition": [
+      "0x48ce00 initial phase and abort blocks",
+      "0x55f6c0 complete own body",
+      "0x55ffb0 world/arena reset",
+      "0x57a420 text producer",
+      "0x4fd5d0 file-control body",
+      "0x54be70 normalizer",
+      "0x4f1ff0/0x4f1f10/0x4f1e80 byte string helpers",
+      "0x6e693a cookie guard on actual abort return"
+    ],
+    "adapters": {
+      "title": "489aa0 prepared output; EAX points to64-byte local.",
+      "scenes": [
+        "5ef7f0",
+        "5f4f00"
+      ],
+      "metadataAndPostScene": [
+        "578f60",
+        "6d34c0",
+        "48c270",
+        "5528b0",
+        "48c630"
+      ],
+      "teardown": "Opaque subsystem stop/free callbacks shown in retained trace; no resource backend is falsely declared recovered.",
+      "reused": "Phase4 fixed%s.txt formatter and I/O transport/lifecycle services."
+    },
+    "providerMutations": "Prepared group count changes, handle replacement between paired callbacks, next pool entry removal, scene/catalog pointer/flag rebinds, alternate backend selection and resource allocation/release markers verify live caller reads.",
+    "portableCompile": "Core fragment plus saved-native replay harness compile with previously recovered text/reset dependencies.",
+    "managedReplay": "Pending; no generated executable launch retried.",
+    "expectedManagedAssertions": 4488
+  },
+  "source": {
+    "path": "reverse-engineering/reconstructed/gameplay/world-phase5-20261013-scene-teardown.cs",
+    "sha256": "c45a3070277694dfa59dfb749cdc66fc3b319f9421e67c1bf3e4de58b09f09f7",
+    "harness": "reverse-engineering/tools/world-phase5-20261013-portable-verify.cs",
+    "fixture": "reports/world-phase5-20261013-vectors.json"
+  },
+  "limits": [
+    "48ce00 coverage ends at48d063, before auxiliary resource allocation5a05b0. Handoff is not full loader success or populated+110 commit. Failure cleanup executes original code through return.",
+    "Scene/pictures payload loading and subsystem release semantics are explicit mutable service fixtures, not real graphics/audio/terrain backends. Title helper489aa0 output is a bounded prepared64-byte service; original copy/append routines execute.",
+    "Prepared world/catalog/arena/group/registry backing, nonnegative or sentinel signed group counts, fixed resource pointer lists and valid service mutations. Resource callbacks may change live group count/handle fields/scene pointers; native rereads are preserved.",
+    "Normal prefix resource return pointers reside in prepared arena; teardown alternative resources have prepared external backing. Fixed cache-force global87b71c is0. Loaded-marker abort cases exercise original repeated teardown.",
+    "The reused fixed%s.txt CRT formatter/I/O services remain adapted, as documented in phase4. Managed replay remains pending; no executable retry."
+  ],
+  "nextWork": [
+    {
+      "addresses": [
+        "0x48d063",
+        "0x5a05b0",
+        "0x552670"
+      ],
+      "task": "Advance auxiliary allocation stage and exact bounded arena allocator, including strict prealignment size check and allocation failure/cursor behavior."
+    },
+    {
+      "addresses": [
+        "0x5a8090",
+        "0x62c400",
+        "0x658470",
+        "0x658490"
+      ],
+      "task": "Recover particle resource/name-cache initialization into world+134 and PTL handle+2A98, replacing real initializer computation beyond the current handoff."
+    },
+    {
+      "addresses": [
+        "0x5ef7f0",
+        "0x5ef1d0",
+        "0x602370"
+      ],
+      "task": "Recover actual scene carrier fixup/texture/portal construction, replacing the scene payload adapter."
+    },
+    {
+      "address": "0x48ce00 after48d063",
+      "task": "Advance the rest of subsystem/AI/audio/script loading, failure gates and final loaded marker+110 commit."
+    }
+  ]
+}

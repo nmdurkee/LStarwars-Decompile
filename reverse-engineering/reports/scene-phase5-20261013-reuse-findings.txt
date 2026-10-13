@@ -1,0 +1,7 @@
+CACHED CAMERA PROJECTION ORDERING
+
+Refined three existing native entries with no new-address credit. Native/Python passed 4,352 checks across 1,792 retained cases: 1,024 cached clipping calls and 768 cached camera calls. C# core and harness compile; 4,353 prepared assertions remain unexecuted.
+
+Cached clipping ignores the camera pointer, with 683 null or poison-pointer probes retained. A nonzero camera reuse argument skips viewport reset and projection generation. The first primary clip uses the previous symmetric cache. Culling mode is compared later. A change rebuilds the second clip cache and derived scales, edge planes and ordinary frustum, while the old projection remains byte-identical because its update block has already been skipped. All 512 changed-mode and 256 unchanged-mode cases preserve the original projection. Pending dirty viewport flags remain unchanged; no viewport service occurs.
+
+Imported D3DX policy and renderer light/cache output services remain explicit. Reflected camera conversion, authored scene/frame binding, physical device and GPU behavior remain open.

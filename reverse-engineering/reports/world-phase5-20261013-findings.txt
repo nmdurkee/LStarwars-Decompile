@@ -1,0 +1,53 @@
+INITIAL SCENE RESOURCE PHASE AND COMPLETE OWN-STATE TEARDOWN - 2026-10-13
+
+748 native cases pass, zero mismatches:428 original48ce00 prefix cases and320
+complete55f6c0 cases. Prefixes yield134 explicit handoffs at48d063 and294 actual
+abort returns through55f6c0/55ffb0.632 original teardown executions are observed,
+including18 extra teardown calls for loaded prepared worlds whose backend leaves
++110 nonzero. Complete721088-byte prepared images and mutable service traces match.
+
+Recovered portable entry mappings:
+ 0x48ce00 WorldSceneLoaderPhase.Run
+   initial text/scene/pictures phase ce00..d063 plus actual abort cleanup.
+ 0x55f6c0 WorldResourceTeardown.Run
+   full caller-owned teardown order and live field handling.
+
+Handoff is BEFORE5a05b0 allocation. It is not a successful complete world load,
+remaining subsystem/AI/audio/script allocation, or the final+110 populated commit.
+Original text production, file control, normalization, copy/append, full teardown
+controller and cache/arena reset execute. Resource payload/stop/free implementations
+remain explicit mutable services, with exact boundaries retained in trace/mappings.
+
+Recovered details include title paths, unsigned+A0 tags and signed+A2 channel
+hints; exact11-then4 catalog pointer overrides; live backend-mode read; deferred
+failure checks after scene bounds/postbinding; ordinary pictures loading and caller
+SceneTag persistence after pictures. Missing text can skip metadata and still
+progress to graphics when loader failure93d840 remains0.
+
+Teardown re-reads group counts, paired handle arguments, pool entries and scene
+pointers after mutable callbacks. FullDWORD sentinel tests precede BYTE narrowing;
++2aa0 keeps fullDWORD arguments. Only+2964/+13c/+140 are directly cleared by the
+teardown controller. Backend mutation may alter other state. Prepared mutation
+cases preserve these native distinctions instead of assuming no-op dependencies.
+
+Source and saved-native replay harness compile; expected replay has4488 assertions.
+Managed execution remains pending. No generated executable retry or Git operation.
+
+Next stage is exact auxiliary/arena allocation5a05b0/552670 and particle cache
+initialization5a8090/62c400. Actual scene fixup5ef1d0/602370 and the rest of48ce00
+remain major loading gaps.
+
+Evidence/reproduction:
+ reports/world-phase5-20261013-contract.json
+ reports/world-phase5-20261013-native-tests.json
+ reports/world-phase5-20261013-assembly.json
+ reports/world-phase5-20261013-vectors.json
+ reports/world-phase5-20261013-source-map.json
+ reports/world-phase5-20261013-execution-status.json
+ reports/world-phase5-20261013-integration.json
+ tools/world-phase5-20261013-inspect.py
+ tools/world-phase5-20261013-verify.py
+ tools/world-phase5-20261013-portable-verify.cs
+ reconstructed/gameplay/world-phase5-20261013-scene-teardown.cs
+
+Original game files, shared manifests and Git are untouched by this agent.

@@ -1,0 +1,36 @@
+{
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "tool": {
+    "path": "tools/scene-phase5-20261013-native.py",
+    "sha256": "cb238c1a10102cbda563510105d5178e830b3ab472c43b34d165dd00f96bbae1"
+  },
+  "writerCounts": {
+    "external seed": 712,
+    "0x6e953b": 1372
+  },
+  "wordCounts": {
+    "0x0": 236,
+    "0x3f800000": 228,
+    "0x6e9540": 1372,
+    "0x42c80000": 188,
+    "0xc2c80000": 60
+  },
+  "frameAddress": "0x1000de0c",
+  "note": "NativeX86 fixed entry ESP only; portable uses actual percall word. OriginalCRT sqrt call0x6e953b writes returnaddress0x6e9540 at this deeper caller lifetime on routes that switch camera before traversal; other routes retain external prior seed.",
+  "scope": "Byte-granular stack write trace during original5f3c80 including original5d6900/603cc0/5ed540 camera route before originaltree/predicate. No computational tree or camera hook replaces return/state.",
+  "counts": {
+    "inverseCases": 768,
+    "projectionCases": 512,
+    "clipCases": 1024,
+    "frustumCases": 512,
+    "cameraCases": 384,
+    "dispatchCases": 192,
+    "retainedPortableReplayCases": 3392,
+    "nestedDispatcherPredicateCalls": 2084
+  },
+  "interpretation": "1,372 of2,084 nested predicate entries read pushed original CRT sqrt returnaddress0x6e9540 written at0x6e953b during the preceding camera route.712retain external seed. Original predicate itself still never writes the fourth radius. This is caller-history behavior, not a defined radius calculation.",
+  "limits": [
+    "NativeX86 call frame address applies only to fixed harness ESP; the portable boundary supplies the exact word percall.",
+    "Native imports and device adapter can influence earlier stack history in other caller chains; no general constant replacement is asserted."
+  ]
+}

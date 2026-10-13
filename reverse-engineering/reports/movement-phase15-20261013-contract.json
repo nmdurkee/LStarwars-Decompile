@@ -1,0 +1,26 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "cases": 1759,
+  "nativeAssertionGroups": 5277,
+  "mismatches": 0,
+  "authoredOccurrences": 15,
+  "repeatedSequences": 18,
+  "repeatedSequenceSteps": 144,
+  "coverage": "Full finite command, originalfirst/nonfirst,selfreference/actor gates; ordered reset/min/max/time/plainnumeric parsing. Bothmin/max non1e9 triggeronefloatdraw overridingplainvalue. Native time keyis substringtime withfixedskip5. Zero time directset leaves oldpacket timer/rate unchanged. Nonzero time caches F32time/rate using extended difference/division; negative time returnscompletedaftercachecommit. Everycall then reads cachedpositive timer: Delta<timer updatescurrentScale+Delta*rate andremaining timer returns0, elseconsumesremaining timer, clearscachetime returns1. NegativeDelta reverses interpolation withoutcompletion.",
+  "numericPolicy": "Original parser andfloat RNG unchanged. Portable finitex8764 withbinary32 stores andsignedzero carrier; no sharedhelper edits.",
+  "nativeAdapters": 0,
+  "limitations": [
+    "Finite valid backing andfinitecached numeric fields.",
+    "Actual frameDelta producer, scale consumers, full scheduler andNaN/Inf hardware semantics excluded.",
+    "144 repeatedframesteps are included in1,759 cases, notadditionalindependent scenarios. Authored15bodyoccurrences retained."
+  ],
+  "managedReplay": {
+    "executed": false,
+    "preparedAssertionGroups": 5277
+  },
+  "dependencies": [
+    "Sealed movementphase14 actualnumeric oracle/record setup",
+    "Sealed movementphase13 native character callback setup (nevercalled inthis suite)",
+    "ExistingPlaybackWide andMessageNumbers sources unchanged"
+  ]
+}

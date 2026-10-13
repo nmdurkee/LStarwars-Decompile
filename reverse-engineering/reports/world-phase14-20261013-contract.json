@@ -1,0 +1,111 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "3e857267ca914637fdd5a76d865fa42a808f1c61186321de7f6944cc378679ef",
+  "procedures": [
+    {
+      "address": "0x6488e0",
+      "endExclusive": "0x648993",
+      "bytesSha256": "5336a38c2195355610c12df916b2caf45fb2b66cf5a402e45c4425ba51c49099"
+    },
+    {
+      "address": "0x5da840",
+      "endExclusive": "0x5da856",
+      "bytesSha256": "f426596236da63c06325ad95e27945be43339aa59268f876fef39c4b099d9ccc"
+    },
+    {
+      "address": "0x5da860",
+      "endExclusive": "0x5da8c2",
+      "bytesSha256": "fa95ab3bf86139e5b4bb2f50a6a518fba50f43accb0156d13841f2169aebcf9d"
+    },
+    {
+      "address": "0x5cfac0",
+      "endExclusive": "0x5cfadd",
+      "bytesSha256": "d3279a591ac3aca4b927c60f14c3b06b91c3fefd7495575fa95eced0c0bb1703"
+    },
+    {
+      "address": "0x5cfa50",
+      "endExclusive": "0x5cfa74",
+      "bytesSha256": "b2903f0f8322cc88edd200c9ae6357d6855405274f414d015929d2d3ad47bc2d"
+    }
+  ],
+  "layouts": {
+    "handle": {
+      "length": 12,
+      "scene": 0,
+      "legacyRecord": 4,
+      "backendRecord": 8
+    },
+    "scene": {
+      "legacyCount": 36,
+      "legacyTable": 40,
+      "backend": 272
+    },
+    "backend": {
+      "count": 108,
+      "table": 112,
+      "rowStride": 208,
+      "rowNamePointer": 180
+    },
+    "legacy": {
+      "rowStride": 76,
+      "rowNamePointer": 68
+    }
+  },
+  "qualification": "Complete own-state sprite name lookup and 12-byte handle family over valid prepared readable memory, unchanged original PE marker string, readable 16-byte query/catalog names, and supported prepared alias destinations. The lookup uses the exact case-sensitive NULL instance special marker (9999), empty-name/scene failure (-1), initial signed count snapshot, backend-first table selection, valid-proxy test, backend-first name pointer and exact case-sensitive bounded 16-byte comparison with first-match ordering. Scene backend pointer is +0x110; backend count/table are +0x6c/+0x70 with 208-byte rows and name pointer +0xb4; legacy count/table are scene +0x24/+0x28 with 76-byte rows and name pointer +0x44. Handle validity ignores its scene word, using only nonzero legacy/backend record pointers. Build preserves signed upper bounds with no negative-index guard, native write ordering and live table-base reloads under aliases; negative indices require readable prefix backing. Null Build output is outside prepared contract because native clears through it. Native helpers and comparator 0x4f2130 execute unchanged; no lookup services are intercepted. Direct 1,197 cases retain return bits and complete 131,072-byte scene/handle image. Composed 112 authored PAR inputs remain byte-for-byte unchanged and process original loader/decoder/activation/selection/sprite family with prepared bank-1 and bank-0 scene catalogs built from each input's exact binding requests, alternating backend/legacy layouts. These are prepared catalogs, not recovered original scene assets or producers. 1,863 resolved sprite slots and zero 9998 sentinels derive from images matching native hashes. File transport remains adapted, and particle/audio bindings remain explicit empty contexts. Existing phase13 finite/x87 activation and selection bounds remain in force. Source and both portable harnesses compile as library; managed fixture execution is pending without a generated executable launch.",
+  "behavior": [
+    "Empty query returns -1 before marker or scene accesses. Exact case-sensitive NULL instance returns 9999 even with null scene.",
+    "Nonzero scene backend controls Count even when its signed count is zero/negative; lookup does not substitute legacy count.",
+    "Build may fall back to legacy when backend index fails its signed upper bound; negative indices are not rejected.",
+    "Valid checks only handle legacy/backend pointers, ignoring scene; Name prefers backend even when both record pointers are nonzero.",
+    "Build backend writes +4=0, +0=scene, then reloads scene backend/table before +8 result; legacy writes +0=scene, reads live scene table, then +8=0 and +4=result.",
+    "Lookup scans cached initial count and returns the first valid exact16-byte matching catalog entry. Duplicate/prefix names remain distinct only up to that bound."
+  ],
+  "validation": {
+    "directCases": 1197,
+    "directAssertions": 2394,
+    "directMismatches": 0,
+    "directCapturedBytes": 131072,
+    "directEntryCalls": {
+      "0x5da840": 552,
+      "0x5da860": 8525,
+      "0x5cfac0": 8019,
+      "0x5cfa50": 8018,
+      "0x6488e0": 571,
+      "0x4f2130": 8561
+    },
+    "composedCases": 112,
+    "composedAssertions": 784,
+    "composedMismatches": 0,
+    "composedCapturedBytes": 843784,
+    "composedEntryCalls": {
+      "0x5da840": 1863,
+      "0x5da860": 21008,
+      "0x5cfac0": 21008,
+      "0x5cfa50": 21008,
+      "0x644000": 112,
+      "0x64ae50": 56,
+      "0x5b9d90": 55,
+      "0x6e6b90": 57,
+      "0x5b3800": 56
+    },
+    "composedPhysicalAndAssetCalls": {
+      "0x64ba10": 1224,
+      "0x6488e0": 141178,
+      "0x658330": 6114,
+      "0x650e40": 4892
+    },
+    "authoredFilesUnchanged": true,
+    "authoredRecords": 1224,
+    "resolvedSpriteSlots": 1863,
+    "missingSpriteSentinels": 0,
+    "maxPreparedCatalogEntries": 63,
+    "totalNativeCases": 1309,
+    "expectedPortableAssertions": 3178
+  },
+  "remaining": [
+    "Actual scene/backend table production from original sprite assets and bank/group attachment lifecycle.",
+    "Loaded particle and audio contexts and concrete IParRecordBindings.Other implementations.",
+    "Renderer, audio and particle emission services downstream of bound indices.",
+    "Phase13 x87 activation/selection precision bounds outside retained finite projections."
+  ]
+}

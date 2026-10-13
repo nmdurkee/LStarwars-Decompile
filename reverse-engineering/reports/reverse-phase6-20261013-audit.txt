@@ -1,0 +1,31 @@
+Independent reverse-engineering audit: reverse-phase6-20261013
+
+No native/source mismatch found within the reviewed bounded contracts.
+All 2,519 additional checks passed: 2,349 original instruction/body/readonly/literal provenance checks, 87 original authored-file and retained-input matches, and 83 targeted native edge checks. Compiler input hashes are separate: all 409 (202 core + 207 harness sources) match, as does the current library. Native suite counts do not include these audit checks. C# execution remains pending.
+
+Retained coverage
+- Path flags: 891 cases / 1,782 groups, no computational adapters, complete 65,536-byte image plus return. All 51 authored forms retained.
+- Random spline/lookup/ASCII compare: 1,315 cases / 6,575 groups, no computational adapters: 343 compare, 240 exact lookup, 240 prefix lookup, 492 selector. Complete 262,144-byte image, RNG, selected pointer, fault and return; 48 correlated fault scenarios. All 36 authored forms retained.
+- Takeover mode1: 913 transfers plus 16 actual release-to-transfer interoperations, 3,700 native and prepared portable assertions. Complete actor/auxiliary/player-registry/pair state and ABI trace; three fault scenarios. Native reset and auxiliary clear execute unchanged. This refines existing address 4876a0 and adds no authored uses.
+- Takeover selector: 1,156 direct cases with no computational adapters plus 36 actual producer/selector interoperations. 3,612 assertions (3,468 direct + 144 interop), all retained; 30 direct fault scenarios. Existing current-action reader reused.
+- Particle resources: 1,391 cases (198 allocator, 224 auxiliary, 320 general lookup, 320 fast lookup, 185 cache, 120 stage, 24 caller block), 12,646 nested original entry calls. Each ordered prepared-region hash covers 197,644 bytes. All 147 original literal pointers and strings match binary evidence. Portable replay prepares 4,029 assertions.
+
+Confirmed edge behavior
+Spline patterns are literal prefixes, not wildcards: S1* finds none. An empty prefix compares one NUL. Duplicate candidates stay weighted; the list caps at 32. Cleanup erases preexisting bit8000 on eligible attached records, while leaving unattached records marked. Empty filtered selection consumes no random draw.
+
+Path lookup uses reverse-endpoint priority. Opposite flags are resolved in parsing order; bothways applies the final masks to both directions. FALSE stays sticky, and from/to substring parsing precedes mask lookup.
+
+Transfer snapshots precede callbacks, source is rebound twice, signed personal indexes are read after the first rebind, and EEC bit10 is read after animation reset. Selector ABI is ECX=target and EDI=source. Final velocity arithmetic reads current source type+2c after services; a callback can change it or invalidate the target chain and trigger a deferred fault. Selector ID/gate/subtype and C2/C1/default clip priorities match, including repeated current-action reads.
+
+Allocator checks raw+size strictly before alignment: an aligned result may exceed the earlier bound, while exact fill is refused. Cache ignores endRef and does not clamp explicit count to capacity. General particle lookup sign-extends the third-pass group; fast lookup has only two passes. Exists mutations affect the scene passed to Load.
+
+Integration
+732 mapping rows / 719 distinct entries; 202 core files / 207 harness files; 165 bounded command names / 19,176 uses of 20,836. Delta from phase5: 11 distinct entries, 12 rows, five core files, five harness files, two names, 87 uses. Related/reused helper addresses receive no extra entry credit.
+Library SHA256: fd966addf833643206173c0c36a7f65e6a50647ab09fecb2a083182f6739ec0d
+Verifier build-time SHA256: e1cffb22fc671aa2248a49292448f1a70aa9e717f2700750e2f9a9acc047eb10
+Current verifier hash is unavailable: source-completion's ordinary read was denied. No auditor reread or managed launch. The prior ordinary actor-next launch returned spawn EPERM before creation. Whole-game buildability/equivalence remain false.
+
+Limits
+Prepared valid ASCII/raw memory and documented counts/physical backing only; finite transfer float fields/arithmetic. Transfer downstream services and PTL transport/formatter/payload services remain explicit. The world caller block stops at 48d094, before failure checking or later loading, and establishes no full load success. World7, script10, movement10 and scene5 work remain outside this snapshot. No commits, pushes or GitHub writes.
+
+Detailed checks, exact Python probes and hashes: reverse-phase6-20261013-audit.json.

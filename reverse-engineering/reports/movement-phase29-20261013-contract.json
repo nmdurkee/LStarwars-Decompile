@@ -1,0 +1,56 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": [
+    {
+      "address": "0x41b0a0",
+      "endExclusive": "0x41b414",
+      "method": "ActorBaseReset.Reset",
+      "abi": "cdecl(actor)"
+    },
+    {
+      "address": "0x55e470",
+      "endExclusive": "0x55e4a0",
+      "method": "ActorBaseReset.TypePredicate",
+      "abi": "cdecl(signedInt32type)"
+    },
+    {
+      "address": "0x414ad0",
+      "endExclusive": "0x414ba8",
+      "method": "ActorBaseReset.PathReset",
+      "abi": "cdecl(actor)"
+    }
+  ],
+  "behavior": [
+    "Three reset modes each pass actor as real cdecl argument; signed actor type is reread after reset child, then predicate reads raw indexed type flags.",
+    "Player mask bypass/callback/byte255/default64+ branches preserve low-byte callback interpretation and original64-bit shift; default masks reread after mutable callback.",
+    "State flag masks, captured/fresh metadata reads and exact104-byte clear follow original instruction order; tested metadata backing aliases actor1F8/4B0/EEC.",
+    "Duration global copies finite/quiet-NaN/infinite bits; positive values set duration flag, unordered comparison clears it. Signaling-NaN emulator observations remain separate with no paired credit.",
+    "Path reset retains exact flag/word/byte clearing, five-argument52f800 call after original field stores, and callback mutation of final actor fields."
+  ],
+  "bounds": [
+    "Readable complete actor/world/type-table/suit/metadata/data backing; signed type indexed with native32-bit wrap and valid address.",
+    "Mode reset407b60/481740/4cbe50, optional mask callback and script bind52f800 are explicit child services. Originalmemset,64-bit shift,type predicate and path reset execute unchanged in native own-body tests.",
+    "Caller global modes/type table/default mask/duration/world represented by mutable world fields; callbacks tested metadata/type/flags/default globals/final actor mutations.",
+    "Source duration copy domain excludes signaling-NaN hardware quieting/FPU flags; two original Unicorn observations retained separately. No register/flags/partial-fault/complete actor/game equivalence claim."
+  ],
+  "validation": {
+    "nativeCases": 4449,
+    "nativeAssertionGroups": 13390,
+    "mismatches": 0,
+    "preparedManagedAssertions": 13390,
+    "managedExecution": false,
+    "excludedObservations": "reports/movement-phase29-20261013-excluded-observations.json",
+    "excludedPairedCredit": 0
+  },
+  "compilation": {
+    "inputs": 259,
+    "dllSha256": "43fae7c8d9e57d2b2ae645d679233a197d9ce19d287deb5274b510c0cbee5329",
+    "execution": false
+  },
+  "hashes": {
+    "reconstructed/gameplay/movement-phase29-20261013-ActorBaseReset.cs": "70f64fca83f15d18a7c1686f489f4bf5e58f450d17127c6512a6c9e11b1687c6",
+    "tools/movement-phase29-20261013-native.py": "bfb00bfbab09c5f218f6dd950a1ddde5d7efa02199cc87662c40729ddba4531e",
+    "tools/movement-phase29-20261013-portable-verify.cs": "77c0b09f8a12c4412a6fd1ccead072e4f77255f608e3c1860db15dc2b51132fb",
+    "reports/movement-phase29-20261013-fixtures.json.gz": "504758de908b6e874a203b5a4aa0fe48c2727c365cb877f199e4e9fd25ccfd95"
+  }
+}

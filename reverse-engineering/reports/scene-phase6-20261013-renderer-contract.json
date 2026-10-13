@@ -1,0 +1,44 @@
+{
+  "schema": "original-camera-render-cache-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "addresses": {
+    "view": "0x80b708",
+    "projection": "0x80b748",
+    "screen": [
+      "0x973900",
+      "0x973904"
+    ],
+    "source": [
+      "0x80e694",
+      "0x80e698"
+    ],
+    "rectangle": [
+      "0x963e10",
+      "0x963e14",
+      "0x963e18",
+      "0x963e1c"
+    ],
+    "origin": [
+      "0x80202c",
+      "0x802030"
+    ],
+    "uintCounter": "0x9868c0",
+    "ushortCounter": "0x9868cc",
+    "image": "0x9869b0..0x986a33"
+  },
+  "entrypoints": {
+    "0x5dad10": "Offsets: screen and source spill to float32 before ratio, rectangle*1/16 minus origin-screen arithmetic shift half, spill delta, positive-zero fallback when ratio or delta zero.",
+    "0x5daef0": "Extents: rectangle dimensions*1/16 divided by full x87 screen/source ratio, final float32 spill only.",
+    "0x5fcc80": "Update: raw view copy, projection indices 0/5/10/11/14, exact offsets/extents scaled by full x87 screen/640 and screen/224, zero first image word, wrap uint and ushort counters, return 1."
+  },
+  "actualCameraBinding": "128 original 0x5ed540 nonzero reuse / normal-view invocations capture view/projection/cache receiver image and counters at actual 0x5fcc80 entry. An earlier camera helper increments the uint counter; receiver state is therefore captured at callback entry. This batch does not assert complete caller equivalence.",
+  "boundaries": [
+    "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+    "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+    "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+    "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+    "Native/Python exact own-state comparison passed; managed replay pending.",
+    "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+    "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+  ]
+}

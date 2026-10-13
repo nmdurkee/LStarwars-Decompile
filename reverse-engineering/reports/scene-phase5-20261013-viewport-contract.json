@@ -1,0 +1,63 @@
+{
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "schema": "original-dirty-viewport-camera-v1",
+    "passed": true,
+    "checks": 9664,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "resetCases": 4096,
+      "pixelDepthTransformCases": 512,
+      "cameraCompositionCases": 320,
+      "retainedPortableReplayCases": 4928,
+      "earlyCleanViewportCases": 241,
+      "zeroViewportServices": 3241
+    },
+    "errors": [],
+    "adapters": {
+      "0x6e57b0": "Recorded six raw deviceviewport words and ownstate at boundary, with no GPU operation. Successfulservice return; caller ignores result.",
+      "0x715718": "Explicit sequential binary64 matrix multiply spilledfloat32, onlycamera composition.",
+      "0x6e56a0": "No calls in ApplyNormal-only composition; hook declared for dependency reuse and devicebackend remains external."
+    },
+    "limits": [
+      "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+      "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+      "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+      "Native/Python ownstate differential passed; managed replay remains separate and pending."
+    ],
+    "fixtureFile": "scene-phase5-20261013-viewport-native-fixtures.json.gz"
+  },
+  "source": {
+    "path": "reconstructed/geometry/scene-phase5-20261013-viewport.cs",
+    "sha256": "b680b8b969a13889fa6da74d6ec9f9a70a4daf32d9bef7b39c8c10cb73436782"
+  },
+  "harness": {
+    "path": "reconstructed/geometry/harness/scene-phase5-20261013-viewport-harness.cs",
+    "sha256": "6ffe2ed82b8b6cfb8aaa4b95fde5cf7d17257640a5ec1fdc9cae4bc8b878d42a",
+    "entrypoint": "CameraViewportPhase5Harness",
+    "compiled": true,
+    "executed": false,
+    "preparedAssertions": 22073
+  },
+  "fixture": {
+    "path": "reports/scene-phase5-20261013-viewport-native-fixtures.json.gz",
+    "sha256": "3f44ecee80aa0dfccaaa52aed3eb2992e0a16355fe1f8206985e08fbfa73636f"
+  },
+  "contracts": [
+    "Dirtyflag0 returns without touching correction,matrix,scales ordevice. Any nonzero32-bitflag executes reset andclearsflag beforedevicecallback.",
+    "Rectangle uses signed Int32x/y/width/height in sixteenths ofpixel;right/bottomadditions,screen<<4,bound adjustments anddifferences wrap32 bits. Nativeinvalid/empty clip branches emit XYWH0 with unchangedtwo rawdepthwords.",
+    "Clippedwidth andheight spillfloat32 beforedivision. Sourcewidth/height anddifference numerators are exactsignedinteger x87 loads, notprematurelycastfloat. Ydifference negates beforedivide; signedzero shiftretained.",
+    "Devicecallback sees clearedflag/newcorrection butoldclipmatrix/auxiliary/clipscales. Originalcopies16 runtimeidentitywords from806680 onlyaftercallback, thenpixeldepthmatrix, thenrangescalars.",
+    "Pixeldepthproducer converts screenInt32 tofloat32 beforehalf scaling, constructs negativeY scale anddepthspan16777215-MinDepth, andcopiesMinDepthrawword.",
+    "Default relative axisrange0..1 uses symmetricScale1 andasymmetricScaleSourceSize/65536;otherfiniteunequalranges use float32 reciprocal1/(high-low) forbothscales.",
+    "Actual original5ed540 normalcamera calls dirtyviewportreset beforeview/projection numeric generation.320completecamera compositions compare allownednumericcamera matrices/planes andupdatedviewportglobals."
+  ],
+  "deviceBoundary": "Sixrawviewportwords recorded; successfulstubreturn only. Zero viewportbranches are nativecontrol-state evidence, notvalidphysicaldevice acceptance.",
+  "managedStatus": "C# core/harness compilation passed independently. No generated managed EXE launched;22,073prepared assertions remain unexecuted under inherited restriction.",
+  "limits": [
+    "Int32 wrapping rectangle/screen operations, finite unequal non-default floatrange endpoints and finite minimumdepth. Second rawdepthword is copied opaquely, including quietNaN/FFFF patterns.",
+    "Zero/negative/overflowed screen sizes andempty clippedrectangles exercise nativecontrol boundaries, not successful physicaldevice viewport acceptance.",
+    "Camera composition inherits sealed normalcamera constraints, explicit D3DXpolicy and unported light/rendercache state outputs. No liveGPU/backend or fullframe equivalence.",
+    "Native/Python ownstate differential passed; managed replay remains separate and pending."
+  ]
+}

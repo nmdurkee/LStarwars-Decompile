@@ -1,0 +1,85 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase12-20261013-CompactConditions.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x443610",
+      "method": "CompactRuntimeConditions.TakeOverRange",
+      "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+      "coverage": "Null creature/reference/actor/target yields exactF32 1e9. Actual distance uses target actor+5c versus reference+5c, not selfactor+5c; finite ordered squared-distance/sqrt composition."
+    },
+    {
+      "address": "0x515790",
+      "method": "CompactRuntimeConditions.StuckTime",
+      "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+      "coverage": "Null creature/reference returns positivezero, otherwise reads reference+1d8 F32 without actor dereference. Finite andInf/signedzero payload words retained."
+    },
+    {
+      "address": "0x440be0",
+      "method": "CompactRuntimeConditions.TurretAlive",
+      "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+      "coverage": "Native argument5 turret pointer; null returnszero; word+13a bits0x30 suppress result. Allother lowbyte and sampled upperbyte patterns unchanged."
+    },
+    {
+      "address": "0x442b30",
+      "method": "CompactRuntimeConditions.CheatProgress",
+      "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+      "coverage": "Complete original PC stub returns positivezero for every argument, without memory access."
+    },
+    {
+      "address": "0x515580",
+      "method": "CompactRuntimeConditions.OpponentToLocatorY",
+      "sourceFile": "gameplay/movement-phase12-20261013-CompactConditions.cs",
+      "coverage": "Creature/opponent first guards return maxfiniteF32. Explicit argument5 locator precedes packet+a4 fallback; absent packet faults only whenfallback readneeded. Difference opponent+60 minus locator+14 storesF32."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase12-20261013-contract.json",
+    "reports/movement-phase12-20261013-tests.json",
+    "reports/movement-phase12-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase12-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase12-20261013",
+  "verifierClass": "MovementPhase1220261013Verify",
+  "fixture": "reports/movement-phase12-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase12-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-condition",
+      "name": "TakeOverRange",
+      "function": "0x443610",
+      "sourceUses": 17,
+      "scope": "Null creature/reference/actor/target yields exactF32 1e9. Actual distance uses target actor+5c versus reference+5c, not selfactor+5c; finite ordered squared-distance/sqrt composition. Retained authored body occurrences; enclosing comparisons separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "StuckTime",
+      "function": "0x515790",
+      "sourceUses": 14,
+      "scope": "Null creature/reference returns positivezero, otherwise reads reference+1d8 F32 without actor dereference. Finite andInf/signedzero payload words retained. Retained authored body occurrences; enclosing comparisons separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "TurretAlive",
+      "function": "0x440be0",
+      "sourceUses": 14,
+      "scope": "Native argument5 turret pointer; null returnszero; word+13a bits0x30 suppress result. Allother lowbyte and sampled upperbyte patterns unchanged. Retained authored body occurrences; enclosing comparisons separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "CheatProgress",
+      "function": "0x442b30",
+      "sourceUses": 14,
+      "scope": "Complete original PC stub returns positivezero for every argument, without memory access. Retained authored body occurrences; enclosing comparisons separate."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "OpponentToLocatorY",
+      "function": "0x515580",
+      "sourceUses": 12,
+      "scope": "Creature/opponent first guards return maxfiniteF32. Explicit argument5 locator precedes packet+a4 fallback; absent packet faults only whenfallback readneeded. Difference opponent+60 minus locator+14 storesF32. Retained authored body occurrences; enclosing comparisons separate."
+    }
+  ]
+}

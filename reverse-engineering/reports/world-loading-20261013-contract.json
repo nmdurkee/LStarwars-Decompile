@@ -1,0 +1,193 @@
+{
+  "generatedAt": "2026-10-13T14:52:51.339Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "purpose": "Bounded own-state world cache, arena and staging control-flow recovery. This does not execute the full level/resource loader.",
+  "nativeEntries": {
+    "0x55ffb0": {
+      "label": "Initialize world record or retain cached record",
+      "arguments": [
+        "world pointer",
+        "signed32-bit requested level"
+      ],
+      "return": "0 for retained cached world;1 for cleared/rebuilt record. Neither return establishes resource load success.",
+      "details": [
+        "Snapshot world+110 nonzero before calling566630(0). A cache hit requires cached level+11c equal requested level, signed catalog area byte+A3 not-1, and global87b71c zero. The catalog read is performed even for requested-1 when the cache comparison matches.",
+        "On rebuild, loaded current world invokes external55f6c0. Nonzero87b71c also unloads a loaded opposite fixed world if its cached level matches. These side effects remain external.",
+        "Preserve world+100 and+108; zero0x51ac bytes; restore start+100 and end+108; set cursor+104=start. Signed32-bit(end-start)>0 clears exactly that arena span.",
+        "Set target level+11c and sentinel-1 at+120/+124. Requested-1 skips all catalog/path/handle writes. Thus clearing an unloaded world with level-1 leaves resource handle fields zero, while a normal level gets-1 handles.",
+        "For a normal level, level pointer+128=global951b78+level*130. Area+120 is signed byte at level+A3. Non-1 area sets area pointer+12c=global951354+area*9c and sign-extends area+86 into world+124.",
+        "Signed save byte level+C8 sets world+130=0 only for exactly-1 or signed values>=12. Other negative bytes compute global87b2cc+slot*2e28 without a lower guard. No pointed save record is dereferenced by this initializer.",
+        "Initialize handle-like DWORDs+2a98,+2aa0,+2aa4,+2aa8,+2a9c to-1. Directory string at world+0 is \"levels\\\" plus catalog record+0. Base path at world+80 adds native separator\\ and catalog name+40. Native copy/append functions perform no length checks.",
+        "Call external547ba0(world) after path construction. Cleared marker+110 remains zero unless external callees set it."
+      ],
+      "assemblyWitnesses": [
+        "0x55ffb8 snapshot loaded marker",
+        "0x55ffec catalog byte sentinel comparison",
+        "0x560050 exact world clear size",
+        "0x560076 JLE for signed arena span",
+        "0x5600b8 MOVSX area byte",
+        "0x5600ed MOVSX area+86 byte",
+        "0x56011f MOVSX save byte",
+        "0x56012b CMP slot,12 / JGE"
+      ]
+    },
+    "0x55f470": {
+      "label": "Assign double-world arena endpoints",
+      "details": [
+        "For non-1 area with byte+7A bit8 set and area differs from previous area, force current802c54 and staging802c58 to first world93d858. If unsigned firstEnd<secondEnd, assign secondEnd=oldFirstEnd; firstEnd=oldSecondEnd-reserve9248b4.",
+        "With bit8 set and the same area, return without changing arena endpoints or world pointers.",
+        "For sentinel-1 or area bit8 absent, if unsigned firstEnd>secondEnd, assign firstEnd=oldSecondEnd; secondEnd=oldFirstEnd+reserve9248b4. Arithmetic wraps32 bits.",
+        "Unsigned comparisons are authoritative assembly JAE/JBE; Ghidra signed-int pseudocode would differ at addresses with the high bit set."
+      ],
+      "assemblyWitnesses": [
+        "0x55f4b3 JAE",
+        "0x55f4e0 JBE"
+      ]
+    },
+    "0x55f500": {
+      "label": "Read opposite fixed world cached level",
+      "details": [
+        "Input exactly93d858 selects942a04; every other pointer selects93d858. Nonzero opposite+110 returns raw+11c; otherwise returnFFFFFFFF."
+      ]
+    },
+    "0x560630": {
+      "label": "Stage a requested level",
+      "details": [
+        "Invoke external6df940 first. If staging pointer equals current pointer and current area803784 is-1 or area bit8 absent, toggle staging between the fixed worlds.",
+        "Call original55ffb0(staging,global93d848). A return1 sets temporary global93d84c=requested level and invokes external resource loader48ce00(staging).",
+        "Always restore93d84c=-1. If final staging world+110 is nonzero, assign802c68=the current requested level93d848. A return0 skips the loader yet can still update802c68 from a retained populated world.",
+        "Our48ce00 adapter writes only prepared+110. Real resource creation, allocation, success/failure behavior and load progress are not reconstructed."
+      ]
+    }
+  },
+  "worldLayout": {
+    "bytes": "0x51ac",
+    "fixedAddresses": [
+      "0x93d858",
+      "0x942a04"
+    ],
+    "fields": [
+      {
+        "offset": "0x0",
+        "kind": "128-byte directory string slot"
+      },
+      {
+        "offset": "0x80",
+        "kind": "128-byte base path string slot"
+      },
+      {
+        "offset": "0x100",
+        "kind": "arena start address"
+      },
+      {
+        "offset": "0x104",
+        "kind": "arena cursor address"
+      },
+      {
+        "offset": "0x108",
+        "kind": "arena end address"
+      },
+      {
+        "offset": "0x110",
+        "kind": "nonzero cached/populated marker; producer external"
+      },
+      {
+        "offset": "0x11c",
+        "kind": "signed requested/cached level ordinal"
+      },
+      {
+        "offset": "0x120",
+        "kind": "signed area ordinal or-1"
+      },
+      {
+        "offset": "0x124",
+        "kind": "signed area-record byte+86, or-1; semantic name not established here"
+      },
+      {
+        "offset": "0x128",
+        "kind": "catalog level pointer"
+      },
+      {
+        "offset": "0x12c",
+        "kind": "catalog area pointer"
+      },
+      {
+        "offset": "0x130",
+        "kind": "computed save-record pointer, or0"
+      },
+      {
+        "offset": "0x2a98,0x2a9c,0x2aa0,0x2aa4,0x2aa8",
+        "kind": "handle-like DWORDs initialized to-1; full subsystem ownership external"
+      }
+    ]
+  },
+  "validation": {
+    "native": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 1568,
+      "mismatches": 0,
+      "groups": {
+        "Initialize": 1032,
+        "OtherCached": 24,
+        "Stage": 128,
+        "SwapArenas": 384
+      },
+      "fullWorldComparisons": 3136,
+      "fullArenaComparisons": 3136,
+      "examples": [],
+      "adapters": [
+        {
+          "address": "0x566630",
+          "args": 1,
+          "behavior": "Records call; no-op, except48ce00 sets prepared world+110 to loaderLoaded"
+        },
+        {
+          "address": "0x55f6c0",
+          "args": 1,
+          "behavior": "Records call; no-op, except48ce00 sets prepared world+110 to loaderLoaded"
+        },
+        {
+          "address": "0x547ba0",
+          "args": 1,
+          "behavior": "Records call; no-op, except48ce00 sets prepared world+110 to loaderLoaded"
+        },
+        {
+          "address": "0x6df940",
+          "args": 0,
+          "behavior": "Records call; no-op, except48ce00 sets prepared world+110 to loaderLoaded"
+        },
+        {
+          "address": "0x48ce00",
+          "args": 1,
+          "behavior": "Records call; no-op, except48ce00 sets prepared world+110 to loaderLoaded"
+        }
+      ],
+      "method": "Original4 native functions, original path copy/append and memset; adapted external resource/teardown/audio/platform callees. Full20908 byte worlds and256-byte arenas compared against an independent Python contract.",
+      "limits": [
+        "No original resource load/unload executes.55f6c0 and547ba0 side effects are external.48ce00 loader result is a prepared adapter.",
+        "World+110 remains zero after initialization; returned1 means rebuild requested, not load success.",
+        "Signed negative area/save values use padded readable native table backing. No pointer target at computed save slot is dereferenced.",
+        "Paths fit native128-byte string slots; malformed inputs that would overflow are outside this fixture.",
+        "Managed replay remains separate from native Python contract validation."
+      ]
+    },
+    "sourceMap": "reports/world-loading-20261013-source-map.json",
+    "assembly": "reports/world-loading-20261013-assembly.json",
+    "fixture": "reports/world-loading-20261013-vectors.json",
+    "portableCompile": "Standalone fragment and saved-fixture verifier compiled successfully with installed .NET Framework compiler.",
+    "managedReplay": "Pending: generated executable launch denied with EPERM. No managed comparisons claimed."
+  },
+  "limits": [
+    "No original resource load/unload executes.55f6c0 and547ba0 side effects are external.48ce00 loader result is a prepared adapter.",
+    "World+110 remains zero after initialization; returned1 means rebuild requested, not load success.",
+    "Signed negative area/save values use padded readable native table backing. No pointer target at computed save slot is dereferenced.",
+    "Paths fit native128-byte string slots; malformed inputs that would overflow are outside this fixture.",
+    "Managed replay remains separate from native Python contract validation."
+  ],
+  "nextWork": [
+    "Analyze original48ce00 resource-loading state machine and its failure paths.",
+    "Recover55f6c0 resource teardown side effects and allocator/arena ownership.",
+    "Bind prepared catalog records to full levels/areas parsing and live transition producers; validate real loaded worlds.",
+    "Execute saved-native fixtures against the compiled C# once ordinary generated executable execution is available."
+  ]
+}

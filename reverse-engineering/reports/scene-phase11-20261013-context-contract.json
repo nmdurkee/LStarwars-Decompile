@@ -1,0 +1,29 @@
+{
+  "schema": "original-target-cache-contract-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entry": "0x6e2880",
+  "method": "RenderTargetCacheProduction.Apply",
+  "abi": "thiscall backend ECX; raw UInt32 slot/handle stack values; ret8. COM edge takes device/slot/handle stdcall arguments.",
+  "inputs": {
+    "configuration": "0x2974d1c signed32",
+    "flag": "backend+0x638 uint",
+    "count": "backend+0xf8 unsigned16",
+    "device": "backend+4 opaque token",
+    "cache": "backend+0x6f0 + wrapping32(slot*4)"
+  },
+  "steps": [
+    "If flag0 and configuration>=2, maximum slot is ushort count-1; otherwise maximum0. Compare incoming slot as signed32.",
+    "Above-limit request returns raw slot without touching cache or device. Allowed address is computed with wrapping32 scaled arithmetic and must resolve in supplied byte image.",
+    "Same handle returns raw slot without COM dispatch. Otherwise cache handle first, read device token after that write, and return the COM service result.",
+    "HRESULT has no success check or rollback. Callback mutation survives and controls subsequent requests."
+  ],
+  "boundary": [
+    "Original6e2880 executes unchanged. Finite/float conversion is irrelevant: every cache operand is raw integer data.",
+    "Slot limit uses signed comparison; address scaling/addition wraps at32bits. Only calls whose selected cell resolves inside supplied0x800-byte backend image are retained, including negative and wrapped aliases.",
+    "Configuration global2974d1c, backend flag638 and ushort countf8 control max slot. Above-limit and same-handle calls return raw slot with no COM call.",
+    "Handle is cached before COM dispatch. HRESULT is returned without rollback; callback mutation remains visible, and device pointer is read after cache write.",
+    "Backend/COM object lifetime, device implementation, source dimension initialization and authored frame setup remain external.",
+    "Native/Python own-state differential passed; managed execution pending."
+  ],
+  "next": "Actual context refresh6e2510 is depth/offset/extent setup plus recovered viewport reset5ff390 and final viewport device call; its CPU setters remain next closure."
+}

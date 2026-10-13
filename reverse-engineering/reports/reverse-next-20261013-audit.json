@@ -1,0 +1,537 @@
+{
+  "schema": "independent-next-reconstruction-batch-audit-v1",
+  "updated": "2026-10-13T15:20:57.916Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Local next batch: actor command continuation, eight script predicates, portal-door table loading/reset, stateful visibility dispatcher composition.",
+  "conclusion": "No confirmed source/native mismatch in documented bounded domains. All saved replay arrays are complete. Hint registration address comment corrected. Compilation and artifact hash checks pass; one ordinary root actor-next launch was denied EPERM before process creation. No managed comparisons executed.",
+  "findings": [
+    {
+      "id": "hint-registration-indirection",
+      "status": "resolved-documentation-correction",
+      "address": "0x5764c9",
+      "detail": "Native loads registration backing pointer from global0x926c20, then reads [pointer+id*4]. Source comment and detailed contract corrected to [[0x926c20]+id*4]. Typed registration adapter behavior did not change."
+    },
+    {
+      "id": "sock-numeric-index",
+      "status": "confirmed-native-edge-domain",
+      "detail": "Original signed64 truncation low32 matches reviewed Index implementation for fraction truncation, signed boundaries, int32 wrapping, 2^32+512, and signed64 limits."
+    },
+    {
+      "id": "script-helper-null-distinction",
+      "status": "confirmed-replay-and-source",
+      "detail": "ForceFinished wrapper returns0 for null target; separately modeled IsForcePlaybackFinished helper returns true for null target. Helper/predicate distinction retained in final8112 body/helper/fault vectors."
+    },
+    {
+      "id": "hint-numeric-and-list-semantics",
+      "status": "confirmed-native",
+      "detail": "Signed-short IDs compare to full int32 selector; first duplicate wins; completion helper returns full byte. Availability helper accepts ID0 unlike wrapper, blocks active ID0, and accepts quiet NaN via native parity branch."
+    },
+    {
+      "id": "world-empty-token-and-reset",
+      "status": "reviewed-and-native-probed",
+      "detail": "Original quoted-empty token has count0; portable empty-string stop matches loader. Transition reset clears word bits1/2 and preserves other bits and surrounding canaries."
+    },
+    {
+      "id": "scene-integration-and-aliases",
+      "status": "bounded-refinement",
+      "detail": "Camera state changes precede count selection/context reset; grid precedes portal/tree; tree flag OR follows service; restore uses final camera mode. Harness verifies output bit-array aliases. New Prepare API refines existing native address; existing SceneScheduling.Run retains its original restrictions. Camera/tree/restore services remain explicit boundaries."
+    }
+  ],
+  "recordedNativeSuites": {
+    "actor": {
+      "checks": 1233,
+      "retainedVectors": 1233,
+      "authoredUses": 115
+    },
+    "script": {
+      "checks": 8471,
+      "retainedBodyHelperFaultCases": 8112,
+      "retainedInitializers": 139,
+      "retainedShippedUses": 110,
+      "originalShippedComparisons": 110
+    },
+    "world": {
+      "checks": 738,
+      "retainedCases": 738,
+      "authoredLines": 53,
+      "authoredCases": 106,
+      "bytesComparedPerCase": 196612
+    },
+    "scene": {
+      "nativeAssertions": 2153,
+      "retainedCases": 512,
+      "retainedSequenceSteps": 4,
+      "portableReplayCases": 516,
+      "preparedManagedAssertions": 3151,
+      "serviceObservations": 220
+    }
+  },
+  "additionalAudit": {
+    "nativeChecks": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 560,
+      "groups": {
+        "actor-native-byte-provenance": 325,
+        "hint-independent-active-id-zero": 1,
+        "hint-independent-completion-byte": 4,
+        "hint-independent-signed-first-match": 6,
+        "hint-independent-timer-parity": 7,
+        "scene-native-byte-provenance": 61,
+        "script-native-byte-provenance": 16,
+        "sock-independent-signed64-low32": 12,
+        "world-independent-reset-word": 5,
+        "world-native-instruction-provenance": 123
+      },
+      "failures": [],
+      "edgeProbes": [
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 0
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": -0.75
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 63,
+          "want": 63,
+          "context": 63.900001525878906
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 4294967296
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 512,
+          "want": 512,
+          "context": 4294967808
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 4294966784,
+          "want": 4294966784,
+          "context": -4294967808
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 2147483648,
+          "want": 2147483648,
+          "context": 2147483648
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 2147483648,
+          "want": 2147483648,
+          "context": -2147483648
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 9223372036854776000
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": -9223372036854776000
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 1.401298464324817e-45
+        },
+        {
+          "group": "sock-independent-signed64-low32",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": -1.401298464324817e-45
+        },
+        {
+          "group": "hint-independent-signed-first-match",
+          "passed": true,
+          "got": 269488128,
+          "want": 269488128,
+          "context": -2
+        },
+        {
+          "group": "hint-independent-signed-first-match",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 65534
+        },
+        {
+          "group": "hint-independent-signed-first-match",
+          "passed": true,
+          "got": 269488156,
+          "want": 269488156,
+          "context": 0
+        },
+        {
+          "group": "hint-independent-signed-first-match",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": -1
+        },
+        {
+          "group": "hint-independent-signed-first-match",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 65535
+        },
+        {
+          "group": "hint-independent-signed-first-match",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 65536
+        },
+        {
+          "group": "hint-independent-completion-byte",
+          "passed": true,
+          "got": 255,
+          "want": 255,
+          "context": -2
+        },
+        {
+          "group": "hint-independent-completion-byte",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 65534
+        },
+        {
+          "group": "hint-independent-completion-byte",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 0
+        },
+        {
+          "group": "hint-independent-completion-byte",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": -1
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 1,
+          "want": 1,
+          "context": "0x0"
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 1,
+          "want": 1,
+          "context": "0x80000000"
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 1,
+          "want": 1,
+          "context": "0xbf800000"
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": "0x3f800000"
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": "0x7f800000"
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 1,
+          "want": 1,
+          "context": "0xff800000"
+        },
+        {
+          "group": "hint-independent-timer-parity",
+          "passed": true,
+          "got": 1,
+          "want": 1,
+          "context": "0x7fc01234"
+        },
+        {
+          "group": "hint-independent-active-id-zero",
+          "passed": true,
+          "got": 0,
+          "want": 0,
+          "context": 0
+        },
+        {
+          "group": "world-independent-reset-word",
+          "passed": true,
+          "got": [
+            0,
+            0,
+            "ac",
+            "bd"
+          ],
+          "want": [
+            0,
+            0,
+            "ac",
+            "bd"
+          ],
+          "context": 0
+        },
+        {
+          "group": "world-independent-reset-word",
+          "passed": true,
+          "got": [
+            1,
+            1,
+            "ac",
+            "bd"
+          ],
+          "want": [
+            1,
+            1,
+            "ac",
+            "bd"
+          ],
+          "context": 7
+        },
+        {
+          "group": "world-independent-reset-word",
+          "passed": true,
+          "got": [
+            65529,
+            65529,
+            "ac",
+            "bd"
+          ],
+          "want": [
+            65529,
+            65529,
+            "ac",
+            "bd"
+          ],
+          "context": 65535
+        },
+        {
+          "group": "world-independent-reset-word",
+          "passed": true,
+          "got": [
+            32768,
+            32768,
+            "ac",
+            "bd"
+          ],
+          "want": [
+            32768,
+            32768,
+            "ac",
+            "bd"
+          ],
+          "context": 32774
+        },
+        {
+          "group": "world-independent-reset-word",
+          "passed": true,
+          "got": [
+            256,
+            256,
+            "ac",
+            "bd"
+          ],
+          "want": [
+            256,
+            256,
+            "ac",
+            "bd"
+          ],
+          "context": 258
+        }
+      ]
+    },
+    "provenanceChecks": 525,
+    "nativeEdgeChecks": 35,
+    "authoredRawLineChecks": 53,
+    "authoredRawLineFailures": [],
+    "countingPolicy": "560 independent native audit checks are separate from recorded suite totals.53 authored-line provenance reads and368 compiler-input hash checks are separate audit dimensions; authored uses/cases are subsets of suite counts."
+  },
+  "integratedBuildReview": {
+    "coreSources": 181,
+    "harnessSources": 187,
+    "inputHashChecks": 368,
+    "inputHashMismatches": [],
+    "libraryCompiled": true,
+    "unifiedVerifierCompiled": true,
+    "librarySha256IndependentlyRead": "6261e27a537f10bb735fe490321cac8ff5eabbce3689d59395d6932ee79254cb",
+    "libraryMatchesRecordedHash": true,
+    "unifiedVerifierSha256Reported": "78ed5f3ddc1e9f04b0c50bc8a505572d2a21a29e5ba10d7f2076b16ca7780e82",
+    "unifiedVerifierHashVerification": true,
+    "unifiedVerifierHashVerificationEvidence": "reports/source-completion.json; ordinary completion refresh verified the current artifact before the denied launch.",
+    "managedExecution": "Pending. Root attempted one ordinary unified actor-next launch; spawn EPERM before process creation. No comparison process ran, no settings changed, no retry. Audit did not attempt executable launch.",
+    "latestLaunch": {
+      "updated": "2026-10-13T15:19:56.801Z",
+      "program": "reconstructed/bin/RecoveredSourceVerify.exe",
+      "module": "actor-next-20261013",
+      "normalLaunch": true,
+      "reasonForAttempt": "Current executable hash reread succeeded after the final new build; previous failures retained separately.",
+      "result": {
+        "success": false,
+        "error": "spawn EPERM",
+        "origin": "node tool process launch",
+        "managedChecksExecuted": false
+      },
+      "policyChanges": false
+    },
+    "latestLaunchEvidence": "reports/reverse-next-20261013-launch.json"
+  },
+  "mappingReview": {
+    "manifestRows": 658,
+    "distinctNativeAddresses": 648,
+    "coreFiles": 181,
+    "batchRows": 28,
+    "baselineDistinct": 626,
+    "additionalDistinct": 22,
+    "policy": "Shared initializers/helpers and visibility dispatcher refinements add rows but do not add new distinct native entries. Mappings are bounded, not whole-function/full-engine completion claims."
+  },
+  "commandUses": {
+    "additional": 225,
+    "actor": 115,
+    "script": 110,
+    "contractedUsesReported": 18379,
+    "totalCatalogedUses": 20836,
+    "qualification": "Testing authored operands in prepared memory does not establish their live source reachability or real object binding."
+  },
+  "limits": [
+    "Native suites execute unchanged instructions in isolated synthetic memory, not the Windows game.",
+    "Actor character resolver and takeover release are adapters; actual vehicle transfer/state producers/consumers remain external.",
+    "Force name binding composes a previously recovered registry service; no repeated generic registry implementation claimed in this source.",
+    "Portal-door file open/read/close and scene carrier preparation are host boundaries. Original native line/token/integer/static and dynamic name lookup execute in native tests; C# replay composes recovered parsers and lookup.",
+    "Prepared text-mode buffers and numeric token bounds exclude malformed overflow/unterminated backing.",
+    "Visibility camera switch/tree traversal/restore remain stateful service adapters. New actual portal-entry tests use empty required counts; inherited populated traversal has separate evidence.",
+    "Grid valid finite-domain and index-only shared cache limitations remain.",
+    "Compilation, complete fixture retention and native checks do not establish managed or whole-game equivalence."
+  ],
+  "inputHashes": [
+    {
+      "path": "reconstructed/gameplay/actor-next-20261013-Commands.cs",
+      "sha256": "187756bf47fd29be75982c3ea090b6707b75d74d838df8f65286b4c0fc03e9fd"
+    },
+    {
+      "path": "reconstructed/gameplay/script-next-20261013-Conditions.cs",
+      "sha256": "22d7b0ba8fe3408323c7b96f47bdc5efc909637a5b7b6e355c36b14b16f615f0"
+    },
+    {
+      "path": "reconstructed/gameplay/world-next-20261013-portal-doors.cs",
+      "sha256": "ccfa1297f3242ae6d1e0eccfb169b1918e11c020d0ed68a12e516143a66c9413"
+    },
+    {
+      "path": "reconstructed/geometry/scene-next-20261013-VisibilityPreparation.cs",
+      "sha256": "b70ee7af0b022f211bd6fd6c7c7b755d50dd961654c4d5e1b146d79348f9f4ba"
+    },
+    {
+      "path": "tools/actor-next-20261013-portable-verify.cs",
+      "sha256": "5e8227e4273d91d9a167d7245c54ded0449d84f7fbcccd1f3a19e63afce24679"
+    },
+    {
+      "path": "tools/script-next-20261013-portable-verify.cs",
+      "sha256": "f86388bc31daab0d881e8a881bc1d4fa7d1e37d3f5624088a6b632a61c92e308"
+    },
+    {
+      "path": "tools/world-next-20261013-portable-verify.cs",
+      "sha256": "c887a4fdd0c51088b5751088d2276af668e455c97dbb1d610951effc5069a3f5"
+    },
+    {
+      "path": "reconstructed/geometry/harness/scene-next-20261013-VisibilityPreparationHarness.cs",
+      "sha256": "cbb1a2e7782dd6a6d258f6daa1bd66b2b846853464b87be4561b2348a28c46bc"
+    },
+    {
+      "path": "reports/actor-next-20261013-native-tests.json",
+      "sha256": "eea61f16e8b0c1d58620ecdb154d6555967b6206d073b9debaf5ae37384c7694"
+    },
+    {
+      "path": "reports/actor-next-20261013-fixtures.json",
+      "sha256": "04ac19f527cfea03eb2c60bd18cac89167ff7cc1ba417ea3d0806e9c69ac753e"
+    },
+    {
+      "path": "reports/script-next-20261013-tests.json",
+      "sha256": "787de81cda368b1330dbf16f34ae6ff3c3794820c6b9c4133d7e168c860f5d49"
+    },
+    {
+      "path": "reports/script-next-20261013-native-fixtures.json",
+      "sha256": "5be50ef85bf44e9b73cbfd6fea020ad9859a4d8c190c0be38b2323d35f2c8931"
+    },
+    {
+      "path": "reports/world-next-20261013-native-tests.json",
+      "sha256": "d52d4821f8cbba3bc67274309ee8feca5de4557d0e30291acb9b1f2d3b8c0926"
+    },
+    {
+      "path": "reports/world-next-20261013-vectors.json",
+      "sha256": "fdfe820f5c43c7ac8dcad950cbe3675dbaae213e2347efab214d10a50c3a6ae4"
+    },
+    {
+      "path": "reports/world-next-20261013-authored-lines.json",
+      "sha256": "20fb05ea7a9237439a0bea46595a6135e90ee38b900ce13f213a0acd408bb9e5"
+    },
+    {
+      "path": "reports/scene-next-20261013-native-validation.json",
+      "sha256": "aecb660cbeb440aa0f34120c8f05c360106fb7033922f03a6aa592657d594288"
+    },
+    {
+      "path": "reports/scene-next-20261013-native-fixtures.json.gz",
+      "sha256": "b5d14d9eddd8d3b71120502aa77282f4ab3419a650e9605a2f3f7edb4b60be29"
+    },
+    {
+      "path": "reports/reconstructed-build.json",
+      "sha256": "f58cc8fbc4719e28dc77b928c028fcfebe74f079b64de94c490fbd25855513fb"
+    },
+    {
+      "path": "reports/source-completion.json",
+      "sha256": "f3cb9accd6a9fe4a6fa6a6afe94d47731d7ec2eb5056bf1073272f7c4e5377a3"
+    },
+    {
+      "path": "reconstructed/source-manifest.json",
+      "sha256": "410c57849aa68c702cde83f71b45c04814a9ab4ea1c0d12c5a23b78509c7b8e2"
+    },
+    {
+      "path": "reports/reverse-next-20261013-launch.json",
+      "sha256": "cbed1c633320f8760a8ebcca169e5c330ef89961f97e857f131bd1ec0ccb124d"
+    }
+  ],
+  "reproduction": {
+    "pythonExecutable": "C:/Program Files/Microsoft SDKs/Azure/CLI2/python.exe",
+    "pythonCode": "import sys,importlib.util,json,struct,math\nfrom pathlib import Path\nbase=Path(r'C:/Users/NathanDurkee/OneDrive - SpectrumVoIP/Desktop/SW/reverse-engineering')\nspec=importlib.util.spec_from_file_location('audit_native',base/'tools/native-x86.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);n=m.NativeX86()\nfrom capstone import Cs,CS_ARCH_X86,CS_MODE_32\nmd=Cs(CS_ARCH_X86,CS_MODE_32);checks=[]\ndef check(group,got,want,context):checks.append(dict(group=group,passed=got==want,got=got,want=want,context=context))\nfor va,rows in json.loads((base/'reports/actor-next-20261013-assembly.json').read_text()).items():\n for row in rows:check('actor-native-byte-provenance',n.read(int(row['address'],16),len(row['bytes'])//2).hex(),row['bytes'],row['address'])\nfor row in json.loads((base/'reports/script-next-20261013-assembly.json').read_text()):\n check('script-native-byte-provenance',n.read(int(row['entry'],16),row['size']).hex(),row['bytes'],row['entry'])\nfor row in json.loads((base/'reports/scene-next-20261013-assembly.json').read_text())['instructions']:\n check('scene-native-byte-provenance',n.read(int(row['address'],16),len(row['bytes'])//2).hex(),row['bytes'],row['address'])\nfor p in json.loads((base/'reports/world-next-20261013-assembly.json').read_text())['procedures']:\n for row in p['instructions']:\n  ins=next(md.disasm(n.read(int(row['address'],16),15),int(row['address'],16)));check('world-native-instruction-provenance',[ins.mnemonic,ins.op_str],[row['mnemonic'],row['operands']],row['address'])\n# Direct low32 conversion: original signed64 truncation receives an x87 float32 load.\nV=n.DATA;CODE=n.DATA+0x100\nn.write(CODE,b'\\xd9\\x05'+struct.pack('<I',V)+b'\\xe8'+struct.pack('<i',0x6e6b90-(CODE+11))+b'\\xc3')\nfor v in [0.,-.75,63.9,4294967296.,4294967808.,-4294967808.,2147483648.,-2147483648.,9223372036854775808.,-9223372036854775808.,1.401298464324817e-45,-1.401298464324817e-45]:\n v=struct.unpack('<f',struct.pack('<f',v))[0];n.pack('<f',V,v);got=n.call(CODE);want=(int(v)&0xffffffff)if -2**63<=v<2**63 else 0;check('sock-independent-signed64-low32',got,want,v)\n# Hint record IDs are signed shorts compared to full signed32 selectors.\nH=n.DATA+0x1000;REG=n.DATA+0x2000;ACTIVE=n.DATA+0x3000\nn.pack('<I',0x9514b4,H);n.pack('<I',0x9514b8,0);n.pack('<I',0x926c20,REG);n.write(H,bytes(4*0x1c));n.pack('<h',H,-2);n.pack('<B',H+0x14,255);n.pack('<h',H+0x1c,0);n.pack('<h',H+2*0x1c,0);n.pack('<B',H+2*0x1c+0x14,1);n.pack('<h',H+3*0x1c,-1)\nfor selector,want in [(-2,H),(65534,0),(0,H+0x1c),(-1,0),(65535,0),(65536,0)]:check('hint-independent-signed-first-match',n.call(0x576480,[selector]),want,selector)\nfor selector,want in [(-2,255),(65534,0),(0,0),(-1,0)]:check('hint-independent-completion-byte',n.call(0x576500,[selector]),want,selector)\nn.pack('<I',REG,1)\nfor bits,want in [(0,1),(0x80000000,1),(0xbf800000,1),(0x3f800000,0),(0x7f800000,0),(0xff800000,1),(0x7fc01234,1)]:\n n.pack('<I',H+0x1c+0x18,bits);got=n.call(0x5764b0,[0]);check('hint-independent-timer-parity',got,want,hex(bits))\nn.pack('<h',ACTIVE,0);n.pack('<I',0x9514b8,ACTIVE);check('hint-independent-active-id-zero',n.call(0x5764b0,[0]),0,0)\n# Full-word reset preserves upper bits/canaries while clearing transition bits1/2.\nW=n.DATA+0x5000;T=n.DATA+0xb000;n.pack('<II',W+0x5048,T,2)\nfor flags in [0,7,0xffff,0x8006,0x0102]:\n n.write(T-1,b'\\xac'+bytes(32)+b'\\xbd');n.pack('<H',T+12,flags);n.pack('<H',T+28,flags);n.call(0x55fbb0,[W]);check('world-independent-reset-word',list(n.unpack('<H',T+12))+list(n.unpack('<H',T+28))+[n.read(T-1,1).hex(),n.read(T+32,1).hex()],[flags&0xfff9,flags&0xfff9,'ac','bd'],flags)\nprint(json.dumps(dict(binarySha256=n.sha256,checks=len(checks),groups={g:sum(c['group']==g for c in checks)for g in sorted({c['group']for c in checks})},failures=[c for c in checks if not c['passed']],edgeProbes=[c for c in checks if 'independent' in c['group']]),allow_nan=False))\n"
+  },
+  "externalWrites": "Audit wrote only its local JSON/text artifacts; no commits, pushes or GitHub writes. Root attempted one ordinary actor-next verification launch and received EPERM before process creation; audit made no launch attempt."
+}

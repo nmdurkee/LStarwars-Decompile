@@ -1,0 +1,9 @@
+Published spline catalog consumers,2026-10-13
+
+580 producer/consumer fixturecases,zero mismatches; all266,284 prepared bytes compared along with4 return values, transport trace and file counters.360 cases feed complete authored bytes from all3 SPL files through original5b1ee0 before original consumers;220 generated bounded ASCII cases include empty/duplicate names, failed publication, null scene/query, signed scene count and output capacities. Source+harness compile with204 cores; retained portable replay expects2,320 assertions. No EXE retry/workaround.
+
+5b2110 searches published raw95e41c/95e420 catalog first, then actual5d0690 scene fallback (504 original calls).5b21f0 and5b22a0 append matching published records before scene records, preserve duplicates, stop at signed capacity and leave output tail untouched. All outputs are actual record addresses. Prefix uses4f8b80(pattern,name,-1), so emptypattern matches only emptyname. Substring uses4f8a70(name,pattern): emptyhaystack nevermatches; nonemptyhaystack matches emptyneedle. Casefold validated on ASCII only.
+
+Source reuses root RandomSplineSelection.Find/FindPrefix/Compare through readable raw-memory scene bridge; this is a composition of recovered behavior and does not claim native5d0740 calls inside5b21f0. Native prefix body directly calls4f8b80. Existing helpers receive no duplicate entry credit. Native substring return pointer is only projected as nonzero predicate here; full Latin1/pointer-valued semantics remain outside. Actual parser/readers/consumers/comparators execute unchanged. Only phase7 transport4fa3f0/4fb550/4f99e0 is adapted.
+
+No operation attaches the published catalog into scene+30/+34. Consumers provide precedence over the existing scene table. Direct449f70 scene selection therefore remains distinct; no manufactured producer→scene attachment claim. Next loader gaps:571a50/PARproducer,59a620 pooled state and5598e0 dispatch-owned runtime allocation.

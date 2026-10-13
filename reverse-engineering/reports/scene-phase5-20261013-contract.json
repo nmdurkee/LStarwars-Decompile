@@ -1,0 +1,116 @@
+{
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "stackResidue": {
+      "writerCounts": {
+        "external seed": 712,
+        "0x6e953b": 1372
+      },
+      "wordCounts": {
+        "0x0": 236,
+        "0x3f800000": 228,
+        "0x6e9540": 1372,
+        "0x42c80000": 188,
+        "0xc2c80000": 60
+      },
+      "frameAddress": "0x1000de0c",
+      "note": "NativeX86 fixed entry ESP only; portable uses actual percall word. OriginalCRT sqrt call0x6e953b writes returnaddress0x6e9540 at this deeper caller lifetime on routes that switch camera before traversal; other routes retain external prior seed."
+    },
+    "schema": "original-normal-camera-visibility-composition-v1",
+    "passed": true,
+    "checks": 7844,
+    "counts": {
+      "inverseCases": 768,
+      "projectionCases": 512,
+      "clipCases": 1024,
+      "frustumCases": 512,
+      "cameraCases": 384,
+      "dispatchCases": 192,
+      "retainedPortableReplayCases": 3392,
+      "nestedDispatcherPredicateCalls": 2084
+    },
+    "errors": [],
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "sineTable": {
+      "file": "references/native-animation-sine-table.f32",
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    },
+    "angleScale": 10430.3779296875,
+    "adapters": {
+      "0x715718": "Imported D3DXMatrixMultiply finite scalar adapter: sequential binary64 dot sum spilled tofloat32; original5c1240/5c0500 wrappers run unchanged. Platform CPU policy unresolved.",
+      "0x6e56a0": "Device SetTransform(index,matrix) recorded; GPU/backend operation not performed."
+    },
+    "unchangedNative": [
+      "0x5c0940",
+      "0x604a80",
+      "0x5ed300",
+      "0x5ed420",
+      "0x5d5500",
+      "0x5ed540",
+      "0x603cc0",
+      "0x5d6900",
+      "0x5f3c80",
+      "0x5ff840",
+      "0x5fcc80",
+      "0x5d86f0",
+      "0x5d8950",
+      "0x5d8fb0",
+      "0x5d8e20",
+      "0x5d8b60"
+    ],
+    "limits": [
+      "Normal camera conversion973944=0, viewportdirty95e674=0, Apply param2=0. Perspective and orthographic973958 branches; culling973950=0/nonzero.",
+      "Finite30-word camera/metadata, positive near/FOV/nonzeroaspect and valid finite denominators, int32-fitting angle conversion. No reflected/alternate camera matrix path or projection reuse claimed.",
+      "Camera light/render cache native helpers execute unchanged, but their renderer global byte outputs are excluded from portable numeric camera projection and represented by explicit host callbacks.",
+      "Original device transform service is recorded only; imported D3DX policy remains an explicit finite scalar adapter.",
+      "Populated synthetic resolved trees and exact finite fourth-radius word perpredicate. Authored loading and external stack history remain unresolved.",
+      "Complete visibility preparation route for grid/portal disabled; no complete frame submission/GPU/wholegame equivalence.",
+      "Native/Python own-state contract verified; compiled C# replay remains a separate validation step."
+    ],
+    "fixtureFile": "scene-phase5-20261013-native-fixtures.json.gz"
+  },
+  "source": {
+    "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+    "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+  },
+  "harness": {
+    "path": "reconstructed/geometry/harness/scene-phase5-20261013-CameraProductionHarness.cs",
+    "sha256": "2474ca19b69925e9089e1bbca0876971a860c880168afd833b03b5b7b13329a9",
+    "entrypoint": "TreeVisibilityPhase5Harness",
+    "preparedAssertions": 9771,
+    "compiled": true,
+    "executed": false
+  },
+  "fixture": {
+    "path": "reports/scene-phase5-20261013-native-fixtures.json.gz",
+    "sha256": "520e21e3b8d8e11bdbea12665f5b31013628174821f6af4c4df25f5015285c00"
+  },
+  "nativeTool": {
+    "path": "tools/scene-phase5-20261013-native.py",
+    "sha256": "cb238c1a10102cbda563510105d5178e830b3ab472c43b34d165dd00f96bbae1"
+  },
+  "contracts": [
+    "Camera block is30rawfloatwords(120bytes). Tree depth direction andposition are camera words8..10 and12..14, not independently normalized derived vectors.",
+    "Normalview transposes camera upper3x3, computes negative translation using originalx87 sum/store ordering, then scales all fourrows ofXYZcolumns bycamera words27..29.",
+    "ProjectionFOVhalf spillsfloat32 before conversion through original angle scale10430.3779296875. Sine/cosine comes from hash-bound original32768-float table. Projection/culling arithmetic preserves originalfloat andextended boundaries.",
+    "Symmetric andasymmetric clipping use optional camera near/faroverrides atwords24/25, separate globalXYscales, farbias subtractionspill andoriginal x87 order. Onlyfreshparam2=0branches claimed.",
+    "Ordinaryfrustum336-byte output is distinct from treeplane globals; template anddepthsign conventions are retained.",
+    "Nonzero camera switches alwayscopy savedcamera and applybase, even same-mode requests. Mode0requests onlyassignmode; basescopy occurs onlywhen leavingoldmode0 foranothermode.",
+    "Restore invokes actual normalnumeric producers then copiesruntimecliptransform and recomposesprimary/secondary; devicecalls receiveview(index2) thenprojection(index3).",
+    "Real0x5f3c80 resetscontextaftercamera switch, traversespopulated tree intoworkspaceclipbits andsetsflag1, then restores savedcamera onlywhen currentmode==1. Preparedtreeplanes survive restoredordinarycamera state.",
+    "CameraApply does not invent an invalidation of tree-localplane initialization flag; TreePlaneRuntime preserves its actual suppliedcacheflag.",
+    "Light/rendercache native helpers executeunchanged inoracle; theirrenderer-global byte outputs remainoutsideportable numeric scope, represented byexplicit callbacks."
+  ],
+  "templateEvidence": "reports/scene-phase5-20261013-template-memory.json",
+  "stackEvidence": "reports/scene-phase5-20261013-stack-lifetime.json",
+  "managedStatus": "Isolated current-core plus newsource library and harness compilation passed. No generated managed executable was launched; execution remains pending under inherited restriction.",
+  "limits": [
+    "Normal camera conversion973944=0, viewportdirty95e674=0, Apply param2=0. Perspective and orthographic973958 branches; culling973950=0/nonzero.",
+    "Finite30-word camera/metadata, positive near/FOV/nonzeroaspect and valid finite denominators, int32-fitting angle conversion. No reflected/alternate camera matrix path or projection reuse claimed.",
+    "Camera light/render cache native helpers execute unchanged, but their renderer global byte outputs are excluded from portable numeric camera projection and represented by explicit host callbacks.",
+    "Original device transform service is recorded only; imported D3DX policy remains an explicit finite scalar adapter.",
+    "Populated synthetic resolved trees and exact finite fourth-radius word perpredicate. Authored loading and external stack history remain unresolved.",
+    "Complete visibility preparation route for grid/portal disabled; no complete frame submission/GPU/wholegame equivalence.",
+    "Native/Python own-state contract verified; compiled C# replay remains a separate validation step."
+  ]
+}

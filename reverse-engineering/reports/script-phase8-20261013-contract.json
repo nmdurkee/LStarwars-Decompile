@@ -1,0 +1,44 @@
+{
+  "module": "gameplay",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original 0x4876a0 nonzero takeover mode with prepared memory and explicit script/animation/camera service boundaries; mode0 preserved separately in PlayerTransfer.cs.",
+  "functions": [
+    {
+      "address": "0x4876a0",
+      "method": "TakeoverTransfer.Transfer",
+      "bodyBytes": 1530,
+      "gate": "Global951c5c nonzero returns0 before source/target dereferences. Nonzero positive/negative mode values all enter takeover path; source API selects this path explicitly.",
+      "snapshot": "Capture source DA8 via stored-F32, inputCA4 both, healthbytes both (unused takeover but still loaded), flags1fc snapshots, and both0xcc-byte packets before resets/callbacks.",
+      "resets": "Original4a4ca0(source+6c4) then target: zero actorD80,D84,D14,D90,D18 and writeD88=3e4ccccd. Swap input/flag80,DA8,7fc,personal280,DEC,aux800 pointers. Original466820 clears0x630 bytes at each swapped nullable aux pointer.",
+      "common": "Swap flags1f8 mask146fd in exact ordered reads/writes; alias source==target preserved. SwapEA8 and float1000; Rebind(source). Write global93d7f0 plus SIGNED personal index*4, only-1 omitted; prepared negative indices are real native backing. TargetEF0&ffe7ffff,EE4/EE8 zero,7c0=1. Clearpair87a7c8/cc/d0/d4 ifsource matches and target differs.",
+      "scriptOrder": "ChangeTakenOverState(target packet,\"JustBeenTakenOver\") and successful RunScript BEFORE packet exchange. Exchange ORIGINAL snapshots, restore membership378 from each own snapshot. Rebind(source) second time, thenexchange flags100 from originals. Callback packet mutations are overwritten by snapshot restore; unrelated mutations survive.",
+      "takeover": "Call4a25b0(source,0),58ff10(source,0),59cb00(source),55e4e0(source+6c4); optionally58d8e0(source) iff EEC bit10 clear AFTER earlier services. Set mutualCD0,EA4zeros,sourceCD4=target,context59. Call487270 with ECX=source.currentCD0,EDI=source, no stackargs. DD0=1; source748/74c/750 rawposition snapshot AFTER animation service. Optional camera .5.",
+      "velocity": "If target definition class float28 >0, target velocity6c -= source definition class float2c * binary64 constant0.5, usingx87 intermediate precision andstoredF32. QuietNaN classfloat28 skips. Returns1.",
+      "faults": "Original null source/target faults retained with complete prepared state; globalblocked suppresses faults. Source host throws on unmapped prepared reads/writes. No invented null actor guards."
+    }
+  ],
+  "serviceBoundaries": {
+    "0x415000": "Script rebind",
+    "0x52c790": "Named script state producer",
+    "0x52cc90": "Immediate script scheduler",
+    "0x4a25b0": "Action reset",
+    "0x58ff10": "Actor state reset",
+    "0x59cb00": "Actor stop",
+    "0x55e4e0": "Animation reset",
+    "0x58d8e0": "Actor prepare",
+    "0x487270": "Takeover animation selector customECX/EDI ABI",
+    "0x54a3e0": "Camera transition"
+  },
+  "interoperation": "16 actual original4882d0 release cases invoke original4876a0 mode1 (not replaced), plus originalreset/auxclear/identityRET/seat helper. Portable harness routes TakeoverReleaseServices.Transfer to TakeoverTransfer.Transfer with shared prepared memory and service recorder.",
+  "nativeChecks": 3700,
+  "nativeMismatches": 0,
+  "transferCases": 913,
+  "interopCases": 16,
+  "portableHarness": "tools/script-phase8-20261013-portable-verify.cs",
+  "limits": [
+    "No new native distinct-address or authored-command coverage:4876a0 already mapped for mode0, this batch expands semantic scope.",
+    "Native nonzero mode1 body + reset/auxclear + release interoperation compared; script/animation/camera remain recorded services, not recovered here.",
+    "Float-moved DA8/DEC/1000 fields and arithmetic operands/results finite F32. Prepared signed-index player backing [-128..127], not live table range proof.",
+    "Source and portable harness compiled against root integrated phase7 runtime. Managed execution not attempted because known environment EPERM."
+  ]
+}

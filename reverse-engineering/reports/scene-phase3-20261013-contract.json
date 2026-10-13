@@ -1,0 +1,104 @@
+{
+  "schema": "prepared-tree-visibility-contract-v1",
+  "mappings": [
+    {
+      "address": "0x5d8b60",
+      "method": "TreeVisibility.Classify",
+      "coverage": "finite scalar predicate with prepared outer/inner/depth planes and exact explicit native fourth-radius residue word",
+      "sourceFile": "geometry/scene-phase3-20261013-TreeVisibility.cs",
+      "evidence": "reports/scene-phase3-20261013-native-validation.json",
+      "limitations": [
+        "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+        "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+        "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+        "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+        "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+        "Managed harness compiled but not executed under the inherited executable-launch restriction."
+      ]
+    },
+    {
+      "address": "0x5d8e20",
+      "method": "TreeVisibility.TraverseRoot",
+      "coverage": "actual bounded LIFO tree root walk and packedtwo-bit OR output;root index customECX ABI;perpredicate finite stack residue supplied",
+      "sourceFile": "geometry/scene-phase3-20261013-TreeVisibility.cs",
+      "evidence": "reports/scene-phase3-20261013-native-validation.json",
+      "limitations": [
+        "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+        "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+        "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+        "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+        "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+        "Managed harness compiled but not executed under the inherited executable-launch restriction."
+      ]
+    },
+    {
+      "address": "0x5d8fb0",
+      "method": "TreeVisibility.ProducePrepared",
+      "coverage": "tree context flag gate/current-context/initflag and descendingroot composition with supplied prepared plane state; numeric plane producers outside scope",
+      "sourceFile": "geometry/scene-phase3-20261013-TreeVisibility.cs",
+      "evidence": "reports/scene-phase3-20261013-native-validation.json",
+      "limitations": [
+        "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+        "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+        "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+        "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+        "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+        "Managed harness compiled but not executed under the inherited executable-launch restriction."
+      ]
+    }
+  ],
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "fields": {
+    "contextTree": "+0x14",
+    "contextPackedBitsWorkspace": "+0x20",
+    "contextFlags": "+0x28 bit0x10",
+    "treeMemberIds": "+0x08 u16[]",
+    "treeItemBounds": "+0x0c 32-byte center/extent[] indexedbylistposition",
+    "treeNodes": "+0x14 12-byte[]",
+    "treeNodeBounds": "+0x18 32-byte center/extent[]",
+    "treeRootCount": "+0x1c u16",
+    "treeRootNodeIndices": "+0x20 u16[]",
+    "treeRootFarLimits": "+0x24 float32[]",
+    "nodeFields": [
+      "+0 boundIndex u16",
+      "+2 full-memberCount u16",
+      "+4 childCount u16",
+      "+6 firstChildIndex u16",
+      "+8 leaf-memberCount u16",
+      "+10 firstMemberPosition u16"
+    ]
+  },
+  "contracts": [
+    "Produce toggles only contextFlags bit16;inactive preserves packedoutput and globalcurrentcontext/initialization. Active roots enumerate in descendingrootIndex order.",
+    "Root far0 substitutes globalcameraFar. Root index arrives inECX ratherthanstack parameter. Each root owns a100-entry nativepending-node stack.",
+    "Children pushascending nodeindices,so LIFO visits themdescending. Fullyaccepted node uses FullMemberCount andOR1 withoutdescendant/itemtests. Partialnode pusheschildren then checks its ownleafitems first. Rejectednode skipschildren/items.",
+    "Node item bounds use firstMemberPosition in the parallelboundarray,not the memberID. Each result0/1/2 ORs at memberID>>2,shift2*(memberID&3); no clearing,so previous1 plus2 can become3.",
+    "Depth distance stores dotXYZ beforeadding planeconstant,thenstoresfar/near offsets. Sidecenterprojects4 components; sideextenthelper writes3 components andretains fourth stack residue. Individual flagchangesnear/far fullacceptance andinnerplane refinement."
+  ],
+  "stackDependencyEvidence": "reports/scene-phase3-20261013-stack-dependency.json",
+  "typedComposition": "TreeVisibility.PreparedService returns a real tree consumer for SceneVisibilityPreparation.Services.TraverseTree;host resolves workspace token to packedbytes and supplies preparedplanes/residue.",
+  "counts": {
+    "predicateCases": 2808,
+    "treeCases": 168,
+    "retainedPortableReplayCases": 2976,
+    "originalPredicateEntries": 4228,
+    "externalMatrixAdapterCalls": 586,
+    "explicitFiniteStackSeedCases": 120,
+    "distinctRetainedStackWords": 6
+  },
+  "nativeAssertions": 3928,
+  "preparedManagedAssertions": 5068,
+  "limits": [
+    "Prepared original-generated planes supplied;0x5d86f0/0x5d8950 numeric plane production is not portable-reconstructed in this batch.",
+    "Exact finite preexisting stack word must be supplied perpredicate:originalXYZ radius helper leaves fourthradius uninitialized. No intended4D radius or implicitzero policy substituted.",
+    "Synthetic valid u16 tree/node/member arrays;nonnegative finite extent;acyclic traversal,pendingstack<=100 andportableexcessivewalkguard100000 visits. Unsafe overflow/indices and nonfinite stack residues excluded.",
+    "Root walkerORs two-bit clip output in context+0x20 workspace,retaining previousbits. It does not generate instance-tree bits at context+0x24.",
+    "Original matrix preparation used an explicit scalar D3DXadapter only; no original process/GPU/camera/backend behavior asserted.",
+    "Managed harness compiled but not executed under the inherited executable-launch restriction."
+  ],
+  "nextGaps": [
+    "Recover actual finite0x5d86f0/0x5d8950 plane producer to remove preparedplane input.",
+    "Trace representative caller stack lifetimes and authored tree loader before asserting liveworld treebehavior.",
+    "Compose packedtree results into populated scene submission andclipcommand controls;existing SceneScheduling.Run restrictions remain."
+  ]
+}

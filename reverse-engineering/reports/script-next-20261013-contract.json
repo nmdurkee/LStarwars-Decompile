@@ -1,0 +1,244 @@
+{
+  "title": "Threat, Force, category, context and hint SCP predicates",
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Eight bounded original PC script predicates, named/numeric initializers and native helper composition. No whole-game source or runtime reconstruction.",
+  "source": "reconstructed/gameplay/script-next-20261013-Conditions.cs",
+  "nativeTests": "reports/script-next-20261013-tests.json",
+  "nativeFixtures": "reports/script-next-20261013-native-fixtures.json",
+  "assembly": "reports/script-next-20261013-assembly.json",
+  "conditions": [
+    {
+      "name": "OpponentIsAThreat",
+      "kind": "scp-condition",
+      "function": "0x440df0",
+      "initializer": null,
+      "sourceUses": 32,
+      "scope": "Null script creature returns0; otherwise returns flags at creature+0x1e8 bit0x800 as float0/1. Does not compute opponent threat.",
+      "methods": [
+        "NextScriptConditions.OpponentIsAThreat"
+      ],
+      "offsets": {
+        "scriptCreatureFlags": "0x1e8",
+        "mask": "0x800"
+      }
+    },
+    {
+      "name": "ForceBeingUsed",
+      "kind": "scp-condition",
+      "function": "0x441300",
+      "initializer": "0x440ff0",
+      "sourceUses": 24,
+      "scope": "Named registry initializer returns target first pointer. Predicate returns0 on null target; otherwise1 if target+0xa0 bit0x200000 or target+0x3c pointer nonzero. User-link presence is not a resolved actor or player-use test.",
+      "methods": [
+        "NextScriptConditions.BindForceTarget",
+        "NextScriptConditions.ForceBeingUsed"
+      ],
+      "offsets": {
+        "worldRegistry": "0x2ac8",
+        "forceTypeGlobal": "0x7f8cc4",
+        "registryTarget": "0",
+        "targetFlags": "0xa0",
+        "targetUserLink": "0x3c"
+      }
+    },
+    {
+      "name": "ForceFinished",
+      "kind": "scp-condition",
+      "function": "0x4415c0",
+      "initializer": "0x441570",
+      "sourceUses": 2,
+      "scope": "Null target returns0. Calls original helper0x467860: bound target with null group+0x28 returns1; with group present, state+0xc must equal0 when target flags+0xa0 bit0x40, else2. This omits ForceComplete flags/timer gates. Direct helper0x467860 returns1 for a null target; the SCP wrapper adds its own null=>0 gate.",
+      "methods": [
+        "NextScriptConditions.BindForceTarget",
+        "NextScriptConditions.ForceFinished",
+        "NextScriptConditions.IsForcePlaybackFinished"
+      ],
+      "helpers": [
+        "0x467860"
+      ],
+      "offsets": {
+        "targetFlags": "0xa0",
+        "groupPointer": "0x28",
+        "groupState": "0xc",
+        "reverseCompletionBit": "0x40"
+      }
+    },
+    {
+      "name": "PlayerCategoryIs",
+      "kind": "scp-condition",
+      "function": "0x440c70",
+      "initializer": "0x440c00",
+      "sourceUses": 14,
+      "scope": "Initializer requires system, operand and category table; first case-insensitive category name sets index or-1. Predicate uses primary player global0x93d810 only, rejects-1 or absent player, then calls original0x55bc80 capability masks. Definition-mask bit8 excludes actor class flag0x8000. Full prepared definition/class backing is required for fields read.",
+      "methods": [
+        "NextScriptConditions.BindPlayerCategory",
+        "NextScriptConditions.PlayerCategoryIs"
+      ],
+      "helpers": [
+        "0x55bc20",
+        "0x55bc80"
+      ],
+      "offsets": {
+        "primaryPlayerGlobal": "0x93d810",
+        "categoryTable": "0x93b280",
+        "categoryCount": "0x93b26c",
+        "categoryStride": "0xc",
+        "definitionMask": "row+4",
+        "classMask": "row+8",
+        "actorDefinition": "0x54",
+        "definitionFlags": "0x4",
+        "definitionClass": "0x24",
+        "classFlags": "0x90",
+        "classExclusionFlags": "0x94"
+      }
+    },
+    {
+      "name": "InContext",
+      "kind": "scp-condition",
+      "function": "0x442180",
+      "initializer": "0x442060",
+      "sourceUses": 16,
+      "scope": "Context name initializer recognizes eleven names; unmatched/null operands select100. Predicate guards null creature,self reference and referenced object, then compares sign-extended object context byte+0x7b5 to full initialized int.",
+      "methods": [
+        "NextScriptConditions.BindContext",
+        "NextScriptConditions.InContext"
+      ],
+      "offsets": {
+        "selfReference": "creature+0xd0",
+        "referenceObject": "reference+0",
+        "objectContext": "0x7b5"
+      }
+    },
+    {
+      "name": "OpponentContext",
+      "kind": "scp-condition",
+      "function": "0x4421b0",
+      "initializer": "0x442060",
+      "sourceUses": 2,
+      "scope": "Same initializer as InContext. Predicate guards null creature and opponent reference+0xe4; it omits referenced object null guard. Nonnull reference/null object faults native; portable source throws. Context comparison sign-extends byte+0x7b5 before comparing full int.",
+      "methods": [
+        "NextScriptConditions.BindContext",
+        "NextScriptConditions.OpponentContext"
+      ],
+      "offsets": {
+        "opponentReference": "creature+0xe4",
+        "referenceObject": "reference+0",
+        "objectContext": "0x7b5"
+      }
+    },
+    {
+      "name": "HintAvailable",
+      "kind": "scp-condition",
+      "function": "0x442a40",
+      "initializer": "0x442a20",
+      "sourceUses": 12,
+      "scope": "Decimal-prefix int32-wrapping initializer, null=>0. Wrapper rejects initialized0. Helper rejects active or negative ID or unregistered hint, scans signed-short sentinel list for first ID, requires completion byte0 and timer<=0 OR quiet-NaN unordered comparison. Hint updates and registration population are external.",
+      "methods": [
+        "NextScriptConditions.BindHint",
+        "NextScriptConditions.HintAvailable",
+        "NextScriptConditions.IsHintAvailable",
+        "NextScriptConditions.FindHint"
+      ],
+      "helpers": [
+        "0x5764b0",
+        "0x576480"
+      ],
+      "offsets": {
+        "hintListGlobal": "0x9514b4",
+        "activeHintGlobal": "0x9514b8",
+        "registrationTable": "0x926c20 holds backing pointer; dword read at [backing+id*4]",
+        "recordStride": "0x1c",
+        "recordId": "0 signed int16; -1 terminates",
+        "recordCompletion": "0x14 uint8",
+        "recordTimer": "0x18 float32"
+      }
+    },
+    {
+      "name": "HintComplete",
+      "kind": "scp-condition",
+      "function": "0x442a60",
+      "initializer": "0x442a20",
+      "sourceUses": 8,
+      "scope": "Same numeric initializer as HintAvailable; wrapper rejects initialized0 then converts original helper0x576500 completion byte presence to float0/1. Helper scans signed-short sentinel list, first matching ID, returns full uint8+0x14. Helper ID0 behavior is not wrapper behavior.",
+      "methods": [
+        "NextScriptConditions.BindHint",
+        "NextScriptConditions.HintComplete",
+        "NextScriptConditions.ReadHintComplete",
+        "NextScriptConditions.FindHint"
+      ],
+      "helpers": [
+        "0x576500"
+      ],
+      "offsets": {
+        "recordStride": "0x1c",
+        "recordId": "0 signed int16; -1 terminates",
+        "recordCompletion": "0x14 uint8"
+      }
+    }
+  ],
+  "contextNameValues": {
+    "DEACTIVATED": 23,
+    "FORCEDBACK": 34,
+    "GRAB": 56,
+    "EAT": 63,
+    "FORCEPUSHED": 28,
+    "FORCEPUSH": 27,
+    "GETIN": 60,
+    "BALLOONING": 93,
+    "STUNNED": 90,
+    "FLOAT": 75,
+    "GRAPPLE": 70,
+    "unknownOrNull": 100
+  },
+  "assemblyCorrections": [
+    {
+      "address": "0x5764e8",
+      "detail": "fldz; fcomp [eax+0x18]; fnstsw ax; test ah,5; jnp false at0x5764f2. Quiet NaN sets C0/C2 so parity remains even and falls through available1. This differs from ordinary C#/pseudocode timer<=0; source explicitly accepts Single.IsNaN(timer).",
+      "verifiedTimerBits": [
+        "0x7fc00000",
+        "0xffc00000"
+      ]
+    },
+    {
+      "address": "0x57652e",
+      "detail": "movzx eax,byte ptr[ecx+0x14] recovers full unsigned completion byte. Ghidra short-list notation/char return must not truncate or sign-extend."
+    },
+    {
+      "address": "0x4421c4",
+      "detail": "OpponentContext sign-extends byte after dereferencing reference first pointer without an object-null test; saved original emulation fault documents the missing guard."
+    }
+  ],
+  "verification": {
+    "nativeAssertions": 8471,
+    "mismatches": 0,
+    "savedBodyHelperFaultCases": 8112,
+    "savedInitializerCases": 139,
+    "authoredUses": 110,
+    "originalShippedComparisons": 110,
+    "managedCompilation": "Core and saved-fixture harness independently compiled successfully.",
+    "managedExecution": "Pending; no launch attempt because environment EPERM restriction is already established."
+  },
+  "adapters": [
+    {
+      "address": "0x10200100",
+      "scope": "Force registry name callback returns prepared fixture record +4 name pointer; generic registry lookup and target-first-pointer extraction remain original."
+    }
+  ],
+  "limits": [
+    "No game or whole-level execution, source reachability, state producers or lifetime recovery.",
+    "ASCII operands in portable source.",
+    "Hint registration is unchecked native indexed access; fixtures prepare sufficient synthetic backing without inferring real allocation size.",
+    "Hint timer tests include finite float32, infinities and quiet NaN; signaling NaN/x87 exception or payload behavior excluded.",
+    "Prepared hint lists require a -1 sentinel; malformed unterminated memory is outside scope.",
+    "OpponentContext nonnull reference/null target faults native; portable source throws explicitly rather than manufacturing false.",
+    "Compiled C# behavioral run pending under known executable-launch restriction."
+  ],
+  "preparedMemoryLimits": [
+    "Force initializer portable callback owns prior recovered generic registry lookup and first-pointer extraction. Only named binding orchestration and returned target identity are claimed here.",
+    "Primary player prepared definition/class records, category rows, and list backing are required when corresponding native paths read them.",
+    "Global0x926c20 stores registration backing pointer; native dword indexing at [backing+id*4] has no upper bounds gate; portable host read callback must supply the selected nonnegative ID. Fixtures do not infer true registration table size.",
+    "Hint list IDs are signed int16 compared against full int32 selector; positive65535 does not alias-1 or any record.",
+    "Source condition comparisons validate scalar predicates even when preserved authored line continues on another line; no loader/control reachability claim."
+  ]
+}

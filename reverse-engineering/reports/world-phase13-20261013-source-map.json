@@ -1,0 +1,62 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "sourceSha256": "c7fc6700cb76fc42f71b6ebd3a8827a7eada9e9bb8a7f4654c2944c0f4057697",
+  "files": [
+    {
+      "file": "gameplay/world-phase13-20261013-par-runtime.cs",
+      "sha256": "c7fc6700cb76fc42f71b6ebd3a8827a7eada9e9bb8a7f4654c2944c0f4057697"
+    }
+  ],
+  "mappings": [
+    {
+      "address": "0x64ae50",
+      "method": "ParInstanceRuntime.Activate",
+      "coverage": "bounded finite own-state activation including original timing and RNG composition",
+      "qualification": "Recovered 0x64ae50 own-state activation on valid indices (or -1), bounded finite time/start/duration and positive finite rate; periodic fixtures require positive duration and nonnegative gap. Timing stores preserve original binary32 rounding points, cycle index truncation, catch-up order, quantized sample time and last update time. Randomized branch reuses sealed SoundPlayback.RandomFraction over global 0x8102e8; original native RNG 0x5b9d90 and truncation 0x6e6b90 run unchanged. Managed double intermediates project native x87 extended precision; all finite-domain claims are limited to retained fixtures, and extreme/exceptional arithmetic or arbitrary double-rounding cases are not claimed. Zero/negative periodic durations and negative gaps can prevent native catch-up progress and remain outside source projection. The 955 direct activation cases compare all prepared record/instance/timing/RNG bytes. Whole-loader replay additionally processes all 112 unchanged authored PAR files with original activation and selection; their 56 accepted instances have rate 1..64 and time/start 0. No graphics/audio/emission simulation is claimed. Source and both portable harnesses compile as library; managed replay remains pending with no generated executable launch.",
+      "sourceFile": "gameplay/world-phase13-20261013-par-runtime.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase13-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase13-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase13-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x644000",
+      "method": "ParInstanceRuntime.Select",
+      "coverage": "prepared-table nearest selection with original subtraction, strict ties, pointer identity and zero-distance retention",
+      "qualification": "Recovered 0x644000 own-state nearest-instance selection on valid prepared 40-row instance table and selected index -1 or 0..39. Binary32 vector differences and final squared distance, strict threshold, first equal-distance tie, negative initial threshold, invalid instances, selected/record pointer identity and exact-zero current-selection early return are preserved. The early return leaves existing pointer globals untouched. The 742 direct cases include finite quarter-unit positions, negative/zero/infinite/quiet-NaN thresholds and infinite/quiet-NaN candidates. Managed double dot-product intermediates project native x87 extended precision; arbitrary extreme-distance or double-rounding equivalence is not claimed. Native vector subtraction 0x5b3800 runs unchanged. Whole-loader replay additionally processes all 112 unchanged authored PAR files with original activation and selection. No world/scene origin producer, loaded graphics/audio assets or emission update implementation is claimed. Source and both portable harnesses compile as library; managed replay remains pending with no generated executable launch.",
+      "sourceFile": "gameplay/world-phase13-20261013-par-runtime.cs",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase13-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase13-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase13-20261013-assembly.json"
+      ]
+    }
+  ],
+  "relatedProjections": [
+    {
+      "address": "0x5b9d90",
+      "method": "SoundPlayback.RandomFraction",
+      "coverage": "sealed exact RNG dependency reused; original body runs unchanged, no extra mapping credit",
+      "sourceFile": "gameplay/SoundPlayback.cs"
+    },
+    {
+      "address": "0x6e6b90",
+      "method": "ParInstanceRuntime.Activate",
+      "coverage": "original x87 truncation dependency runs unchanged on retained bounded finite quotient inputs; managed Math.Truncate projection, no helper mapping credit",
+      "sourceFile": "gameplay/world-phase13-20261013-par-runtime.cs"
+    },
+    {
+      "address": "0x5b3800",
+      "method": "ParInstanceRuntime.Select",
+      "coverage": "original per-component binary32 vector subtraction dependency runs unchanged; no helper mapping credit",
+      "sourceFile": "gameplay/world-phase13-20261013-par-runtime.cs"
+    },
+    {
+      "address": "0x64c300",
+      "method": "ParResourceLoading.Load",
+      "coverage": "sealed loader composed with recovered runtime adapter across all authored PAR inputs; no extra mapping credit",
+      "sourceFile": "gameplay/world-phase12-20261013-par-loader.cs"
+    }
+  ]
+}

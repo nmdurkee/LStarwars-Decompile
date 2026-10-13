@@ -1,0 +1,50 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x446b30",
+      "method": "DoomedLocatorActions.Set",
+      "sourceFile": "gameplay/movement-phase6-20261013-DoomedLocator.cs",
+      "coverage": "First-call and nonzero-token gates, guarded self and ordered character retargeting, substring token precedence/fixed skips, final name formatting precedence, native integerRNG, lookup and actor EF0bit800/F14 own-state. Actor/locator producers and escape/damage consumers outside this contract."
+    },
+    {
+      "address": "0x5b9e90",
+      "method": "LocatorIntegerRandom.Next",
+      "sourceFile": "gameplay/movement-phase6-20261013-DoomedLocator.cs",
+      "coverage": "Full32bit integer RNG body: localzero-to1 normalization only for nonnull state, optional globalstate, signeddivision/truncation and wraparoundmultiply/subtraction/negativeadjust/XORreturn."
+    }
+  ],
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SetDoomedEscapeLocator",
+      "function": "0x446b30",
+      "sourceUses": 40,
+      "scope": "First-call and nonzero-token gates, guarded self and ordered character retargeting, substring token precedence/fixed skips, final name formatting precedence, native integerRNG, lookup and actor EF0bit800/F14 own-state. Actor/locator producers and escape/damage consumers outside this contract."
+    }
+  ],
+  "actionCases": 686,
+  "actionAssertionGroups": 2744,
+  "integerRngCases": 20012,
+  "integerRngAssertionGroups": 40024,
+  "adapters": [
+    "Character-name-reference resolver returns prepared Self/Other/Null/missing references; callback absence included.",
+    "Only bounded ASCII printf name formats are adapted; plain names have no directives and fit63bytes."
+  ],
+  "limits": [
+    "Finite numeric operands with representable signedinteger conversion; boundedname length and no printf directives.",
+    "Prepared actor/definition/name/locator memory; target state producer and escape/damage consumers remain external.",
+    "Shipped forms and positive/zero native token counts; negative counts outside sourceAPI."
+  ],
+  "rules": [
+    "Zero tokens skips all actor writes; nonempty unknown tokens clear F14 and EF0bit800 if final target is valid.",
+    "Target retargeting and name selection finish before format/lookup; subsequent character= callbacks can revive an initially missing self target or nullify it.",
+    "Substring priority is character=, name, personal, indexed, take_damage, random. Random skips9 from the matching substring, unlike common random= skip7.",
+    "Indexed signedbyte suffix (unless-1) precedes personal definition name, which precedes random remainder suffix; only selected formatting branch consumes RNG or definition name.",
+    "Lookup failure leaves cleared fields. Successful lookup sets locator pointer and takes damage flag from any matching token.",
+    "Globalzero RNG is valid and produces a different result from explicitly supplied localzero, which is first changed to1."
+  ],
+  "managedReplay": "Prepared686 action cases and20012 integerRNG cases (2744 +40024 assertion groups); managed replay remains unexecuted.",
+  "referenceExtraction": "Character callback returns reference first pointer; Self with null reference first word remains null even when callback/reference itself is nonnull.",
+  "rngSourceComposition": "Recovered integerRNG directly backs locator formatting; no recorded integer draw replay adapter is needed for this action."
+}

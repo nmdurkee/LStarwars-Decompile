@@ -1,0 +1,81 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase7-20261013-light.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5fcc10",
+      "method": "LightRenderCacheProduction.Update",
+      "coverage": "Whole resolved raw light-cache packer: matrix16/color3/vector3 integer copies, shared uint/light ushort wrapping counters, dirty reset and return1.",
+      "sourceFile": "geometry/scene-phase7-20261013-light.cs",
+      "evidence": "reports/scene-phase7-20261013-light-native-validation.json",
+      "limitations": [
+        "5fcc10 all22 output words are original integer REP MOVSD / MOV; raw nonfinite payloads have no FLD/FSTP conversion. Valid disjoint resolved source/global regions.",
+        "384 actual original 5ff840 calls execute CPU helpers unchanged and capture consumed vector/matrix/color and cache receiver state at 5fcc10 entry. No D3DX, device or CRT adapters.",
+        "The full finite light orientation/blending producer is captured as original evidence, not ported or independently modeled in this batch.",
+        "Optional source direction/color copy native probes retained; color is opaque raw four-word input, while consumed arithmetic is finite.",
+        "Shared uint counter9868c0 and light-specific ushort counter9868c4 wrap. Light dirty flag9868d4 clears; camera-specific ushort9868cc is distinct.",
+        "Native/Python consumer differential passed; managed replay remains pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "evidence": [
+    "reports/scene-phase7-20261013-light-native-validation.json",
+    "reports/scene-phase7-20261013-light-contract.json",
+    "reports/scene-phase7-20261013-light-assembly.json",
+    "reports/scene-phase7-20261013-light-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase7-20261013-light.cs",
+      "sha256": "3256131629a66a0bd6a9ccdbbba7fa47573c7d7d4ff24d4a1978e5e300e92e38"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase7-20261013-light-harness.cs"
+  ],
+  "harnessSha256": "63abed19d37535d04ab368534f558594216c8646e35d6f8517ea113d1f8757c2",
+  "fixture": "reports/scene-phase7-20261013-light-native-fixtures.json.gz",
+  "fixtureSha256": "972006e74fb1df592c632af81ec5cdec4c7df9ecba0df4c4c346bd376320c2fe",
+  "nativeTool": "tools/scene-phase7-20261013-light-native.py",
+  "nativeToolSha256": "925245314c3d52380beaa4e3b8d41db1c77a1f18c52136bd5a076a9849cb71aa",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "rawConsumerCases": 2048,
+    "actualLightProducerCases": 384,
+    "retainedPortableReplayCases": 2432,
+    "retained": 2432,
+    "portableReplayCases": 2432,
+    "preparedManagedAssertions": 17024
+  },
+  "verifier": {
+    "module": "scene-phase7-20261013-light",
+    "entrypoint": "LightRenderCachePhase7Harness",
+    "fixture": "reports/scene-phase7-20261013-light-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase6-20261013-renderer.cs",
+      "sha256": "e103067182c256391106fc9251e8364789b8ba7c8d003d7a09bfa7bce1d77dc1"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "reports/scene-phase5-20261013-native-fixtures.json.gz",
+      "sha256": "520e21e3b8d8e11bdbea12665f5b31013628174821f6af4c4df25f5015285c00"
+    }
+  ],
+  "nextGaps": [
+    "Recover whole finite original5ff840 orientation/blending algorithm using retained actual producer evidence.",
+    "Bind actual runtime light globals and source direction/color setup, plus authored renderer frame lifecycle."
+  ]
+}

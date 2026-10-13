@@ -1,0 +1,180 @@
+{
+  "title": "Actor flag/input SCP actions and initialized player-control condition",
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": "reconstructed/gameplay/script-phase3-20261013-ActorCommands.cs",
+  "nativeTests": "reports/script-phase3-20261013-tests.json",
+  "nativeFixtures": "reports/script-phase3-20261013-native-fixtures.json",
+  "assembly": "reports/script-phase3-20261013-assembly.json",
+  "conditions": [
+    {
+      "name": "PressJumpButton",
+      "kind": "scp-action",
+      "function": "0x449970",
+      "sourceUses": 22,
+      "scope": "Ignores firstCall and operands. Null creature/reference/world actor chain skips write; valid actor requires input pointer+0xca4 and ORs the runtime global mask0x802278 into input+8. No jump execution or input consumption.",
+      "method": "Phase3ActorCommands.PressJumpButton"
+    },
+    {
+      "name": "PrefersPlayers",
+      "kind": "scp-action",
+      "function": "0x44f1b0",
+      "sourceUses": 22,
+      "scope": "Ignores firstCall. Valid self actor flags+0xeec bit0x40000000 set by default on every call; any whole case-insensitive FALSE token clears it, and later TRUE cannot restore within that call. Does not choose opponents.",
+      "method": "Phase3ActorCommands.PrefersPlayers"
+    },
+    {
+      "name": "CanShootOffScreen",
+      "kind": "scp-action",
+      "function": "0x44ee70",
+      "sourceUses": 21,
+      "scope": "Requires firstCall and valid self actor. Flags+0x1044 bit4 set by default, TRUE sets/FALSE clears in token order, unknown tokens ignored. Does not execute shooting or determine screen visibility.",
+      "method": "Phase3ActorCommands.CanShootOffScreen"
+    },
+    {
+      "name": "CanOpenDoors",
+      "kind": "scp-action",
+      "function": "0x44ede0",
+      "sourceUses": 17,
+      "scope": "Same firstCall/self/token rules as CanShootOffScreen, using flags+0x1044 bit1. Does not identify doors or implement opening.",
+      "method": "Phase3ActorCommands.CanOpenDoors"
+    },
+    {
+      "name": "CanDefend",
+      "kind": "scp-action",
+      "function": "0x4445c0",
+      "sourceUses": 14,
+      "scope": "Requires firstCall and valid self actor. Flags+0xeec bit2 set by default; any whole FALSE clears, TRUE does not restore within call. Does not execute defense.",
+      "method": "Phase3ActorCommands.CanDefend"
+    },
+    {
+      "name": "Respawnable",
+      "kind": "scp-action",
+      "function": "0x4447a0",
+      "sourceUses": 13,
+      "scope": "Requires firstCall and valid self actor. Clears flags+0xeec origin bit0x200000 and sets respawn bit0x100000 by default. Each origin token sets origin bit; each FALSE clears respawn bit; independent bits persist through remaining tokens. Does not respawn objects.",
+      "method": "Phase3ActorCommands.Respawnable"
+    },
+    {
+      "name": "SetBoss",
+      "kind": "scp-action",
+      "function": "0x4448c0",
+      "sourceUses": 23,
+      "scope": "Requires firstCall and valid self actor. Flags+0xeec bit0x8000000 set by default; any whole FALSE clears, TRUE does not restore within call. Does not implement boss behavior.",
+      "method": "Phase3ActorCommands.SetBoss"
+    },
+    {
+      "name": "SetDontMove",
+      "kind": "scp-action",
+      "function": "0x445b70",
+      "sourceUses": 16,
+      "scope": "Requires firstCall; defaults target to guarded self actor. Every case-insensitive character substring selects name starting ten bytes from match via native name-reference callback; absent callback or failed/null-target reference clears selection. Non-character branch compares FALSE against first operand, not current. Final valid selected actor flags+0xef0 bit0x10 set/cleared. Does not execute locomotion.",
+      "method": "Phase3ActorCommands.SetDontMove"
+    },
+    {
+      "name": "UnderPlayerControl",
+      "kind": "scp-condition",
+      "function": "0x443280",
+      "sourceUses": 21,
+      "scope": "Initializer0x443250 requires operand,system and name callback; returns referenced actor first pointer. Predicate returns0 for null initialized actor with no self fallback; otherwise float1 iff actor byte+0x1fc bit0x80. Does not assign player control.",
+      "method": "Phase3ActorCommands.UnderPlayerControl",
+      "initializer": "0x443250",
+      "initializerMethod": "Phase3ActorCommands.BindUnderPlayerControl"
+    }
+  ],
+  "sharedOffsets": {
+    "scriptCreatureSelfReference": "0xd0",
+    "referenceActor": "0",
+    "actorInputPointer": "0xca4",
+    "inputFlags": "0x8",
+    "actorBehaviorFlags": "0xeec",
+    "actorMovementFlags": "0xef0",
+    "actorAuxiliaryFlags": "0x1044",
+    "actorControlFlagByte": "0x1fc",
+    "nameCallbackGlobal": "0x923904",
+    "runtimeJumpMaskGlobal": "0x802278"
+  },
+  "verifiedMasks": {
+    "jumpGlobalUnmodifiedImageValue": "0x40 (tests also inject all32single-bit masks)",
+    "prefersPlayers": "0x40000000",
+    "shootOffScreen": "0x4",
+    "openDoors": "0x1",
+    "canDefend": "0x2",
+    "respawnable": "0x100000",
+    "respawnOrigin": "0x200000",
+    "boss": "0x8000000",
+    "dontMove": "0x10",
+    "playerControl": "0x80"
+  },
+  "assemblyFindings": [
+    {
+      "entry": "0x445b70",
+      "instruction": "0x445be0 mov eax,[ebx]",
+      "meaning": "This loads argv[0] on every non-character token branch; source preserves the apparent bug rather than comparing current operand."
+    },
+    {
+      "entry": "0x445b70",
+      "instruction": "0x445bca add eax,0xa",
+      "meaning": "Keyword searched is character (nine bytes), yet callback name begins ten bytes from found pointer. Matches can be embedded; delimiter itself is not validated."
+    },
+    {
+      "entry": "0x449970",
+      "instruction": "0x449993 mov ecx,[0x802278]",
+      "meaning": "Input mask is a runtime global dword, not a baked fixed bit; neither sixth firstCall parameter nor operands are read."
+    },
+    {
+      "entry": "0x443280",
+      "instruction": "0x443284 test eax,eax; 0x443286 je zero",
+      "meaning": "Initialized null actor returns0. No creature/self fallback or re-resolution in reader."
+    }
+  ],
+  "verification": {
+    "nativeAssertions": 28347,
+    "mismatches": 0,
+    "savedCases": 7833,
+    "savedInitializers": 24,
+    "authoredOccurrences": 169,
+    "shippedActionCalls": 296,
+    "shippedConditionComparisons": 21,
+    "interpretation": "Counts include correlated return/state/callback/write-confinement assertions on each action case, not independent scenarios or game completion.",
+    "writeConfinement": "Complete0x1100bytes of each prepared actor and0x100bytes of each prepared input checked against only permitted field changes for every successful action.",
+    "managedCompilation": "Standalone core and saved-fixture C# harness compile successfully.",
+    "managedExecution": "Pending; no launch retry under already-established EPERM restriction."
+  },
+  "adapters": [
+    {
+      "globalAddress": "0x923904",
+      "fixtureAddress": "0x10200100",
+      "scope": "Maps ASCII fixture names to actor references or null; callback records system-presence and operand order. Native code performs reference first-pointer extraction."
+    }
+  ],
+  "limits": [
+    "No world loading, actor lifetime, input consumption, movement or AI consumer recovery.",
+    "Actions use prepared token arrays and counts matching array lengths; invalid external argc/argv memory is outside scope.",
+    "ASCII tokens only in portable source. Character-substring operands require at least one following delimiter byte before name+10.",
+    "Jump input pointer is unchecked by native after actor gates; actual memory fault saved, portable source raises explicit exception.",
+    "UnderPlayerControl uses only initialized named actor and has no self fallback on missing operand.",
+    "Standalone C# compilation does not establish managed behavioral execution; no launch retry under known EPERM restriction."
+  ],
+  "nextCandidates": [
+    {
+      "name": "AddToSet",
+      "function": "0x4499b0",
+      "sourceUses": 24,
+      "reason": "Ordered set-ID writes and alive-count increments; compose existing packet numeric resolver and preserve reset/count quirks."
+    },
+    {
+      "name": "OnSpeederBike",
+      "function": "0x443200",
+      "initializer": "0x4431d0",
+      "sourceUses": 16,
+      "reason": "Same named-object binding family with guarded/unguarded fallback branches and runtime vehicle type global."
+    },
+    {
+      "name": "SetDoomedEscapeLocator",
+      "function": "0x446b30",
+      "sourceUses": 40,
+      "reason": "Character/locator name assembly, first-call fields and damage policy; CRT format and source overlength cases must stay explicit."
+    }
+  ]
+}

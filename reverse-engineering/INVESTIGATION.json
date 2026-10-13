@@ -1,6 +1,6 @@
 {
   "task": "Recover as much of the supplied LEGO Star Wars: The Complete Saga PC game as feasible; reverse engineering only.",
-  "updated": "2026-10-13T14:30:42.079Z",
+  "updated": "2026-10-13T15:22:45.654Z",
   "originalGame": "../Lego Star Wars Saga",
   "originalsMutable": false,
   "tracks": [
@@ -110,7 +110,10 @@
       "evidence": [
         "reports/gameplay-native-save-audio.txt",
         "reports/gameplay-audio-compiled-tests.json",
-        "reports/gameplay-dispatch-native-tests.json"
+        "reports/gameplay-dispatch-native-tests.json",
+        "reports/actor-next-20261013-contract.json",
+        "reports/script-next-20261013-contract.json",
+        "reports/gameplay-command-semantic-coverage.json"
       ]
     },
     {
@@ -167,12 +170,45 @@
     {
       "name": "World frame dispatcher",
       "status": "bounded-control-flow-subsystems-adapted",
-      "coverage": "384 native call-order cases and 9600 state assertions; subsystem callees are no-op adapters, not an executed whole frame.",
+      "coverage": "Prior384 native call-order cases and9600 state assertions, plus208 new paused-player/camera/callback cases and1280 assertion groups. Subsystem implementations remain adapters, not an executed whole frame.",
       "evidence": [
-        "reports/native-frame-dispatch.json"
+        "reports/native-frame-dispatch.json",
+        "reports/frame-paused-20261013-tests.json",
+        "reports/frame-paused-20261013-findings.txt"
+      ]
+    },
+    {
+      "name": "World cache and loading preparation",
+      "status": "bounded-native-contracts-portable-source-resource-loading-adapted",
+      "coverage": "Four entries1568 original case checks pass; actual resource load/teardown remains external.",
+      "evidence": [
+        "reports/world-loading-20261013-contract.json",
+        "reports/world-loading-20261013-native-tests.json"
+      ]
+    },
+    {
+      "name": "Scene grid visibility",
+      "status": "bounded-producer-recovered-scene-integration-partial",
+      "coverage": "Native grid producer8153 assertions across3321 retained cases; new visibility dispatcher2153 assertions across512 cases+4 stateful steps composes recovered grid and portal producers. Camera/tree service internals remain external; existing complete scene runner retains prior restrictions.",
+      "evidence": [
+        "reports/scene-visibility-20261013-contract.json",
+        "reports/scene-visibility-20261013-native-validation.json",
+        "reports/scene-next-20261013-contract.json",
+        "reports/scene-next-20261013-native-validation.json"
+      ]
+    },
+    {
+      "name": "Portal-door table loading",
+      "status": "bounded-loader-and-reset-source-recovered-runtime-consumer-partial",
+      "coverage": "Native738 cases pass including106 prepared binding cases covering53 authored definitions; original line/token/number/scene lookups executed, parser/file lifecycle adapted.",
+      "evidence": [
+        "reports/world-next-20261013-contract.json",
+        "reports/world-next-20261013-native-tests.json",
+        "reports/world-next-20261013-authored-provenance.json"
       ]
     }
   ],
   "completionRule": "Carrier/file coverage and pseudocode availability do not establish complete game semantics. Preserve explicit gaps; no original C++ source or complete gameplay reconstruction claimed.",
-  "finalSourceVerification": "reports/verification-full.json:all8originalsourcehashesunchanged"
+  "finalSourceVerification": "reports/verification-full.json:all8originalsourcehashesunchanged",
+  "lastRecoveryBatch": "reports/reverse-next-20261013-summary.json"
 }

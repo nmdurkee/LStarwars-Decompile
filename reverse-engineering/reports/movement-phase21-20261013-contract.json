@@ -1,0 +1,45 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "cases": 2164,
+  "assertionGroups": 2164,
+  "mismatches": 0,
+  "newDistinctEntries": 4,
+  "contracts": [
+    {
+      "address": "0x5b5060",
+      "method": "PodMatrixMath.RotateY",
+      "scope": "In-place finite matrixrow0/row2 XYZ rotation: row0=c*A-s*B,row2=c*B+s*A; cachesoldrows,signed32angle tableindices wrap,andpreservesW/otherrows."
+    },
+    {
+      "address": "0x5b4dd0",
+      "method": "PodMatrixMath.RotateX",
+      "scope": "In-place finite matrixrow1/row2 XYZ rotation: row1=c*A+s*B,row2=c*B-s*A; original runtime32768 sinewords andexactx87 finalF32 stores."
+    },
+    {
+      "address": "0x5b5240",
+      "method": "PodMatrixMath.RotateZ",
+      "scope": "In-place finite matrixrow0/row1 XYZ rotation: row0=c*A+s*B,row1=c*B-s*A. No constructor/identity simplification; untouched matrixwords preserved."
+    },
+    {
+      "address": "0x5b3470",
+      "method": "PodMatrixMath.TransformVector",
+      "scope": "Actual three-argument row3x3 vectortransform, not a copy. Nativecomputes andspillsY/Z outputs beforeXstore; allthree source/matrix-dependent results prefetched. Aliasedoutput/input/matrix including shiftedoverlap retained; originalX termorderYproduct+Xproduct+Zproduct, Y/Z usualXYZ."
+    }
+  ],
+  "nativeAdapters": 0,
+  "limits": [
+    "Finite used3x3/vector inputs andfinite arithmetic outputs; preserved unusedmatrixW/translation words includeallIEEEclasses andrawbit patterns because originals neverread them.",
+    "Supplied exact32768word runtime sine table, originalproducer remains external. AllsignedInt32angles supportactual index wrapping.",
+    "No heading/fullCreatePod commandcredit; heading/curve/spawncomposition remains next."
+  ],
+  "managedReplay": {
+    "executed": false,
+    "preparedAssertionGroups": 2164
+  },
+  "sineInput": {
+    "path": "references/native-animation-sine-table.f32",
+    "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b",
+    "producerRecovered": false
+  },
+  "createPodCommandCredit": 0
+}

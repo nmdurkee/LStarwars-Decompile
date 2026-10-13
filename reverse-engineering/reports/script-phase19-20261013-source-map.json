@@ -1,0 +1,48 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x52c880",
+      "method": "PreparedScriptConditions.Evaluate",
+      "scope": "Existing condition evaluator expanded to ordered raw-memory cache and callback contract.",
+      "file": "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs",
+      "evidence": "reports/script-phase19-20261013-contract.json"
+    },
+    {
+      "address": "0x52c800",
+      "method": "PreparedScriptConditions.Finish",
+      "scope": "Existing cache finish expanded to customEDI/ECX and exact tail traversal.",
+      "file": "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs",
+      "evidence": "reports/script-phase19-20261013-contract.json"
+    },
+    {
+      "address": "0x52caf0",
+      "method": "PreparedScriptReferences.Scan",
+      "scope": "Existing reference helper expanded to customESI packet, signed-depth aliases and actual supplied-script binding.",
+      "file": "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs",
+      "evidence": "reports/script-phase19-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase19-20261013-contract.json",
+    "reports/script-phase19-20261013-tests.json",
+    "reports/script-phase19-20261013-assembly.json",
+    "reports/script-phase19-20261013-fixture-replay.json"
+  ],
+  "harnessFile": "../tools/script-phase19-20261013-portable-verify.cs",
+  "verifierModule": "script-phase19-20261013",
+  "verifierClass": "ScriptPhase1920261013Verify",
+  "fixture": "reports/script-phase19-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase19-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "Two new mapped entries52c880/52c800; existing52caf0 hydrated and composed with immutablephase18. Zero new authored command credit.",
+    "1922 original cases,7635 correlated comparisons/0;5 original faults retained with callback and partial-memory state. 7635 same-model fixture readback/0 is separate.",
+    "New source and harness compiled to phase-prefixed report DLL with installed csc; no managed/game launch or shared build mutation.",
+    "PreparedEvaluatedScriptDispatcher.Tick and RecoveredEvaluatedScriptPipelinePorts supply fresh per-call packet context for customESI References.",
+    "Next substantive gap: raw expression514920 symbol/environment hydration or actual script animation53db30; predicate/command bodies remain explicit."
+  ]
+}

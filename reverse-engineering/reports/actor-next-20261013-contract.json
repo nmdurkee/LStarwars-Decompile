@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-13",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "functions": [
+    {
+      "address": "0x44ccd0",
+      "method": "ActorStateContinuationCommands.CannotBeSeen",
+      "coverage": "whole handler with attached actor projection; exact FALSE comparisons; state producer/visibility consumers external",
+      "sourceFile": "gameplay/actor-next-20261013-Commands.cs"
+    },
+    {
+      "address": "0x44ce00",
+      "method": "ActorStateContinuationCommands.EnableSock",
+      "coverage": "handler with original packet numeric composition and fixed64-record Sock helpers; ASCII operands and valid projections",
+      "sourceFile": "gameplay/actor-next-20261013-Commands.cs"
+    },
+    {
+      "address": "0x4545d0",
+      "method": "ActorStateContinuationCommands.ReleaseTakeOver",
+      "coverage": "target-selection command using existing ActorStateWorld/TagControlWorld; full release remains TagControlServices adapter",
+      "sourceFile": "gameplay/actor-next-20261013-Commands.cs"
+    },
+    {
+      "address": "0x53f7e0",
+      "method": "ActorStateContinuationCommands.FindSock",
+      "coverage": "whole fixed64-record first-name-match helper projected to index instead of native pointer",
+      "sourceFile": "gameplay/actor-next-20261013-Commands.cs"
+    },
+    {
+      "address": "0x541430",
+      "method": "ActorStateContinuationCommands.SetSockEnabled",
+      "coverage": "whole enable helper: unsigned index<64 and clear disabled WORD mask0x100",
+      "sourceFile": "gameplay/actor-next-20261013-Commands.cs"
+    },
+    {
+      "address": "0x541460",
+      "method": "ActorStateContinuationCommands.SetSockEnabled",
+      "coverage": "whole disable helper: unsigned index<64 and set disabled WORD mask0x100",
+      "sourceFile": "gameplay/actor-next-20261013-Commands.cs"
+    }
+  ],
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "CannotBeSeen",
+      "function": "0x44ccd0",
+      "sourceUses": 29,
+      "scope": "Attached actor +0xef0 bit2 set on first call unless any operand exactly equals FALSE case-insensitively. Actual visibility/AI state consumers external.",
+      "report": "reverse-engineering/reports/actor-next-20261013-contract.json"
+    },
+    {
+      "kind": "scp-action",
+      "name": "EnableSock",
+      "function": "0x44ce00",
+      "sourceUses": 55,
+      "scope": "First-call ordered ix=/name=/FALSE parser composed with packet numeric resolver, first active named record among64, unsigned index bound and disabled WORD bit0x100. Failed name retains prior index; FALSE substring sticky, lower priority within same token. Sock loading and consumers external.",
+      "report": "reverse-engineering/reports/actor-next-20261013-contract.json"
+    },
+    {
+      "kind": "scp-action",
+      "name": "ReleaseTakeOver",
+      "function": "0x4545d0",
+      "sourceUses": 31,
+      "scope": "First-call current actor or last character= name resolution; failed lookup clears target. Nonnull actor with linked +0xcd0 invokes full takeover-release service. Vehicle restoration, transfer and release notifications remain external.",
+      "report": "reverse-engineering/reports/actor-next-20261013-contract.json"
+    }
+  ],
+  "offsets": {
+    "actorFlags": "0xef0",
+    "linkedTakeover": "0xcd0",
+    "scriptCreatureReference": "0xd0",
+    "worldSockTable": "0x2988",
+    "sockRecordStride": "0x13c",
+    "sockPresentByte": "0x32",
+    "sockFlagsWord": "0x68",
+    "sockName": "0xe4",
+    "sockDisabledMask": "0x100",
+    "sockCount": 64
+  },
+  "numericPrecision": "Native0x4f28e0 stores each multiply/add and final division as float32. Existing MessageNumbers.Resolve implements0x5147c0;6e6b90 truncates signed64 and EnableSock retains low32. Original parser/conversion run unmodified in fixtures.",
+  "observations": [
+    "CannotBeSeen compares whole token FALSE. Empty list enables the bit; null operands do not clear it.",
+    "EnableSock FALSE searches substring, but ix= has priority before name= before FALSE. Failure to resolve name retains the existing index.",
+    "EnableSock numeric param substring resolves parameter0 in existing native0x5147c0; ix=4294967296 wraps to index0.",
+    "SetSockEnabled tests index as unsigned and does not test record presence; ix=-1 selects nothing.",
+    "ReleaseTakeOver last named lookup replaces target, including clearing to null on missing callback/reference."
+  ],
+  "validation": {
+    "nativeChecks": 1233,
+    "authoredOccurrences": 115,
+    "mismatches": 0,
+    "report": "reports/actor-next-20261013-native-tests.json",
+    "fixtures": "reports/actor-next-20261013-fixtures.json",
+    "managed": "Saved-fixture harness added; final integrated compile and independent audit recorded in next batch summary."
+  },
+  "limits": [
+    "Prepared64 record table and valid actor/reference attachments; ASCII NUL-terminated native operands.",
+    "Sock record projections are bounded field views, not recovered complete struct layouts or loader.",
+    "Existing ActorStateWorld/TagControlWorld must represent shared actor identity and synchronized raw fields.",
+    "Character resolver callback and full0x4882d0 takeover release are explicit native fixture adapters; full vehicle behavior is not established.",
+    "Original native comparisons do not imply compiled C# execution; known launch denial remains."
+  ]
+}

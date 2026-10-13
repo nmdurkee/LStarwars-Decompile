@@ -1,0 +1,30 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/movement-phase19-20261013-PodMemory.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x4d94b0",
+      "method": "PodMemoryHelpers.FindFree",
+      "sourceFile": "gameplay/movement-phase19-20261013-PodMemory.cs",
+      "coverage": "Raw pod16-slot free selector: globalracebase+ A694 +row*A0 firststatusword0 returnsbase+A600+row*A0, allnonzero statusesoccupied. No writes/reservation; nullrace faults."
+    },
+    {
+      "address": "0x4d8280",
+      "method": "PodMemoryHelpers.CopyFloatMatrix",
+      "sourceFile": "gameplay/movement-phase19-20261013-PodMemory.cs",
+      "coverage": "ImplicitEAXsource/ECXtarget originalordered16 FLD/FSTP memoryprojection: finite,Inf,qNaN,signedzero/subnormal words preserved with forwardunaligned/shiftedalias semantics andfirst/partialpointerfaultcommits. sNaN cases excluded dueemulator/hardware uncertainty; sourceguard rejects beforethatwordstore. No FPUstatusflags orincidentalregisterreturn claim."
+    }
+  ],
+  "evidence": [
+    "reports/movement-phase19-20261013-contract.json",
+    "reports/movement-phase19-20261013-tests.json",
+    "reports/movement-phase19-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/movement-phase19-20261013-portable-verify.cs",
+  "verifierModule": "movement-phase19-20261013",
+  "verifierClass": "MovementPhase1920261013Verify",
+  "fixture": "reports/movement-phase19-20261013-fixtures.json.gz",
+  "managedReport": "reports/movement-phase19-20261013-managed-check.json"
+}

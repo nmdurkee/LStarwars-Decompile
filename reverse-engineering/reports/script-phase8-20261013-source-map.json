@@ -1,0 +1,32 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase8-20261013-TakeoverTransfer.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x4876a0",
+      "method": "TakeoverTransfer.Transfer",
+      "file": "gameplay/script-phase8-20261013-TakeoverTransfer.cs",
+      "scope": "nonzero takeover mode1 inline producer, prepared finite float backing/signed player indices; explicit script/animation/camera services",
+      "evidence": "reports/script-phase8-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase8-20261013-contract.json",
+    "reports/script-phase8-20261013-tests.json",
+    "reports/script-phase8-20261013-assembly.json"
+  ],
+  "harnessFile": "../tools/script-phase8-20261013-portable-verify.cs",
+  "verifierModule": "script-phase8-20261013",
+  "verifierClass": "ScriptPhase820261013Verify",
+  "fixture": "reports/script-phase8-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase8-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "4876a0 is already distinct-address mapped for mode0. Add mode1 scope without incrementing distinct coverage or replacing mode0 evidence.",
+    "Depends on phase7 prepared memory/source. Harness demonstrates actual TakeoverTransfer plus TakeoverRelease interoperation.",
+    "All913 transfer and16 interoperation fixtures retained; native3700 correlated assertions/0.",
+    "Next genuine gap: actual487270 takeover animation selector and state/pose/ejection service producers; not claimed in this batch."
+  ]
+}

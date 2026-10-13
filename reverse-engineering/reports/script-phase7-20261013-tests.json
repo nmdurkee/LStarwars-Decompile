@@ -1,0 +1,61 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "nativeChecks": 1109,
+  "checks": {
+    "native-fault-parity": 355,
+    "inline-complete-actor-state": 355,
+    "downstream-ABI-order": 355,
+    "unmodified-seat-overlap": 40,
+    "486f20-ret-preserves-eax": 4
+  },
+  "mismatches": 0,
+  "errors": [],
+  "releaseCases": 355,
+  "seatCases": 40,
+  "adapters": {
+    "0x4876a0": {
+      "name": "Transfer",
+      "argc": 5
+    },
+    "0x415000": {
+      "name": "Rebind",
+      "argc": 1
+    },
+    "0x55d2b0": {
+      "name": "RefreshPose",
+      "argc": 1
+    },
+    "0x5a01f0": {
+      "name": "Eject",
+      "argc": 2
+    },
+    "0x5a0320": {
+      "name": "VehicleResponse",
+      "argc": 2
+    },
+    "0x4c99b0": {
+      "name": "DistanceFactor",
+      "argc": 2
+    },
+    "0x561e20": {
+      "name": "DirectedJump",
+      "argc": 6
+    },
+    "0x54a3e0": {
+      "name": "Camera",
+      "argc": 4
+    },
+    "0x52c790": {
+      "name": "ChangeReleasedState",
+      "argc": 2
+    },
+    "0x52cc90": {
+      "name": "RunScript",
+      "argc": 5
+    }
+  },
+  "limitations": [
+    "Downstream callees are explicit recorded ABI adapters; this tests original inline release and unmodified seat helper, not callee implementations.",
+    "Finite arithmetic/fallback seat domain; native faults and all prepared mutations retained."
+  ]
+}

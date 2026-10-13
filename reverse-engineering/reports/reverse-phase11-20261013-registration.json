@@ -1,0 +1,327 @@
+{
+  "updated": "2026-10-13T19:00:25.764Z",
+  "batch": "reverse-phase11-20261013",
+  "descriptors": [
+    "reports/scene-phase6-20261013-renderer-source.json",
+    "reports/scene-phase7-20261013-light-source.json",
+    "reports/scene-phase8-20261013-light-source.json",
+    "reports/script-phase14-20261013-source-map.json",
+    "reports/movement-phase19-20261013-source.json",
+    "reports/movement-phase20-20261013-source.json",
+    "reports/movement-phase21-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "scene-phase6-20261013-renderer",
+      "cls": "CameraRenderCachePhase6Harness",
+      "fixture": "reports/scene-phase6-20261013-renderer-native-fixtures.json.gz",
+      "output": "reports/scene-phase6-20261013-renderer-csharp-validation.json",
+      "descriptor": "reports/scene-phase6-20261013-renderer-source.json",
+      "evidence": [
+        "reports/scene-phase6-20261013-renderer-native-validation.json",
+        "reports/scene-phase6-20261013-renderer-contract.json",
+        "reports/scene-phase6-20261013-renderer-assembly.json",
+        "reports/scene-phase6-20261013-renderer-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5dad10",
+          "method": "CameraRenderCacheProduction.Offsets",
+          "coverage": "Whole finite signed viewport offset producer including zero branches and actual float32 integer-ratio spills.",
+          "sourceFile": "geometry/scene-phase6-20261013-renderer.cs",
+          "evidence": "reports/scene-phase6-20261013-renderer-native-validation.json",
+          "limitations": [
+            "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+            "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+            "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+            "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+            "Native/Python exact own-state comparison passed; managed replay pending.",
+            "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+            "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+          ]
+        },
+        {
+          "address": "0x5daef0",
+          "method": "CameraRenderCacheProduction.Extents",
+          "coverage": "Whole finite viewport extent producer with unspilled x87 screen/source ratio.",
+          "sourceFile": "geometry/scene-phase6-20261013-renderer.cs",
+          "evidence": "reports/scene-phase6-20261013-renderer-native-validation.json",
+          "limitations": [
+            "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+            "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+            "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+            "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+            "Native/Python exact own-state comparison passed; managed replay pending.",
+            "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+            "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+          ]
+        },
+        {
+          "address": "0x5fcc80",
+          "method": "CameraRenderCacheProduction.Update",
+          "coverage": "Whole resolved CPU cache producer with raw view, finite sampled projection, exact scales and wrap counters.",
+          "sourceFile": "geometry/scene-phase6-20261013-renderer.cs",
+          "evidence": "reports/scene-phase6-20261013-renderer-native-validation.json",
+          "limitations": [
+            "Original cache/offset/extent routines and actual getter/helper chains execute unchanged. Direct cases have no adapters; actual camera composition alone adapts imported D3DX.",
+            "Offset accepts all signed Int32 input and applies native zero-ratio/offset branches. Extents and cache require nonzero screen/source dimensions for finite arithmetic.",
+            "View matrix is raw words including nonfinite bits; sampled projection values are finite and preserve signed zero. Nonfinite x87 load/store behavior is not claimed.",
+            "Full 0x84-byte cache image retains untouched gaps; counters wrap at 32 and 16 bits. Runtime globals provided from caller; authored-world binding not asserted.",
+            "Native/Python exact own-state comparison passed; managed replay pending.",
+            "No validation of invalid or aliasing native pointers; portable images resolve separate valid original global regions.",
+            "Actual camera captures bind consumed state rather than independently proving complete camera producer outputs. The callback copies resolved state; light output remains outside this batch."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase6-20261013-renderer.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase6-20261013-renderer-harness.cs"
+    },
+    {
+      "name": "scene-phase7-20261013-light",
+      "cls": "LightRenderCachePhase7Harness",
+      "fixture": "reports/scene-phase7-20261013-light-native-fixtures.json.gz",
+      "output": "reports/scene-phase7-20261013-light-csharp-validation.json",
+      "descriptor": "reports/scene-phase7-20261013-light-source.json",
+      "evidence": [
+        "reports/scene-phase7-20261013-light-native-validation.json",
+        "reports/scene-phase7-20261013-light-contract.json",
+        "reports/scene-phase7-20261013-light-assembly.json",
+        "reports/scene-phase7-20261013-light-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5fcc10",
+          "method": "LightRenderCacheProduction.Update",
+          "coverage": "Whole resolved raw light-cache packer: matrix16/color3/vector3 integer copies, shared uint/light ushort wrapping counters, dirty reset and return1.",
+          "sourceFile": "geometry/scene-phase7-20261013-light.cs",
+          "evidence": "reports/scene-phase7-20261013-light-native-validation.json",
+          "limitations": [
+            "5fcc10 all22 output words are original integer REP MOVSD / MOV; raw nonfinite payloads have no FLD/FSTP conversion. Valid disjoint resolved source/global regions.",
+            "384 actual original 5ff840 calls execute CPU helpers unchanged and capture consumed vector/matrix/color and cache receiver state at 5fcc10 entry. No D3DX, device or CRT adapters.",
+            "The full finite light orientation/blending producer is captured as original evidence, not ported or independently modeled in this batch.",
+            "Optional source direction/color copy native probes retained; color is opaque raw four-word input, while consumed arithmetic is finite.",
+            "Shared uint counter9868c0 and light-specific ushort counter9868c4 wrap. Light dirty flag9868d4 clears; camera-specific ushort9868cc is distinct.",
+            "Native/Python consumer differential passed; managed replay remains pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase7-20261013-light.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase7-20261013-light-harness.cs"
+    },
+    {
+      "name": "scene-phase8-20261013-light",
+      "cls": "LightNumericPhase8Harness",
+      "fixture": "reports/scene-phase8-20261013-light-native-fixtures.json.gz",
+      "output": "reports/scene-phase8-20261013-light-csharp-validation.json",
+      "descriptor": "reports/scene-phase8-20261013-light-source.json",
+      "evidence": [
+        "reports/scene-phase8-20261013-light-native-validation.json",
+        "reports/scene-phase8-20261013-light-contract.json",
+        "reports/scene-phase7-20261013-light-assembly.json",
+        "reports/scene-phase8-20261013-light-build.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5ff840",
+          "method": "LightNumericProduction.Apply",
+          "coverage": "Whole finite resolved light CPU producer: optional sources, original vector transform/interpolation/normalization, horizontal basis and signed dot^32 blend, inverse-vector output and actual raw cache packing.",
+          "sourceFile": "geometry/scene-phase8-20261013-light.cs",
+          "evidence": "reports/scene-phase8-20261013-light-native-validation.json",
+          "limitations": [
+            "Original5ff840 and all internal CPU math/CRT/cache helpers execute unchanged. No D3DX/device/CRT adapters.",
+            "Finite camera30, light direction3, aim3, template16, stored/intermediate float arithmetic; raw color4 remains opaque. Valid separate sources and globals.",
+            "Original x87 multiply/add/divide order and every visible float spill retained. Exact signed-zero output and minimum-normal horizontal threshold preserved.",
+            "Full original light output compared independently before raw cache packing; unit color/source copies and counter/dirty writes also checked.",
+            "Original CRT sqrt path is modeled as finite rounded square root using the already-recovered helper contract; installed renderer/GPU/authored scene binding is not asserted.",
+            "Native/Python own-state differential passed; managed execution remains pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase8-20261013-light.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase8-20261013-light-harness.cs"
+    },
+    {
+      "name": "script-phase14-20261013",
+      "cls": "ScriptPhase1420261013Verify",
+      "fixture": "reports/script-phase14-20261013-native-fixtures.json",
+      "output": "reports/script-phase14-20261013-managed-check.json",
+      "descriptor": "reports/script-phase14-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase14-20261013-contract.json",
+        "reports/script-phase14-20261013-tests.json",
+        "reports/script-phase14-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x4a25b0",
+          "method": "TakeoverCleanup.ClearAction",
+          "coverage": "full8/27/29 contextcleanup, cachedcontext/callback andlivepointer aliases; actionfinish/camera boundaries",
+          "sourceFile": "gameplay/script-phase14-20261013-TakeoverCleanup.cs"
+        },
+        {
+          "address": "0x58ff10",
+          "method": "TakeoverCleanup.ResetActor",
+          "coverage": "full32-bit sentinel/context comparison andexactcamera duration/blend ABI",
+          "sourceFile": "gameplay/script-phase14-20261013-TakeoverCleanup.cs"
+        },
+        {
+          "address": "0x59cb00",
+          "method": "TakeoverCleanup.StopActor",
+          "coverage": "signedcontext registrygates/lazyfaults andcamera-before-clear",
+          "sourceFile": "gameplay/script-phase14-20261013-TakeoverCleanup.cs"
+        },
+        {
+          "address": "0x58d8e0",
+          "method": "TakeoverCleanup.PrepareActor",
+          "coverage": "full32-bit contextmatches withmandatorybit/timer tail",
+          "sourceFile": "gameplay/script-phase14-20261013-TakeoverCleanup.cs"
+        },
+        {
+          "address": "0x55e4e0",
+          "method": "TakeoverCleanup.ResetControls",
+          "coverage": "already-mapped reset expanded toorderedprepared-memory projection/pad cache-reread/fault-before-RNG",
+          "sourceFile": "gameplay/script-phase14-20261013-TakeoverCleanup.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase14-20261013-TakeoverCleanup.cs"
+      ],
+      "harnessFile": "../tools/script-phase14-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase19-20261013",
+      "cls": "MovementPhase1920261013Verify",
+      "fixture": "reports/movement-phase19-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase19-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase19-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase19-20261013-contract.json",
+        "reports/movement-phase19-20261013-tests.json",
+        "reports/movement-phase19-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x4d94b0",
+          "method": "PodMemoryHelpers.FindFree",
+          "sourceFile": "gameplay/movement-phase19-20261013-PodMemory.cs",
+          "coverage": "Raw pod16-slot free selector: globalracebase+ A694 +row*A0 firststatusword0 returnsbase+A600+row*A0, allnonzero statusesoccupied. No writes/reservation; nullrace faults."
+        },
+        {
+          "address": "0x4d8280",
+          "method": "PodMemoryHelpers.CopyFloatMatrix",
+          "sourceFile": "gameplay/movement-phase19-20261013-PodMemory.cs",
+          "coverage": "ImplicitEAXsource/ECXtarget originalordered16 FLD/FSTP memoryprojection: finite,Inf,qNaN,signedzero/subnormal words preserved with forwardunaligned/shiftedalias semantics andfirst/partialpointerfaultcommits. sNaN cases excluded dueemulator/hardware uncertainty; sourceguard rejects beforethatwordstore. No FPUstatusflags orincidentalregisterreturn claim."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase19-20261013-PodMemory.cs"
+      ],
+      "harnessFile": "../tools/movement-phase19-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase20-20261013",
+      "cls": "MovementPhase2020261013Verify",
+      "fixture": "reports/movement-phase20-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase20-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase20-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase20-20261013-contract.json",
+        "reports/movement-phase20-20261013-tests.json",
+        "reports/movement-phase20-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x40eff0",
+          "method": "PodCurveEvaluation.Normalized",
+          "sourceFile": "gameplay/movement-phase20-20261013-PodCurve.cs",
+          "coverage": "Boundedfinite raw2..64point normalizedcurve. F32scaled(count-1)*parameter thenoriginalFTOL, F32fractionbeforeindexadjustment. Nonpositiveindex usesnormalized10-unit extrapolatedprepoint; index>count-1 clamps toCOUNT, exposingrawheader/nextbacking. Postghost fromlasttwo controls. EveryXYZ polynomialterm hasoriginalF32spill boundaries; squarestoresF32 butcube usesretainedwide square. XYZwrites precedelateW reads, preserving shiftedoutput/inputaliases."
+        },
+        {
+          "address": "0x40f450",
+          "method": "PodCurveEvaluation.Distance",
+          "sourceFile": "gameplay/movement-phase20-20261013-PodCurve.cs",
+          "coverage": "Boundedfinite physicaldistance remap: distance>=length directlyu1; otherwise firststrict cumulative>end match usespreviouscumulative(or0), extendedratio storedF32 then(ratio+index)/COUNT storedF32. No match passesoriginaldistance unchangedasnormalizedparameter. Composesactualnormalized evaluator."
+        },
+        {
+          "address": "0x5b3b30",
+          "method": "PodCurveEvaluation.NormalizeStored",
+          "sourceFile": "gameplay/movement-phase20-20261013-PodCurve.cs",
+          "coverage": "Refines existing finite unitvector output projection with exactx8764 XYZsquares/sum,F32square/sqrt, F32reciprocal andproductstores. Zero vector supported; valuevector/inplace callers only, no shiftedrawoutputaliasABI ororiginal FPUlengthreturn claim."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase20-20261013-PodCurve.cs"
+      ],
+      "harnessFile": "../tools/movement-phase20-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase21-20261013",
+      "cls": "MovementPhase2120261013Verify",
+      "fixture": "reports/movement-phase21-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase21-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase21-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase21-20261013-contract.json",
+        "reports/movement-phase21-20261013-tests.json",
+        "reports/movement-phase21-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5b5060",
+          "method": "PodMatrixMath.RotateY",
+          "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+          "coverage": "In-place finite matrixrow0/row2 XYZ rotation: row0=c*A-s*B,row2=c*B+s*A; cachesoldrows,signed32angle tableindices wrap,andpreservesW/otherrows."
+        },
+        {
+          "address": "0x5b4dd0",
+          "method": "PodMatrixMath.RotateX",
+          "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+          "coverage": "In-place finite matrixrow1/row2 XYZ rotation: row1=c*A+s*B,row2=c*B-s*A; original runtime32768 sinewords andexactx87 finalF32 stores."
+        },
+        {
+          "address": "0x5b5240",
+          "method": "PodMatrixMath.RotateZ",
+          "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+          "coverage": "In-place finite matrixrow0/row1 XYZ rotation: row0=c*A+s*B,row1=c*B-s*A. No constructor/identity simplification; untouched matrixwords preserved."
+        },
+        {
+          "address": "0x5b3470",
+          "method": "PodMatrixMath.TransformVector",
+          "sourceFile": "gameplay/movement-phase21-20261013-PodMatrix.cs",
+          "coverage": "Actual three-argument row3x3 vectortransform, not a copy. Nativecomputes andspillsY/Z outputs beforeXstore; allthree source/matrix-dependent results prefetched. Aliasedoutput/input/matrix including shiftedoverlap retained; originalX termorderYproduct+Xproduct+Zproduct, Y/Z usualXYZ."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase21-20261013-PodMatrix.cs"
+      ],
+      "harnessFile": "../tools/movement-phase21-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x4a25b0",
+    "0x58ff10",
+    "0x59cb00",
+    "0x58d8e0",
+    "0x4d94b0",
+    "0x4d8280",
+    "0x40eff0",
+    "0x40f450",
+    "0x5b5060",
+    "0x5b4dd0",
+    "0x5b5240",
+    "0x5b3470",
+    "0x5dad10",
+    "0x5daef0",
+    "0x5fcc80",
+    "0x5fcc10",
+    "0x5ff840"
+  ],
+  "newCoreFiles": 7,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

@@ -1,0 +1,110 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase5-20261013-reuse.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5ed300",
+      "method": "CameraProjectionReuse.CachedSymmetric",
+      "coverage": "completes symmetric clipping with original nonzero reuse branch and ignored camera pointer",
+      "sourceFile": "geometry/scene-phase5-20261013-reuse.cs",
+      "evidence": "reports/scene-phase5-20261013-reuse-native-validation.json",
+      "limitations": [
+        "Nonzero param2cachedprojection with normalconversion973944=0 andfinitevalidresolvedcamera/cachematrices. All originalcachedcamera computation executesunchanged.",
+        "Fresh projection remains sealedcamera/viewportmodule. Modechangecanresetreuseflag onlyafterprojectionblock hasalreadybeenskipped; capturedoldprojection remainsunchanged.",
+        "Native light/rendercache helperrenderer-byte outputs areexcludedfromportable numeric scope, with explicit hostcallbacks.",
+        "Importedphysical D3DXCPU policy, reflectedcamera, device/GPU andauthoredscene integration remainoutside coverage.",
+        "Native/Python ownstate differential passed; compiled C#replay remains separate andpending."
+      ]
+    },
+    {
+      "address": "0x5ed420",
+      "method": "CameraProjectionReuse.CachedAsymmetric",
+      "coverage": "completes asymmetric clipping with original nonzero reuse branch and ignored camera pointer",
+      "sourceFile": "geometry/scene-phase5-20261013-reuse.cs",
+      "evidence": "reports/scene-phase5-20261013-reuse-native-validation.json",
+      "limitations": [
+        "Nonzero param2cachedprojection with normalconversion973944=0 andfinitevalidresolvedcamera/cachematrices. All originalcachedcamera computation executesunchanged.",
+        "Fresh projection remains sealedcamera/viewportmodule. Modechangecanresetreuseflag onlyafterprojectionblock hasalreadybeenskipped; capturedoldprojection remainsunchanged.",
+        "Native light/rendercache helperrenderer-byte outputs areexcludedfromportable numeric scope, with explicit hostcallbacks.",
+        "Importedphysical D3DXCPU policy, reflectedcamera, device/GPU andauthoredscene integration remainoutside coverage.",
+        "Native/Python ownstate differential passed; compiled C#replay remains separate andpending."
+      ]
+    },
+    {
+      "address": "0x5ed540",
+      "method": "CameraProjectionReuse.ApplyCached",
+      "coverage": "extends normal camera through nonzero projection reuse, deferred cullingmode invalidation and preserved early projection block",
+      "sourceFile": "geometry/scene-phase5-20261013-reuse.cs",
+      "evidence": "reports/scene-phase5-20261013-reuse-native-validation.json",
+      "limitations": [
+        "Nonzero param2cachedprojection with normalconversion973944=0 andfinitevalidresolvedcamera/cachematrices. All originalcachedcamera computation executesunchanged.",
+        "Fresh projection remains sealedcamera/viewportmodule. Modechangecanresetreuseflag onlyafterprojectionblock hasalreadybeenskipped; capturedoldprojection remainsunchanged.",
+        "Native light/rendercache helperrenderer-byte outputs areexcludedfromportable numeric scope, with explicit hostcallbacks.",
+        "Importedphysical D3DXCPU policy, reflectedcamera, device/GPU andauthoredscene integration remainoutside coverage.",
+        "Native/Python ownstate differential passed; compiled C#replay remains separate andpending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 0,
+  "evidence": [
+    "reports/scene-phase5-20261013-reuse-native-validation.json",
+    "reports/scene-phase5-20261013-reuse-contract.json",
+    "reports/scene-phase5-20261013-assembly.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-reuse.cs",
+      "sha256": "28e646d8d685571f8da5a8c965498a38db2a10f965549f424ee8f8e2f3b57b82"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase5-20261013-reuse-harness.cs"
+  ],
+  "harnessSha256": "0c992611b189093c1b8611678ea7a048b3f6d6c4e10704ddd333687edafcf81f",
+  "fixture": "reports/scene-phase5-20261013-reuse-native-fixtures.json.gz",
+  "fixtureSha256": "1b0b0f8ea0d7af7c66b8e73c4195357ea1d95298043ed12107ce139d1d840607",
+  "nativeTool": "tools/scene-phase5-20261013-reuse-native.py",
+  "nativeToolSha256": "4ee1ed8c18fdc925ecb2ef394355b437e5db6171af1c2d28214b7384e6d2eca5",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "cachedClipCases": 1024,
+    "cachedCameraCases": 768,
+    "retainedPortableReplayCases": 1792,
+    "cameraCullingModeChangedCases": 512,
+    "cameraCullingModeUnchangedCases": 256,
+    "ignoredNullOrPoisonCameraPointerCases": 683,
+    "retained": 1792,
+    "portableReplayCases": 1792,
+    "preparedManagedAssertions": 4353
+  },
+  "verifier": {
+    "module": "scene-phase5-20261013-reuse",
+    "entrypoint": "CameraProjectionReusePhase5Harness",
+    "fixture": "reports/scene-phase5-20261013-reuse-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "tools/scene-phase5-20261013-native.py",
+      "sha256": "cb238c1a10102cbda563510105d5178e830b3ab472c43b34d165dd00f96bbae1"
+    },
+    {
+      "path": "tools/scene-phase4-20261013-native.py",
+      "sha256": "f55dfc2d864d2b55f52c1131ea82eb6f6bcdb9a9501bcba0284e7a17ceb03e75"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "references/native-animation-sine-table.f32",
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    }
+  ],
+  "nextGaps": [
+    "Reflected/alternate camera view973944 branches remain absent from portable normal camera family.",
+    "Renderer light/cache bytes, installedD3DX policy and authoredscene/frame binding remain separate."
+  ]
+}

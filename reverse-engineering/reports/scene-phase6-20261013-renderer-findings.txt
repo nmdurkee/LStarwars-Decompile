@@ -1,0 +1,9 @@
+Recovered original CPU render-cache producer 0x5fcc80 and concrete viewport offset/extent producers 0x5dad10 / 0x5daef0.
+
+Native/Python differential passed 16,896 checks with zero errors. Retained 5,248 cases: 2,048 offsets, 2,048 extents, 1,024 direct caches and 128 original camera-to-cache captures. The direct routines execute with no external-call adapters. Actual camera captures alone adapt imported D3DX using the previously declared scalar policy.
+
+Offsets first spill screen/source signed integers to float32; extents keep the ratio in x87 precision. The cache copies 16 raw view words, samples five finite projection words, preserves untouched gaps and signed zeros, scales X by screen/640 and Y by screen/224, and wraps uint/ushort counters.
+
+Camera captures retain receiver state at actual callback entry: an earlier camera helper also increments the uint counter. Callback binding replays those consumed view/projection values; complete caller and light-output equivalence is not claimed.
+
+Independent source and harness compile, preparing 9,856 managed assertions; execution pending. No earlier sealed/shared files edited, no commits or pushes.

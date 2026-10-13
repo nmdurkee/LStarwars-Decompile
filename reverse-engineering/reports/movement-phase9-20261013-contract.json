@@ -1,0 +1,64 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x449f70",
+      "method": "RandomSplineSelection.Select",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Whole bounded candidate selection: first-call global reset, ordered32capacity exact/prefix candidates with duplicates, actor eligibility marks/filter/cleanup, original16bit QRAND and nativeinteger stride selection."
+    },
+    {
+      "address": "0x5d0690",
+      "method": "RandomSplineSelection.Find",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Full prepared signed-count scene spline table first exact ASCII name lookup."
+    },
+    {
+      "address": "0x5d0740",
+      "method": "RandomSplineSelection.FindPrefix",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Full prepared signed-count/capacity scene table prefix matching via originalstrlen(pattern), including empty-prefix one-byte compare."
+    },
+    {
+      "address": "0x4f8b80",
+      "method": "RandomSplineSelection.Compare",
+      "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+      "coverage": "Whole bounded ASCII/null/length comparator: signedreturn, explicit0 length, runtime -1/-2 lengths and othernegative termination, terminator/first byte behavior. Extendedbyte folding and invalidmemory outside bounds."
+    }
+  ],
+  "commandCoverage": [
+    {
+      "kind": "scp-action",
+      "name": "SelectRandomSpline",
+      "function": "0x449f70",
+      "sourceUses": 36,
+      "scope": "Whole bounded candidate selection: first-call global reset, ordered32capacity exact/prefix candidates with duplicates, actor eligibility marks/filter/cleanup, original16bit QRAND and nativeinteger stride selection."
+    }
+  ],
+  "cases": 1315,
+  "assertionGroups": 6575,
+  "groups": {
+    "ascii-length-null-compare": 343,
+    "actual-scene-table-lookups": 480,
+    "selector-first-candidate-gates": 256,
+    "unused-actor-eligibility-alias-cleanup": 192,
+    "capacity-ordered-prefix": 8,
+    "authored": 36
+  },
+  "adapters": [],
+  "rules": [
+    "Firstcall clears selectedpointer even withzero tokens; nonfirst leavespriorselected/RNG/state untouched.",
+    "Candidate count32 limits both prefix result andindividual exact additions; repeated tokens/identical records remainweighted duplicates.",
+    "splines= uses prefix equality, not a wildcard/glob. Literalasterisk is an ordinarycharacter; empty prefix onlymatches emptyname because nativecompares oneNUL.",
+    "unused marks bit8000 onactive1/live1000,notdisabled,nonnull attached splines, filterscandidateflags, then clears bit8000 onthose attachedrecords. Preexistingbit8000 can be lost duringcleanup.",
+    "Cleanup preservesotherflags, skipped/ineligible actorattachmentsretaintheirflags. Actor aliases tosame spline preservepointeridentity.",
+    "Onlynonemptyfinal candidates consume one QRAND draw; nativeindex = draw/(65535/count+1), not draw%count."
+  ],
+  "composition": "ExistingQRandom.Next is actual54fa60 projection; no nativecomputational callees replaced.",
+  "limits": [
+    "Prepared valid40entry scene table and4 dense actors with pointer identity/attached aliases; signedscene/actor count bounds and capacity32.",
+    "ASCII bounded compare domain includes null pointers,length0/-1/-2/other negative and prepared terminated strings. No malformed memory reads or extendedbyte case table claim.",
+    "Actor-array and scene/spline producers, selectedspline consumers, global worldpointer lifetime remain external."
+  ],
+  "managedReplay": "Prepared complete262144byte image/RNG/selected/fault/return checks; unexecuted."
+}

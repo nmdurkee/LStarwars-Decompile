@@ -1,0 +1,107 @@
+{
+  "module": "gameplay",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Four original takeover context cleanup producers plus ordered prepared-memory55e4e0 reset projection and fresh phase13 ports composition.",
+  "functions": [
+    {
+      "address": "0x4a25b0",
+      "method": "TakeoverCleanup.ClearAction",
+      "bodyBytes": 246,
+      "branches": "Cache signed context once.8 optionally camera(global8021b4,1,0,1) whenactorflag1fc80, then4a1f50(actor,mode).27 useslinked790: targetcontext28 clears targetcontext/790, then clearsown790 andcallsfinish.29 usesgizmoCB8 player-maskbyte206, timerE8 reset/global7fb084, clearsCB8/context thenfinish. Othercontexts no-op.",
+      "mask": "NativeSHL BL,CL masks countto5bits andhas8-bit destination. Sourcebyte((1u<<(playerByte&31))) preserves counts8..31 zero and32→0 wrap. If resultinggizmobitmask0, resetbyte206 toFF.",
+      "aliases": "CB8 reloaded after firstmaskwrite andbeforetimercopy, preservinggizmo-pointer aliases. Linked790 cached pointer controls targetclears. Callbackaftercamera cannot change originalcontext branch."
+    },
+    {
+      "address": "0x58ff10",
+      "method": "TakeoverCleanup.ResetActor",
+      "bodyBytes": 91,
+      "branch": "Fullsigned32-bit global802860 sentinel-1 returnsbeforeactorread. Compare signextendedactorcontext byte tofullglobal, nottruncatedbyte. Onmatch clearcontextFF beforecamera(global8021b4,.5,mode!=0?.6:0,1).",
+      "camera": "Blend .6 exactstoredF32 bits3f19999a, fullunsignedmode nonzero test."
+    },
+    {
+      "address": "0x59cb00",
+      "method": "TakeoverCleanup.StopActor",
+      "bodyBytes": 98,
+      "branch": "Uncheckedcontexttable7fb0e4 +signedbytecontext*16+8 flags. Bit2000 required. Full32-bit global802854 matchingnon-sentinel context triggerscamera(0,.5,0,1) BEFOREclearcontextFF/DC4=0. Camera mutations remainvisible but clearsstill occur.",
+      "fault": "Missingregistry/actor faults before any cleanup writes; nopointer guard invented."
+    },
+    {
+      "address": "0x58d8e0",
+      "method": "TakeoverCleanup.PrepareActor",
+      "bodyBytes": 66,
+      "branch": "Non-sentinel signedcontext matchesfullDWORD globals802864/868 toclearcontext. Regardlessmatch clearE20 bit10000, D3c=+0, E33=0. Context-1 skipsglobalcomparisons butmandatorytailruns."
+    },
+    {
+      "address": "0x55e4e0",
+      "method": "TakeoverCleanup.ResetControls",
+      "bodyBytes": 280,
+      "existingScope": "Already mapped PathRelocation.ResetControls owns a parentimage/world projection. New prepared-memory projection adds exactnative write/cache/fault order andlivepad aliases withoutnewaddresscredit.",
+      "ordering": "Readembedded75e bit1 BEFOREfirstFC clear; cachepadpointer+5e0 BEFORE67c/remainingearlyfields. Clearpadword5a bit4, rereadpadpointer, clearwordbit10. Onlyaftervalidpadwrites clear75c bit400,65c/648, thenconsumeone actualQRAND.",
+      "fault": "Nullpad faults afterexactearlyfieldwrites beforeRNG. Mutatingpadpointer throughaliasedflags redirectssecondwordclear. Nullsubobject faults beforefirstwrite at75e read. Wholeactor/input/RNG state retained.",
+      "rng": "ExistingQRandom.Next usedonce afterpadwrites; storedraw>>15 byte77d plusorderedtailzeroes/sentinelwords. Additionaldraw precedesphase11 ejection draws duringpipeline."
+    }
+  ],
+  "composition": {
+    "source": "RecoveredCleanupPipelinePorts",
+    "calls": "Overridephase13 ClearAction/ResetActor/StopActor/ResetAnimation/PrepareActor withactual cleanup/reset bodies; forwardremainingports unchanged. Existingphase13andprior sources immutable.",
+    "extraBoundary": "4a1f50 FinishAction remains explicit TakeoverCleanupServices. Extendedcamera ABI preservesduration/blend/mode separately."
+  },
+  "verification": {
+    "unitCases": 1209,
+    "pipelineCases": 27,
+    "totalCorrelatedAssertions": 3708,
+    "mismatches": 0,
+    "original": "Actualfourcleanupbodies,55e4e0/QRAND andfullpreviouspipelinefunctions execute. No adapters fornewcleanup/reset bodies.",
+    "remainingAdapters": {
+      "0x4a1f50": {
+        "name": "FinishAction",
+        "argc": 2
+      },
+      "0x415000": {
+        "name": "Rebind",
+        "argc": 1
+      },
+      "0x52c790": {
+        "name": "ChangeState",
+        "argc": 2
+      },
+      "0x52cc90": {
+        "name": "RunScript",
+        "argc": 5
+      },
+      "0x5a0320": {
+        "name": "VehicleResponse",
+        "argc": 2
+      },
+      "0x4c99b0": {
+        "name": "DistanceFactor",
+        "argc": 2
+      },
+      "0x561e20": {
+        "name": "DirectedJump",
+        "argc": 6
+      },
+      "0x54a3e0": {
+        "name": "Camera",
+        "argc": 4
+      },
+      "0x681e90": {
+        "name": "PlayerSound",
+        "argc": 2
+      },
+      "0x681eb0": {
+        "name": "WorldSound",
+        "argc": 3
+      }
+    },
+    "fixtures": "reports/script-phase14-20261013-native-fixtures.json",
+    "harness": "tools/script-phase14-20261013-portable-verify.cs",
+    "retention": "All256contextbytevalues, signed/fullconfigured IDs, sentinel/lazy faults, linked28/self/dangling, byteplayer shifts, gizmo-pointeraliases, null/aliasedpad partialstate andpipelineinteroperation retained."
+  },
+  "limits": [
+    "Prepared completeactor/control/gizmo/context backing andfiniteglobal7fb084 timer. Otherfullpipeline finite/model domain inherited.",
+    "Actionfinish/camera andpriorremaining script/vehicle-response/special-jump/terminalaudio callbacks remainexplicitports. No wholeactor/terrain/game/platform loop executed.",
+    "Four newdistinctaddresses4a25b0/58ff10/59cb00/58d8e0;55e4e0 expandsalready-mapped reset scope. No authoredcommandcoverage added.",
+    "Rootownscombinedbuild; worker didnotcreatebinary/bin outputs ormanagedlaunch."
+  ]
+}

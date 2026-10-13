@@ -1,0 +1,118 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase14-20261013-target-reset.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e33a0",
+      "method": "RenderTargetResetProduction.Restore",
+      "coverage": "Whole bounded target/depth restore consumer over shared backend, real target cache and complete original viewport refresh; final COM edges explicit.",
+      "sourceFile": "geometry/scene-phase14-20261013-target-reset.cs",
+      "evidence": "reports/scene-phase14-20261013-target-reset-native-validation.json",
+      "limitations": [
+        "Original6e33a0/6e3650/6e2880/6e2510 and viewport setters/reset/forwarders/CRT run unchanged over one fixed backend29765c8. No intermediate helper or arithmetic adapters.",
+        "Restore selects initial flag branch once, then rereads capabilities and target cache gates per extra slot. Active handle is reread after initial target callback.",
+        "Clear-additional rereads signed configuration, current flag and ushort count per slot. Changed cache cells zero before direct COM; opaque HRESULT never causes rollback.",
+        "Depth target always forwarded after target calls; fresh backend dimensions then populate screen/origin globals and feed actual context refresh. Both callers tail-jump to actual refresh and return its final raw word.",
+        "Finite viewport numeric globals and fitting mode0 integer conversion; nonzero calibration source axes. Raw handles/cache/source packet words opaque, resolved device/image lifetimes supplied externally.",
+        "Device/capability/mode-table bootstrap, authored scene/frame binding and real COM/GPU actions remain external. Native/Python differential passed; managed execution pending."
+      ]
+    },
+    {
+      "address": "0x6e3650",
+      "method": "RenderTargetResetProduction.ClearAdditional",
+      "coverage": "Whole bounded extra-target clearing consumer with per-slot gates and pre-COM cache writes, depth forwarding and complete original viewport refresh.",
+      "sourceFile": "geometry/scene-phase14-20261013-target-reset.cs",
+      "evidence": "reports/scene-phase14-20261013-target-reset-native-validation.json",
+      "limitations": [
+        "Original6e33a0/6e3650/6e2880/6e2510 and viewport setters/reset/forwarders/CRT run unchanged over one fixed backend29765c8. No intermediate helper or arithmetic adapters.",
+        "Restore selects initial flag branch once, then rereads capabilities and target cache gates per extra slot. Active handle is reread after initial target callback.",
+        "Clear-additional rereads signed configuration, current flag and ushort count per slot. Changed cache cells zero before direct COM; opaque HRESULT never causes rollback.",
+        "Depth target always forwarded after target calls; fresh backend dimensions then populate screen/origin globals and feed actual context refresh. Both callers tail-jump to actual refresh and return its final raw word.",
+        "Finite viewport numeric globals and fitting mode0 integer conversion; nonzero calibration source axes. Raw handles/cache/source packet words opaque, resolved device/image lifetimes supplied externally.",
+        "Device/capability/mode-table bootstrap, authored scene/frame binding and real COM/GPU actions remain external. Native/Python differential passed; managed execution pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 2,
+  "evidence": [
+    "reports/scene-phase14-20261013-target-reset-native-validation.json",
+    "reports/scene-phase14-20261013-target-reset-assembly.json",
+    "reports/scene-phase14-20261013-target-reset-contract.json",
+    "reports/scene-phase14-20261013-target-reset-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase14-20261013-target-reset.cs",
+      "sha256": "82a14924ab9c7036fc1111bcc66081251aed4b75bad83abe34a2289cbe62c49d"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase14-20261013-target-reset-harness.cs"
+  ],
+  "harnessSha256": "fccc8b8a537fa2e344079a1c93dd4b2614003281d749750fcafb703cdefad4e8",
+  "fixture": "reports/scene-phase14-20261013-target-reset-native-fixtures.json.gz",
+  "fixtureSha256": "8b3bfc8c73622a18716fb96606a31d5c3862f89ac409add1f70336d0028730d6",
+  "nativeTool": "tools/scene-phase14-20261013-target-reset-native.py",
+  "nativeToolSha256": "2ef53df617d651ed39c55c7d9c49d891e74d5b19a82dd32ba340d7378f113393",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "restoreCalls": 1792,
+    "clearAdditionalCalls": 1792,
+    "retainedPortableReplayCases": 3584,
+    "COMCalls": 13739,
+    "targetCOMCalls": 2987,
+    "depthCOMCalls": 3584,
+    "viewportCOMCalls": 7168,
+    "preparedManagedAssertions": 48982
+  },
+  "verifier": {
+    "module": "scene-phase14-20261013-target-reset",
+    "entrypoint": "TargetResetPhase14Harness",
+    "fixture": "reports/scene-phase14-20261013-target-reset-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase12-20261013-target-pipeline.cs",
+      "sha256": "65245b2ae473f7df8d29e4024b3d6739993864cd381b1068937679b3a1edfe7d"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-context.cs",
+      "sha256": "fd9dda0abd692efba4c150ea79267a0eff3b934abb78dd044b5fbedb945947a0"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-refresh.cs",
+      "sha256": "8527dbb877e06c08e05bc92212e589110e83b4fad0d7be60e8e27c2aa10aa469"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-viewport.cs",
+      "sha256": "5ab3c7d3af358b1c407cfd03542e8278b6939325a7b80d7f91cfa834fe6f0f35"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-viewport.cs",
+      "sha256": "b680b8b969a13889fa6da74d6ec9f9a70a4daf32d9bef7b39c8c10cb73436782"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase5-20261013-CameraProduction.cs",
+      "sha256": "45fbc9ad3e1d8f367ccd081eccc610b59d396d4e126365304c35643c971b2d79"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "tools/scene-phase11-20261013-refresh-native.py",
+      "sha256": "f8ed50e4190698ac9ad7bf1a6277486f9973ecb90c47dbbd23c3558b5edebc47"
+    },
+    {
+      "path": "tools/scene-phase5-20261013-viewport-native.py",
+      "sha256": "a7e2012cc79f77ef1187cb7387f7b38864073525afa519efc5c8a95a8f8306e4"
+    }
+  ]
+}

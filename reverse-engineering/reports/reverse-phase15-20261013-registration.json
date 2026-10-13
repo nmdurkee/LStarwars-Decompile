@@ -1,0 +1,204 @@
+{
+  "updated": "2026-10-13T20:56:21.943Z",
+  "batch": "reverse-phase15-20261013",
+  "descriptors": [
+    "reports/world-phase16-20261013-integration.json",
+    "reports/world-phase16-20261013-consumer-integration.json",
+    "reports/world-phase17-20261013-integration.json",
+    "reports/script-phase19-20261013-source-map.json",
+    "reports/movement-phase28-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "world-phase16-20261013",
+      "cls": "WorldPhase1620261013Verify",
+      "fixture": "reports/world-phase16-20261013-vectors.json",
+      "output": "reports/world-phase16-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase16-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase16-20261013-native-tests.json",
+        "reports/world-phase16-20261013-consumer-tests.json",
+        "reports/world-phase16-20261013-contract.json",
+        "reports/world-phase16-20261013-source-map.json",
+        "reports/world-phase16-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x66a190",
+          "method": "PtlPhysicalRecords.Decode",
+          "coverage": "complete prepared PTL physical record decoding for accepted versions5..41",
+          "qualification": "Complete own-state 1064-byte physical PTL record decoder for accepted loader versions 5..41 on readable prepared destinations and buffered streams, sound counts 0..4 and retained finite scalar/color inputs. Byte fields, signed HALF legacy rate conversion (multiply60 or truncating -60/rate), five legacy time HALF/60 conversions, minimum on-duration reciprocal, version gates, 8-node raw binary32 curves, legacy three-byte truncating RGB vs four-byte RGBA, defaults and untouched padding are preserved. Version18/19 type6 scale correction, version36 minimum4 correction, old/new late byte encodings and sound records are retained. Original 66a190 executes unchanged 4,437 times in 463 composed bank cases, including every accepted version in both byte orders and all229 unchanged authored PTL inputs/4,210 physical records (versions26/27/33..41). Sound names execute original650e40 against prepared readable audio catalogs derived from exact declared requests; 81 native audio calls and their argument SHA/count are retained. Audio catalog production/playback remains separate. Managed float copies model retained finite/quiet binary32 values; general signaling-NaN quieting, x87 status flags and pathological arithmetic are not claimed. Source and both portable harnesses compile as library; managed replay pending without generated executable launch.",
+          "sourceFile": "gameplay/world-phase16-20261013-ptl-records.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase16-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase16-20261013-consumer-tests.json",
+            "reverse-engineering/reports/world-phase16-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x68df20",
+          "method": "PtlRecordPublication.Load",
+          "coverage": "bounded original modes0/5/6 physical record-bank publication with real decoder and explicit normalization/selection services",
+          "qualification": "Bounded original 68df20 own-state record-bank publication for original low-byte modes0/5/6 with archive selector global2962a28=0, readable512-slot registry backing and coherent used/capacity counters. Mode0 uses bank0, mode5 bank1, mode6 searches2..7 and rewrites physical record mode to1. Flags and scene pointers publish before reading records. Accepted records occupy first free pointer slot starting1, receive bank byte+17, clear+2a8/+2ac, publish actual pool pointer, invoke explicit Normalize(record), then increment live used count. Overflow records are fully decoded into1064-byte temporary backing excluded from image capture. Capacity overflow sets diagnostic296293c=300. File close precedes explicit Select(1.0 bits), then mode0/5 current-bank publication. Exhausted banks/failed open/invalid versions returnFFFFFFFF; success returns selected bank0..7. Original physical decoder/readers/audio lookups execute unchanged; file transport, normalization68cfd0 and emitter selection661f60 are adapted explicit no-op services with preserved arguments/order. Source does not parse mode1/2 trailing emitter/instance rows or archive mode2 transport, and does not claim full PTL load success/render/emission. All229 authored inputs are passed unchanged as transport payloads; decoding stops after physical records, leaving trailing records outside this batch. The463 retained cases compare return, complete captured image, audio argument SHA/count, service order, file trace and state. A second closure verifies all463 saved native image hashes, then executes3,508 original658330/658490 lookups against their actual published record tables (first up to8 occupied records), with3,971 checks and no skipped unterminated names. This establishes producer-to-consumer table identity without fabricated particle catalog names. Source/harnesses compile as library; managed replay remains pending.",
+          "sourceFile": "gameplay/world-phase16-20261013-ptl-records.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase16-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase16-20261013-consumer-tests.json",
+            "reverse-engineering/reports/world-phase16-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase16-20261013-ptl-records.cs"
+      ],
+      "harnessFile": "../tools/world-phase16-20261013-portable-verify.cs"
+    },
+    {
+      "name": "world-phase16-consumer-20261013",
+      "cls": "WorldPhase16Consumer20261013Verify",
+      "fixture": "reports/world-phase16-20261013-consumer-vectors.json",
+      "output": "reports/world-phase16-20261013-consumer-managed-tests.json",
+      "descriptor": "reports/world-phase16-20261013-consumer-integration.json",
+      "evidence": [
+        "reports/world-phase16-20261013-consumer-tests.json",
+        "reports/world-phase16-20261013-contract.json",
+        "reports/world-phase16-20261013-execution-status.json"
+      ],
+      "mappings": [],
+      "coreFiles": [],
+      "harnessFile": "../tools/world-phase16-20261013-consumer-portable-verify.cs"
+    },
+    {
+      "name": "world-phase17-20261013",
+      "cls": "WorldPhase1720261013Verify",
+      "fixture": "reports/world-phase17-20261013-vectors.json",
+      "output": "reports/world-phase17-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase17-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase17-20261013-native-tests.json",
+        "reports/world-phase17-20261013-contract.json",
+        "reports/world-phase17-20261013-assembly.json",
+        "reports/world-phase17-20261013-execution-status.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x68cfd0",
+          "method": "PtlEmitterRuntime.Normalize",
+          "coverage": "bounded finite terminating physical-record duty normalization and original attached-emitter scan",
+          "qualification": "Original own-body duty normalization on readable physical records and512-row emitter/table backing. Lifetime>0 requires finite positive on+variation cycle, nonnegative finite gap, terminating binary32 progression, finite intermediate stores and integral product fittingInt32. Exact64-bit x87 arithmetic projects each observed binary32 spill: remaining duration, active accumulator, on completion, gap remainder, total completion and duty fraction. Rate is signed16; conversion truncates the unspilled fraction*rate*lifetime, then wraps signed16, clamps below1 and multiplies by signed8 extra+1 with low16 wrap. Nonpositive finite lifetime follows original invalid-conversion low-word0 then clamp1; no FPU status claim. Scan reads live emitter/table globals per eligible row, filters-1/99999, uses signed16 particle index and pointer identity, rereads normalized count before each real SetCount. Mutable allocation callback may retarget future emitter base, count and final row. Actual original6e6b90 executes660 times unchanged in direct fixtures. NaN/Infinity arithmetic operands, arbitrary Int64 conversion, stalled cycles, negative gaps, machine flags and partial-fault effects are outside source projection.",
+          "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase17-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase17-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x683e90",
+          "method": "PtlEmitterRuntime.SetCount",
+          "coverage": "complete prepared emitter chunk/count state with explicit allocation683560 service",
+          "qualification": "Own-body emitter count preparation on readable backing for arbitrary signed32 counts and raw integer fields. Captures physical pointer through signed16 particle index before writing count low16; rereads physical type for12-particle type7 or32-particle chunks, preserving signed32 addition wrap and truncating division. Chunk low16 is compared signed against32; cap stores384(type7) or1024(other), current/requested compare uses raw16 equality, equal updates active count, only requested nonzero/currentzero calls explicit mutable allocation683560. Allocation return is ignored. The child allocation body, arena publication and live particle storage remain unrecovered.",
+          "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase17-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase17-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x661f60",
+          "method": "PtlEmitterRuntime.Select",
+          "coverage": "complete prepared512-row nearest emitter selection for finite coordinates and raw threshold bits",
+          "qualification": "Own-body selection on readable512-row backing, selected index-1 or0..511 and finite coordinates whose subtraction and squared-distance stores remain finite. Original5b3800 executes1,860 direct calls unchanged. Subtraction spills each coordinate binary32; x8764-bit square/add order is(y*y+x*x)+z*z, final distance spillsbinary32. Current valid row at exactzero retains prior selection, independent of threshold. IDs-1/99999 are skipped; strict squared threshold, negative-threshold first acceptance and stable first ties retained. All raw threshold variants prepared include±0,±Infinity and quietNaN; exceptional coordinate arithmetic and signaling-NaN quieting/FPU flags excluded. No instance creation, rendering or emission claim.",
+          "sourceFile": "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase17-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase17-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase17-20261013-ptl-emitter-runtime.cs"
+      ],
+      "harnessFile": "../tools/world-phase17-20261013-portable-verify.cs"
+    },
+    {
+      "name": "script-phase19-20261013",
+      "cls": "ScriptPhase1920261013Verify",
+      "fixture": "reports/script-phase19-20261013-native-fixtures.json",
+      "output": "reports/script-phase19-20261013-managed-check.json",
+      "descriptor": "reports/script-phase19-20261013-source-map.json",
+      "evidence": [
+        "reports/script-phase19-20261013-contract.json",
+        "reports/script-phase19-20261013-tests.json",
+        "reports/script-phase19-20261013-assembly.json",
+        "reports/script-phase19-20261013-fixture-replay.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x52c880",
+          "method": "PreparedScriptConditions.Evaluate",
+          "coverage": "Existing condition evaluator expanded to ordered raw-memory cache and callback contract.",
+          "sourceFile": "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs"
+        },
+        {
+          "address": "0x52c800",
+          "method": "PreparedScriptConditions.Finish",
+          "coverage": "Existing cache finish expanded to customEDI/ECX and exact tail traversal.",
+          "sourceFile": "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs"
+        },
+        {
+          "address": "0x52caf0",
+          "method": "PreparedScriptReferences.Scan",
+          "coverage": "Existing reference helper expanded to customESI packet, signed-depth aliases and actual supplied-script binding.",
+          "sourceFile": "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/script-phase19-20261013-ScriptConditionsBridge.cs"
+      ],
+      "harnessFile": "../tools/script-phase19-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase28-20261013",
+      "cls": "MovementPhase2820261013Verify",
+      "fixture": "reports/movement-phase28-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase28-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase28-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase28-20261013-contract.json",
+        "reports/movement-phase28-20261013-tests.json",
+        "reports/movement-phase28-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x43d890",
+          "method": "ActorCreation.Create",
+          "sourceFile": "gameplay/movement-phase28-20261013-ActorCreation.cs",
+          "coverage": "Complete prepared actor creator own control/field body with recovered pool/initializer/collision CPU composition. Normal/spline placement, formation shift/row publication, room/snap/path/script gates, fresh callback-mutated field reads, late position and wrapped group counts. Large child services explicit; valid backing/finite arithmetic and exact sine table; no whole actor/game equivalence."
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase28-20261013-ActorCreation.cs"
+      ],
+      "harnessFile": "../tools/movement-phase28-20261013-portable-verify.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x66a190",
+    "0x68df20",
+    "0x68cfd0",
+    "0x683e90",
+    "0x661f60",
+    "0x52c880",
+    "0x52c800",
+    "0x43d890"
+  ],
+  "newCoreFiles": 4,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate.",
+  "auditCorrections": [
+    {
+      "descriptor": "reports/script-phase19-20261013-source-map.json",
+      "issue": "Stale metadata claimed zero new addresses; evaluator52c880/cache52c800 had no prior registered portable mapping.",
+      "resolution": "Corrected credit metadata to2newaddresses and0commands; source/harness/fixture/build unchanged; registration counts already correct."
+    }
+  ]
+}

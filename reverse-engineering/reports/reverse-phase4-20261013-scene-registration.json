@@ -1,0 +1,173 @@
+{
+  "updated": "2026-10-13T16:35:20.344Z",
+  "batch": "reverse-phase4-20261013",
+  "descriptors": [
+    "reports/world-phase4-20261013-integration.json",
+    "reports/movement-phase4-20261013-source.json",
+    "reports/scene-phase4-20261013-source.json"
+  ],
+  "registrations": [
+    {
+      "name": "world-phase4-20261013",
+      "cls": "WorldPhase420261013Verify",
+      "fixture": "reports/world-phase4-20261013-vectors.json",
+      "output": "reports/world-phase4-20261013-managed-tests.json",
+      "descriptor": "reports/world-phase4-20261013-integration.json",
+      "evidence": [
+        "reports/world-phase4-20261013-native-tests.json",
+        "reports/world-phase4-20261013-source-map.json",
+        "reports/world-phase4-20261013-contract.json",
+        "reports/world-phase4-20261013-execution-status.json",
+        "reports/world-phase4-20261013-authored-provenance.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x57a420",
+          "method": "LevelTextLoading.Produce",
+          "coverage": "whole own-state level text producer with explicit fixedfilename formatter and I/O services",
+          "sourceFile": "gameplay/world-phase4-20261013-level-text.cs",
+          "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x54be70",
+          "method": "LevelTextLoading.Normalize",
+          "coverage": "whole byte-oriented comment/separator normalization on bounded terminated memory",
+          "sourceFile": "gameplay/world-phase4-20261013-level-text.cs",
+          "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+          ]
+        },
+        {
+          "address": "0x4fd5d0",
+          "method": "LevelTextLoading.ReadWhole",
+          "coverage": "whole native archive/fallback file-control flow with explicit mutable transport/lifecycle services",
+          "sourceFile": "gameplay/world-phase4-20261013-level-text.cs",
+          "qualification": "Prepared disjoint byte regions or exact in-place normalization; terminated input and adequate output/arena backing. Filenames fit native128-byte local, fixed%s.txt pattern only. Original archive/file transport, compressed reads and OS handle lifecycle are services, not recreated backends. Retried services must eventually return nonnegative read/seek. Advertised lengths0..0x10001; positive producer returns<=0x10000. Seek preserves original signed64-bitEDX:EAX return semantics. Negative read retries only; nonnegative short read still returns declared file length. Missing/oversize/error paths are bounded, not fixed to claim success. Normalization is byte-oriented and quote-unaware; single slash advances input even without a second slash. Return includes copied terminatingNUL, followed by anotherNUL. Authored complete files are byte-hash bound; oversized/empty files retain original rejection. No live level resource load or parser-record allocation is claimed. Managed replay remains pending; no generated executable retry.",
+          "nativeEvidence": [
+            "reverse-engineering/reports/world-phase4-20261013-native-tests.json",
+            "reverse-engineering/reports/world-phase4-20261013-assembly.json"
+          ]
+        }
+      ],
+      "coreFiles": [
+        "gameplay/world-phase4-20261013-level-text.cs"
+      ],
+      "harnessFile": "../tools/world-phase4-20261013-portable-verify.cs"
+    },
+    {
+      "name": "movement-phase4-20261013",
+      "cls": "MovementPhase420261013Verify",
+      "fixture": "reports/movement-phase4-20261013-fixtures.json.gz",
+      "output": "reports/movement-phase4-20261013-managed-check.json",
+      "descriptor": "reports/movement-phase4-20261013-source.json",
+      "evidence": [
+        "reports/movement-phase4-20261013-contract.json",
+        "reports/movement-phase4-20261013-tests.json",
+        "reports/movement-phase4-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x536330",
+          "method": "OriginPathCommands.GoToOrigin",
+          "coverage": "Native guards, spawn position/callback choice, ordered first-call parsing, one-draw wait, actual intent/formation and yaw/distance composition, float32 threshold stores and delayed zero-wait completion; producers/scheduler explicit.",
+          "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+        },
+        {
+          "address": "0x536dc0",
+          "method": "OriginPathCommands.FollowPath",
+          "coverage": "Native guard distinctions, ordered first-call token parsing, exact two-draw timer with double spill, actual formation expansion and timer completion; scheduler/token/world producers explicit.",
+          "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+        },
+        {
+          "address": "0x52fda0",
+          "method": "OriginPathCommands.FormationIntent",
+          "coverage": "Full finite byte-indexed formation intent: actual unsigned count/slot rules, spacing/side flags, supplied runtime yaw table, raw six-word orientation copies, goal/radius/mode/facing/lookpointer writes.",
+          "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+        },
+        {
+          "address": "0x52fcb0",
+          "method": "OriginPathCommands.SetIntent",
+          "coverage": "Refines existing ordinary intent projection by composing actual recovered formation expansion and exact owner callback selection51cbc0/51c6a0.",
+          "sourceFile": "gameplay/movement-phase4-20261013-OriginPath.cs"
+        }
+      ],
+      "coreFiles": [
+        "gameplay/movement-phase4-20261013-OriginPath.cs"
+      ],
+      "harnessFile": "../tools/movement-phase4-20261013-portable-verify.cs"
+    },
+    {
+      "name": "scene-phase4-20261013",
+      "cls": "TreeVisibilityPhase4Harness",
+      "fixture": "reports/scene-phase4-20261013-native-fixtures.json.gz",
+      "output": "reports/scene-phase4-20261013-csharp-validation.json",
+      "descriptor": "reports/scene-phase4-20261013-source.json",
+      "evidence": [
+        "reports/scene-phase4-20261013-native-validation.json",
+        "reports/scene-phase4-20261013-contract.json",
+        "reports/scene-phase4-20261013-stack-lifetime.json",
+        "reports/scene-phase4-20261013-assembly.json"
+      ],
+      "mappings": [
+        {
+          "address": "0x5d86f0",
+          "method": "TreePlaneProduction.BuildLocal",
+          "coverage": "finite local plane matrix production with runtime template, original float stores/norms and initialization flag",
+          "sourceFile": "geometry/scene-phase4-20261013-PlaneProduction.cs",
+          "evidence": "reports/scene-phase4-20261013-native-validation.json",
+          "limitations": [
+            "Finite near>0;finite coefficients/matrix/direction/position with finite nonzero norm and finite intermediate outputs. Runtime0x95e600 copied template supplied explicitly;initialization/lifetime of template outside scope.",
+            "D3DX arithmetic remains explicit matrix adapter; not an assertion of imported D3DX CPU/GPU numerical equivalence.",
+            "Populated valid synthetic u16 trees,finite nonnegative extents,acyclic/pendingstack<=100. Exact finite fourth-radius residue supplied perpredicate. No live camera or authored tree loader claim.",
+            "Tree packed output is intentionally bound to selected scene clip buffer for original5df910 consumption; this verifies these contracts composed, not complete5f3c80/context resolver or scene submission.",
+            "Native/Python own-state contract verified; C# compiled replay remains separate and pending."
+          ]
+        },
+        {
+          "address": "0x5d8950",
+          "method": "TreePlaneProduction.Transform",
+          "coverage": "finite world plane/depth/absolute production with explicit D3DX matrix multiplication adapter",
+          "sourceFile": "geometry/scene-phase4-20261013-PlaneProduction.cs",
+          "evidence": "reports/scene-phase4-20261013-native-validation.json",
+          "limitations": [
+            "Finite near>0;finite coefficients/matrix/direction/position with finite nonzero norm and finite intermediate outputs. Runtime0x95e600 copied template supplied explicitly;initialization/lifetime of template outside scope.",
+            "D3DX arithmetic remains explicit matrix adapter; not an assertion of imported D3DX CPU/GPU numerical equivalence.",
+            "Populated valid synthetic u16 trees,finite nonnegative extents,acyclic/pendingstack<=100. Exact finite fourth-radius residue supplied perpredicate. No live camera or authored tree loader claim.",
+            "Tree packed output is intentionally bound to selected scene clip buffer for original5df910 consumption; this verifies these contracts composed, not complete5f3c80/context resolver or scene submission.",
+            "Native/Python own-state contract verified; C# compiled replay remains separate and pending."
+          ]
+        },
+        {
+          "address": "0x5d8fb0",
+          "method": "TreePlaneProduction.Produce",
+          "coverage": "refines existing tree wrapper through actual local/transform producers and populated clip-control integration; exact finite fourth-radius residue remains explicit",
+          "sourceFile": "geometry/scene-phase4-20261013-PlaneProduction.cs",
+          "evidence": "reports/scene-phase4-20261013-native-validation.json",
+          "limitations": [
+            "Finite near>0;finite coefficients/matrix/direction/position with finite nonzero norm and finite intermediate outputs. Runtime0x95e600 copied template supplied explicitly;initialization/lifetime of template outside scope.",
+            "D3DX arithmetic remains explicit matrix adapter; not an assertion of imported D3DX CPU/GPU numerical equivalence.",
+            "Populated valid synthetic u16 trees,finite nonnegative extents,acyclic/pendingstack<=100. Exact finite fourth-radius residue supplied perpredicate. No live camera or authored tree loader claim.",
+            "Tree packed output is intentionally bound to selected scene clip buffer for original5df910 consumption; this verifies these contracts composed, not complete5f3c80/context resolver or scene submission.",
+            "Native/Python own-state contract verified; C# compiled replay remains separate and pending."
+          ]
+        }
+      ],
+      "coreFiles": [
+        "geometry/scene-phase4-20261013-PlaneProduction.cs"
+      ],
+      "harnessFile": "geometry/harness/scene-phase4-20261013-PlaneProductionHarness.cs"
+    }
+  ],
+  "newDistinctEntries": [
+    "0x5d86f0",
+    "0x5d8950"
+  ],
+  "newCoreFiles": 1,
+  "policy": "Local descriptor registration. New core/alias compilation status remains pending until recorded build; native and managed evidence separate."
+}

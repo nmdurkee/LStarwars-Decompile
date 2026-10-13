@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-13T14:31:03.140Z",
+  "updated": "2026-10-13T20:57:17.885Z",
   "status": "native-validation-available-managed-execution-blocked",
-  "observedFailure": "Windows Access is denied / WinError5 at process creation for generated verification executables.",
+  "observedFailure": "Latest normal unified actor-next process creation returned spawn EPERM; historical Windows Access denied/WinError5 retained in batch evidence.",
   "successfulHistoricalRun": {
     "module": "CombatRules.cs",
     "cases": 14553,
@@ -27,8 +27,39 @@
   "requiredToResolve": "Allow normal execution of the generated local verification program in the existing Windows environment, then run the documented comparisons. Cause of OS denial remains unconfirmed.",
   "lastAttempt": {
     "program": "reconstructed/bin/RecoveredSourceVerify.exe",
-    "commandModule": "combat",
-    "result": "Windows Access is denied at process creation",
-    "sourceBatch": "10 core files at last launch retry; current173core-file library and unified verifier compile. No alternate execution host or repeated launch attempts."
-  }
+    "commandModule": "actor-next-20261013",
+    "result": "spawn EPERM before normal process creation",
+    "sourceBatch": "10 core files at last launch retry; current257core-file library and unified verifier compile. No alternate execution host or repeated launch attempts."
+  },
+  "currentBatch": {
+    "report": "reports/reverse-next-20261013-summary.json",
+    "modules": [
+      "actor-next-20261013",
+      "script-next-20261013",
+      "world-next-20261013",
+      "scene-next-20261013"
+    ],
+    "compiledCoreFiles": 181,
+    "compiledHarnessFiles": 187,
+    "managedComparisons": "pending; one ordinary unified actor-next launch returned spawn EPERM before process creation",
+    "verifierHash": "Matched recorded build during coverage refresh before launch attempt.",
+    "build": "reports/reconstructed-build.json",
+    "launch": "reports/reverse-next-20261013-launch.json"
+  },
+  "previousBatches": [
+    {
+      "report": "reports/reverse-engineering-20261013-summary.json",
+      "modules": [
+        "frame-paused",
+        "script-contract-20261013",
+        "world-loading-20261013",
+        "grid-visibility-20261013"
+      ],
+      "compiledCoreFiles": 177,
+      "compiledHarnessFiles": 183,
+      "managedComparisons": "pending; two standalone generated verifiers denied normal process creation with EPERM",
+      "verifierCurrentHash": "unavailable; reread EPERM; build-time hash retained",
+      "build": "reports/reconstructed-build.json"
+    }
+  ]
 }

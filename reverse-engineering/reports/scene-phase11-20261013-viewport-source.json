@@ -1,0 +1,91 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase11-20261013-viewport.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e2470",
+      "method": "ViewportCpuProduction.Apply",
+      "coverage": "Whole resolved raw viewport CPU forwarder: unsigned size clamp, explicit COM, original-source forward copy and raw last-word result.",
+      "sourceFile": "geometry/scene-phase11-20261013-viewport.cs",
+      "evidence": "reports/scene-phase11-20261013-viewport-native-validation.json",
+      "limitations": [
+        "Original6e2470 and6e57b0 execute unchanged. All copied/clamped words use integer instructions; raw nonfinite depth payloads are not converted.",
+        "Local device packet clamps only width/height using unsigned comparisons against raw screen words. X/Y/depth remain raw.",
+        "After COM, backend cache receives original source words with actual forward read/write order, including shifted/unaligned aliases and callback source mutation. Local packet mutations do not alter that copy.",
+        "COM HRESULT is discarded. Return equals last original source word read after prior writes; wrapper null input returns0 without call.",
+        "Global wrapper routes to fixed backend29765c8. Backend/COM lifecycle, actual device acceptance and runtime source initialization remain external.",
+        "Native/Python own-state differential passed; managed execution pending."
+      ]
+    },
+    {
+      "address": "0x6e57b0",
+      "method": "ViewportCpuProduction.Global",
+      "coverage": "Whole global-backend routing wrapper, including null source return0.",
+      "sourceFile": "geometry/scene-phase11-20261013-viewport.cs",
+      "evidence": "reports/scene-phase11-20261013-viewport-native-validation.json",
+      "limitations": [
+        "Original6e2470 and6e57b0 execute unchanged. All copied/clamped words use integer instructions; raw nonfinite depth payloads are not converted.",
+        "Local device packet clamps only width/height using unsigned comparisons against raw screen words. X/Y/depth remain raw.",
+        "After COM, backend cache receives original source words with actual forward read/write order, including shifted/unaligned aliases and callback source mutation. Local packet mutations do not alter that copy.",
+        "COM HRESULT is discarded. Return equals last original source word read after prior writes; wrapper null input returns0 without call.",
+        "Global wrapper routes to fixed backend29765c8. Backend/COM lifecycle, actual device acceptance and runtime source initialization remain external.",
+        "Native/Python own-state differential passed; managed execution pending."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 2,
+  "evidence": [
+    "reports/scene-phase11-20261013-viewport-native-validation.json",
+    "reports/scene-phase11-20261013-viewport-contract.json",
+    "reports/scene-phase11-20261013-viewport-assembly.json",
+    "reports/scene-phase11-20261013-viewport-build.json"
+  ],
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase11-20261013-viewport.cs",
+      "sha256": "5ab3c7d3af358b1c407cfd03542e8278b6939325a7b80d7f91cfa834fe6f0f35"
+    }
+  ],
+  "harnessFiles": [
+    "geometry/harness/scene-phase11-20261013-viewport-harness.cs"
+  ],
+  "harnessSha256": "d3349adaa160a11ac6a7702a603ee66bf92bff98627d0b1f0e35adfa0a1b6374",
+  "fixture": "reports/scene-phase11-20261013-viewport-native-fixtures.json.gz",
+  "fixtureSha256": "32c2191a0f12686bebcf600abfab9fe50736281285df9297acc4b59e816fc736",
+  "nativeTool": "tools/scene-phase11-20261013-viewport-native.py",
+  "nativeToolSha256": "0243c4d41081809385af1220fc5b96678979828dcf696aafb712d5aa68abf3d4",
+  "compiled": true,
+  "executed": false,
+  "fixtureCoverage": {
+    "viewportCalls": 3072,
+    "retainedPortableReplayCases": 3072,
+    "COMCalls": 2560,
+    "globalWrapperCases": 1024,
+    "nullWrapperCases": 512,
+    "shiftedAliasedSourceCases": 1365,
+    "retained": 3072,
+    "portableReplayCases": 3072,
+    "preparedManagedAssertions": 11776
+  },
+  "verifier": {
+    "module": "scene-phase11-20261013-viewport",
+    "entrypoint": "ViewportCpuPhase11Harness",
+    "fixture": "reports/scene-phase11-20261013-viewport-native-fixtures.json.gz"
+  },
+  "dependencies": [
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/scene-phase11-20261013-viewport-evidence.py",
+      "sha256": "0c90441a2f9591905d2a7ba9ee41f908147c40b3cd3625f628c09567608fc4ca"
+    }
+  ],
+  "nextGaps": [
+    "Recover context refresh6e2510 CPU setter chain and compose into actual render-target binding caller.",
+    "Actual COM/device acceptance and backend lifetime, source dimension initialization and authored renderer frame bindings."
+  ]
+}

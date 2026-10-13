@@ -1,0 +1,72 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "checks": 6097,
+  "mismatches": 0,
+  "groups": {
+    "player-reference-identity-not-object-alias": 384,
+    "finished-spline-complete-byte-and-null-domain": 4096,
+    "alive-solo-omits-active-bit": 30,
+    "alive-missing-definition-fault": 1,
+    "alive-ordered-group-precedes-solo": 72,
+    "alive-group-complete-dead-byte": 256,
+    "alive-255-slot-member-count-boundary": 2,
+    "num-baddies-array-stride-and-three-bit-gates": 27,
+    "num-baddies-random-prepared-array": 160,
+    "num-baddies-original-zero-initializer": 1,
+    "my-set-complete-byte-domain-and-packet-fault-fault": 256,
+    "my-set-complete-byte-domain-and-packet-fault": 256,
+    "baddies-seeing-signed-dword-to-float32": 266,
+    "reference-original-initializers-null-system-allowed": 48,
+    "reference-original-initializer-callback-gates": 48,
+    "shipped-NumBaddies-body": 20,
+    "shipped-NumBaddies-original-comparison": 20,
+    "shipped-EitherPlayerIs-body": 15,
+    "shipped-EitherPlayerIs-original-comparison": 15,
+    "shipped-IsAlive-body": 19,
+    "shipped-IsAlive-original-comparison": 19,
+    "shipped-FinishedSpline-body": 17,
+    "shipped-FinishedSpline-original-comparison": 17,
+    "shipped-MySet-body": 12,
+    "shipped-MySet-original-comparison": 12,
+    "shipped-NumBaddiesThatCanSeePlayers-body": 12,
+    "shipped-NumBaddiesThatCanSeePlayers-original-comparison": 12,
+    "shipped-Player1Is-body": 1,
+    "shipped-Player1Is-original-comparison": 1,
+    "shipped-Player2Is-body": 1,
+    "shipped-Player2Is-original-comparison": 1
+  },
+  "errors": [],
+  "savedCases": 5806,
+  "savedInitializers": 49,
+  "shippedOccurrences": 97,
+  "shippedByName": {
+    "EitherPlayerIs": 15,
+    "Player1Is": 1,
+    "Player2Is": 1,
+    "FinishedSpline": 17,
+    "NumBaddies": 20,
+    "IsAlive": 19,
+    "MySet": 12,
+    "NumBaddiesThatCanSeePlayers": 12
+  },
+  "shippedConditionComparisons": 97,
+  "method": "Original eight condition bodies, three named/zero initializer entries and original SCP comparator. Synthetic valid records/definitions/group members/actor arrays/packet fields and signed global dword values. Named-character callback0x923904 alone is adapted.",
+  "adapters": [
+    {
+      "globalAddress": "0x923904",
+      "fixtureAddress": "0x10200100",
+      "scope": "ASCII names map to reference records or null; callback retains null-system calls. References that share physical-object first pointer remain distinct."
+    }
+  ],
+  "limits": [
+    "No game execution,reference lifetime,group construction,spline updates or population of aggregate globals.",
+    "IsAlive reads initialized record+4 definition without guard; missing definition faults native and portable source throws explicitly.",
+    "Solo IsAlive tests live bit1000 without active bit1; grouped members need both. An existing zero-count group overrides solo liveness.",
+    "MySet has no packet-null guard; actual faults saved,portable source throws explicitly.",
+    "Prepared group member arrays honor uint8 count through255; generic malformed/out-of-backing memory is outside scope.",
+    "Actor array uses original stride0x10d8; counted records and liveness fields must be prepared.",
+    "Global NumBaddiesThatCanSeePlayers is signed dword read; tests compare float32 storage boundary used by SCP evaluator.",
+    "ASCII names only in portable source; alias policy and callback side effects beyond fixture resolution external.",
+    "Managed execution pending under existing EPERM restriction; no launch retry."
+  ]
+}

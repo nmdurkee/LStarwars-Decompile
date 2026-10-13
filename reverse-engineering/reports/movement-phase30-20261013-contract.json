@@ -1,0 +1,50 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entries": [
+    {
+      "address": "0x407b60",
+      "endExclusive": "0x407cf3",
+      "method": "ActorModeCapabilities.Normal"
+    },
+    {
+      "address": "0x481740",
+      "endExclusive": "0x4817d8",
+      "method": "ActorModeCapabilities.Alternate"
+    },
+    {
+      "address": "0x4cbe50",
+      "endExclusive": "0x4cbf6b",
+      "method": "ActorModeCapabilities.Special"
+    }
+  ],
+  "abi": "cdecl(actor); alternate/special supplied exact runtime16-bit type IDs",
+  "behavior": [
+    "Whole integer/byte/word capability producers, with no child adapters. All raw clip-presence fields and metadata/actor/suit flags retain original branch ordering.",
+    "Normal base capability flags captured before first output store; clip table/data/metadata fields reread at original stages. Alternate actor flags captured before initial store and model pointer retained across metadata operations. Special initial flags captured and first type-mask decision uses one captured flag word before later fresh byte reads.",
+    "Arbitrary raw integer inputs, all128 seven-clip presence combinations, all32 individual bits in four flag fields, random flags and output aliases into metadata/data/suit/clip flags.",
+    "No floating arithmetic. Full retained image is the single assertion group per case; void return registers are excluded."
+  ],
+  "bounds": [
+    "Complete readable actor/model/clip/suit/metadata/data backing, including each fresh pointer dereference; invalid or partially faulting images excluded.",
+    "Runtime special IDs supplied as exact16-bit words; producer/source uses bitwise equality for signed16 original comparisons.",
+    "No machine flags/register/partial-fault/whole-game equivalence claim. Managed replay is prepared/compiled and unexecuted."
+  ],
+  "validation": {
+    "nativeCases": 2256,
+    "nativeAssertionGroups": 2256,
+    "mismatches": 0,
+    "preparedManagedAssertions": 2256,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 259,
+    "dllSha256": "0dfb9db617ad71bbe1d1db14288f5b66782e42315f4129190e319872f0596826",
+    "execution": false
+  },
+  "hashes": {
+    "reconstructed/gameplay/movement-phase30-20261013-ActorModeCapabilities.cs": "d5f49ca306ad088514ca73f34f77b9b3ff3bdf710ce1caff338dca80ae02dc2b",
+    "tools/movement-phase30-20261013-native.py": "f671ccfc19f3550db8ee1e56ebfed5e9da9a2038175de38946f79dda9c084d76",
+    "tools/movement-phase30-20261013-portable-verify.cs": "66daf2553a5ca4760d999d9c60c52230affecf82b0cc3a530b4b7490fb4a3943",
+    "reports/movement-phase30-20261013-fixtures.json.gz": "e80d83655572a5bf743170183f2d50060783709ae9388c331c82e2164832be9c"
+  }
+}

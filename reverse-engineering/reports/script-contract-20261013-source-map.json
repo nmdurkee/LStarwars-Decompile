@@ -1,0 +1,121 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-contract-20261013-Conditions.cs"
+  ],
+  "evidence": [
+    "reports/script-contract-20261013-contract.json",
+    "reports/script-contract-20261013-tests.json",
+    "reports/script-contract-20261013-assembly.json"
+  ],
+  "functions": [
+    {
+      "address": "0x442cf0",
+      "method": "ScriptContractConditions.PartyUnderCover",
+      "scope": "complete global dword presence",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x442dc0",
+      "method": "ScriptContractConditions.CannotReachDestination",
+      "scope": "null creature gate plus +0x1e8 bit predicate",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x4425e0",
+      "method": "ScriptContractConditions.BindRigidAnimFrame",
+      "scope": "static linear scene initializer only; excludes indexed/dynamic resolver",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x442630",
+      "method": "ScriptContractConditions.RigidAnimFrame",
+      "scope": "initialized pointer fallback and float32 frame reader",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x4415e0",
+      "method": "ScriptContractConditions.BindBuildItComplete",
+      "scope": "runtime type/registry tail lookup with host name accessors",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x441610",
+      "method": "ScriptContractConditions.BuildItComplete",
+      "scope": "null reference/target chain and byte==2",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x441f90",
+      "method": "ScriptContractConditions.BindIsSetAlive",
+      "scope": "shared selector initializer also recovered in CompactConditions",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    },
+    {
+      "address": "0x441fd0",
+      "method": "ScriptContractConditions.IsSetAlive",
+      "scope": "initialized selector and byte count presence",
+      "file": "gameplay/script-contract-20261013-Conditions.cs",
+      "evidence": "reports/script-contract-20261013-contract.json"
+    }
+  ],
+  "harnessFile": "../tools/script-contract-20261013-portable-verify.cs",
+  "verifierModule": "script-contract-20261013",
+  "verifierClass": "ScriptContract20261013Verify",
+  "fixture": "reports/script-contract-20261013-native-fixtures.json",
+  "managedReport": "reports/script-contract-20261013-managed-check.json",
+  "commandCoverage": [
+    {
+      "kind": "scp-condition",
+      "name": "PartyUnderCover",
+      "function": "0x442cf0",
+      "report": "reverse-engineering/reports/script-contract-20261013-contract.json",
+      "scope": "Returns float 1 iff the complete dword at 0x876cc8 is nonzero. Does not compute party cover state.",
+      "sourceUses": 55
+    },
+    {
+      "kind": "scp-condition",
+      "name": "CannotReachDestination",
+      "function": "0x442dc0",
+      "report": "reverse-engineering/reports/script-contract-20261013-contract.json",
+      "scope": "Null script creature returns zero; otherwise float 1 iff script-creature +0x1e8 has mask 0x400000. Does not run pathfinding or assign the flag.",
+      "sourceUses": 27
+    },
+    {
+      "kind": "scp-condition",
+      "name": "RigidAnimFrame",
+      "function": "0x442630",
+      "report": "reverse-engineering/reports/script-contract-20261013-contract.json",
+      "scope": "Static scene linear name resolution initializer to animation pointer; null initialized animation returns float 1; otherwise loads float32 +0x4c. Does not advance frames or implement indexed/dynamic scene resolution.",
+      "sourceUses": 30
+    },
+    {
+      "kind": "scp-condition",
+      "name": "BuildItComplete",
+      "function": "0x441610",
+      "report": "reverse-engineering/reports/script-contract-20261013-contract.json",
+      "scope": "Initializer uses world registry +0x2ac8 and runtime type global 0x804e44 then 0x55a020 ordered name lookup. Reader follows initialized registry record first word to current target; returns float 1 iff target byte +0x6d is exactly 2. Build creation and completion transitions are external.",
+      "sourceUses": 28
+    },
+    {
+      "kind": "scp-condition",
+      "name": "IsSetAlive",
+      "function": "0x441fd0",
+      "report": "reverse-engineering/reports/script-contract-20261013-contract.json",
+      "scope": "Shared NumInSetAlive initializer returns literal selectors 1..16, -1 for case-insensitive myset, otherwise 0; decimal-prefix parsing wraps int32. Reader converts selected global byte presence to float 0/1, unlike NumInSetAlive count reader. myset replaces -1 with script packet byte +0xb0.",
+      "sourceUses": 7
+    }
+  ],
+  "integrationNotes": [
+    "Five previously dispatch-only command names; total 147 source uses.",
+    "0x441f90 already covered by a previous module; do not count this shared initializer as a newly mapped native entry.",
+    "Sources and harness compiled individually; root integration and managed behavioral run pending."
+  ]
+}

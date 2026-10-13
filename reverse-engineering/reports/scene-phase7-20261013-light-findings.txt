@@ -1,0 +1,9 @@
+Recovered original raw light constant cache consumer 0x5fcc10.
+
+Native validation passed 15,360 checks with zero errors. Retained 2,432 cases: 2,048 all-bit raw consumer cases and 384 captures from the unchanged original finite light producer 0x5ff840. No external-call adapters. Matrix16, color3 and vector3 copies use integer instructions; no FLD/FSTP payload conversion.
+
+The light packer shares the uint counter at 0x9868c0 with camera cache 0x5fcc80, increments its own ushort at 0x9868c4 and clears 0x9868d4. It explains the first of the two shared counter increments during an actual camera update. Camera ushort 0x9868cc remains separate.
+
+0x5ff820 is an xor-eax/ret stub and 0x5ff830 a ret stub, without new mapping credit. Actual light interpolation factor is float0.5; horizontal basis threshold is minimum positive normal float, not a generic epsilon. Full numeric light producer remains an explicit service and is not mapped by this batch.
+
+Independent core and harness compile with 17,024 prepared assertions; managed execution pending. Earlier sealed/shared files unchanged; no Git writes.

@@ -1,0 +1,25 @@
+{
+  "schema": "original-render-target-dimension-binding-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "checks": 10240,
+  "errors": [],
+  "counts": {
+    "bindingCases": 2048,
+    "retainedPortableReplayCases": 2048,
+    "serviceEvents": 3141
+  },
+  "adapters": {
+    "0x6e2880": "Explicit target bind(slot,opaque handle), stdcall two args; modeled return and allowed caller-state mutation.",
+    "0x6e5340": "Explicit render state(index168,value0), cdecl two args; modeled return/mutation.",
+    "0x6e2510": "Explicit context refresh(this), opaque return and caller-state mutation; actual internal device viewport implementation unported."
+  },
+  "limits": [
+    "Original complete6e3720 caller executes unchanged with concrete source field layouts and real screen/origin globals. Host calls are explicit services, not reconstructed device behavior.",
+    "Valid separate backend/surface records; surface width/height are unsigned16. Backend width/height all Int32 with signed truncating half.",
+    "Any nonzero slot retains original dimension/active writes gate, including0xffffffff. Surface-null or handle-zero fallbacks retained.",
+    "Callbacks may change fields before later reads; branch decisions and argument values retain original evaluation order. Register volatile clobbers and ret8 verified.",
+    "Literal source/origin/light references and original PE defaults provide binding evidence only; no exhaustive indirect writer or authored frame provenance claim.",
+    "Native/Python caller own-state differential passed; managed execution pending."
+  ]
+}

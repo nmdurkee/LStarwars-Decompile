@@ -1,0 +1,31 @@
+ACTOR STATE COMMAND CONTINUATION — 2026-10-13
+
+Recovered CannotBeSeen0x44ccd0, EnableSock0x44ce00 and ReleaseTakeOver0x4545d0,
+plus Sock first-name lookup0x53f7e0 and bit helpers0x541430/0x541460.
+1233 original-function fixture groups pass with zero mismatches. Includes all115
+cataloged authored uses (29/55/31). These are command contracts, not whole-game
+behavior or confirmed reachability of every preserved source line.
+
+CannotBeSeen edits actor+ef0 mask2 only on first call with nonnull attached actor.
+Any exact case-insensitive FALSE operand clears the bit; substring FALSE does not.
+EnableSock uses ix= before name= before FALSE substring in each token. A failed
+name lookup retains prior index; disable request remains sticky. Sock table has64
+records of0x13c bytes. Present byte+32 gates name lookup, first match wins. Bit
+helpers ignore presence and test unsigned index<64; WORD+68 mask0x100 disables.
+Numeric inputs compose previously recovered MessageNumbers.Resolve and signed64
+truncation/low32 wrapping. Original native numerical helpers execute in fixtures.
+ReleaseTakeOver starts from current actor and each character= token replaces or
+clears target. It calls full release only with a nonzero actor+cd0 link. Actual
+0x4882d0 restoration/transfer/release notifications remain inherited service.
+
+Source: reconstructed/gameplay/actor-next-20261013-Commands.cs
+Native tool: tools/actor-next-20261013-native.py
+Retained fixtures: reports/actor-next-20261013-fixtures.json
+Portable harness: tools/actor-next-20261013-portable-verify.cs
+Mapping/registration: reports/actor-next-20261013-source.json
+Exact boundaries/offsets: reports/actor-next-20261013-contract.json
+
+Portable source reuses ActorStateWorld, TagControlWorld and MessageNumbers rather
+than creating a second actor/packet representation. Host synchronization and
+identity remain required. Valid fixed-table records and ASCII operands only.
+Native fixture callbacks are explicitly recorded; managed behavior remains pending.

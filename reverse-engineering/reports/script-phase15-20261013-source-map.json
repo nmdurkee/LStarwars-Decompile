@@ -1,0 +1,48 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase15-20261013-VehicleResponse.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x5a0320",
+      "method": "VehicleResponseProducer.Respond",
+      "scope": "Vehicle response with signed clip indexing, live feedback rereads, committed timing then dynamic callback.",
+      "file": "gameplay/script-phase15-20261013-VehicleResponse.cs",
+      "evidence": "reports/script-phase15-20261013-contract.json"
+    },
+    {
+      "address": "0x4a1f50",
+      "method": "VehicleResponseProducer.Finish",
+      "scope": "Action cleanup with null/flag guards and unconditional camera call; unused mode preserved.",
+      "file": "gameplay/script-phase15-20261013-VehicleResponse.cs",
+      "evidence": "reports/script-phase15-20261013-contract.json"
+    },
+    {
+      "address": "0x62e040",
+      "method": "VehicleResponseProducer.DurationForResponse",
+      "scope": "Existing scalar timing address expanded by registry hydration for fixed (0,0,1) response call; zero extra credit.",
+      "file": "gameplay/script-phase15-20261013-VehicleResponse.cs",
+      "evidence": "reports/script-phase15-20261013-contract.json"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase15-20261013-contract.json",
+    "reports/script-phase15-20261013-tests.json",
+    "reports/script-phase15-20261013-assembly.json",
+    "reports/script-phase15-20261013-fixture-replay.json"
+  ],
+  "harnessFile": "../tools/script-phase15-20261013-portable-verify.cs",
+  "verifierModule": "script-phase15-20261013",
+  "verifierClass": "ScriptPhase1520261013Verify",
+  "fixture": "reports/script-phase15-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase15-20261013-managed-check.json",
+  "commandCoverage": [],
+  "integrationNotes": [
+    "Two new distinct addresses (5a0320,4a1f50); 62e040 existing address broadened fixed-call registry scope, 5ca470 unchanged reuse, zero authored command credit.",
+    "Depends on immutable phase 13/14 pipeline source plus existing AnimationPlayback.EndFrame and internal PlaybackWide; root owns combined compilation and registration.",
+    "878 standalone and 15 full pipeline cases retained: 2679 correlated native assertions, zero failures. Additional 2679 same-model fixture readback assertions, zero failures; not added to native coverage.",
+    "103,778,971-byte fixture retains every meaningful case. Worker did not launch managed binaries or change bin outputs.",
+    "Next target: actual 54a3e0 camera transition producer; 54a850 controller feedback wrapper afterward."
+  ]
+}
