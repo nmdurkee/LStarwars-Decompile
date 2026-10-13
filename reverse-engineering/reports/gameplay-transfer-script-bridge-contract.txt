@@ -1,0 +1,16 @@
+TRANSFER TO SCRIPT BINDING COMPOSITION
+
+96 native comparisons, zero mismatches. No duplicate entrypoint or command-use credit. Core/replay compile only.
+
+binding
+PlayerTransferScriptBridge.InitializeBaseScript supplies the already reconstructed ScriptMachine.Bind with the resolved base definition and optional state stored at definition+0x38. A null state follows the existing Base-name fallback. No character parameter overrides are supplied. The typed packet reference stack is then cleared to match0x415000 clearing embedded packet+0x64 (actor+0x32c) after the binder returns.
+
+sharing
+The bridge uses the same ScriptPacket for source runtime state and the same ActorState/TagControl/PlayerTransfer records for transfer state. It restores the base script, four default parameters, chosen state/first action, pending/blocked/deadline fields and reference depth while preserving packet timer. TransferCounter32c and typed stack clearing remain synchronized. Script source loading and opaque scheduler callbacks are still host responsibilities.
+
+nativeChain
+96 bounded native comparisons cover null/base0/base1 scripts, blocked transfers, explicit Idle vs null-to-Base fallback, first-action presence, retained flag patterns, and SetTaggable entry/subsequent calls. Actual0x514640 and list/state/action helpers execute unchanged; no script-binding stub remains. Only platform feedback0x698900 is replaced. This composes previously established functions and adds no function-map entry.
+
+Remaining
+Resolved valid script/state/action records; source loading and opaque condition/animation callback state remain outside this bounded existing binder projection.
+Mode1 takeover/release is excluded. Generated managed replay is compile-only.

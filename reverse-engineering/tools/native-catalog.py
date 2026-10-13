@@ -11,6 +11,8 @@ items={}
 profiles=[('dispatch-seeded',first),('expanded-boundary-seeded',expanded)]
 supplement=BASE/'reports/native-supplemental-corpus-index.json'
 if supplement.exists():profiles.append(('supplemental-rtti-seeded',load('reports/native-supplemental-corpus-index.json')))
+verified=BASE/'reports/native-verified-entry-index.json'
+if verified.exists():profiles.append(('native-verified-disassembly',load('reports/native-verified-entry-index.json')))
 for profile,report in profiles:
  for item in report['items']:
   if item['status']=='ok':items[item['address']]={**item,'profile':profile}

@@ -1,0 +1,190 @@
+{
+  "schema": "recovered-geometry-material-clone-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/MaterialCloneCache.cs",
+      "bytes": 5404,
+      "sha256": "00a95ef076fb35220cf5a58ced2d08b50a9f28c070be3ffb2a49eef8e95dd75c"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x547580",
+      "method": "MaterialCloneCache.Next",
+      "sourceFile": "reconstructed/geometry/MaterialCloneCache.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Valid prefix16-byte node pointers; container+8 selects first active node and previous-12 selects next. Managed comparison pending.",
+      "evidence": "geometry-material-clone-native-validation.json"
+    },
+    {
+      "address": "0x5471c0",
+      "method": "MaterialCloneCache.AllocateNode",
+      "sourceFile": "reconstructed/geometry/MaterialCloneCache.cs",
+      "coverage": "bounded-same-thread-branch",
+      "limitations": "Only matching current-thread token; cross-thread lock callbacks excluded. Empty free list returns0 unchanged, active/free links and16-bit count/flag wrapping preserved. Managed comparison pending.",
+      "evidence": "geometry-material-clone-native-validation.json"
+    },
+    {
+      "address": "0x5e4ee0",
+      "method": "MaterialCloneCache.Find",
+      "sourceFile": "reconstructed/geometry/MaterialCloneCache.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Native EDI replacement becomes explicit argument; finite acyclic list; match reads clone+1f0 rather than cached payload+8. Managed comparison pending.",
+      "evidence": "geometry-material-clone-native-validation.json"
+    },
+    {
+      "address": "0x5e4f30",
+      "method": "MaterialCloneCache.EnsureLayouts",
+      "sourceFile": "reconstructed/geometry/MaterialCloneCache.cs",
+      "coverage": "bounded-service-composition",
+      "limitations": "Original constructor5e4b20 and refresh601030 remain explicit mutable services; declaration7418c0 represented by resolver with original cached-hit validation. Finite successful allocations, disjoint708-byte templates/clones; nonpositivecount is no-op. Managed comparison pending.",
+      "evidence": "geometry-material-clone-native-validation.json"
+    },
+    {
+      "address": "0x5e5020",
+      "method": "MaterialCloneCache.Merge",
+      "sourceFile": "reconstructed/geometry/MaterialCloneCache.cs",
+      "coverage": "bounded-service-composition",
+      "limitations": "Cache hit complete; miss composes bounded EnsureLayouts then repeats original lookup after mutable refresh. Device creation and cross-thread behavior excluded. Managed comparison pending.",
+      "evidence": "geometry-material-clone-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory",
+    "MaterialCloneServices.AllocateMaterial (constructor boundary)",
+    "MaterialCloneServices.ResolveDeclaration (cached native declaration result)",
+    "MaterialCloneServices.RefreshMaterial (mutable shader refresh boundary)"
+  ],
+  "native": {
+    "report": "geometry-material-clone-native-validation.json",
+    "passed": true,
+    "counts": {
+      "next": 72,
+      "node": 27,
+      "find": 540,
+      "ensure": 31,
+      "merge": 968,
+      "allocations": 527,
+      "declarationCacheCalls": 527,
+      "checkedBytes": 73801728,
+      "authoredMaterials": 480
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "limits": [
+      "Original547580/5471c0/5e4ee0/5e4f30/5e5020 execute unchanged, including original thunk5476b0. Same-thread list branch excludes synchronization callbacks.",
+      "Material constructor5e4b20 and shader refresh601030 are explicit controlled mutable services; their arguments/order are checked. No constructor/shader implementation claim.",
+      "Original7418c0 and741860 execute real prepopulated declaration-cache hits; no device creation. Cache count stays unchanged.",
+      "Authored708-byte material records supply exact copy bytes; raw pointers inside copied data are opaque at the service boundary, not a full relocation claim.",
+      "Successful finite disjoint template/clone images, bounded counts, acyclic lists and sufficient cache/material capacity. Exhausted AllocateNode standalone return0 checked.",
+      "Stack-depth audit confirms replacement remains constant across multiple layouts; zero allocator+28 regression tested. No managed/game/GPU launch."
+    ],
+    "assembly": {
+      "file": "reports/geometry-material-clone-assembly.json",
+      "bytes": 41933,
+      "sha256": "b8ce0095671c62cd144295860b3720c9a92427080a3ec100884853f25f83d7fe"
+    },
+    "pseudocode": [
+      {
+        "file": "decompiled/corpus-expanded/FUN_547580.c",
+        "bytes": 499,
+        "sha256": "5cf061bc6218fad8e6d5ef91efc2f2013259ce013eff9c2a398df2403dd64666"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_5471c0.c",
+        "bytes": 1114,
+        "sha256": "26b32b30c45362e30da8c4c23b945f5bb460f04e5a439b09d6b8c1fbd25b3a12"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_5e4ee0.c",
+        "bytes": 588,
+        "sha256": "fe984053488cf25877525b84579a64c21ecd756d00e1d144c73a1ab5065f6edd"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_5e4f30.c",
+        "bytes": 1644,
+        "sha256": "8c0e32bb7ceba8ddb6e25fb42265c2f0599737012662eedc187faa1b8bab4c2c"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_5e5020.c",
+        "bytes": 743,
+        "sha256": "8d928d11d40dfb2281ba8b633cc14ee0b72a1ae69b0aa8387ff2faa287cb27a4"
+      }
+    ]
+  },
+  "managed": {
+    "schema": "geometry-material-clone-managed-check-v1",
+    "caseCount": 1638,
+    "nativeEvidence": "geometry-material-clone-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\material-clone-cache.bin.gz",
+    "fixtureBytes": 468493,
+    "fixtureSHA256": "e1411f02ab89dee6a1a11da734f02e164c838b5c01e6bb45e2ea7404be0eab2e",
+    "uncompressedBytes": 73860324,
+    "uncompressedSHA256": "f6f588fc90e14c4a414708a6eb23be7d603970f0e887fc4fd93946f3b51c9271",
+    "status": "prepared-not-executed",
+    "mainType": "MaterialCloneCacheHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Managed equality pending; material constructor/shader refresh are explicit services, declaration resolution uses a controlled cached lookup result."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.MaterialClone.dll",
+    "bytes": 6144,
+    "sha256": "bc6b297a956fc207b366ecb17f9b7c4647f4d56c778dc740fc4bb0c7d92d8287"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/MaterialCloneCacheHarness.cs",
+    "bytes": 2975,
+    "sha256": "801b5e65bf7ec5fabbc3d069c50df04d001d038f8aeb1c63d5a6945cb7330029"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.MaterialClone.dll MaterialCloneCache.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.MaterialClone.dll /out:MaterialCloneCacheHarness.exe harness\\MaterialCloneCacheHarness.cs"
+  },
+  "observations": [
+    "Cache-node insertion removes first free node and prepends it to active list, maintaining backward pointers/tails and wrapping WORD active count; prefix flags OR1.",
+    "Lookup identity is replacement pointer plus live clone+1f0. Cached payload+8 is written but not used by these lookup paths; stale-key fixtures confirm.",
+    "Miss copies177 DWORDs/708bytes exactly, preserves allocated+28/+2c, clears two signed shader slots+1f4/+1f6, ORs firstWORD1, installs requested layout, resolves+2bc, invokes refresh then incrementsWORD+2c0.",
+    "Refresh may change live layout; Merge repeats lookup and can return0 instead of blindly returning the newly allocated clone.",
+    "Stack audit: after pushes at5e4f70/5e4f7d,5e4f9a [esp+18] addresses entryESP-4 local, not the first argument. Replacement remains constant across layouts; explicit zero-preserved28 multi-layout regression passes.",
+    "Original declaration lookup7418c0/741860 runs unchanged with all needed keys prepopulated. Constructor5e4b20 and refresh601030 alone are skipped controlled services; argument order and mutations compare."
+  ],
+  "remainingGaps": [
+    {
+      "id": "material-constructor",
+      "address": "0x5e4b20",
+      "status": "Explicit successful-allocation callback; pool scan, registration queue and full initializer not ported here."
+    },
+    {
+      "id": "shader-material-refresh",
+      "address": "0x601030",
+      "status": "Explicit mutable callback; shader-manager/device program creation not ported."
+    },
+    {
+      "id": "declaration-device-creation",
+      "address": "0x7418c0",
+      "status": "Only original cache-hit behavior exercised; missing-key D3D declaration creation excluded."
+    },
+    {
+      "id": "thread-synchronization",
+      "address": "0x5471c0",
+      "status": "Same-thread branch only; lock callbacks excluded."
+    },
+    {
+      "id": "dynamic-caller-clone-composition",
+      "address": "0x5f0f00",
+      "status": "DynamicObjectSubmission stable core still restricts to matching layouts; this new service composition is not silently enabled there."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core/replay compile and compact fixture prepared; no launch."
+    }
+  ]
+}

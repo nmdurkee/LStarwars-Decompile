@@ -1,0 +1,90 @@
+{
+  "generatedAt": "2026-10-12T22:54:41.380Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "initializers": "441d50 permits null system and calls registered actor lookup for a nonnull operand, then returns reference first-pointer world object.443020 adds a nonnull-system guard. Lookup preserves first-match and player fallbacks; these bind once.",
+    "hit": "441d80 uses nonnull initialized world object, otherwise creature+d0 reference first-pointer world object. Return1 if actor1018 float>0 or eec bit0, else0. All absent self-chain gates return0.",
+    "taken": "443050 initialized world object takes precedence. Null operand uses guarded self chain. With no binding, Opponent dynamically follows selfworld3ac reference then its world pointer; TakeoverTarget uses selfworldea4 directly. Other operand returns0. Candidate must have cd0 nonnull and byte7b5 !=59. Known special operands have asymmetric unsafe native self-chain assumptions, retained as explicit portable input guards.",
+    "target": "4435e0 returns presence of selfworldea4 after guarding creature/reference/world; target is not dereferenced.",
+    "ground": "441830 reads global primary player and returns1 when either byte281 or282 is nonzero. No live physics inference from these flags."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "BeenHit",
+      "address": "0x441d80",
+      "sourceUses": 70,
+      "qualification": "Bounded attached actor status and pointer-chain semantics; lifecycle producers and full takeover remain external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "TakenOver",
+      "address": "0x443050",
+      "sourceUses": 76,
+      "qualification": "Bounded attached actor status and pointer-chain semantics; lifecycle producers and full takeover remain external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "HasTakeOverTarget",
+      "address": "0x4435e0",
+      "sourceUses": 32,
+      "qualification": "Bounded attached actor status and pointer-chain semantics; lifecycle producers and full takeover remain external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "PlayerOnGround",
+      "address": "0x441830",
+      "sourceUses": 33,
+      "qualification": "Bounded attached actor status and pointer-chain semantics; lifecycle producers and full takeover remain external."
+    }
+  ],
+  "native": {
+    "cases": 2521,
+    "mismatches": 0,
+    "fullRegionComparisons": 2521,
+    "groups": {
+      "bindHit": 44,
+      "bindTaken": 44,
+      "BeenHit": 680,
+      "TakenOver": 666,
+      "HasTakeOverTarget": 557,
+      "PlayerOnGround": 530
+    },
+    "authoredUses": {
+      "PlayerOnGround": 33,
+      "BeenHit": 70,
+      "TakenOver": 76,
+      "HasTakeOverTarget": 32
+    },
+    "method": "Original condition readers and both initializers run with real registered43c220 name resolution. Only existing CRT Player%d formatting adapter; exact float32 returns, lookup events and full input memory checked."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ActorStatusConditions.cs",
+      "bytes": 3274,
+      "sha256": "dcd61608da8f34abcc23d5e55b6466d832080b2619dc0877cb048677f5ab14e4"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-actor-status-portable-verify.cs",
+      "bytes": 5443,
+      "sha256": "484e4966684c5b2d0e6fbf64449ed2704f22b16b08a2aa311ab476dabe4925a4"
+    },
+    "entrypoint": "ActorStatusVerify.Main",
+    "arguments": [
+      "reports/native-actor-status-vectors.json",
+      "reports/native-actor-status-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-actor-status-vectors.json",
+      "bytes": 10421494,
+      "sha256": "f702defc51c5052819fa7a17cd274317267e56b49818d9dc687ec5d7c3ce3050"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite hit timer and readable attached actor/world/tag records; special TakenOver operands require the native self pointer chain, invalid dereference cases explicitly excluded.",
+    "World ownership, producer/update semantics for status fields and complete takeover transitions remain external.",
+    "Authored rows cover condition bodies on prepared states, not original source loading or whole-script execution. Managed replay pending."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x651530",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SoundRecordInitialization.cs",
+      "sourceSha256": "31e079536984f286481465ef2fc8c968d35e82501f6265de9d898c836db79024",
+      "methods": [
+        {
+          "name": "SoundRecordInitialization.Initialize",
+          "line": 8
+        }
+      ],
+      "coverage": "whole bounded sound record initializer",
+      "qualification": "Record, globals and cursor addresses are disjoint; record/backup64-byte regions may overlap by tested DWORD multiples. Negative record index allowed only with valid readable backing. Name pointer arithmetic wraps uint32 and uses global sound count, independent of index; the name storage is not dereferenced by this initializer. Unwritten link/padding/trailing name bytes and comment bit survive. Float defaults are raw positive-zero bits. Managed replay pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-sound-record-tests.json"
+      ]
+    }
+  ],
+  "commands": []
+}

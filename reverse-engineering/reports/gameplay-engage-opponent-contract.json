@@ -1,0 +1,134 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "lifetime": "0x447f00 returns1 only when script creature, creature+d0 reference or its first-pointer world object is absent. Valid self marks global876cd0=1 and otherwise returns0. Cached target can fall back to creature+e4 reference only when absent/inactive or blocked with timer1010<=0; fallback requires controller pointer+4 and first world pointer. Positive blocked-cache timer retains that cache, then final target eligibility still rejects blocked28b. Attack override writes before fallback/eligibility. World self eec bit0x20 writes after resolving a nonnull target, before final eligibility.",
+    "parsing": "First call initializes goal and interval from original1.5 globals and always advances shared RNG, including instant. It scans case-insensitive substrings in exact listed precedence; numeric skips are fixed10,10,9,13 and call recovered5147c0. static sets goal0; offscreen/minrange/minicut/circle set retained bits. Repeated circle toggles controller1e8 bit0x200 each time. Flags and old override/cache are not blanket-cleared. attack_override recognizes seven whole names, unknown resets override0. Explicit firerange suppresses default; otherwise goal0 gives9999.9, nonzero gives float32(goal+0.5). Initial timer is float32(interval*draw), with instant replacing draw value0 after consuming it.",
+    "eligibility": "Target requires active1 and valid1000, blocked28b==0, mode7b5!=43, and either uncontrolled or ownerTimer1000<=1.5. Distance uses target position5c minus script reference position5c, deliberately distinct from world self position. Permission masks are supplied rows: game+298c header8 followed by uint64 entries, indexed by actor byte28d. Target bit>=64 is zero, not a C# masked shift. Goal permission uses script-reference row; firing uses world-self row. Matrix producer/meaning remain unresolved.",
+    "movement": "Ef4 bit0x2000 routes through recovered assigned-target and ordered-band helpers. Otherwise goal0 is retained, and nonzero goal is retained only under original controlled/visibility and reference-row permission gates; fallback goal is0.1. Intent radius is min(effectiveGoal,target+3e8). Tuning bit0x100 and self protection bit0x10000 select hysteresis on packet bit0x10 around (goalÃ‚Â±0.5)^2. Near branches write mode2, movement byte13f=1 and sometimes protection8000. Ordinary branches preserve alternative global7f39e4 behavior, including the distance/10+distance test for minrange retreat, circle mode3 and mode1 approach. Calls use actual target path438 and six orientation words420 through recovered52fcb0. No fabricated pathfinding or position integration occurs.",
+    "firing": "Requires world-self permission mask, tuning/protection gate, visibility byte288 or offscreen flag, and strict distanceÃ‚Â²<fireRangeÃ‚Â². It writes look target for ordinary tuning. During minicut with flag4, timer becomes float32(draw*interval+2); otherwise float32(timer-delta). Attack target ea0 is then assigned even if timer remains positive. Nonpositive timer restarts at float32(interval*0.5+draw*interval) before checking obstruction/assignment. Only unobstructed allowed target causes input+8 OR global80227c; no direct damage is performed. Obstruction is the recovered eight-player ray test, not world geometry.",
+    "x87Regression": "Independent geometry review found a distance boundary counterexample: target(1,2^-12,2^-27) from origin has original squared distance0x3f800001, while double-only arithmetic yielded0x3f800000. Shared LocatorCommands.DistanceSquared now uses exact finite x87 sums. Six component permutations are permanent native command regressions; timer multiply-adds and opponent band/primitive sums also use shared finite x87 arithmetic. See reports/geometry-engage-review.json and reports/native-distance-rounding-contract.json.",
+    "persistence": "Sixteen original-PC chains of24 ticks preserve packet flags, goal, movement intent, RNG, timer and actor/input updates. Each chain initializes once and invokes subsequent ticks with firstCall=false. This adds384 state-transition comparisons without restarting world fixtures.",
+    "authoredParsing": "All263 authored occurrences execute in four supplied contexts. 10 token occurrences are ignored by native substring parsing; these include intentionally altered-looking fXirerange/fXireinterval/sXtatic spellings and a bare2 operand. 14 numeric operands refer to script-local names; fixture contexts do not claim their runtime values. The actual parser fallback executes for unbound names. Source locations are retained in the usage report."
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "EngageOpponent",
+      "address": "0x447f00",
+      "sourceUses": 263,
+      "qualification": "Bounded command contract; navigation/input consumption, formation expansion and world-state production remain external."
+    }
+  ],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 4984,
+    "groups": {
+      "authored": 1052,
+      "branches": 280,
+      "x87MidpointRegression": 6,
+      "movement": 2304,
+      "firing": 576,
+      "matrix": 64,
+      "assignment": 32,
+      "obstruction": 30,
+      "persistentTicks": 384,
+      "finiteRandom": 256
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredOccurrences": {
+      "EngageOpponent": 263
+    },
+    "instructionCoverage": {
+      "total": 676,
+      "executed": 676,
+      "notExecuted": []
+    },
+    "method": "Original command plus parsing/numeric/RNG/name/intent/assignment/distance-band/player-obstruction code execute unchanged. Only pre-existing bounded CRT Player%d formatting is substituted if named resolution reaches it. Independent Python state/event model compared after every call.",
+    "limits": [
+      "Finite valid attached actor and permission-mask data; malformed pointers and out-of-range assigned player slots excluded.",
+      "All263 authored argument lists tested in four supplied contexts; runtime script variable values are not reconstructed by this suite. Unbound variable names use actual numeric parser fallback.",
+      "Ordinary movement intent updates are real; formation expansion and later navigation/damage/input consumers remain external.",
+      "Portable managed comparison pending compile-only instruction."
+    ],
+    "assembly": {
+      "path": "reverse-engineering/reports/gameplay-engage-opponent-assembly.json",
+      "bytes": 106498,
+      "sha256": "264e0468c479acc87dba6b9755ae55cd453398db0c0743f7e9c19bc5432677d5"
+    },
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-engage-opponent-native-fixtures.json",
+      "bytes": 4440041,
+      "sha256": "e2f60a651f3a9e9643e2c3dbc9a32f4a65085b172c5efa10e95208893b4cd46c"
+    },
+    "usage": {
+      "path": "reverse-engineering/reports/gameplay-engage-opponent-usage.json",
+      "bytes": 86937,
+      "sha256": "0ddad837bced251f159a7e529fb0cb4c3198613f527dac22b1f37ec4fb4a08a6"
+    },
+    "instructionCoverageQualification": "All676 disassembled instruction addresses executed at least once; this is not proof of all path combinations or all numeric domains."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/EngageOpponent.cs",
+      "bytes": 10381,
+      "sha256": "d1acd9ac2c96073a5a9743d68394a9a4adf69ef18760fcab49d47484e80976cc"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-engage-opponent-portable-verify.cs",
+      "bytes": 10103,
+      "sha256": "a42c12d9ac489d9726cd4a620fbb770d0509ee3a3ac260bc6a92b325936fe3fc"
+    },
+    "entrypoint": "GameplayEngageOpponentVerify.Main",
+    "arguments": [
+      "reports/gameplay-engage-opponent-native-fixtures.json",
+      "reports/gameplay-engage-opponent-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/OpponentTargeting.cs",
+      "reverse-engineering/reconstructed/gameplay/CreateCreatures.cs",
+      "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/MovementCommands.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-engage-opponent-verify.exe",
+        "bytes": 88576,
+        "sha256": "6798d6765dfa44e0f2a0a2fb102f972c3bac205e3537182a4292194e59d43e29"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    },
+    "adapters": [
+      "World attachment connects ActorStateRecord, OpponentFields, EngageActorFields and LocatorCreature to shared runtime records. LookTarget retains actor identity whose position is the referenced value.",
+      "Permission table production, attacker-list construction, player assignment updates and character tuning loading remain supplied data.",
+      "Formation expansion uses the existing MovementServices boundary. Subsequent movement integration and input/damage handling are outside this command.",
+      "Native fixture helper substitution is limited to existing Player%d CRT formatting; command and behavior helpers execute original bytes."
+    ]
+  },
+  "reusedHelperMaps": [
+    "0x440120",
+    "0x43c220",
+    "0x5147c0",
+    "0x5b9dd0",
+    "0x52fcb0",
+    "0x5b3c50",
+    "0x43d410",
+    "0x43d450",
+    "0x440150",
+    "0x551730"
+  ],
+  "remaining": [
+    "Finite valid attached actor and permission-mask data; malformed pointers and out-of-range assigned player slots excluded.",
+    "All263 authored argument lists tested in four supplied contexts; runtime script variable values are not reconstructed by this suite. Unbound variable names use actual numeric parser fallback.",
+    "Ordinary movement intent updates are real; formation expansion and later navigation/damage/input consumers remain external.",
+    "Portable managed comparison pending compile-only instruction."
+  ]
+}

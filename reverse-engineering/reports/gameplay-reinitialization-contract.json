@@ -1,0 +1,103 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "entry": "41c120 returns immediately for a null actor. Otherwise498a40 and actual4b6b80 execute even with null system. A nonnull system then invokes41b0a0,41af70,55e4a0(actor,1),55e4e0(actor+6c4), followed by tuning/spawn reads. These four resets and498a40 remain explicit services. Callback fixtures mutate spawn/column/row state before later reads; no fabricated downstream reset writes are added.",
+    "placement": "Spawn index byte400 selects a164-byte record. Group378 comes from spawn4c, flag4b0:80 follows spawn48 bit1, and bit40000 clears. Four finite float words94..a0 copy to actor230..23c. Horizontal offset is ((column411+1)/2 integer)*spawn5c, negated for odd columns; row offset is row412*(-spawn60). Original sine-table rotation5b3620 and vector addition place the actor. If prior count4c4 is nonzero and locator478 is nonnull, locator position10/angle1c/path words20 replace the spawn values and locator478 clears. Otherwise the saved pointer is retained. Subsequent callbacks may change position; final position copies reread it.",
+    "ordering": "Actor80,98,8c vectors and global93d620 are copied immediately after placement. Reset vector93b0cc goes to actor df8 and68. Terrain callbacks precede three angle-word stores and directionf30. The code then binds path set, calls path traversal51b890, clears death28b, binds the spawn script514640, resets state52f800 with signed ground byte281, selects animation1 and commits animation. It clears3d8/1090, flag4b0:1000000, copies3cc, clears44c/1086/1087, calls55d6a0 room assignment, sets active1000, increments32-bit count4c4 and writes phase406=2. Final1b4/10bc position copies precede the optional character flag20000000 plus model animation65 branch, which writes timer4e6e6b28/context17/animation41 and selects animation65.",
+    "formation": "A nonnull formation40c ORs only the low32 of original64-bit 1<<slot410 into formation4c. The shift helper consumes the low8 count and returns zero for counts64 or greater; truncation means slots32..255 contribute no low32 bit. Row base is formation54+row412*34. Byte row2d ORs the low8 of 1<<(slot410-row412*spawn51), again using the low8 shift count, not a C# masked32-bit shift. Column411 zero additionally copies position to row18, six path words420..434 to row0, zero-extends angle27a to row24, clears row30 bit2 and zeros row28.",
+    "accessory": "Actual4b6b80 clears1085. A signed tuningE8 other than-1 calls547cb0(actor,signedE8,float(unsigned11e)); this accessory construction service is explicit. It then rereads the character callback18. Unless callback4b5120, nonzero actorE1c clears when actorE24 bit2000 is absent. Native fixtures include signed accessory IDs and callback mutation of the guard flag.",
+    "pathSet": "Actual51a7c0 is a no-op for an unchanged path-set identity. Otherwise it clears creature15c..16c and17c, assigns158, writes161=ff,13a=0,124=ffff,13c=ff,13d=0. For each byte-count row with any overlap between its paired64-bit membership mask and creature130/134, it ORs the low16 of original64-bit 1<<row into13a. Rows16..255 cannot set a bit after truncation. Counts0..255, same/null/changed identity, high-half membership and shift boundaries are exercised. The only two unexecuted instructions are skipped alignment no-ops at51a837/51a83e.",
+    "arithmetic": "5b3710 is a scaled horizontal direction helper, not a matrix builder: X=speed*sine(angle),Y=+0,Z=speed*cosine(angle). Source retains original32768-entry sine table,64-significand x87 arithmetic and float32 destination stores, including signed zero. Reinitialization uses an exact local rotation composition; 5b3620 was mapped previously and receives no duplicate entry credit here.",
+    "adapters": "Fourteen named operations represent actual external calls: BeforeReset498a40, ResetActor41b0a0, ResetMoves41af70, ClearRuntimeSystems55e4a0, ResetMovementContext55e4e0, StartAccessory547cb0, ResetTerrain5728a0, ClearTerrain572660, BindPath51b890, BindScript514640, ResetState52f800, SetAnimation62e650, CommitAnimation62e6c0, AssignRoom55d6a0. These receive preserved scalar/reference IDs and a mutable actor/world image. Existing bounded ScriptMachine/RespawnState ports can inform host adapters, but this contract does not claim their complete loaded-world composition. ActorActivation.Reinitialize remains a host adapter from its typed ActorStateRecord to these richer loaded records.",
+    "verification": "656 original-PC comparisons pass with zero mismatches. All322 caller instructions and all28 accessory/20 direction instructions execute, along with51 of53 path-set instructions. Native execution includes actual rotation/addition/direction/path-set/accessory bodies and CRT shift. Comparison checks every actor byte, every byte of a256-row formation image, spawn-origin globals, ordered call arguments and per-call actor probes. Callback mutations test values read after calls. Fixtures contain compact byte deltas and hexadecimal64-bit mask inputs. No authored command coverage is newly credited; this deepens the existing Activate lifecycle boundary. Portable source and replay compile; managed execution is not attempted."
+  },
+  "commands": [],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 656,
+    "groups": {
+      "reinitialize": 183,
+      "accessory": 49,
+      "path": 96,
+      "direction": 328
+    },
+    "mismatches": 0,
+    "examples": [],
+    "method": "Original41c120 executes real4b6b80,51a7c0,5b3620,5b37d0,5b3710 and CRT64-bit shift. Fourteen external lifecycle services record arguments/probe state and selected fixtures mutate actor bytes. Entire actor and256-row formation images are compared as sparse byte deltas with an independent finite-x87 model.",
+    "instructionCoverage": {
+      "0x41c120": {
+        "total": 322,
+        "executed": 322,
+        "missing": []
+      },
+      "0x4b6b80": {
+        "total": 28,
+        "executed": 28,
+        "missing": []
+      },
+      "0x51a7c0": {
+        "total": 53,
+        "executed": 51,
+        "missing": [
+          "0x51a837",
+          "0x51a83e"
+        ]
+      },
+      "0x5b3710": {
+        "total": 20,
+        "executed": 20,
+        "missing": []
+      }
+    },
+    "limits": [
+      "Loaded finite actor/spawn/locator/path/formation records; malformed pointers and nonfinite float payloads excluded.",
+      "Fourteen explicit services preserve call order/arguments; their downstream allocation, terrain, path traversal, scripts, animation and room effects are not implemented by this contract.",
+      "Actual path-set binder covered separately; path traversal51b890 remains a service.",
+      "Managed core/harness compile only; no generated managed executable is launched."
+    ],
+    "authoredUseCredit": 0,
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-reinitialization-native-fixtures.json",
+      "bytes": 512698,
+      "sha256": "64dd307802680ed669a5dfdf48f69fe06f767791f9889b3e76a5f97e82b308e2"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "bytes": 11112,
+      "sha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-reinitialization-portable-verify.cs",
+      "bytes": 8524,
+      "sha256": "1d64047f84dba6d5ee9ded1386f0ec42f3d11adabfbbf4daa0c4c184e971a5be"
+    },
+    "entrypoint": "GameplayReinitializationVerify.Main",
+    "arguments": [
+      "reports/gameplay-reinitialization-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-reinitialization-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-reinitialization-verify.exe",
+        "bytes": 35328,
+        "sha256": "ed0263d13da91adba1a67a2ef706ae3f59ba581c0f12239175652135d1eb631b"
+      },
+      "managedExecution": "Not attempted; compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Loaded finite actor/spawn/locator/path/formation records; malformed pointers and nonfinite float payloads excluded.",
+    "Fourteen explicit services preserve call order/arguments; their downstream allocation, terrain, path traversal, scripts, animation and room effects are not implemented by this contract.",
+    "Actual path-set binder covered separately; path traversal51b890 remains a service.",
+    "Managed core/harness compile only; no generated managed executable is launched."
+  ]
+}

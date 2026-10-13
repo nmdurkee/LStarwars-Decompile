@@ -1,0 +1,107 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "composition": "GraphNamedLifecycleAdapter provides GraphActorServices using the recovered NamedActorLifecycle.Activate/Deactivate. It resolves Func<NamedActorWorld> for each named call. This preserves the graph caller's cached world for player spawn-name comparisons while named lifecycle obtains the current world after any release callback. Release and BuildFailureEffects forward to explicit GraphActorRemainingServices.",
+    "placement": "Ordinary GraphActorPlacement.PositionWords is passed as the same shared uint[3], without copying. PlacementSources optionally binds a placement to a raw ActorPlacementSource image/offset; this supports original sequential word-copy aliasing. Heading remains the ushort captured by the graph before entering the named helper. Three native cases alias buildit+34 to actor0+58,actor0+60 or actor1+58, preserving reads when destination writes overlap.",
+    "worldMutation": "Original4648e0 caches world via55f450. In the FALSE branch, eligible secondary still compares the reloaded primary's spawn index against that cached world. A release callback can replace global802c54;414c50 then resolves its actor through the replacement world and actual414bb0 writes the replacement world's spawn87 phase. Fixtures compare old and replacement spawn-phase tables independently, and confirm that the old table remains unchanged. Both worlds share actor references/physical images and ScriptPacket state in the portable fixture, but have separate spawn records/phases. Mission state is a shared global projection.",
+    "mission": "Mission gating is evaluated by the named helper after the graph has parsed tokens and, on FALSE, after eligible player releases. A release fixture enables mission state and demonstrates that deactivation then performs no actor lookup or InActive transition. On TRUE, mission or active-state failure still reaches the graph's BuildFailureEffects service when a buildit target exists.",
+    "validation": "354 original-PC chains pass with zero mismatches:86 synthetic and268 authored-context cases representing every one of134 shipped ActivateChar argument lists. Actual4648e0/55f450,55a020/558770,41f6d0/414c50,58a900,440120/43c220,414bb0/52c790 and existing script-state helpers run together. Checks compare ordered events, semantic script deltas, physical actor word deltas outside the separate script projection, player identities, current-world identity, both spawn-phase tables, origin/reset/context globals and mission state. Synthetic branches include mission gating, active/inactive and API400 guards, buildit success/failure retention, raw aliasing, reset-callback mutations, swapped/replaced players, changed spawn names, disabled secondary and current-world changes. Fixture data uses deduplicated initial physical images and sparse deltas.",
+    "boundaries": "This composition suite retains41c120 as a recorded spawned-reset service; the separate33-case gameplay-named-reinitialization suite already composes its actual body with named activation. Release4882d0, failure effects590690, attachment destruction4364e0 and named reset/terrain/refresh calls remain explicit services here. It neither claims those downstream effects are no-ops nor credits their native entry points. Core plus replay compile; managed replay execution and game playtesting remain pending."
+  },
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 354,
+    "mismatches": 0,
+    "groups": {
+      "synthetic": 86,
+      "authored": 268
+    },
+    "examples": [],
+    "authoredOccurrences": 134,
+    "additionalAuthoredUseCredit": 0,
+    "newNativeEntryPointCredit": 0,
+    "visitedInstructions": 313,
+    "method": "Original4648e0/55f450,55a020/558770,41f6d0/414c50,58a900,440120/43c220,414bb0/52c790 and original script-state helpers execute together. Original graph parsing, cached world, secondary primary-spawn quirk, mutable release and lifecycle mission guard compared.41c120,4882d0,590690 and downstream reset/terrain/refresh calls remain declared service boundaries in this composition suite."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/GraphNamedLifecycleAdapter.cs",
+      "bytes": 1731,
+      "sha256": "d9cc8ba71e3f3c4355d4e0daf1f6817a0bdb856b833b03df674c7987deb8b372"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-graph-lifecycle-portable-verify.cs",
+      "bytes": 21459,
+      "sha256": "78989514a9cc6934f2072fad569e824e020f47992ccce3d2f4c36d985418cbaf"
+    },
+    "entrypoint": "GameplayGraphLifecycleVerify.Main",
+    "arguments": [
+      "reports/gameplay-graph-lifecycle-native-fixtures.json",
+      "reports/gameplay-graph-lifecycle-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-graph-lifecycle-native-fixtures.json",
+      "bytes": 366962,
+      "sha256": "9f59c282abc8d884d9a6b8552d731d7f9d88e5ebc6fd64bef452d58c436628e2"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/GraphActorActivation.cs",
+        "bytes": 3379,
+        "sha256": "4d8cc3d9a2af33184245fd4fc94a9e3929afca1f8a1187bdd056e8fb972a5cb5"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/NamedActorLifecycle.cs",
+        "bytes": 5704,
+        "sha256": "c09622740df5a5c80909ea63a079afe21214c1caa51d5bb694c13cf4cf4667ad"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+        "bytes": 7221,
+        "sha256": "45008d258b895f3a2af87384d63dd7c060734ea03177f5aa7b04c9b156287604"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+        "bytes": 11112,
+        "sha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+        "bytes": 13005,
+        "sha256": "541f12447232c937b9b8477e1fdc56a4297d2cab079479b62a479bb5e7bed1fc"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/TagControls.cs",
+        "bytes": 5643,
+        "sha256": "b7fa5d7e986ed96bcb1607ea2a7dcb116a7930c88b3f51aeda4a8b4c96b8ffcf"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/LevelModeConditions.cs",
+        "bytes": 2876,
+        "sha256": "835a1aea2ee9ead2b0988dbf2e0e2400f66c715a6cea7defe26fa073fc5958ea"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/SceneryNameBindings.cs",
+        "bytes": 2393,
+        "sha256": "4db4a350b18585aea0d15d475dfea79c43795335d68710d5060e9005ea3d5937"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-graph-lifecycle-verify.exe",
+        "bytes": 474112,
+        "sha256": "32aceef3cba7c118d2ecccc1090ba16ca339168098e6ce0cc668439f4ddf97a0"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "No new native-entry or authored-command credit. Existing graph and named-helper contracts own their mappings; this is an adapter and additional chain validation.",
+    "Source fixtures bind authored argument names to prepared actor/buildit records. They validate those argument forms, not the complete loaded level state.",
+    "The alternate world fixture owns a different spawn table but shares actual actors/script state. Hosts must keep physical-image and typed actor projections consistent when external release callbacks mutate them.",
+    "Null primary with eligible secondary, missing world/system during required name comparison and malformed pointer graphs remain outside the valid native domain; no invented repair path.",
+    "Source execution is compile-only. Native comparisons are independent Python model versus original x86, not a completed compiled-C# differential."
+  ]
+}

@@ -1,0 +1,27 @@
+6892 original-PC comparisons; zero mismatches. Four new mappings, no authored-command use credit. Both portable replays compile only.
+
+scan
+51d310 receives packet in ESI, path in EDI and query vector pointer on stack. It preserves selected point143 if below path10, otherwise writes255. Cursor142 resets to0 when initially >= the chosen count. It initializes best distance from the existing selected point, then inspects up to four candidates using real5b3c50 distance stored to float32 and strict less-than replacement. Direct scan always executes four iterations. Cursor increments as a byte and wraps only when greater than count, so index==count can be read inside a call. The source requires an explicitly supplied extra backing row and does not invent it.
+
+subset
+Nonzero path7a and packet1ec bit4 select the DWORD-stride path8c candidate list; each entry contributes only its low byte. CandidateCount7a is used for cursor reset/wrap; selected-point validity still uses PointCount10. Before distance evaluation the original compares selected POINT ID143 against candidate ORDINAL142 rather than candidateIndices[142]. The subset loop returns early when its cursor reaches the initial ordinal, otherwise performs four iterations. The same inclusive count behavior can read candidate entry==count. This behavior is machine-code verified, not normalized to a conventional list scan.
+
+materialize
+51d500 takes packet in ECX and selected point143. Zero adjacency-count28 returns0 without writes. Otherwise point position4/8/c is copied to packet1b4/1b8/1bc,1c0 is zeroed, and1c4 receives max(point10-1,1) using original finite x87 subtraction/store. Fields1cc..1e0 are zeroed, then1cc receives current path158,1d0 receives the FIRST adjacency connection. Byte1d4 is1 when that connection endpoint0 equals selected point, else0;1dc is0.0 for that same endpoint match and1.0 otherwise. No allocation or external world callback is involved.
+
+status
+51d750 takes packet in EAX. Matching path158/targetPath1cc with nonnull targetConnection1d0 returns0 without scanning. Otherwise it scans around packet target position1b4, then materializes only when selected143 is below path10. It returns1 for a newly materialized target or-1 when no eligible selected point/adjacency exists. The three return values are preserved explicitly.
+
+nextPoint
+51f6b0 returns0 without routing when currentConnection15c equals targetConnection1d0. Otherwise it calls actual51be90 and returns0 on no result. A nonnull returned connection yields1 whether or not an output pointer is supplied. When supplied, output receives three raw words from the opposite endpoint of the returned connection: endpoint1 for returned direction0, endpoint0 otherwise. Portable TryNextPoint directly composes PathRouting.NextConnection, retaining route cache updates and diagnostics. Its output buffer is a separate uint[3]; aliases into routing records are outside this bounded interface.
+
+validation
+2,472 original-PC comparisons cover the scan/materialization/status helpers, including768 authored-data samples across all203 decoded nonempty paths. Authored materialization uses first/middle/last points; authored scanning is limited to paths with enough real rows for all four reads. Synthetic cases explicitly supply extra sentinel backing for count0..255 and candidate-count edges, byte cursor wrap, strict ties, subset ordinal skips and radius thresholds. The exact-distance midpoint regression distinguishes original x87 behavior from the previous double intermediate. Another4,420 original51f6b0â†’51be90/51a890 chains use24 authored routing graphs plus one synthetic graph, optional outputs and raw signed-zero/NaN copies. All6,892 comparisons pass;266 of268 instructions across the four bodies execute, with only two unreachable alignment NOPs omitted. Core and both replay harnesses compile; managed execution remains pending.
+
+Remaining
+These helpers produce path targets and a next-point projection. Larger51d7b0 steering,51e910/51f1b0 wandering and51b1f0 traversal/clearance tests remain unreconstructed by this module.
+Prepared records must preserve actual point/candidate backing at index==count when the original loop reaches it. The existence, initialization and lifetime of that extra backing in every live level remains unresolved. Authored validation never fabricates an unavailable sentinel row.
+Finite position/radius arithmetic and valid referenced adjacency connections are required; nonfinite arithmetic, malformed pointers and aliasing scan query with cursor storage are excluded. Next-point raw copies preserve all32-bit payloads, including NaN and signed zero.
+Existing routing diagnostic512860 remains an explicit service. No new native mapping is credited for existing distance/routing helpers; this fragment maps only the four new entry points.
+No new authored script-command use credit. Tests use parsed navigation records and synthetic runtime states, not full loaded-game simulations.
+Native x86 versus independent Python comparisons passed. Compiled C# replay and game playtesting have not run.

@@ -1,0 +1,269 @@
+{
+  "generatedAt": "2026-10-12T21:39:37.544Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "entry": {
+      "description": "All four commands complete with integer1. firstCall=false bypasses parsing and mutation. Default self comes from scriptCreature+0xd0 reference, then its first pointer; SetSide additionally requires the reference active bit1 at+0x1fc. Named resolution can replace or clear self, and a null reference or absent callback has no fallback.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4497b0.c",
+          "line": 8,
+          "address": "0x4497b0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_449440.c",
+          "line": 8,
+          "address": "0x449440"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_444940.c",
+          "line": 10,
+          "address": "0x444940"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_44ef00.c",
+          "line": 8,
+          "address": "0x44ef00"
+        }
+      ]
+    },
+    "groups": {
+      "description": "DontPush, SetInvulnerable and SetSide search a case-insensitive type substring then skip exactly5 bytes. Both registered callbacks must exist. A returned byte255 or signed type-1 is ignored. At most10 successful IDs are retained, including duplicates; overflow tokens still call both resolvers before the capacity check. A nonempty successful type list supersedes the individual target. World actors have stride0x10d8 and must have flags+0x1fc bits1/0x1000 and+0x1f8 bit0x400. Their signed-short type is+0x1064. Missing/unrecognized types leave individual targeting intact. KeepWeaponOut has no group support.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4497b0.c",
+          "line": 19,
+          "address": "0x4497b0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_449440.c",
+          "line": 19,
+          "address": "0x449440"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_444940.c",
+          "line": 25,
+          "address": "0x444940"
+        }
+      ]
+    },
+    "DontPush": {
+      "address": "0x4497b0",
+      "description": "The game override sets/clears bit2 of actor+0x1fc. Default enabled; a whole case-insensitive FALSE token latches disabled, and later TRUE does not re-enable it. Individual targeting does not require group eligibility. This mapping is distinct from builtin0x516420 and accounts for177 authored game-override occurrences.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4497b0.c",
+          "line": 8,
+          "address": "0x4497b0"
+        }
+      ]
+    },
+    "SetInvulnerable": {
+      "address": "0x449440",
+      "description": "Requires actor+0x1f8 bit0x400 even for the individual target. Enabling sets+0xef0 bit0x400000 and clears bit0x1000 unless whole token still_do_take_hit_anim is present. Disabling clears only0x400000 and preserves the existing0x1000 value. FALSE latches disabled; unrelated bits are preserved.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_449440.c",
+          "line": 8,
+          "address": "0x449440"
+        }
+      ]
+    },
+    "KeepWeaponOut": {
+      "address": "0x44ef00",
+      "description": "Sets/clears+0xeec bit0x10 on the selected world object; named character= and FALSE are its only recovered token behaviors. No generic actor flag checks. First-call only, default enabled, TRUE cannot undo an earlier FALSE.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_44ef00.c",
+          "line": 8,
+          "address": "0x44ef00"
+        }
+      ]
+    },
+    "SetSide": {
+      "address": "0x444940",
+      "description": "Whole neutral/goodie/goody/baddie/baddy/goodiebaddie/goodybaddy/default tokens choose a side, last matching token wins; no side token means neutral. It clears+0x1f8 bits1/4/0x10000 then chooses neutral4, bad1, hybrid0x10000 or good0. default uses spawn index byte+0x400 (except255), system spawn array+0x18 stride0xa4, signed definition index+0x4e, and character definition stride0x4c flags+4: bit0x200 gives neutral before bit4 gives bad. Missing eligible spawn produces good. It replaces only global good/bad masks in+0x4bc, bad first, neutral neither. When oldFlags &0x10005 &newFlags equals0, it clears+0x4b0 bit0x800 and zeros+0xec4,+0x3ac,+0xec0. This is an intersection test: good-to-good clears, while neutral-to-neutral preserves.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_444940.c",
+          "line": 10,
+          "address": "0x444940"
+        }
+      ]
+    },
+    "range": {
+      "description": "SetSide range= uses the original0x5147c0 packet/numeric parser and float32 squared radius. A positive squared radius enters group traversal even without type filters. Candidate distances are full3D, float32 component differences and final squared sum in z,x,y order, with strict distanceSquared<radiusSquared. A type filter and a range filter combine conjunctively. A missing selected center leaves distance scratch0, so positive range can select every eligible actor of the requested types or all types. Negative radii square positive; zero range disables range filtering.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_444940.c",
+          "line": 84,
+          "address": "0x444940"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_444940.c",
+          "line": 127,
+          "address": "0x444940"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5147c0.c",
+          "line": 7,
+          "address": "0x5147c0"
+        }
+      ]
+    },
+    "namedBinding": {
+      "address": "0x43c220",
+      "description": "Actual registered callback, absent as a normal function in the decompiled corpus. Scans world actors in native order when system is nonnull and requires only actor active bit1. First checks authored spawn name for generic actors with a non255 spawn index, then character-definition name. The first match wins and can shadow player aliases. After the scan, player returns global primary0x93d810; player_2 returns player-slot0 unless it equals primary, then slot1. Player0..Player7 are zero-based case-insensitive numbered aliases and skip null slots. Returns the reference record itself. Player aliases still work without a system. Names and references are not interchangeable with the pointed world object.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/reports/gameplay-actor-name-assembly.json",
+          "address": "0x43c220",
+          "range": "0x43c220..0x43c396 inclusive"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43c830.c",
+          "line": 35,
+          "address": "0x43c830"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_520460.c",
+          "line": 7,
+          "address": "0x520460"
+        }
+      ]
+    },
+    "objectBinding": {
+      "address": "0x440120",
+      "description": "Checks the registered name callback, calls it with system/name, then dereferences the returned reference first pointer if nonnull. Null callback, unresolved name and null world pointer all produce null. The reconstructed world uses the original registered name algorithm, not an arbitrary fixture mapping.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_440120.c",
+          "line": 7,
+          "address": "0x440120"
+        }
+      ]
+    },
+    "typeBinding": {
+      "description": "0x43bc00 recognizes whole Everyone as byte64 even with no type table. Otherwise scans at most64 stride4 signed-short type entries until-1, comparing the named character-definition at stride0x4c+0xc. The first match returns its table slot; missing gives255. 0x43bed0 converts the low byte directly to a signed-short table entry unless byte255 or table absent; it has no<64 bounds check. Everyone consequently means table slot64, not an unconditional wildcard. Supplied finite table backing and valid definition indices are explicit host requirements.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43bc00.c",
+          "line": 7,
+          "address": "0x43bc00"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43bed0.c",
+          "line": 7,
+          "address": "0x43bed0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43c830.c",
+          "line": 14,
+          "address": "0x43c830"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43c830.c",
+          "line": 18,
+          "address": "0x43c830"
+        }
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "DontPush",
+      "address": "0x4497b0",
+      "sourceUses": 177
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetInvulnerable",
+      "address": "0x449440",
+      "sourceUses": 145
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetSide",
+      "address": "0x444940",
+      "sourceUses": 156
+    },
+    {
+      "kind": "scp-action",
+      "name": "KeepWeaponOut",
+      "address": "0x44ef00",
+      "sourceUses": 154
+    }
+  ],
+  "verification": {
+    "checks": 3468,
+    "mismatches": 0,
+    "commandCases": 2493,
+    "helperCases": 975,
+    "authoredOccurrences": {
+      "DontPush": 177,
+      "KeepWeaponOut": 154,
+      "SetSide": 156,
+      "SetInvulnerable": 145
+    },
+    "authoredUses": 632,
+    "method": "Unmodified original-PC commands, registered name/type callbacks, numeric and string helpers. Only Player%d CRT formatting is a bounded service. Independent Python state/reference model compared after each call.",
+    "reports": [
+      "reverse-engineering/reports/gameplay-actor-state-tests.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-actor-state-native-fixtures.json",
+      "bytes": 1968358,
+      "sha256": "88beb323cf225b7a44d799c73a8f3483b3775912a80836be15f9da1290bdac6a"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "bytes": 13005,
+      "sha256": "541f12447232c937b9b8477e1fdc56a4297d2cab079479b62a479bb5e7bed1fc"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-actor-state-portable-verify.cs",
+      "bytes": 7940,
+      "sha256": "fe145d6f89c9242586eea962a4f6e486c8b9cbdcfa5fe387bf672912110a2081"
+    },
+    "entrypoint": "GameplayActorStateVerify.Main",
+    "arguments": [
+      "reports/gameplay-actor-state-native-fixtures.json",
+      "reports/gameplay-actor-state-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-actor-state-verify.exe",
+        "bytes": 42496,
+        "sha256": "27b8d2831d73a6c4da6a9f3377b7f983740cadcc08c5603b988578513c7faa6a"
+      },
+      "managedExecution": "Not attempted; compile-only instruction preserved."
+    },
+    "adapters": [
+      "Actor/reference pointer identity, primary/player slots, ordered actor table, spawn records and character definitions are supplied data projections.",
+      "Native registry construction and lifetime remain external; callback presence is explicitly represented.",
+      "CRT Player%d formatting is the only substituted native service; portable source constructs this bounded string directly.",
+      "Physical pushing, weapon animation, damage handling and downstream allegiance AI are not supplied by these setters."
+    ],
+    "hostGuards": [
+      "ASCII non-NUL text; finite range values and finite squared radius. Malformed tokens whose fixed skip crosses the terminator fail explicitly.",
+      "Valid nonnull active-actor character definitions and in-range spawn/type-table backing are required.",
+      "Raw pointer memory corruption and invalid negative definition indices are not reproduced."
+    ]
+  },
+  "remaining": [
+    "Finite valid data and ASCII strings; invalid pointers and corrupt character indices are excluded.",
+    "Runtime world attachment, actor allocation and character/spawn/type table construction remain external.",
+    "Flag consumers (pushing, damage, allegiance AI and weapon animation) are not reconstructed by these setters.",
+    "Portable source comparison is pending managed execution."
+  ]
+}

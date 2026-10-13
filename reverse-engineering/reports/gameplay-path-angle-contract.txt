@@ -1,0 +1,22 @@
+32041 original-PC comparisons, zero mismatches. 3 new helper mappings. Portable replay compiles only.
+
+scope
+Original table-based heading math used by moving path attachments.
+
+table
+The exact513 little-endian words at original VA0x8066c8 are preserved in reports/gameplay-path-angle-table.u16. FirstQuadrant divides the smaller component times512 by the larger in x87, truncates the table index, and complements to0x4000 when X exceeds Z. It returns the meaningful AX word, not incidental upper EAX state.
+
+quadrants
+Direction retains native quadrant cases and full signed EAX: X==0 chooses0/0x8000; Z==0 chooses0x4000/0xc000. Negative X with positive Z returns a negative integer. Signed zero follows native comparisons. No Math.Atan2 substitution is used.
+
+conversion
+5bfe00 multiplies the signed direction integer by exact PC double constant9.58738019107841e-05 and explicitly stores to float32. The51af40 caller then multiplies that stored value by10430.3779296875 and truncates to a word; this is preserved by StoredHeading without claiming an additional native function.
+
+validation
+32,041 original-PC comparisons:9,729 first-quadrant,11,156 direction and11,156 radians cases. All112 instructions execute. Cases bracket all513 table-index boundaries with floats, scaled values, seeded samples, swapped axes, all quadrants, zero and subnormal inputs. Original integer conversion runs. The fixture caller merely stores the actual x87 ST0 result.
+
+Remaining
+Finite inputs; first-quadrant helper requires nonnegative components, not both zero, and the exact513-word table. General direction handles zero inputs. NaN/infinity and invalid table storage are excluded.
+Native upper EAX bits of5be030 are not part of the ushort return contract.
+The angle table is an original-data dependency with explicit provenance, not a newly derived analytic approximation.
+No authored command credit. Managed replay compiled only; native results compare an independent Python model with original x86.

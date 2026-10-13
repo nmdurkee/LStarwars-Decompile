@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-10-12T22:45:55.958Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "bind": "52d090 shares null-name/current-system name binding semantics with52d070 but is a distinct registered initializer.",
+    "current": "514bb0 requires nonnull bound locator and packet selected-pointer identity equality; no creature gate.",
+    "onpath": "514b20 requires nonnull controller and controller byte166 bit0. Path pointer/reference presence is not tested.",
+    "xz": "514a50 uses controller14c after creature+d0 presence guard, bound locator overrides packet+a4. Missing locator returns max-finite-float.5bed80 performs float32 X/Z differences, zero Y, x87 square sum then float32 sqrt argument. Portable helper exposes float32 return, not raw scratch alias ABI.",
+    "player": "514c30 requires system, creature, creature+d0 and system player0; reads both actors at+5c. No reference-to-world dereference. Missing returns max-finite-float.",
+    "nearest": "514c80 compares available player0/player1 float32 squared distances before square root; strict smaller selects player1. Max-finite sentinel remains unchanged. Missing controller/reference/system returns sentinel."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "OnPath",
+      "address": "0x514b20",
+      "sourceUses": 37,
+      "qualification": "Resolved locator/controller/player records and finite arithmetic; loader ownership and live navigation external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "LocatorRangeXZ",
+      "address": "0x514a50",
+      "sourceUses": 39,
+      "qualification": "Resolved locator/controller/player records and finite arithmetic; loader ownership and live navigation external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "CurrentLocatorIs",
+      "address": "0x514bb0",
+      "sourceUses": 48,
+      "qualification": "Resolved locator/controller/player records and finite arithmetic; loader ownership and live navigation external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "NearestPlayerRange",
+      "address": "0x514c80",
+      "sourceUses": 46,
+      "qualification": "Resolved locator/controller/player records and finite arithmetic; loader ownership and live navigation external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "PlayerRange",
+      "address": "0x514c30",
+      "sourceUses": 53,
+      "qualification": "Resolved locator/controller/player records and finite arithmetic; loader ownership and live navigation external."
+    }
+  ],
+  "native": {
+    "cases": 5615,
+    "mismatches": 0,
+    "fullRegionComparisons": 11230,
+    "groups": {
+      "bind": 16,
+      "current": 194,
+      "onpath": 623,
+      "rangeXZ": 885,
+      "player": 931,
+      "nearest": 910,
+      "distanceXZ": 2056
+    },
+    "authoredUses": {
+      "OnPath": 37,
+      "LocatorRangeXZ": 39,
+      "CurrentLocatorIs": 48,
+      "NearestPlayerRange": 46,
+      "PlayerRange": 53
+    },
+    "method": "Original condition bodies, current-locator initializer, named lookup, squared-distance and sqrt routines execute unchanged. Exact float32 outputs and full input/player regions compared. No behavior replacements."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SpatialConditions.cs",
+      "bytes": 2278,
+      "sha256": "febd91b7e753a3965f7d369711da4ad55b632170597e15003772ca5ce9f03d01"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-spatial-conditions-portable-verify.cs",
+      "bytes": 5142,
+      "sha256": "fb10a5382452fad9fef610176432572d8992bfe56a86c3c6bada01246d2c3d5c"
+    },
+    "entrypoint": "SpatialConditionsVerify.Main",
+    "arguments": [
+      "reports/native-spatial-conditions-vectors.json",
+      "reports/native-spatial-conditions-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-spatial-conditions-vectors.json",
+      "bytes": 1622166,
+      "sha256": "bc400bad68e4957a19e43a6e14b19e933dae0ddf0fe01c3501ab6c5042afdb76"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite coordinates and finite squared-distance sums; readable packet and player/controller records. Runtime ownership and loader binding remain host-supplied.",
+    "The XZ distance helper maps its float32 return projection; scratch/null original paths are checked, but portable API uses value vectors rather than aliased raw memory.",
+    "Authored condition rows are reference cases, not whole-script execution. Managed replay remains pending."
+  ]
+}

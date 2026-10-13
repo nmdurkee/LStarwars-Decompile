@@ -1,0 +1,35 @@
+PC LEGACY POLYGON SHADOW GEOMETRY
+
+4144 new original comparisons;0 mismatches.
+
+payload
+The third shadow-binding pointer addresses a relocated pair of normal/vertex streams. Both pair fields are proven PNTR relocations. Vertex0+12 is a signed polygon count; each normal record hasXYZ floats and signed edge count at+12. Vertices are concatenated16-byteXYZ/metadata records, with each polygon consuming its edge count.496 authored groups across198 source rigs are fully bounded and hashed.
+
+selection
+The writer copies the input matrix to its stack, transforms each normal with its upper3x3, and evaluates an x87 wide dot against direction. It accepts ordered dot<=0 and also unordered comparisons. Four authored Dwarf Spider Droid normals contain quietNaNs; the native test accepts these faces. The portable writer preserves that branch, with96 additional single-component quietNaN probes; arbitrary infinite/signalingNaN inputs remain excluded.
+
+metadata
+An accepted face records the current vertex count and its edge count only when unsigned GroupCount<250, then increments GroupCount. A full table stops only metadata recording: vertex extrusion continues. Zero-edge accepted faces can still add a metadata entry. Vertex and generated counts persist across calls.
+
+geometry
+For each accepted edge, transform current and next vertex, wrapping to this polygon's first vertex at the last edge. Add direction directly to both points and emit four16-byte records in order[current,current+direction,next+direction,next], each with color0xffffffff. VertexCount increases4 and GeneratedValue increases6 per edge. This writer does not multiply direction by5, unlike adjacent ellipse/cylinder code; no cap vertices are emitted.
+
+transforms
+5c03e0 forms four row-vector matrix products with original64-significand intermediate rounding, then stores four floats.5c0490 transformsXYZ using only the upper3x3 and copiesW. Separate exact-zero sign tracking preserves signed zero and subnormal results; native in-place vector cases match the owned-output portable projection.
+
+verification
+4144 new original comparisons, including2096 complete shape writes and1,024point plus1,024direction helper cases. 418932 emitted vertices, 27178 accepted faces, full1MiB state and all counters match. No native computational callbacks replaced. Authored bind matrices, random finite transforms, zero direction and saturated metadata paths are exercised.
+
+integration
+LegacyShadowConsumer's5e4280 service can now resolve the source pair into LegacyShadowPolygons, call this writer with the record matrix/direction, and synchronize GeneratedValue. This batch proves the writer and source binding layouts; a combined scheduler-to-writer fixture is the next integration step. The two remaining shape services are still explicit.
+
+managed
+Prepared replay reconstructs the same input/output image, runs actual portable shape/transform methods, and compares complete image hashes, counters and all helper result words. Library and replay compile; managed execution is pending.
+
+Limits
+Finite vertices/matrices/direction and finite stored results. Face normals may additionally contain quietNaNs, which pass the native unordered comparison; four authored such faces and96 synthetic quietNaN probes are retained. Direct transform helpers remain finite-only. No arbitrary overlapping source/matrix/output memory.
+Resolved nonnegative edge counts, backed polygon and vertex arrays, sufficient output capacity. Output group table saturates at250; vertex output continues.
+Authored pair fields are verified PNTR relocations with bounded source payload hashes. This recovers CPU side quads; no cap generation, GPU draw or exact Unity rasterization claim.
+Managed replay is prepared/compiled only; no generated managed executable launched.
+Three new native addresses. Existing legacy scheduler/direction modules remain unchanged.
+No Unity mesh runtime, graphics-device submission or generated managed executable has been launched.

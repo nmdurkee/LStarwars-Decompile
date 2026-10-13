@@ -1,0 +1,53 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "arena": "Allocate heads512, bank records44800, sound records102400 and backup102400 bytes on four-byte boundaries; zero only the three record arrays. Compose actual650280 persistent CRC initialization before filling all256 heads with-1.",
+    "banks": "Reset bank/sound counts, but preserve and increment existing name-pool count. Copy seven raw words per built-in bank, replace local index and copied name pointer, then append0/0/0/-1 terminal header. Negative built-in count skips copies.",
+    "configuration": "Copy path to810368 before calling the explicit mutable6520b0 service with original path,cursor,opaque arguments. Service sees initialized memory and may mutate it.",
+    "mask": "After service, clear200-byte2947ca8 mask, snapshot current signed sound count and current record base, scan flags20000, sign-extend low15-bit ID, OR16-bit cells. Finally tail-call original memmove to copy all200bytes into2921760; Ghidra omits the three tail-call arguments."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 330,
+    "mismatches": 0,
+    "originalEntryCalls": 330,
+    "visitedInstructions": 163,
+    "bytesComparedPerCase": 708872,
+    "examples": [],
+    "method": "Original6521b0 and650280/CRT zero/copy/string functions execute unchanged;6520b0 configuration/bank loading is the only mutable service. Whole declared memory regions compare byte-for-byte, with exact SHA256 and argument sequence at service entry and after completion.",
+    "limits": [
+      "Valid disjoint arena/cursor/builtin records/globals and terminated ASCII bank/path strings. Name slots64bytes, path capacity264bytes, enabled sound IDs0..1599. Invalid capacity/pointers/negative mask index excluded.",
+      "The load service may redirect sound records, change counts/cursor/name count and both masks; final scan rereads the current sound pointer and count. Existing nonzero CRC initialized flag preserves its table.",
+      "Raw virtual32-bit addresses index owned byte arrays only. No native pointer or external process access. Configuration parsing, bank loading and audio hardware remain external. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundInitialization.cs",
+      "bytes": 3846,
+      "sha256": "138d9674eb6596dafe77e64a2b4aacb8e522a1a63e3dea06ea4cf79699e2ec74"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-initialization-portable-verify.cs",
+      "bytes": 5383,
+      "sha256": "de9cb1f84315365925e27c15ef41011d86de210d2fca6f1665e999878f5be9fe"
+    },
+    "entrypoint": "SoundInitializationVerify.Main",
+    "arguments": [
+      "reports/native-sound-initialization-vectors.json.gz",
+      "reports/native-sound-initialization-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-initialization-vectors.json.gz",
+      "bytes": 38938,
+      "sha256": "97438363b6ca8c57aa50b33bf1b04156f4180d93119c3f42ba005a210fa98272"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Valid disjoint arena/cursor/builtin records/globals and terminated ASCII bank/path strings. Name slots64bytes, path capacity264bytes, enabled sound IDs0..1599. Invalid capacity/pointers/negative mask index excluded.",
+    "The load service may redirect sound records, change counts/cursor/name count and both masks; final scan rereads the current sound pointer and count. Existing nonzero CRC initialized flag preserves its table.",
+    "Raw virtual32-bit addresses index owned byte arrays only. No native pointer or external process access. Configuration parsing, bank loading and audio hardware remain external. Managed replay pending."
+  ]
+}

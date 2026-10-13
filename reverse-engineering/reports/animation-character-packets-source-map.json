@@ -1,0 +1,74 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5f4ff0"
+  ],
+  "mappings": [
+    {
+      "address": "0x5f4ff0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterPacketPipeline.cs",
+      "sourceSha256": "80d23eee56b26d822c21053be3dc6717a9f4584f621a301525467821e1409fdb",
+      "methods": [
+        {
+          "name": "CharacterPacketPipeline.Submit",
+          "line": 32
+        }
+      ],
+      "coverage": "extends CharacterRenderPipeline and CharacterLayerSubmission with actual normal dynamic mesh submission and packet writers",
+      "qualification": "Retains both prior character implementations, and closes their draw callback using DynamicObjectSubmission.SubmitWithPackets and SkinMeshPacketDispatch. Synchronizes shared cached visibility, submission flag and allocator. Typed resolved mesh/buffer service remains explicit. Finite scalar valid-memory normal caller only; secondary visibility, dynamic shadows, sway, distance fade and billboard excluded. Shadow queue production remains the prior recovered service; this new native suite uses its globally disabled branch. Zero new native addresses.",
+      "comparisonStatus": "Original native exact composition passed; managed replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-packets-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterPacketPipeline.cs",
+      "sha256": "80d23eee56b26d822c21053be3dc6717a9f4584f621a301525467821e1409fdb"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "reconstructed/geometry/ShaderContextEmission.cs",
+      "reconstructed/geometry/DynamicSelection.cs",
+      "reconstructed/geometry/DynamicSubmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-packets-portable-verify.cs",
+      "sha256": "77486c550ae9ac233a2e79a90474a493c954e24691318f80b10bcb896f222d2d"
+    },
+    "entrypoint": "CharacterPacketPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 466,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-packets-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-packets-tests.json",
+    "reverse-engineering/reports/animation-layer-submission-assembly.json",
+    "reverse-engineering/reports/geometry-dynamic-skin-native-validation.json"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-12T22:16:18.273Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "planes": {
+      "address": "0x5b3ec0",
+      "description": "Four affine matrix columns dotted with a three-component point plus row4 translation, x87 64-bit intermediate arithmetic and float32 output. Native computes columns1,2,3 before0, allowing point/output identity; portable produces a fresh array.",
+      "evidence": [
+        "reports/native-locator-set-assembly.json"
+      ]
+    },
+    "outside": {
+      "address": "0x5d6620",
+      "description": "Optionally transform through object matrix, then always through prepared global view matrix. Reject if radius+(viewZ-near)<0 or radius+(far-viewZ)<0 using unstored x87 sums. Otherwise evaluate four prepared affine plane distances and reject any float32 result below negative radius. All boundary equalities count inside. Plane/view preparation and camera lifetime remain external.",
+      "evidence": [
+        "reports/native-locator-set-assembly.json",
+        "reports/native-locator-culling-tests.json"
+      ]
+    }
+  },
+  "commands": [],
+  "native": {
+    "cases": 2064,
+    "mismatches": 0,
+    "fullRegionComparisons": 8256,
+    "groups": {
+      "outside": 1296,
+      "planes": 768
+    },
+    "method": "Original sphere culling, affine point transform and four-plane transform execute unchanged; finite x87 reference arithmetic, exact plane output bits, complete input/global-region collateral-write checks."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorViewCulling.cs",
+      "bytes": 2009,
+      "sha256": "360508ed19f25ab4d55aed01fd330ba8a9f23f417075b38209fa374d74a2d4bc"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-locator-culling-portable-verify.cs",
+      "bytes": 3062,
+      "sha256": "7928f2a676e6d669cafd31d765924abca40121c3a0db0c84ef858b8e0a3c9a18"
+    },
+    "entrypoint": "LocatorCullingVerify.Main",
+    "arguments": [
+      "reports/native-locator-culling-vectors.json",
+      "reports/native-locator-culling-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-locator-culling-vectors.json",
+      "bytes": 1327869,
+      "sha256": "f8afb6d17798aa08648ee0ee791fa2871f40c3e45b0c387cbe1774ad6a948948"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite coordinates/matrices/radius/near/far with finite float32 transform outputs. View and plane matrix preparation are supplied records.",
+    "Portable transforms return new arrays; native point/output alias is covered, partial matrix/output overlap is excluded.",
+    "Managed replay compiled only; no game launch and no command-use credit."
+  ]
+}

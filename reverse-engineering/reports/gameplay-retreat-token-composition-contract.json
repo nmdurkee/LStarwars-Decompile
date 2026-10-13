@@ -1,0 +1,105 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "composition": "Original 0x535d60 retreat executes the actual registered 0x43c0c0 movement-token callback, then the real 0x514920 parser for unconsumed tokens. Portable replay supplies FacingCommands.MovementToken to RetreatExpressionAdapter. That callback recognizes whole case-insensitive RUN=0, WALK=1, TIPTOE=2; other tokens remain unconsumed. Thus both movement-token and expression behavior are reconstructed in this composed path, apart from optional game-specific symbol production.",
+    "registration": "Original 0x43c830 calls 0x517040 with 0x43c0c0; setter stores it into 0x9238b0. The callback was already mapped in the facing batch. No additional native address or authored use is credited here.",
+    "verification": "212 new original-PC composition comparisons pass: 180 combinations of production tokens, prior mode bytes and opponent/controller presence, plus 32 persistent ticks. Every argument list includes a consumed production movement token; the original callback executes without replacement. Native command state, event order, text changes and RNG are compared. Portable replay compiles; no generated managed program is executed.",
+    "remaining": "GameSymbol is null in these fixtures, not claimed globally absent. Finite ASCII parser bounds and independent token buffers still apply. No actor position or navigation simulation is performed."
+  },
+  "newNativeMappings": 0,
+  "commands": [],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 212,
+    "groups": {
+      "branches": 180,
+      "persistent": 32
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredOccurrences": 0,
+    "authoredUseCredit": 0,
+    "newNativeMappings": 0,
+    "method": "Unmodified535d60 calls the actual registered43c0c0 movement-token callback and unmodified514920/514850 expression parser. The callback executes unchanged; its entry is observed only. Independent command/parser model compares intent state, result, token order, mode bytes, RNG and mutated text. Every input list includes at least one consumed production movement token.",
+    "limits": [
+      "No new native mapping:43c0c0 already belongs to FacingCommands.MovementToken. This is composition evidence.",
+      "Game symbol callback is null in these native fixtures. Finite ASCII text and independent argument buffers remain the parser bounds.",
+      "No navigation/path integration. Managed replay compiles only."
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-retreat-token-composition-native-fixtures.json",
+      "bytes": 151944,
+      "sha256": "0b9458852e1ab72c652ee9871a321ffd33e242a24f01e6fb7038d42a061f42d6"
+    }
+  },
+  "portable": {
+    "sources": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/RetreatExpressionAdapter.cs",
+        "bytes": 2417,
+        "sha256": "ed47be6f35ea453de600158697fcf56cbe7a0b2275e3dbddf75a0479c41ed739"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/FacingCommands.cs",
+        "bytes": 10846,
+        "sha256": "5c86b2a56ae72bf5f1d2a66d83a201b0f9adee8ef76806e7382af03e76206521"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/OpponentRetreat.cs",
+        "bytes": 1440,
+        "sha256": "028df1399e7ac5a1200988e154898b4644df6306f9957c24bdbd6269a4f9aef4"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+        "bytes": 10333,
+        "sha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6"
+      }
+    ],
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-retreat-token-composition-portable-verify.cs",
+      "bytes": 6250,
+      "sha256": "88ab53cd6f15236183ead0370a8786e4cabbe8f17d5b2a80633cc0775634383d"
+    },
+    "entrypoint": "GameplayRetreatTokenCompositionVerify.Main",
+    "arguments": [
+      "reports/gameplay-retreat-token-composition-native-fixtures.json",
+      "reports/gameplay-retreat-token-composition-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/RetreatExpressionAdapter.cs",
+      "reverse-engineering/reconstructed/gameplay/FacingCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/OpponentRetreat.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/CreateCreatures.cs",
+      "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/MovementCommands.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-retreat-token-composition-verify.exe",
+        "bytes": 83968,
+        "sha256": "39b63cb800df1a4c0cc21fd118fe7ab40d433227b6b136192af9607d1111cc14"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "nativeComposition": [
+    "0x535d60",
+    "0x43c0c0",
+    "0x514920",
+    "0x514850",
+    "0x4f88e0"
+  ],
+  "remaining": [
+    "No new native mapping:43c0c0 already belongs to FacingCommands.MovementToken. This is composition evidence.",
+    "Game symbol callback is null in these native fixtures. Finite ASCII text and independent argument buffers remain the parser bounds.",
+    "No navigation/path integration. Managed replay compiles only."
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-10-12T22:41:53.294Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "activate": {
+      "address": "0x464360",
+      "description": "Ordered case-insensitive effect substring selects the name at match+7; last occurrence wins. Any whole FALSE token latches disabled and TRUE does not undo it. Apply emitter state and saved disabled-name mutation in that order, even if no emitter matches."
+    },
+    "set": {
+      "address": "0x5a8280",
+      "description": "Read current-world bank, find existing emitter, then enable or disable the found index."
+    },
+    "find": {
+      "address": "0x658490",
+      "description": "Null name returns -1. Skip reserved table index0; first matching name in requested loaded bank wins. If absent, first table match in loaded bank0 or1 wins. Signed count and null table entries preserved."
+    },
+    "enable": {
+      "address": "0x655340",
+      "description": "Index -1 no-op, otherwise write activation byte+2f=2. Direct index0 is valid."
+    },
+    "disable": {
+      "address": "0x655320",
+      "description": "Index -1 no-op, otherwise write activation byte+2f=0."
+    },
+    "save": {
+      "address": "0x48a060",
+      "description": "Twelve16-byte disabled-name slots at record+2d68. Null record/name or name length>=16 returns0. First case-insensitive match: enabling clears only first byte and returns2; disabling returns3. Missing enabled name returns0. Missing disabled name copies into first empty slot and returns1, or returns1 without write when full. Preserve slot tail bytes."
+    }
+  },
+  "commands": [
+    {
+      "kind": "git-action",
+      "name": "ActivateEffect",
+      "address": "0x464360",
+      "sourceUses": 277,
+      "qualification": "Existing emitter bank/state and saved disabled-name list; particle allocation and simulation remain external."
+    }
+  ],
+  "native": {
+    "cases": 1271,
+    "mismatches": 0,
+    "fullRegionComparisons": 5084,
+    "groups": {
+      "command": 844,
+      "find": 325,
+      "set": 20,
+      "enable": 5,
+      "disable": 5,
+      "save": 72
+    },
+    "authoredUses": 277,
+    "method": "Original GIT handler, current-world getter, emitter bank lookup, enable/disable byte stores and saved-name mutation all execute unchanged with no substitutions. Complete emitter/save/table/world memory regions compared."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/EffectActivation.cs",
+      "bytes": 3433,
+      "sha256": "c9d26fc208ff50c75b3f92c5827c17a8f66f4a5574f8f7cf25178bff0e45f71d"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-effect-activation-portable-verify.cs",
+      "bytes": 4153,
+      "sha256": "7e7d52c415e9d0a03fffcbcb998ae0992747ded9a4d5fe0bea6bb01c55dd96e9"
+    },
+    "entrypoint": "EffectActivationVerify.Main",
+    "arguments": [
+      "reports/native-effect-activation-vectors.json",
+      "reports/native-effect-activation-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-effect-activation-vectors.json",
+      "bytes": 2573631,
+      "sha256": "184a732f6a5d674fddbfb165e2514be666ee771693724740a8ebc772fd6c96a5"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Valid finite emitter pointer table with reserved index0 and readable loaded-bank flags. Existing emitters only; no allocation or particle simulation recovered.",
+    "Terminated ASCII names/12 fixed16-byte save slots; substring effect must leave its delimiter-skip pointer within the source token.",
+    "Managed replay pending; emitter-state consumption and save lifecycle remain separate."
+  ]
+}

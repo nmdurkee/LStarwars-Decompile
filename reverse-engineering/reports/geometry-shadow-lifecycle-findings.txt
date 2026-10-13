@@ -1,0 +1,17 @@
+SHADOW CONTEXT ENABLE/COPY/SNAPSHOT
+
+{"cases": 1408, "enable": 128, "checkedBytes": 92274688, "volume": 512, "context": 512, "snapshot": 256}
+
+SetEnabled rewinds both material-record tails from their head pointers for each allocated volume only on oldenabled0 to newnonzero. It stores the raw supplied flag and does not invalidate the registry cache.
+
+CopyVolume transfers0..113,120..263,270..377 inclusive; padding114..11f,264..26f,378..37f remains untouched. CopyContext performs two volume copies then700..713 and720..827, preserving all padding gaps.
+
+Copies preserve raw pointer words; shader caches and command heads remain shared. The portable verified domain permits disjoint buffers or exact self-copy, not arbitrary partial overlap.
+
+Snapshot aligns the supplied arena cursor to32 bytes, advances by830, shallow-copies context, and only afterward resets the ORIGINAL source volume framecounts+374, both shader contexts and command heads/tails. Destination retains pre-reset inline fields while pointed resources alias the reset originals.
+
+The original pointer allocator control is explicit in the portable API. Context/default producer and5fca40 are separately recovered; this snapshot composes actual native helper instructions with no service replacements.
+
+1408 original comparisons cover128 enable transitions,512 each volume/context copy,256 snapshots, all32alignment offsets and64 sequential enable/two-snapshot chains. Output image and returned snapshot pointer compare exactly; void EAX values are not assigned semantics.
+
+Plane construction and full frame/GPU consumption remain separate; source and replay compile, managed execution pending.

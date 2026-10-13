@@ -1,0 +1,151 @@
+{
+  "schema": "recovered-geometry-dynamic-packets-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "bytes": 3831,
+      "sha256": "683ca7c8467a33a14d5288b9952dd2ab25ffa4ec2efd7ddd62c2d7beaed7e3f8"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x603440",
+      "method": "DynamicMaterialPackets.SetReserved1",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Writes opcode87/control0/zero resource; other command bytes unchanged. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    },
+    {
+      "address": "0x603450",
+      "method": "DynamicMaterialPackets.SetReserved2",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Writes opcode87/control0/zero resource; additional source caller argument ignored. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    },
+    {
+      "address": "0x603460",
+      "method": "DynamicMaterialPackets.SetMaterial",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Writes opcode80/control3/material pointer; remaining command bytes unchanged. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    },
+    {
+      "address": "0x603480",
+      "method": "DynamicMaterialPackets.SetReserved4",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Writes opcode87/control0/zero resource; additional source caller argument ignored. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    },
+    {
+      "address": "0x603490",
+      "method": "DynamicMaterialPackets.SetReserved5",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Writes opcode87/control0/zero resource; additional source caller argument ignored. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    },
+    {
+      "address": "0x5de100",
+      "method": "DynamicMaterialPackets.ConstructMaterial",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "128-byte unaligned packet constructor; supplied link count1..255 replaces original global80baa8(value8). Original first/fourth caller arguments ignored. Link target need not be in this record for writer-only contract. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    },
+    {
+      "address": "0x5de390",
+      "method": "DynamicMaterialPackets.RefreshRanges",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Nonnegative finite sort count and summed material counts at most1,000,000; valid table/record pointers. Updates first matching material index for each nonempty group; preserves missing-key start values. Finite valid memory domain and no pointer wrap. Managed execution pending.",
+      "evidence": "geometry-dynamic-packets-native-validation.json"
+    }
+  ],
+  "adaptersWithoutNativeEntry": [
+    "MaterialSortKey is the inline original signed16-shift/priority expression; it is not a new native entry.",
+    "RenderPacketMemory supplies finite read/write pointer projection."
+  ],
+  "dependencies": [
+    "RenderPacketMemory"
+  ],
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicPackets.dll",
+    "bytes": 5120,
+    "sha256": "a812115f31e0e43480d90a6f223412038d7fab9fbfc82bae4a2108b4e5de9d3f"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicMaterialPacketsHarness.cs",
+    "bytes": 2460,
+    "sha256": "c343a95bf3e96f9c9badd7aaa01182f9c831056ee02eed1df21e0a9adac18f72"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.DynamicPackets.dll DynamicMaterialPackets.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicPackets.dll /out:DynamicMaterialPacketsHarness.exe harness/DynamicMaterialPacketsHarness.cs"
+  },
+  "native": {
+    "report": "geometry-dynamic-packets-native-validation.json",
+    "passed": true,
+    "counts": {
+      "setters": 320,
+      "constructors": 96,
+      "authoredRanges": 120,
+      "syntheticRanges": 64,
+      "rangeMatches": 1696,
+      "checkedBytes": 3812352
+    },
+    "sources": 60
+  },
+  "managed": {
+    "schema": "geometry-dynamic-packets-managed-check-v1",
+    "caseCount": 600,
+    "nativeEvidence": "geometry-dynamic-packets-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-material-packets.bin.gz",
+    "fixtureBytes": 508037,
+    "fixtureSHA256": "ba26f3a3eada6db0034e3967adddcf1308f16a699238c405c5eb62149045b708",
+    "uncompressedBytes": 3822088,
+    "uncompressedSHA256": "d3bfdd2aa2eb18c9e0316dac03016af56236ecf129c83435376255978869b578",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicMaterialPacketsHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "No compiled-source equivalence until saved managed output is compared."
+  },
+  "nativeDefaultGlobals": {
+    "0x80baa8": 8,
+    "0x80baac": 6,
+    "0x80bab0": 7
+  },
+  "fields": {
+    "material+0x00": "Low16 tag shifts left4,truncates signed16,then arithmetic-right-shifts8 to layer value",
+    "material+0x76": "Signed16 priority term; key=layer*0x20000+priority",
+    "sort record+0x00/+0x20/+0x22": "Key,unsigned16 material count,unsigned16 first material index",
+    "display+0x50/+0x60/+0x64": "Material pointer array,sort count,36-byte sort record array",
+    "constructed packet": "85 header;two87reserved;80material;two87reserved;8b link;84/control4 terminator"
+  },
+  "remainingGaps": [
+    {
+      "id": "dynamic-list-flush",
+      "address": "0x5de440",
+      "status": "Dependencies reconstructed; actual add/remove/refcount/list compaction still next phase"
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled only; compact fixture prepared; no launch/bypass"
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "These helpers write command bytes only; GPU semantics remain unclaimed"
+    }
+  ]
+}

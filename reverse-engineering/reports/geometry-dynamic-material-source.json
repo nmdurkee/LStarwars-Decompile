@@ -1,0 +1,183 @@
+{
+  "schema": "recovered-geometry-dynamic-material-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicSubmission.cs",
+      "bytes": 14892,
+      "sha256": "8b9d63a78b4cb415552ad81f2517cd24db3c60527be301bc9f082c6cb58f6fab"
+    }
+  ],
+  "nativeMappings": [],
+  "compositionMappings": [
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicObjectSubmission.SubmitWithMaterialMerge",
+      "sourceFile": "reconstructed/geometry/DynamicSubmission.cs",
+      "coverage": "supporting-normal-branch-refinement-no-new-address-credit",
+      "limitations": "Normal ordinary/prefix caller with MaterialLifecycle merge callback. Zero shadows/sway/fade, null skin/morph, successful capacities and same-thread zero-lock services. Shader factory7416a0 remains explicit; original declaration-cache hits. Managed equality pending.",
+      "evidence": "geometry-dynamic-material-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/MaterialLifecycle.cs",
+      "bytes": 1366,
+      "sha256": "1cc1fa6176bb223f5cc4bc9974adf5ab1228e0bd05766da79ff8ff79eeca70cf"
+    },
+    {
+      "file": "reconstructed/geometry/MaterialCloneCache.cs",
+      "bytes": 5404,
+      "sha256": "00a95ef076fb35220cf5a58ced2d08b50a9f28c070be3ffb2a49eef8e95dd75c"
+    },
+    {
+      "file": "reconstructed/geometry/MaterialPool.cs",
+      "bytes": 4152,
+      "sha256": "86178da6afd2dfe0fffa960b7159566d6341241a28c9a3894d1c4d04688f378f"
+    },
+    {
+      "file": "reconstructed/geometry/MaterialRefresh.cs",
+      "bytes": 4525,
+      "sha256": "b6067d789894084c29bd8f356b5b22ca9d62e9e1925ff43d0e5e6406b3c0e16a"
+    },
+    {
+      "file": "reconstructed/geometry/DynamicSelection.cs",
+      "bytes": 3333,
+      "sha256": "c8e5d927008cacfb89a6e986cc947074b36beda02a213e3d05a130356f10ba6a"
+    },
+    {
+      "file": "reconstructed/geometry/ShaderContextEmission.cs",
+      "bytes": 8247,
+      "sha256": "1fe0f45a945f0d033280851a6d37530a74f2f59b68549e3eccadc5379c945d53"
+    },
+    {
+      "file": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "bytes": 5548,
+      "sha256": "38adc2eca7c6c215f1e120be260e20ab9f8cda81f7150f7482c251bbf1da981e"
+    }
+  ],
+  "native": {
+    "report": "geometry-dynamic-material-native-validation.json",
+    "passed": true,
+    "counts": {
+      "cases": 360,
+      "clones": 480,
+      "mergeCalls": 600,
+      "refreshes": 480,
+      "factories": 960,
+      "declarations": 960
+    },
+    "normalCounts": {
+      "cases": 360,
+      "authoredSpecials": 0,
+      "checkedBytes": 70767360,
+      "draws": 393,
+      "ordinary": 204,
+      "prefix": 189,
+      "bounds": 0,
+      "shaderEmissions": 393,
+      "earlyReturns": 0
+    },
+    "sourceObjects": 120,
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "limits": [
+      "Original5f0f00 normal ordinary/prefix path includes actual different-layout merge\u2192cache\u2192pool\u2192refresh before original shader emission and packet writing. Only7416a0 shader factory is controlled.",
+      "120 authored objects across60scenes, three override policies each: global replacement, tagged table replacement, empty tagged entry suppressing global fallback. Forced visibility1, zero shadows/sway/fade and null skin/morph inputs.",
+      "Complete persistent compact image compared, including mirrored pending queue count and native shader/bounds/scratch globals. Existing32-byte portable transient stack scratch excluded.",
+      "Successful bounded capacities, same-thread cache, zero locks, original declaration-cache hits and finite matrix/color math. Device/shader-factory internals and GPU output excluded.",
+      "No managed/game/GPU launch."
+    ],
+    "modelDependencies": [
+      {
+        "file": "tools/geometry-dynamic-submission-native.py",
+        "bytes": 13519,
+        "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+      },
+      {
+        "file": "tools/geometry-material-clone-native.py",
+        "bytes": 10877,
+        "sha256": "d5d4d4fc50398501f770131be1c7850a2b3d9e4fedccc1f8e6158b639461fcf3"
+      },
+      {
+        "file": "tools/geometry-material-pool-native.py",
+        "bytes": 9340,
+        "sha256": "ba034ea9fb922d39a010df67b3facfdae8f8cc0a8bfa06afcc8484a4f9944385"
+      },
+      {
+        "file": "tools/geometry-material-refresh-native.py",
+        "bytes": 9065,
+        "sha256": "60710ef41bc46dddaa3ddb44bed117748044a5eea463056a785e1992f9ba5bc1"
+      }
+    ]
+  },
+  "managed": {
+    "schema": "geometry-dynamic-material-managed-check-v1",
+    "caseCount": 360,
+    "nativeEvidence": "geometry-dynamic-material-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-material.bin.gz",
+    "fixtureBytes": 440915,
+    "fixtureSHA256": "8bcc0c1240d427774c4dd91e4b46e930882623f59a2b55f7087840fd0bd5d424",
+    "uncompressedBytes": 70840808,
+    "uncompressedSHA256": "9b2a1751e50063cad85e9df0659385894aba02888d8d415e14cc0bf3d323108c",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicMaterialHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Managed equality pending; normal different-layout submission composed through clone/pool/refresh with shader factory explicit."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicSubmission.dll",
+    "bytes": 29696,
+    "sha256": "26d4e7da593f8c68c4d5ad070d75165a53e7e72c883eb1f8abc4bed95c6983d3"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicMaterialHarness.cs",
+    "bytes": 4871,
+    "sha256": "7e1f20f0ce057a29682579f74fc52f9cc6b420c7365766062010feb801fa9d37"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "See geometry-dynamic-submission-source.json: same core dependencies; Submit delegates to new overload with null callback.",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicSubmission.dll /reference:Recovered.Geometry.MaterialClone.dll /reference:Recovered.Geometry.MaterialPool.dll /reference:Recovered.Geometry.MaterialRefresh.dll /reference:Recovered.Geometry.MaterialLifecycle.dll /out:DynamicMaterialHarness.exe harness\\DynamicMaterialHarness.cs",
+    "compatibility": "Existing DynamicSubmissionHarness recompiled against the changed core; original1568 native fixture set retained unchanged. No managed launch."
+  },
+  "observations": [
+    "Different-layout override is now an explicit callback at the original5e5020 point. Default Submit preserves its prior null-callback/same-layout behavior.",
+    "360 full original caller cases exercise120 authored objects across60scenes andthree override policies, producing600 merge calls,480 actual constructors/refreshes and393 actual packet writes.",
+    "480 clone misses plus120 cache reuses occur inside the same normal caller.960 shader-factory calls remain controlled;960 original declaration-cache hits execute.",
+    "Material bitsets, shader-context state, command buffers, pool/cache nodes, pending registration queue and program reference state compare together:70,767,360 persistent bytes, zero differences.",
+    "Present tagged empty override keeps source and suppresses global fallback while other parts still use global replacement; selection order and linked material gates remain native."
+  ],
+  "remainingGaps": [
+    {
+      "id": "shader-factory-device",
+      "address": "0x7416a0",
+      "status": "Explicit mutable factory only; compiler/device program generation separate."
+    },
+    {
+      "id": "declaration-cache-miss",
+      "address": "0x7418c0",
+      "status": "Original cache-hit branch only."
+    },
+    {
+      "id": "dynamic-remaining-branches",
+      "address": "0x5f0f00",
+      "status": "Skin/morph, billboard, active fade, sway, shadows and SIMD clipping remain outside this extension."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core andboth old/new harnesses compile; prepared output comparison pending."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU state/packet proof only; GPU interpretation/rendering/performance unclaimed."
+    }
+  ],
+  "laterRefinement": "geometry-dynamic-skin-source.json"
+}

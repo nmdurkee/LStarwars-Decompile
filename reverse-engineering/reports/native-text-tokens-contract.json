@@ -1,0 +1,56 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "tokens": "Shared token reader strips quotes, retains quoted separators, treats comma/space/tab plus configurable separators as whitespace, and optionally emits single punctuation tokens. Empty quote pair terminates an empty token.",
+    "buffers": "Writes token bytes and terminator using literal(capacity-1)&index, including non-power-of-two cases. Saves pre-read cursor to88ab4c. Text source current-character read is unmasked; end probes use line mask.",
+    "table": "Signed stack depth>=7 returns-1 unchanged; otherwise increment depth, write primary table pointer, clear corresponding secondary pointer, and return current depth.",
+    "binary": "Any nonzero parser+578 tail-calls explicit binary token reader without text/global mutation."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2184,
+    "tokenCalls": 16370,
+    "authoredLines": 1230,
+    "mismatches": 0,
+    "visitedInstructions": 125,
+    "bytesComparedPerCase": 65540,
+    "examples": [],
+    "method": "Original4f7fb0 text token scanner and4f10e0 table stack execute unchanged. Only binary token branch4f7df0 is a mutable service. All128 output-buffer bytes, cursor/global previous cursor per token and entire prepared memory compare.",
+    "limits": [
+      "Disjoint valid parser/line/token/delimiter buffers; line length below4096 and readable raw cursor range. Text tokens preserve byte values; supplied delimiter strings are terminated. Binary encoding parser remains a service.",
+      "Token capacity mask is retained literally, including non-power-of-two capacities7/31. First punctuation character may be emitted as its own token; quotes suppress delimiters and empty quotes return an empty token.",
+      "1230 shipped sample/group source lines are fed to this token reader after externally stripping line comments; native file/line scanner is separate. Table stack depth starts-1..9; depths>=7 reject.",
+      "No authored command credit, managed execution pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/TextParserTokens.cs",
+      "bytes": 1959,
+      "sha256": "b97bc83f107d58d99a26ce7109d06515b4193166b9b9bd169676df4cd784a500"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-text-tokens-portable-verify.cs",
+      "bytes": 5003,
+      "sha256": "6b0ade3c7a0226ab578595977df279c025d453cfea0efcc6d9d36d2557aa07ba"
+    },
+    "entrypoint": "TextParserTokensVerify.Main",
+    "arguments": [
+      "reports/native-text-tokens-vectors.json.gz",
+      "reports/native-text-tokens-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-text-tokens-vectors.json.gz",
+      "bytes": 241676,
+      "sha256": "37dca2319774a0f8fbbb6ad9a3c8393efc81d637fa5e65d2eafe47a92fb45126"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Disjoint valid parser/line/token/delimiter buffers; line length below4096 and readable raw cursor range. Text tokens preserve byte values; supplied delimiter strings are terminated. Binary encoding parser remains a service.",
+    "Token capacity mask is retained literally, including non-power-of-two capacities7/31. First punctuation character may be emitted as its own token; quotes suppress delimiters and empty quotes return an empty token.",
+    "1230 shipped sample/group source lines are fed to this token reader after externally stripping line comments; native file/line scanner is separate. Table stack depth starts-1..9; depths>=7 reject.",
+    "No authored command credit, managed execution pending."
+  ]
+}

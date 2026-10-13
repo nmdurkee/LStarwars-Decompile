@@ -1,0 +1,224 @@
+{
+  "schema": "recovered-geometry-shadow-construction-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "bytes": 3485,
+      "sha256": "da7388a68d3440a6ea5b7330d7ec449f42828a73a18fcaf2e7ead812701a13d2"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5f20c0",
+      "method": "ShadowContextConstruction.AllocateContext",
+      "sourceFile": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "coverage": "whole-helper-bounded-valid-pools",
+      "limitations": "Pool cursors0..7, eight slots, valid disjoint complete images. Subordinate constructor allocations must succeed; context-pool exhaustion returns0. Original/model byte-exact fixtures; managed equality pending.",
+      "evidence": "geometry-shadow-construction-native-validation.json"
+    },
+    {
+      "address": "0x5f2160",
+      "method": "ShadowContextConstruction.AllocateShaderContext",
+      "sourceFile": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "coverage": "whole-helper-bounded-valid-pools",
+      "limitations": "Pool cursors0..7, eight slots, valid disjoint complete images. Subordinate constructor allocations must succeed; context-pool exhaustion returns0. Original/model byte-exact fixtures; managed equality pending.",
+      "evidence": "geometry-shadow-construction-native-validation.json"
+    },
+    {
+      "address": "0x5f2200",
+      "method": "ShadowContextConstruction.AllocateCommand",
+      "sourceFile": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "coverage": "whole-helper-bounded-valid-pools",
+      "limitations": "Pool cursors0..7, eight slots, valid disjoint complete images. Subordinate constructor allocations must succeed; context-pool exhaustion returns0. Original/model byte-exact fixtures; managed equality pending.",
+      "evidence": "geometry-shadow-construction-native-validation.json"
+    },
+    {
+      "address": "0x5f5ce0",
+      "method": "ShadowContextConstruction.InitializeVolume",
+      "sourceFile": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "coverage": "whole-constructor-successful-subordinate-capacity",
+      "limitations": "Pool cursors0..7, eight slots, valid disjoint complete images. Subordinate constructor allocations must succeed; context-pool exhaustion returns0. Original/model byte-exact fixtures; managed equality pending.",
+      "evidence": "geometry-shadow-construction-native-validation.json"
+    },
+    {
+      "address": "0x5f5d90",
+      "method": "ShadowContextConstruction.InitializeContext",
+      "sourceFile": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "coverage": "whole-constructor-successful-subordinate-capacity",
+      "limitations": "Pool cursors0..7, eight slots, valid disjoint complete images. Subordinate constructor allocations must succeed; context-pool exhaustion returns0. Original/model byte-exact fixtures; managed equality pending.",
+      "evidence": "geometry-shadow-construction-native-validation.json"
+    },
+    {
+      "address": "0x5f7420",
+      "method": "ShadowContextConstruction.Create",
+      "sourceFile": "reconstructed/geometry/ShadowContextConstruction.cs",
+      "coverage": "whole-constructor-successful-subordinate-capacity",
+      "limitations": "Pool cursors0..7, eight slots, valid disjoint complete images. Subordinate constructor allocations must succeed; context-pool exhaustion returns0. Original/model byte-exact fixtures; managed equality pending.",
+      "evidence": "geometry-shadow-construction-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-construction-native-validation.json",
+    "schema": "geometry-shadow-construction-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 6984,
+      "context-pool": 2048,
+      "checkedBytes": 123365376,
+      "shader-pool": 2048,
+      "command-pool": 2048,
+      "volume": 256,
+      "context": 256,
+      "create": 328
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-construction-fixtures.json.gz",
+    "fixtureBytes": 2918235,
+    "fixtureSHA256": "4c61d64e8ac40a318eaa92d1bc8551e1a811d42dd5a3a9deecf016779c1ea812",
+    "limits": [
+      "All original pool scan/allocation, volume/context construction, memset and5fca40 cache-reset instructions execute unchanged. Observation hooks only.",
+      "Exhaustive256 occupancy masks times8 valid cursors for all three8-slot pools; complete original returned pointer and every persistent image byte compared.",
+      "Volume/context/create chains require successful subordinate pool capacity (2/4 command and shader slots). Original constructor dereferencesnull on subordinate exhaustion; no invented recovery policy. Context-pool exhaustion returns0 before subordinate use.",
+      "Exactly two0x380 volumes fit a0x830 context; default values and two0x44 packet records per volume preserved. Uninitialized/untouched fields retain their original input bytes.",
+      "Controlled persistent pool image at original logical globals, no game process/device services. Plane production, context enable/update, GPU rendering and managed equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowConstructionHarness",
+    "arguments": [
+      "reports/geometry-shadow-construction-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 6984,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowConstructionHarness.cs",
+      "bytes": 2813,
+      "sha256": "ea01502cea4b966efb8520df7aaeab4fc8eee9f04297aff381781af49f8e36b1"
+    },
+    "compileStatus": "passed"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowConstruction.dll",
+          "SortedPackets.cs",
+          "FrameReset.cs",
+          "ShadowContextConstruction.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowConstruction.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowConstructionHarness.exe",
+          "harness\\ShadowConstructionHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowConstruction.dll",
+      "bytes": 13824,
+      "sha256": "b1f737dbe6fc6adbccc509dc8c493d600e40296a218a388474276fb8fc452e3f"
+    }
+  },
+  "observations": [
+    "All three pools have8 slots and a used-byte plus signed cursor after slot storage. Starting at cursor, scan to7 then0 tocursor-1; set the first available bit and advance cursor modulo8. Exhaustion returns0 without mutation.",
+    "Strides are830(context),40(shader cache),10(command head). Original fixed pools are9740a8,978230 and974020. Portable source makes pool addresses explicit; fixtures retain original logical globals.",
+    "Volume initialization5f5ce0 writes raw float constants at100/104/110 and zeroes260 plane count/374 frame count. It allocates two command heads and shader contexts, saves their pointers at334/338 and32c/330, and clears exactly two44-byte records at2a4/2e8.",
+    "Each record receives shader pointer+8 and head/tail+10/+14. Head opcode8d/type1 gets a null link+4. Existing5fca40 performs its seven sized sentinel writes; untouched shader/head bytes are retained.",
+    "Context initializer5f5d90 invokes two volume initializers with380 stride. It sets allocated volume count70c=2 and active710=0, enabled808=0, registry824=0, other scalar defaults, and returns the original context pointer (Ghidra incorrectly labels void).",
+    "Create5f7420 uses the context allocator then initializes only when nonnull. Context-pool exhaustion never accesses subordinate pools. The constructor has no null handling after command/shader allocation; insufficient subordinate capacity is an explicit portable unsupported case.",
+    "Native6984 cases include exhaustive6144 allocator occupancy/cursor combinations,256 volume and256 context cases,328 create cases, and32 sequential two-context construction chains. No computational substitution or device callbacks.",
+    "The resulting packet records are precisely those consumed by the recovered dynamic shadow scheduler. Plane production remains5e8950 through5c8030/5c82c0/5c8540; enabling/updating contexts and GPU operations remain separate."
+  ],
+  "remainingGaps": [
+    {
+      "id": "subordinate-pool-exhaustion",
+      "status": "Original constructors do not handle null command/cache allocations; portable constructors require successful capacity."
+    },
+    {
+      "id": "shadow-plane-producer",
+      "status": "5e8950\u21925c8030/5c82c0/5c8540 not yet ported here."
+    },
+    {
+      "id": "context-lifecycle",
+      "status": "Enabling/configuration, copy/free and pool reset remain separate."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core/replay compile only."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU context/command/cache initialization only."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-construction-native.py",
+    "bytes": 6106,
+    "sha256": "5aa4b5c282cc207a87af8b3adfa3af25b164f16b5fc18913fa9a9db491c710b9"
+  },
+  "pseudocode": [
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f20c0.c",
+      "bytes": 1107,
+      "sha256": "f5c93e8dd1dc2a83caa21699cfa5a74c6b5e1c5cde90e0f91c8a1e40c3380288"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f2160.c",
+      "bytes": 1101,
+      "sha256": "5e3e5ab022ff1a8844e62261486c671ec2839ec98f59a41639b93383014eb823"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f2200.c",
+      "bytes": 1091,
+      "sha256": "49b3a5f9175a7839b6a12aaa39e8c8866ba6fdc0f53c584a99a98c4d80faef4e"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f5ce0.c",
+      "bytes": 1235,
+      "sha256": "2adbcaed424acbd2a0c66b2d7245010797dc3780d544d7d3ed100f5068540e93"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f5d90.c",
+      "bytes": 917,
+      "sha256": "229016c0d7ccea22a970a8bcfeb7ad3261f683d49b4279594cd41e8ba4198e02"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f7420.c",
+      "bytes": 414,
+      "sha256": "0fd691a39f1b78a94da82913c60a96f81ee3872632043ff4a09ab095a48f1d89"
+    }
+  ]
+}

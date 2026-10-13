@@ -1,0 +1,223 @@
+{
+  "schema": "recovered-geometry-shader-emission-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShaderContextEmission.cs",
+      "bytes": 8247,
+      "sha256": "1fe0f45a945f0d033280851a6d37530a74f2f59b68549e3eccadc5379c945d53"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x607590",
+      "method": "ShaderContextEmission.Emit",
+      "sourceFile": "reconstructed/geometry/ShaderContextEmission.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Six-key context/cache comparison,changed payload allocation,command linking and cached context update; supplied values replace three fixed globals. Valid finite nonoverlapping record/context/arena storage; no uint address overflow; GPU consumption excluded; managed execution pending.",
+      "evidence": "geometry-shader-emission-native-validation.json"
+    },
+    {
+      "address": "0x5fcdf0",
+      "method": "ShaderContextEmission.BuildVectorMatrixPayload",
+      "sourceFile": "reconstructed/geometry/ShaderContextEmission.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "SevenXYZ vectors with inserted1.0 W words,16-word matrix and3 trailing words;188-byte output. Valid finite nonoverlapping record/context/arena storage; no uint address overflow; GPU consumption excluded; managed execution pending.",
+      "evidence": "geometry-shader-emission-native-validation.json"
+    },
+    {
+      "address": "0x5fcef0",
+      "method": "ShaderContextEmission.BuildOptionalScalarPayload",
+      "sourceFile": "reconstructed/geometry/ShaderContextEmission.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Shader+f4 selects raw+f8 or1.0word;4-byte output. Valid finite nonoverlapping record/context/arena storage; no uint address overflow; GPU consumption excluded; managed execution pending.",
+      "evidence": "geometry-shader-emission-native-validation.json"
+    },
+    {
+      "address": "0x5fcf30",
+      "method": "ShaderContextEmission.BuildWordPayload",
+      "sourceFile": "reconstructed/geometry/ShaderContextEmission.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Copy shader+194 raw word;4-byte output. Valid finite nonoverlapping record/context/arena storage; no uint address overflow; GPU consumption excluded; managed execution pending.",
+      "evidence": "geometry-shader-emission-native-validation.json"
+    },
+    {
+      "address": "0x5fcf60",
+      "method": "ShaderContextEmission.BuildConditionalWordsPayload",
+      "sourceFile": "reconstructed/geometry/ShaderContextEmission.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Shader+16c raw word plus four additional raw words only when nonzero;4/20-byte output. Valid finite nonoverlapping record/context/arena storage; no uint address overflow; GPU consumption excluded; managed execution pending.",
+      "evidence": "geometry-shader-emission-native-validation.json"
+    },
+    {
+      "address": "0x5fcfd0",
+      "method": "ShaderContextEmission.BuildSignedBytePayload",
+      "sourceFile": "reconstructed/geometry/ShaderContextEmission.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Optional global descriptor: unsigned bytecount/secondary value then sign-extended bytes converted to exactfloat32 integers; trailing rounded slots preserved. Valid finite nonoverlapping record/context/arena storage; no uint address overflow; GPU consumption excluded; managed execution pending.",
+      "evidence": "geometry-shader-emission-native-validation.json"
+    }
+  ],
+  "adaptersWithoutNativeEntry": [
+    "CompleteSorted connects recovered SortedPackets.Complete to recovered mutating Emit and joins diagnostic nested call traces. It introduces no new native mapping.",
+    "Private matrix-payload construction is inline original607590 behavior,not an independently mapped entry.",
+    "Supplied allocator-control pointer,signed-byte descriptor and token base replace globals0x9736e0/0x9738a4/0x297dc00."
+  ],
+  "dependencies": [
+    "RenderPacketMemory",
+    "SortedPackets.Append",
+    "SortedPackets.Complete",
+    "FrameReset.ResetShaderContext"
+  ],
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.ShaderEmission.dll",
+    "bytes": 8192,
+    "sha256": "a018d4bddf0689501330277f26245c276eba236bd11519bbb052a20b430231d7"
+  },
+  "harnesses": [
+    {
+      "file": "reconstructed/geometry/harness/ShaderContextEmissionHarness.cs",
+      "bytes": 2539,
+      "sha256": "1dd889e17a9c211c60761a0783298f5084503d738e45efb29180821b4cacf3b6"
+    },
+    {
+      "file": "reconstructed/geometry/harness/SortedShaderHarness.cs",
+      "bytes": 1871,
+      "sha256": "ab13216c4d7d13cfdd9c649d2336ec87311b24496cabbfb6fb8ae43c0cc4cde3"
+    }
+  ],
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.FrameReset.dll /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.ShaderEmission.dll ShaderContextEmission.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.FrameReset.dll /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.ShaderEmission.dll /out:ShaderContextEmissionHarness.exe harness/ShaderContextEmissionHarness.cs",
+    "integrationHarnessCommand": "csc /nologo /reference:Recovered.Geometry.FrameReset.dll /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.ShaderEmission.dll /out:SortedShaderHarness.exe harness/SortedShaderHarness.cs"
+  },
+  "native": {
+    "report": "geometry-shader-emission-native-validation.json",
+    "passed": true,
+    "counts": {
+      "payload": 640,
+      "emission": 1024,
+      "nullShader": 16,
+      "checkedBytes": 8856384
+    }
+  },
+  "integratedNative": {
+    "report": "geometry-sorted-shader-native-validation.json",
+    "passed": true,
+    "counts": {
+      "cases": 120,
+      "changedShaderCalls": 6422,
+      "appendCalls": 38532,
+      "payloadCalls": 6902,
+      "checkedBytes": 47862269
+    },
+    "sources": 60
+  },
+  "managed": {
+    "schema": "geometry-shader-emission-managed-check-v1",
+    "caseCount": 1680,
+    "nativeEvidence": "geometry-shader-emission-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\shader-emission.bin.gz",
+    "fixtureBytes": 2244390,
+    "fixtureSHA256": "0196ba8d064efda01ed11a326f02f70a0a6be54c2576584fdc016523aab1e1db",
+    "uncompressedBytes": 8891912,
+    "uncompressedSHA256": "c4429861aa9966281189ed3909bfd7d473589ed227ccfb9f0186de0d2833a95c",
+    "status": "prepared-not-executed",
+    "mainType": "ShaderContextEmissionHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "No compiled-source equivalence until saved compiled output is compared."
+  },
+  "integratedManaged": {
+    "schema": "geometry-sorted-shader-managed-check-v1",
+    "caseCount": 120,
+    "nativeEvidence": "geometry-sorted-shader-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\sorted-shader.bin.gz",
+    "fixtureBytes": 3291547,
+    "fixtureSHA256": "fc9b57799fe10f89fa3b66d5fd7c2f791f3fbda714f4b4769710dd8090d20c5f",
+    "uncompressedBytes": 47011208,
+    "uncompressedSHA256": "cc317d8379fa58bb0f1eb9dff29ca911dc3673382c33525758fa15e74a0aa380",
+    "status": "prepared-not-executed",
+    "mainType": "SortedShaderHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "No compiled-source equivalence until saved managed output is compared."
+  },
+  "keyCommandMap": [
+    {
+      "contextWord": "0x24",
+      "payloadCacheWord": "0x34",
+      "command": "0x94"
+    },
+    {
+      "contextWord": "0x2c",
+      "payloadCacheWord": "0x110",
+      "command": "0x9a"
+    },
+    {
+      "contextWord": "0x2e",
+      "payloadCacheWord": "0x168",
+      "command": "0xa6"
+    },
+    {
+      "contextWord": "0x1e",
+      "payloadCacheWord": "0x180",
+      "command": "0xa5"
+    },
+    {
+      "contextWord": "0x32",
+      "payloadCacheWord": "0x198",
+      "command": "0xab"
+    },
+    {
+      "contextWord": "0x30",
+      "payloadCacheWord": null,
+      "command": "0xa9"
+    }
+  ],
+  "definedDetails": [
+    "The entire helper returns early if shader pointer is0 or context+20 equals shader+20,regardless of differing subordinate keys.",
+    "Keys compare16-bit equality; matrix token sign-extends shader+2c then applies32-bit wrap arithmetic with shader+20 and the token base.",
+    "Raw payload words preserve bit patterns including arbitrary float encodings; only signed-byte payload performs numerical conversion.",
+    "Every allocation is16-byte aligned; signed-byte arrays reserve4-float blocks and do not clear trailing padded floats.",
+    "Absent signed-byte descriptor emits noA9command but still updates that context key.",
+    "Original append return is allocator-control pointer only for inline payload; these shader commands pass explicit payloads."
+  ],
+  "remainingGaps": [
+    {
+      "id": "managed-execution",
+      "status": "Both harnesses compile; comparison fixtures prepared; no executable launch or bypass"
+    },
+    {
+      "id": "live-runtime-adapters",
+      "status": "CPU source uses decoded valid memory projections; no live captured engine frame or Unity integration"
+    },
+    {
+      "id": "dynamic-list-flush",
+      "address": "0x5de440",
+      "status": "still outside recovered finish integration"
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "Generated command bytes verified; downstream D3D state/rendering interpretation remains separate"
+    }
+  ],
+  "supersedesBoundaries": [
+    {
+      "report": "geometry-sorted-packets-source.json",
+      "boundary": "Mutating607590 shader emission was explicit there; this new module and120 original integration cases now recover its finite CPU domain. Prior report remains a historical scoped result."
+    },
+    {
+      "report": "geometry-static-finish-source.json",
+      "boundary": "Sorted5e0d00 callback can now be connected toCompleteSorted for the verified valid memory domain; dynamic5de440 callback remains."
+    }
+  ]
+}

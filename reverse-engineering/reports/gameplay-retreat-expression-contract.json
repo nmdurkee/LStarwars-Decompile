@@ -1,0 +1,93 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "composition": "RetreatExpressionAdapter is a host adapter composing the already reconstructed 0x535d60 RetreatFromOpponent body with ScriptExpressions.EvaluateToken (0x514920 behavior). It supplies the existing MovementServices.Evaluate boundary, retains the original MovementToken callback boundary, and persists changed token text after each expression. It temporarily installs its forwarding movement service and restores the old service in a finally block. No native address is added for this host wiring.",
+    "lifetime": "The caller supplies a shared ExpressionEnvironment so RNG and native-global lifetimes survive repeated commands. Each invocation resets only the adapter token cursor. On a first-time call, each token callback advances that cursor; a consumed movement token skips expression parsing. Subsequent calls retain the native command behavior and perform no parsing. Independent argument buffers are represented by individual strings; aliasing between native char pointers is outside this adapter.",
+    "result": "324 original-PC command/parser chains pass with zero mismatches: all 49 shipped RetreatFromOpponent argument lists on first and subsequent calls (98 comparisons), 170 branch/input cases, and 56 persistent ticks. Model comparisons include intent state, return value, token/evaluation event order, changed tokens and RNG. Mixed-token 2.5___tail now uses independently reconstructed lexer semantics instead of an observed-value constant in this composition. The prior 492-case retreat report remains a historical, qualified record and is not rewritten or reclassified.",
+    "remaining": "The actual production movement-token callback and game-specific expression symbols are still attached by a host. Native checks use a deterministic walk/run/tiptoe callback and no game-symbol callback. This composition does not build navigation data, solve routes, or integrate actor position. Core and replay compile; managed execution is pending under the compile-only instruction."
+  },
+  "commands": [],
+  "newNativeMappings": 0,
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 324,
+    "groups": {
+      "authored": 98,
+      "branches": 170,
+      "persistent": 56
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredOccurrences": 49,
+    "authoredUseCredit": 0,
+    "newNativeMappings": 0,
+    "method": "Unmodified535d60 calls unmodified514920/514850 and original recursive parser. Independent retreat state model composes the independently tested expression model. Compares command result, copied intent, goal, movement flags, callback/evaluation order, RNG and mutated tokens. All49 authored argument lists replay first and subsequent calls.",
+    "limits": [
+      "Movement-token callback remains deterministic fixture/host adapter; no production callback registration claim.",
+      "Finite ASCII expressions with independent mutable token buffers; pointer-aliasing between argument entries is not represented.",
+      "The mixed-token behavior that previously needed observed-value fixtures is independently modeled through the reconstructed lexer in this separate suite. Do not reclassify the retained historical suite.",
+      "Managed composition/replay compiles only."
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-retreat-expression-native-fixtures.json",
+      "bytes": 224933,
+      "sha256": "817718c27465c1ffad284b2add02804fce1d408d239523edd9554e402cdd7e4a"
+    },
+    "relatedHistoricalSuite": "reverse-engineering/reports/gameplay-opponent-retreat-tests.json"
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/RetreatExpressionAdapter.cs",
+      "bytes": 2417,
+      "sha256": "ed47be6f35ea453de600158697fcf56cbe7a0b2275e3dbddf75a0479c41ed739"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-retreat-expression-portable-verify.cs",
+      "bytes": 6324,
+      "sha256": "1f88cb29bdfc719ed04ca40956d21a9a75e7321e4659635df5a1cda018fbb726"
+    },
+    "entrypoint": "GameplayRetreatExpressionVerify.Main",
+    "arguments": [
+      "reports/gameplay-retreat-expression-native-fixtures.json",
+      "reports/gameplay-retreat-expression-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/OpponentRetreat.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/CreateCreatures.cs",
+      "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/MovementCommands.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-retreat-expression-verify.exe",
+        "bytes": 77824,
+        "sha256": "a328cda4b32a70617cbd4f514ccf5992d3ea8b0386af93decb823333be874e9f"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "nativeComposition": [
+    "0x535d60",
+    "0x514920",
+    "0x514850",
+    "0x4f88e0",
+    "0x4f8420",
+    "0x4f8790",
+    "0x4f8830",
+    "0x4f8880"
+  ],
+  "remaining": [
+    "Movement-token callback remains deterministic fixture/host adapter; no production callback registration claim.",
+    "Finite ASCII expressions with independent mutable token buffers; pointer-aliasing between argument entries is not represented.",
+    "The mixed-token behavior that previously needed observed-value fixtures is independently modeled through the reconstructed lexer in this separate suite. Do not reclassify the retained historical suite.",
+    "Managed composition/replay compiles only."
+  ]
+}

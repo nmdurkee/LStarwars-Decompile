@@ -1,0 +1,50 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "defaults": "651530 updates the selected64-byte sound record: flags become(old&ff880000)|7fff; name pointer uses293b318+global soundCount*32, pitch5622, signed pan byte0, volume3fff, fields14=ffff and16=0, all nine DWORDs18..38=positive zero.",
+    "preserved": "Link+10, three padding bytes+d..f, trailing name pointer+3c, comment bit80000 and other unmasked high flags survive. Global sound count does not change.",
+    "backup": "Copy16 DWORDs forward to backupBase+index*64 using original REP MOVSD order; forward overlap propagates prior writes and must not be replaced by memmove."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 3108,
+    "mismatches": 0,
+    "visitedInstructions": 64,
+    "examples": [],
+    "method": "Original651530 executes without substitutions; complete64KiB memory and unchanged global count compare per case, including forward-DWORD overlap in its final REP MOVSD.",
+    "limits": [
+      "Record, globals and cursor addresses are disjoint; record/backup64-byte regions may overlap by tested DWORD multiples. Negative record index allowed only with valid readable backing.",
+      "Name pointer arithmetic wraps uint32 and uses global sound count, independent of index; the name storage is not dereferenced by this initializer.",
+      "Unwritten link/padding/trailing name bytes and comment bit survive. Float defaults are raw positive-zero bits. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundRecordInitialization.cs",
+      "bytes": 920,
+      "sha256": "31e079536984f286481465ef2fc8c968d35e82501f6265de9d898c836db79024"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-record-portable-verify.cs",
+      "bytes": 3616,
+      "sha256": "6cb981292974649324e82cceb04a33040fb2bf125a27c13f314a46306bac0b52"
+    },
+    "entrypoint": "SoundRecordInitializationVerify.Main",
+    "arguments": [
+      "reports/native-sound-record-vectors.json.gz",
+      "reports/native-sound-record-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-record-vectors.json.gz",
+      "bytes": 141140,
+      "sha256": "31dce7c9866d00ed8d3df7353a8a88988d275fd3b1b022b5050aa732aca80f64"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Record, globals and cursor addresses are disjoint; record/backup64-byte regions may overlap by tested DWORD multiples. Negative record index allowed only with valid readable backing.",
+    "Name pointer arithmetic wraps uint32 and uses global sound count, independent of index; the name storage is not dereferenced by this initializer.",
+    "Unwritten link/padding/trailing name bytes and comment bit survive. Float defaults are raw positive-zero bits. Managed replay pending."
+  ]
+}

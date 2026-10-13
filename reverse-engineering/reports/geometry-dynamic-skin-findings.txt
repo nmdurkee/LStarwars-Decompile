@@ -1,0 +1,26 @@
+NORMAL SUBMISSION WITH SKIN/MORPH PACKETS
+
+{"cases": 1788, "skinInputs": 1724, "morphInputs": 894, "skinWrites": 6768, "locks": 3364, "mode0x0": 447, "mode0x2": 447, "mode0xffffffff": 447, "mode0xfeedface": 447}
+{"cases": 1788, "authoredSpecials": 0, "checkedBytes": 1874796672, "draws": 6936, "ordinary": 84, "prefix": 84, "bounds": 32, "shaderEmissions": 6936, "earlyReturns": 54}
+
+Existing Submit and SubmitWithMaterialMerge remain compatible wrappers passing null skin/morph. The common body adds explicit logical skinPalette/morphWeights inputs and a DynamicPacketWriter service.
+
+Request preserves record/material/index/command/world/cache/output identities, skin/morph identities, alpha1 and metadata. The supplied resource adapter resolves descriptor, delta arrays, joint byte matrices and weights then calls SkinMeshPacketDispatch.Build.
+
+The third native caller argument is unused in this normal branch. Nonnull skin selects5e0390 independently of that argument and independently of nullable morph. Null skin with nonnull morph remains ordinary/prefix and does not read weights.
+
+Skin writer output convention, allocator links, shader context, material visibility bits, source descriptor clearing, copied/deformed vertex bytes and palette payload compare in one persistent memory image.
+
+Mode0,2,ffffffff,feedface and four different palette addresses are covered. Ordinary/prefix null-skin cases and scalar visibility early returns are included.
+
+Different-layout merge remains available in the same overload and independently verified by the prior material batch; this batch uses same-layout selection and does not claim the joint merge-plus-morph cross product.
+
+Limits
+Original5f0f00 through actual scalar bounds, material selection, shader emission,5e0530 dispatcher and ordinary/prefix/skin/morph writers. Only successful COM virtual Lock/Unlock methods are supplied.
+All authored670 morph meshes plus160 synthetic mesh descriptors, authored scene bounds/transforms/LOD tables combined with relocated controlled runtime records. Palette matrix bytes are opaque fixture patterns, not a live posed character.
+Skin pointer relocates among four buffers; mode argument varies independently, including0 and2. Null skin with nonnull morph input still follows ordinary/prefix dispatch.
+Zero shadows/sway/fade; same-layout material selection. Different-layout merge verified separately and exposed in the same portable overload, not combined in this batch.
+Full1MiB persistent byteimage compared including mirrored scratch/shader/bounds state, except32-byte portable transient cache/output adapter. Successful capacities, finite active deformation, disjoint valid state.
+CPU packet construction only. Managed compilation and runtime equality are separate; no managed/game/GPU process launched.
+
+Managed source and compatibility harnesses compile. No managed execution.

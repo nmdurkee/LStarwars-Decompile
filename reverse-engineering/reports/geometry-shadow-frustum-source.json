@@ -1,0 +1,207 @@
+{
+  "schema": "recovered-geometry-shadow-frustum-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowFrustum.cs",
+      "bytes": 4908,
+      "sha256": "9cb3418f104e2c18977f5e8b84abb3b21e69632e183624d4336e7df958997776"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5c7fa0",
+      "method": "ShadowFrustum.PlaneFromPoints",
+      "sourceFile": "reconstructed/geometry/ShadowFrustum.cs",
+      "coverage": "whole-helper-finite-disjoint-input-output",
+      "limitations": "Finite intermediate stored arithmetic; degenerate triangles retain zero normal/negative-zero constant. Original/model exact meaningful bits; managed execution pending.",
+      "evidence": "geometry-shadow-frustum-native-validation.json"
+    },
+    {
+      "address": "0x5c8030",
+      "method": "ShadowFrustum.Build",
+      "sourceFile": "reconstructed/geometry/ShadowFrustum.cs",
+      "coverage": "known-lane-projection-finite-camera-frustum",
+      "limitations": "EightXYZ+fournearW+farplaneXYZW. FourfarW are proven undefined stack padding and preserved in portable output. FOV[-1,3], nonzero aspect/near/sampledcosine, finite inputs/intermediates, original sine table. Both native CRT modes agree inside domain; managed equality pending.",
+      "evidence": "geometry-shadow-frustum-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/animation/CharacterContexts.cs",
+      "bytes": 14461,
+      "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+    },
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 20731,
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-frustum-native-validation.json",
+    "schema": "geometry-shadow-frustum-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 2191,
+      "plane": 1164,
+      "floatWords": 37520,
+      "frustum": 1027
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-frustum-fixtures.json.gz",
+    "fixtureBytes": 351047,
+    "fixtureSHA256": "d665f56815800950e7c65f7a9f7456c3fbf990a6a05d1168aecb81b9b47742f8",
+    "paddingAudit": [
+      {
+        "stackPoison": 0,
+        "farW": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "stackPoison": 305419896,
+        "farW": [
+          305419896,
+          305419896,
+          305419896,
+          305419896
+        ]
+      },
+      {
+        "stackPoison": 3735928559,
+        "farW": [
+          3735928559,
+          3735928559,
+          3735928559,
+          3735928559
+        ]
+      }
+    ],
+    "limits": [
+      "Original5c7fa0 plane and5c8030 corner/far-plane math plus real5b3920/5b3b30/5c0240/CRT conversion/5c19d0/5b30a0 run unchanged. No computational substitutions.",
+      "All326 authored portal first triangles in both windings and512 synthetic/degenerate planes; identity plus six authored CU2 camera transforms, controlled finite FOV/aspect/near/far parameters.",
+      "All meaningful XYZ, planeXYZW and nearW words compare bit-exact. Four far-cornerW words are proven uninitialized stack padding: three poison patterns propagate exactly, native bytes retained. Portable projection preserves caller padding rather than fabricating a defined value.",
+      "Finite inputs and intermediate outputs, nonzero aspect/near/sampledcosine, disjoint inputs/outputs; FOVrange-1..3 and both CRT conversion policies. No broad out-of-range trig conversion or partial alias claim.",
+      "Full outer5e8950 light-volume extraction, GPU outputs and compiled managed equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowFrustumHarness",
+    "arguments": [
+      "reports/geometry-shadow-frustum-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 2191,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowFrustumHarness.cs",
+      "bytes": 3178,
+      "sha256": "94c2003c202998e8ccc216361f49f7b00e42754510b9e7c5b22537725a1517fe"
+    },
+    "compileStatus": "passed",
+    "comparison": "Whole fixture image with native fourundefinedfarW normalized to caller original padding; angle and meaningful outputs compare exact bits."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowFrustum.dll",
+          "ShadowFrustum.cs",
+          "..\\animation\\CharacterContexts.cs",
+          "..\\animation\\AnimationPlayback.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowFrustum.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowFrustumHarness.exe",
+          "harness\\ShadowFrustumHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowFrustum.dll",
+      "bytes": 21504,
+      "sha256": "8c2189857d3d910829ca7801d3e52575a0b1d53eb7317bf6922f4c8e649151b7"
+    }
+  },
+  "observations": [
+    "PlaneFromPoints computes float32 differences(b-a,c-a), an ordered extended cross, float32 squared length and sqrt, a float32 reciprocal, normalizedXYZ, and a float32 dot before negating D. Original arithmetic order and signed zeros are retained by wide operations plus IEEE zero-sign handling.",
+    "Build stores half the radian FOV asfloat32, multiplies exact10430.3779296875 and truncates to a native angle. Sine index=(angle>>1)&7fff; cosine index=((angle+4000)>>1)&7fff. Finite[-1,3] fits both original CRT modes identically.",
+    "Near half-height=(sine*near)/cosine, half-width=height/aspect, farRatio=far/near each store tofloat32. Ordered near corners are(-x,-y,z),(-x,y,z),(x,y,z),(x,-y,z); farXYZ scale their stored coordinates. Raw camera matrix supplies row-vector affine transformation.",
+    "Far plane uses far corners0/1/2 through actual5c7fa0. Original nearW is1; fourfarW come from an uninitialized stack temporary. Poison0/12345678/deadbeef propagates exactly to all fourfarW words, while meaningful outputs remain unchanged.",
+    "Portable Build writes24cornerXYZ words,4nearW words and4farplane words, leaving farW caller storage untouched. This is a known-lane projection, not a fabricated defined value for native stack padding. Native output bytes and audit retain the real padding evidence.",
+    "2191 original comparisons cover all326 authored portal first-triangles inbothwindings,512synthetic/degenerate triangles,1027camera frustums usingidentity plus six authored CU2 transforms. Controlled projection parameters remain explicit; no reconstructed camera producer claim.",
+    "Original nested instructions execute without computational hooks. Source and replay compile, but managed runtime equality remains pending. Outer light-volume construction5e8950/5c82c0/5c8540 andGPU output remain separate."
+  ],
+  "remainingGaps": [
+    {
+      "id": "undefined-farW",
+      "status": "Original writes uninitialized stack values; portable projection intentionally preserves caller padding. Native bytes/audit retained."
+    },
+    {
+      "id": "outer-shadow-volume",
+      "status": "Extruded light-facing plane selection5c82c0, aggregatebounds5c8540, perspective5b7670 and outer5e8950 remain separate."
+    },
+    {
+      "id": "numeric-domain",
+      "status": "Finite stored math, boundedFOV and nonzero denominators; overflow/nonfinite/partialalias excluded."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core/replay compile only."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU geometry only."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-frustum-native.py",
+    "bytes": 7827,
+    "sha256": "629ec1902f5c0562dd92c67a4c521cfd77dc981e20ec6e73ad7ee8f48dee2c02"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-frustum-assembly.json",
+    "bytes": 37648,
+    "sha256": "d5fdd94f9cb663e731e1d6d6aa12d3a04824f63ab6291c5b091a5bf6896a58ce"
+  },
+  "sourceInputs": [
+    {
+      "file": "reports/geometry-portal-predicate-fixtures.json",
+      "bytes": 871298,
+      "sha256": "85110d0086cd845ec87f59663aeea4494e866792e0c1f23fc6db1d822e6dba45"
+    },
+    {
+      "file": "exports/cutscenes/LEVELS/EPISODE_V/ENDING/EPISODE5ENDING_A/EPISODE5ENDING_A.CU2.json",
+      "bytes": 4274,
+      "sha256": "3d5c91da2a27d9cd4db3e10e0e7b22daf7bc35bce6920aabada47e6da441dc87"
+    },
+    {
+      "file": "references/native-animation-sine-table.f32",
+      "bytes": 131072,
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    }
+  ]
+}

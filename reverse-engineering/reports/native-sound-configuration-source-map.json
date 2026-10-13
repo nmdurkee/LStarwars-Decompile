@@ -1,0 +1,23 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x6520b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SoundConfiguration.cs",
+      "sourceSha256": "0d477c2cb3de0ede643bfd65b786f0308fae1da9a3d6995dbcf6d5821a6f19f8",
+      "methods": [
+        {
+          "name": "SoundConfiguration.Load",
+          "line": 21
+        }
+      ],
+      "coverage": "whole orchestration with explicit scanner/dispatch/audio services",
+      "qualification": "This recovers configuration orchestration, not the native file scanner, dispatcher, bank loader or audio device. Valid parser/token/bank backing, adequate capacity and terminating service sequence are required. The token-reader return value is ignored; dispatch tests current token first byte. Missing file still proceeds through bank terminator, load, zero mask, optional mask application and finish. Bank terminator touches only its first16bytes. Post-load flag is reread after clearing200mask bytes. Services are synchronous and may mutate shared state. Managed replay pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-sound-configuration-tests.json"
+      ]
+    }
+  ],
+  "commands": []
+}

@@ -1,0 +1,185 @@
+{
+  "schema": "recovered-geometry-dynamic-billboard-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicSubmission.cs",
+      "bytes": 14892,
+      "sha256": "8b9d63a78b4cb415552ad81f2517cd24db3c60527be301bc9f082c6cb58f6fab"
+    }
+  ],
+  "nativeMappings": [],
+  "compositionMappings": [
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicObjectSubmission.SubmitWithPackets",
+      "sourceFile": "reconstructed/geometry/DynamicSubmission.cs",
+      "coverage": "supporting-normal-billboard-refinement-no-new-address-credit",
+      "limitations": "Explicit full packet delegate and supplied camera state. Finite inputs/intermediates, same-layout materials, zero shadows/sway/fade, successful disjoint allocations. Original/model exact for saved fixtures; managed runtime pending.",
+      "evidence": "geometry-dynamic-billboard-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "bytes": 3315,
+      "sha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47"
+    },
+    {
+      "file": "reconstructed/animation/BillboardMeshPackets.cs",
+      "bytes": 5170,
+      "sha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b"
+    },
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 20731,
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    }
+  ],
+  "native": {
+    "report": "geometry-dynamic-billboard-native-validation.json",
+    "schema": "geometry-dynamic-billboard-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "authoredResources": 1367,
+      "billboardWrites": 6492,
+      "cases": 1623,
+      "syntheticResources": 256
+    },
+    "normalCounts": {
+      "cases": 1623,
+      "authoredSpecials": 0,
+      "checkedBytes": 106312992,
+      "draws": 6492,
+      "ordinary": 0,
+      "prefix": 0,
+      "bounds": 0,
+      "shaderEmissions": 6492,
+      "earlyReturns": 0
+    },
+    "authoredCarriers": 100,
+    "sourceObjects": 480,
+    "sources": 60,
+    "errors": [],
+    "fixtureFile": "geometry-dynamic-billboard-fixtures.json.gz",
+    "fixtureBytes": 1468889,
+    "fixtureSHA256": "5298178d8edefc1894836fac72ad20e4ad495dd786d1caff2281f15f2ce31614",
+    "limits": [
+      "Full original normal5f0f00 -> shader emission ->5e0530 ->5e0490 ->603610/603970 and all original camera-facing/vector/sqrt helpers. Observation hooks only, no computational services.",
+      "All1367 authored billboard descriptor records across100carriers, source-bound world transforms (identity fallback explicitly retained where not associated), plus256 synthetic descriptors/worlds. Normal bounds/LOD from480 authored objects across60scenes; camera view/forward remain explicit fixtures.",
+      "Each case emits four actual billboard packets through linked material gates. Invalid nonnull skin/morph sentinels alternate with null pointers; billboard branch never reads those inputs.",
+      "Finite inputs/intermediates, forcedVisibility1, same-layout materials, zero shadows/sway/fade and successful disjoint allocator capacity. No different-layout material merge or live camera producer claim.",
+      "Whole64KiB persistent state including shader and scratch/bounds mirrors, excluding32-byte portable cache/output adapter; exact return, shadow mask and writer tuples compare.",
+      "CPU payload construction only. Backend/GPU billboard expansion, final image and managed runtime equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "DynamicBillboardHarness",
+    "arguments": [
+      "reports/geometry-dynamic-billboard-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1623,
+    "harnesses": [
+      {
+        "file": "reconstructed/geometry/harness/DynamicSkinHarness.cs",
+        "bytes": 8584,
+        "sha256": "87f9a8bb4985bfed9262a9082b17af61a40a8e3d520ddaacad849f38507c97b6"
+      },
+      {
+        "file": "reconstructed/geometry/harness/DynamicBillboardHarness.cs",
+        "bytes": 143,
+        "sha256": "e2ab36bdc82900fefa309e52e95f3f77fc4ba7688671272e0696035e631d0f49"
+      }
+    ],
+    "compileStatus": "passed",
+    "comparison": "Whole persistent memory SHA256, returned visibility, shadow mask and selected material/index/writer tuples. No device services occur."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "command": [
+      "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+      "/nologo",
+      "/main:DynamicBillboardHarness",
+      "/reference:System.Web.Extensions.dll",
+      "/out:C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicBillboardHarness.exe",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\SortedPackets.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\FrameReset.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicCommandSupport.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\OrdinaryMeshPackets.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\ShaderContextEmission.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\ShadowContextEmission.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicSelection.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicBounds.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\CharacterContexts.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\AnimationPlayback.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\MorphMeshDeformation.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\MorphMeshPackets.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\SkinMeshPacketDispatch.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\BillboardMeshPackets.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicSubmission.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\harness\\DynamicSkinHarness.cs",
+      "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\harness\\DynamicBillboardHarness.cs"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "",
+    "artifact": {
+      "file": "reconstructed/geometry/DynamicBillboardHarness.exe",
+      "bytes": 66560,
+      "sha256": "8f4e111879464f527b5ba997c974fe123b4b46416d051b88841ec3d1b90cdd19"
+    }
+  },
+  "observations": [
+    "Existing SubmitWithPackets and SubmitWithDistanceFade signatures are retained. Opcode8f now reaches a supplied packet delegate; no-delegate basic entrypoints still reject billboard commands explicitly.",
+    "Opcode is checked before material prefix flags or preceding-command reads. Billboard dispatch takes priority over nonnull skin/morph inputs. The typed replay selects the billboard branch before resolving any skin, weight or mesh-delta arrays.",
+    "The explicit adapter calls animation-owned SkinMeshPacketDispatch.BuildWithBillboards with caller request fields and explicit view/camera-forward inputs. BillboardMeshPackets builds the132-byte world/scale/facing payload and90/8f command pair.",
+    "All1367 authored billboard descriptor records across100carriers plus256 synthetic descriptors/worlds run through original5f0f00, shader emission and complete billboard math. Four real linked-material packet writes per case give6492 writes. Invalid nonnull skin/morph sentinels stay unread.",
+    "The matrix attached to each authored billboard is the first actual model-associated special where available; identity fallback remains labelled in the upstream fixture. Normal local bounds/LOD metadata are independently source-bound480 objects across60scenes. This is a composed fixture, not a reconstructed live draw capture.",
+    "All prior native evidence keeps its narrower original scope. Source/compatibility replay hashes are refreshed, and all five replay entrypoints compile. No managed executable or GPU process was launched."
+  ],
+  "remainingGaps": [
+    {
+      "id": "dynamic-remaining-branches",
+      "status": "Nonzero sway, nonzero shadows and SIMD clipping remain outside normal composition."
+    },
+    {
+      "id": "camera-producer",
+      "status": "Camera view/forward values are explicit fixtures; no live runtime camera integration claimed."
+    },
+    {
+      "id": "combined-feature-cross-product",
+      "status": "Fade, different-layout material merge, skin/morph and billboard each have complete normal caller evidence; simultaneous combinations are not exhaustively tested."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Source and compatibility/new replay harnesses compile; managed runtime comparison pending."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU billboard packet/payload only; shader expansion, rasterization and performance separate."
+    }
+  ],
+  "modelDependencies": [
+    {
+      "file": "tools/geometry-dynamic-billboard-native.py",
+      "bytes": 6103,
+      "sha256": "139c21294e060e53dc923073ea7c360c23182ad3dc9c8e3379899d60e6c74970"
+    },
+    {
+      "file": "tools/geometry-dynamic-submission-native.py",
+      "bytes": 13519,
+      "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+    },
+    {
+      "file": "tools/animation-billboard-verify.py",
+      "bytes": 9902,
+      "sha256": "70e7233d3e49e0790d7730b011f5d0b645120a410b83572065bf4215025fbb28"
+    }
+  ],
+  "laterRefinement": "geometry-dynamic-sway-source.json"
+}

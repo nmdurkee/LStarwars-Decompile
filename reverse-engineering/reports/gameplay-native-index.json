@@ -1,7 +1,1072 @@
 {
-  "generatedAt": "2026-10-12T20:19:40.829Z",
+  "generatedAt": "2026-10-13T02:03:47.277Z",
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "suites": [
+    {
+      "name": "sound mask allocation copy and synchronization",
+      "report": "reverse-engineering/reports/native-sound-mask-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-mask-verify.py",
+      "method": "original PC execution with mutable allocator event COM and voice services",
+      "checks": 864,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded.",
+        "Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals.",
+        "Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending."
+      ]
+    },
+    {
+      "name": "complete sound initialization through raw configuration and final mask",
+      "report": "reverse-engineering/reports/native-sound-initialization-pipeline-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-initialization-pipeline-verify.py",
+      "method": "original PC execution with file and bank/device services",
+      "checks": 34,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Zero new native addresses: connected evidence for already recovered functions. Valid disjoint allocation arena/parser/source/builtin buffers; sound IDs used for global mask fit0..1599.",
+        "Both fresh and preinitializedCRC states,0/2builtin banks, alignment0/3, deviceflag0/1, empty/configured source and two full authored file runs. Final global200-byte mask replaces the service mask exactly.",
+        "No real file opening/handle lifetime, resource decoding or hardware audio backend. Managed execution pending."
+      ]
+    },
+    {
+      "name": "path relocation floor snap and control reset",
+      "report": "reverse-engineering/reports/gameplay-path-relocation-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-relocation-verify.py",
+      "method": "original PC execution with terrain refresh broader reset and alternate placement services",
+      "checks": 1816,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "raw text audio configuration through complete parser chain",
+      "report": "reverse-engineering/reports/native-sound-text-configuration-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-text-configuration-verify.py",
+      "method": "original PC execution with file and bank/device services only",
+      "checks": 50,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Text-mode configuration with valid preallocated parser and sound/bank/name/hash buffers; file allocation/lifetime and audio resource/device actions remain external. Supplied original Audio command table bytes and names retained.",
+        "This adds651680header mapping and composed evidence for already mapped functions, no repeated native credit. Full6521b0 arena initialization integration is separate.",
+        "All1130samples/100groups parsed twice from unmodified raw authored file using17/4096-byte reads, custom numeric rounding and native comment/token rules; counts are compared rather than inferred. Managed execution pending."
+      ]
+    },
+    {
+      "name": "path steering with transition and dispatch adapters",
+      "report": "reverse-engineering/reports/gameplay-path-steering-composition-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-steering-composition-verify.py",
+      "method": "original PC execution with deeper action and relocation services",
+      "checks": 783,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Special action bodies,52c790 state switch and43c9a0 relocation are explicit return/event adapters; actual three registered callbacks execute.",
+        "Neighboring-path selection,51a7c0 rebind and both target ensures execute original code. Static finite test graphs; no live game."
+      ]
+    },
+    {
+      "name": "shared custom number parsers",
+      "report": "reverse-engineering/reports/native-text-numbers-tests.json",
+      "tool": "reverse-engineering/tools/native-text-numbers-verify.py",
+      "method": "original PC execution without computational replacements",
+      "checks": 2927,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here.",
+        "Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes.",
+        "Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending."
+      ]
+    },
+    {
+      "name": "path steering caller",
+      "report": "reverse-engineering/reports/gameplay-path-steering-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-steering-verify.py",
+      "method": "original PC execution with neighboring-path and registered action callback services",
+      "checks": 1573,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "shared buffered byte and line readers",
+      "report": "reverse-engineering/reports/native-text-lines-tests.json",
+      "tool": "reverse-engineering/tools/native-text-lines-verify.py",
+      "method": "original PC execution with file-read and binary-line services",
+      "checks": 216,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Disjoint valid4096-byte refill storage, bounded line backing and positive capacity; service returns0..requested bytes. Two complete raw authoredAUDIO.CFG runs use17-byte and4096-byte service chunks, no external comment stripping.",
+        "Semicolon comments are active outside quotes, CR always consumes next byte, whitespace-only lines may retain accumulated whitespace, final terminator uses unmasked line count. Unterminated quoted lines retain native behavior.",
+        "ReadByte preserves offset bits above low8; callers consume low byte. No binary format/file system backend implementation or managed execution claimed."
+      ]
+    },
+    {
+      "name": "shared text command dispatcher and string conversion",
+      "report": "reverse-engineering/reports/native-text-dispatch-tests.json",
+      "tool": "reverse-engineering/tools/native-text-dispatch-verify.py",
+      "method": "original PC execution with selected command callbacks",
+      "checks": 1744,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Command token length below64bytes, stack depth-1..7 with terminated valid primary/optional secondary tables, disjoint readable string backing. Binary-mode null source has native uninitialized local behavior and is excluded.",
+        "Comparator foldsASCIIa-z ande0-ff by subtracting32, then uses signed byte order; null-first returns-1 including bothnull. Conversion preserves00-ff, maps five explicit punctuation codepoints, substitutes?otherwise. All65535nonzeroUTF16words exercised.",
+        "Callback producer semantics remain explicit. No native file opening or full audio loader composition claimed in this slice. Managed execution pending."
+      ]
+    },
+    {
+      "name": "shared text token scanner and table stack",
+      "report": "reverse-engineering/reports/native-text-tokens-tests.json",
+      "tool": "reverse-engineering/tools/native-text-tokens-verify.py",
+      "method": "original PC execution with explicit binary token service",
+      "checks": 2184,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Disjoint valid parser/line/token/delimiter buffers; line length below4096 and readable raw cursor range. Text tokens preserve byte values; supplied delimiter strings are terminated. Binary encoding parser remains a service.",
+        "Token capacity mask is retained literally, including non-power-of-two capacities7/31. First punctuation character may be emitted as its own token; quotes suppress delimiters and empty quotes return an empty token.",
+        "1230 shipped sample/group source lines are fed to this token reader after externally stripping line comments; native file/line scanner is separate. Table stack depth starts-1..9; depths>=7 reject.",
+        "No authored command credit, managed execution pending."
+      ]
+    },
+    {
+      "name": "sound configuration loader",
+      "report": "reverse-engineering/reports/native-sound-configuration-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-configuration-verify.py",
+      "method": "original PC execution with mutable scanner/dispatch/audio services",
+      "checks": 288,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "This recovers configuration orchestration, not the native file scanner, dispatcher, bank loader or audio device. Valid parser/token/bank backing, adequate capacity and terminating service sequence are required.",
+        "The token-reader return value is ignored; dispatch tests current token first byte. Missing file still proceeds through bank terminator, load, zero mask, optional mask application and finish.",
+        "Bank terminator touches only its first16bytes. Post-load flag is reread after clearing200mask bytes. Services are synchronous and may mutate shared state. Managed replay pending."
+      ]
+    },
+    {
+      "name": "path action dispatch",
+      "report": "reverse-engineering/reports/gameplay-path-dispatch-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-dispatch-verify.py",
+      "method": "original PC execution with mutable action services",
+      "checks": 4554,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "build effect through sound playback",
+      "report": "reverse-engineering/reports/native-build-playback-tests.json",
+      "tool": "reverse-engineering/tools/native-build-playback-verify.py",
+      "method": "original PC execution with only final mutable audio backend services",
+      "checks": 713,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite velocity and squared speed, numeric domain inherited from sound playback; cooldown additionally permits quietNaN because it gates without arithmetic. Valid typed registry/effect snapshots correspond to owned byte image, and disjoint position/record storage.",
+        "This is zero-new-address composition evidence; direct helpers and earlier standalone cases are not recounted. Native audio device and resource loading remain outside scope.",
+        "Managed bridge restores the host Play delegate after the synchronous callback and synchronizes position/cooldown values; no managed execution claimed."
+      ]
+    },
+    {
+      "name": "path corner construction and cache",
+      "report": "reverse-engineering/reports/gameplay-path-corners-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-corners-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 2843,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "sound playback and random/listener/context helpers",
+      "report": "reverse-engineering/reports/native-sound-playback-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-playback-verify.py",
+      "method": "original PC execution with five final mutable audio backend services",
+      "checks": 2684,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite float32 inputs and stored intermediates, x87 integer results within signed32-bit domain; fallback CRT conversion mode0. Malformed pointers/cyclic groups/nonfinite arithmetic and conversion overflow excluded.",
+        "Sample fields and priority capture follow native order; group leader priority survives member substitution. Backend may mutate range fields, RNG, position and current record-base pointer; cleanup rereads current near/far.",
+        "1130 authored sample records derive from the independently checked sample handler; actual audio resources/device state are not loaded.",
+        "All CPU computation runs unchanged; audio backend calls698040/6980c0/698100/698210/698260 remain external. Managed replay pending."
+      ]
+    },
+    {
+      "name": "target-path selection and binding composition",
+      "report": "reverse-engineering/reports/gameplay-path-transition-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-transition-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 4404,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "path corner line parameters and angle wrappers",
+      "report": "reverse-engineering/reports/gameplay-path-corner-math-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-corner-math-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 6498,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "sound groups and full ordered authored audio declaration composition",
+      "report": "reverse-engineering/reports/native-sound-groups-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-groups-verify.py",
+      "method": "original PC execution with explicit token and numeric readers",
+      "checks": 2075,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid readable signed-index backing and acyclic lookup chains; normal count caps128groups/512members plus equality-guard boundary cases. Negative offsets are represented only where backing bytes exist.",
+        "Full-table group creation returns-1; the original group parser may then update the preceding record when later valid members arrive. Preserved and tested, not repaired.",
+        "Authored sample/group lines are tokenized externally; native file scanner, audio loading/backend and random sample playback are not recovered by this batch.",
+        "Random state is exact uint32 LCG1664525/1013904223. Selection uses high16 bits modulo unsigned-converted signed count; zero count substitutes divisor1. Managed replay pending."
+      ]
+    },
+    {
+      "name": "registered path reference alias resolver and attached-point composition",
+      "report": "reverse-engineering/reports/gameplay-path-alias-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-alias-verify.py",
+      "method": "original PC execution without computational substitutions",
+      "checks": 2229,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "sample sound definition handler and bank/hash record production",
+      "report": "reverse-engineering/reports/native-sound-definition-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-definition-verify.py",
+      "method": "original PC execution with explicit token and numeric readers",
+      "checks": 1342,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite float32 numeric-service returns and terminated ASCII tokens, adequate disjoint sound/bank/name/hash buffers; one sample processed per case, with prepared prior bank/head state.",
+        "Shipped1130 sample lines are independently tokenized into explicit inputs; native scanner and numeric text parsing are not claimed. Group declarations and audio backend remain outside this handler.",
+        "Existing signed-short bucket heads are preserved; repeated name tokens can create native self-links. This batch does not follow such malformed cyclic chains.",
+        "Runtime memory uses virtual addresses in owned byte arrays. Managed replay pending."
+      ]
+    },
+    {
+      "name": "path table-angle helpers",
+      "report": "reverse-engineering/reports/gameplay-path-angle-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-angle-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 32041,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "attached path point refresh and corridor composition",
+      "report": "reverse-engineering/reports/gameplay-path-refresh-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-refresh-verify.py",
+      "method": "original PC execution with optional registered scene resolver service",
+      "checks": 2766,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "sound record initialization and forward backup copy",
+      "report": "reverse-engineering/reports/native-sound-record-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-record-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 3108,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Record, globals and cursor addresses are disjoint; record/backup64-byte regions may overlap by tested DWORD multiples. Negative record index allowed only with valid readable backing.",
+        "Name pointer arithmetic wraps uint32 and uses global sound count, independent of index; the name storage is not dereferenced by this initializer.",
+        "Unwritten link/padding/trailing name bytes and comment bit survive. Float defaults are raw positive-zero bits. Managed replay pending."
+      ]
+    },
+    {
+      "name": "sound setup and CRC table composition",
+      "report": "reverse-engineering/reports/native-sound-initialization-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-initialization-verify.py",
+      "method": "original PC execution with mutable configuration and bank-loading service",
+      "checks": 330,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid disjoint arena/cursor/builtin records/globals and terminated ASCII bank/path strings. Name slots64bytes, path capacity264bytes, enabled sound IDs0..1599. Invalid capacity/pointers/negative mask index excluded.",
+        "The load service may redirect sound records, change counts/cursor/name count and both masks; final scan rereads the current sound pointer and count. Existing nonzero CRC initialized flag preserves its table.",
+        "Raw virtual32-bit addresses index owned byte arrays only. No native pointer or external process access. Configuration parsing, bank loading and audio hardware remain external. Managed replay pending."
+      ]
+    },
+    {
+      "name": "path corridor clearance and hit packet",
+      "report": "reverse-engineering/reports/gameplay-path-corridor-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-corridor-verify.py",
+      "method": "original PC execution with explicit dynamic-point refresh service",
+      "checks": 5628,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "sound CRC table initialization and prefix hash consumption",
+      "report": "reverse-engineering/reports/native-sound-hash-tests.json",
+      "tool": "reverse-engineering/tools/native-sound-hash-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1985,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid disjoint cursor variable, aligned table destination and readable name storage. Offsets represent original pointers portably; native uint32 alignment/wrap arithmetic is preserved but invalid wrapped process addresses are excluded.",
+        "Persistent signed initialization flag gates on any nonzero value. Repeated calls retain existing table/cursor; explicit external resets to0 cause another aligned1024-byte allocation.",
+        "ASCII names only because original signed-byte high-bit indexing can read before the hash table. Prefix length is unsigned32-bit and stops at firstNUL.",
+        "Allocator ownership and sound database/bucket population remain outside this two-helper scope. Managed replay pending."
+      ]
+    },
+    {
+      "name": "path approximate arcsine polynomial and native root composition",
+      "report": "reverse-engineering/reports/gameplay-path-arcsine-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-arcsine-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 20678,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "graph character activation composed with build failure effects",
+      "report": "reverse-engineering/reports/native-graph-build-failure-tests.json",
+      "tool": "reverse-engineering/tools/native-graph-build-failure-verify.py",
+      "method": "original PC execution with named-lifecycle, player-release and mutable allocation services",
+      "checks": 468,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Prepared physical buildit group links. Up to3 parsed short buildit names (<16 ASCII bytes) are made available in real name buckets; longer authored names remain absent in this bounded runtime scene. All134 authored token lists execute twice, without new authored-use credit.",
+        "Named41f6d0/414c50 and release4882d0 are explicit services here; separate graph-lifecycle evidence composes their recovered bodies. This batch specifically closes590690 fallback.",
+        "Effect allocator is mutable and may change template/time, local/global origin, next links, matrices and RNG. Callback lifetime/sound simulation after creation is outside this chain. Managed execution pending."
+      ]
+    },
+    {
+      "name": "incremental path scan and target materialization",
+      "report": "reverse-engineering/reports/gameplay-path-targeting-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-targeting-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 2472,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "path next-endpoint projection composed with routing",
+      "report": "reverse-engineering/reports/gameplay-path-nextpoint-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-nextpoint-verify.py",
+      "method": "original PC execution with diagnostic observer only",
+      "checks": 4420,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "build effect sound callback, numeric and sound lookup helpers",
+      "report": "reverse-engineering/reports/native-build-sound-tests.json",
+      "tool": "reverse-engineering/tools/native-build-sound-verify.py",
+      "method": "original PC execution with final sound playback service",
+      "checks": 6027,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite float32 root operands; vector inputs and rounded sum of squares finite. Mathematical sqrt uses the supplied scalar CRT path with masked exceptions. Numeric helper6e6b90 executes original fallback mode0 and is not separately mapped by this batch.",
+        "ASCII names and valid finite acyclic sound chains. The256-word hash table and sound database are supplied runtime records; table construction, sound-bank loading and playback650f20 internals remain external.",
+        "Original32768-entry sine table is supplied from the preserved native reference. Callback clamps speed to1, computes x87((1-speed)*16384+16384), truncates before shifting and masks to15bits; tiny positive speeds test values lost by binary64 rounding.",
+        "Callback captures volume before lookup, always forwards the found index including-1 with scale1, and resets cooldown to exactfloat0.1 after playback. Playback may mutate position or cooldown. No sound device/game/managed execution."
+      ]
+    },
+    {
+      "name": "graph activation composed with named lifecycle",
+      "report": "reverse-engineering/reports/gameplay-graph-lifecycle-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-graph-lifecycle-verify.py",
+      "method": "original PC execution with remaining lifecycle, player-release and build-failure-effect services",
+      "checks": 354,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "build failure effect requests, lifetime and visibility callbacks",
+      "report": "reverse-engineering/reports/native-build-failure-tests.json",
+      "tool": "reverse-engineering/tools/native-build-failure-verify.py",
+      "method": "original PC execution with explicit mutable effect allocation service",
+      "checks": 67104,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid readable3-node-or-shorter acyclic fixture lists with shared effect return identities; portable list size is not capped. Request pointer slots are typed references and cleared in normalized template words; other template bytes preserve identity.",
+        "Finite time/global925018 metadata; template/matrix/origin words are raw bits including signed zero and NaN payloads. Stack request buffers are synchronous, not retained by allocation service.",
+        "Allocation may mutate template/global time, origin source versus local copy, next links, later matrices and shared random state. Group head capture and next-node reread preserve original order.",
+        "Allocation64d270 and callback571ba0 physical/sound implementation remain external; ResetLifetime571c50 and visibility571c80 are included. Unsigned frame modulo6 and masked NaN comparisons verified.",
+        "Exact original double constant is0x3ef0001000000000, not mathematical1/65535. All16-bit random outputs are covered by one complete state cycle. Managed execution pending."
+      ]
+    },
+    {
+      "name": "named actor activation and deactivation with mission gates",
+      "report": "reverse-engineering/reports/gameplay-named-lifecycle-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-named-lifecycle-verify.py",
+      "method": "original PC execution with explicit actor reinitialization, reset, terrain and room services",
+      "checks": 449,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "named activation composed with actor reinitialization",
+      "report": "reverse-engineering/reports/gameplay-named-reinitialization-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-named-reinitialization-verify.py",
+      "method": "original PC execution with explicit remaining lifecycle, terrain, script and room services",
+      "checks": 33,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Existing downstream reinitialization services remain explicit; no whole lifecycle or terrain/animation backend equivalence.",
+        "Valid finite prepared spawn/locator/formation records; no actual game world allocation."
+      ]
+    },
+    {
+      "name": "graph character activation and deactivation ordering",
+      "report": "reverse-engineering/reports/native-graph-actor-tests.json",
+      "tool": "reverse-engineering/tools/native-graph-actor-verify.py",
+      "method": "original PC execution with explicit mutable named-lifecycle, player-release and build-failure-effect services",
+      "checks": 888,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Shipped ASCII token/name domain with readable world/system/spawn tables; count<=0 maps to an empty resolved token array. World pointer identity is portable rather than a numeric process address.",
+        "Machine code464a88 uses primary spawn index after testing secondary eligibility; preserved, including primary reread after the first release. Eligible secondary with absent primary or active name matching with absent world faults natively and is excluded.",
+        "Current world pointer is cached before parsing; release may replace global current world without affecting this caller name-table reference. Mutable release cases also swap players, replace primary, change spawn name and disable secondary.",
+        "Named activation/deactivation, player release and build-failure physical effects remain explicit services. This module recovers graph orchestration, not those service internals. Managed replay pending."
+      ]
+    },
+    {
+      "name": "path distance/cache and next-connection selection",
+      "report": "reverse-engineering/reports/gameplay-path-routing-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-routing-verify.py",
+      "method": "original PC execution with diagnostic observer only",
+      "checks": 8370,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": []
+    },
+    {
+      "name": "mission, mini-cut, hub and chapter-local visited-level conditions",
+      "report": "reverse-engineering/reports/native-level-mode-tests.json",
+      "tool": "reverse-engineering/tools/native-level-mode-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1022,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Prepared chapter table with signed-short global-level IDs and unsigned-byte local count; readable nonnegative referenced level IDs and save-record indexes except native sentinel-1.",
+        "Hub global is signed16-bit, compared to the full32-bit bound; upper stored bits do not participate. Mission pointer remains opaque. Mini-cut globals and save/chapter producers remain external.",
+        "Authored condition operands preserved on prepared runtime records, not loaded save-file or level execution. Managed replay pending."
+      ]
+    },
+    {
+      "name": "category name binding and time-based update flag command",
+      "report": "reverse-engineering/reports/native-category-tests.json",
+      "tool": "reverse-engineering/tools/native-category-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1951,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Bounded category table with nullable names and native case-folded comparisons. Actor definition/class requirements are inherited from actual capability masks.",
+        "Null actor is valid for mask-free CategoryIs but invalid for reached time-based-update flag write. Invalid backing cases explicitly excluded.",
+        "Only ef4bit20 producer recovered, not downstream update cadence. Authored operands exercised with prepared category tables; managed replay pending."
+      ]
+    },
+    {
+      "name": "actor connection binding and cyclic subroute selection",
+      "report": "reverse-engineering/reports/gameplay-path-binding-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-path-binding-verify.py",
+      "method": "original PC execution with explicit remaining lifecycle services in composed reinitialization cases",
+      "checks": 2056,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Prepared finite loaded records; zero connection length, malformed pointers, nonfinite values and direction-word reads outside36-byte record excluded.",
+        "Native uninitialized local Y is copied by rotation but never consumed by either persistent X/Z result; source intentionally computes only defined X/Z.",
+        "Authored samples use source node/edge coordinates and flags, with synthetic route membership/permission state; no live path traversal or collision is claimed.",
+        "Managed compile only; independent-model native validation is distinct from pending managed replay."
+      ]
+    },
+    {
+      "name": "ActivateGizmo parsing and refined type/activation registry dispatch",
+      "report": "reverse-engineering/reports/native-gizmo-activation-tests.json",
+      "tool": "reverse-engineering/tools/native-gizmo-activation-verify.py",
+      "method": "original PC execution with explicit physical activation and visibility services",
+      "checks": 1792,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite valid ASCII token/type/name buffers and bounded signed type counts. Global type table and registry pointers have independent gates.",
+        "Physical type callbacks are explicit service boundaries, not recovered world simulation. Callback array storage stays stable; tests permit activation-slot replacement and gizmo type mutation during visibility.",
+        "56 authored action operands replay on prepared name tables, not loaded-level binding. Managed replay pending."
+      ]
+    },
+    {
+      "name": "actor Force and terrain conditions with ordered two-player query",
+      "report": "reverse-engineering/reports/native-actor-force-tests.json",
+      "tool": "reverse-engineering/tools/native-actor-force-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1319,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid finite terrain heights and readable memory after native guards. Unsafe pointer chains excluded rather than treated as safe false.",
+        "93d814 is an independent second global, not inferred from player-slot array. Supplied reference actor differs from primary actor.",
+        "Authored command provenance retained on controlled actor/platform queries; no loaded-level name binding or physics integration. Managed replay pending."
+      ]
+    },
+    {
+      "name": "actor reinitialization caller and accessory/path/direction helpers",
+      "report": "reverse-engineering/reports/gameplay-reinitialization-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-reinitialization-verify.py",
+      "method": "original PC execution with explicit lifecycle, terrain, script, animation and room services",
+      "checks": 656,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Loaded finite actor/spawn/locator/path/formation records; malformed pointers and nonfinite float payloads excluded.",
+        "Fourteen explicit services preserve call order/arguments; their downstream allocation, terrain, path traversal, scripts, animation and room effects are not implemented by this contract.",
+        "Actual path-set binder covered separately; path traversal51b890 remains a service.",
+        "Managed core/harness compile only; no generated managed executable is launched."
+      ]
+    },
+    {
+      "name": "UseForce selection and requests with completion and capability helpers",
+      "report": "reverse-engineering/reports/native-force-action-tests.json",
+      "tool": "reverse-engineering/tools/native-force-action-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 5828,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite timer values, valid packet/actor/definition/class/input backing and bounded type/capability tables. Physical Force animation/update producers and controller consumers remain external.",
+        "Authored action operands use prepared name tables with one literal target binding; these are controlled compositions, not loaded-level replay.",
+        "Flags68/69 persist. triggered_by_hit is local to first-call parsing. inrange has no consumer in this routine. Managed replay pending."
+      ]
+    },
+    {
+      "name": "actor activation and deactivation with base-script state composition",
+      "report": "reverse-engineering/reports/gameplay-activation-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-activation-verify.py",
+      "method": "original PC execution with explicit lifecycle, attachment and player-release services",
+      "checks": 1137,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Spawn lifecycle41c120, attachment destruction and player release remain explicit adapters; actual side effects are not fabricated.",
+        "ScriptMachine composition includes companion raw byte38/B5 and wordC0 updates. Their broader consumers remain outside this activation contract.",
+        "Resolved base script is required when current script is nonnull; malformed null-base native pointer access is excluded.",
+        "Managed source/replay compile only."
+      ]
+    },
+    {
+      "name": "Force-target identity and grounded platform membership",
+      "report": "reverse-engineering/reports/native-force-conditions-tests.json",
+      "tool": "reverse-engineering/tools/native-force-conditions-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 4388,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite heights and readable terrain backing; unsafe negative/out-of-range ground indices, missing transforms and missing platform member groups excluded after actual short-circuit gates.",
+        "Ordered finite acyclic member lists projected to short-index arrays. Physical Force simulation and loaded-level binding remain external.",
+        "Authored operand names replayed against prepared type/name tables, not a captured loaded level. Managed replay pending."
+      ]
+    },
+    {
+      "name": "scene-to-terrain binding and player-on-object condition",
+      "report": "reverse-engineering/reports/native-terrain-object-conditions-tests.json",
+      "tool": "reverse-engineering/tools/native-terrain-object-conditions-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 3271,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid finite matrices/heights and readable terrain backing for matching grounded-player indexes. Invalid native pointer chains explicitly excluded.",
+        "Prepared static-instance identities, signed-short terrain links and current-scene records; actual scene/terrain loader association remains external. Dynamic diagnostic fallback97388c is disabled.",
+        "Authored name probes retain literal names against prepared tables; they are not claims that each real level binding has been loaded. Managed replay pending."
+      ]
+    },
+    {
+      "name": "load-time expression evaluation and symbol status",
+      "report": "reverse-engineering/reports/gameplay-expression-loading-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-expression-loading-verify.py",
+      "method": "original PC execution with explicit game-symbol service",
+      "checks": 422,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite terminating ASCII grammar shares ScriptExpressions bounds.",
+        "Game-specific symbol production remains external. No whole52b3f0 condition-loader reconstruction claim.",
+        "The unresolved flag tracks the LAST symbol, not any unresolved symbol; preserved as original behavior.",
+        "Managed core/replay compile only."
+      ]
+    },
+    {
+      "name": "gizmo binding output dispatch and conversion conditions",
+      "report": "reverse-engineering/reports/native-gizmo-conditions-tests.json",
+      "tool": "reverse-engineering/tools/native-gizmo-conditions-verify.py",
+      "method": "original PC execution with explicit generic type-output service and actual obstacle callbacks",
+      "checks": 2492,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Existing bounded SceneryRegistry and SceneryNameBindings projections; prepared current-world/type arrays with valid extra index==count slot where tested.",
+        "Generic output callbacks remain physical-type services. Actual obstacle output is covered; BlowupBlownup wrapper verification does not claim the blowup simulation/output producer is recovered.",
+        "Finite valid ASCII name buffers and bounded type counts; managed replay pending."
+      ]
+    },
+    {
+      "name": "opponent retreat with production movement-token callback and recovered expressions",
+      "report": "reverse-engineering/reports/gameplay-retreat-token-composition-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-retreat-token-composition-verify.py",
+      "method": "original PC execution with explicit game-symbol service",
+      "checks": 212,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "No new native mapping:43c0c0 already belongs to FacingCommands.MovementToken. This is composition evidence.",
+        "Game symbol callback is null in these native fixtures. Finite ASCII text and independent argument buffers remain the parser bounds.",
+        "No navigation/path integration. Managed replay compiles only."
+      ]
+    },
+    {
+      "name": "opponent retreat composed with recovered expression evaluator",
+      "report": "reverse-engineering/reports/gameplay-retreat-expression-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-retreat-expression-verify.py",
+      "method": "original PC execution with explicit movement-token and game-symbol services",
+      "checks": 324,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Movement-token callback remains deterministic fixture/host adapter; no production callback registration claim.",
+        "Finite ASCII expressions with independent mutable token buffers; pointer-aliasing between argument entries is not represented.",
+        "The mixed-token behavior that previously needed observed-value fixtures is independently modeled through the reconstructed lexer in this separate suite. Do not reclassify the retained historical suite.",
+        "Managed composition/replay compiles only."
+      ]
+    },
+    {
+      "name": "actor hit takeover target and grounded conditions",
+      "report": "reverse-engineering/reports/native-actor-status-tests.json",
+      "tool": "reverse-engineering/tools/native-actor-status-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 2521,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite hit timer and readable attached actor/world/tag records; special TakenOver operands require the native self pointer chain, invalid dereference cases explicitly excluded.",
+        "World ownership, producer/update semantics for status fields and complete takeover transitions remain external.",
+        "Authored rows cover condition bodies on prepared states, not original source loading or whole-script execution. Managed replay pending."
+      ]
+    },
+    {
+      "name": "expression lexer parser and packet/random resolution",
+      "report": "reverse-engineering/reports/gameplay-expression-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-expression-verify.py",
+      "method": "original PC execution with explicit game-symbol service",
+      "checks": 1326,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "ASCII bounded identifiers and terminating finite arithmetic; unknown initial-token/uninitialized stack and divide-by-zero/nonfinite results excluded.",
+        "Game-symbol callback is supplied and remains an adapter; reserved Rand/true/false/max and packet parameters are real native logic."
+      ]
+    },
+    {
+      "name": "party restrictions and persistent AI override control",
+      "report": "reverse-engineering/reports/native-party-control-tests.json",
+      "tool": "reverse-engineering/tools/native-party-control-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 1053,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Attached finite actor/definition/tag state with valid pointer chains and ASCII operands. Actor allocation, lifecycle scheduling and downstream party/input consumers remain external.",
+        "AI override preserves native cached reference vs world-object distinction and first-call FALSE only. Runtime fields retain offsets until broader lifecycle meaning is proven.",
+        "Managed replay pending."
+      ]
+    },
+    {
+      "name": "spatial locator/player/path conditions",
+      "report": "reverse-engineering/reports/native-spatial-conditions-tests.json",
+      "tool": "reverse-engineering/tools/native-spatial-conditions-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 5615,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite coordinates and finite squared-distance sums; readable packet and player/controller records. Runtime ownership and loader binding remain host-supplied.",
+        "The XZ distance helper maps its float32 return projection; scratch/null original paths are checked, but portable API uses value vectors rather than aliased raw memory.",
+        "Authored condition rows are reference cases, not whole-script execution. Managed replay remains pending."
+      ]
+    },
+    {
+      "name": "effect activation and saved disabled-name state",
+      "report": "reverse-engineering/reports/native-effect-activation-tests.json",
+      "tool": "reverse-engineering/tools/native-effect-activation-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1271,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid finite emitter pointer table with reserved index0 and readable loaded-bank flags. Existing emitters only; no allocation or particle simulation recovered.",
+        "Terminated ASCII names/12 fixed16-byte save slots; substring effect must leave its delimiter-skip pointer within the source token.",
+        "Managed replay pending; emitter-state consumption and save lifecycle remain separate."
+      ]
+    },
+    {
+      "name": "opponent retreat inline movement intent",
+      "report": "reverse-engineering/reports/gameplay-opponent-retreat-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-opponent-retreat-verify.py",
+      "method": "original PC execution with explicit movement-token service;485 independent bounded comparisons plus7 observed expression-service probes",
+      "checks": 492,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Full expression-language environment and movement-token callback mapping remain explicit services. Authored retreat operands are numeric constants.",
+        "Intent copies six raw path words and target-controller path point/radius; no pathfinding or position integration.",
+        "Formation pointer is intentionally not read by this inline setter; a poison pointer probe establishes bypass.",
+        "Managed core/replay compile only."
+      ]
+    },
+    {
+      "name": "run-speed setting and persistent seek",
+      "report": "reverse-engineering/reports/native-run-speed-tests.json",
+      "tool": "reverse-engineering/tools/native-run-speed-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1743,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite numeric values with finite intermediate/result storage; runtime actor/definition/primary-player attachment supplied.",
+        "Actor world dereference is distinct from controller reference. Existing seek/target packet fields persist unless written by original parsing.",
+        "Managed replay pending; downstream locomotion integration separate."
+      ]
+    },
+    {
+      "name": "locator range and random conditions",
+      "report": "reverse-engineering/reports/native-locator-random-conditions-tests.json",
+      "tool": "reverse-engineering/tools/native-locator-random-conditions-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 5317,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite coordinates and finite squared-distance result; original nonnull scratch length helper. Bound locator identity and controller position supplied.",
+        "Condition comparison/connective scheduling remains the existing separate scheduler contract. Authored rows retain their source but are not whole-script execution.",
+        "Prepared managed replay pending."
+      ]
+    },
+    {
+      "name": "AttackOpponent command",
+      "report": "reverse-engineering/reports/gameplay-attack-opponent-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-attack-opponent-verify.py",
+      "method": "original PC execution without behavior replacements",
+      "checks": 1870,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite valid record attachments; opponent reference with nonnull controller must have a nonnull world pointer as required by original dereference.",
+        "Ordinary movement intent and queued attack input only; actual attacks, damage and formations remain downstream systems.",
+        "Authored operands run in supplied contexts; local script-variable values are external.",
+        "Managed core/replay compile only."
+      ]
+    },
+    {
+      "name": "EngageOpponent parsing, permissions, movement and attack requests",
+      "report": "reverse-engineering/reports/gameplay-engage-opponent-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-engage-opponent-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 4984,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite valid attached actor and permission-mask data; malformed pointers and out-of-range assigned player slots excluded.",
+        "All263 authored argument lists tested in four supplied contexts; runtime script variable values are not reconstructed by this suite. Unbound variable names use actual numeric parser fallback.",
+        "Ordinary movement intent updates are real; formation expansion and later navigation/damage/input consumers remain external.",
+        "Portable managed comparison pending compile-only instruction."
+      ]
+    },
+    {
+      "name": "locator-set command orchestration",
+      "report": "reverse-engineering/reports/native-locator-set-command-tests.json",
+      "tool": "reverse-engineering/tools/native-locator-set-command-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 965,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid prepared runtime actor/packet/locator collections and primary player when a selector reads that position. ASCII tokens and bounded numeric operands.",
+        "Original world-owned name collection and caller-owned locator base remain distinct supplied records; attached set records may share index/owner arrays.",
+        "Managed replay pending; no live navigation/locomotion or world-loader equivalence."
+      ]
+    },
+    {
+      "name": "nearest farthest and random locator selection",
+      "report": "reverse-engineering/reports/native-locator-selection-tests.json",
+      "tool": "reverse-engineering/tools/native-locator-selection-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1231,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid finite prepared world, locators, actor packet, view matrices and reference vectors. Float32 distance/range-square outputs stay finite.",
+        "Farthest/random require primary vector on active candidates; nearest has native null-primary gate.",
+        "No authored command credit until dispatcher integration; managed replay pending."
+      ]
+    },
+    {
+      "name": "corrected finite XYZ and XZ squared distance",
+      "report": "reverse-engineering/reports/native-distance-rounding-tests.json",
+      "tool": "reverse-engineering/tools/native-distance-rounding-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 4104,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite inputs/differences/squared distance; nonnull nonoverlapping scratch. Null-output ABI remains excluded.",
+        "Compiled replay pending; no new native mapping count."
+      ]
+    },
+    {
+      "name": "locator view culling and plane transformation",
+      "report": "reverse-engineering/reports/native-locator-culling-tests.json",
+      "tool": "reverse-engineering/tools/native-locator-culling-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 2064,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite coordinates/matrices/radius/near/far with finite float32 transform outputs. View and plane matrix preparation are supplied records.",
+        "Portable transforms return new arrays; native point/output alias is covered, partial matrix/output overlap is excluded.",
+        "Managed replay compiled only; no game launch and no command-use credit."
+      ]
+    },
+    {
+      "name": "locator set lookup and traversal",
+      "report": "reverse-engineering/reports/native-locator-traversal-tests.json",
+      "tool": "reverse-engineering/tools/native-locator-traversal-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 1262,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid attached actor packet for active traversal; signed set count and byte indices/owners with backing arrays.",
+        "Finite locator pointer identities and no address wrap; name lookup uses terminated ASCII inline names.",
+        "No new authored command credit until GetLocatorFromSet orchestration is recovered; managed execution remains pending."
+      ]
+    },
+    {
+      "name": "opponent reference targeting and eligibility",
+      "report": "reverse-engineering/reports/gameplay-opponent-targeting-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-opponent-targeting-verify.py",
+      "method": "original PC execution without replacements",
+      "checks": 2978,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite float32 inputs, valid eight-slot player assignment or255, supplied table/actor attachments.",
+        "Table generation and permission-mask producer are not included.",
+        "No managed execution; C# comparison awaits permitted execution."
+      ]
+    },
+    {
+      "name": "locator ownership, reservation release and break formation",
+      "report": "reverse-engineering/reports/native-locator-reservations-tests.json",
+      "tool": "reverse-engineering/tools/native-locator-reservations-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 951,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid nonoverlapping actor/packet/set/formation storage; selected locator indices represent aligned pointers relative to one locator base, no address wrap.",
+        "ASCII names, finite death timer, active table backing valid for every reachable index; count and set count preserve signed comparisons.",
+        "Managed replay is prepared and compiled, not executed."
+      ]
+    },
+    {
+      "name": "ordinary transfer composed with recovered script binding",
+      "report": "reverse-engineering/reports/gameplay-transfer-script-bridge-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-transfer-script-bridge-verify.py",
+      "method": "original PC execution with platform feedback service",
+      "checks": 96,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Resolved valid script/state/action records; source loading and opaque condition/animation callback state remain outside this bounded existing binder projection.",
+        "Mode1 takeover/release is excluded. Generated managed replay is compile-only."
+      ]
+    },
+    {
+      "name": "ordinary character transfer, reset and script/feedback wrappers",
+      "report": "reverse-engineering/reports/gameplay-player-transfer-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-player-transfer-verify.py",
+      "method": "original PC execution with explicit deep script binding and platform feedback services",
+      "checks": 565,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Mode1 takeover is explicitly excluded; this is the exact mode0 path called by tag candidate selector487ca0.",
+        "Valid two-actor records, nullable auxiliary buffers, signed personal index-1 or0..7, finite nonzero feedback divisor.",
+        "Deep script initialization and platform feedback remain service adapters; managed replay comparison pending."
+      ]
+    },
+    {
+      "name": "tag eligibility, candidate transfer selection and player refresh",
+      "report": "reverse-engineering/reports/gameplay-tag-control-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-tag-control-verify.py",
+      "method": "original PC execution with explicit transfer/release services and CRT formatting",
+      "checks": 491,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Character transfer/world ownership implementation and vehicle/takeover release side effects remain explicit adapters.",
+        "Actor records and player arrays use valid bounded identities; ASCII token strings.",
+        "Managed replay compiled only; no generated executable launch."
+      ]
+    },
+    {
+      "name": "actor identity binding and condition",
+      "report": "reverse-engineering/reports/gameplay-actor-identity-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-actor-identity-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 912,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Valid runtime reference identity and definitions; record allocation/lifetime are supplied.",
+        "ASCII operand/name comparisons; cached pointer identity persists across later player-global changes.",
+        "Core/replay compile only; no generated managed executable launch."
+      ]
+    },
+    {
+      "name": "actor-state commands and actual name/type resolution",
+      "report": "reverse-engineering/reports/gameplay-actor-state-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-actor-state-verify.py",
+      "method": "original PC execution with bounded CRT formatting adapter",
+      "checks": 3468,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite valid data and ASCII strings; invalid pointers and corrupt character indices are excluded.",
+        "Runtime world attachment, actor allocation and character/spawn/type table construction remain external.",
+        "Flag consumers (pushing, damage, allegiance AI and weapon animation) are not reconstructed by these setters.",
+        "Portable source comparison is pending managed execution."
+      ]
+    },
+    {
+      "name": "facing target/timer commands",
+      "report": "reverse-engineering/reports/gameplay-facing-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-facing-verify.py",
+      "method": "original PC execution with explicit named-reference services",
+      "checks": 4671,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Synthetic actor/world bindings and explicit camera projection; no character turning consumer or head animation integration yet.",
+        "FaceLocator and SpinOnSpot have dispatch bindings but zero authored occurrences in this source catalog.",
+        "Finite scalar/position/rate domains; no invalid-pointer or NaN behavior claim.",
+        "Portable managed comparison remains pending."
+      ]
+    },
+    {
+      "name": "facing math and movement-token helpers",
+      "report": "reverse-engineering/reports/gameplay-facing-helper-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-facing-helper-verify.py",
+      "method": "original PC execution on bounded vector and alias fixtures",
+      "checks": 5482,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite valid vector/timing data; valid pointer identities projected explicitly.",
+        "Default PC numeric control state; arbitrary x87 precision/NaN/overflow excluded.",
+        "Head-look consumer and actual character turning remain external.",
+        "Compiled portable comparison pending."
+      ]
+    },
+    {
+      "name": "locator selection, snap and presence",
+      "report": "reverse-engineering/reports/gameplay-locator-binding-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-locator-binding-verify.py",
+      "method": "original PC execution with explicit named-object, CRT formatting and terrain adapters",
+      "checks": 7851,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Synthetic locator and actor tables; not runtime source attachment or actual level reachability.",
+        "No format directives, overlong native name buffers, invalid actor packet pointers, or nonfinite/overflow numeric operands.",
+        "Snap terrain refresh/check internals are recorded callback boundaries, not reconstructed by this suite.",
+        "Condition cases establish pointer presence only, not locator validity or source condition-chain execution.",
+        "Compiled C# execution remains pending."
+      ]
+    },
+    {
+      "name": "GoToLocator and FollowPlayer route-state commands",
+      "report": "reverse-engineering/reports/gameplay-movement-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-movement-verify.py",
+      "method": "original PC execution with explicit movement-token and completion callbacks",
+      "checks": 6699,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Synthetic valid path/node/actor relationships; no actual world pathfinder, motion integration or terrain stepping.",
+        "Formation record is null in this suite; native formation-mode delegation is a separate boundary.",
+        "Movement token callback consumes walk/run/tiptoe using fixture markers, not claimed runtime speed-mode semantics.",
+        "Expression evaluation executes original PC code in fixtures; portable general expression evaluation remains a supplied service.",
+        "Finite scalar fixtures; arbitrary x87 rounding, NaN/overflow and bad pointer domains are excluded.",
+        "Managed compiled comparison remains pending."
+      ]
+    },
+    {
+      "name": "nullable movement intent, formation dispatch and retained update chains",
+      "report": "reverse-engineering/reports/gameplay-movement-helper-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-movement-helper-verify.py",
+      "method": "original PC execution with explicit formation expansion callbacks",
+      "checks": 2216,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Formation owner dispatch and expansion are observed adapters, not implemented formation algorithms.",
+        "Chains move creature position explicitly to the selected target; no pathfinder or physics step is claimed.",
+        "Finite float domains and valid pointers; compiled managed comparison remains pending."
+      ]
+    },
+    {
+      "name": "trigger conditions, lookup and occupancy producer",
+      "report": "reverse-engineering/reports/gameplay-trigger-tests.json",
+      "tool": "reverse-engineering/tools/gameplay-trigger-verify.py",
+      "method": "original PC execution on projected objects and authored AI2 areas",
+      "checks": 36377,
+      "mismatches": 0,
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "limitations": [
+        "Finite positions/extents/timers and a complete original sine table. NaNs, infinities, invalid raw pointers, concurrent mutation, and malformed unterminated names excluded.",
+        "TriggerSystem/TriggerArea/TriggerObject are explicit runtime projections, not the full loader or object lifetime implementation.",
+        "Producer scheduling in0x43b940 and global world/object-array population remain external. Eligibility-skipped objects preserve stale trigger masks.",
+        "Authored AI2 upload maps recovered file fields into runtime fields; native AI2 loading is not executed here. Source angle raw16bits is used, not BrickBench degree conversion.",
+        "Same-directory AI2 name resolution is source evidence only; shared scripts without a unique local carrier retain an explicit synthetic binding scope.",
+        "Managed core/harness compile separately; no generated managed executable is run."
+      ]
+    },
     {
       "name": "CreateCreatures parser and spawn orchestration",
       "report": "reverse-engineering/reports/gameplay-createcreatures-tests.json",
@@ -232,8 +1297,8 @@
     }
   ],
   "totals": {
-    "allChecks": 1071946,
-    "originalPcChecks": 1051494,
+    "allChecks": 1404333,
+    "originalPcChecks": 1383881,
     "mismatches": 0
   },
   "contracts": [
@@ -247,7 +1312,10 @@
     "reverse-engineering/reports/gameplay-state-command-contract.json",
     "reverse-engineering/reports/gameplay-visibility-contract.json",
     "reverse-engineering/reports/gameplay-compact-condition-contract.json",
-    "reverse-engineering/reports/gameplay-createcreatures-contract.json"
+    "reverse-engineering/reports/gameplay-createcreatures-contract.json",
+    "reverse-engineering/reports/gameplay-locator-contract.json",
+    "reverse-engineering/reports/gameplay-trigger-contract.json",
+    "reverse-engineering/reports/native-obstacle-contract.json"
   ],
   "data": [
     "reverse-engineering/reports/gameplay-coverage.json",
@@ -309,8 +1377,98 @@
         "No live navigation/pathfinder or character locomotion.",
         "Compiled portable execution must be reported separately."
       ]
+    },
+    {
+      "name": "Obstacle and special endpoint/playback commands",
+      "report": "reverse-engineering/reports/native-obstacle-contract.json",
+      "tests": "reverse-engineering/reports/native-obstacle-tests.json",
+      "owner": "scene-obstacle",
+      "checks": 18915,
+      "reviewChecks": 472,
+      "reviewReport": "reverse-engineering/reports/native-obstacle-review-tests.json",
+      "sourceUses": 865,
+      "authoredUsesExercised": 864,
+      "sourceFormOmissions": [
+        {
+          "authored": {
+            "name": "ObstacleAtEnd",
+            "kind": "scp-condition",
+            "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/LEVEL.SCP",
+            "line": 31,
+            "text": "if ObstacleAtEnd == 0 goto RetractBridge"
+          },
+          "reason": "Missing quoted operand; initializer/loader interpretation is not inferred."
+        }
+      ],
+      "includedInGameplayTotals": false,
+      "countQualification": "Primary native comparisons and independent additional review comparisons are recorded separately, excluded from gameplay-owned totals to avoid double counting root-owned evidence.",
+      "scope": "Finite scene fields and effective playback rates, valid acyclic member lists, explicit registry/world/reference bindings. Membership/target aliases preserve iteration order. No animation tick, rendering, collision world or reference lifetime implementation. Missing-name null dereference in LockedShut and malformed missing-operand source line are outside the contract.",
+      "limits": [
+        "Finite scene fields and effective playback rates, valid acyclic member lists, explicit registry/world/reference bindings. Membership/target aliases preserve iteration order. No animation tick, rendering, collision world or reference lifetime implementation. Missing-name null dereference in LockedShut and malformed missing-operand source line are outside the contract.",
+        "SCP retains a previously found target when a later named lookup fails; GIT performs only one lookup for its last name token.",
+        "SCP stayshut forces reverse playback; GIT stayshut changes the stay flag without overriding the final FORWARD/BACKWARD choice.",
+        "AtStart is true for a nonnull gizmo whose output callback is unavailable (outputzero), while a null gizmo yieldsfalse.",
+        "Snap changes member frames without refreshing group state or list membership. Special-output reads may refresh the group state.",
+        "Native x87 seek tests include signed zero, subnormal and extreme finite values; exact float input bits are retained in replay fixtures.",
+        "Compilation does not establish C# runtime equivalence. Original-source comments/names and complete game behavior are not recovered by these contracts."
+      ]
     }
   ],
   "commandPriorities": "reverse-engineering/reports/gameplay-next-command-priorities.json",
+  "externalRuntimeContracts": [
+    {
+      "name": "Perception and terrain settings",
+      "report": "reverse-engineering/reports/native-perception-contract.json",
+      "cases": 7639,
+      "additionalFullRecordWriteChecks": 15278,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "Concrete scenery name lookup",
+      "report": "reverse-engineering/reports/native-scenery-name-contract.json",
+      "cases": 2694,
+      "integratedCommandCases": 2700,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "Scene animation clocks, state and active-group update",
+      "report": "reverse-engineering/reports/scene-animation-update-contract.json",
+      "cases": 14865,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "Scene scalar tracks, poses and matrix application",
+      "report": "reverse-engineering/reports/scene-animation-pose-contract.json",
+      "cases": 103156,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "Camera cut state helpers",
+      "report": "reverse-engineering/reports/native-camera-state-contract.json",
+      "cases": 3028,
+      "additionalFullRegionWriteChecks": 9084,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "CameraCut parser, selection, scene references and X rotation",
+      "report": "reverse-engineering/reports/native-camera-command-contract.json",
+      "cases": 1373,
+      "sourceUses": 142,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "Scene animation bounds producer and transform",
+      "report": "reverse-engineering/reports/scene-animation-bounds-contract.json",
+      "cases": 22076,
+      "includedInGameplayTotals": false
+    },
+    {
+      "name": "Camera effects, reset, cut ending and side predicate",
+      "report": "reverse-engineering/reports/native-camera-effects-contract.json",
+      "cases": 1282,
+      "sourceUses": 39,
+      "includedInGameplayTotals": false
+    }
+  ],
   "commandSemanticCoverage": "reverse-engineering/reports/gameplay-command-semantic-coverage.json"
 }

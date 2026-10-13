@@ -1,0 +1,90 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "relocation": "43c9a0 rejects actor1f8 bit400, clear actor42e bit1, and an ineligible delay/control/gate combination. Its center is node position plus actor1e0 on Y. It proceeds only outside the prepared view, using the actual 5d6620 predicate with original identity object transform and existing view/plane arithmetic. Nonzero mode delegates to4d1780 and clears1090/1086/1087/401 only on success. Mode0 writes node position to actor398 reference, copies that position to actor98 and80, saves global93d620 and actor8c, copies global93b0cc velocity, refreshes terrain, snaps floor, and clears placement state. It calls broader reset55e4a0 then55e4e0 only when actorCD0 is zero after ground refresh. Return1 does not require successful floor snapping.",
+    "history": "Reference identity398 may alias the actor. Distinct-reference placement leaves actor5c/64 untouched. Global93d620 and actor8c retain the pre-snap position; floor snapping updates actor60/9c/84. The API preserves identity aliasing through shared PcObjectImage objects.",
+    "floor": "572660 skips all writes for floor21c==2000000 or current level64 bit40000. Mode2 first writes17c-bottomFF0*scaleA8+epsilon to60/9c/84. Mode0 always snaps; other modes snap only when bottom*scale+currentY<=floor+epsilon, compared before float32 rounding. Snapping writes floor-bottom*scale+epsilon to those three Y words. Non-skipped calls always write velocity6c=-1, even when returning0. The original double751788 is exactly0.10000000149011612, the promoted float32 value0.1f.",
+    "reset": "55e4e0 operates on actor+6c4. It resets the exact recovered byte/word/float fields and leaves all other bytes intact. It chooses float1 or0 from control75e bit1, writes float5 at67c, clears pad5a bits4 and10 via ffeb, clears control75c bit400, advances54fa60 RNG=(state*24cd+1)&ffff and stores its high bit at77d. This is a standalone helper; existing RespawnState is unchanged.",
+    "verification": "1816 original-PC top-level records match an independent model:1384 floor calls,72 control resets and360 relocation calls. All255 instructions in the three recovered bodies execute. Actual floor/reset/culling/RNG/current-world/vector helpers run inside the native fixtures; terrain refresh5728a0, broader reset55e4a0 and alternate placement4d1780 are intercepted explicit services. Caller/helper nested executions are not counted as additional top-level comparisons."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 1816,
+    "counts": {
+      "floor": 1384,
+      "reset": 72,
+      "relocate": 360
+    },
+    "mismatches": 0,
+    "examples": [],
+    "actualHelpers": {
+      "0x55f450": 1318,
+      "0x54fa60": 121,
+      "0x5d6620": 241
+    },
+    "instructionCoverage": {
+      "0x43c9a0": {
+        "total": 136,
+        "executed": 136,
+        "missing": []
+      },
+      "0x572660": {
+        "total": 63,
+        "executed": 63,
+        "missing": []
+      },
+      "0x55e4e0": {
+        "total": 56,
+        "executed": 56,
+        "missing": []
+      }
+    },
+    "epsilonDouble": 0.10000000149011612,
+    "services": [
+      "5728a0 ground refresh",
+      "55e4a0 broader actor reset",
+      "4d1780 alternate relocation"
+    ],
+    "authoredCommandUseCredit": 0,
+    "topLevelComparisonsOnly": true
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathRelocation.cs",
+      "bytes": 6231,
+      "sha256": "48ee3d15c45d9a3dd8a10260d7f5fc5449b5e00142559f326dd8e0a70cc3e706"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-relocation-portable-verify.cs",
+      "bytes": 6220,
+      "sha256": "eb0de9e3f8307ce65170e0e9bf5d9aeaf6960dd492024efa1c871c9f11a6455a"
+    },
+    "entrypoint": "GameplayPathRelocationVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-relocation-native-fixtures.json",
+      "reports/gameplay-path-relocation-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-relocation-native-fixtures.json",
+      "bytes": 630634,
+      "sha256": "a8611a455629c91563ba1e5c607b27c5333c06d14e94bcbaf5624aac1885b828"
+    },
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-relocation-verify.exe",
+        "bytes": 633856,
+        "sha256": "650a5071e02791911f16a0fca4e0ddd3762d78e08f67ca3e20e9ad548796afe0"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Finite float inputs, valid loaded actor/reference/node/pad/world storage and prepared view matrices. Pointer faults, nonfinite arithmetic and arbitrary overlapping subrecords are outside the verified domain. Same actor/reference identity is explicitly tested.",
+    "Terrain refresh5728a0, broader actor reset55e4a0 and alternate relocation4d1780 remain explicit mutable service boundaries. Native fixtures inject floor height but do not establish their internal behavior.",
+    "World.LevelFlags projects the already recovered55f450 current-world level64 lookup. View construction and matrix updates remain separately owned. Existing5d6620 and54fa60 dependency execution adds no new native mapping here.",
+    "The standalone55e4e0 helper refines a dependency previously projected in RespawnState; this batch neither modifies RespawnState nor credits that overlap as a second helper.",
+    "The C# harness compiled successfully. Managed execution and compiled differential comparison remain pending under the compile-only instruction. No authored command-use credit is assigned."
+  ]
+}

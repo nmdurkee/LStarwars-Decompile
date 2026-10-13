@@ -1,0 +1,75 @@
+{
+  "schema": "special-bounds-semantic-correction-v1",
+  "appliesTo": "specialObjects only; separate bounds/BNDS records unchanged",
+  "originalEvidence": [
+    "decompiled/corpus-expanded/FUN_5df480.c",
+    "reports/scene-animation-bounds-contract.json",
+    "reports/scene-animation-bounds-tests.json"
+  ],
+  "offsets": {
+    "special+0x80": "local minimum XYZ",
+    "special+0x90": "local maximum XYZ"
+  },
+  "legacyAliases": {
+    "boundsCenter": "boundsMinimum",
+    "boundsExtent": "boundsMaximum"
+  },
+  "existingMetadata": {
+    "rewritten": false,
+    "index": "reports/geometry-scene-data-index.json",
+    "carriers": 1477,
+    "carrierKinds": {
+      "GHG": 688,
+      "GSC": 789
+    },
+    "specialObjects": 49272,
+    "interpretation": "Existing specialObjects.boundsCenter and boundsExtent retain original bytes but must be interpreted as local minimum and maximum, respectively."
+  },
+  "futureParser": {
+    "path": "tools/geometry-nu2.mjs",
+    "sha256": "050486d2dba5ca8e8d06f0ed0f7843a33d789d3660f087e379a270a8aee35186",
+    "fields": [
+      "boundsMinimum",
+      "boundsMaximum",
+      "legacyBoundsFieldSemantics"
+    ],
+    "compatibilityAliasesPreserved": true
+  },
+  "validation": {
+    "passed": true,
+    "carriers": 4,
+    "specialObjects": 1457,
+    "unchangedBNDS": 2624,
+    "cases": [
+      {
+        "source": "CHARS\\QUIGONJINN\\QUIGONJINN_PC.GHG",
+        "sha256": "37181fe21b3ad46dcc66387d1cc1f4c23d2c074fd434ab2001ae423035fa8f51",
+        "specialObjects": 24,
+        "bounds": 24
+      },
+      {
+        "source": "CHARS\\2_1B\\2_1B_LR_PC.GHG",
+        "sha256": "0dd6e157dcf12667e32dc97b2398093d05ff45d9642dad4fe2af1036d1b238f0",
+        "specialObjects": 12,
+        "bounds": 12
+      },
+      {
+        "source": "LEVELS\\EPISODE_I\\NEGOTIATIONS\\NEGOTIATIONS_A\\NEGOTIATIONS_A_PC.GSC",
+        "sha256": "d8e91c5ecf1fc3a717ec0e461b2de2f7221fb0966398539e0abd5971fad8019b",
+        "specialObjects": 522,
+        "bounds": 928
+      },
+      {
+        "source": "LEVELS\\MAP\\MAP\\MAP_PC.GSC",
+        "sha256": "be19d254a6e0a7167db62255147acb33db2b9afa06a095b556834e6e0db3eeb2",
+        "specialObjects": 899,
+        "bounds": 1660
+      }
+    ]
+  },
+  "limits": [
+    "No bulk geometry or scene metadata regeneration performed.",
+    "Padding W lanes are not given local bound semantic names.",
+    "The animated native bounds producer and its numerical validation remain owned by the animation source contract."
+  ]
+}

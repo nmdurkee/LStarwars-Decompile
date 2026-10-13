@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-12T22:13:10.137Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "lookup": {
+      "address": "0x51ac70",
+      "description": "Null system or signed set count<=0 returns null. Scan fixed28-byte records in order; first case-insensitive whole inline name match wins. Duplicate names keep first-match identity.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_51ac70.c"
+      ]
+    },
+    "next": {
+      "address": "0x440660",
+      "description": "The actor is passed in EDI, with system,set,looping,finishAtEnd,ignoreAssigned on the stack. Require set count>1 and actor. Optional actual reservation cleanup runs first. If the packet selected locator matches an index, release that entry owner255. Otherwise draw shared QRandom and divide by floor(65535/count)+1 to choose a starting slot. Advance before considering selection. Actor flag100000 selects backward traversal. Positive end either clears selection when finishAtEnd, wraps when looping, or bounces and sets backward flag. Negative end wraps or bounces and clears backward flag. Eligible nonstarting free slots win; return to the starting slot terminates immediately for looping, or on the second return for bouncing, even if occupied. Write selected pointer and owner byte. Other actor/packet fields remain unchanged.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_440660.c",
+        "reports/native-locator-set-assembly.json"
+      ]
+    }
+  },
+  "commands": [],
+  "native": {
+    "cases": 1262,
+    "mismatches": 0,
+    "fullRegionComparisons": 3354,
+    "groups": {
+      "next": 1046,
+      "find": 216
+    },
+    "method": "Original next-locator routine with native EDI actor convention, actual reservation callback/cleanup and shared QRandom; original set lookup and string comparison. No helper replacements."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorSetTraversal.cs",
+      "bytes": 2100,
+      "sha256": "95558eaabb4ed563938ae7c3bff1245fbc50c6ceaf734c677d67d636daf1db6d"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-locator-traversal-portable-verify.cs",
+      "bytes": 6056,
+      "sha256": "22097b6ddf6967353d673129fc403ad1bc4fb0ead4b6a2b84f856bcdd33b7613"
+    },
+    "entrypoint": "LocatorTraversalVerify.Main",
+    "arguments": [
+      "reports/native-locator-traversal-vectors.json",
+      "reports/native-locator-traversal-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-locator-traversal-vectors.json",
+      "bytes": 5273925,
+      "sha256": "b08f44867bbe4960eae1a33e86582e60c0848219eb17cbd25da0e33ccdba516c"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Valid attached actor packet for active traversal; signed set count and byte indices/owners with backing arrays.",
+    "Finite locator pointer identities and no address wrap; name lookup uses terminated ASCII inline names.",
+    "No new authored command credit until GetLocatorFromSet orchestration is recovered; managed execution remains pending."
+  ]
+}

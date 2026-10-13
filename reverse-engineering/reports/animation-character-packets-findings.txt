@@ -1,0 +1,29 @@
+PC CHARACTER LAYER TO MESH PACKET COMPOSITION
+
+466 original full-chain comparisons;0 mismatches.
+
+state
+CharacterSubmissionState is authoritative for shared806ccc visibility,9715a0 submission mask and allocator cursor. The bridge mirrors these before each dynamic call, reads the changed cursor/mask afterward, and restores both typed projections after the outer character routine returns. Original mode0/2 is preserved by the character loop, but the normal dynamic branch does not consume that third native argument.
+
+palette
+The layer loop reserves each smooth palette before rigid draws. The bridge writes palette matrices only at the later smooth call, reads the exact forwarded pointer for mesh-local matrix selection, and materializes palettes even when every smooth handle is invalid. Existing palettes in a reused state are not rewritten. Matrix scratch is explicit, valid and disjoint; it represents the original transient stack matrix.
+
+packets
+Each actual dynamic call performs recovered visibility/LOD/material selection, shader emission, allocator links, ordinary/prefix or skin/morph packet output. Only nonnull skin resolves a typed source mesh. Weights are read at native weight-pointer+8 and count at mesh+40; rigid draws do not resolve a mesh or dereference weights. The adapter verifies resolved resource identity and forwards original metadata/alpha.
+
+evidence
+The original complete chain executes with source-matched authored bind matrices, inverse binds, full layer topology and selected morph meshes, plus controlled relocated scene/material bindings. The suite compares all persistent1MiB bytes except32B packet-local and64B matrix-local adapter scratch, entry matrix/palette hashes, cursor before every layer draw, emitted packet order, visibility/flags and COM events. All298 source rigs represented by the morph fixture are tested; the first24 also receive reversed/duplicate/invalid layer maps, null default map, zero count, early culling, weighted one-layer and invalid-handle palette cases.
+
+managed
+Replay constructs the public bridge directly and compares final bytes, flags/cursor/cache, ordered packets, COM events and submission count. Native-entry-only layer diagnostics remain in the separate original/Python comparison rather than being exposed as invented public callbacks. Compilation passed; generated managed execution remains pending.
+
+binding
+Valid authored layer handles are deliberately rebound to a controlled dynamic scene and one selected mesh from the exact same GHG source. This establishes the temporal/state ABI, not the original per-layer model/material loader association. The authored topology and matrices are preserved; original live frame scheduling and GPU execution are not claimed.
+
+Limits
+Authored bind matrices, full layer topology and source-matched skin mesh descriptors; controlled relocated scene/material bindings intentionally route each valid layer handle to the selected source mesh. This does not establish original per-layer mesh association.
+Finite scalar camera/math, valid disjoint memory, successful buffer locking, no secondary visibility/dynamic shadows/sway/fade/billboard.
+No live animation scheduler, graphics-device draw, or managed executable launch. Managed equivalence remains pending.
+Active shadow queue is separately proven by CharacterRenderPipeline; new chain tests globally disable that producer.
+The optional material merge adapter remains an explicit service; these fixtures use the normal same-layout records.
+No managed executable launched; compile-only evidence is not runtime equality.

@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-10-12T21:44:22.938Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "SetTaggable": {
+      "address": "0x44f930",
+      "description": "First-call only; always returns1. Default target is self reference->world object. character= replaces the target; tag_to= replaces the preferred replacement; both use the actual registered name resolver. Whole FALSE latches disabled while TRUE does not reset it. A nonnull target gets bit2 at+0x7c5 set when disabled and cleared otherwise. If disabling a controlled target (+0x1fc bit0x80), an absent linked object at+0xcd0 invokes candidate transfer; failed/deferred transfer forces disabled back to false. A present linked object invokes takeover/vehicle release instead. Both branches refresh player globals before the final bit write. No controlled bit means no transfer, release or refresh.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_44f930.c",
+          "line": 8,
+          "address": "0x44f930"
+        }
+      ]
+    },
+    "candidates": {
+      "address": "0x487ca0",
+      "description": "Preferred candidate wins if valid; otherwise scan all8 player slots in order. Candidate must differ from source, have+0x1fc active1 and valid0x1000, lack controlled0x80, have blocked byte+0x28b==0 and lack tag-disabled bit2 at+0x7c5. Missing candidates return0 without service calls. Selected candidate invokes0x4876a0(source,candidate,0,0,argument). Result2 stores float3 at source+0x7c0, candidate at+0x7c8, clears bit8 and sets bit4 at+0x7c5, then returns0. Result0 returns0. Every other result exchanges controlled bit0x80 using PRE-service values while preserving other POST-service flags, then returns1. Tests include service mutation to distinguish captured from fresh values.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_487ca0.c",
+          "line": 7,
+          "address": "0x487ca0"
+        }
+      ]
+    },
+    "players": {
+      "address": "0x55e410",
+      "description": "Refresh uses only player slots0/1, unlike the eight-slot candidate scan. A controlled slot0 becomes primary and controlled slot1 becomes secondary. If slot0 is not controlled, controlled slot1 becomes primary and secondary clears. If neither is controlled, primary clears but an early return leaves secondary unchanged. Null slots and duplicate slot references are covered.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_55e410.c",
+          "line": 7,
+          "address": "0x55e410"
+        }
+      ]
+    },
+    "services": {
+      "description": "Full transfer0x4876a0 and vehicle/takeover release0x4882d0 remain explicit typed services. Native tests replace only these world-mutating services and bounded CRT Player%d formatting; SetTaggable, actual named lookup, candidate selection and player refresh execute original bytes. Service calls, arguments, return effects, flag mutations and refresh ordering are compared. This does not implement possession, controller rebinding, model swaps or mounted-character release.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 9,
+          "address": "0x4876a0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4882d0.c",
+          "line": 9,
+          "address": "0x4882d0"
+        }
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "SetTaggable",
+      "address": "0x44f930",
+      "sourceUses": 92
+    }
+  ],
+  "verification": {
+    "checks": 491,
+    "mismatches": 0,
+    "groups": {
+      "command": 274,
+      "candidate": 145,
+      "refresh": 72
+    },
+    "authoredOccurrences": {
+      "SetTaggable": 92
+    },
+    "method": "Original SetTaggable, registered name resolver, transfer-candidate selector and primary-player refresh execute as a chain. Only full character transfer0x4876a0, takeover release0x4882d0 and bounded CRT formatting are service fixtures.",
+    "reports": [
+      "reverse-engineering/reports/gameplay-tag-control-tests.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-tag-control-native-fixtures.json",
+      "bytes": 1984042,
+      "sha256": "42f4f948a4ef95162cd06211abf22a84bb147fbf2fdf2e53b6e30ac88e52e7d0"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/TagControls.cs",
+      "bytes": 5643,
+      "sha256": "b7fa5d7e986ed96bcb1607ea2a7dcb116a7930c88b3f51aeda4a8b4c96b8ffcf"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-tag-control-portable-verify.cs",
+      "bytes": 7041,
+      "sha256": "029030b426d40f23c8819c9215ca60a5fc26463ca505379258dc7b38bcc58f74"
+    },
+    "entrypoint": "GameplayTagControlVerify.Main",
+    "arguments": [
+      "reports/gameplay-tag-control-native-fixtures.json",
+      "reports/gameplay-tag-control-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-tag-control-verify.exe",
+        "bytes": 44544,
+        "sha256": "d9792555ea6d0a2aaac7b7ec05b4e0788f34602b203ecfcd5d5012c6bc80a6cb"
+      },
+      "managedExecution": "Not attempted; compile-only instruction preserved."
+    },
+    "adapters": [
+      "Full character transfer and mounted/takeover release remain required services on branches that use them.",
+      "Typed actor identities, tag-state attachment and player slot arrays must reflect the runtime world.",
+      "The service must preserve attached state-object identity while mutating it, matching native field access after callback return."
+    ]
+  },
+  "remaining": [
+    "Character transfer/world ownership implementation and vehicle/takeover release side effects remain explicit adapters.",
+    "Actor records and player arrays use valid bounded identities; ASCII token strings.",
+    "Managed replay compiled only; no generated executable launch."
+  ]
+}

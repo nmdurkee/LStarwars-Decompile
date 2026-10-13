@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-10-13T00:14:35.019Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "callback": "571ba0 skips when cooldown951000 is positive or NaN, then computes finite velocity norm from effect+80. Zero norm skips. Clamp positive norm to1, compute x87((1-clamped)*16384+16384), truncate integer through original6e6b90 fallbackmode0, arithmeticshift1 andmask7fff. Capture native sine-table float, resolve LegoSingle, forward effect+30 position and volume, then overwrite cooldown with float0.1 after playback.",
+    "precision": "Norm uses64-significand y*y+x*x then z*z, stores float32 before sqrt and stores float32 root. Volume integer conversion does not narrow the x87 intermediate to double; tiny positive values test that distinction. Native CRT sqrt and integer helper execute unchanged; they are dependencies, not separately recovered by this module.",
+    "hash": "650430 starts0, foldsASCII lowercase to uppercase, then hash=(hash<<8)^table[byte^(hash>>24)]. All256 table words are supplied runtime data; original signed high-byte indexing is excluded. Empty string returns0 without table access.",
+    "lookup": "650dc0 rejects null name/heads, selects signedshort bucket from full-name hash lowbyte, follows signedshort record+10 links, returns first32-byte casefold name match. Null stored names never match. Hash and comparison intentionally use different string lengths.",
+    "wrapper": "681eb0 forwards(soundId,position,volume,1) even whenID=-1. Final650f20 playback remains a mutable service; callback writes cooldown after service returns, preserving position aliasing.",
+    "root": "5c0240 finite negative input returns positive0; other finite input uses sqrt andfloat32 storage including negativezero.5bec80 is bounded to finite vector squared sums."
+  },
+  "commands": [],
+  "native": {
+    "cases": 6027,
+    "mismatches": 0,
+    "groups": {
+      "hash": 394,
+      "find": 1604,
+      "sqrt": 1192,
+      "length": 1469,
+      "callback": 1288,
+      "play": 80
+    },
+    "fullRegionComparisons": 6027,
+    "method": "Original571ba0,5bec80,5c0240,650430,650dc0,681eb0 run with actual CRT sqrt and x87-to-integer helper. Original sound hashing and32-byte comparator run against prepared signed-short chains. Only final650f20 playback is a mutable service. Exact returns, volume/scale/position calls, cooldown and complete36KiB data image compare."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/BuildEffectSound.cs",
+      "bytes": 4278,
+      "sha256": "de4c1908b3f9482d61473ad929e8c9c2b5166c7544ea887f949ad9aacba55875"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-build-sound-portable-verify.cs",
+      "bytes": 5121,
+      "sha256": "d253cdcd4a2b0795d4491f477e769cb49b13c5163690605f875d1d871c55e9b1"
+    },
+    "entrypoint": "BuildEffectSoundVerify.Main",
+    "arguments": [
+      "reports/native-build-sound-vectors.json.gz",
+      "references/native-animation-sine-table.f32",
+      "reports/native-build-sound-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-build-sound-vectors.json.gz",
+      "bytes": 373013,
+      "sha256": "e24b6d1110dd9eee8ad4506330fb5258021c6856e0c4ef9541c6e3f0534343e4"
+    },
+    "sineTable": {
+      "path": "reverse-engineering/references/native-animation-sine-table.f32",
+      "bytes": 131072,
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite float32 root operands; vector inputs and rounded sum of squares finite. Mathematical sqrt uses the supplied scalar CRT path with masked exceptions. Numeric helper6e6b90 executes original fallback mode0 and is not separately mapped by this batch.",
+    "ASCII names and valid finite acyclic sound chains. The256-word hash table and sound database are supplied runtime records; table construction, sound-bank loading and playback650f20 internals remain external.",
+    "Original32768-entry sine table is supplied from the preserved native reference. Callback clamps speed to1, computes x87((1-speed)*16384+16384), truncates before shifting and masks to15bits; tiny positive speeds test values lost by binary64 rounding.",
+    "Callback captures volume before lookup, always forwards the found index including-1 with scale1, and resets cooldown to exactfloat0.1 after playback. Playback may mutate position or cooldown. No sound device/game/managed execution."
+  ]
+}

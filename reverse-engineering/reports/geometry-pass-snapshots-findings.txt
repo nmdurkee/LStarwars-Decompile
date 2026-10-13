@@ -1,0 +1,19 @@
+CPU PASS SNAPSHOTS
+
+{"cases": 520, "persistentBytes": 9677440, "emptyIndex": 72, "active": 400, "entry0x5f3950": 340, "entry0x5f39e0": 180}
+
+Original5f3950 calls5efff0 and writes its returned index to current pass offset0 at9718a0. If current active flag+38 is zero or index is-1, it does not dereference the selected context.
+
+For active nonempty passes, context+808 controls whether the selected volume receives the index. Enabled contexts append to volume+354[volume+374] and increment+374. Disabled contexts clear current active+38 instead. Both branches replace current offset0 withffffffff.
+
+Thus a disabled selected context can discard the newly finalized pass index from the snapshot, while the pending descriptor remains allocated. This behavior is preserved. Volume index at current+40 is only read on the enabled nonempty path.
+
+The caller always copies exactly134 DWORDs,0x218 bytes, from current9718a0 to9640f0+count*0x218, then increments95fbb8. Entry5f39e0 is a direct jump to the same helper; extra caller arguments are ignored.
+
+Portable source composes PendingPackets.FinalizeList directly. Current/snapshot storage and count are explicit global adapters. Source fixtures provide16 snapshot slots; this is a validated supplied capacity, not a newly asserted universal native maximum.
+
+520 actual original-chain cases cover both entrypoints, active/disabled/empty combinations, volume0/1, all eight pre-append slots and160 sequential snapshots. All9,677,440 persistent bytes plus adapted state match the model; original packet finalization and cache-reset instructions execute without stubs.
+
+Invalid context pointers on inactive/empty paths and invalid volume values on disabled contexts verify short-circuit behavior. The portable method likewise delays those reads. No GPU commands are executed by this CPU chain.
+
+Core and replay compile. Managed equality, special outer596870 drawing and broader resource lifetime remain separate; no runtime playtest has been performed.

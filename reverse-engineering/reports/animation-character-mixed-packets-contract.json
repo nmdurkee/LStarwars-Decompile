@@ -1,0 +1,146 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 240,
+    "counts": {
+      "cases": 240,
+      "layerDraws": 3960,
+      "packets": 39478,
+      "skinPackets": 5353,
+      "shadowPackets": 28918,
+      "secondaryCalls": 4200,
+      "volumeTests": 1320,
+      "shadowShaderCalls": 28918,
+      "locks": 57,
+      "zeroReturnWithPackets": 114,
+      "noLayerDraws": 0,
+      "billboardPackets": 19739,
+      "ordinaryPackets": 12466,
+      "prefixPackets": 1920
+    },
+    "authoredRigs": 2,
+    "authoredMeshes": 8,
+    "authoredBillboardResources": 30,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports/animation-character-mixed-packets-native-fixtures.json.gz",
+      "bytes": 1445731,
+      "sha256": "68a8ff1a51a5c549424c556a4d0e077f48878bddd764a6710bfce84d60fa07f9"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-character-billboard-packets-verify.py",
+        "sha256": "7c8359d01cad43c57d81b075013ad2a1491a6b133adcf1a437b90ea98349bedb"
+      },
+      {
+        "path": "tools/animation-character-shadow-packets-verify.py",
+        "sha256": "0f3584c2ad63f572adabb9f6a56220565bbe3c617dd3fd9686f8399fd5ffd6b7"
+      },
+      {
+        "path": "tools/geometry-dynamic-shadow-native.py",
+        "sha256": "721f0d3faab90e6bd27f71c3fb08035aa21774b0aa63cc466201e92aa5f7d639"
+      },
+      {
+        "path": "tools/geometry-dynamic-skin-native.py",
+        "sha256": "9f374025e56ebbadbdb54c64d0eb21b34e90f553e78e9da91e59e29dca492226"
+      },
+      {
+        "path": "reports/animation-billboard-native-fixtures.json.gz",
+        "sha256": "adef129a690bfc4617518527c4c45e336f2a9a52d179a2c50c3f7350706b3982"
+      },
+      {
+        "path": "reports\\animation-morph-mesh-native-fixtures.json.gz",
+        "sha256": "eb5b1e9e608fa19072bd4e3a7a54b40f9836ed32e085e06a81d4337650b7560f"
+      }
+    ],
+    "method": "Complete original character/secondary/shadow chain with mixed82/8f command lists in both orders. Original normal/prefix/skin/morph/billboard writers and both shader emitters execute, only successful COM Lock/Unlock supplied. Whole1MiB persistent bytes, mirrored masks, layer matrix/palette/cursor, exact packet and destination-record order, and COM events compare.",
+    "limits": [
+      "Same-source authored rigid/smooth layer topology, billboard descriptors and selected meshes from two Mace Windu lightsabre GHGs. Runtime handle/material bindings controlled; exact loader association not claimed.",
+      "Finite scalar explicit camera inputs, inactive sway/fade, valid bounded memory. Weighted cases use one shadow volume to retain allocator capacity.",
+      "No GPU/live scheduler or managed executable launch."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterBillboardPacketPipeline.cs",
+      "sha256": "46ea8c0a4e8b87f79baa173a1d5cdcc515b7c4b75806739eb3b6d5bb2fb77cb1"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "reconstructed/geometry/ShaderContextEmission.cs",
+      "reconstructed/geometry/DynamicSelection.cs",
+      "reconstructed/geometry/DynamicSubmission.cs",
+      "reconstructed/animation/CharacterPacketPipeline.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "reconstructed/geometry/ShadowContextEmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-mixed-packets-portable-verify.cs",
+      "sha256": "6c08dc323254fd36f198fa82aae94bea9bbc4a93cf36cc027e9ec14fb1b6d8e2"
+    },
+    "entrypoint": "CharacterMixedPacketPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-mixed-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 240,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-mixed-packets-compile.json"
+  },
+  "contracts": {
+    "scope": "The existing CharacterBillboardPacketPipeline implementation is unchanged. New fixtures close its previously documented mixed-list gap by placing opcode82 mesh and opcode8f billboard commands in the same source-matched character submissions, in both command orders.",
+    "data": "30 billboard descriptors and8 mesh records from2 authored Mace Windu lightsabre GHGs. Their real31-joint rigs include rigid and smooth layers. Controlled relocated handle/material bindings are retained and do not imply original shipped layer-to-mesh hydration.",
+    "ordering": "Each mixed list traverses original normal/shadow shader emission and packet selection. Billboard-first cases leave typed skin/weight data unread for that command; the next mesh command still sees the original palette/weights. Mesh-first cases preserve the previously created matrix/cache data when the billboard follows. Whole persistent bytes and exact destination-record order test these interactions.",
+    "evidence": "240 new original comparisons, zero mismatches. 39478 total packets: 19739 billboard, 5353 skin/morph, 12466 ordinary and1920 prefix; 28918 target shadow records. Normal+shadow, shadow-only, weighted smooth shadow-only and reordered/duplicate/invalid layer selections are covered. Counts do not reuse prior single-mode fixtures.",
+    "managed": "Dedicated replay invokes the unchanged public bridge and checks full image hashes, shared state, packet/record ordering, COM events and layer submission count. Both managed targets compile; execution remains pending."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-character-mixed-packets-verify.py",
+      "sha256": "331f3be20ab4d2d07448e014fe33351cfc12f7fd9fedc390d80250777ac3087b"
+    },
+    {
+      "path": "tools/animation-character-mixed-packets-report.py",
+      "sha256": "1ccb03c9c4140eeeb137cc376dcccbdb449998a32094a1c6b69d89c1de4aadc4"
+    }
+  ],
+  "limits": [
+    "Same-source authored rigid/smooth layer topology, billboard descriptors and selected meshes from two Mace Windu lightsabre GHGs. Runtime handle/material bindings controlled; exact loader association not claimed.",
+    "Finite scalar explicit camera inputs, inactive sway/fade, valid bounded memory. Weighted cases use one shadow volume to retain allocator capacity.",
+    "No GPU/live scheduler or managed executable launch.",
+    "No core implementation changes or new native addresses in this refinement.",
+    "Managed runtime equality remains pending; compile success is not a differential pass."
+  ]
+}

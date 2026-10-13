@@ -13,8 +13,8 @@
   },
   "coreAssembly": {
     "file": "reconstructed/geometry/Recovered.Geometry.dll",
-    "bytes": 38912,
-    "sha256": "5ae86e189df8397337b179d504a89cf2c29e90e730e31e86ada7df34b08f4921"
+    "bytes": 45568,
+    "sha256": "014640fbb3763ef2389d37d3158ef54bcd8f589db4fc2859c788f90c07eec536"
   },
   "harnessAssembly": {
     "file": "reconstructed/geometry/GeometryUvHarness.exe",
@@ -42,7 +42,7 @@
   "independentContractEvidence": "geometry-uv-native-validation.json",
   "frameIntegrationEvidence": "geometry-render-integration.json",
   "limits": [
-    "Core covers current708-byte material UV evaluation/reset, bounded CPU visibility/LOD/fade/clip-control/sort projections, prepared-plane predicates, room selection and room-to-instance visibility bits. Caller supplies child volumes, traversal, grid/tree visibility and runtime integration.",
+    "Core covers current708-byte material UV evaluation/reset, bounded CPU submission projections, prepared-plane predicates, room selection and modern portal recursion with real child-plane/bitset math. Caller supplies camera/projection state, initial room/volume/flags, grid/tree evaluation and wider runtime integration.16-volume cap and signed-zero numerical limits are explicit.",
     "Signed32 conversion domain only; nonfinite/overflow conversions rejected.",
     "No renderer, scene scheduler, game loop, or Unity implementation."
   ],
@@ -81,13 +81,18 @@
       "file": "reconstructed/geometry/PortalVolumes.cs",
       "bytes": 6610,
       "sha256": "a7ebd5596f5a2515e7568fdf0bcf0803c66747a5573f3c7751be258675d5b703"
+    },
+    {
+      "file": "reconstructed/geometry/PortalTraversal.cs",
+      "bytes": 14035,
+      "sha256": "541b4f7aa398ae86e0fd97941e8fd7ca66a00806604a6e208094f89da0b6527a"
     }
   ],
   "sharedSourceDependency": {
     "file": "reconstructed/animation/AnimationPlayback.cs",
-    "bytes": 18871,
-    "sha256": "9574e919af03eb213e80de215b30cc05969c12ba53f687bf37b7250b7accb7b1",
-    "api": "Recovered.Animation.FiniteX87.Dot3PlusConstant; exact64-significand finite arithmetic, not a game-native function."
+    "bytes": 19541,
+    "sha256": "a8c818bfc8d406bfd299e6a7f7216231db7b76fc203af0ce1e4a674ed79ea1bf",
+    "api": "Recovered.Animation.FiniteX87.Dot3PlusConstant and internal PlaybackWide Add/Multiply/Divide/FromDouble/TruncateInt32/Store; exact64-significand finite arithmetic adapters, not game-native entries."
   },
   "additionalContractEvidence": "geometry-visibility-native-validation.json",
   "clippingContractEvidence": [
@@ -95,7 +100,9 @@
     "geometry-portal-native-validation.json",
     "geometry-room-selection-native-validation.json",
     "geometry-portal-visibility-native-validation.json",
-    "geometry-portal-volume-native-validation.json"
+    "geometry-portal-volume-native-validation.json",
+    "geometry-portal-runtime-native-validation.json",
+    "geometry-portal-runtime-boundaries.json"
   ],
   "roomSelectionHarness": {
     "file": "reconstructed/geometry/harness/PortalSelectionHarness.cs",
@@ -137,6 +144,26 @@
     "fixtureCount": 3586,
     "expectedScalars": 172128,
     "harness": "reconstructed/geometry/GeometryVolumeHarness.exe",
+    "build": "passed",
+    "execution": "not attempted; existing Windows execution denial remains separate"
+  },
+  "portalRuntimeHarness": {
+    "file": "reconstructed/geometry/harness/PortalTraversalHarness.cs",
+    "bytes": 5914,
+    "sha256": "23ef5227a0516a842eb9787718fa104b21738c5c9bda1d1b546ad78989064851"
+  },
+  "portalRuntimeManagedCheck": {
+    "runner": "tools/geometry-portal-runtime-check.py",
+    "report": "geometry-portal-runtime-managed-check.json",
+    "status": "prepared-not-executed",
+    "fixtureCount": 7888,
+    "harness": "reconstructed/geometry/GeometryTraversalHarness.exe",
+    "mainType": "PortalTraversalHarness",
+    "arguments": [
+      "inputFixture",
+      "originalSineTable",
+      "output"
+    ],
     "build": "passed",
     "execution": "not attempted; existing Windows execution denial remains separate"
   },
@@ -308,6 +335,34 @@
       "coverage": "bounded-whole-helper-projection",
       "limitations": "Finite decoded register inputs; strict comparisons and output XY writes, preserving Z/rejected outputs. No pointer alias side effects or nonfinite x87 comparison domain; compiled execution pending.",
       "sourceFile": "reconstructed/geometry/PortalVolumes.cs"
+    },
+    {
+      "address": "0x5d9f50",
+      "method": "PortalProjection.Bounds",
+      "coverage": "projection-and-bounds-result",
+      "limitations": "Finite prepared matrix and nonempty signed16 winding; exact late-store projective division,zero-W behavior and clamped bounds. Native inverse-cache update omitted; signed-zero bit and compiled equivalence unclaimed.",
+      "sourceFile": "reconstructed/geometry/PortalTraversal.cs"
+    },
+    {
+      "address": "0x5d9a00",
+      "method": "PortalProjection.FromRectangle",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Prepared finite camera/FOV/aspect and original sine table; finite intermediates and signed32 phase conversion only. Managed volume replaces native arena/list allocation; compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/PortalTraversal.cs"
+    },
+    {
+      "address": "0x5ee750",
+      "method": "PortalTraversal.Partial",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite portal/parent/camera inputs,disabled debug rendering; returns0/1/4 with real projection/intersection/FOV planes. Inverse-cache/native allocator side effects omitted; compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/PortalTraversal.cs"
+    },
+    {
+      "address": "0x5ee940",
+      "method": "PortalTraversal.Traverse / Walk",
+      "coverage": "bounded-caller-contract-projection",
+      "limitations": "Initial root/current equal,previous=-1,depth0; modern display mode0x4000; valid authored-like room/portal arrays and prepared camera. Preserves entry order,cycle/depth guards,room flags,instance bits and plane aliases. At most16allocated clip headers; unsafe17th rejected. Native allocator addresses,disabled debug rendering and inverse-cache side effects omitted; compiled execution pending.",
+      "sourceFile": "reconstructed/geometry/PortalTraversal.cs"
     }
   ],
   "adaptersWithoutNativeEntry": [
@@ -326,6 +381,9 @@
     "PortalSphere and PortalVisibilityHarness fixture I/O",
     "Native600bd0 pointer attachment is verified but intentionally has no portable C# equivalent.",
     "PortalClipVolume typed header storage and PortalVolumeHarness fixture I/O",
-    "Native5d9140 arena reservation and5d9f50 prepared-projection calls are verified at stated fixture bounds but not counted as portable source."
+    "Native5d9140 arena reservation is verified but not a portable entry;5d9f50 projection result has its own bounded mapping,omitting the inverse-cache side effect.",
+    "PortalCamera/RuntimePortal/RuntimePortalRoom/PortalRuntimeScene/PortalVisit/PortalTraversalState are decoded data adapters.",
+    "PortalTraversalHarness fixture preparation and caller-provided world/projection matrices are not original live camera production.",
+    "Native5d9130 depth setter and602550 empty-resource finalizer are verified but not separately counted as reconstructed source."
   ]
 }

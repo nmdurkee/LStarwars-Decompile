@@ -1,0 +1,90 @@
+{
+  "generatedAt": "2026-10-12T22:04:54.599Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Composition bridge, no new native-entrypoint or authored-command credit.",
+  "contracts": {
+    "binding": {
+      "description": "PlayerTransferScriptBridge.InitializeBaseScript supplies the already reconstructed ScriptMachine.Bind with the resolved base definition and optional state stored at definition+0x38. A null state follows the existing Base-name fallback. No character parameter overrides are supplied. The typed packet reference stack is then cleared to match0x415000 clearing embedded packet+0x64 (actor+0x32c) after the binder returns.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_415000.c",
+          "address": "0x415000"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_514640.c",
+          "address": "0x514640"
+        },
+        {
+          "path": "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+          "method": "ScriptMachine.Bind"
+        }
+      ]
+    },
+    "sharing": {
+      "description": "The bridge uses the same ScriptPacket for source runtime state and the same ActorState/TagControl/PlayerTransfer records for transfer state. It restores the base script, four default parameters, chosen state/first action, pending/blocked/deadline fields and reference depth while preserving packet timer. TransferCounter32c and typed stack clearing remain synchronized. Script source loading and opaque scheduler callbacks are still host responsibilities."
+    },
+    "nativeChain": {
+      "description": "96 bounded native comparisons cover null/base0/base1 scripts, blocked transfers, explicit Idle vs null-to-Base fallback, first-action presence, retained flag patterns, and SetTaggable entry/subsequent calls. Actual0x514640 and list/state/action helpers execute unchanged; no script-binding stub remains. Only platform feedback0x698900 is replaced. This composes previously established functions and adds no function-map entry."
+    }
+  },
+  "verification": {
+    "checks": 96,
+    "mismatches": 0,
+    "method": "Actual SetTaggable/candidate/ordinary-transfer/script-reset/514640 binder/linked-list state/action helpers run unchanged. Only platform feedback698900 is substituted. Existing ScriptMachine.Bind is reused by a composition bridge, with no new mapped function credit.",
+    "reports": [
+      "reverse-engineering/reports/gameplay-transfer-script-bridge-tests.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-transfer-script-bridge-native-fixtures.json",
+      "bytes": 242505,
+      "sha256": "ab30840d7247236e24e5c37fe5c55e2e806c520b495112f065df693377121f0b"
+    },
+    "newNativeEntryPoints": 0,
+    "newAuthoredCommandUses": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PlayerTransferScriptBridge.cs",
+      "bytes": 1586,
+      "sha256": "10014225b7c3e8e4a0975da678c9aba3588f6b2558545d9ef7d4eba7a465638f"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-transfer-script-bridge-portable-verify.cs",
+      "bytes": 11538,
+      "sha256": "ab4c5666112adcff8f3c690a983cc174925b549f62efee66ff4fbc3c9e5289e3"
+    },
+    "entrypoint": "GameplayTransferScriptBridgeVerify.Main",
+    "arguments": [
+      "reports/gameplay-transfer-script-bridge-native-fixtures.json",
+      "reports/gameplay-transfer-script-bridge-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/TagControls.cs",
+      "reverse-engineering/reconstructed/gameplay/PlayerTransfer.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-transfer-script-bridge-verify.exe",
+        "bytes": 51712,
+        "sha256": "0a5640e3c7d39785b6f4bc465d99a491060474db308b5858474de45fd3f30130"
+      },
+      "managedExecution": "Not attempted; compile-only instruction preserved."
+    },
+    "adapters": [
+      "Resolved script/state/packet attachment and source loading remain host responsibilities.",
+      "Platform feedback callback remains required on nonzero-handle paths.",
+      "Full takeover mode1 and vehicle/takeover release remain excluded.",
+      "Opaque condition-bank and animation callbacks retain the qualifications of the existing ScriptMachine.Bind projection."
+    ]
+  },
+  "remaining": [
+    "Resolved valid script/state/action records; source loading and opaque condition/animation callback state remain outside this bounded existing binder projection.",
+    "Mode1 takeover/release is excluded. Generated managed replay is compile-only."
+  ]
+}

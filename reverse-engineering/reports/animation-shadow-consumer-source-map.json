@@ -1,0 +1,105 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 4,
+  "newNativeEntryPoints": 4,
+  "mappings": [
+    {
+      "address": "0x5e4600",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowConsumer.cs",
+      "sourceSha256": "147e8dee98a7702f598512bfac40cf78c9ff5f2671542137ae1a11a16602f5f8",
+      "methods": [
+        {
+          "name": "LegacyShadowConsumer.Angles",
+          "line": 46
+        }
+      ],
+      "coverage": "finite angle-table pitch/yaw extraction",
+      "qualification": "Resolved original513-word table; original signed integer-angle outputs stored as float. Disjoint vector/output backing. Calls already recovered5be2d0 and5c0240.",
+      "comparisonStatus": "Original native and independent model exact within stated boundary; portable core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-consumer-tests.json"
+    },
+    {
+      "address": "0x5e4670",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowConsumer.cs",
+      "sourceSha256": "147e8dee98a7702f598512bfac40cf78c9ff5f2671542137ae1a11a16602f5f8",
+      "methods": [
+        {
+          "name": "LegacyShadowConsumer.Rotate",
+          "line": 59
+        }
+      ],
+      "coverage": "finite in-place pitch/yaw vector rotation",
+      "qualification": "Original sine table and64-significand arithmetic, explicit projected-Z float spill, signed-zero behavior. Truncation inputs and angle+16384 integral parts fitInt32; no arbitrary huge conversion.",
+      "comparisonStatus": "Original native and independent model exact within stated boundary; portable core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-consumer-tests.json"
+    },
+    {
+      "address": "0x5e4740",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowConsumer.cs",
+      "sourceSha256": "147e8dee98a7702f598512bfac40cf78c9ff5f2671542137ae1a11a16602f5f8",
+      "methods": [
+        {
+          "name": "LegacyShadowConsumer.Prepare",
+          "line": 68
+        }
+      ],
+      "coverage": "finite direction adjustment and complete eight-vector ring update",
+      "qualification": "Clamps pitch to8192, preserves scalar magnitude and rewrites shared9715b0 ring. Uses exact already recovered angle and square-root helpers; sine table explicit.",
+      "comparisonStatus": "Original native and independent model exact within stated boundary; portable core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-consumer-tests.json"
+    },
+    {
+      "address": "0x5e4840",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowConsumer.cs",
+      "sourceSha256": "147e8dee98a7702f598512bfac40cf78c9ff5f2671542137ae1a11a16602f5f8",
+      "methods": [
+        {
+          "name": "LegacyShadowConsumer.Process",
+          "line": 82
+        }
+      ],
+      "coverage": "bounded legacy queue selection and shape service dispatch",
+      "qualification": "Backed count<=280, finite state, adjacent sequence reuse, strict distance gate and source-derived shape strides/order.5e2920/5e3b50/5e4280 remain explicit immutable-argument shape services; callback may update GeneratedValue only. No generated shape/GPU equivalence claimed.",
+      "comparisonStatus": "Original native and independent model exact within stated boundary; portable core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-consumer-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyShadowConsumer.cs",
+      "sha256": "147e8dee98a7702f598512bfac40cf78c9ff5f2671542137ae1a11a16602f5f8"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-consumer-portable-verify.cs",
+      "sha256": "fd44cec333cbc7a7a6eca03e8101f36ee56548023c46a8b9fc996bf68670f97d"
+    },
+    "entrypoint": "LegacyShadowConsumerVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-consumer-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3863,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-consumer-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-shadow-consumer-tests.json",
+    "reverse-engineering/reports/animation-shadow-consumer-assembly.json"
+  ]
+}

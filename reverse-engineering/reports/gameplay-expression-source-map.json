@@ -1,0 +1,157 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Shared expression helper integration fragment; no new script-command use credit.",
+  "primaryNativeEntryPoints": 8,
+  "mappings": [
+    {
+      "address": "0x514920",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.Evaluate",
+          "line": 91
+        }
+      ],
+      "coverage": "bounded wrapper including both parser paths and shared-global lifetime",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x514850",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.ResolveSymbol",
+          "line": 53
+        },
+        {
+          "name": "ScriptExpressions.ResolveOutputs",
+          "line": 67
+        }
+      ],
+      "coverage": "bounded symbol resolver and optional output stores; game symbol producer is an adapter",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4f88e0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.Parse",
+          "line": 103
+        }
+      ],
+      "coverage": "bounded parser context initialization and composition",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4f8420",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.NextToken",
+          "line": 108
+        }
+      ],
+      "coverage": "bounded mutable lexer; valid initialized ASCII state, identifier length <=255",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4f8790",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.Factor",
+          "line": 144
+        }
+      ],
+      "coverage": "bounded recursive factor behavior for lexer-produced states",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4f8830",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.Term",
+          "line": 160
+        }
+      ],
+      "coverage": "bounded product/quotient chain with finite stored values",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4f8880",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.Expression",
+          "line": 167
+        }
+      ],
+      "coverage": "bounded sum/difference chain with finite stored values",
+      "qualification": "Finite terminating ASCII expressions; buffers, packet identities and optional game callbacks supplied by host. No arbitrary malformed-input or nonfinite arithmetic equivalence claim.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4f2770",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "sourceSha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6",
+      "methods": [
+        {
+          "name": "ScriptExpressions.IdentifierCharacter",
+          "line": 50
+        }
+      ],
+      "coverage": "full byte-domain identifier classifier",
+      "qualification": "All 256 byte inputs verified.",
+      "comparisonStatus": "Original-PC comparisons passed; C# core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-expression-tests.json",
+        "reverse-engineering/reports/gameplay-expression-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-expression-contract.json"
+}

@@ -1,0 +1,60 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "gate": "Only original sound ID-1 and initial leader disable/comment flags reject immediately. Signed leader priority is captured before optional group substitution; selected member flags are not checked again for disable/comment.",
+    "pitch": "Pitch uses exact x87 integer-to-wide*3763/44100 then truncation, recalculated for pitch scale!=1. Pitch randomization draws a23-bit fraction, stores fraction*amount tofloat, advances RNG again for sign, stores1+amount or1-amount*.5, truncates basePitch*factor and negates when selected loop flag is set.",
+    "volume": "Clamp supplied volume above1 only; multiply signed16-bit sample volume, optional global fade and context+1ac with prescribedfloat stores, then global master and x87 integer conversion. Volume randomness stores1+fraction*amount before integer scaling. Pan splits two channels for unpositioned sounds.",
+    "range": "Either nonzero attenuation field temporarily scales global near by sampleNear*.5 and far by sampleFar/15. Spatial gate compares x87 squared differences against current far squared. Cleanup rereads current record base/fields after backend mutation and restores saved globals only if a current attenuation field remains nonzero.",
+    "dispatch": "Five final backend entrypoints receive exact raw argument vectors, original leader priority and captured rumble metadata. Unpositioned loops synthesize listener-position plus forward vector in2962b3c. Backend remains a mutable service.",
+    "helpers": "5b9d90 returns low23-bit LCG mantissa fraction.696be0 chooses active listener or9736e8 default.6951c0 returns context+1ac or1."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2684,
+    "mismatches": 0,
+    "playbackCases": 2288,
+    "authoredRecordCases": 1130,
+    "helperCases": 396,
+    "backendCalls": 1917,
+    "visitedInstructions": 426,
+    "bytesComparedPerCase": 805700,
+    "examples": [],
+    "method": "Original650f20 with actual group selection, both RNG helpers, listener/context getters, x87 integer conversion mode0 and original vector addition. Only five final audio backend entrypoints are declared mutable services. Exact raw argument packets, call-time distance globals/random state/positions and whole prepared memory SHA256 compare.",
+    "limits": [
+      "Finite float32 inputs and stored intermediates, x87 integer results within signed32-bit domain; fallback CRT conversion mode0. Malformed pointers/cyclic groups/nonfinite arithmetic and conversion overflow excluded.",
+      "Sample fields and priority capture follow native order; group leader priority survives member substitution. Backend may mutate range fields, RNG, position and current record-base pointer; cleanup rereads current near/far.",
+      "1130 authored sample records derive from the independently checked sample handler; actual audio resources/device state are not loaded.",
+      "All CPU computation runs unchanged; audio backend calls698040/6980c0/698100/698210/698260 remain external. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundPlayback.cs",
+      "bytes": 5958,
+      "sha256": "5aa597f271e170ca0a12138cc9ff3a58e13854f1deef0b99603fbced75d96099"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-playback-portable-verify.cs",
+      "bytes": 6073,
+      "sha256": "e8f64f71df63165d524d45e182a3c581b6bcf28fdc10e254471a2f9e1429ab60"
+    },
+    "entrypoint": "SoundPlaybackVerify.Main",
+    "arguments": [
+      "reports/native-sound-playback-vectors.json.gz",
+      "reports/native-sound-playback-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-playback-vectors.json.gz",
+      "bytes": 125401,
+      "sha256": "adbeb4895c780bea69bc9eed2673241da69db9e873e6b6f2e034a9cc24753df2"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Finite float32 inputs and stored intermediates, x87 integer results within signed32-bit domain; fallback CRT conversion mode0. Malformed pointers/cyclic groups/nonfinite arithmetic and conversion overflow excluded.",
+    "Sample fields and priority capture follow native order; group leader priority survives member substitution. Backend may mutate range fields, RNG, position and current record-base pointer; cleanup rereads current near/far.",
+    "1130 authored sample records derive from the independently checked sample handler; actual audio resources/device state are not loaded.",
+    "All CPU computation runs unchanged; audio backend calls698040/6980c0/698100/698210/698260 remain external. Managed replay pending."
+  ]
+}

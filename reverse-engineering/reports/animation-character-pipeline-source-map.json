@@ -1,0 +1,64 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5f4ff0"
+  ],
+  "scope": "Host composition closes two existing5f4ff0 service boundaries; retains original CharacterLayerSubmission implementation.",
+  "mappings": [
+    {
+      "address": "0x5f4ff0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterRenderPipeline.cs",
+      "sourceSha256": "235fe5f536dffb4ee9cd7b13a16df72263bddeceec8d24727e37c5af53d4ae31",
+      "methods": [
+        {
+          "name": "CharacterRenderPipeline.Submit",
+          "line": 21
+        }
+      ],
+      "coverage": "extends recovered character-layer submission with concrete visibility and shadow-queue services",
+      "qualification": "Composes CharacterLayerSubmission.Submit with CharacterVisibility.Classify and CharacterShadowQueue.Submit, retaining their original sources and finite scalar domains. Shared camera/cache/shadow/allocator effects verified by complete original chains. Secondary visibility5ea6a0 and dynamic draw5f0f00 remain explicit adapters. This is a refinement of5f4ff0, not an additional native function.",
+      "comparisonStatus": "Original native exact composition passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-pipeline-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterRenderPipeline.cs",
+      "sha256": "235fe5f536dffb4ee9cd7b13a16df72263bddeceec8d24727e37c5af53d4ae31"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-pipeline-portable-verify.cs",
+      "sha256": "80df247e5cf61e394253541a1833d12321ca3960a3e16f4e0a2d3110a093a2d5"
+    },
+    "entrypoint": "CharacterRenderPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-pipeline-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 6304,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-character-pipeline-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-pipeline-tests.json",
+    "reverse-engineering/reports/animation-layer-submission-assembly.json",
+    "reverse-engineering/reports/animation-character-visibility-assembly.json",
+    "reverse-engineering/reports/animation-shadow-queue-assembly.json"
+  ]
+}

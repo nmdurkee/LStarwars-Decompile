@@ -1,0 +1,292 @@
+{
+  "generatedAt": "2026-10-12T21:26:55.386Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "timer": {
+      "description": "Facing time is consumed immediately on the first call as well as subsequent calls. A positive timer subtracts delta, clamps at crossing to zero and completes on that same update. An initially zero/negative timer yields indefinitely. Player/Opponent/Camera min/max draws occur only if retained/parsed wait is zero and min<max. Token order and retained scratch fields are preserved; entering a new command does not automatically clear them here.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_515ca0.c",
+          "line": 8,
+          "address": "0x515ca0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_515e70.c",
+          "line": 8,
+          "address": "0x515e70"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_451f20.c",
+          "line": 8,
+          "address": "0x451f20"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4520f0.c",
+          "line": 8,
+          "address": "0x4520f0"
+        }
+      ]
+    },
+    "FacePlayer": {
+      "address": "0x515ca0",
+      "description": "Null script creature completes immediately. Otherwise first-call tokens set duration or min/max using expression evaluation; this command does not consult the movement-token callback. Nonnull system+0x138c binds its live actor-position pointer to creature+0x1e4. An absent player preserves the previous look pointer. Reference/world-object presence is not checked by this handler.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_515ca0.c",
+          "line": 8,
+          "address": "0x515ca0"
+        }
+      ]
+    },
+    "FaceCharacter": {
+      "address": "0x4520f0",
+      "description": "First-call character= substring resolves a named reference and stores the first pointer through that reference, not the reference itself. Missing callback, missing reference or null pointed object clears the cached target. Other tokens overwrite wait through the parameter/numeric helper. A nonnull creature and cached target write the target position pointer; null creature does not short-circuit parsing or timer completion.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4520f0.c",
+          "line": 8,
+          "address": "0x4520f0"
+        }
+      ]
+    },
+    "FaceOpponent": {
+      "address": "0x515e70",
+      "description": "The movement-token callback precedes command-specific first-call parsing. nearest_opponent sets the whole packet byte to1; any nonzero retained byte selects creature+0xd4 instead of the normal opponent at+0xe4. A valid selected actor with nonnull controller is required to change the look pointer. Zero faceoffset uses its position pointer. Nonzero faceoffset normalizes (opponent.z-own.z,0,own.x-opponent.x), scales it and adds opponent position into packet scratch, then points there. Missing target preserves old look pointer.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_515e70.c",
+          "line": 8,
+          "address": "0x515e70"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5b3b30.c",
+          "line": 7,
+          "address": "0x5b3b30"
+        }
+      ]
+    },
+    "FaceCamera": {
+      "address": "0x451f20",
+      "description": "Requires script creature, reference and pointed world actor. look_at_camera sets packet byte1; any nonzero retained byte requests the separate head-look helper with priority6, duration1 and zero delays. Camera getter0x5d6170 returns fixed record0x9736e8, so the look target is its position at0x973718. Ordinary duration uses numeric/parameter parsing while min/max uses full expression parsing.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_451f20.c",
+          "line": 8,
+          "address": "0x451f20"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5d6170.c",
+          "line": 7,
+          "address": "0x5d6170"
+        }
+      ]
+    },
+    "embeddedCameraAlias": {
+      "description": "The game update passes actor+0x2c8 as script-creature storage. Its look field+0x1e4 therefore aliases actor+0x4ac. FaceCamera first writes this field and then reads worldActor+0x4ac for head-looking. Thirty-six original-byte cases cover same/different reference-world actor relationships, priority gates, retained flags and first-call states. Portable EmbeddedCreatureOwners is an explicit attachment relation; it ensures the newly bound camera point is used when storage aliases.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43e530.c",
+          "line": 339,
+          "address": "0x43e530"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_451f20.c",
+          "line": 63,
+          "address": "0x451f20"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_416190.c",
+          "line": 183,
+          "address": "0x416190"
+        }
+      ]
+    },
+    "FaceLocator": {
+      "address": "0x52d220",
+      "description": "Dispatch-bound, zero authored uses in the current catalog. Requires creature/reference/world object/path/node; invalid entry completes immediately. First call copies selected to active locator. Movement callback has priority; a token containing name resolves the substring after fixed skip5 and additionally skips the following argument. Missing active target yields, while a bound locator writes its position pointer and completes. This is distinct from GoToLocator token grammar and does not move or rotate the actor.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_52d220.c",
+          "line": 8,
+          "address": "0x52d220"
+        }
+      ]
+    },
+    "SpinOnSpot": {
+      "address": "0x4521d0",
+      "description": "Dispatch-bound, zero authored uses. Requires creature/reference/world object. First-call time=, mintime=, maxtime= and rot_rate= are substrings; unknown tokens are ignored. rot_rate expression is multiplied by the exact PC binary64 constant182.04444885253906 and truncated to signed int32 before float32 storage. Any unequal min/max pair draws a duration, including reversed endpoints and overriding explicit time. Entry copies actor angle+0x27a. Each update truncates rate*delta toward zero, adds low16 bits with wrap, rotates forward(0,0,1) through the original sine table, and adds actor origin+0x80 into the packet look point. It supplies a facing goal, not the downstream physical turning loop.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4521d0.c",
+          "line": 8,
+          "address": "0x4521d0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5b3620.c",
+          "line": 7,
+          "address": "0x5b3620"
+        }
+      ],
+      "assemblyCorrection": "Ghidra omitted the fmul qword[0x7578a0] rate conversion and labeled the update conversion ROUND. Actual fldcw sets truncate-toward-zero before fistp. See gameplay-facing-assembly.json."
+    },
+    "movementToken": {
+      "address": "0x43c0c0",
+      "description": "Registered in0x43c830 through setter0x517040 at global0x9238b0. Whole case-insensitive RUN/WALK/TIPTOE map to byte0/1/2 and return1; all other tokens leave the byte unchanged and return0. 3,584 original helper cases cover all256 previous byte values and accepted/rejected spellings. Existing MovementServices implementations may call this recovered helper; previous movement fixtures with synthetic callback markers remain independently qualified.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43c0c0.c",
+          "line": 7,
+          "address": "0x43c0c0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_43c830.c",
+          "line": 30,
+          "address": "0x43c830"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_517040.c",
+          "line": 7,
+          "address": "0x517040"
+        }
+      ]
+    },
+    "lookRequest": {
+      "address": "0x58bee0",
+      "description": "Null target clears target, priority, duration and delay but preserves cached position. A nonnull target replaces an empty request, or a different request whose signed-byte priority is <= the new priority. Same target never refreshes time or draws RNG. Accepted replacement uses shared QRAND, rounds its scaled fraction to float32, interpolates delay, then stores duration+delay. Every nonnull call copies the currently retained target position, even if priority rejected the new target. World attachment and head-animation consumption remain external.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_58bee0.c",
+          "line": 7,
+          "address": "0x58bee0"
+        }
+      ]
+    },
+    "vectorMath": {
+      "description": "Normalize and RotateY execute original routines in fixtures, including zero/subnormal vectors and in-place aliasing. The portable versions preserve explicit float32 boundaries and consume the captured original32768-entry sine table. These are bounded finite-input arithmetic projections, with compiled runtime equivalence still pending.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5b3b30.c",
+          "line": 7,
+          "address": "0x5b3b30"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5b3620.c",
+          "line": 7,
+          "address": "0x5b3620"
+        }
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "FacePlayer",
+      "address": "0x515ca0",
+      "sourceUses": 210
+    },
+    {
+      "kind": "scp-action",
+      "name": "FaceOpponent",
+      "address": "0x515e70",
+      "sourceUses": 28
+    },
+    {
+      "kind": "scp-action",
+      "name": "FaceCamera",
+      "address": "0x451f20",
+      "sourceUses": 42
+    },
+    {
+      "kind": "scp-action",
+      "name": "FaceCharacter",
+      "address": "0x4520f0",
+      "sourceUses": 4
+    },
+    {
+      "kind": "scp-action",
+      "name": "FaceLocator",
+      "address": "0x52d220",
+      "sourceUses": 0
+    },
+    {
+      "kind": "scp-action",
+      "name": "SpinOnSpot",
+      "address": "0x4521d0",
+      "sourceUses": 0
+    }
+  ],
+  "verification": {
+    "checks": 10153,
+    "mismatches": 0,
+    "commandChecks": 4671,
+    "helperChecks": 5482,
+    "commandCases": 1557,
+    "authoredOccurrences": {
+      "FacePlayer": 210,
+      "FaceCamera": 42,
+      "FaceCharacter": 4,
+      "FaceOpponent": 28
+    },
+    "reports": [
+      "reverse-engineering/reports/gameplay-facing-tests.json",
+      "reverse-engineering/reports/gameplay-facing-helper-tests.json"
+    ],
+    "method": "Original PC machine code compared against an independent Python contract; separately compiled C# replay prepared."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/FacingCommands.cs",
+      "bytes": 10846,
+      "sha256": "5c86b2a56ae72bf5f1d2a66d83a201b0f9adee8ef76806e7382af03e76206521"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-facing-portable-verify.cs",
+      "bytes": 13111,
+      "sha256": "589026bbddba5ac6ad11b4ca3492f935fe488a0163060bec7aec686b38008798"
+    },
+    "entrypoint": "GameplayFacingVerify.Main",
+    "arguments": [
+      "reports/gameplay-facing-native-fixtures.json",
+      "reports/gameplay-facing-helper-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-facing-csharp-validation.json"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-facing-verify.exe",
+        "bytes": 67584,
+        "sha256": "f232d7fdb13110f1e232d6a4c548786217528465d8f7eae9b10715d365407e67"
+      },
+      "managedExecution": "Not attempted; parent instructed no generated managed executable launch."
+    },
+    "sineTable": {
+      "path": "reverse-engineering/references/native-animation-sine-table.f32",
+      "bytes": 131072,
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    },
+    "adapters": [
+      "Runtime actor/reference/world and embedded-creature attachment are explicit data inputs.",
+      "Named-character resolver and full0x514920 expression evaluator remain services.",
+      "Physical body turning, animation constraints, head-look consumption and request lifetime remain external."
+    ],
+    "hostGuards": [
+      "ASCII names and finite numeric/rate/vector inputs; signed-int conversion overflows fail explicitly.",
+      "Required camera projection, look-request record, RNG and full sine table must be supplied.",
+      "Typed objects preserve identity in place of raw pointers; attachment aliases must be declared explicitly."
+    ]
+  },
+  "remaining": [
+    "Synthetic actor/world bindings and explicit camera projection; no character turning consumer or head animation integration yet.",
+    "FaceLocator and SpinOnSpot have dispatch bindings but zero authored occurrences in this source catalog.",
+    "Finite scalar/position/rate domains; no invalid-pointer or NaN behavior claim.",
+    "Portable managed comparison remains pending.",
+    "Finite valid vector/timing data; valid pointer identities projected explicitly.",
+    "Default PC numeric control state; arbitrary x87 precision/NaN/overflow excluded.",
+    "Head-look consumer and actual character turning remain external.",
+    "Compiled portable comparison pending.",
+    "The four shipped command names account for284 occurrences. FaceLocator/SpinOnSpot are extra dispatch-observed contracts and do not increase authored coverage counts.",
+    "MovePlayer0x416190 copies actor+0x4ac to input+0x54; the downstream physical turning consumer is not reconstructed by this batch."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-10-12T22:24:56.363Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "addresses": [
+    "0x5b3c50",
+    "0x5b3cf0"
+  ],
+  "correction": "Replace binary64 squared-distance sums with existing FiniteX87 64-significand operations. Original differences and final result storetofloat32; the mixed-scale tie counterexample advances original result by one float32 ULP. Previous reports remain historical fixture passes and do not establish correctness at this newly covered boundary.",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 4104,
+    "mismatches": 0,
+    "examples": [],
+    "addresses": [
+      "0x5b3c50",
+      "0x5b3cf0"
+    ],
+    "counterexample": {
+      "input": [
+        1,
+        0.000244140625,
+        7.450580596923828e-9
+      ],
+      "squaredDistanceBits": 1065353217,
+      "oldDoubleBits": 1065353216,
+      "implication": "Range-boundary branches can change, as independently observed in447f00."
+    },
+    "method": "Original nonnull scratch distance helpers; returned x87 value capturedtofloat32 plus exact scratch bytes. Reference uses rational64-significand operations and direct integer roundingtofloat32 without intermediate binary64 conversion.",
+    "limits": [
+      "Finite inputs/differences/squared distance; nonnull nonoverlapping scratch. Null-output ABI remains excluded.",
+      "Compiled replay pending; no new native mapping count."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+      "bytes": 9950,
+      "sha256": "782e834cdd926dce18c3534e0f3b7ecfdc6b70c06a9118ffadc26af78054b5e8"
+    },
+    "supporting": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorSetSelection.cs",
+      "bytes": 4029,
+      "sha256": "302787f496cac88e8ee32206a8f48317b69429b6458485cb65763e525bea101a"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-distance-rounding-portable-verify.cs",
+      "bytes": 2978,
+      "sha256": "470e50482063190b395fe8e4a61d87a0c96191af09566df7e36dd1c244d48ca0"
+    },
+    "entrypoint": "DistanceRoundingVerify.Main",
+    "arguments": [
+      "reports/native-distance-rounding-vectors.json",
+      "reports/native-distance-rounding-csharp-validation.json"
+    ],
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending"
+  },
+  "newNativeMappings": 0
+}

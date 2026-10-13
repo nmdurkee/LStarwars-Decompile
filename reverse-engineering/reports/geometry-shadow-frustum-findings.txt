@@ -1,0 +1,17 @@
+SHADOW CAMERA FRUSTUM AND THREE-POINT PLANE
+
+{"cases": 2191, "plane": 1164, "floatWords": 37520, "frustum": 1027}
+
+PlaneFromPoints computes float32 differences(b-a,c-a), an ordered extended cross, float32 squared length and sqrt, a float32 reciprocal, normalizedXYZ, and a float32 dot before negating D. Original arithmetic order and signed zeros are retained by wide operations plus IEEE zero-sign handling.
+
+Build stores half the radian FOV asfloat32, multiplies exact10430.3779296875 and truncates to a native angle. Sine index=(angle>>1)&7fff; cosine index=((angle+4000)>>1)&7fff. Finite[-1,3] fits both original CRT modes identically.
+
+Near half-height=(sine*near)/cosine, half-width=height/aspect, farRatio=far/near each store tofloat32. Ordered near corners are(-x,-y,z),(-x,y,z),(x,y,z),(x,-y,z); farXYZ scale their stored coordinates. Raw camera matrix supplies row-vector affine transformation.
+
+Far plane uses far corners0/1/2 through actual5c7fa0. Original nearW is1; fourfarW come from an uninitialized stack temporary. Poison0/12345678/deadbeef propagates exactly to all fourfarW words, while meaningful outputs remain unchanged.
+
+Portable Build writes24cornerXYZ words,4nearW words and4farplane words, leaving farW caller storage untouched. This is a known-lane projection, not a fabricated defined value for native stack padding. Native output bytes and audit retain the real padding evidence.
+
+2191 original comparisons cover all326 authored portal first-triangles inbothwindings,512synthetic/degenerate triangles,1027camera frustums usingidentity plus six authored CU2 transforms. Controlled projection parameters remain explicit; no reconstructed camera producer claim.
+
+Original nested instructions execute without computational hooks. Source and replay compile, but managed runtime equality remains pending. Outer light-volume construction5e8950/5c82c0/5c8540 andGPU output remain separate.

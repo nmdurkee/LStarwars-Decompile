@@ -1,0 +1,27 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original path corridor containment, tapered caps/heights and hit output.",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x51b1f0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathCorridor.cs",
+      "sourceSha256": "edeae3a6631202b779fd92a81d7a4527e1aa4dae97869b1b01f281c74432e7d3",
+      "methods": [
+        {
+          "name": "PathCorridor.Contains",
+          "line": 52
+        }
+      ],
+      "coverage": "complete bounded finite corridor predicate, with dynamic attached-point refresh adapter and explicit backing constraints",
+      "qualification": "51af40 attached/dynamic point transformation remains an explicit mutable refresh service; this fragment does not implement attachment transforms. Finite inputs and intermediates, valid point/backing records and sine table, positive finite horizontal length; the center interpolation denominator must be nonzero when that branch is reached. NaN, infinity, malformed pointers and zero-length connections are outside this contract. The query vector is a stable value snapshot. Native callbacks that mutate query storage, replace the point backing array, or alias the hit with inputs are outside these fixtures. Raw edge/node fields are retained; no general navigation or collision-engine equivalence is claimed. The temporary native localY passed to rotation is uninitialized but never affects persistent X/Z results; portable code sets its unused Y to zero. No new authored script-command credit. Authored AI2 geometry cases validate this helper only; they do not reconstruct live moving-node state. Native comparisons use an independent Python arithmetic/state model against original x86. The C# replay compiled; managed execution remains pending under the compile-only instruction.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-corridor-tests.json",
+        "reverse-engineering/reports/gameplay-path-corridor-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-corridor-contract.json"
+}

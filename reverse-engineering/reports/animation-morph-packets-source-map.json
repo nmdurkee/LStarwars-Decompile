@@ -1,0 +1,52 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x5e0390",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphMeshPackets.cs",
+      "sourceSha256": "35948f2c43682e08cf28d0b93ccba9381ced6ae0c31377488bea8aee5923da76",
+      "methods": [
+        {
+          "name": "MorphMeshPackets.Build",
+          "line": 17
+        }
+      ],
+      "coverage": "complete CPU packet writer with bounded successful CPU deformation services",
+      "qualification": "Explicit EAX record/EDI output pointers, finite disjoint allocated memory and nonwrapping addresses. Composes original-proven reserve,transform,morph,alpha/metadata helpers. DeviceLock/Unlock are successful services; no GPU draw,allocation failure or malformed memory behavior. Diagnostic returned call list is a host adapter, not native return value.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-packets-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/MorphMeshPackets.cs",
+      "sha256": "35948f2c43682e08cf28d0b93ccba9381ced6ae0c31377488bea8aee5923da76"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-morph-packets-portable-verify.cs",
+      "sha256": "7de9f15f45bf47b303ce7906c59019fe127b42ddddb736747510153fe16427f4"
+    },
+    "entrypoint": "MorphMeshPacketsVerify.Main",
+    "arguments": [
+      "reports/animation-morph-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 1660,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-morph-packets-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-morph-packets-tests.json",
+    "reverse-engineering/reports/animation-morph-packets-assembly.json"
+  ]
+}

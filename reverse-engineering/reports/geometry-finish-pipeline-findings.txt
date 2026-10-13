@@ -1,0 +1,29 @@
+Populated normal scene finish integration
+
+Original0x5f0d70 now executes unchanged with all recovered CPU dependencies in
+the same invocation: dynamic material queue, clip command controls, instance
+alpha writes, material controls,24-DWORD statistics copy, sorted packet links,
+changed shader emission, payload construction and context resets. Entry hooks
+observe only. Original lock helpers execute their zero-handle branches.
+
+60 authored scenes pass original-vs-Python whole-memory and call-order checks:
+47,080,960 memory bytes,240 queued new material additions,40 clip/alpha dispatch
+pairs,120 material patch dispatches,837 shader emission calls and5,022 command
+appends. Source material flags/gates, material indexes,sort ranges,clip-item
+maps and predecessor-matrix aliases are used directly. Packet links, visibility
+bits,shader contexts and the single-owner registry are controlled fixtures.
+They are not a captured live frame. Newly created dynamic sort groups select
+the native null-owner completion branch.
+
+SceneFinishPipeline.Run composes existing recovered C# helpers through explicit
+memory adapters. It introduces no new native-entry credit:0x5f0d70 remains
+mapped by StaticFinalization.Finish. Typed views preserve duplicate command
+targets and matrix aliases; only actual control bytes and matrix alpha lanes
+are copied back. The original statistics copy precedes sorted completion.
+The root-relative zero lock field is checked rather than simulating OS locks.
+
+Core and Main SceneFinishPipelineHarness compile with ordinary AnyCPU settings.
+The2,771,827-byte gzip input fixture takes compressedInputFixture/outputFile.
+geometry-finish-pipeline-check.py prepares it or compares already saved output;
+it launches nothing. Compiled equivalence remains pending. Dynamic mesh
+submission0x5f0f00, live frame integration and GPU results remain separate.

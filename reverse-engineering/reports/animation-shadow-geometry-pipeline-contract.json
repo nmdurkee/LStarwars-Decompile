@@ -1,0 +1,133 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 1464,
+    "counts": {
+      "cases": 1464,
+      "vertices": 496600,
+      "preparations": 3632,
+      "polygonCalls": 2054,
+      "cylinderCalls": 3388,
+      "ellipseCalls": 146
+    },
+    "authoredRigs": 244,
+    "authoredPolygonGroups": 496,
+    "authoredEllipses": 42,
+    "authoredCylinders": 950,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports/animation-shadow-geometry-pipeline-native-fixtures.json.gz",
+      "sha256": "68f2b8f0dea39156f4906d18988cb0c2812fe64cbdfcbb4defd3ab8e7782bee5",
+      "bytes": 323370
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-shadow-consumer-verify.py",
+        "sha256": "8d67937d2551230046ab670107137bd33c2fc78c61e0b2f99b8ba98da480cc1c"
+      },
+      {
+        "path": "tools/animation-shadow-polygons-verify.py",
+        "sha256": "b13d34e6fe73fac99d1763835e9db4b7598c4b6fd2839e27c0a869804901f744"
+      },
+      {
+        "path": "tools/animation-shadow-ellipse-verify.py",
+        "sha256": "004b8bb189cac5b6127410676c9e3115d78e6429767d808163369e42c1bc0eff"
+      },
+      {
+        "path": "tools/animation-shadow-cylinder-verify.py",
+        "sha256": "ac32791cdc9ac2cec677a1e5f77c5d440a1726c6d0b54e05b8312bf7642f2297"
+      },
+      {
+        "path": "reports\\animation-shadow-polygons-native-fixtures.json.gz",
+        "sha256": "89e1bd6bc8cc7a7e6536b56141db9e5f1985bbf89de1d94b0a3a54159d58a6da"
+      },
+      {
+        "path": "reports\\animation-shadow-ellipse-native-fixtures.json.gz",
+        "sha256": "291dc4647823c8722d00b05188a9a3e968e38954a753f7af12bd295fa8cd76be"
+      },
+      {
+        "path": "reports\\animation-shadow-cylinder-native-fixtures.json.gz",
+        "sha256": "9aeed36841d4d41f7e23b5059bb454e8c4e58062ee806353cca5a017200daad6"
+      },
+      {
+        "path": "reports\\animation-shadow-queue-native-fixtures.json.gz",
+        "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+      },
+      {
+        "path": "reports/animation-shadow-queue-bindings.json",
+        "sha256": "cf9e4df4d402591e7159f0a7d08ccf7d956126c71b6e30c87d5e3549189a0472"
+      }
+    ],
+    "method": "Original5e4840 and all three real shape writers execute unchanged, with their actual numerical helpers. No computational or shape callbacks. Complete1MiB output, ordered shape arguments/ring snapshots, counters and untouched queue/camera/relocated source blobs match independently composed models.",
+    "limits": [
+      "All244 nonempty authored binding rigs; finite active geometry, authored quietNaN polygon normals retain original policy.",
+      "Six scenarios: vector, paired vertical, full rejection, alternating rejection, varying per-record directions, zero queue count; controlled camera/light values.",
+      "Adequate disjoint output backing. Native pair fields relocated in copied source blobs; not a complete runtime GHG loader or GPU frame.",
+      "Managed replay compiled only; no generated managed executable launched."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyShadowGeometryPipeline.cs",
+      "sha256": "36ade9c0b4e3144afc6727ae499e79a8af2c0495937347b16d31f9edc536ae71"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs",
+      "reconstructed/animation/LegacyShadowConsumer.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs",
+      "reconstructed/animation/LegacyEllipseShadows.cs",
+      "reconstructed/animation/LegacyCylinderShadows.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-geometry-pipeline-portable-verify.cs",
+      "sha256": "ba28668b3f676ba919c37d8eec1437a6f766b826e029675aa9327b6ec6103b90"
+    },
+    "entrypoint": "LegacyShadowGeometryPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-geometry-pipeline-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 1464,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-geometry-pipeline-compile.json"
+  },
+  "contracts": {
+    "composition": "LegacyShadowGeometryPipeline.Process binds all three recovered shape writers to the existing consumer. It reads the actual record matrix from queue backing, passes exact resource identities to typed resolvers, shares the live eight-vector ring with ellipse generation and synchronizes GeneratedValue before and after every call. Prior consumer.Emit is restored after completion.",
+    "bindings": "All244 nonempty authored binding rigs participate with original complete binding-list order. Coverage includes950 cylinder records,42 ellipse records and496 polygon groups. Only polygon-pair pointer fields in copied asset blobs are relocated; original files remain unchanged. Fixture source offsets, payload hashes and typed resolver maps are retained.",
+    "cases": "1464 NEW original complete caller comparisons, six per rig: vector mode, paired-sequence vertical mode, total rejection, alternating record rejection, varying directions including zero, and zero count. Existing output counters and group counts0/249/250/ffffffff/240/3 are included. The run emits496600 vertices through3388 cylinder,146 ellipse and2054 polygon invocations.",
+    "evidence": "Original5e4840, all three shape bodies and all numerical callees execute unchanged. No computational or shape callback replacements. Entire1MiB output, ordered shape arguments, ring snapshot at every invocation, final counters/ring and unchanged queue/camera/relocated source blobs match independently composed models.",
+    "portable": "Prepared managed replay checks output-image hash, counters, final ring, every resolver identity/order/ring snapshot, unchanged queue/camera and ellipse/cylinder input words. It uses dependency hashes before loading shared fixtures. Library and replay compile; execution remains pending.",
+    "limits": "Closes the legacy consumer shape-computation boundaries. Runtime resource loading remains a typed adapter; graphics-device submission and full actor-to-GPU frame are separate. Inherits finite active geometry and authored quietNaN polygon-normal policy. Existing sources and older refinements remain intact; no new address credit."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-shadow-geometry-pipeline-verify.py",
+      "sha256": "110f00378535f0ba5e14223dfdd2cebc01d0ff2ddf211b3b2ac99894657b8288"
+    },
+    {
+      "path": "tools/animation-shadow-geometry-pipeline-report.py",
+      "sha256": "d61e9487fcdcfae1078258328e08940cec9282a75f889b8e33a9e5596f2b5de3"
+    }
+  ],
+  "limits": [
+    "All244 nonempty authored binding rigs; finite active geometry, authored quietNaN polygon normals retain original policy.",
+    "Six scenarios: vector, paired vertical, full rejection, alternating rejection, varying per-record directions, zero queue count; controlled camera/light values.",
+    "Adequate disjoint output backing. Native pair fields relocated in copied source blobs; not a complete runtime GHG loader or GPU frame.",
+    "Managed replay compiled only; no generated managed executable launched.",
+    "Separate composition source; existing scheduler and writer sources unchanged."
+  ]
+}

@@ -1,0 +1,33 @@
+Dynamic material queue: original PC0x5de440
+
+The complete finite add/remove/refcount/list-compaction helper is reconstructed
+in DynamicMaterialQueue.Flush. It uses the original128-byte packet constructor,
+five setter helpers, signed material-key expression and range refresh. Original
+queue instructions and all dependencies execute unchanged during native tests;
+hooks observe calls only. Whole memory snapshots retain pointer identities,
+untouched padding, reference byte overflow and physical array compaction.
+
+261 original-vs-Python cases pass:1,067 queued adds,362 removes,291 packet
+constructors,307 range refreshes and7,399,424 compared bytes. Slot capacities
+0/1/2/3/4/8/12/16/32/64, signed sort keys, persistent retain/release sequences,
+absent/unattached materials and byte overflow/underflow are covered.
+
+One controlled batched-removal state is excluded and retained byte-for-byte:
+the original faults at0x5de612 after physical sort-record compaction makes a
+later removal node unreachable through the existing linked addresses. The
+portable model rejects the same stale/cyclic traversal. It deliberately keeps
+the original compaction writes instead of inventing pointer repairs. This
+controlled malformed sequence is not evidence of a reachable game defect.
+
+The portable capacity guard4096 and queue guard1000000 are projection limits;
+600 sort groups is the original branch bound. Valid allocated pointers, free
+slots and finite reachable lists are required. The original fixed packet
+constants are8/6/7. Root0x973dbc and its extended globals become an explicit
+RenderPacketMemory image; the native stack-local constructor cursor uses a
+private temporary image and introduces no extra visible arena writes.
+
+Core and harness compile with ordinary AnyCPU settings. The36,174-byte gzip
+fixture contains all261 passing snapshots; Main DynamicMaterialQueueHarness
+takes compressedInputFixture and outputFile. geometry-dynamic-queue-check.py
+prepares the fixture or compares saved output; it never launches a program.
+Compiled C# equivalence is still pending. No game or GPU execution is claimed.

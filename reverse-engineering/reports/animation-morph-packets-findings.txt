@@ -1,0 +1,30 @@
+PC MORPH PACKET WRITER
+
+1660 exact original comparisons; 0 mismatches.
+
+arguments
+Original EAX carries the packet record, EDI the output pointer array. Six stack arguments are command pointer,object matrix,transform cache,joint matrix array,morph weight object andsigned32metadata. Caller global allocator9736e0 and transform scratch globals become explicit parameters.
+
+reserve
+5e0390 aligns the arena cursor to16, then603530 reserves three16-byte commands plus the8d link tail. The prior record link points to this command run. All untouched command padding remains unchanged.
+
+transform
+603580 produces a64-byte transposed matrix after the reserved commands/link, writes the two scale/translation scratch matrices, and replaces the cache pointer. The material lookup and previous cache pointer are read but ignored by603580. Opcode8c points to this transform payload.
+
+deformation
+603710 receives the resolved mesh resource,prepared joint matrices andnullable morph weightobject. Its resulting palette and mesh descriptor are referenced by opcodes99 and98 respectively. CPU deformation or bypass effects are those of MorphMeshDeformation. Native memcpy and COM wrappers run unchanged in tests; only virtual successful Lock/Unlock bodies are adapter callbacks.
+
+outputs
+output[0] points to the8c command. output[1] first receives the99 command address, then is overwritten by the98 command address. output[2] remains untouched because603710 ignores its sixth argument. Tests preserve and compare a0xa5 canary in thatslot.
+
+metadata
+The writer forces alpha to1.0 through603ad0, storing transformpayload+60. It stores signed32metadata convertedtofloat32 attransformpayload+56 through603b10. These overwrite the corresponding transposed matrix lanes; they are not shader or transform inference.
+
+integration
+MorphMeshPackets.Build composes OrdinaryMeshPackets.BuildTransform,DynamicCommandSupport.Reserve/StoreAlpha/StoreSignedMetadata andMorphMeshDeformation.Build. RenderPacketMemory is the shared boundedlogical address image. Devicebuffer/deltapointers/jointmatrices remain decodedhostadapters. Returned calladdresses are diagnostic; original routine has no claimed result value.
+
+Limits
+Disjoint source,targets,arena,control,matrix andoutputstorage; no pointeroverflow.
+Finite active deformation values andsuccessful exact bufferlock. SignalingNaN transform/scratch words excluded byOrdinaryMeshPackets contract.
+CPU packet bytes andnested original calls checked. LOD/materialselection/full5f0f00 caller,shader/GPU consumption anddevice failures are separate.
+Managed source/replay compile only; original-versus-model evidence is notmanaged execution equivalence.

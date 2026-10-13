@@ -1,0 +1,89 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x62e190",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPacketDispatch.cs",
+      "sourceSha256": "b5a197714fede8411a864b004c81737a296630508506728be3b9964b9514d599",
+      "methods": [
+        {
+          "name": "SkeletalPacketDispatch.SelectLayers",
+          "line": 25
+        }
+      ],
+      "coverage": "whole default layer-index selector",
+      "qualification": "Nullmodel returns empty; scans indices0..min(signedlayercount,32)-1, retaining indices whose maskbit is set. Managed output array replaces caller-owned rawshortbuffer.",
+      "comparisonStatus": "Original native differential passed with explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-packet-pose-tests.json"
+    },
+    {
+      "address": "0x5d36d0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPacketDispatch.cs",
+      "sourceSha256": "b5a197714fede8411a864b004c81737a296630508506728be3b9964b9514d599",
+      "methods": [
+        {
+          "name": "SkeletalPacketDispatch.BindPose",
+          "line": 55
+        }
+      ],
+      "coverage": "no-override bind hierarchy branch",
+      "qualification": "Valid topological parents, finite local bind matrices,0..255joints. Native bytecounter would wrap for256joints; that case is excluded. Parent concatenation remains explicit imported scalar policy; native override transform branch is excluded.",
+      "comparisonStatus": "Original native differential passed with explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-packet-pose-tests.json"
+    },
+    {
+      "address": "0x62e290",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPacketDispatch.cs",
+      "sourceSha256": "b5a197714fede8411a864b004c81737a296630508506728be3b9964b9514d599",
+      "methods": [
+        {
+          "name": "SkeletalPacketDispatch.Select",
+          "line": 32
+        },
+        {
+          "name": "SkeletalPacketDispatch.Evaluate",
+          "line": 71
+        }
+      ],
+      "coverage": "default-layer skeletal output branch",
+      "qualification": "Originaldefaultselector0x62e190, morphoutputnull and bothPOIoutputsnull, finite valid ANI4/ANI5 Euler clips, explicit imported matrix policy. Full original routine executes in fixtures. Custom layer callbacks, morph/POI outputs and renderer62fbf0 remain outside scope.",
+      "comparisonStatus": "Original native differential passed with explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-packet-pose-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkeletalPacketDispatch.cs",
+      "sha256": "b5a197714fede8411a864b004c81737a296630508506728be3b9964b9514d599"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/SkeletalBlend.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-packet-pose-portable-verify.cs",
+      "sha256": "ad1723afd15ea255e9bb93bfb7240401501800852f659ec05650cbc2edcf8ad8"
+    },
+    "entrypoint": "SkeletalPacketDispatchVerify.Main",
+    "arguments": [
+      "reports/animation-packet-pose-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 6829,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-packet-pose-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-packet-pose-tests.json",
+    "reverse-engineering/reports/animation-packet-pose-assembly.json"
+  ]
+}

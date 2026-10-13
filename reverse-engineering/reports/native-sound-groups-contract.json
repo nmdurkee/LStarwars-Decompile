@@ -1,0 +1,68 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "creation": "650c50 allocates an8-byte group record and member entry when counters are not exactly128/512. Writes leader record+14 group ID, initial count1/cursor0, leaves padding unchanged, increments both counters.",
+    "selection": "650d10 sequential mode returns old signed16-bit cursor member, wraps increment at16bits and resets when new signed cursor>=signed count. Random mode advances original5b9e10 uint32 LCG, uses high16 bits modulo unsigned-converted signed count with zero divisor replaced by1.",
+    "access": "650cd0 scans signed start/count and compares signed member values.650d90 returns signed count;650da0 directly indexes signed start plus supplied ordinal.",
+    "parser": "652010 requires a resolvable leader then calls650c50. Later tokens perform original650dc0 lookup twice and append valid IDs while member count!=512. If group table was full and creation returned-1, later members still write the preceding group record; preserved bounded evidence includes this behavior.",
+    "composition": "Entire shipped ordered audio declarations run through actual sample and group handlers with shared evolving state:1130 sounds,1097 bank names,100 groups and287 member entries. Native tokenization/numeric text conversion and hardware playback remain external."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2075,
+    "mismatches": 0,
+    "groups": {
+      "helper": 800,
+      "stream-sample": 1130,
+      "stream-group": 100,
+      "parse": 45
+    },
+    "streamFinal": {
+      "soundCount": 1130,
+      "bankCount": 1097,
+      "nameCount": 1097,
+      "groupCount": 100,
+      "memberCount": 287
+    },
+    "visitedInstructions": 148,
+    "bytesComparedPerCase": 802820,
+    "examples": [],
+    "method": "Original650c50/650cd0/650d10/650d90/650da0/5b9e10/652010 execute. Ordered shipped sample/group declarations compose original6516a0 and650dc0 with actual hash chains, group records and shared state. Only parser token/numeric readers remain explicit services. Complete prepared memory, exact returns, reader events and repeated native lookup count compare.",
+    "limits": [
+      "Valid readable signed-index backing and acyclic lookup chains; normal count caps128groups/512members plus equality-guard boundary cases. Negative offsets are represented only where backing bytes exist.",
+      "Full-table group creation returns-1; the original group parser may then update the preceding record when later valid members arrive. Preserved and tested, not repaired.",
+      "Authored sample/group lines are tokenized externally; native file scanner, audio loading/backend and random sample playback are not recovered by this batch.",
+      "Random state is exact uint32 LCG1664525/1013904223. Selection uses high16 bits modulo unsigned-converted signed count; zero count substitutes divisor1. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundGroups.cs",
+      "bytes": 3730,
+      "sha256": "89b199ec906a931cb3868f99ed57128eb861a22baba9a94a465aae2a6ea578a8"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-groups-portable-verify.cs",
+      "bytes": 5819,
+      "sha256": "87dd50447e2e3a150c321829182dcefe7ff6695504b323bedfc967aa20b14ca3"
+    },
+    "entrypoint": "SoundGroupsVerify.Main",
+    "arguments": [
+      "reports/native-sound-groups-vectors.json.gz",
+      "reports/native-sound-groups-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-groups-vectors.json.gz",
+      "bytes": 134296,
+      "sha256": "42d82b11894fc09258fcb2ae2280ebaa5442d13d0813d6bafd91d9ac246b6f2d"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Valid readable signed-index backing and acyclic lookup chains; normal count caps128groups/512members plus equality-guard boundary cases. Negative offsets are represented only where backing bytes exist.",
+    "Full-table group creation returns-1; the original group parser may then update the preceding record when later valid members arrive. Preserved and tested, not repaired.",
+    "Authored sample/group lines are tokenized externally; native file scanner, audio loading/backend and random sample playback are not recovered by this batch.",
+    "Random state is exact uint32 LCG1664525/1013904223. Selection uses high16 bits modulo unsigned-converted signed count; zero count substitutes divisor1. Managed replay pending."
+  ]
+}

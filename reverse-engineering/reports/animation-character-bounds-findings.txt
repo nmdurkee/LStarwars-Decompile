@@ -1,0 +1,36 @@
+PC CHARACTER PREDICTED BOUNDS
+
+4366 original comparisons;0 mismatches.
+
+inputLayout
+Object size10d8. Pose-valid1079; model pointer50; character-data54 whose game-data pointer is+24; signed primary point game+10f and fallback game+10d. Enabled slot words are model+14+slot*4. Embedded POI matrices start object804 with stride40hex; translation834. Prediction seconds global925018; velocity74/78/7c; current position5c/60/64; object matrixb8.
+
+center
+Sets API flag100 in object1f8 initially. Valid enabled primary point with e24 bit8 selects its translation plus velocity*dt and scaled half(topff4+bottomff0), then adds velocity*dt again on all axes. Primary without bit8 transforms (0,-bottom,0) through object3x3 and adds object position, then one velocity*dt. Fallback selects raw POI translation only when d30 exactly1, fallback slot enabled and28c nonzero; no prediction. Otherwise clears flag100 and computes ordinary predicted position plus scaled half height.
+
+outputs
+Center80/84/88; horizontal radius1dc and vertical radius1e0 produce min178/17c/180 and max184/188/18c. Segment190 and19c use predicted XZ with high/low Y; next point1a8 uses the low Y plus another velocityY*dt. Query414 initially copies1a8. All unmentioned bytes retained.
+
+context
+Signed object7b5 selects16-byte CInfo via7fb0e4; low flags at+8 supplied by adapter. Flag80000 plus object7bc bit800 raises queryY by the separately float-stored box height and returns, before flag100000. Flag100000 raw-copies current position. Otherwise subtract d7c, then clamp to21c only when queryY<21c and21c<(b4+1ac), retaining original wide addition for the second strict test.
+
+numerics
+Finite active float inputs and finite stored results. Intermediate arithmetic uses original64-significand rounding, with float32 stores at actual spill points. Explicit exact-zero sign propagation is separate from wide magnitude; a double residual is not used to guess cancellation signs. Original nearest-even precision-control64 is the modeled x87 state.
+
+verification
+4366 original comparisons with no callback replacements: 3342 full-object updates plus512 direction and512 add probes. All101 registry rows including sentinel,592 authored models reusing hash-bound original point outputs,128 signed-zero/subnormal whole-object probes and22 strict wide clamp threshold probes. Full object bytes, external input bytes, helper order and vector output bits agree.
+
+integration
+CharacterPredictedBounds.Update closes the numeric55d2b0 service retained by RespawnState and character reinitialization adapters; those callers have not been modified or newly composed here. Source model/character hydration, skeletal point production, terrain collision and actor frame ordering remain separate modules/services.
+
+managed
+Prepared replay compares all full-object SHA256 values and vector output bits against native fixtures. It also verifies the owned-output helpers do not mutate source vectors. Core and replay compile withAnyCPU; execution remains pending.
+
+Limits
+Finite active math/stores; valid point indices-1 or0..15 and enabled16-slot model data.
+Native fallback may dereference a null model for invalid state; portable adapter requires validity when that branch reads the slot.
+Point generation and character-data loader are external; resolved model words/context flags supplied explicitly.
+No terrain collision query, game/GPU or managed executable launch.
+Native exact-in-place vector probes do not imply support for arbitrary overlapping pointer ranges.
+NaN/infinite active values, overflowing float stores, invalid enabled indices, dangling models and unusual x87 control modes remain outside the portable contract.
+No original actor/terrain loop or generated managed executable was launched.

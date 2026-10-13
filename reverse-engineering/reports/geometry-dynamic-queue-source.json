@@ -1,0 +1,133 @@
+{
+  "schema": "recovered-geometry-dynamic-queue-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicMaterialQueue.cs",
+      "bytes": 9035,
+      "sha256": "920a74f4dccc385f0156483928cf73e10a654a9beccb0f5a0dd87b4f5c4c2162"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5de440",
+      "method": "DynamicMaterialQueue.Flush",
+      "sourceFile": "reconstructed/geometry/DynamicMaterialQueue.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite valid memory; slot capacity<=4096, queue counts<=1000000, native sort capacity600; free material/packet slots available and reachable acyclic sort removal lists. Original packet constants8/6/7. Pointer overflow, malformed memory and original-faulting compaction states excluded. Managed comparison pending.",
+      "evidence": "geometry-dynamic-queue-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory",
+    "DynamicMaterialPackets.MaterialSortKey",
+    "DynamicMaterialPackets.ConstructMaterial",
+    "DynamicMaterialPackets.RefreshRanges"
+  ],
+  "adaptersWithoutNativeEntry": [
+    "Stack-local packet constructor cursor uses a private132-byte image, copying only128 native packet bytes back.",
+    "Returned function-address trace is diagnostic; native function has no equivalent list return.",
+    "Finite capacity and list guards replace out-of-domain faults; they do not claim native recovery behavior."
+  ],
+  "native": {
+    "report": "geometry-dynamic-queue-native-validation.json",
+    "passed": true,
+    "counts": {
+      "cases": 261,
+      "adds": 1067,
+      "removes": 362,
+      "constructs": 291,
+      "refreshes": 307,
+      "checkedBytes": 7399424
+    },
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "excludedUnsafeCases": [
+      {
+        "context": [
+          0,
+          "second"
+        ],
+        "modelError": "Removal node absent/cyclic",
+        "nativeError": "Invalid memory read (UC_ERR_READ_UNMAPPED) at 0x5de612 in function 0x5de440"
+      }
+    ],
+    "fixture": {
+      "file": "reports/geometry-dynamic-queue-fixtures.json.gz",
+      "bytes": 115842,
+      "sha256": "4aa172353f2981b58878e150cd75895f4f32f270667969d0ad059d7e024cb1fe"
+    }
+  },
+  "managed": {
+    "schema": "geometry-dynamic-queue-managed-check-v1",
+    "caseCount": 261,
+    "excludedOriginalUnsafe": 1,
+    "nativeEvidence": "geometry-dynamic-queue-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-material-queue.bin.gz",
+    "fixtureBytes": 36174,
+    "fixtureSHA256": "0f264142183250347f4d5dfdb28a1d8e4173a7b3abc37221ef3a1a1e4a8406e0",
+    "uncompressedBytes": 7391220,
+    "uncompressedSHA256": "1d69f5a39b076849d3682066ce06d882bb25ba87974f56ac960d765859d8d0ef",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicMaterialQueueHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "No compiled-source equivalence until saved managed output is compared."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicQueue.dll",
+    "bytes": 8192,
+    "sha256": "f07bb473130c88c71d542a726ee175c23cd2ff4a378ab926dfc39dc8e1552bb2"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicMaterialQueueHarness.cs",
+    "bytes": 1480,
+    "sha256": "df2461da55eac42d8411def72b3f50a6c10f7575a7f1d0f780cb4bfdca7c47e7"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicPackets.dll /out:Recovered.Geometry.DynamicQueue.dll DynamicMaterialQueue.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicPackets.dll /reference:Recovered.Geometry.DynamicQueue.dll /out:DynamicMaterialQueueHarness.exe harness\\DynamicMaterialQueueHarness.cs"
+  },
+  "fields": {
+    "root": "Original extended display/global region begins0x973dbc; portable root explicit.",
+    "+0x4c/+0x50/+0x54": "Slot capacity/material pointer table/control record pointer table",
+    "+0x60/+0x64": "Sort count/36-byte sort array",
+    "+0x90/+0x94": "Add count/queue",
+    "+0x98/+0x9c": "Remove count/queue",
+    "+0xa0/+0xa4": "Byte reference counts/new sort node type",
+    "+0xa8/+0xac/+0xb0": "128-byte packet pool/ignored constructor argument/packet-used bytes",
+    "+0x10c/+0x110": "Linked sort count/head"
+  },
+  "observations": [
+    "Remove queue precedes add queue; both counts are cleared after processing.",
+    "Reference counts wrap as bytes, including increment255->0 and decrement0->255.",
+    "Original material key is signed16 shifted tag plus signed16 priority.",
+    "Empty sort-group removal unlinks by address then copies later36-byte records forward physically, without repairing every moved link.",
+    "Material pointer/control/reference arrays compact; final control pointer recycled; stale final material pointer preserved.",
+    "One controlled batched-removal state faults inside unchanged original0x5de612 and fails source reachability guard; its full input is preserved under excludedUnsafe in native fixture. This does not establish an in-game reachable bug."
+  ],
+  "remainingGaps": [
+    {
+      "id": "normal-finish-integration",
+      "status": "Populated native queue and sorted shader completion are independently validated; full original finish caller integration remains separate."
+    },
+    {
+      "id": "dynamic-submission",
+      "address": "0x5f0f00",
+      "status": "Actual selected mesh/transform handoff remains a boundary."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled only; fixture prepared; no launch/bypass."
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "CPU command bytes and state verified; GPU results unclaimed."
+    }
+  ]
+}

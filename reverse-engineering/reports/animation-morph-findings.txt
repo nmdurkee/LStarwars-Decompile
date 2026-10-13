@@ -1,0 +1,34 @@
+PC MORPH WEIGHT RUNTIME
+
+29631 exact original-PC checks; 0 mismatches.
+
+carrier
+MorphClip accepts the serialized legacy-v2 BSA carrier: original pointer base at4, headerpointer8; header has floatduration,signed16layers/channels/chunks and pointerfields+12/+16/+20. Fields are range checked against copied source bytes. All2340 shipped carriers use only constant0,cubicfloat1,cubicquantized2.
+
+time
+5c9c40 clamps input<1 to1 and input>=duration tofloat32(duration-double0.01), except duration1 returnsframe1 immediately. Chunk=min((trunc(frame)-1)>>5,chunks-1), localFrame=frame-32*chunk; trunc(localFrame)-1 choosesbyte and inclusivebitmask. Duration1 early path leaves native local/subframe lanes untouched; tests compare onlydefined fields there.
+
+curve
+Bitpopcounts through the local-frame mask plus chunkKeyOffsets select the bracketing keypair. Type1 stores normalizedfraction, keyspan and scaled tangents tofloat32. Type2 reconstructs signed16values and signed8tangents using source scales, stores reciprocalspan/fraction/endvalues/tangentterms tofloat32. Both compute the same cubic polynomial with an intermediate coefficientfloat32store and finalfloat32store, preserving64-significand intermediates.
+
+single
+5d3a20 returnsnull for nullclip or zero requestedcount. A null indexmap substitutes one output forlayer0. Nonnegativeindices at/above layercount get an emptyweightrow; valid layers sample all header.channels. Constant negativezero bits are retained.
+
+blend
+5d3dc0 allows eitherclip absent. Each selected layer emits max(sourceChannels,targetChannels), usingzero for missing channels. Source/target samples are storedfloat32; inverseWeight is storedfloat64; target*weight+source*inverseWeight is evaluated with64-significand intermediates thenstoredfloat32. The result is not inferred from the skeletal blend routine, whose stores differ.
+
+packet
+62e290 reads its morph pointer table atmodel+10 independently from skeletalclips at+c. Transitionbyte31 selects sourceID32,targetID34 andframes10/14; bothvalid blend with storedfloat32(packet8/packetc), otherwise targetthen sourcefallback. NontransitionusesID36/frame0. No validclip writesnull; no default-selectedlayers leaves prior output untouched. Weights are evaluated before skeleton/POI in the originalroutine.
+
+allocation
+Original native allocators5fe5e0/5fe5a0 execute unchanged with sufficient seededpool capacity in fixtures. Their poolcursor arithmetic, headers and ownership are not portable claims: only selected numericweightrows and output-null/preserve behavior are reconstructed. Native pointerlist memset clears (count*4+15)>>4 bytes, so negative skippedindices can retainstale pointers; negativeindex input is explicitly excluded rather than assumedzero.
+
+integration
+Call MorphWeights.EvaluatePacket with the actor AnimationPacket and resolved morphslot table, preserving previoushostoutput on false. Existing SkeletalPoints.EvaluatePacket or SkeletalPacketDispatch.Evaluate separately provides pose/POI under their verified contracts. Layer-to-mesh morph target association and render deformation consumers remain unresolved by this module.
+
+Limits
+Finite valid legacy-v2 BSA types0/1/2; valid chunk masks/key ranges and positive dimensions.
+Nonnegative selected layer IDs, successful native allocation branch. Pool cursors/headers/exhaustion behavior replaced by managed owned arrays.
+No malformed metadata, NaN/Inf, overflowed outputs or arbitrary legacy type3/4/5/6 source equivalence.
+Morph target names, mesh deformation association, renderer uploads and GPU behavior remain external.
+Managed source/replay compile only; original-native-vs-Python evidence does not establish managed execution equivalence.

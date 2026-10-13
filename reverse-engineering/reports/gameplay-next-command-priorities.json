@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-12T20:19:41.242190+00:00",
+  "generatedAt": "2026-10-12T21:26:09.913746+00:00",
   "auditMode": "Refreshed from the semantic ledger after the currently established bounded command contracts. No new native implementation or execution occurs in this prioritization refresh.",
   "inputs": [
     {
       "file": "reverse-engineering/reports/gameplay-command-semantic-coverage.json",
-      "sha256": "61ed6382e4b23478a21fc7a5457b074f704214f456a3dd2c77e4b03bd876de40"
+      "sha256": "35c3702bb23c1c53a371f1f70893ea10e5e3897861f1d57c3751dacbdf5f633d"
     },
     {
       "file": "reverse-engineering/reports/gameplay-dispatch-contract.json",
@@ -12,19 +12,19 @@
     },
     {
       "file": "reverse-engineering/reports/gameplay-native-index.json",
-      "sha256": "dfc366a7461c5b6d962e63ea83d5f2628ee1fa8a111fd8ac2c7e57dc44848344"
+      "sha256": "5c79cdc336610c657eb84f1990e1c368dfd44ad676242c03797e3042627750f3"
     }
   ],
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "counts": {
     "catalogNames": 434,
-    "boundedContractNames": 27,
-    "uncontractedNames": 407,
-    "uncontractedSourceUses": 10750,
-    "nativeBoundButUncontractedNames": 369,
+    "boundedContractNames": 57,
+    "uncontractedNames": 377,
+    "uncontractedSourceUses": 7205,
+    "nativeBoundButUncontractedNames": 339,
     "missingNativeBindingNames": 38,
     "missingNativeBindingSourceUses": 227,
-    "top20SourceUses": 4311,
+    "top20SourceUses": 2843,
     "top20MissingBindings": 0,
     "sharedHandlerClusters": 3,
     "sharedHandlerSourceUses": 506,
@@ -33,209 +33,6 @@
   },
   "countPolicy": "A recovered dispatch pointer is not a semantic implementation. Only explicitly established entrypoint contracts are marked bounded-native-contract. Helper/animation/character-parser evidence is not promoted to unrelated command semantics. Source uses count this source-preserving catalog, including shipped alternate files; counts may differ from filtered literal-argument fixture datasets.",
   "top20": [
-    {
-      "kind": "scp-action",
-      "name": "GoToLocator",
-      "spellings": [
-        "GoToLocator"
-      ],
-      "sourceUses": 516,
-      "status": "dispatch-only",
-      "address": "0x536700",
-      "table": "scp-builtin-actions",
-      "tableIndex": 35,
-      "tableEntryVa": "0x801b64",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/BATTLEDROID.SCP",
-          "line": 19,
-          "state": "Update",
-          "text": "GoToLocator",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/STAP.SCP",
-          "line": 21,
-          "state": "Update",
-          "text": "GoToLocator",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/STORM.SCP",
-          "line": 21,
-          "state": "Enter",
-          "text": "GoToLocator",
-          "args": []
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_536700.c",
-      "corpusSha256": "9b3715832cf36ca684e133694c6a17360be6db52657727863328c49a546f409a",
-      "pseudocodeLines": 274,
-      "directCalleeTokens": [
-        "FUN_004f1ff0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_00514920",
-        "FUN_0051ac10",
-        "FUN_0052fcb0",
-        "FUN_00536700",
-        "FUN_005b3620",
-        "FUN_005b37d0",
-        "FUN_005b3c50",
-        "FUN_005b3cf0",
-        "FUN_005b9dd0",
-        "FUN_005b9e90",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 14,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Movement action with multiple navigation and expression callees; coordinate with locomotion/context ownership.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_536700.c",
-          "line": 148,
-          "excerpt": "fVar4 = (float10)FUN_00514920(param_3,param_2,"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 1
-    },
-    {
-      "kind": "scp-condition",
-      "name": "EitherPlayerInTriggerArea",
-      "spellings": [
-        "EitherPlayerInTriggerArea"
-      ],
-      "sourceUses": 386,
-      "status": "dispatch-only",
-      "address": "0x515070",
-      "table": "scp-builtin-conditions",
-      "tableIndex": 21,
-      "tableEntryVa": "0x801864",
-      "tableThirdWord": "0x52d160",
-      "initializerCandidateAddress": "0x52d160",
-      "initializerQualification": "Condition-table third word points to available native corpus; validate ABI and initialization contract before treating the condition as complete.",
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LEVEL.SCP",
-          "line": 23,
-          "state": "UpdateShips",
-          "text": "if EitherPlayerInTriggerArea \"AreaA\" == 1 and",
-          "args": [
-            "AreaA",
-            "1",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LEVEL.SCP",
-          "line": 27,
-          "state": "UpdateShips",
-          "text": "if EitherPlayerInTriggerArea \"AreaB\" == 1 and",
-          "args": [
-            "AreaB",
-            "1",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LEVEL.SCP",
-          "line": 31,
-          "state": "UpdateShips",
-          "text": "if EitherPlayerInTriggerArea \"AreaC\" == 1 and",
-          "args": [
-            "AreaC",
-            "1",
-            "and"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_515070.c",
-      "corpusSha256": "3f43162328cbcc0833cc979b5949b318565e80285fc7437733d60baedef06917",
-      "pseudocodeLines": 28,
-      "directCalleeTokens": [
-        "FUN_00515070"
-      ],
-      "directCalleeTokenCount": 1,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Compact trigger-mask condition, but inspect actual shift ABI and initializer 0x52d160 before fixture design.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_515070.c",
-          "line": 14,
-          "excerpt": "(((iVar1 = *(int *)(param_1 + 0x138c), iVar1 != 0 &&"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 2
-    },
-    {
-      "kind": "scp-action",
-      "name": "FollowPlayer",
-      "spellings": [
-        "FollowPlayer"
-      ],
-      "sourceUses": 325,
-      "status": "dispatch-only",
-      "address": "0x452570",
-      "table": "scp-game-actions",
-      "tableIndex": 131,
-      "tableEntryVa": "0x7f7684",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LAUNCH_TIE.SCP",
-          "line": 36,
-          "state": "Approach",
-          "text": "FollowPlayer",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LAUNCH_TIE.SCP",
-          "line": 27,
-          "state": "Approach",
-          "text": "FollowPlayer",
-          "args": []
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/AI/LAUNCH_TIE.SCP",
-          "line": 45,
-          "state": "Approach",
-          "text": "FollowPlayer",
-          "args": []
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_452570.c",
-      "corpusSha256": "2d8491bdec68f7676de746a6cc806edbebb3880ccaedbf4cb68ad8691cf0a899",
-      "pseudocodeLines": 105,
-      "directCalleeTokens": [
-        "FUN_00452570",
-        "FUN_004f8b10",
-        "FUN_005147c0",
-        "FUN_00534e10",
-        "FUN_005becc0"
-      ],
-      "directCalleeTokenCount": 5,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Controller action with shared following helper; inspect first-call versus subsequent updates.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_452570.c",
-          "line": 96,
-          "excerpt": "FUN_00534e10(*(int *)(param_3 + 0xd0),DAT_0093d810,uVar9,fVar10);"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 3
-    },
     {
       "kind": "git-action",
       "name": "ActivateEffect",
@@ -307,7 +104,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 4
+      "rankBySourceUse": 1
     },
     {
       "kind": "scp-action",
@@ -387,152 +184,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 5
-    },
-    {
-      "kind": "scp-action",
-      "name": "SetLocator",
-      "spellings": [
-        "SetLocator"
-      ],
-      "sourceUses": 222,
-      "status": "dispatch-only",
-      "address": "0x445cf0",
-      "table": "scp-game-actions",
-      "tableIndex": 6,
-      "tableEntryVa": "0x7f70a8",
-      "tableThirdWord": "0x1",
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/BATTLEDROID.SCP",
-          "line": 21,
-          "state": "Start0",
-          "text": "SetLocator \"name=Target_0\"",
-          "args": [
-            "name=Target_0"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/BATTLEDROID.SCP",
-          "line": 30,
-          "state": "Start1",
-          "text": "SetLocator \"name=Target_1\"",
-          "args": [
-            "name=Target_1"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/BATTLEDROID.SCP",
-          "line": 39,
-          "state": "Start2",
-          "text": "SetLocator \"name=Target_2\"",
-          "args": [
-            "name=Target_2"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_445cf0.c",
-      "corpusSha256": "cf6aaa382a7a14c05e2a9859fc94c5c4c1dce0c74e44da4883173ef1c7448d90",
-      "pseudocodeLines": 138,
-      "directCalleeTokens": [
-        "FUN_00445cf0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_005147c0",
-        "FUN_0051ac10",
-        "FUN_005b3c50",
-        "FUN_005b9e90",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 8,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Locator-selection action shares lookup/numeric helpers with movement commands; selection contract can precede full locomotion.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_445cf0.c",
-          "line": 109,
-          "excerpt": "local_78 = FUN_0051ac10(param_1,local_44);"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 6
-    },
-    {
-      "kind": "git-action",
-      "name": "PlaySpecial",
-      "spellings": [
-        "PlaySpecial"
-      ],
-      "sourceUses": 219,
-      "status": "dispatch-only",
-      "address": "0x465720",
-      "table": "git-actions",
-      "tableIndex": 15,
-      "tableEntryVa": "0x7f8b90",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/CLOUDCITYTRAP/CLOUDCITYTRAP_A/CLOUDCITYTRAP_A.GIT",
-          "line": 822,
-          "node": 49,
-          "text": "PlaySpecial \"name=qaz_chamber_lift\" \"BACKWARD\"",
-          "args": [
-            "name=qaz_chamber_lift",
-            "BACKWARD"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/EMPERORFIGHT_A.GIT",
-          "line": 3375,
-          "node": 183,
-          "text": "PlaySpecial \"name=qaz_elecpad_01_on\" \"BACKWARD\"",
-          "args": [
-            "name=qaz_elecpad_01_on",
-            "BACKWARD"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/EMPERORFIGHT/EMPERORFIGHT_A/EMPERORFIGHT_A.GIT",
-          "line": 3376,
-          "node": 183,
-          "text": "PlaySpecial \"name=qaz_elecpad_05_on\" \"BACKWARD\"",
-          "args": [
-            "name=qaz_elecpad_05_on",
-            "BACKWARD"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_465720.c",
-      "corpusSha256": "ff7a9ba11434a66870f0b85cfc07218aa0f64ccf35c0251e397688533cf044d9",
-      "pseudocodeLines": 68,
-      "directCalleeTokens": [
-        "FUN_00465720",
-        "FUN_004f1ff0",
-        "FUN_004f8a70",
-        "FUN_004f8b10",
-        "FUN_0055a020",
-        "FUN_005a1030",
-        "FUN_005a11f0",
-        "FUN_005a1230"
-      ],
-      "directCalleeTokenCount": 8,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Playback wrapper reuses established gizmo lookup and scene animation boundaries; coordinate with animation evidence.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_465720.c",
-          "line": 49,
-          "excerpt": "(piVar4 = (int *)FUN_0055a020(*param_1,DAT_00805ebc,iVar5), piVar4 != (int *)0x0)) &&"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 7
+      "rankBySourceUse": 2
     },
     {
       "kind": "scp-action",
@@ -597,155 +249,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 8
-    },
-    {
-      "kind": "scp-action",
-      "name": "SnapToLocator",
-      "spellings": [
-        "SnapToLocator"
-      ],
-      "sourceUses": 186,
-      "status": "dispatch-only",
-      "address": "0x446060",
-      "table": "scp-game-actions",
-      "tableIndex": 5,
-      "tableEntryVa": "0x7f709c",
-      "tableThirdWord": "0x1",
-      "initializerCandidateAddress": null,
-      "initializerQualification": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/JARJARBINKS.SCP",
-          "line": 33,
-          "state": "JustFinishedCutscene",
-          "text": "SnapToLocator \"name=JarJar_End_Cut\"",
-          "args": [
-            "name=JarJar_End_Cut"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/JARJARBINKS.SCP",
-          "line": 34,
-          "state": "JustFinishedCutscene",
-          "text": "SnapToLocator \"character=player\" \"name=Player_End_Cut\"",
-          "args": [
-            "character=player",
-            "name=Player_End_Cut"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/JARJARBINKS.SCP",
-          "line": 35,
-          "state": "JustFinishedCutscene",
-          "text": "SnapToLocator \"character=player_2\" \"name=Player2_End_Cut\"",
-          "args": [
-            "character=player_2",
-            "name=Player2_End_Cut"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_446060.c",
-      "corpusSha256": "eb10a6ccc0da1b1491a3c72c18881e0e977ff45dd290bc6da1342a8060be9764",
-      "pseudocodeLines": 170,
-      "directCalleeTokens": [
-        "FUN_00440120",
-        "FUN_00446060",
-        "FUN_004f8a70",
-        "FUN_005147c0",
-        "FUN_0051ac10",
-        "FUN_00572660",
-        "FUN_005728a0",
-        "FUN_005b9e90",
-        "FUN_006e6b90"
-      ],
-      "directCalleeTokenCount": 9,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Locator snapping shares lookup but adds placement helpers; verify transform/physics handoff, not only token decoding.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_446060.c",
-          "line": 117,
-          "excerpt": "iVar7 = FUN_0051ac10(local_4c,local_44);"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 9
-    },
-    {
-      "kind": "scp-condition",
-      "name": "ObstacleAtEnd",
-      "spellings": [
-        "ObstacleAtEnd"
-      ],
-      "sourceUses": 178,
-      "status": "dispatch-only",
-      "address": "0x440940",
-      "table": "scp-game-conditions",
-      "tableIndex": 30,
-      "tableEntryVa": "0x7f69c0",
-      "tableThirdWord": "0x4408b0",
-      "initializerCandidateAddress": "0x4408b0",
-      "initializerQualification": "Condition-table third word points to available native corpus; validate ABI and initialization contract before treating the condition as complete.",
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_B/AI/JARJARBINKS.SCP",
-          "line": 3,
-          "state": "Base",
-          "text": "if ObstacleAtEnd \"obstacle1\" == 1 goto NormalUpdate",
-          "args": [
-            "obstacle1",
-            "1",
-            "goto",
-            "NormalUpdate"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_D/AI/DARTHMAUL.SCP",
-          "line": 34,
-          "state": "Flee",
-          "text": "if ObstacleAtEnd \"obstacle8\" == 1 goto ReallyFlee",
-          "args": [
-            "obstacle8",
-            "1",
-            "goto",
-            "ReallyFlee"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_E/AI/DARTHMAUL.SCP",
-          "line": 27,
-          "state": "Base",
-          "text": "if ObstacleAtEnd \"obstacle7\" == 1 goto GotoWait_5",
-          "args": [
-            "obstacle7",
-            "1",
-            "goto",
-            "GotoWait_5"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_440940.c",
-      "corpusSha256": "9bfb2592366d98bd8ea719754de0e25c7aef66fb5bbcb23672da97bac23b7ecb",
-      "pseudocodeLines": 21,
-      "directCalleeTokens": [
-        "FUN_00440940",
-        "FUN_0055a1b0"
-      ],
-      "directCalleeTokenCount": 2,
-      "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "reviewClue": {
-        "description": "Shared endpoint handler for ObstacleAtEnd/SpecialAtEnd, but those names have distinct initializer addresses.",
-        "evidence": {
-          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_440940.c",
-          "line": 14,
-          "excerpt": "iVar1 = FUN_0055a1b0(*(undefined4 *)(PTR_DAT_00802c54 + 0x2ac8),in_stack_00000014,0,1);"
-        },
-        "status": "Inspection-based prioritization only; no new semantic contract or test was added."
-      },
-      "rankBySourceUse": 10
+      "rankBySourceUse": 3
     },
     {
       "kind": "scp-action",
@@ -807,128 +311,7 @@
         },
         "status": "Inspection-based prioritization only; no new semantic contract or test was added."
       },
-      "rankBySourceUse": 11
-    },
-    {
-      "kind": "scp-condition",
-      "name": "InTriggerArea",
-      "spellings": [
-        "InTriggerArea"
-      ],
-      "sourceUses": 165,
-      "status": "dispatch-only",
-      "address": "0x514bd0",
-      "table": "scp-builtin-conditions",
-      "tableIndex": 10,
-      "tableEntryVa": "0x8017e0",
-      "tableThirdWord": "0x52d0b0",
-      "initializerCandidateAddress": "0x52d0b0",
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/BATTLEDROID.SCP",
-          "line": 14,
-          "state": "Update",
-          "text": "if InTriggerArea \"Kill\" == 1 goto Kill",
-          "args": [
-            "Kill",
-            "1",
-            "goto",
-            "Kill"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/STAP.SCP",
-          "line": 14,
-          "state": "Update",
-          "text": "if InTriggerArea \"Kill\" == 1 goto Kill",
-          "args": [
-            "Kill",
-            "1",
-            "goto",
-            "Kill"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/WILDLIFE.SCP",
-          "line": 14,
-          "state": "Update",
-          "text": "if InTriggerArea \"Kill\" == 1 goto Kill",
-          "args": [
-            "Kill",
-            "1",
-            "goto",
-            "Kill"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_514bd0.c",
-      "corpusSha256": "1c26bd9a63ca4f2ce0cce880ef86b10daa407c3a1ec5c946c3d82ebd5dd71245",
-      "pseudocodeLines": 23,
-      "directCalleeTokens": [
-        "FUN_00514bd0"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 12
-    },
-    {
-      "kind": "scp-condition",
-      "name": "GotLocator",
-      "spellings": [
-        "GotLocator"
-      ],
-      "sourceUses": 157,
-      "status": "dispatch-only",
-      "address": "0x514ae0",
-      "table": "scp-builtin-conditions",
-      "tableIndex": 7,
-      "tableEntryVa": "0x8017bc",
-      "tableThirdWord": null,
-      "initializerCandidateAddress": null,
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_A/AI/STORM.SCP",
-          "line": 17,
-          "state": "Enter",
-          "text": "if GotLocator == 0 goto Approach",
-          "args": [
-            "0",
-            "goto",
-            "Approach"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/MISSIONNEUTRAL.SCP",
-          "line": 4,
-          "state": "Base",
-          "text": "if GotLocator == 0 goto WalkToOrigin",
-          "args": [
-            "0",
-            "goto",
-            "WalkToOrigin"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/MISSIONNEUTRAL.SCP",
-          "line": 5,
-          "state": "Base",
-          "text": "if GotLocator == 1 goto WalkToLocator",
-          "args": [
-            "1",
-            "goto",
-            "WalkToLocator"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_514ae0.c",
-      "corpusSha256": "a42298f6318d1665e8eb1df54dc4fde7bbbb115e5adc27161ae80a5de5d14161",
-      "pseudocodeLines": 15,
-      "directCalleeTokens": [
-        "FUN_00514ae0"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 13
+      "rankBySourceUse": 4
     },
     {
       "kind": "scp-action",
@@ -986,7 +369,7 @@
         "FUN_005b3800"
       ],
       "directCalleeTokenCount": 6,
-      "rankBySourceUse": 14
+      "rankBySourceUse": 5
     },
     {
       "kind": "scp-action",
@@ -1037,71 +420,7 @@
         "FUN_004f8b10"
       ],
       "directCalleeTokenCount": 3,
-      "rankBySourceUse": 15
-    },
-    {
-      "kind": "scp-condition",
-      "name": "ObstacleAtStart",
-      "spellings": [
-        "ObstacleAtStart"
-      ],
-      "sourceUses": 153,
-      "status": "dispatch-only",
-      "address": "0x440910",
-      "table": "scp-game-conditions",
-      "tableIndex": 29,
-      "tableEntryVa": "0x7f69b4",
-      "tableThirdWord": "0x4408b0",
-      "initializerCandidateAddress": "0x4408b0",
-      "initializerQualification": "Condition-table third word points to available native corpus; validate ABI and initialization contract before treating the condition as complete.",
-      "sourceExamples": [
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LEVEL.SCP",
-          "line": 11,
-          "state": "Update",
-          "text": "if ObstacleAtStart \"Launch_1\" != 1 and",
-          "args": [
-            "Launch_1",
-            "!",
-            "1",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LEVEL.SCP",
-          "line": 16,
-          "state": "Update",
-          "text": "if ObstacleAtStart \"Launch_2\" != 1 and",
-          "args": [
-            "Launch_2",
-            "!",
-            "1",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LEVEL.SCP",
-          "line": 21,
-          "state": "Update",
-          "text": "if ObstacleAtStart \"Launch_3\" != 1 and",
-          "args": [
-            "Launch_3",
-            "!",
-            "1",
-            "and"
-          ]
-        }
-      ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_440910.c",
-      "corpusSha256": "c9279d74a11035e0d326be3041ed26b1cb2c50d4794a4fa32de36bd7631339ce",
-      "pseudocodeLines": 21,
-      "directCalleeTokens": [
-        "FUN_00440910",
-        "FUN_0055a1b0"
-      ],
-      "directCalleeTokenCount": 2,
-      "rankBySourceUse": 16
+      "rankBySourceUse": 6
     },
     {
       "kind": "scp-action",
@@ -1152,7 +471,7 @@
         "FUN_004f8b10"
       ],
       "directCalleeTokenCount": 3,
-      "rankBySourceUse": 17
+      "rankBySourceUse": 7
     },
     {
       "kind": "scp-action",
@@ -1228,133 +547,738 @@
         "FUN_006e6b90"
       ],
       "directCalleeTokenCount": 13,
-      "rankBySourceUse": 18
+      "rankBySourceUse": 8
     },
     {
       "kind": "scp-condition",
-      "name": "PlayerInTriggerArea",
+      "name": "IAm",
       "spellings": [
-        "PlayerInTriggerArea"
+        "IAm"
       ],
-      "sourceUses": 141,
+      "sourceUses": 138,
       "status": "dispatch-only",
-      "address": "0x514fb0",
+      "address": "0x515750",
       "table": "scp-builtin-conditions",
-      "tableIndex": 19,
-      "tableEntryVa": "0x80184c",
-      "tableThirdWord": "0x52d160",
-      "initializerCandidateAddress": "0x52d160",
-      "initializerQualification": "Condition-table third word points to available native corpus; validate ABI and initialization contract before treating the condition as complete.",
+      "tableIndex": 46,
+      "tableEntryVa": "0x801990",
+      "tableThirdWord": "0x515730",
+      "initializerCandidateAddress": "0x515730",
       "sourceExamples": [
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
-          "line": 22,
-          "state": "Base",
-          "text": "if PlayerInTriggerArea \"Upper\" == 1 and",
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/BATTLEDROID.SCP",
+          "line": 65,
+          "state": "Update",
+          "text": "if IAm \"STAP\" == 0 and",
           "args": [
-            "Upper",
+            "STAP",
+            "0",
+            "and"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/BATTLEDROID.SCP",
+          "line": 68,
+          "state": "Update",
+          "text": "if IAm \"STAP\" == 1 and",
+          "args": [
+            "STAP",
             "1",
             "and"
           ]
         },
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
-          "line": 47,
-          "state": "GoToRightBox",
-          "text": "if PlayerInTriggerArea \"Upper\" == 0 and",
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/RETAKEPALACE/RETAKE_E/AI/PARTY.SCP",
+          "line": 5,
+          "state": "Base",
+          "text": "if IAm \"anakin_boy\" == 1 goto AnakinUpdate",
           "args": [
-            "Upper",
-            "0",
-            "and"
-          ]
-        },
-        {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
-          "line": 59,
-          "state": "OnRightBox",
-          "text": "if PlayerInTriggerArea \"Upper\" == 0 and",
-          "args": [
-            "Upper",
-            "0",
-            "and"
+            "anakin_boy",
+            "1",
+            "goto",
+            "AnakinUpdate"
           ]
         }
       ],
-      "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_514fb0.c",
-      "corpusSha256": "16f24982f27dd2c550e2ae762d2bc29f9323d8a996e3beabec0410f009a00b77",
-      "pseudocodeLines": 24,
-      "directCalleeTokens": [
-        "FUN_00514fb0"
-      ],
-      "directCalleeTokenCount": 1,
-      "rankBySourceUse": 19
+      "corpusAvailable": false,
+      "rankBySourceUse": 9
     },
     {
       "kind": "git-action",
-      "name": "PlayObstacle",
+      "name": "ActivateChar",
       "spellings": [
-        "PlayObstacle"
+        "ActivateChar"
       ],
-      "sourceUses": 139,
+      "sourceUses": 134,
       "status": "dispatch-only",
-      "address": "0x465590",
+      "address": "0x4648e0",
       "table": "git-actions",
-      "tableIndex": 14,
-      "tableEntryVa": "0x7f8b88",
+      "tableIndex": 4,
+      "tableEntryVa": "0x7f8b38",
       "tableThirdWord": null,
       "initializerCandidateAddress": null,
-      "initializerQualification": null,
       "sourceExamples": [
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_B/GUNGAN_B.GIT",
-          "line": 150,
-          "node": 8,
-          "text": "PlayObstacle \"name=obstacle4\" \"FORWARD\"",
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/NEW_TOWN.GIT",
+          "line": 3683,
+          "node": 204,
+          "text": "ActivateChar \"name=TRACTOR_1\" \"TRUE\"",
           "args": [
-            "name=obstacle4",
-            "FORWARD"
+            "name=TRACTOR_1",
+            "TRUE"
           ]
         },
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/DOOKU_B.GIT",
-          "line": 605,
-          "node": 37,
-          "text": "PlayObstacle \"name=PLATCHAIN_1\" \"FORWARD\" \"STAYOPEN\"",
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/NEW_TOWN.GIT",
+          "line": 3709,
+          "node": 206,
+          "text": "ActivateChar \"name=TRACTOR_1\" \"FALSE\"",
           "args": [
-            "name=PLATCHAIN_1",
-            "FORWARD",
-            "STAYOPEN"
+            "name=TRACTOR_1",
+            "FALSE"
           ]
         },
         {
-          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_B/DOOKU_B.GIT",
-          "line": 618,
-          "node": 38,
-          "text": "PlayObstacle \"name=PLATCHAIN_2\" \"FORWARD\" \"STAYOPEN\"",
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/NEW_TOWN.GIT",
+          "line": 3755,
+          "node": 210,
+          "text": "ActivateChar \"name=TOWNCAR_1\" \"TRUE\"",
           "args": [
-            "name=PLATCHAIN_2",
-            "FORWARD",
-            "STAYOPEN"
+            "name=TOWNCAR_1",
+            "TRUE"
           ]
         }
       ],
       "corpusAvailable": true,
-      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_465590.c",
-      "corpusSha256": "f640a023adada16a509544d5f75ac4c64b231dbcaee7fd9003167b988f562629",
-      "pseudocodeLines": 87,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4648e0.c",
+      "corpusSha256": "a83635b335fcc53c597b04075eebcde609e04400f82dc23241e25fbac2cfb0ed",
+      "pseudocodeLines": 89,
       "directCalleeTokens": [
-        "FUN_00465590",
-        "FUN_004f1ff0",
+        "FUN_00414c50",
+        "FUN_0041f6d0",
+        "FUN_004648e0",
+        "FUN_004882d0",
         "FUN_004f8a70",
         "FUN_004f8b10",
-        "FUN_00557960",
-        "FUN_005579d0",
-        "FUN_00558970",
-        "FUN_00558990",
-        "FUN_0055a020"
+        "FUN_0055a020",
+        "FUN_0055f450",
+        "FUN_00590690"
       ],
       "directCalleeTokenCount": 9,
+      "rankBySourceUse": 10
+    },
+    {
+      "kind": "scp-action",
+      "name": "GetLocatorFromSet",
+      "spellings": [
+        "GetLocatorFromSet"
+      ],
+      "sourceUses": 131,
+      "status": "dispatch-only",
+      "address": "0x453aa0",
+      "table": "scp-game-actions",
+      "tableIndex": 148,
+      "tableEntryVa": "0x7f7750",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/MISSIONNEUTRAL.SCP",
+          "line": 87,
+          "state": "LookForLocator",
+          "text": "GetLocatorFromSet \"name=Jawa\" \"max_range=14\" \"random\"",
+          "args": [
+            "name=Jawa",
+            "max_range=14",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_A/AI/MISSIONNEUTRAL.SCP",
+          "line": 58,
+          "state": "ChooseNewLocator",
+          "text": "GetLocatorFromSet \"name=MissionSpawn\" \"random\"",
+          "args": [
+            "name=MissionSpawn",
+            "random"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/NEGOTIATIONS/NEGOTIATIONS_C/AI/DROIDEKA.SCP",
+          "line": 19,
+          "state": "LocatorSetDroideka1",
+          "text": "GetLocatorFromSet \"first\"",
+          "args": [
+            "first"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_453aa0.c",
+      "corpusSha256": "c8fc38f4f4a436061abe4278c5876a1180318bc22ce492573e74455a5de2b7d4",
+      "pseudocodeLines": 223,
+      "directCalleeTokens": [
+        "FUN_00440660",
+        "FUN_00453aa0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_0051ac70",
+        "FUN_0051fef0",
+        "FUN_00520080",
+        "FUN_00520220"
+      ],
+      "directCalleeTokenCount": 9,
+      "rankBySourceUse": 11
+    },
+    {
+      "kind": "scp-action",
+      "name": "BreakFormation",
+      "spellings": [
+        "BreakFormation"
+      ],
+      "sourceUses": 124,
+      "status": "dispatch-only",
+      "address": "0x449c90",
+      "table": "scp-game-actions",
+      "tableIndex": 75,
+      "tableEntryVa": "0x7f73e4",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_A/AI/LAUNCH_TIE.SCP",
+          "line": 13,
+          "state": "Base",
+          "text": "BreakFormation",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LAUNCH_TIE.SCP",
+          "line": 12,
+          "state": "Base",
+          "text": "BreakFormation",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_C/AI/LAUNCH_TIE.SCP",
+          "line": 13,
+          "state": "Base",
+          "text": "BreakFormation",
+          "args": []
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_449c90.c",
+      "corpusSha256": "120fbec37f03be474ed0888889b35113ca407017363cbd8b2cf7652f6c6c6bac",
+      "pseudocodeLines": 18,
+      "directCalleeTokens": [
+        "FUN_00449c90"
+      ],
+      "directCalleeTokenCount": 1,
+      "rankBySourceUse": 12
+    },
+    {
+      "kind": "scp-action",
+      "name": "CreateSplineCreatures",
+      "spellings": [
+        "CreateSplineCreatures"
+      ],
+      "sourceUses": 121,
+      "status": "dispatch-only",
+      "address": "0x44a190",
+      "table": "scp-game-actions",
+      "tableIndex": 79,
+      "tableEntryVa": "0x7f7414",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+          "line": 18,
+          "state": "StartRace",
+          "text": "CreateSplineCreatures \"type=SebulbasPod\" \"spline=ai_sebulba\" \"script=ai_sebulba\" \"distance=0\" \"relative_to_player\"",
+          "args": [
+            "type=SebulbasPod",
+            "spline=ai_sebulba",
+            "script=ai_sebulba",
+            "distance=0",
+            "relative_to_player"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+          "line": 21,
+          "state": "StartRace",
+          "text": "CreateSplineCreatures \"type=MiscPod\" \"spline=ai_general\" \"script=ai_pod\" \"addtoset=1\" \"distance=2\" \"x_offset=3\" \"relative_to_player\"",
+          "args": [
+            "type=MiscPod",
+            "spline=ai_general",
+            "script=ai_pod",
+            "addtoset=1",
+            "distance=2",
+            "x_offset=3",
+            "relative_to_player"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+          "line": 22,
+          "state": "StartRace",
+          "text": "CreateSplineCreatures \"type=MiscPod2\" \"spline=ai_general\" \"script=ai_pod\" \"addtoset=2\" \"distance=2\" \"x_offset=6\" \"relative_to_player\"",
+          "args": [
+            "type=MiscPod2",
+            "spline=ai_general",
+            "script=ai_pod",
+            "addtoset=2",
+            "distance=2",
+            "x_offset=6",
+            "relative_to_player"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+      "corpusSha256": "adc16437cbdd2aef019cedd318a4887c763feab05e2ce248e625cf38bb6332e8",
+      "pseudocodeLines": 347,
+      "directCalleeTokens": [
+        "FUN_0043d890",
+        "FUN_00440120",
+        "FUN_0044a190",
+        "FUN_00488730",
+        "FUN_004dca00",
+        "FUN_004f1f10",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_0051ac10",
+        "FUN_0054fa60",
+        "FUN_00550a20",
+        "FUN_005518a0",
+        "FUN_00551c40",
+        "FUN_0055d2b0",
+        "FUN_005b35a0",
+        "FUN_005b3620",
+        "FUN_005b37d0",
+        "FUN_005b9dd0",
+        "FUN_005b9e90",
+        "FUN_005d0690",
+        "FUN_005d0740",
+        "FUN_006e6b90"
+      ],
+      "directCalleeTokenCount": 23,
+      "rankBySourceUse": 13
+    },
+    {
+      "kind": "scp-condition",
+      "name": "Random",
+      "spellings": [
+        "Random"
+      ],
+      "sourceUses": 115,
+      "status": "dispatch-only",
+      "address": "0x5149a0",
+      "table": "scp-builtin-conditions",
+      "tableIndex": 6,
+      "tableEntryVa": "0x8017b0",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/E1CHARACTERBONUS/E1CHARACTERBONUS_A/AI/SPAWNBADDIES.SCP",
+          "line": 40,
+          "state": "Spawn",
+          "text": "if Random < 0.5 goto Spawn1",
+          "args": [
+            "<",
+            "0.5",
+            "goto",
+            "Spawn1"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_C/AI/MISSIONNEUTRAL.SCP",
+          "line": 45,
+          "state": "Think",
+          "text": "if Random < 0.2 goto LookForNewDestination",
+          "args": [
+            "<",
+            "0.2",
+            "goto",
+            "LookForNewDestination"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/GUNGAN/GUNGAN_E/AI/BATTLEDROID.SCP",
+          "line": 3,
+          "state": "Base",
+          "text": "if Random < 0.2 goto Start0",
+          "args": [
+            "<",
+            "0.2",
+            "goto",
+            "Start0"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_5149a0.c",
+      "corpusSha256": "f8d8c93cb7f0f358cd4d8223cc98a0cb811e1a66ba109aa4757ced292f8f9227",
+      "pseudocodeLines": 13,
+      "directCalleeTokens": [
+        "FUN_005b9dd0"
+      ],
+      "directCalleeTokenCount": 1,
+      "rankBySourceUse": 14
+    },
+    {
+      "kind": "scp-action",
+      "name": "Activate",
+      "spellings": [
+        "Activate"
+      ],
+      "sourceUses": 112,
+      "status": "dispatch-only",
+      "address": "0x4442f0",
+      "table": "scp-game-actions",
+      "tableIndex": 0,
+      "tableEntryVa": "0x7f7060",
+      "tableThirdWord": "0x1",
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL.SCP",
+          "line": 44,
+          "state": "CreateATST",
+          "text": "Activate \"character=BuildItATST\"",
+          "args": [
+            "character=BuildItATST"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/LEVEL2.SCP",
+          "line": 32,
+          "state": "CreateATST",
+          "text": "Activate \"character=Flyer\"",
+          "args": [
+            "character=Flyer"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS2/LEGO_CITY/AI/LEVEL.SCP",
+          "line": 44,
+          "state": "CreateATST",
+          "text": "Activate \"character=BuildItATST\"",
+          "args": [
+            "character=BuildItATST"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_4442f0.c",
+      "corpusSha256": "a45108b69640905a2c88d77fcbb31a873223eae0136c12980eb86ce763bf3f90",
+      "pseudocodeLines": 87,
+      "directCalleeTokens": [
+        "FUN_0041c120",
+        "FUN_004442f0",
+        "FUN_004f8a70",
+        "FUN_005147c0",
+        "FUN_0052c790",
+        "FUN_006e6b90"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 15
+    },
+    {
+      "kind": "scp-action",
+      "name": "OverrideAnimation",
+      "spellings": [
+        "OverrideAnimation"
+      ],
+      "sourceUses": 102,
+      "status": "dispatch-only",
+      "address": "0x516980",
+      "table": "scp-builtin-actions",
+      "tableIndex": 40,
+      "tableEntryVa": "0x801ba0",
+      "tableThirdWord": "0x1",
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/FISHING.SCP",
+          "line": 9,
+          "state": "Base",
+          "text": "OverrideAnimation \"from=All\" \"to=Fishing\"",
+          "args": [
+            "from=All",
+            "to=Fishing"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS/NEW_TOWN/AI/FISHING.SCP",
+          "line": 20,
+          "state": "WaitBeforeReacting",
+          "text": "OverrideAnimation \"reset\"",
+          "args": [
+            "reset"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/LEFTDRAWER.SCP",
+          "line": 10,
+          "state": "Base",
+          "text": "OverrideAnimation \"from=idle\" \"to=powereddownidle\"",
+          "args": [
+            "from=idle",
+            "to=powereddownidle"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_516980.c",
+      "corpusSha256": "fae05a657b0486f0ce3e4035c27ac34980e96027237dd80331ad7e968d73efa0",
+      "pseudocodeLines": 70,
+      "directCalleeTokens": [
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_00514920",
+        "FUN_00516980",
+        "FUN_0062e000"
+      ],
+      "directCalleeTokenCount": 5,
+      "rankBySourceUse": 16
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetTaggable",
+      "spellings": [
+        "SetTaggable"
+      ],
+      "sourceUses": 92,
+      "status": "dispatch-only",
+      "address": "0x44f930",
+      "table": "scp-game-actions",
+      "tableIndex": 25,
+      "tableEntryVa": "0x7f718c",
+      "tableThirdWord": "0x1",
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_B/AI/LEVEL.SCP",
+          "line": 16,
+          "state": "MakeSurePlayersNotJedi",
+          "text": "SetTaggable \"character=obiwankenobi\" \"FALSE\"",
+          "args": [
+            "character=obiwankenobi",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PALACERESCUE/RESCUE_B/AI/LEVEL.SCP",
+          "line": 17,
+          "state": "MakeSurePlayersNotJedi",
+          "text": "SetTaggable \"character=quigonjinn\" \"FALSE\"",
+          "args": [
+            "character=quigonjinn",
+            "FALSE"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/DOOKU/DOOKU_C/AI/DOOKU.SCP",
+          "line": 207,
+          "state": "Stage3_StartYodaIntro",
+          "text": "SetTaggable \"character=anakin_padawan\" \"FALSE\"",
+          "args": [
+            "character=anakin_padawan",
+            "FALSE"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44f930.c",
+      "corpusSha256": "65c7f9ee752772bb441cfd20351cd5eedfa32022f32844847ae6cd87fb5379c5",
+      "pseudocodeLines": 77,
+      "directCalleeTokens": [
+        "FUN_0044f930",
+        "FUN_00487ca0",
+        "FUN_004882d0",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_0055e410"
+      ],
+      "directCalleeTokenCount": 6,
+      "rankBySourceUse": 17
+    },
+    {
+      "kind": "scp-action",
+      "name": "BigJumpToLocator",
+      "spellings": [
+        "BigJumpToLocator"
+      ],
+      "sourceUses": 87,
+      "status": "dispatch-only",
+      "address": "0x446450",
+      "table": "scp-game-actions",
+      "tableIndex": 9,
+      "tableEntryVa": "0x7f70cc",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
+          "line": 100,
+          "state": "BigJumpRight",
+          "text": "BigJumpToLocator \"name=Top_Right\" \"jump_factor=0.5\"",
+          "args": [
+            "name=Top_Right",
+            "jump_factor=0.5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
+          "line": 160,
+          "state": "BigJumpLeft",
+          "text": "BigJumpToLocator \"name=Top_Left\" \"jump_factor=0.5\"",
+          "args": [
+            "name=Top_Left",
+            "jump_factor=0.5"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/PARTY.SCP",
+          "line": 173,
+          "state": "GoToBigJumpLocator",
+          "text": "BigJumpToLocator",
+          "args": []
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_446450.c",
+      "corpusSha256": "6a060232d01d9010dc63b3ecb64f9080bb8bdbc3d40686c5a585e76c55146ab8",
+      "pseudocodeLines": 120,
+      "directCalleeTokens": [
+        "FUN_00446450",
+        "FUN_004f8a70",
+        "FUN_005147c0",
+        "FUN_0051ac10",
+        "FUN_00561e20",
+        "FUN_005b9e90",
+        "FUN_006e6b90"
+      ],
+      "directCalleeTokenCount": 7,
+      "rankBySourceUse": 18
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetRunSpeed",
+      "spellings": [
+        "SetRunSpeed"
+      ],
+      "sourceUses": 86,
+      "status": "dispatch-only",
+      "address": "0x44ac40",
+      "table": "scp-game-actions",
+      "tableIndex": 82,
+      "tableEntryVa": "0x7f7438",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LAUNCH_TIE.SCP",
+          "line": 16,
+          "state": "Base",
+          "text": "SetRunSpeed \"default\"",
+          "args": [
+            "default"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LAUNCH_TIE.SCP",
+          "line": 17,
+          "state": "Base",
+          "text": "SetRunSpeed \"multiply=0.75\"",
+          "args": [
+            "multiply=0.75"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/MAUL/MAUL_A/AI/DARTHMAUL.SCP",
+          "line": 158,
+          "state": "Exit",
+          "text": "SetRunSpeed \"2\"",
+          "args": [
+            "2"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_44ac40.c",
+      "corpusSha256": "2e77bbc85b6aa8945e8bd7950b12ee476f2b4b55d2ecf34a7308bb6599fc5e41",
+      "pseudocodeLines": 171,
+      "directCalleeTokens": [
+        "FUN_0044ac40",
+        "FUN_004f8a70",
+        "FUN_004f8b10",
+        "FUN_005147c0",
+        "FUN_0054fb40"
+      ],
+      "directCalleeTokenCount": 5,
+      "rankBySourceUse": 19
+    },
+    {
+      "kind": "scp-action",
+      "name": "FollowPath",
+      "spellings": [
+        "FollowPath"
+      ],
+      "sourceUses": 77,
+      "status": "dispatch-only",
+      "address": "0x536dc0",
+      "table": "scp-builtin-actions",
+      "tableIndex": 38,
+      "tableEntryVa": "0x801b88",
+      "tableThirdWord": null,
+      "initializerCandidateAddress": null,
+      "sourceExamples": [
+        {
+          "source": "reverse-engineering/extracted/LEVELS/ANAKINSFLIGHT/ANAKINSFLIGHT_B/AI/LAUNCH_TIE.SCP",
+          "line": 48,
+          "state": "Retreat3",
+          "text": "FollowPath",
+          "args": []
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS_GUNSHIP/BONUS_GUNSHIP_A/AI/VEHICLE.SCP",
+          "line": 26,
+          "state": "Base",
+          "text": "FollowPath \"WALK\"",
+          "args": [
+            "WALK"
+          ]
+        },
+        {
+          "source": "reverse-engineering/extracted/LEVELS/BONUS_GUNSHIP/BONUS_GUNSHIP_A/AI/VEHICLE.SCP",
+          "line": 36,
+          "state": "Update",
+          "text": "FollowPath \"WALK\"",
+          "args": [
+            "WALK"
+          ]
+        }
+      ],
+      "corpusAvailable": true,
+      "corpusPath": "reverse-engineering/decompiled/corpus-expanded/FUN_536dc0.c",
+      "corpusSha256": "05bda23f91d6e5a57e2172d4663e192c11eaf0955d4a34d324f49a60c135438c",
+      "pseudocodeLines": 87,
+      "directCalleeTokens": [
+        "FUN_004f8a70",
+        "FUN_00514920",
+        "FUN_0051c6a0",
+        "FUN_0051d130",
+        "FUN_0052fda0",
+        "FUN_00536dc0",
+        "FUN_005b9dd0"
+      ],
+      "directCalleeTokenCount": 7,
       "rankBySourceUse": 20
     }
   ],
@@ -1371,7 +1295,7 @@
             "ObstacleAtEnd"
           ],
           "sourceUses": 178,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440940",
           "table": "scp-game-conditions",
           "tableIndex": 30,
@@ -1444,7 +1368,7 @@
             "SpecialAtEnd"
           ],
           "sourceUses": 6,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440940",
           "table": "scp-game-conditions",
           "tableIndex": 32,
@@ -1513,7 +1437,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 184
+      "remainingSourceUses": 0
     },
     {
       "address": "0x44ea70",
@@ -1527,7 +1451,7 @@
             "PlayObstacle"
           ],
           "sourceUses": 105,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x44ea70",
           "table": "scp-game-actions",
           "tableIndex": 138,
@@ -1588,7 +1512,7 @@
             "PlayGizObstacle"
           ],
           "sourceUses": 57,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x44ea70",
           "table": "scp-game-actions",
           "tableIndex": 137,
@@ -1661,7 +1585,7 @@
       ],
       "directCalleeTokenCount": 7,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 162
+      "remainingSourceUses": 0
     },
     {
       "address": "0x440910",
@@ -1675,7 +1599,7 @@
             "ObstacleAtStart"
           ],
           "sourceUses": 153,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440910",
           "table": "scp-game-conditions",
           "tableIndex": 29,
@@ -1738,7 +1662,7 @@
             "SpecialAtStart"
           ],
           "sourceUses": 7,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440910",
           "table": "scp-game-conditions",
           "tableIndex": 31,
@@ -1808,14 +1732,14 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 160
+      "remainingSourceUses": 0
     }
   ],
   "sameSpellingDifferentHandlers": [
     {
       "normalizedName": "playobstacle",
       "sourceUses": 244,
-      "remainingSourceUses": 244,
+      "remainingSourceUses": 0,
       "members": [
         {
           "kind": "scp-action",
@@ -1824,7 +1748,7 @@
             "PlayObstacle"
           ],
           "sourceUses": 105,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x44ea70",
           "table": "scp-game-actions",
           "tableIndex": 138,
@@ -1885,7 +1809,7 @@
             "PlayObstacle"
           ],
           "sourceUses": 139,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x465590",
           "table": "git-actions",
           "tableIndex": 14,
@@ -2685,7 +2609,7 @@
             "EitherPlayerInTriggerArea"
           ],
           "sourceUses": 386,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x515070",
           "table": "scp-builtin-conditions",
           "tableIndex": 21,
@@ -2754,7 +2678,7 @@
             "PlayerInTriggerArea"
           ],
           "sourceUses": 141,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x514fb0",
           "table": "scp-builtin-conditions",
           "tableIndex": 19,
@@ -2813,7 +2737,7 @@
             "Player2InTriggerArea"
           ],
           "sourceUses": 1,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x515010",
           "table": "scp-builtin-conditions",
           "tableIndex": 20,
@@ -2854,7 +2778,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 528
+      "remainingSourceUses": 0
     },
     {
       "address": "0x441f90",
@@ -3018,7 +2942,7 @@
             "ObstacleAtStart"
           ],
           "sourceUses": 153,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440910",
           "table": "scp-game-conditions",
           "tableIndex": 29,
@@ -3081,7 +3005,7 @@
             "ObstacleAtEnd"
           ],
           "sourceUses": 178,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440940",
           "table": "scp-game-conditions",
           "tableIndex": 30,
@@ -3157,7 +3081,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 331
+      "remainingSourceUses": 0
     },
     {
       "address": "0x4418c0",
@@ -5222,7 +5146,7 @@
             "SpecialAtStart"
           ],
           "sourceUses": 7,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440910",
           "table": "scp-game-conditions",
           "tableIndex": 31,
@@ -5284,7 +5208,7 @@
             "SpecialAtEnd"
           ],
           "sourceUses": 6,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440940",
           "table": "scp-game-conditions",
           "tableIndex": 32,
@@ -5348,7 +5272,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 13
+      "remainingSourceUses": 0
     },
     {
       "address": "0x4409b0",
@@ -5473,7 +5397,7 @@
             "ObstacleLockedShut"
           ],
           "sourceUses": 1,
-          "status": "dispatch-only",
+          "status": "bounded-native-contract",
           "address": "0x440970",
           "table": "scp-game-conditions",
           "tableIndex": 34,
@@ -5513,7 +5437,7 @@
       ],
       "directCalleeTokenCount": 1,
       "metricQualification": "Counts are text review heuristics, not native instruction size, full call graph, implementation effort or semantic verification.",
-      "remainingSourceUses": 8
+      "remainingSourceUses": 7
     }
   ],
   "missingNativeBindings": [
@@ -9476,118 +9400,14 @@
   ],
   "suggestedBatches": [
     {
-      "label": "Trigger mask family",
-      "addresses": [
-        "0x515070",
-        "0x514fb0",
-        "0x515010"
-      ],
-      "names": 3,
-      "sourceUses": 528,
-      "members": [
-        {
-          "kind": "scp-condition",
-          "name": "EitherPlayerInTriggerArea",
-          "address": "0x515070",
-          "sourceUses": 386
-        },
-        {
-          "kind": "scp-condition",
-          "name": "PlayerInTriggerArea",
-          "address": "0x514fb0",
-          "sourceUses": 141
-        },
-        {
-          "kind": "scp-condition",
-          "name": "Player2InTriggerArea",
-          "address": "0x515010",
-          "sourceUses": 1
-        }
-      ],
-      "reason": "Observed shared initializer 0x52d160 links all three conditions. Check bit-index/shift ABI and both player slots before extending to the global trigger updater."
-    },
-    {
-      "label": "Gizmo endpoint and playback cluster",
-      "addresses": [
-        "0x440910",
-        "0x440940",
-        "0x44ea70",
-        "0x465590",
-        "0x465720"
-      ],
-      "names": 8,
-      "sourceUses": 864,
-      "members": [
-        {
-          "kind": "scp-condition",
-          "name": "ObstacleAtStart",
-          "address": "0x440910",
-          "sourceUses": 153
-        },
-        {
-          "kind": "scp-condition",
-          "name": "ObstacleAtEnd",
-          "address": "0x440940",
-          "sourceUses": 178
-        },
-        {
-          "kind": "scp-action",
-          "name": "PlayObstacle",
-          "address": "0x44ea70",
-          "sourceUses": 105
-        },
-        {
-          "kind": "scp-action",
-          "name": "PlayGizObstacle",
-          "address": "0x44ea70",
-          "sourceUses": 57
-        },
-        {
-          "kind": "scp-condition",
-          "name": "SpecialAtStart",
-          "address": "0x440910",
-          "sourceUses": 7
-        },
-        {
-          "kind": "scp-condition",
-          "name": "SpecialAtEnd",
-          "address": "0x440940",
-          "sourceUses": 6
-        },
-        {
-          "kind": "git-action",
-          "name": "PlayObstacle",
-          "address": "0x465590",
-          "sourceUses": 139
-        },
-        {
-          "kind": "git-action",
-          "name": "PlaySpecial",
-          "address": "0x465720",
-          "sourceUses": 219
-        }
-      ],
-      "reason": "Three exact shared handlers and established registry/animation callback boundaries provide reuse. Distinct obstacle versus special initializers must remain explicit."
-    },
-    {
       "label": "Locator, movement and opponent controllers",
       "addresses": [
-        "0x452570",
         "0x447f00",
-        "0x536700",
-        "0x446060",
-        "0x515ca0",
-        "0x445cf0"
+        "0x515ca0"
       ],
-      "names": 6,
-      "sourceUses": 1722,
+      "names": 2,
+      "sourceUses": 473,
       "members": [
-        {
-          "kind": "scp-action",
-          "name": "FollowPlayer",
-          "address": "0x452570",
-          "sourceUses": 325
-        },
         {
           "kind": "scp-action",
           "name": "EngageOpponent",
@@ -9596,27 +9416,9 @@
         },
         {
           "kind": "scp-action",
-          "name": "GoToLocator",
-          "address": "0x536700",
-          "sourceUses": 516
-        },
-        {
-          "kind": "scp-action",
-          "name": "SnapToLocator",
-          "address": "0x446060",
-          "sourceUses": 186
-        },
-        {
-          "kind": "scp-action",
           "name": "FacePlayer",
           "address": "0x515ca0",
           "sourceUses": 210
-        },
-        {
-          "kind": "scp-action",
-          "name": "SetLocator",
-          "address": "0x445cf0",
-          "sourceUses": 222
         }
       ],
       "reason": "High aggregate use, but deeper runtime dependencies. Split lookup/argument contracts from motion, navigation and target-lifecycle effects."
@@ -11008,6 +10810,100 @@
         }
       ],
       "reason": "CreateCreatures remains uncontracted. Kill has an externally owned bounded dispatch contract; downstream death and parts effects remain open."
+    },
+    {
+      "label": "Trigger mask family",
+      "addresses": [
+        "0x515070",
+        "0x514fb0",
+        "0x515010"
+      ],
+      "names": 3,
+      "sourceUses": 528,
+      "members": [
+        {
+          "kind": "scp-condition",
+          "name": "EitherPlayerInTriggerArea",
+          "address": "0x515070",
+          "sourceUses": 386
+        },
+        {
+          "kind": "scp-condition",
+          "name": "PlayerInTriggerArea",
+          "address": "0x514fb0",
+          "sourceUses": 141
+        },
+        {
+          "kind": "scp-condition",
+          "name": "Player2InTriggerArea",
+          "address": "0x515010",
+          "sourceUses": 1
+        }
+      ],
+      "reason": "Observed shared initializer 0x52d160 links all three conditions. Check bit-index/shift ABI and both player slots before extending to the global trigger updater."
+    },
+    {
+      "label": "Gizmo endpoint and playback cluster",
+      "addresses": [
+        "0x440910",
+        "0x440940",
+        "0x44ea70",
+        "0x465590",
+        "0x465720"
+      ],
+      "names": 8,
+      "sourceUses": 864,
+      "members": [
+        {
+          "kind": "scp-condition",
+          "name": "ObstacleAtStart",
+          "address": "0x440910",
+          "sourceUses": 153
+        },
+        {
+          "kind": "scp-condition",
+          "name": "ObstacleAtEnd",
+          "address": "0x440940",
+          "sourceUses": 178
+        },
+        {
+          "kind": "scp-action",
+          "name": "PlayObstacle",
+          "address": "0x44ea70",
+          "sourceUses": 105
+        },
+        {
+          "kind": "scp-action",
+          "name": "PlayGizObstacle",
+          "address": "0x44ea70",
+          "sourceUses": 57
+        },
+        {
+          "kind": "scp-condition",
+          "name": "SpecialAtStart",
+          "address": "0x440910",
+          "sourceUses": 7
+        },
+        {
+          "kind": "scp-condition",
+          "name": "SpecialAtEnd",
+          "address": "0x440940",
+          "sourceUses": 6
+        },
+        {
+          "kind": "git-action",
+          "name": "PlayObstacle",
+          "address": "0x465590",
+          "sourceUses": 139
+        },
+        {
+          "kind": "git-action",
+          "name": "PlaySpecial",
+          "address": "0x465720",
+          "sourceUses": 219
+        }
+      ],
+      "reason": "Three exact shared handlers and established registry/animation callback boundaries provide reuse. Distinct obstacle versus special initializers must remain explicit."
     }
   ],
   "externalCompletedContracts": [
@@ -11018,6 +10914,7 @@
       "sourceUses": 202,
       "report": "reverse-engineering/reports/native-combat-kill.json",
       "checks": 7064,
+      "reviewChecks": 0,
       "includedInGameplayCheckTotals": false,
       "scope": "Bounded command selection and dispatch only; name/reference/numeric services and downstream parts/death effects remain explicit boundaries.",
       "countQualification": null
@@ -11029,9 +10926,22 @@
       "sourceUses": 534,
       "report": "reverse-engineering/reports/native-connections-contract.json",
       "checks": 16443,
+      "reviewChecks": 0,
       "includedInGameplayCheckTotals": false,
       "scope": "Bounded command parsing, constructor, connection matching, pool/list operations, frame-mask building and controller update. World target/path bindings and generic gizmo-output callbacks are explicit adapters; no live pathfinder or locomotion.",
       "countQualification": "Eight pool-sequence aggregate checks overlap their underlying 528 pool checks; this external total is not an independent-case count and is excluded from gameplay totals."
+    },
+    {
+      "name": "Obstacle and special endpoint/playback commands",
+      "kind": "multiple-command-kinds",
+      "address": null,
+      "sourceUses": 865,
+      "report": "reverse-engineering/reports/native-obstacle-contract.json",
+      "checks": 18915,
+      "reviewChecks": 472,
+      "includedInGameplayCheckTotals": false,
+      "scope": "Finite scene fields and effective playback rates, valid acyclic member lists, explicit registry/world/reference bindings. Membership/target aliases preserve iteration order. No animation tick, rendering, collision world or reference lifetime implementation. Missing-name null dereference in LockedShut and malformed missing-operand source line are outside the contract.",
+      "countQualification": "Primary native comparisons and independent additional review comparisons are recorded separately, excluded from gameplay-owned totals to avoid double counting root-owned evidence."
     }
   ]
 }

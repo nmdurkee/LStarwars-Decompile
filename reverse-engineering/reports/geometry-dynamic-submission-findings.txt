@@ -1,0 +1,39 @@
+Normal dynamic submission composition (PC0x5f0f00)
+
+DynamicObjectSubmission.Submit connects scalar transformed bounds, center/distance,
+LOD and same-layout override selection, material visibility marking, mutable
+shader-context emission, and ordinary/prefix mesh packet production. It is a
+bounded normal branch, not the full renderer. Existing small5f0f00 mappings
+are superseded for this supported domain without adding extra address credit.
+
+All original nested functions execute unchanged in1,568 differential cases.
+480 authored special-object bounds, transforms and LOD arrays from60 scenes
+are combined with controlled relocated runtime records.1,413 actual packet
+writers execute (781ordinary,632prefix), alongside504 original scalar bounds
+calls and1,413 shader emissions.102,710,272 persistent bytes, return values,
+shadow-mask state and material/index/writer sequences compare with0 errors.
+This is native-versus-Python evidence, not an executed C# comparison.
+
+The original transient stack cache/output window is represented by32 bytes
+of explicit portable scratch and excluded from persistent-image hashing.
+Shader context, matrix scratch and bounds globals are mirrored into the
+compact image after native execution; their values are fully compared.
+No hooks replace original instructions or return values in this batch.
+
+Early invisible/null returns preserve shader and shadow-mask state. Reached
+normal completion resets shader overrides and clears the mask even when
+filtering emits no draw. Material bitset parity comes from owner+74 bit15;
+owner+74 mask0x2 is set. Instanceflag20 can request metadata1 even with no shadow
+lights; the prefix writer still preserves the original matrix metadata lane.
+
+Excluded paths: shadows, sway, active fade, material clone/cache, SIMD bounds,
+morph/skinned and billboard commands. Animation-owned MorphMeshPackets is
+separately recovered but is not yet composed here. Finite valid disjoint
+metadata/arena images, acyclic chains, terminated LOD arrays and nonnegative
+material IDs bound the portable implementation. These guards do not claim
+the original handles arbitrary malformed inputs safely.
+
+Core and Main DynamicSubmissionHarness compile with default AnyCPU. Use
+compressedInputFixture/outputFile; geometry-dynamic-submission-check.py
+prepares fixtures or compares a saved result only. Managed execution stays
+deferred. CPU packet equality does not establish GPU output or performance.

@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-10-12T22:29:45.338Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "bind": {
+      "address": "0x52d070",
+      "description": "Null operand returns null; otherwise use existing51ac10 first matching case-insensitive locator lookup. Null system returns null through that lookup. Initialized locator identity is retained separately from packet selection.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_52d070.c"
+      ]
+    },
+    "range": {
+      "address": "0x514a00",
+      "description": "Require script creature and creature+d0 reference presence, without dereferencing its world pointer. Explicit initialized locator takes precedence over packet+a4 selected locator. Missing target returns FLT_MAX. Measure Euclidean distance from controller+14c to locator+10, not actor+5c or actor+80. Referenced actor may have a null world object.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_514a00.c"
+      ]
+    },
+    "distance": {
+      "address": "0x5becc0",
+      "description": "Non-null scratch branch stores three float32 differences; products and ordered sum use x87 intermediates before float32 square storage. Existing original square-root helper then returns float32 length. Finite input/result domain, no malformed pointers or null-scratch ABI claimed.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_5becc0.c",
+        "reports/native-distance-rounding-contract.json"
+      ]
+    },
+    "random": {
+      "address": "0x5149a0",
+      "description": "Direct tail thunk to already recovered5b9dd0: advance shared uintLCG95e5d4 by state*19660d+3c6ef35f, then convert low23bits dividedby8388608 to a float in[0,1). Every condition evaluation draws again; no cached operand or independent per-condition RNG.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_5149a0.c",
+        "reconstructed/gameplay/ScriptRuntime.cs"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "LocatorRange",
+      "address": "0x514a00",
+      "initializer": "0x52d070",
+      "sourceUses": 61
+    },
+    {
+      "kind": "scp-condition",
+      "name": "Random",
+      "address": "0x5149a0",
+      "sourceUses": 115
+    }
+  ],
+  "native": {
+    "cases": 5317,
+    "mismatches": 0,
+    "fullRegionComparisons": 5317,
+    "groups": {
+      "bind": 16,
+      "range": 317,
+      "distance": 768,
+      "random": 4216
+    },
+    "authoredUses": {
+      "Random": 115,
+      "LocatorRange": 61
+    },
+    "method": "Original initializer, locator lookup, range condition, distance/sqrt and Random tail thunk execute unchanged. Exact float32 return and shared RNG state, input-region write checks; no behavior substitutions."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorRandomConditions.cs",
+      "bytes": 1026,
+      "sha256": "04c64121903d587bb3a69a66dd2089b3c3418c4085bb036a73dc98ad3dc79201"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-locator-random-conditions-portable-verify.cs",
+      "bytes": 4226,
+      "sha256": "7cff408c90df67469b52efc62104c9b6c20c349a1520829e6fc47092cb2d284f"
+    },
+    "entrypoint": "LocatorRandomConditionsVerify.Main",
+    "arguments": [
+      "reports/native-locator-random-conditions-vectors.json",
+      "reports/native-locator-random-conditions-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-locator-random-conditions-vectors.json",
+      "bytes": 689923,
+      "sha256": "9122615ce8c950d6be52e08e65fd56a255c3006d943dcbe21ca685d4a8389aca"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite coordinates and finite squared-distance result; original nonnull scratch length helper. Bound locator identity and controller position supplied.",
+    "Condition comparison/connective scheduling remains the existing separate scheduler contract. Authored rows retain their source but are not whole-script execution.",
+    "Prepared managed replay pending."
+  ]
+}

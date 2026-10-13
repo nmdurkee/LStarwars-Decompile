@@ -1,0 +1,110 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 5189,
+    "counts": {
+      "payload": 1623,
+      "writer": 1623,
+      "dispatch": 1623,
+      "camera": 128,
+      "axis": 128,
+      "resource": 64
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredCarriers": 100,
+    "authoredResources": 1367,
+    "associatedTransformCount": 1367,
+    "fixture": {
+      "path": "reports/animation-billboard-native-fixtures.json.gz",
+      "bytes": 320507,
+      "sha256": "adef129a690bfc4617518527c4c45e336f2a9a52d179a2c50c3f7350706b3982"
+    },
+    "method": "Original603610,5edbb0,5edd10,603970,5e0490 and billboard5e0530 path execute unchanged, including original CRT square root and all vector helpers. Observation hooks only; full4096-byte state, return pointers and nested calls compared.",
+    "limits": [
+      "Finite inputs and finite stored intermediates; successful bounded disjoint CPU allocation. SignalingNaNs excluded.",
+      "Resource vertex data is not consumed by these CPU helpers. No shader/GPU expansion or final rasterized image claim.",
+      "Native dispatcher billboard precedence executes despite invalid skin/morph/cache pointer sentinels, proving those inputs are not dereferenced in this branch.",
+      "Storedworld transforms are first actual model-associated special transforms when available, otherwise an explicitly labelled identity fixture. Camera fields are explicit test inputs, not claimed live runtime producers."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/BillboardMeshPackets.cs",
+      "sha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-billboard-portable-verify.cs",
+      "sha256": "600af561dc8e1f7f954483b4f1e31da4b420b578056455496a08b744cb15ca91"
+    },
+    "entrypoint": "BillboardMeshPacketsVerify.Main",
+    "arguments": [
+      "reports/animation-billboard-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 5189,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-billboard-compile.json"
+  },
+  "numericSupport": {
+    "source": {
+      "path": "reconstructed/animation/AnimationPlayback.cs",
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    "harness": {
+      "path": "tools/animation-x87-double-portable-verify.cs",
+      "sha256": "dcc02e933874d11e1a7c18166eb84ab9a3bdbbc9a9dffe82ab797f8ea5cc8964"
+    },
+    "entrypoint": "PlaybackWideDoubleVerify.Main",
+    "arguments": [
+      "reports/animation-x87-double-tests.json",
+      "<result.json>"
+    ],
+    "preparedComparisons": 1621,
+    "status": "Compiled only; no managed execution.",
+    "nativeEvidence": "reports/animation-x87-double-tests.json",
+    "qualification": "Isolated original FSTP qword instruction with explicit finite80-bit inputs; not an extra recovered game function. Shared exact-zero representation is positive; nonzero underflow retains sign."
+  },
+  "contracts": {
+    "payload": "603610 aligns allocator to4, copies64 world matrix bytes, stores one float scale, then writes64 facing-matrix bytes; cursor advances132. Material input is unused. Scale is sqrt of the average squared length of the three basis rows. Each squared norm storesfloat32; first two norms add through an explicit qword spill, then the third is added and multiplied by the original double0.3333333432674408 before a float32 store and original square root.",
+    "freeFacing": "Resource first dword0 selects5edbb0 with zero origin. It transposes the camera view3x3 while negating its first and third columns, writes zero perspective/translation and bottom-right1. The standalone helper accepts an explicit origin and retains its bits.",
+    "axisFacing": "Any nonzero resource first dword selects5edd10 with axis=world row1 XYZ. Row0=normalize(cameraForward cross axis); row1 is the supplied axis unchanged; row2=row0 cross axis. Only row0 is normalized. Degenerate cross products follow the original zero reciprocal behavior, including signedzero multiplication. Translation/perspective zeros and bottom-right1 are written.",
+    "packets": "5e0490 reserves two16-byte commands plus8d link. Opcode90 references the132-byte payload; opcode8f references the original resource, because603970 returns it unchanged and ignores allocator/world. Output slots0/1 hold those command addresses; slot2 stays untouched. Alpha clamps through603ad0 into payload+60, overwriting world matrix bottom-right lane; the scale and facing matrix remain separate.",
+    "dispatcher": "The original5e0530 billboard branch was exercised with deliberately invalid cache/skin/morph pointer sentinels. None are dereferenced. Billboard opcode8f precedes the skin test. This module supplies the missing writer independently; the existing SkinMeshPacketDispatch source remains frozen and still excludes8f until a separate integration step.",
+    "authored": "All1,367 billboard descriptors in100 shipped GHG/GSC carriers were tested with their authored flags and first actual model-associated special matrix, or an explicitly labelled identity fallback. Resource vertex payloads are preserved in the geometry exports, but these CPU helpers only use the descriptor first dword and pass its address to the packet.",
+    "numericSupport": "PlaybackWide.StoreDouble adds explicit64-significand-to-double rounding without changing prior APIs.1,621 original FSTP qword instruction probes cover rounding boundaries, positive/negative values, subnormal/underflow and overflow storage. Inputs are explicit finite80-bit states from the wide model; this proves the store projection, not complete original generation of those arithmetic operands."
+  },
+  "verification": {
+    "method": "Original603610,5edbb0,5edd10,603970,5e0490 and billboard5e0530 path execute unchanged, including original CRT square root and all vector helpers. Observation hooks only; full4096-byte state, return pointers and nested calls compared.",
+    "tools": [
+      {
+        "path": "tools/animation-billboard-verify.py",
+        "sha256": "70e7233d3e49e0790d7730b011f5d0b645120a410b83572065bf4215025fbb28"
+      },
+      {
+        "path": "tools/animation-billboard-report.py",
+        "sha256": "cb2d03757f6b0228671f9e2cac02c465604d72599d741d05ccea84a31e417cd0"
+      },
+      {
+        "path": "tools/animation-x87-double-verify.py",
+        "sha256": "4f0ce35ddb9d7ee060d7e52d143a7134e9cfa9398816e42ecc069e0f11e26eb7"
+      }
+    ],
+    "managedComparison": "Prepared replay compares complete CPU memory and returned payload/resource pointers. Native-only nested call trace is independently checked. Dispatch fixtures replay the already-proven billboard selection directly through Build, not through the still-excluding SkinMeshPacketDispatch."
+  },
+  "limits": [
+    "Finite inputs and finite stored intermediates; successful bounded disjoint CPU allocation. SignalingNaNs excluded.",
+    "Resource vertex data is not consumed by these CPU helpers. No shader/GPU expansion or final rasterized image claim.",
+    "Native dispatcher billboard precedence executes despite invalid skin/morph/cache pointer sentinels, proving those inputs are not dereferenced in this branch.",
+    "Storedworld transforms are first actual model-associated special transforms when available, otherwise an explicitly labelled identity fixture. Camera fields are explicit test inputs, not claimed live runtime producers.",
+    "All managed replay remains compile-only; no generated managed executable launched."
+  ]
+}

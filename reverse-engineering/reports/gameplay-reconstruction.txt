@@ -50,6 +50,11 @@ reverse-engineering/reconstructed/gameplay/StateControl.cs SHA256 5d3989cf50ad8a
 reverse-engineering/reconstructed/gameplay/Visibility.cs SHA256 cfecf08e9182cd9908f94471540e00acf82de28dd61d23f7ed79dfed834eb222
 reverse-engineering/reconstructed/gameplay/CompactConditions.cs SHA256 cea561b618bdabcbfad03fa1ae18e75c1c696d278085f6b203e8d3dd2215f23c
 reverse-engineering/reconstructed/gameplay/CreateCreatures.cs SHA256 f7c5ebde9971cf65d8511dacceaf5336c743aad10c55837aeb3eeb36559432b8
+reverse-engineering/reconstructed/gameplay/LocatorCommands.cs SHA256 957318d9161c4f1c4c69af0836f49249000fe95ddbb6c123154c6b80e242cb38
+reverse-engineering/reconstructed/gameplay/MovementCommands.cs SHA256 a0a87462d1c142371ee1de25ed3e4a698f877d697f8694881e04a960fd7e222a
+reverse-engineering/reconstructed/gameplay/TriggerConditions.cs SHA256 b83bdd81f91c00bc316b1584dd5aa9f43bb560ea5f8c58538ab55fa018ec7295
+reverse-engineering/reconstructed/gameplay/SceneAnimationControls.cs SHA256 51f0d97f75bb86fe42080362aeb92bd4dfaf3d3c652eb48e9e2e27ef5d680252
+reverse-engineering/reconstructed/gameplay/ObstacleCommands.cs SHA256 629187b53e072d886f523e5749804bdd6418a07b3bc13d85668110623c6c5e8b
 
 Adapters
 GIT text parsing, source Collapse flattening and name binding must construct the runtime graph.
@@ -74,6 +79,12 @@ Locator selection/visibility/player range tests and set refresh are supplied ser
 Formation/character allocation and state/crate/zip/ride/balloon effects are explicit services. Successful ZipUp is wholly delegated and not exercised.
 Shared integer and float RNG ownership remains host-supplied; native state and draw order are compared in fixtures.
 RotateOffset supplies the angle LUT math. Original PC rotation and addition execute on cardinal fixture inputs; arbitrary angle precision and host LUT generation are not claimed.
+Runtime actor/reference identity, current locator tables, player globals and packet attachment are supplied by the host.
+Named-object binding, terrain refresh/check and source/world lifetime are explicit callbacks.
+Movement-token callback0x9238b0, complete expression evaluator0x514920, angle rotation table, completion callback0x9238b8 and formation expansion remain services.
+Fixtures consuming walk/run/tiptoe use arbitrary markers to verify callback precedence; their actual runtime mode values are not inferred.
+Trigger system/world projections, AI2 loading and occupancy-producer scheduling remain external.
+0x55a020 named registry lookup; all scene-control, list, obstacle helper, output dispatch and condition bodies execute original bytes.
 
 Intentional host safety bounds
 Save/restore rejects more than 512 nodes; native code lacks that bound check.
@@ -94,6 +105,12 @@ Bound script string to63 non-NUL ASCII characters; native copies into a64-byte s
 Reject a33rd resolved zip and invalid signed-byte locator-set representation rather than corrupting memory.
 Use a configurable operation budget for malformed or excessively large groups.
 Reject negative type-RNG indices and tokens whose fixed skip exceeds their string terminator.
+Shipped ASCII names and finite numeric operands only; name buffers over63 characters and unbound percent-format directives fail explicitly.
+Nearest-prefix scan has a4096-record host budget. Missing malformed route arrays and invalid required actor/controller references fail explicitly.
+The portable runtime uses resolved typed objects in place of raw PC pointer aliasing; six opaque path/orientation words remain preserved as raw uint32 values.
+Name adapters accept non-NUL Latin1 strings only; invalid backing arrays fail explicitly.
+Math scope requires finite source fields, original finite sine-table values, and finite intermediatefloat32positions. No malformed raw-pointer or NaN semantics are claimed.
+World/system/object references and signedareaindices are supplied as explicit projections; no allocation/lifetime or frame-loop equivalence.
 
 Remaining
 Saved-state tests use at most the 512 nodes representable by each 16-word bit plane; larger counts are not treated as safe native input.
@@ -124,3 +141,33 @@ Actor comparisons cover documented fields, not every byte or downstream effects.
 Synthetic locator bindings are not the actual level world or source reachability.
 Native negative-count loops, stack overflow inputs, nonfinite numeric operands and full hub loader behavior are outside the bounded core.
 Compiled C# differential execution remains pending under the Windows execution denial.
+Synthetic locator and actor tables; not runtime source attachment or actual level reachability.
+No format directives, overlong native name buffers, invalid actor packet pointers, or nonfinite/overflow numeric operands.
+Snap terrain refresh/check internals are recorded callback boundaries, not reconstructed by this suite.
+Condition cases establish pointer presence only, not locator validity or source condition-chain execution.
+Compiled C# execution remains pending.
+Synthetic valid path/node/actor relationships; no actual world pathfinder, motion integration or terrain stepping.
+Formation record is null in this suite; native formation-mode delegation is a separate boundary.
+Movement token callback consumes walk/run/tiptoe using fixture markers, not claimed runtime speed-mode semantics.
+Expression evaluation executes original PC code in fixtures; portable general expression evaluation remains a supplied service.
+Finite scalar fixtures; arbitrary x87 rounding, NaN/overflow and bad pointer domains are excluded.
+Managed compiled comparison remains pending.
+Formation owner dispatch and expansion are observed adapters, not implemented formation algorithms.
+Chains move creature position explicitly to the selected target; no pathfinder or physics step is claimed.
+Finite float domains and valid pointers; compiled managed comparison remains pending.
+The helper/retained-chain suite is native-only evidence; the two compiled replay harnesses cover the binding and movement command suites.
+No locator-specific character motion, actual AI pathfinder, turning, collision integration, source-loader binding or complete locomotion loop is supplied.
+Exact x87 equivalence beyond the finite authored/targeted operand domains remains unclaimed.
+Finite positions/extents/timers and a complete original sine table. NaNs, infinities, invalid raw pointers, concurrent mutation, and malformed unterminated names excluded.
+TriggerSystem/TriggerArea/TriggerObject are explicit runtime projections, not the full loader or object lifetime implementation.
+Producer scheduling in0x43b940 and global world/object-array population remain external. Eligibility-skipped objects preserve stale trigger masks.
+Authored AI2 upload maps recovered file fields into runtime fields; native AI2 loading is not executed here. Source angle raw16bits is used, not BrickBench degree conversion.
+Same-directory AI2 name resolution is source evidence only; shared scripts without a unique local carrier retain an explicit synthetic binding scope.
+Managed core/harness compile separately; no generated managed executable is run.
+Finite scene fields and effective playback rates, valid acyclic member lists, explicit registry/world/reference bindings. Membership/target aliases preserve iteration order. No animation tick, rendering, collision world or reference lifetime implementation. Missing-name null dereference in LockedShut and malformed missing-operand source line are outside the contract.
+SCP retains a previously found target when a later named lookup fails; GIT performs only one lookup for its last name token.
+SCP stayshut forces reverse playback; GIT stayshut changes the stay flag without overriding the final FORWARD/BACKWARD choice.
+AtStart is true for a nonnull gizmo whose output callback is unavailable (outputzero), while a null gizmo yieldsfalse.
+Snap changes member frames without refreshing group state or list membership. Special-output reads may refresh the group state.
+Native x87 seek tests include signed zero, subnormal and extreme finite values; exact float input bits are retained in replay fixtures.
+Compilation does not establish C# runtime equivalence. Original-source comments/names and complete game behavior are not recovered by these contracts.

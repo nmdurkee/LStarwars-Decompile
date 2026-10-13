@@ -1,0 +1,31 @@
+1573 original-PC comparisons, zero mismatches. One new caller mapping. Portable replay compiles only.
+
+purpose
+51d7b0 produces the next steering target at packet104/108/10c and accepted radius110, updating path/connection/direction/cache/state fields. It does not commit actor position or velocity. The portable source includes every caller branch and calls recovered targeting, route distance/cache, binding, next-connection, corridor, corner and angle helpers.
+
+target
+The caller saves eleven target words before EnsureTarget. A negative status stops at packetD0 reference position. Arrival requires permitted attachment state, nonzero target radius, vertical difference strictly between -0.5 and0.5, and squared distance strictly below the unrounded x87 radius product. Existing targets stop at the current reference. New targets with targetFlags4 restore the eleven saved words, call neighboring-path transition, and ensure the target again. Later radius approach intentionally retains the earlier distance/vector across that restore.
+
+routing
+For distinct current/target connections, containment may bind immediately. Otherwise four ordered endpoint cost candidates combine clamped current progress, target progress and recovered route distances. Strict comparison preserves earlier ties. Directional40000000 bits suppress candidates; route masks and node membership/boundary bits can make target endpoint costs maximal. Flag100000 drives round-robin route retry, with a32-bit visited mask preventing repeated selected routes. Successful selection stores the destination point and follows containing next connections using the actual binding and routing helpers.
+
+specialAndBlocked
+The optional registered special callback observes flag20000000 when the local current connection differs from target. Nonzero callback return sets40080000 and exits. Current or future directionalD8000000 flags stop and publish the raw requirement in packet1F8; unsupported other future requirements set600000 and fall back to the opposite endpoint. A fallback endpoint within squared distance1 is replaced by the reference position.
+
+corridorAndCorners
+A direct target or next endpoint is used when contained by the current corridor. Otherwise51c430 caches two offset corner points. The caller compares signed16-bit differences between recovered horizontal headings, preferring corner40 for a negative difference and then corner20 for a positive difference. Selected detours set80000. The original query identity is passed through only to the special callback; corridor tests use the caller packet predicted-position words or local points.
+
+precision
+Scalar sums/products preserve x87 intermediate precision with float32 stores at the original boundaries. In particular arrival compares the stored squared distance with an unrounded radius product; seven regression cases exercise values where rounding that product first changes the decision. The PathCorners overload receives the separate reference body radius instead of assuming packet storage and actor/reference share one image.
+
+validation
+1,573 original-PC caller records match an independent model.1,212 of1,213 instructions execute; the sole skipped instruction is alignment LEA ESP,[ESP] at51e069. This includes64 cases using32 authored three-edge/four-node geometry chains, both initial directions, with source offsets/hashes retained. These chains preserve original positions, radii, height bounds, edge headings/lengths/distances and flags but use synthetic four-node route tables and caller state. The other1,509 cases cover target restoration, route retries, callbacks, all edge orientations, blocked flags, corner failures, absent targets, fallback and seeded finite states.
+
+Remaining
+Finite loaded records; valid shared point/edge identities and routing topology, normal direction indices0/1, terminating routes, positive connection lengths and corner arcsine inputs within[-1,1]. Overflow, NaN/infinity, malformed pointers and zero-length normalization are excluded.
+Static or already-refreshed point backing only: fixture refresh bitsets are all set. Dynamic attachment/query aliasing and geometry mutation during corridor calls are not established by this caller batch.
+Neighboring-path transition51d5e0 is an explicit world adapter. The fixture records its calls and uses a no-op result; actual world rebind chains remain separate despite the helper having an existing independent contract.
+Registered9238fc special callback is an explicit adapter here. Selected callback flag changes and early-return behavior are verified; the three recovered PathActionDispatch variants and their deeper actions are not composed in this suite.
+SteeringPath typed views must share point records, connection topology and loaded identities. RouteInput/RouteOutput are source projection glue that synchronizes the existing route-cache representation, not additional recovered native entries.
+Authored geometry uses synthetic route tables and actor state and does not claim a live level traversal. No new authored command-use credit. Child helper call counts are informational and are not added to top-level comparisons.
+Portable core and replay harness compile, but managed execution was not attempted. Original-PC independent-model evidence is distinct from pending managed comparison.

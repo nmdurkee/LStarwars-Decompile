@@ -1,0 +1,208 @@
+{
+  "schema": "recovered-geometry-shadow-extraction-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowExtraction.cs",
+      "bytes": 3986,
+      "sha256": "470688e4264604df135f6fa9847dcabfe5662e7c00e608fda9a7ea11ab4e4627"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5e8950",
+      "method": "ShadowExtraction.Extract",
+      "sourceFile": "reconstructed/geometry/ShadowExtraction.cs",
+      "coverage": "bounded-complete-chain-known-lane-projection",
+      "limitations": "Cutcount0..3 in fixed two-volume context, finite camera helper domains, disjoint logical ranges. FourfarW+positionW pervolume are proven undefined padding and preserved. Original/model equality passes; managed execution pending.",
+      "evidence": "geometry-shadow-extraction-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/ShadowCamera.cs",
+      "bytes": 3458,
+      "sha256": "8aab76d351ec56f76e72289dba314f2d1519692b9c422cb42e4a9cf1675587c5"
+    },
+    {
+      "file": "reconstructed/geometry/ShadowFrustum.cs",
+      "bytes": 4908,
+      "sha256": "9cb3418f104e2c18977f5e8b84abb3b21e69632e183624d4336e7df958997776"
+    },
+    {
+      "file": "reconstructed/geometry/ShadowVolume.cs",
+      "bytes": 5514,
+      "sha256": "17a5deafb08979d59739419d1429459c62d42d5c8303b81b04aba20324999993"
+    },
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    },
+    {
+      "file": "reconstructed/animation/CharacterContexts.cs",
+      "bytes": 14461,
+      "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+    },
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 20731,
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-extraction-native-validation.json",
+    "schema": "geometry-shadow-extraction-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1024,
+      "volumes": 768,
+      "persistentBytes": 8388608
+    },
+    "errors": [],
+    "cutCountHistogram": {
+      "0": 256,
+      "1": 256,
+      "2": 256,
+      "3": 256
+    },
+    "fixtureFile": "geometry-shadow-extraction-fixtures.json.gz",
+    "fixtureBytes": 574521,
+    "fixtureSHA256": "f7d6400c2c5fb397b2084448e0509b82b0de529aac878eb014507be9003ea3a5",
+    "constants": {
+      "degreeScale": 180.0,
+      "pi": 3.1415927410125732
+    },
+    "limits": [
+      "Complete original5e8950 chain and all real camera/frustum/plane/bounds helpers execute unchanged. No computational replacements.",
+      "Cutcount0..3 matches fixed two-volume context. Count0 storesactiveCount=-1, count1 zero. Inputs, context and output matrices disjoint; finite math and previously bounded camera domains.",
+      "Every volume writes four undefined far-cornerW words and one undefined positionW. Only these proven padding words are normalized for comparison; raw native words retained.",
+      "Camera near/far are restored exactly after per-split temporary changes. Persistent context and original global view/projection outputs compare exactly on known lanes.",
+      "Six authored CU2 transforms plus identity, controlled light directions/projection/cuts/context data. Prior light configuration and live registration, GPU output, managed runtime equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowExtractionHarness",
+    "arguments": [
+      "reports/geometry-shadow-extraction-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1024,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowExtractionHarness.cs",
+      "bytes": 2659,
+      "sha256": "97f186cd2fa51312cac3b5e21f83e1ea3220cb6141015a2524af63e9fb3108bf"
+    },
+    "compileStatus": "passed",
+    "comparison": "Full8192B persistent memory including camera restoration, context and two globalmatrix mirrors; only provenundefinedpadding normalized."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowExtraction.dll",
+          "ShadowExtraction.cs",
+          "ShadowCamera.cs",
+          "ShadowFrustum.cs",
+          "ShadowVolume.cs",
+          "SortedPackets.cs",
+          "FrameReset.cs",
+          "..\\animation\\CharacterContexts.cs",
+          "..\\animation\\AnimationPlayback.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowExtraction.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowExtractionHarness.exe",
+          "harness\\ShadowExtractionHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowExtraction.dll",
+      "bytes": 37376,
+      "sha256": "a568b98906889d7acf7934ef49a94c2861700556f23e0b14400db3261eafb35e"
+    }
+  },
+  "observations": [
+    "Entry takes ECX=context and stack(camera,cuts,cutCount), callee pops12bytes. Original global978440 receives perspective;97ac80 receives rigid view inverse. Portable arguments expose these two global output matrices explicitly.",
+    "Perspective inputdegreeFOV=float32(cameraFOV*180.0/3.1415927410125732), aspect=float32(1/cameraAspect), near/far fromcamera+48/+4c. Original fixed doubleconstants and extended intermediates are retained. Camera translation goes tocontext+740XYZ/W1; camera thirdbasis row to+750XYZ/W0.",
+    "Context+710 receivescutCount-1, even-1 forcutCount0. Up tothreecutvalues copy to+700. Eachadjacentpair selects a volume atstride380; native temporarily replacescamera near/far, calls actualfrustum5c8030, plane selection5c82c0, aggregate5c8540, then restores originalcamera near/far.",
+    "Eachvolume: two raw64B lightmatrices copy fromcontext+780/+7c0 to+0/+40, cornerXYZ at+120, planes+1a0,count+260,farplane+270,center+280,position+290,radius+2a0. Splitnormalization records atcontext+720 each16B are(0,0,1/nextcut,-1). Remainingpersistentbytes are preserved.",
+    "Original helperpadding propagates through this completechain: fourfarcornerW and onepositionW pervolume. Comparison normalizes only these provenundefinedwords; all raw native padding words/context bytes are retained. Portable writes only meaningfullanes and preserves priorpadding.",
+    "1024 complete originalchains pass across768volumes and8388608persistentbytes, with256cases eachcutcount0/1/2/3. SixrawauthoredCU2matrices plusidentity are reused; projection,cuts,direction and lightmatrices are controlled inputs, not reconstructed upstream light configuration.",
+    "No computationalcalls are replaced. C#source and replay compile only. Live contextregistration, light configuration producers, GPU draws and managedruntime equality remain separate."
+  ],
+  "remainingGaps": [
+    {
+      "id": "light-configuration",
+      "status": "Direction and two lightmatrix producers preceding5e8950 remain separate."
+    },
+    {
+      "id": "registration-integration",
+      "status": "Live outer update/registration and consumer chain remain separate, though registry and consumers individually recovered."
+    },
+    {
+      "id": "undefined-padding",
+      "status": "FourfarW andpositionW pervolume are nativeundefined; portable preservescallerpadding."
+    },
+    {
+      "id": "numeric-domain",
+      "status": "Finite camera helper domains, cutcount0..3, disjoint logical ranges. Excesscuts/partialalias/nonfinite/overflow excluded."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU extraction only."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-extraction-native.py",
+    "bytes": 6811,
+    "sha256": "59e30a7b961c73ed526406f01d56e68338bb1435f354fd3901cb68ffcd9e1a38"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-extraction-assembly.json",
+    "bytes": 21722,
+    "sha256": "096a707507197a752b91dfe3843d5861249acca7f9d214359ce0e96a737a4230"
+  },
+  "sourceInputs": [
+    {
+      "file": "exports/cutscenes/LEVELS/EPISODE_V/ENDING/EPISODE5ENDING_A/EPISODE5ENDING_A.CU2.json",
+      "bytes": 4274,
+      "sha256": "3d5c91da2a27d9cd4db3e10e0e7b22daf7bc35bce6920aabada47e6da441dc87"
+    },
+    {
+      "file": "references/native-animation-sine-table.f32",
+      "bytes": 131072,
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+00514920 mov edx, dword ptr [esp + 0xc]
+00514924 mov al, byte ptr [edx]
+00514926 test al, al
+00514928 mov ecx, edx
+0051492a je 0x514946
+0051492c lea esp, [esp]
+00514930 cmp al, 0xd3
+00514932 jl 0x514950
+00514934 cmp al, 0x39
+00514936 jg 0x514950
+00514938 cmp al, 0x2f
+0051493a je 0x514950
+0051493c mov al, byte ptr [ecx + 1]
+0051493f add ecx, 1
+00514942 test al, al
+00514944 jne 0x514930
+00514946 push edx
+00514947 call 0x4f28e0
+0051494c add esp, 4
+0051494f ret 
+00514950 mov eax, dword ptr [esp + 8]
+00514954 mov ecx, dword ptr [esp + 4]
+00514958 push 0x514850
+0051495d push edx
+0051495e mov dword ptr [0x922260], eax
+00514963 mov dword ptr [0x92225c], ecx
+00514969 call 0x4f88e0
+0051496e fstp dword ptr [esp + 0x14]
+00514972 fld dword ptr [esp + 0x14]
+00514976 add esp, 8
+00514979 mov dword ptr [0x922260], 0
+00514983 ret 
+00514984 int3 
+00514985 int3 
+00514986 int3 
+00514987 int3 
+00514988 int3 
+00514989 int3 
+0051498a int3 
+0051498b int3 
+0051498c int3 
+0051498d int3 
+0051498e int3 
+0051498f int3 

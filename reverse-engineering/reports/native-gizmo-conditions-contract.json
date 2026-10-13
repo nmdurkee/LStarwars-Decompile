@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-10-12T23:00:19.461Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "initializers": "443a00 returns0 immediately for null operand, otherwise loads current-world registry and tail-calls55a020 with type-1.441630 always loads current-world registry and global802f54 blowup type, then tail-calls55a020; null name is rejected there. Both return the gizmo record, not its object pointer.",
+    "outputs": "443a30/443a70/443ab0 reject null bound record, otherwise call55a1b0(currentworld.registry,bound,index0/1/2,1). Unsigned32 callback value converts to float at the existing SCP storage boundary, so high-bit values remain positive. Registry/type/output gates are the existing dispatcher contract.",
+    "blownup": "441660 uses the same output0 dispatch but converts any nonzero result to1.0; missing bound or zero output returns0.0. The registered blowup physical callback and its state producer remain external.",
+    "reuse": "Source consumes existing SceneryNameBindings, SceneryRegistry.Output and actual ObstacleCommands.ObstacleOutput. Those helper addresses are not recounted."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "GizmoOutput0",
+      "address": "0x443a30",
+      "sourceUses": 54,
+      "qualification": "Original binding and callback dispatch/conversion; registered physical-type output producers remain explicit services."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "GizmoOutput1",
+      "address": "0x443a70",
+      "sourceUses": 5,
+      "qualification": "Original binding and callback dispatch/conversion; registered physical-type output producers remain explicit services."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "GizmoOutput2",
+      "address": "0x443ab0",
+      "sourceUses": 10,
+      "qualification": "Original binding and callback dispatch/conversion; registered physical-type output producers remain explicit services."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "BlowupBlownup",
+      "address": "0x441660",
+      "sourceUses": 41,
+      "qualification": "Original binding and callback dispatch/conversion; registered physical-type output producers remain explicit services."
+    }
+  ],
+  "native": {
+    "cases": 2492,
+    "mismatches": 0,
+    "fullRegionComparisons": 2492,
+    "groups": {
+      "bindAny": 180,
+      "bindBlowup": 180,
+      "GizmoOutput0": 586,
+      "GizmoOutput1": 488,
+      "GizmoOutput2": 498,
+      "BlowupBlownup": 560
+    },
+    "authoredUses": {
+      "BlowupBlownup": 41,
+      "GizmoOutput0": 54,
+      "GizmoOutput2": 10,
+      "GizmoOutput1": 5
+    },
+    "method": "Original condition wrappers,55a020 name lookup,558770 name accessor and55a1b0 output dispatcher execute unchanged. Output tests include both a declared arbitrary-uint callback service and actual558780 obstacle callbacks. Compare float32 conversion, callback order and complete input memory."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/GizmoConditions.cs",
+      "bytes": 1300,
+      "sha256": "f408cd5222e0c59ed539dde0e91a90e07cd7e09b386545bf8383b2224b5c4c31"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-gizmo-conditions-portable-verify.cs",
+      "bytes": 5152,
+      "sha256": "0152808e98f720304d5c7387eb932fe82c74177a802382ec6d0413326b1d90cf"
+    },
+    "entrypoint": "GizmoConditionsVerify.Main",
+    "arguments": [
+      "reports/native-gizmo-conditions-vectors.json",
+      "reports/native-gizmo-conditions-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-gizmo-conditions-vectors.json",
+      "bytes": 845055,
+      "sha256": "868b75e92f9a829434d0425ce6590bb3490f83d483576ca32724a4a4b465611d"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Existing bounded SceneryRegistry and SceneryNameBindings projections; prepared current-world/type arrays with valid extra index==count slot where tested.",
+    "Generic output callbacks remain physical-type services. Actual obstacle output is covered; BlowupBlownup wrapper verification does not claim the blowup simulation/output producer is recovered.",
+    "Finite valid ASCII name buffers and bounded type counts; managed replay pending."
+  ]
+}

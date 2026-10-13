@@ -1,0 +1,124 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "selection": "Activate0x4442f0 and DeActivate0x444490 complete immediately and act only on first-call. Default target is the caller reference first-word world object, without an active-bit gate. Ordered case-insensitive substring character= resolves through actual registered43c220 callback and dereferences the returned reference; absent callback/missing reference clears the target. Otherwise set= parses the packet numeric prefix/parameter value and takes low32 of signed64 truncation; signed results outside0..16 become0. A nonzero final group overrides target selection. Group0 uses the final self/named target.",
+    "activate": "Group activation visits the loaded actor array in order, selecting flags1fc bit1 and group byte378 regardless of current1000 active bit. For spawn index400==255 it sets1000 and calls52c790 with Base. Other actors call full lifecycle41c120 through an explicit Reinitialize service. Each group visit increments byte counter876847+selectedGroup modulo256, even when already active or state lookup fails. Single-target activation also invokes the same two branches, then rereads group378 and increments only groups1..16. A reinitialization fixture that changes group confirms the distinction between group-counter index and reread single-target group.",
+    "deactivate": "Group deactivation requires flags1fc bits1 AND1000 and matching group. Single-target deactivation has no such eligibility gate. Actual414bb0 first handles nonnull actor+cd0: without1f8 bit4000 it calls4364e0(attachment,4,0), otherwise4882d0(actor,1). These two lifecycle services remain adapters. It then clears1000. A non255 spawn index and successful InActive base-state switch writes actor406=0 and global spawn-record87=2; otherwise406=4. No group-population decrement is present in these handlers.",
+    "baseState": "52c790 returns false for null name, null packet, null current script or missing state in the BASE script. A nonnull current script requires a valid base-script pointer. If base and current script match, it invokes the original state-entry path, preserving parameters, deadline and reference depth, and preserving blocked messages only when flag4 was set. Otherwise it binds the base script/state, resets parameters from base defaults and deadline fields, and then clears reference depth. The portable implementation composes existing ScriptMachine methods. Companion byte38/B5 and wordC0 writes, previously absent from its typed projection, are explicitly retained in ActivationActorFields; their broader meaning is not invented.",
+    "services": "Actual name lookup, packet number parsing, state lookup, state entry and base-script binding execute in native fixtures. Spawned reinitialization41c120, attachment destruction4364e0 and player release4882d0 are intercepted and recorded at explicit service boundaries. Reinitialize is not replaced by a fabricated active-bit write. The source therefore expresses required downstream calls and exact command/helper state effects, but does not claim a complete spawn/vehicle/death lifecycle.",
+    "verification": "1,137 original-PC comparisons pass with zero mismatches. All112 Activate and39 DeActivate authored argument lists run in three contexts (453 cases); additional cases cover absent references/callbacks, group bounds, active masks, aliasing reference/world objects, counter wrap, callback-induced group changes, attachment branches and same/different/missing scripts. Native fixture records use sparse changed-actor/counter/spawn deltas (about398KB total). All322 instructions across the four mapped bodies execute. Portable core/replay compile; managed execution remains pending."
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "Activate",
+      "address": "0x4442f0",
+      "sourceUses": 112,
+      "qualification": "Bounded selection/counters/direct Base transition; spawned lifecycle41c120 remains an explicit service."
+    },
+    {
+      "kind": "scp-action",
+      "name": "DeActivate",
+      "address": "0x444490",
+      "sourceUses": 39,
+      "qualification": "Bounded selection and actual414bb0/52c790 state transitions; attachment destruction/control release remain services."
+    }
+  ],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 1137,
+    "groups": {
+      "authored": 453,
+      "DeActivate": 257,
+      "Activate": 257,
+      "baseState": 121,
+      "deactivate": 49
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredOccurrences": {
+      "DeActivate": 39,
+      "Activate": 112
+    },
+    "method": "Original4442f0/444490 execute actual43c220 name lookup, original packet numeric parser, original414bb0 and original52c790/512fc0/5145a0/514640 state helpers. Only spawn reinitialization41c120, attachment destruction4364e0 and release4882d0 are service fixtures. Actor/script/counter changes stored as sparse deltas.",
+    "instructionCoverage": {
+      "0x4442f0": {
+        "total": 132,
+        "executed": 132,
+        "notExecuted": []
+      },
+      "0x444490": {
+        "total": 106,
+        "executed": 106,
+        "notExecuted": []
+      },
+      "0x414bb0": {
+        "total": 41,
+        "executed": 41,
+        "notExecuted": []
+      },
+      "0x52c790": {
+        "total": 43,
+        "executed": 43,
+        "notExecuted": []
+      }
+    },
+    "limits": [
+      "Spawn lifecycle41c120, attachment destruction and player release remain explicit adapters; actual side effects are not fabricated.",
+      "ScriptMachine composition includes companion raw byte38/B5 and wordC0 updates. Their broader consumers remain outside this activation contract.",
+      "Resolved base script is required when current script is nonnull; malformed null-base native pointer access is excluded.",
+      "Managed source/replay compile only."
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-activation-native-fixtures.json",
+      "bytes": 398081,
+      "sha256": "376e32a7d0e2b533a8affc181b7d8d71c79d2e93226c715b4c03389998ac7c25"
+    },
+    "authoredUseCredit": 151
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+      "bytes": 7221,
+      "sha256": "45008d258b895f3a2af87384d63dd7c060734ea03177f5aa7b04c9b156287604"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-activation-portable-verify.cs",
+      "bytes": 13314,
+      "sha256": "dda92a76a4bae430ff23c8a96584b521f2a4d3492e680659497277e463342422"
+    },
+    "entrypoint": "GameplayActivationVerify.Main",
+    "arguments": [
+      "reports/gameplay-activation-native-fixtures.json",
+      "reports/gameplay-activation-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-activation-verify.exe",
+        "bytes": 49664,
+        "sha256": "00426f329e4ade682c2aa552fb57095931ad78b4683dd805107e34a3cca0475c"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    },
+    "adapters": [
+      "ActorActivationServices.Reinitialize:41c120 spawn/lifecycle reinitialization.",
+      "ActorActivationServices.DestroyAttachment:4364e0 attachment destruction.",
+      "ActorActivationServices.ReleaseControl:4882d0 player/control lifecycle.",
+      "Loaded actor definitions, embedded packets, spawn phases and group counters are host-owned records."
+    ]
+  },
+  "remaining": [
+    "Spawn lifecycle41c120, attachment destruction and player release remain explicit adapters; actual side effects are not fabricated.",
+    "ScriptMachine composition includes companion raw byte38/B5 and wordC0 updates. Their broader consumers remain outside this activation contract.",
+    "Resolved base script is required when current script is nonnull; malformed null-base native pointer access is excluded.",
+    "Managed source/replay compile only."
+  ]
+}

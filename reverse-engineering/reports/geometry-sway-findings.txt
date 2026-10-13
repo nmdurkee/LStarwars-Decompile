@@ -1,0 +1,24 @@
+OBJECT SWAY
+
+{"coefficients": 2048, "x87": 2037, "sse": 2037, "matrix": 2026}
+
+Special+0xca and+0xc8 are sign-extended amplitude and seed/rate inputs at5f0f00. The coefficient helper itself accepts signed32-bit inputs. Original float RNG advances only a local copy of seed with1664525*x+1013904223, then takes23 mantissa bits; no shared RNG state changes.
+
+Global97390c is a uint frame counter. Native signed integer load plus2^32 correction preserves that integer in extended precision before rate multiplication; the decompiler float temporary is misleading. Global80b6d8/80b6dc scale amplitude/rate, both PE-image1.0 but runtime inputs remain explicit.
+
+The first coefficient uses sine at phase,2.1phase,4.2phase with stored half/quarter terms. The second uses cosine at negative2.3phase,negative4.4phase,negative1.1phase with stored half/quarter terms. Each frequency product storesfloat32 before angle conversion; exact original operation order and table signs are retained.
+
+CRT global29a9c48 changes large-angle conversion: x87 path truncates to signed64 then low32 wraps, while SSE path returns80000000 on signed32 overflow. Both are explicitly modelled and tested at large uint frame counters. The two32-bit operands of the final scale product fit48 significant bits, so its double product is exact.
+
+5ec590 first copies16DWORDs forward, then writes only second-row4 components as(firstRow*x + secondRow) + thirdRow*z. Whole and forward/backward partial aliases remain defined by this operation order; unused matrix words are copied unchanged.
+
+All245 authored nonzero sway specials across the complete1477-carrier index are included in both conversion modes.2048 signed/magnitude/time coefficient cases plus bounded alias/zero matrices supplement authored data. No computational callback is used.
+
+Shared Animation.PlaybackWide supplies64-significand arithmetic; signed-zero signs are retained separately at exact cancellation/zero stores. Portable source and replay compile only.
+
+Limits
+Original coefficient/matrix helpers, seeded float RNG, trigonometric lookup and both original CRT float-to-int branches execute unchanged. Observation hooks only.
+Finite inputs, coefficient stores and matrix arithmetic; trig products strictly within signed64-bit range. Legacy x87 conversion truncates to64bits then low32 wraps; SSE mode uses signed32 conversion and returns80000000 on overflow.
+All nonzero authored special+ca entries across the indexed1477 GSC/GHG carriers, exact source offsets/hashes, plus signed/time/magnitude/zero/overlap fixtures.
+Matrix copy uses forward16DWORD copy before row mutation, preserving defined whole and partial aliasing. Undefined/out-of-range memory and GPU output excluded.
+No managed/game process launch.

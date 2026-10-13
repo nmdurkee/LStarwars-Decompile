@@ -1,0 +1,124 @@
+{
+  "schema": "recovered-geometry-sorted-packets-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5e0d00",
+      "method": "SortedPackets.Complete",
+      "sourceFile": "reconstructed/geometry/SortedPackets.cs",
+      "coverage": "bounded-caller-contract-projection",
+      "limitations": "Finite acyclic sort list, valid ushort material ranges/nonnegative indices and0/1 packet slots. Packet and metadata storage valid/nonoverlapping except explicit pointer aliases. Shader emission remains an explicit callback; only original already-current context branch verified. Partial overlap between shader/global images excluded. Registered count0..256. Managed execution pending.",
+      "evidence": "geometry-sorted-packets-native-validation.json"
+    },
+    {
+      "address": "0x6034b0",
+      "method": "SortedPackets.Append",
+      "sourceFile": "reconstructed/geometry/SortedPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite writable packet arena, valid record/current-tail/saved-command pointers, no allocation/address wrap or metadata-overlap corruption. Preserves untouched packet padding. Managed execution pending.",
+      "evidence": "geometry-sorted-packets-native-validation.json"
+    }
+  ],
+  "adaptersWithoutNativeEntry": [
+    "RenderPacketMemory is a checked finite memory-image adapter preserving pointer identities.",
+    "RequireCurrentShader is a validation guard for the native607590 early-return domain; it does not reconstruct mutating shader emission.",
+    "Diagnostic uint-array call rows preserve observed helper entry/argument order.",
+    "Literal-ret callbacks5fca70/5fca80 have no CPU memory side effects; local context padding is never read by them."
+  ],
+  "dependencies": [
+    "FrameReset.ResetShaderContext"
+  ],
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.SortedPackets.dll",
+    "bytes": 8192,
+    "sha256": "280c65682d61a70af99cf01b08efc62ba47cf14e718314cf7fab1ce60ce51db0"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/SortedPacketsHarness.cs",
+    "bytes": 2329,
+    "sha256": "1eb7935c938cbf52ba957612acc7e89f762841c827b18824b8721dc586c8b985"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.FrameReset.dll /out:Recovered.Geometry.SortedPackets.dll SortedPackets.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.FrameReset.dll /reference:Recovered.Geometry.SortedPackets.dll /out:SortedPacketsHarness.exe harness/SortedPacketsHarness.cs"
+  },
+  "native": {
+    "report": "geometry-sorted-packets-native-validation.json",
+    "passed": true,
+    "counts": {
+      "authored": 240,
+      "boundaries": 64,
+      "append": 128,
+      "checkedBytes": 22109459,
+      "shaderNoopCalls": 156,
+      "processedMaterials": 19701
+    }
+  },
+  "managed": {
+    "schema": "geometry-sorted-packets-managed-check-v1",
+    "caseCount": 432,
+    "nativeEvidence": "geometry-sorted-packets-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\sorted-packets.bin.gz",
+    "fixtureBytes": 4929338,
+    "fixtureSHA256": "eb1456d863d8d0c9a044d924a1cebfa22e4d6534cc83a44ad20d4ba360fc9783",
+    "uncompressedBytes": 21885688,
+    "uncompressedSHA256": "1f343e5528630b78bc51ad00ea3e8c8e0136625aada36506315aae7ba210cb6e",
+    "status": "prepared-not-executed",
+    "mainType": "SortedPacketsHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "No compiled-source equivalence until saved compiled output is compared."
+  },
+  "fields": {
+    "sort node+0x1c": "Owner display, or null for original empty5fca80 branch",
+    "sort node+0x20/+0x22": "Unsigned16 material count/start index; earlier geometry metadata boundsCount/firstBounds names were misleading",
+    "material record+0x10/+0x14/+0x18": "Initial command pointer,current tail pointer,saved destination command pointer",
+    "material record+0x28/+0x2c/+0x30/+0x34": "Two packet starts,current packet cursor,selected buffer slot",
+    "material record+0x0c/+0x04": "Control command and material-bit index",
+    "display flags shifted5 lowbyte": "Filter mask, AND with material+0x44 shifted14 lowbyte; match disables command and clears material bit",
+    "global0x9736e0": "Pointer to writable packet arena cursor variable",
+    "Append return": "Pointer to allocator cursor variable when payload0, otherwise0; not packet pointer"
+  },
+  "sourceCoverage": {
+    "scenes": 60,
+    "materialEntries": 12686,
+    "sortRecords": 697
+  },
+  "remainingGaps": [
+    {
+      "id": "shader-emission",
+      "address": "0x607590",
+      "status": "Original early-return branch only; mutating cached shader command generation separate"
+    },
+    {
+      "id": "dynamic-list-flush",
+      "address": "0x5de440",
+      "status": "not part of this batch"
+    },
+    {
+      "id": "live-frame-state",
+      "status": "Authored material metadata with controlled valid cursor/link state; no captured live-frame proof"
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled only; fixture prepared; no launch/bypass"
+    },
+    {
+      "id": "gpu-backend",
+      "status": "not claimed"
+    }
+  ]
+}

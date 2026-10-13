@@ -1,0 +1,33 @@
+1326 original-PC comparisons; 0 mismatches. Eight helper mappings. Portable replay compiled, not executed.
+
+wrapper
+0x514920 uses the simple 0x4f28e0 prefix-number parser when every non-NUL ASCII byte is <=0x39 and none is slash. Thus 1+2 returns 1, (1+2) returns 0, and (1+2)/1 invokes the recursive parser and returns 3. The fast path leaves globals 0x92225c/0x922260 untouched. Slow evaluation stores creature/packet there, invokes 0x4f88e0 with resolver 0x514850, retains the creature global, and clears only the packet global on return.
+
+lexer
+0x4f8420 keeps token kind/value, source pointer, cursor and symbol callback in a 20-byte context. Token kinds are +=0, -=1, *=2, /=3, (=4, )=5, terminator=6 and value=7. Semicolon stops without advancing. Space and tab handling increments the source BYTE at the current cursor rather than the cursor itself; alpha beta becomes alpha!beta. Unknown characters then preserve prior lexer state. Initial unknown bytes may read uninitialized native state and are deliberately rejected by the portable bounded entry.
+
+number
+The full lexer differs from the prefix-number parser. Integer digits store float32 after multiply by ten and again after digit addition. Fractional digits store x87 digit*fraction+value once; fractional scale is separately stored float32 after division by ten. A repeated dot calls the actual no-op error helper and resets the scale to 0.1. Very small scales can underflow to zero, re-entering integer accumulation. The verified implementation uses existing finite x87 arithmetic and preserves signed zero.
+
+grammar
+0x4f8790/0x4f8830/0x4f8880 implement unary minus, parentheses, product/quotient precedence and then sum/difference, with float32 stores between operations. Factor kind 6 returns 1. A value factor advances lookahead BEFORE reading its value field: 1alpha returns the following alpha value, and 2.5___tail returns the unresolved identifier value 0. Trailing alpha+ adds 1. Invalid operator factor calls the real no-op error helper and returns 0. Missing close-parenthesis also calls that helper and then advances.
+
+symbols
+0x514850 handles whole case-insensitive Rand, false, true and max before any game callback. Rand uses existing original 0x5b9dd0 LCG behavior. Other names pass optional callback 0x9238c0 with the retained creature/packet globals; a nonzero callback result accepts its float output. Otherwise 0x5147c0 resolves the packet parameters or numeric prefix. Its param-substring path still selects slot 0, including param3. The resolver writes optional float and/or integer outputs and returns 0.
+
+integerOutput
+Integer output takes the low 32 bits of native 0x6e6b90 signed-64 truncation. The comparison set includes negative fractions, values across signed-32 range and invalid signed-64 conversions: the latter yield INT64_MIN whose low word is 0. This helper is consumed but not newly mapped as an independently reconstructed function.
+
+classification
+0x4f2770 classifies all 256 input byte values. Only ASCII letters, digits and underscore return 1. The lexer only begins identifiers on letters or underscore; digits enter number parsing.
+
+integration
+ExpressionBuffer owns the mutable ASCII text. EvaluateToken is an unmapped host convenience that writes a changed buffer back into a string-array token. An OverrideAnimation adapter can call EvaluateToken(environment, creature, packet, tokens, 0), preserving its repeated evaluation of token zero. Other callers may retain ExpressionBuffer directly. GameSymbol remains a typed production callback boundary. Environment is intentionally mutable and must match the original shared global lifetime; no thread-safe or reentrant redesign is claimed.
+
+verification
+The native wrapper, resolver, lexer and recursive parser execute unchanged. Checks compare float bits, RNG, callbacks, mutated text, global pointer identity tags, and lexer cursor/kind/value when initialized. Twelve persistent sequences exercise 96 ticks. All 256 classifier bytes and all resolver instructions are covered. Four null-resolver lexer instructions and the factor kind-8 error call are outside covered valid lexer-produced states. The portable replay compiles; managed execution remains pending under the explicit compile-only instruction.
+
+Remaining bounds
+ASCII strings without embedded NUL, identifiers <=255 bytes; recursion <=256 and token budget <=65536.
+No promise for unknown initial tokens, null resolver with an identifier, overflow/nonfinite intermediates or division by zero. Such native undefined/exceptional behavior is not fabricated.
+Existing numeric-prefix, packet parameter and RNG helpers are consumed; they are not counted as additional new mappings.

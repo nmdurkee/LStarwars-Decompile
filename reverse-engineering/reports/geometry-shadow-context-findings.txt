@@ -1,0 +1,13 @@
+SHADOW CONTEXT EMISSION
+
+{"cases": 1280, "payloads": 160, "appends": 144, "checkedBytes": 6735872}
+
+Null shader or matching context+20 identifier returns without changes.
+
+A changed+20 identifier compares only the16-bit+30 key. Changed key builds5fcfd0 signed-byte payload and appends opcodea9 with6034b0 when descriptor is nonnull.
+
+A changed key synchronizes even when descriptor is null and no packet is appended. Context+20 then receives shader+20. All other context groups are untouched.
+
+Complete original helper and its real payload/list dependencies pass1280 controlled state cases: all16 alignments, null/matching/different identities/keys, absent/zero/1/3/4/5/127/128/254/255 byte counts.
+
+This supplies the CPU shader step used by dynamic shadow records. No full shadow caller or GPU behavior is claimed here.

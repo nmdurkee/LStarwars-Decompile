@@ -1,0 +1,26 @@
+{
+  "schema": "geometry-shadow-registry-native-v1",
+  "passed": true,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "register": 924,
+    "cases": 2007,
+    "checkedBytes": 49468536,
+    "reset": 292,
+    "count": 205,
+    "any": 28,
+    "context": 272,
+    "mask": 286
+  },
+  "errors": [],
+  "fixtureFile": "geometry-shadow-registry-fixtures.json.gz",
+  "fixtureBytes": 112107,
+  "fixtureSHA256": "65d767990bcb0f97e53fd3d6301092b7698d48ffea59c81ebf80eba7aec3da81",
+  "limits": [
+    "All six original helpers plus two direct reset entry thunks execute without replacements. Void helper EAX is not assigned a semantic result.",
+    "Mutating count0..4, four addressable slots plus four unchanged guard slots, valid disjoint context records and globals. Query helpers separately cover negative/min/max signed counts.",
+    "Full registry returns before reading context; uncached mask lookup returnsffffffff before reading even an invalid index. Positive count query uses signed>0.",
+    "Reset clears active context+824 fields, count and cache flag, leaving pointer slots/masks untouched; repeated pointers are permitted.",
+    "Synthetic exact layouts and32 sequential40-operation scenarios; no claim of original context/volume construction, GPU behavior or managed execution."
+  ]
+}

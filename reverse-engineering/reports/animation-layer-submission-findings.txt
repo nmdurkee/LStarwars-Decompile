@@ -1,0 +1,34 @@
+PC CHARACTER LAYER SUBMISSION
+
+4528 exact original comparisons; 0 mismatches.
+
+layout
+GHG hierarchy+168 u32jointcount,+174 inversebindmatrixarray,+190 layercount,+194 layerarray. Each20-byte layer contains name+0,perjoint rigidhandlearray+4,smoothhandle+8,alternate rigidarray+c,alternate smoothhandle+10. Each12-byte handle contains scene+0,legacy special+4,display special+8. Submission requires nonzero handle,scene anddisplay special; legacy field is not tested.
+
+visibility
+Global806ccc is a signed visibility cache. Value-1 invokes5da980; other values are used directly. Positive966384 also transforms localbounds+1ac/+1b8 aspoints through objectworld and invokes5ea6a0 withmode1. If both resultszero,9715a0 is reset andthe function returns0. Otherwise cached visibility is temporarily set to the firstresult,attachments5f9fa0 is called, andthe previouscache is restored after submissions. SubmissionFlag9715a0 is always cleared on normalreturn.
+
+selection
+Positive requestedcount andnull signed16layermap select layer0 once. A providedmap skips negative/out-of-range IDs, retains duplicates andordering. Nonpositivecounts still pass visibility/attachment preparation but do not visitlayers. A nonnull morphpointerlist isindexed by selected-list ORDINAL, including positions whose IDs were skipped; it is not indexedby layerID.
+
+allocation
+Any nonnull smooth oralternate-smooth handle triggers a fulljointpalette reservation even ifscene/display pointers laterreject thehandle. Cursor firstaligns16 then128, andreserves jointCount*64 bytes BEFORE anyrigid submissions. Matrices are filled afterrigid/alternate-rigid groups, before smoothgroups. Callbackincrements tosharedcursor are preserved bynext reservations.
+
+rigid
+Rigid andalternate-rigid arrays are visited inthatorder, joint0 upward. Every nonnull handle first computes jointWorld*objectWorld through5c0500, even ifscene/display validation laterrejects it. Validhandles call5f0f00(mode0,nullskin,nullmorph). Resultflags areORed.
+
+smooth
+5c0350 computes inverseBind[j]*jointWorld[j] independently foreachjoint. Smooth thenalternate-smooth validhandles call5f0f00 withobjectWorld,mode2,the128-aligned preparedpalette,andthe selectedordinalmorphpointer. Both smoothvariants share the samepalette andmorphoutput. Native resultflags areORed withrigidresults.
+
+matrices
+5c0350 and5c0500 forward matrix products to importedD3DXMatrixMultiply. Nativefixtures load andrelocate the pinnedinstalledd3dx9_35.dll andexplicitly bind thegameIAT toits scalarimplementation. C# delegates toSkeletalPose.D3dx9_35ScalarMultiply; thispolicy retains64-significand intermediates andfloat32stores. OS/CPU exportdispatch remainsunreconstructed.
+
+integration
+CharacterSubmissionServices.Submit receives resolvedhandle,transform,mode,preparedskin address/matrices andmorphidentity. A host canresolve morphidentity toMorphWeights output andpass thepalette into thedynamicpacket path. Visibility,secondaryregionvisibility,attachments and5f0f00 effects areexplicitboundaries; source doesnot silently claim thoseconsumers. State.Palettes owns preparedmatrixpayloads atlogicalnative addresses.
+
+Limits
+Finite disjoint matrix arrays andvalid layer records; counts0..256.
+Visibility anddynamic rendering consumers remain adapters; no fullrender/GPU/shadow equivalence.
+Authored bind-world input matrices derive from hash-boundlocal binds with the same explicit scalar policy; clip scheduling is notclaimed.
+Callback mutation of hierarchy/jointarrays excluded. Allocator increments are explicit syntheticservice effects, not full downstreampacketallocation integration.
+Managed sources/replay compile only; original-versus-independent-model checks do not establish managed execution equivalence.

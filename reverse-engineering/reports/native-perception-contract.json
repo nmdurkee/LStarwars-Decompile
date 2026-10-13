@@ -1,0 +1,549 @@
+{
+  "schema": "native-perception-contract-v1",
+  "updated": "2026-10-12T21:25:03.156Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "cases": 7639,
+    "wholeRecordChecks": 15278,
+    "mismatches": 0,
+    "adapters": []
+  },
+  "authored": {
+    "CanSeeBehind": 91,
+    "ShadowTerrain": 42,
+    "SetMaxViewHeight": 102,
+    "SetMinViewHeight": 119,
+    "SetViewDistance": 112,
+    "IgnoreWallSplines": 59,
+    "FlatTerrain": 9,
+    "DontUseShadowTerrain": 12,
+    "NoLosCheck": 10,
+    "SetHearDistance": 4,
+    "NoTerrain": 10,
+    "RequiresLOS": 11
+  },
+  "authoredUses": 581,
+  "entries": [
+    {
+      "address": "0x5160b0",
+      "selector": "IgnoreWallSplines",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "IgnoreWallSplines"
+    },
+    {
+      "address": "0x516120",
+      "selector": "CheckWallSplines",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "CheckWallSplines"
+    },
+    {
+      "address": "0x5161a0",
+      "selector": "NoTerrain",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "NoTerrain"
+    },
+    {
+      "address": "0x516220",
+      "selector": "NoLosCheck",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "NoLosCheck"
+    },
+    {
+      "address": "0x5162a0",
+      "selector": "FlatTerrain",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "FlatTerrain"
+    },
+    {
+      "address": "0x516320",
+      "selector": "ShadowTerrain",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "ShadowTerrain"
+    },
+    {
+      "address": "0x5163a0",
+      "selector": "DontUseShadowTerrain",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "DontUseShadowTerrain"
+    },
+    {
+      "address": "0x516420",
+      "selector": "BuiltinDontPush",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "BuiltinDontPush"
+    },
+    {
+      "address": "0x5164a0",
+      "selector": "CanSeeBehind",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "CanSeeBehind"
+    },
+    {
+      "address": "0x516520",
+      "selector": "RequiresLOS",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "RequiresLOS"
+    },
+    {
+      "address": "0x516590",
+      "selector": "SetFullPathSearch",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "SetFullPathSearch"
+    },
+    {
+      "address": "0x516bf0",
+      "selector": "NoShadows",
+      "method": "PerceptionCommands.SetFlag",
+      "name": "NoShadows"
+    },
+    {
+      "address": "0x516610",
+      "selector": "ViewDistance",
+      "method": "PerceptionCommands.SetValue",
+      "name": "SetViewDistance"
+    },
+    {
+      "address": "0x516850",
+      "selector": "HearDistance",
+      "method": "PerceptionCommands.SetValue",
+      "name": "SetHearDistance"
+    },
+    {
+      "address": "0x516790",
+      "selector": "MaxViewHeight",
+      "method": "PerceptionCommands.SetValue",
+      "name": "SetMaxViewHeight"
+    },
+    {
+      "address": "0x5166d0",
+      "selector": "MinViewHeight",
+      "method": "PerceptionCommands.SetValue",
+      "name": "SetMinViewHeight"
+    },
+    {
+      "address": "0x516910",
+      "selector": "MoveRadius",
+      "method": "PerceptionCommands.SetValue",
+      "name": "SetMoveRadius"
+    },
+    {
+      "address": "0x43c1a0",
+      "selector": "ViewDistance",
+      "method": "PerceptionWorld.CharacterDefault",
+      "name": "CharacterDefaultViewDistance"
+    },
+    {
+      "address": "0x43c1c0",
+      "selector": "HearDistance",
+      "method": "PerceptionWorld.CharacterDefault",
+      "name": "CharacterDefaultHearDistance"
+    },
+    {
+      "address": "0x43c1e0",
+      "selector": "MaxViewHeight",
+      "method": "PerceptionWorld.CharacterDefault",
+      "name": "CharacterDefaultMaxViewHeight"
+    },
+    {
+      "address": "0x43c200",
+      "selector": "MinViewHeight",
+      "method": "PerceptionWorld.CharacterDefault",
+      "name": "CharacterDefaultMinViewHeight"
+    }
+  ],
+  "mappings": [
+    {
+      "address": "0x5160b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "IgnoreWallSplines",
+      "semanticName": "IgnoreWallSplines",
+      "coverage": "whole bounded handler/default helper with explicit IgnoreWallSplines selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516120",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "CheckWallSplines",
+      "semanticName": "CheckWallSplines",
+      "coverage": "whole bounded handler/default helper with explicit CheckWallSplines selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x5161a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "NoTerrain",
+      "semanticName": "NoTerrain",
+      "coverage": "whole bounded handler/default helper with explicit NoTerrain selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516220",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "NoLosCheck",
+      "semanticName": "NoLosCheck",
+      "coverage": "whole bounded handler/default helper with explicit NoLosCheck selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x5162a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "FlatTerrain",
+      "semanticName": "FlatTerrain",
+      "coverage": "whole bounded handler/default helper with explicit FlatTerrain selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516320",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "ShadowTerrain",
+      "semanticName": "ShadowTerrain",
+      "coverage": "whole bounded handler/default helper with explicit ShadowTerrain selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x5163a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "DontUseShadowTerrain",
+      "semanticName": "DontUseShadowTerrain",
+      "coverage": "whole bounded handler/default helper with explicit DontUseShadowTerrain selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516420",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "BuiltinDontPush",
+      "semanticName": "BuiltinDontPush",
+      "coverage": "whole bounded handler/default helper with explicit BuiltinDontPush selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x5164a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "CanSeeBehind",
+      "semanticName": "CanSeeBehind",
+      "coverage": "whole bounded handler/default helper with explicit CanSeeBehind selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516520",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "RequiresLOS",
+      "semanticName": "RequiresLOS",
+      "coverage": "whole bounded handler/default helper with explicit RequiresLOS selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516590",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "SetFullPathSearch",
+      "semanticName": "SetFullPathSearch",
+      "coverage": "whole bounded handler/default helper with explicit SetFullPathSearch selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516bf0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetFlag",
+          "line": 41
+        }
+      ],
+      "selector": "NoShadows",
+      "semanticName": "NoShadows",
+      "coverage": "whole bounded handler/default helper with explicit NoShadows selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516610",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetValue",
+          "line": 68
+        }
+      ],
+      "selector": "ViewDistance",
+      "semanticName": "SetViewDistance",
+      "coverage": "whole bounded handler/default helper with explicit ViewDistance selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516850",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetValue",
+          "line": 68
+        }
+      ],
+      "selector": "HearDistance",
+      "semanticName": "SetHearDistance",
+      "coverage": "whole bounded handler/default helper with explicit HearDistance selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516790",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetValue",
+          "line": 68
+        }
+      ],
+      "selector": "MaxViewHeight",
+      "semanticName": "SetMaxViewHeight",
+      "coverage": "whole bounded handler/default helper with explicit MaxViewHeight selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x5166d0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetValue",
+          "line": 68
+        }
+      ],
+      "selector": "MinViewHeight",
+      "semanticName": "SetMinViewHeight",
+      "coverage": "whole bounded handler/default helper with explicit MinViewHeight selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x516910",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionCommands.SetValue",
+          "line": 68
+        }
+      ],
+      "selector": "MoveRadius",
+      "semanticName": "SetMoveRadius",
+      "coverage": "whole bounded handler/default helper with explicit MoveRadius selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x43c1a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionWorld.CharacterDefault",
+          "line": 29
+        }
+      ],
+      "selector": "ViewDistance",
+      "semanticName": "CharacterDefaultViewDistance",
+      "coverage": "whole bounded handler/default helper with explicit ViewDistance selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x43c1c0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionWorld.CharacterDefault",
+          "line": 29
+        }
+      ],
+      "selector": "HearDistance",
+      "semanticName": "CharacterDefaultHearDistance",
+      "coverage": "whole bounded handler/default helper with explicit HearDistance selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x43c1e0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionWorld.CharacterDefault",
+          "line": 29
+        }
+      ],
+      "selector": "MaxViewHeight",
+      "semanticName": "CharacterDefaultMaxViewHeight",
+      "coverage": "whole bounded handler/default helper with explicit MaxViewHeight selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    },
+    {
+      "address": "0x43c200",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PerceptionCommands.cs",
+      "sourceSha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a",
+      "methods": [
+        {
+          "name": "PerceptionWorld.CharacterDefault",
+          "line": 29
+        }
+      ],
+      "selector": "MinViewHeight",
+      "semanticName": "CharacterDefaultMinViewHeight",
+      "coverage": "whole bounded handler/default helper with explicit MinViewHeight selector",
+      "qualification": "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only. Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here. Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed. BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited. Full-record write checks supplement per-case observations; they are not additional recovered behaviors. Portable numeric evaluation is an explicit callback; prepared replay uses existing MessageNumbers for the tested literal/parameter subset.",
+      "nativeEvidence": "reverse-engineering/reports/native-perception-tests.json",
+      "comparisonStatus": "Original PC verified; portable compilation and behavior tracked separately."
+    }
+  ],
+  "source": {
+    "path": "reconstructed/gameplay/PerceptionCommands.cs",
+    "sha256": "af1844ba95fd1e25b0dc6b6a12dfabb7f7de03091db536e003fd93426c772d2a"
+  },
+  "harness": {
+    "path": "tools/native-perception-portable-verify.cs",
+    "sha256": "4ad378ab354f99d1f03786b72096718d3519a02b83a5608c7a4ad325ae573c74",
+    "main": "PerceptionDifferential",
+    "arguments": [
+      "reports/native-perception-vectors.json",
+      "<output.json>"
+    ],
+    "execution": "Pending; no generated managed launch attempted."
+  },
+  "evidence": [
+    "reports/native-perception-tests.json",
+    "reports/native-perception-assembly.json",
+    "reports/native-perception-vectors.json",
+    "reports/native-verified-entry-index.json"
+  ],
+  "limits": [
+    "Valid projected controller/reference/template/character records. Character type -1 or valid nonnegative index only.",
+    "Whole first-call handler branches and original defaults execute. Full game record allocation and perception/collision consumers are not recovered here.",
+    "Numeric fixtures use original resolver on decimal literals, one parameter or parameter-name tokens; no full expression-language C# recovery is claimed.",
+    "BuiltinDontPush0x516420 is overridden by0x4497b0 for cataloged game scripts; those177 authored uses are deliberately not credited.",
+    "Full-record write checks supplement per-case observations; they are not additional recovered behaviors."
+  ],
+  "findings": [
+    "No first-call flag or no controller causes a no-op; reference-targeted commands also need a reference. Controller-only spline/LOS flags do not require one.",
+    "Boolean handlers default enabled; any exact case-folded FALSE disables. CheckWallSplines also enables IgnoreWallSplines on success, and disabling CheckWallSplines leaves the latter bit unchanged.",
+    "SetFullPathSearch stores the inverse bit at reference+1fc bit0x80000. NoShadows uses reference+1f8 rather than+1fc.",
+    "Four perception values reset from template index0..254, or from signed character defaults at index255. An absent default callback substitutes1; the concrete callback returns0 for characterType=-1.",
+    "The reset happens even when an explicit numeric operand then overwrites it. Only the first argument is used; DEFAULT suppresses numeric evaluation.",
+    "SetMoveRadius initially doubles reference.radius and writes controller+120, independent of template defaults; native float32 overflow and signed zero retained in fixtures.",
+    "Four concrete default helpers were missing from the Ghidra union and are separately registered with original disassembly and native callback execution evidence."
+  ]
+}

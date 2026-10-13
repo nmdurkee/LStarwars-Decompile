@@ -1,0 +1,72 @@
+0052fcb0 push esi
+0052fcb1 push edi
+0052fcb2 mov edi, dword ptr [esp + 0xc]
+0052fcb6 mov esi, dword ptr [edi + 0x144]
+0052fcbc test esi, esi
+0052fcbe je 0x52fd14
+0052fcc0 test byte ptr [esi + 0x50], 8
+0052fcc4 je 0x52fd14
+0052fcc6 mov ecx, dword ptr [esp + 0x1c]
+0052fcca mov eax, ecx
+0052fccc sub eax, 1
+0052fccf je 0x52fcf1
+0052fcd1 sub eax, 3
+0052fcd4 je 0x52fce0
+0052fcd6 sub eax, 1
+0052fcd9 jne 0x52fd18
+0052fcdb lea ecx, [eax + 1]
+0052fcde jmp 0x52fd18
+0052fce0 mov eax, dword ptr [esi]
+0052fce2 cmp eax, dword ptr [edi + 0xd0]
+0052fce8 jne 0x52fd08
+0052fcea push 0x51c6a0
+0052fcef jmp 0x52fd00
+0052fcf1 mov ecx, dword ptr [esi]
+0052fcf3 cmp ecx, dword ptr [edi + 0xd0]
+0052fcf9 jne 0x52fd08
+0052fcfb push 0x51cbc0
+0052fd00 call 0x51d130
+0052fd05 add esp, 4
+0052fd08 push edi
+0052fd09 call 0x52fda0
+0052fd0e add esp, 4
+0052fd11 pop edi
+0052fd12 pop esi
+0052fd13 ret 
+0052fd14 mov ecx, dword ptr [esp + 0x1c]
+0052fd18 mov eax, dword ptr [esp + 0x10]
+0052fd1c test eax, eax
+0052fd1e je 0x52fd3a
+0052fd20 mov edx, dword ptr [eax]
+0052fd22 mov dword ptr [edi + 0x1b4], edx
+0052fd28 mov edx, dword ptr [eax + 4]
+0052fd2b mov dword ptr [edi + 0x1b8], edx
+0052fd31 mov eax, dword ptr [eax + 8]
+0052fd34 mov dword ptr [edi + 0x1bc], eax
+0052fd3a mov eax, dword ptr [esp + 0x18]
+0052fd3e test eax, eax
+0052fd40 je 0x52fd77
+0052fd42 mov edx, dword ptr [eax]
+0052fd44 mov dword ptr [edi + 0x1cc], edx
+0052fd4a mov edx, dword ptr [eax + 4]
+0052fd4d mov dword ptr [edi + 0x1d0], edx
+0052fd53 mov edx, dword ptr [eax + 8]
+0052fd56 mov dword ptr [edi + 0x1d4], edx
+0052fd5c mov edx, dword ptr [eax + 0xc]
+0052fd5f mov dword ptr [edi + 0x1d8], edx
+0052fd65 mov edx, dword ptr [eax + 0x10]
+0052fd68 mov dword ptr [edi + 0x1dc], edx
+0052fd6e mov eax, dword ptr [eax + 0x14]
+0052fd71 mov dword ptr [edi + 0x1e0], eax
+0052fd77 mov edx, dword ptr [edi + 0x1e8]
+0052fd7d fld dword ptr [esp + 0x14]
+0052fd81 fstp dword ptr [edi + 0x1c0]
+0052fd87 xor edx, ecx
+0052fd89 fld dword ptr [esp + 0x20]
+0052fd8d and edx, 7
+0052fd90 xor dword ptr [edi + 0x1e8], edx
+0052fd96 fstp dword ptr [edi + 0x1c4]
+0052fd9c pop edi
+0052fd9d pop esi
+0052fd9e ret 
+0052fd9f int3 

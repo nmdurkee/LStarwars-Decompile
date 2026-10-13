@@ -1,0 +1,96 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 1680,
+    "mismatches": 0,
+    "examples": [],
+    "fixture": {
+      "path": "reports/animation-override-expression-native-fixtures.json.gz",
+      "sha256": "452df5b5a2f750264d0b7cd4e0758b822531bc7c7ec45a3c41dea634206319ab",
+      "bytes": 13096
+    },
+    "method": "Original516980,62e000,514920 and recursive expression/parser/number/RNG helpers execute unchanged. No computational callee is replaced. Native callback9238c0 is null; token buffers retain mutations between repeated evaluations within the command.",
+    "limits": [
+      "Finite terminating ASCII expression domain of ScriptExpressions.",
+      "Definition names and packet parameter values are explicit fixture inputs.",
+      "No production game-symbol callback, actor playback or frame integration claim."
+    ]
+  },
+  "portable": {
+    "sourceHashes": [
+      {
+        "path": "reconstructed/animation/CharacterContexts.cs",
+        "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+      },
+      {
+        "path": "reconstructed/animation/AnimationPlayback.cs",
+        "sha256": "a8c818bfc8d406bfd299e6a7f7216231db7b76fc203af0ce1e4a674ed79ea1bf"
+      },
+      {
+        "path": "reconstructed/animation/ScriptAnimationOverride.cs",
+        "sha256": "1a6e5ecf88a1a6dc10b4de5b189a4b5c9c65ad211f42e9594abca98be8fde016"
+      },
+      {
+        "path": "reconstructed/gameplay/ScriptExpressions.cs",
+        "sha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6"
+      },
+      {
+        "path": "reconstructed/gameplay/ScriptRuntime.cs",
+        "sha256": "79568dad9cfb777f7e5c4d583b2a0c319d6dcf078d489aa2c364c559ba7f45d1"
+      },
+      {
+        "path": "reconstructed/gameplay/Messages.cs",
+        "sha256": "44b7db69e7b8c96e9be018abaf5600b9e1f40e5d312a6b5fe4ac87fa9952ea9d"
+      }
+    ],
+    "harness": {
+      "path": "tools/animation-override-expression-portable-verify.cs",
+      "sha256": "0fdd1b134b9f38ad6ff2b0280d1c4d28756872968b5aa3aa36af901eaf44e18b"
+    },
+    "entrypoint": "AnimationOverrideExpressionVerify.Main",
+    "arguments": [
+      "reports/animation-override-expression-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 1680,
+    "compile": {
+      "command": [
+        "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+        "/nologo",
+        "/optimize+",
+        "/platform:anycpu",
+        "/target:exe",
+        "/reference:System.Web.Extensions.dll",
+        "/main:AnimationOverrideExpressionVerify",
+        "/out:C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\override-expression-build\\AnimationOverrideExpressionVerify.exe",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\CharacterContexts.cs",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\AnimationPlayback.cs",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\ScriptAnimationOverride.cs",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\ScriptExpressions.cs",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\ScriptRuntime.cs",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\Messages.cs",
+        "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\tools\\animation-override-expression-portable-verify.cs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "artifact": {
+        "path": "reconstructed/animation/override-expression-build/AnimationOverrideExpressionVerify.exe",
+        "sha256": "7c2df1bd7a11c208e3b8565bb10f866881aaac9ade165da6669b89bd55f8ca26"
+      }
+    },
+    "execution": "Compiled only; no managed execution."
+  },
+  "contract": "Compose ScriptAnimationOverride.Run with a closure calling ScriptExpressions.EvaluateToken(environment,creature,packet,tokens,0). The closure must preserve the same token array and expression environment across iterations. Native original checks compare mutated tokens, timer floatbits, source/target IDs, RNG state, expression/error/lookup sequence and global pointer identities. Portable harness compares expression/error sequence and final lookup IDs; pure FindAction does not expose lookup observation. No new native mapping is claimed.",
+  "tools": [
+    {
+      "path": "tools/animation-override-expression-verify.py",
+      "sha256": "2b8d87a73611d30f52e476e430e53a54cb4623eda2cac5aad082f27470c56ec9"
+    },
+    {
+      "path": "tools/animation-override-expression-report.py",
+      "sha256": "9bc4219a8ece0dfd9a9b81304933c4cabe7d8b7b551dd4948d8851d2bdf67bc9"
+    }
+  ]
+}

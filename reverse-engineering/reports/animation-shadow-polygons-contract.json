@@ -1,0 +1,104 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 4144,
+    "counts": {
+      "point": 1024,
+      "direction": 1024,
+      "authoredQuietNaNFaces": 4,
+      "polygon": 2096,
+      "vertices": 418932,
+      "acceptedFaces": 27178,
+      "normalTransforms": 38424,
+      "pointTransforms": 209466
+    },
+    "authoredGroups": 496,
+    "authoredRigs": 198,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports\\animation-shadow-polygons-native-fixtures.json.gz",
+      "bytes": 436441,
+      "sha256": "89e1bd6bc8cc7a7e6536b56141db9e5f1985bbf89de1d94b0a3a54159d58a6da"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-skeletal-fixture.py",
+        "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+      },
+      {
+        "path": "tools/animation-x87.py",
+        "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+      },
+      {
+        "path": "tools/animation-character-bounds-verify.py",
+        "sha256": "c39464270a138963ceea26a14e1050eda6bbe5edeeb93dd81b6910b5fb3e8c6c"
+      },
+      {
+        "path": "reports/animation-shadow-queue-bindings.json",
+        "sha256": "cf9e4df4d402591e7159f0a7d08ccf7d956126c71b6e30c87d5e3549189a0472"
+      },
+      {
+        "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+        "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+      }
+    ],
+    "method": "Original full5e4280 and its scalar5c03e0/5c0490 callees execute without callback replacement. Compare entire1MiB persistent fixture, vertex/group/generated counters and exact transform-call counts. Direct helpers include original in-place source/output probes and all output bits.",
+    "limits": [
+      "Finite vertices/matrices/direction and finite stored results. Face normals may additionally contain quietNaNs, which pass the native unordered comparison; four authored such faces and96 synthetic quietNaN probes are retained. Direct transform helpers remain finite-only. No arbitrary overlapping source/matrix/output memory.",
+      "Resolved nonnegative edge counts, backed polygon and vertex arrays, sufficient output capacity. Output group table saturates at250; vertex output continues.",
+      "Authored pair fields are verified PNTR relocations with bounded source payload hashes. This recovers CPU side quads; no cap generation, GPU draw or exact Unity rasterization claim.",
+      "Managed replay is prepared/compiled only; no generated managed executable launched."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyPolygonShadows.cs",
+      "sha256": "9a24dda753aea50f36324a8ebebecc79a32002fc32239be536451d943f256607"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-polygons-portable-verify.cs",
+      "sha256": "756b2d51f714fdc6ce4b71697734280d6b61085533dc1a8b4661e35839409fa8"
+    },
+    "entrypoint": "LegacyPolygonShadowsVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-polygons-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 4144,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-polygons-compile.json"
+  },
+  "contracts": {
+    "payload": "The third shadow-binding pointer addresses a relocated pair of normal/vertex streams. Both pair fields are proven PNTR relocations. Vertex0+12 is a signed polygon count; each normal record hasXYZ floats and signed edge count at+12. Vertices are concatenated16-byteXYZ/metadata records, with each polygon consuming its edge count.496 authored groups across198 source rigs are fully bounded and hashed.",
+    "selection": "The writer copies the input matrix to its stack, transforms each normal with its upper3x3, and evaluates an x87 wide dot against direction. It accepts ordered dot<=0 and also unordered comparisons. Four authored Dwarf Spider Droid normals contain quietNaNs; the native test accepts these faces. The portable writer preserves that branch, with96 additional single-component quietNaN probes; arbitrary infinite/signalingNaN inputs remain excluded.",
+    "metadata": "An accepted face records the current vertex count and its edge count only when unsigned GroupCount<250, then increments GroupCount. A full table stops only metadata recording: vertex extrusion continues. Zero-edge accepted faces can still add a metadata entry. Vertex and generated counts persist across calls.",
+    "geometry": "For each accepted edge, transform current and next vertex, wrapping to this polygon's first vertex at the last edge. Add direction directly to both points and emit four16-byte records in order[current,current+direction,next+direction,next], each with color0xffffffff. VertexCount increases4 and GeneratedValue increases6 per edge. This writer does not multiply direction by5, unlike adjacent ellipse/cylinder code; no cap vertices are emitted.",
+    "transforms": "5c03e0 forms four row-vector matrix products with original64-significand intermediate rounding, then stores four floats.5c0490 transformsXYZ using only the upper3x3 and copiesW. Separate exact-zero sign tracking preserves signed zero and subnormal results; native in-place vector cases match the owned-output portable projection.",
+    "verification": "4144 new original comparisons, including2096 complete shape writes and1,024point plus1,024direction helper cases. 418932 emitted vertices, 27178 accepted faces, full1MiB state and all counters match. No native computational callbacks replaced. Authored bind matrices, random finite transforms, zero direction and saturated metadata paths are exercised.",
+    "integration": "LegacyShadowConsumer's5e4280 service can now resolve the source pair into LegacyShadowPolygons, call this writer with the record matrix/direction, and synchronize GeneratedValue. This batch proves the writer and source binding layouts; a combined scheduler-to-writer fixture is the next integration step. The two remaining shape services are still explicit.",
+    "managed": "Prepared replay reconstructs the same input/output image, runs actual portable shape/transform methods, and compares complete image hashes, counters and all helper result words. Library and replay compile; managed execution is pending."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-shadow-polygons-verify.py",
+      "sha256": "b13d34e6fe73fac99d1763835e9db4b7598c4b6fd2839e27c0a869804901f744"
+    },
+    {
+      "path": "tools/animation-shadow-polygons-report.py",
+      "sha256": "2d696e9165bfd7c9af25d8bc426750377b70398e4ddd644f2939e8c000f37a4b"
+    }
+  ],
+  "limits": [
+    "Finite vertices/matrices/direction and finite stored results. Face normals may additionally contain quietNaNs, which pass the native unordered comparison; four authored such faces and96 synthetic quietNaN probes are retained. Direct transform helpers remain finite-only. No arbitrary overlapping source/matrix/output memory.",
+    "Resolved nonnegative edge counts, backed polygon and vertex arrays, sufficient output capacity. Output group table saturates at250; vertex output continues.",
+    "Authored pair fields are verified PNTR relocations with bounded source payload hashes. This recovers CPU side quads; no cap generation, GPU draw or exact Unity rasterization claim.",
+    "Managed replay is prepared/compiled only; no generated managed executable launched.",
+    "Three new native addresses. Existing legacy scheduler/direction modules remain unchanged.",
+    "No Unity mesh runtime, graphics-device submission or generated managed executable has been launched."
+  ]
+}

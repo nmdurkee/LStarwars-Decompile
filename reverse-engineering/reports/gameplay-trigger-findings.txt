@@ -1,0 +1,36 @@
+PC TRIGGER CONDITIONS AND OCCUPANCY
+
+36377 original native checks, zero mismatches. 29746 prepared managed comparisons; compiled only, not executed.
+8 mapped native entrypoints; vector/shift callees retained as supporting evidence, not separately counted.
+
+readers
+All four readers return exactfloat0/1 from cached object mask+0x2b0/+0x2b4. An initialized area wins over processor+0xa0; either must have nonnull owner+0x38. The index is arithmetic(area-owner.areas)>>6. PC computes low=1u<<(index&31), high=sign_extend(low). Therefore index31 tests lowbit31 OR any highbit; index32 wraps to lowbit0. These are preserved native semantics, not a conventional64-bit bitset.
+
+selection
+InTriggerArea checks script-creature+0xd0 directly without another dereference. Player1/2 are AI-system+0x138c/+0x1390. PlayerInTriggerArea alone additionally requires system+0x38 area table. Either checks player1 thenplayer2. No reader recomputes containment or liveness.
+
+lookup
+0x51acd0 checks nonnull system, signed count+0x34>0, then scans64-byte records from+0x38 in order. Name comparator is original0x4f8b10: ASCIIa-z and everybyte>=0xe0 fold by subtracting32. First duplicate wins. Initializers0x52d0b0/0x52d160 returnnull for absent operand, otherwise this lookup; named binding failure consequently falls back to processor area when a reader runs.
+
+producer
+0x43b7c0 receives area inEDI, derives its index from globalworld0x802c54->+0x2ae8AI->+0x38areas (independent of area.owner), clears only area.state bits0..2, and scans signed globalcount0x93d500 objects from0x93d504 withstride0x10d8. Objects require flags+0x1fc bits1 and0x1000, and restrictedbyte+0x28b==0 OR timer+0x1010>0 OR flagsbit0x80. Skipped objects retain old masks.
+
+containment
+Original0x5b3800 subtracts area.position+0x10 from object.position+0x5c, storingfloat32. Original0x5b3620 rotates aboutY by negative signedarea.yaw+0x28 using original32768float table at0x29899a0, indices((angle+0x4000)>>1)&0x7fff and(angle>>1)&0x7fff. Each sum of products uses x87precision64 beforefloat32store. Inclusive bounds are [-halfWidth,+halfWidth],[-0.1f,height],[-halfDepth,+halfDepth]. Nativeqwordconstant0x755d20 equals exactpromotedfloat32(-0.1), not binary64(-0.1). Height is not a centered half-height.
+
+maskAndStateWrites
+Inside ORs the same signed32-bit mask intoobject+0x2b0/+0x2b4. Outside uses __allshl(1,index): tests low8bitshift, zero forshift>=64, then clears that full64bitmask. Inside area.state|=1 for objecteligibilitybit0x80; state|=4 ifobject+0x1f8bit1, otherwise |=2 ifstateflagsbit4clear. Statebit3andhigher survive. There is no PC bit3 occupancy update in this function.
+
+schedulingBoundary
+Caller0x43b940 iterates one current area selected by AI-system byte+0x1384, increments/resets that byte, and continues other AI work. This batch ports the occupancy helper only; it does not reconstruct the entire frame scheduling function.
+
+Authored:425 areas in173 AI2 carriers;693 script occurrences;693 original literal comparisons.
+{"EitherPlayerInTriggerArea": 386, "InTriggerArea": 165, "PlayerInTriggerArea": 141, "Player2InTriggerArea": 1}
+{"same-directory authored AI2": 686, "no unique local AI2; synthetic binding only": 7}
+Remaining gaps
+Finite positions/extents/timers and a complete original sine table. NaNs, infinities, invalid raw pointers, concurrent mutation, and malformed unterminated names excluded.
+TriggerSystem/TriggerArea/TriggerObject are explicit runtime projections, not the full loader or object lifetime implementation.
+Producer scheduling in0x43b940 and global world/object-array population remain external. Eligibility-skipped objects preserve stale trigger masks.
+Authored AI2 upload maps recovered file fields into runtime fields; native AI2 loading is not executed here. Source angle raw16bits is used, not BrickBench degree conversion.
+Same-directory AI2 name resolution is source evidence only; shared scripts without a unique local carrier retain an explicit synthetic binding scope.
+Managed core/harness compile separately; no generated managed executable is run.

@@ -1,0 +1,92 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 2180,
+    "counts": {
+      "draw": 514,
+      "deviceEvents": 152584,
+      "geometryServices": 74,
+      "overlay": 128,
+      "flush": 514,
+      "allocate": 1024
+    },
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports/animation-shadow-flush-native-fixtures.json.gz",
+      "sha256": "02442af4dece51dc091711f72a57f628c37d0c23dc7ea82b2ef49c0d1c24e1e7",
+      "bytes": 3989778
+    },
+    "services": {
+      "0x6e5700": 1,
+      "0x6e5290": 1,
+      "0x6e5340": 2,
+      "0x6e5630": 2,
+      "0x6e5670": 3,
+      "0x6e56c0": 1,
+      "0x6e5590": 4,
+      "0x6e4980": 3,
+      "0x6e49b0": 4,
+      "0x6df8b0": 0,
+      "0x5e4840": 2
+    },
+    "method": "Original CPU schedulers execute; exact device-wrapper and build-geometry calls are recorded at stated services. Compare full inline memory, unchanged external globals, ordered arguments, resets and allocation words. Geometry service applies explicit fixture counter changes; no actual GPU calls.",
+    "limits": [
+      "Device/cache services are recording boundaries and do not mutate tracked CPU state. Flush geometry service may change only vertex/group/generated counters.",
+      "Direct draw counts are bounded: vertexCount divisible by4 and at most14000, groupCount at most250; edge/start words retain full32-bit wrap semantics.",
+      "Draw scheduler uses immediate inline globals rather than allocated pointer contents. Preserve that original behavior; no assertion that this legacy GPU path is active or functional.",
+      "Allocate cursor is disjoint from global pointer slots; full32-bit cursor wrap allowed, allocation backing not dereferenced.",
+      "No managed or live graphics execution."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyShadowFlush.cs",
+      "sha256": "aae4557d23eebf55e62ac51209d06a336471a738af5990c46b64f48f065e18ac"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-flush-portable-verify.cs",
+      "sha256": "40f7d0dab904e0d7c5e16123e9284518dc16eb107dcec72505682a698a5a1aca"
+    },
+    "entrypoint": "LegacyShadowFlushVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-flush-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 2180,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-flush-compile.json"
+  },
+  "contracts": {
+    "allocation": "5e28c0 aligns a disjoint cursor to4bytes, reserves0x36b00 bytes for14000 16-byte vertices, then two2000-byte metadata regions. Writes vertex pointer963f94, starts pointer963f88 and edges pointer96e568; all cursor arithmetic wraps32bits. Each metadata allocation holds500words, although writer group registration caps at250.",
+    "draw": "5f9c30 sets the original render-state sequence, draws each four-vertex side with primitive6/count2/stride16, then every group with primitive6/count(edgeCount-2)/stride64. It repeats both loops after changing two states. Crucially, it passes immediate address963f94 plus offsets and reads inline metadata at963f88/96e568; it does not dereference the pointers installed by5e28c0. This mismatch is original PC behavior, not silently corrected.",
+    "overlay": "5f9b20 emits24 ordered device-wrapper calls including texture-stage settings, three globals80e178..180, shader2976c74, buffer2854bf0 and primitive6/count2. All handle/state words stay opaque, and original calling convention/arguments are retained.",
+    "flush": "5f9da0 runs setup, geometry5e4840 with extra arguments128/0, two-pass draw, overlay and five cleanup states only if enabled!=0,mode==1,queueCount!=0. It clears vertex/group counters only on that active path, preserves GeneratedValue from geometry, and clears queueCount unconditionally. Negative counts also enter the active branch.",
+    "evidence": "2180 NEW original comparisons:1024 allocations,514 draws,128 overlays and514 flushes;152584 device/cache service calls and74 geometry service calls recorded. Original loops, ordering, argument words, memory preservation and counter resets match. Full-sized14000-vertex/250-group cases and metadata underflow/wrap are included.",
+    "services": "Ten graphics/cache wrappers and the geometry call are explicit service boundaries listed in tests.services. The geometry service applies fixture counter changes; all-three actual geometry computation is separately verified in animation-shadow-geometry-pipeline. These CPU scheduling tests do not establish graphics output, current gameplay activation, or functional legacy D3D submission.",
+    "managed": "Core and replay compile. Prepared replay compares exact event arguments/order, complete inline image hash, persistent counters and unchanged state/handles. Managed execution remains pending."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-shadow-flush-verify.py",
+      "sha256": "3092354ea397064da16a4e92530883127bc8935e3619fd0226f61cac8e986161"
+    },
+    {
+      "path": "tools/animation-shadow-flush-report.py",
+      "sha256": "630734a4c8415bfe4d1e5f110fb0e313b6b8878021acb4db692bb65804c08da5"
+    }
+  ],
+  "limits": [
+    "Device/cache services are recording boundaries and do not mutate tracked CPU state. Flush geometry service may change only vertex/group/generated counters.",
+    "Direct draw counts are bounded: vertexCount divisible by4 and at most14000, groupCount at most250; edge/start words retain full32-bit wrap semantics.",
+    "Draw scheduler uses immediate inline globals rather than allocated pointer contents. Preserve that original behavior; no assertion that this legacy GPU path is active or functional.",
+    "Allocate cursor is disjoint from global pointer slots; full32-bit cursor wrap allowed, allocation backing not dereferenced.",
+    "No managed or live graphics execution."
+  ]
+}

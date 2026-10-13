@@ -1,0 +1,28 @@
+PC CHARACTER SHADOW QUEUE
+
+10368 exact original comparisons; 0 mismatches.
+
+groups
+Hierarchy+0x19c points to 16-byte shadow-group records, terminated by joint byte255 at +15; +0x1a0 suppresses submission when nonzero. Record +0/+4/+8 are relocated pointers, +12/+13/+14 counts. PC consumer5e4840 confirms first resource stride48 and second stride64; the third repeatedly consumes the same two-word pair. OpenSaga names the first two ellipse and cylinder. All 3,432 pointer fields in 1,144 authored groups are present in the actual PNTR table.
+
+gates
+5f9fa0 requires byte8264c4 nonzero, int8264bc exactly1, nonnull group pointer and zero hierarchy suppression. Each nonterminal group additionally requires signed queuecount973fe8 <280 and global80babc nonzero. A full queue still scans to the sentinel. A rejected group does not read its joint transform and does not alter submission flag9718a4.
+
+producer
+Each accepted group multiplies jointWorld[group.joint]*objectWorld via original5c0500/imported D3DX scalar implementation, calls5f9ed0 with the three pointer/count pairs, then sets9718a4 to1. Queue capacity can cut a group list mid-way. Joint255 is only a sentinel; it is never a matrix index in this producer.
+
+row
+Queuebase9666b0, capacity280, stride104. Row+0 copies 64 matrix bytes; +40/+44/+48 store the three pointers; +4c/+50/+54 copy2854bf4/8/c; +58 sign-extends byte2854c03 to32 bits. Float973fe0/4 are loaded/stored at+5c/+60. Counts go to+64/+65/+66. Low byte of sequence973fdc goes to+67, then queuecount increments and sequence wraps modulo2^32. Matrix bits are copied without arithmetic by the writer.
+
+authored
+All688 hash-bound GHG carriers scanned:244 contain1,144 groups,444 have null group pointers, none have authored suppression, and all joint indices are valid. Relative pointers are normalized to source offsets for fixture identities; queue production only copies them. Payload ranges and hashes are preserved in animation-shadow-queue-bindings.json. The third pointer is preserved as an opaque pair, not mislabelled as a standard mesh.
+
+integration
+A CharacterSubmissionServices.SubmitAttachments closure can call CharacterShadowQueue.Submit with hierarchy-specific bindings and shared queue state. This closes the former5f9fa0 boundary. Subsequent5f9da0/5e4840 shadow-volume generation, render-state commands and drawing remain separate. No assumption that these PC shadow operations are the final Unity implementation.
+
+Limits
+Nonnegative queue count; finite joint/world arithmetic and float metadata. Direct matrix copy accepts arbitrary 64-bit-pattern bytes without arithmetic.
+Disjoint source and queue storage; valid terminated bindings. Invalid source pointers, missing sentinel and allocation failures are excluded.
+Authored pointer fields are proven PNTR relocations and normalized to source offsets; this queue does not dereference them. Full shadow-volume generation, GPU submission and renderer timing remain outside this scope.
+Authored matrices are bind-world matrices prepared with explicit scalar arithmetic, not runtime clip scheduling.
+Managed source and replay compile only; original-versus-model checks do not establish managed execution equivalence.

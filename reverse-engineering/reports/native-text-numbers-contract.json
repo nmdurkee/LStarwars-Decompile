@@ -1,0 +1,59 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "integer": "Optional minus and decimal digitprefix, exact32-bit wrapping. No plus/leadingwhitespace. Hexadecimal requires entiretoken valid; invalidbyte returns0.",
+    "real": "Explicit float32 stores after each multiplication and addition, each divisor scale and final division. No exponent syntax; signedzero preserved. Finite stored intermediate domain.",
+    "readers": "Read actual shared token, narrowbinarytoken when enabled, then parse. Integer reader dispatches$or0x/0Xprefix tohex; empty token gives0. Numeric locals bounded to63bytes.",
+    "composition": "Text-mode numeric readers execute unchanged together with4f7fb0 and customconverters. Binarytoken decoding remains service and this suite excludes its execution."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2927,
+    "mismatches": 0,
+    "visitedInstructions": 244,
+    "bytesComparedPerCase": 65540,
+    "groups": {
+      "decimal": 539,
+      "hex": 539,
+      "real": 539,
+      "read-int": 655,
+      "read-real": 655
+    },
+    "examples": [],
+    "method": "Original4f28e0/4f29a0/4f8cb0 and numeric readers4f8100/4f9e70 execute with actual shared token scanner. No computational hooks; exact raw32-bit results and complete prepared memory compare.",
+    "limits": [
+      "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here.",
+      "Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes.",
+      "Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/TextParserNumbers.cs",
+      "bytes": 3535,
+      "sha256": "5f0a7526be61b757646092a0139f4ff4c518c088b7057238d1527e7fcf54470a"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-text-numbers-portable-verify.cs",
+      "bytes": 4403,
+      "sha256": "d6c58520121e5c8fccbda3529a47cebd99987ab364204752542205efc2a092b7"
+    },
+    "entrypoint": "TextParserNumbersVerify.Main",
+    "arguments": [
+      "reports/native-text-numbers-vectors.json.gz",
+      "reports/native-text-numbers-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-text-numbers-vectors.json.gz",
+      "bytes": 127685,
+      "sha256": "3e31df30f7657a4032ac0523cf8894b8886b676c5c404977d67ba23fc8a2cc80"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here.",
+    "Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes.",
+    "Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending."
+  ]
+}

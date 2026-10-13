@@ -1,0 +1,19 @@
+OUTER SHADOW LIGHT AND CAMERA SELECTION
+
+{"cases": 155, "persistentBytes": 20316160, "earlyReturn": 19, "contextExtractions": 272}
+
+Modeglobal951be8 selects target from fixedcamera9736e8forward*2+translation, height=-2, or actual55e340activeplayermean with height from world+5110light+30. Normalmode noactiveplayer returns without touching outputs. Normalmode activeplayers dereferenceslight BEFORE nullguard; portable explicitly rejects that invalidworldcase. Alternatemode nulllight returns afterheight=-2.
+
+Special override requires world+12c model ushort+7a bit100 and absenceofworld+128 descriptorDWORD+64 bit400. It forces strength.5 andsplitrange16. Normalmode5967b0 maxstrength>=0 selects normalized(avgdirection+lightdirection); negative strength uses fixedcamera-info fallback at11cX-1.2000000476837158,Y=80511c,Z-1.5. Zero strength is accepted.
+
+Primarylighteye=target-805120*direction; secondlighteye=target+(2*r,10*r,2*r). Alternatemode uses raw lightdirection; normalmode normalizes the averagedirection pluslightdirection. The normalfallback duplicates both eyes.
+
+Cameraorigin/forward sources: mode usesinfo+e8/+d8; normalalternateview usesfixedcamera translation/forward andcamera pointer2912e78; normaldefault usesinfo+11c position andinfo+128-target difference withcamera925164. Splitstart always usescamera925164near evenwhen alternatecamera isselected.
+
+Forward normalizes, factor=float32(min(1,forwardY+1)), distance=sqrt(stored ordereddistance squared to target+heightY). Original5be630(factor,805118) runs unchanged in nativefixtures including realCRTlog/exp. Portable service receives these exactarguments and supplies the recorded nativefloat result; no reconstructed CRT/cache claim.
+
+Endsplit=float32(distance+power*(range-distance)) with extendedintermediates. Mode createscuts(start,start+805114,end), mask955b40=3; normalcreates(start,end),mask1. Primarycontext receives lightstrength/multipliers and biasfields+100/+104/+110 and+480/+484/+490, fadebounds+81c/+820. Bothcontexts thenexecute actualConfigureView andExtract in order; secondary strength uses selected/forcedstrength.
+
+155 original completecaller scenarios /272context extractions /20316160persistentbytes pass.19earlyreturns, modeloverride gating arms, modes/camera choices, playerstrength/fallback andsixauthoredCU2cameramatrices included. Orderedview/extraction arguments andpowerarguments agree with independent caller model.
+
+Only provenundefined extractionpadding is normalized. Native temporarycuts mirror into explicitScratchCuts adapterstorage; globalheight/mask andtwo matrixglobals have explicitmirrors. Controlled exactrecordlayouts are not a claim of live entityloading, registration scheduling, GPU behavior or managedruntime equality.

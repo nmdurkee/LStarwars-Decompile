@@ -1,0 +1,40 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x4fc2d0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserLines.cs",
+      "sourceSha256": "6798d83f0d7eda8149b96bbdeec7654e0ffac6b19ee5c5c03537e2c883c4a216",
+      "methods": [
+        {
+          "name": "TextParserLines.ReadByte",
+          "line": 8
+        }
+      ],
+      "coverage": "bounded whole helper with file and binary-line services",
+      "qualification": "Disjoint valid4096-byte refill storage, bounded line backing and positive capacity; service returns0..requested bytes. Two complete raw authoredAUDIO.CFG runs use17-byte and4096-byte service chunks, no external comment stripping. Semicolon comments are active outside quotes, CR always consumes next byte, whitespace-only lines may retain accumulated whitespace, final terminator uses unmasked line count. Unterminated quoted lines retain native behavior. ReadByte preserves offset bits above low8; callers consume low byte. No binary format/file system backend implementation or managed execution claimed.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-lines-tests.json"
+      ]
+    },
+    {
+      "address": "0x4fc5b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserLines.cs",
+      "sourceSha256": "6798d83f0d7eda8149b96bbdeec7654e0ffac6b19ee5c5c03537e2c883c4a216",
+      "methods": [
+        {
+          "name": "TextParserLines.Next",
+          "line": 24
+        }
+      ],
+      "coverage": "bounded whole helper with file and binary-line services",
+      "qualification": "Disjoint valid4096-byte refill storage, bounded line backing and positive capacity; service returns0..requested bytes. Two complete raw authoredAUDIO.CFG runs use17-byte and4096-byte service chunks, no external comment stripping. Semicolon comments are active outside quotes, CR always consumes next byte, whitespace-only lines may retain accumulated whitespace, final terminator uses unmasked line count. Unterminated quoted lines retain native behavior. ReadByte preserves offset bits above low8; callers consume low byte. No binary format/file system backend implementation or managed execution claimed.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-lines-tests.json"
+      ]
+    }
+  ],
+  "commands": []
+}

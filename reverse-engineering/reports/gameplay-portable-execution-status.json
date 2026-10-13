@@ -1,6 +1,6 @@
 {
   "status": "compiled-comparison-pending",
-  "coreCompilation": "C# 5 / Framework csc compilation succeeded for all eight gameplay source files: FlowRuntime.cs, SpecialGizmo.cs, ScriptRuntime.cs, Messages.cs, StateControl.cs, Visibility.cs, CompactConditions.cs and CreateCreatures.cs. Their separate comparison harnesses compile; managed execution remains pending.",
+  "coreCompilation": "The previous eight gameplay core files compile. New LocatorCommands.cs and MovementCommands.cs compile with both independent replay harnesses. TriggerConditions.cs and the obstacle/scene modules have separate compile evidence in their owning contracts. Unified integration is parent-owned; compiled runtime comparisons remain pending.",
   "observedExecutionFailures": [
     {
       "artifact": "reverse-engineering/reconstructed/gameplay/GameplayVerify.exe",
@@ -23,7 +23,26 @@
     "reports/gameplay-state-command-tests.json",
     "reports/gameplay-visibility-tests.json",
     "reports/gameplay-compact-condition-tests.json",
-    "reports/gameplay-createcreatures-tests.json"
+    "reports/gameplay-createcreatures-tests.json",
+    "reports/gameplay-locator-binding-tests.json",
+    "reports/gameplay-movement-tests.json",
+    "reports/gameplay-movement-helper-tests.json",
+    "reports/gameplay-trigger-tests.json"
   ],
-  "nextValidation": "Run the ordinary compiled verifier when the execution environment permits it; retain compiler success and original-PC checks as distinct evidence until then."
+  "nextValidation": "Run the ordinary compiled verifier when the execution environment permits it; retain compiler success and original-PC checks as distinct evidence until then.",
+  "movementCompilation": {
+    "status": "compiler-exit-0",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "artifacts": [
+      {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-locator-verify.exe",
+        "sha256": "6a4a890937cc4eed3387b63e847aebdd826df6c6eff9874c32a4cfbccd093334"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-movement-verify.exe",
+        "sha256": "e9fa8e0badb86c72a02efa67359710d675452cce7ab40d50f4abae26f2a1bac5"
+      }
+    ],
+    "execution": "Not attempted; parent instructed no generated managed EXE launch."
+  }
 }

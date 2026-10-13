@@ -1,0 +1,20 @@
+Original room-output consumers: 0x5da2d0 and 0x5da330
+
+All 7,888 saved original traversal outputs were replayed through both unchanged
+native consumers: 90,574 room queries and 7,888 masks, plus 12 disabled queries
+and 6 disabled masks. There are zero mismatches; 16 tail canary bytes beyond
+every room mask remain intact.
+
+The contracts intentionally differ. The query searches only the allocated clip
+header room IDs, including negative values, while the mask clears roomCount
+bytes and sets the selected root plus every nonnegative clip room. In 7,875
+fixtures the root appears in the mask but has no allocated clip carrying its ID.
+Initial clip room -2 can be queried, but negative clip IDs are omitted from masks.
+Null or zero-portal scenes make queries return true and leave mask bytes alone.
+
+PortalRoomOutputs.cs and its harness compile successfully as a separate library
+referencing the stable geometry assembly. The compact 112,626-byte replay covers
+all query/mask outputs and canaries. Managed execution remains pending; no
+compiled equivalence or operating-system workaround is claimed. Mapping and
+hashes are in geometry-portal-room-outputs-source.json, separate from the stable
+geometry source ledger. Invalid roots or corrupt native pointers are excluded.

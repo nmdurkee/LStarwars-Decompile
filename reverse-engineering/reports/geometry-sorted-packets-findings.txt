@@ -1,0 +1,37 @@
+Sorted CPU command completion
+
+Original0x5e0d00 follows linked sort records and uses unsigned16 material
+count/start at+0x20/+0x22. These fields index material pointer tables; previous
+metadata names boundsCount/firstBounds are misleading. Active command records
+are linked through their initial command,current tail,saved command,and two
+packet buffers. Dirty bit4 distinguishes command-tail handling. The original
+filter combines only the low bytes of displayFlags>>5 and materialFlags>>14;
+a match disables the material control and clears its current parity bit.
+Inactive commands do not reset the cached last-shader identity.
+
+The two callbacks5fca70/5fca80 are literal returns in this PC binary. The
+local52-byte context is initialized then only passed to those empty callbacks;
+its undefined padding therefore has no CPU effect. Shader607590 is a real
+separate emitter. This batch calls its original already-current branch without
+replacement, and source requires an explicit callback for changed contexts.
+Registered nonnull shader contexts are reset after all sorted work.
+
+432 original checks pass:240 authored cases across60 portal scenes,
+64 boundary cases and128 aligned append cases.19,701 active material visits,
+156 unchanged original shader early returns and22,109,459 compared state/call
+bytes match. Authored material flags,index maps and sort ranges are used with
+controlled valid runtime packet cursors; this is not a live captured frame.
+
+Original6034b0 aligns the allocator cursor16, links the previous tail, emits a
+type/control3 command followed by an0x8d/control1 link, updates the record tail
+and advances32bytes. Its unusual return is the allocator-control pointer for
+inline payload allocation,or0 for explicit payload. Packet padding remains
+unchanged. All16 starting alignments,low-byte type truncation and payload modes
+are checked against original instructions.
+
+SortedPackets.cs and harness compile against FrameReset. The4,929,338-byte
+gzip input contains every native fixture. Main SortedPacketsHarness takes
+compressedInputFixture/outputFile; the checker prepares/compares only.
+Managed execution remains pending. Finite valid pointers,acyclic lists,
+nonnegative material indices and0/1 slots define the supported domain.
+Partial shader/global memory overlap is excluded. No GPU work is claimed.

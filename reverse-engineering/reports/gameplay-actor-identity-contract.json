@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-10-12T21:47:34.818Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "initializer": {
+      "address": "0x515730",
+      "description": "Null operand or absent name callback returns null. Otherwise invokes the actual registered actor-name callback and retains its reference record itself. It does not dereference the first-pointer world object. The cached reference persists when primary-player globals later change.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_515730.c",
+          "line": 8,
+          "address": "0x515730"
+        },
+        {
+          "path": "reverse-engineering/reports/gameplay-actor-state-contract.json",
+          "contract": "namedBinding"
+        }
+      ]
+    },
+    "IAm": {
+      "address": "0x515750",
+      "description": "Null script creature or null creature+0xd0 reference returns float0. Exact equality between the reference and cached initializer result returns float1 before definition/name checks. Otherwise the reference+0x54 definition and its+0xc name must be nonnull; whole case-insensitive equality to the condition operand returns1, else0. It does not compare the world object, actor display name, type-group slot or current player ownership. Operand null gives no name match but can still pass cached pointer identity.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/reports/gameplay-actor-identity-assembly.json",
+          "address": "0x515750",
+          "range": "0x515750..0x51578d inclusive"
+        }
+      ]
+    },
+    "coverage": {
+      "description": "All138 shipped IAm operands run through original initializer/callback/predicate in four contexts: unmatched/default, matching definition with bound identity, matching definition without callback, and absent creature. Targeted cases add null operand/reference/definition/name, stale binding after changed player globals, world-object/reference differences and explicit mismatching cached references. Predicate return is captured directly from x87 into float32. Script comparators/connectives are outside this small predicate suite and remain governed by the existing scheduler contracts.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/reports/gameplay-actor-identity-tests.json"
+        }
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "IAm",
+      "address": "0x515750",
+      "initializer": "0x515730",
+      "sourceUses": 138
+    }
+  ],
+  "verification": {
+    "checks": 912,
+    "mismatches": 0,
+    "authoredOccurrences": {
+      "IAm": 138
+    },
+    "method": "Original initializer0x515730, actual registered callback0x43c220 and predicate0x515750 execute unchanged. Predicate x87 return is captured to float32; only bounded CRT Player%d formatting is substituted.",
+    "reports": [
+      "reverse-engineering/reports/gameplay-actor-identity-tests.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-actor-identity-native-fixtures.json",
+      "bytes": 2913339,
+      "sha256": "5e2ec60f0d5366b27d0175dab995288d2accbc43249c81475366d7701f8d6ccb"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ActorIdentityConditions.cs",
+      "bytes": 1196,
+      "sha256": "9c1b7bca928a9ff013480b2a97b63b207a282fd15bf6aaf35d09d83b243371e9"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-actor-identity-portable-verify.cs",
+      "bytes": 4390,
+      "sha256": "62a37f6f4dc53488f4e68877728ce988353d6e3f211204909d8eda9d96ab04b2"
+    },
+    "entrypoint": "GameplayActorIdentityVerify.Main",
+    "arguments": [
+      "reports/gameplay-actor-identity-native-fixtures.json",
+      "reports/gameplay-actor-identity-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-actor-identity-verify.exe",
+        "bytes": 39936,
+        "sha256": "d3b7b209c1ec93e1bc806aa60d0081b22d82069d9322cf3d58d636a4848d106f"
+      },
+      "managedExecution": "Not attempted; compile-only instruction preserved."
+    },
+    "adapters": [
+      "Reference/definition attachment, cached identity lifetime and current world/player tables are supplied data.",
+      "Native initializer uses the recovered ActorStateWorld.FindReference algorithm; only bounded CRT Player%d is substituted in native fixtures."
+    ]
+  },
+  "remaining": [
+    "Valid runtime reference identity and definitions; record allocation/lifetime are supplied.",
+    "ASCII operand/name comparisons; cached pointer identity persists across later player-global changes.",
+    "Core/replay compile only; no generated managed executable launch."
+  ]
+}

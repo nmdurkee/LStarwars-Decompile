@@ -1,0 +1,99 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 3512,
+    "counts": {
+      "0x5e0390": 1724,
+      "0x5e02b0": 849,
+      "0x5e0200": 939
+    },
+    "mismatches": 0,
+    "examples": [],
+    "fixture": {
+      "path": "reports/animation-skin-dispatch-native-fixtures.json.gz",
+      "bytes": 304111,
+      "sha256": "e7576e122b86ba6d7d02a7200dfcb387b39144e65bd5dee566ea1e991ad44899"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-morph-packets-verify.py",
+        "sha256": "5bd32ee1d9749fbc6620663960668836611ccd8f7748226cabfca026049163ff"
+      },
+      {
+        "path": "tools/geometry-ordinary-packets-native.py",
+        "sha256": "c91d38400c3c43ad5aa01417cdf2d17b0a93221f762b424757f7c63ad453275e"
+      },
+      {
+        "path": "tools/geometry-dynamic-command-native.py",
+        "sha256": "a03cdb76e8d9fe6757f2bdd511f15fa811fd231ba74c394a55af88eaa47643f8"
+      }
+    ],
+    "checkedBytes": 3682598912,
+    "authoredMeshes": 670,
+    "method": "Original5e0530 and each selected ordinary/prefix/skin-morph writer execute unchanged, including CPU payload producers and COM wrappers. Only successful virtual COM Lock/Unlock methods are callbacks. Whole1MiB memory image, scratch matrices, nested call order and COM events compared. Skin pointer relocates among four distinct buffers while null/nonnull morph weights vary independently.",
+    "limits": [
+      "Billboard opcode8f excluded from this full-writer composition; prior selection projection retains its precedence evidence.",
+      "Valid disjoint memory, finite active deformation, non-signaling-NaN transform/alpha words and successful buffer lock.",
+      "CPU packet production only; no full5f0f00 caller or GPU draw equivalence.",
+      "Managed source execution remains pending; compile only."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "sha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-skin-dispatch-portable-verify.cs",
+      "sha256": "d8aaeeb58ed9432452499a02f9b984dd98a50ef16c03fdc75f3a2849b680e271"
+    },
+    "entrypoint": "SkinMeshPacketDispatchVerify.Main",
+    "arguments": [
+      "reports/animation-skin-dispatch-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3512,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-skin-dispatch-compile.json"
+  },
+  "contracts": {
+    "abi": "Original5e0530 registers ECX=command pointer,EDX=world matrix,ESI=material packet record. Eight stack arguments: material,signed command index,output array,transform cache,skin palette pointer,morph weight pointer,alpha,signed metadata. The decompiler five-argument prototype is incomplete. This routine has no separate mode parameter.",
+    "selection": "Opcode8f selects the billboard writer before checking the skin pointer; that branch is excluded from this composed source. Otherwise nonnull skin selects5e0390, regardless of material flags, previous opcode or nullable morph pointer. Null skin permits prefix5e02b0 only when material+b4 highbit is set, signed index>1 and command[-32] is b0/ae/af; all remaining cases use5e0200.",
+    "forwarding": "Each writer receives EAX=record and EDI=output. Ordinary receives command,world,cache,alpha,metadata. Prefix receives command,world,cache,alpha. Skin receives command,world,cache,skin,morph,metadata; it does not receive alpha and its writer forces1.0. The source preserves both morph-null skinning and morph-nonnull deformation; nonnull morph with null skin takes the ordinary/prefix route and does not read weights.",
+    "effects": "Recovered writers retain allocator alignment/link tails, matrix payload and scratch writes, output pointer conventions, signed metadata conversion, alpha clamping and CPU deformation. Full1MiB logical memory snapshots and nested original calls are compared. Four distinct source skin-buffer addresses verify real pointer forwarding while their bytes contain diverse joint identities.",
+    "integration": "Geometry DynamicObjectSubmission can call this adapter after selecting a material/command and resolving the actual skin palette to byte matrices and nullable morph weights. The character caller third mode label must not replace the skin pointer predicate. Native5f0f00 material/LOD behavior and billboard rendering are outside this fragment; their existing modules remain unchanged."
+  },
+  "verification": {
+    "method": "Original5e0530 and each selected ordinary/prefix/skin-morph writer execute unchanged, including CPU payload producers and COM wrappers. Only successful virtual COM Lock/Unlock methods are callbacks. Whole1MiB memory image, scratch matrices, nested call order and COM events compared. Skin pointer relocates among four distinct buffers while null/nonnull morph weights vary independently.",
+    "details": "All670 authored deformable meshes plus160 synthetic meshes each exercise skin without morph, skin with morph, null-skin prefix with nonnull weights, and ordinary null-skin/null-weight.192 additional signed-index/flag/previous-opcode branches. Nullable skin and morph vary independently. No downstream packet writer is skipped; only successful COM virtual methods are services.",
+    "tools": [
+      {
+        "path": "tools/animation-skin-dispatch-verify.py",
+        "sha256": "02ca9b76bae58f232059b2fbadce68291c68a84982caa40e13657696deac65dd"
+      },
+      {
+        "path": "tools/animation-skin-dispatch-report.py",
+        "sha256": "d449fde7489179f6a36f07fc8b53d8997297a37317ade230628ad6d360662379"
+      }
+    ],
+    "managedComparison": "Prepared replay compares selected writer, complete CPU memory and COM events. Internal original call trace is separately checked by the original-versus-model tool, not exposed as managed public API."
+  },
+  "limits": [
+    "Billboard opcode8f excluded from this full-writer composition; prior selection projection retains its precedence evidence.",
+    "Valid disjoint memory, finite active deformation, non-signaling-NaN transform/alpha words and successful buffer lock.",
+    "CPU packet production only; no full5f0f00 caller or GPU draw equivalence.",
+    "Managed source execution remains pending; compile only."
+  ]
+}

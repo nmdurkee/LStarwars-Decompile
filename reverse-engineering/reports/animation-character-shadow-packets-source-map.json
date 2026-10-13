@@ -1,0 +1,79 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5f4ff0"
+  ],
+  "mappings": [
+    {
+      "address": "0x5f4ff0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterShadowPacketPipeline.cs",
+      "sourceSha256": "6c41ec0e574f088162cdd9cc7cfedda0ef223b0932a88a4411c7f6b53e82de9b",
+      "methods": [
+        {
+          "name": "CharacterShadowPacketPipeline.Submit",
+          "line": 16
+        }
+      ],
+      "coverage": "extends prior layer/character/packet projections with actual secondary masks and dynamic shadow packet scheduling",
+      "qualification": "Retains CharacterLayerSubmission, CharacterRenderPipeline, CharacterSecondaryPipeline and CharacterPacketPipeline. Composes CharacterSecondaryPipeline with DynamicObjectSubmission.SubmitWithShadows and SkinMeshPacketDispatch. Shared count/cache/cursor synchronized around original outer refresh1 and inner refresh0. Typed mesh buffers and shadow context records remain resolved inputs. No new native addresses; active character shadow queue, billboard, sway, fade and exact shipped loader association remain separate.",
+      "comparisonStatus": "Original native exact composition passed; managed replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-shadow-packets-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterShadowPacketPipeline.cs",
+      "sha256": "6c41ec0e574f088162cdd9cc7cfedda0ef223b0932a88a4411c7f6b53e82de9b"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "reconstructed/geometry/ShaderContextEmission.cs",
+      "reconstructed/geometry/DynamicSelection.cs",
+      "reconstructed/geometry/DynamicSubmission.cs",
+      "reconstructed/animation/CharacterPacketPipeline.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "reconstructed/geometry/ShadowContextEmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-shadow-packets-portable-verify.cs",
+      "sha256": "c41f204cd113205e6fd3d8e4caa08690db39c1ea9e9b8b08dcc06c1c7050a378"
+    },
+    "entrypoint": "CharacterShadowPacketPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-shadow-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 466,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-shadow-packets-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-shadow-packets-tests.json",
+    "reverse-engineering/reports/animation-layer-submission-assembly.json",
+    "reverse-engineering/reports/geometry-dynamic-shadow-native-validation.json",
+    "reverse-engineering/reports/animation-secondary-visibility-assembly.json"
+  ]
+}

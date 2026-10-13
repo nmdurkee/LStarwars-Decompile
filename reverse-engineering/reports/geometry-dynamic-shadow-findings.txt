@@ -1,0 +1,29 @@
+DYNAMIC NORMAL AND SHADOW SUBMISSION
+
+{"cases": 1024, "secondary": 930, "volumeTests": 3155, "shadowShader": 3055, "shadowPackets": 3055, "normalPackets": 1151, "shadowOnlyCases": 270}
+{"cases": 1024, "authoredSpecials": 0, "checkedBytes": 1073709056, "draws": 4206, "ordinary": 3739, "prefix": 467, "bounds": 240, "shaderEmissions": 1151, "earlyReturns": 51}
+
+SubmitWithShadows appends explicit DynamicShadowServices to the prior full overload. Existing signatures remain compatible wrappers and still reject nonzero context count without services. DrawRecords adds diagnostic packet-record order alongside unchanged draw tuples.
+
+Instance flag20 and global context count>0 trigger5ea6a0(refresh0) on the separately transformed raw minimum and maximum. Incoming9715a0 is captured before evaluation. Both normal and secondary visibility zero return early without final cleanup.
+
+The supplied service bridges SecondaryVisibility state: Count/Contexts/Masks plus CacheFlag synchronized with DynamicSubmissionState.ShadowMask. Recomputed masks use original two-store plane math; cached masks use signed positivity. A negative mask alone does not establish secondary visibility.
+
+Normal visible draws retain material bitset, override and607590 behavior. Secondary visible draws are independent of normal visibility, disabled by9738a8, and suppressed for material(+40>>14)&3 values1/3.
+
+Each context reads signed volume count+710 and a mask from96e550 when the current cache flag is nonzero, otherwise all bits. Volume shifts wrap modulo32. Selected record is context+volume*380+2a4, with+44 when material byte268 is nonzero.
+
+Each shadow record receives the display-owner pointer, reserves one command, writes opcode80/type3/material pointer, runs actual607820, then dispatches5e0530 with metadata1. Shared transform cache and source command index are preserved across normal and shadow records.
+
+Final override reset always occurs after completed iteration.9715a0 clears only when the captured incoming flag was zero. Shadow-only packet emission may return normal visibility0; the fixture contains270 such cases.
+
+Full original instructions execute unchanged except read-only observation hooks.1,024 cases cover480 authored bounds/world/LOD records across60scenes, relocated controlled contexts/materials, and authored portal-plane probes. This is not a claim that these controlled shadow volumes were constructed by the original runtime.
+
+The managed harness supplies the separately recovered SecondaryVisibility implementation and compares all persistent image bytes, mask globals, visibility, cache flag, draw tuples and record order. It compiles; it has not executed.
+
+Limits
+Full original5f0f00 normal/shadow path with actual5ea6a0/5c7050/5c6dc0 visibility, signed cached masks, both shader emitters, allocator and ordinary/prefix writers. Observation hooks only.
+480 authored local bounds/world/LOD objects across60scenes, controlled relocated material/shadow-context records. Authored portal planes probe secondary math; no claim of shipped shadow-volume construction.
+Zero sway/fade, null skin/morph, same-layout overrides, finite scalar arithmetic and successful disjoint capacities. Context count0..2, volume count0..33 includes modulo32 mask shifts and signed bit31 aggregate.
+Whole1MiB persistent image compared including mirrored mask array/shader/bounds/scratch state, excluding established32-byte cache/output adapter. Exact writer and packet-record ordering checked.
+Shadow-only packets may be emitted while the original return remains0; cleanup of9715a0 depends on captured incoming cache flag. GPU consumption and managed runtime equality remain separate.

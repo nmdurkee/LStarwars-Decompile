@@ -1,0 +1,15 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {fileURLToPath}from'node:url';
+const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const read=async p=>JSON.parse(await fs.readFile(path.join(base,p),'utf8'));
+const write=async(p,v)=>fs.writeFile(path.join(base,p),JSON.stringify(v,null,2)+'\n');
+const hash=async p=>{const b=await fs.readFile(path.join(base,p));return{path:p,bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')}};
+const native=await read('reports/native-camera-state-tests.json');if(native.mismatches||native.writeSetMismatches)throw Error('Camera helper mismatch');
+const entries=[['0x5765b0','FinishCurrent','Finish current camera record, conditionally advancing progress to duration minus0.5 before clearing its blend field.'],['0x577790','Select','Select a cut record, reset transition state, preserve unrelated bytes, clear follow references and finish the current record.'],['0x577880','Configure','Initialize built-in point-camera header, conditionally copy coordinates, select it, then install requested follow references.']];
+const source='reconstructed/gameplay/CameraState.cs',text=await fs.readFile(path.join(base,source),'utf8');
+const contract={binarySha256:native.binarySha256,scope:'Three native camera-state helpers; no script parser or live camera update claimed.',native,entries:entries.map(([address,method,behavior])=>({address,method:'CameraState.'+method,behavior})),portable:{source:await hash(source),harness:await hash('tools/native-camera-state-portable-verify.cs'),entrypoint:'CameraStateVerify.Main',arguments:['reports/native-camera-state-vectors.json','reports/native-camera-state-csharp-validation.json'],preparedCases:native.cases,compileReport:'reports/reconstructed-build.json',status:'Managed execution pending; current compilation and hash freshness tracked by integrated build report.'},limits:native.limits,writeSet:'Every case compares all bytes of the surrounding1152-byte global region,12288-byte data region and separate4-byte border scalar.'};
+await write('reports/native-camera-state-contract.json',contract);
+await write('reports/native-camera-state-source-map.json',{binarySha256:native.binarySha256,scope:contract.scope,mappings:entries.map(([address,method,behavior])=>({address,sourceFile:'reverse-engineering/'+source,methods:[{name:'CameraState.'+method,line:text.split(/\r?\n/).findIndex(x=>x.includes('void '+method+'('))+1}],coverage:'bounded native state helper',qualification:behavior+' Finite float32 inputs; built-in pointer/duration overlay is retained when the current record aliases it; typed identity replaces pointers. Live camera update and downstream rendering remain unrecovered.',comparisonStatus:'Original native model and full surrounding writes pass; compiled managed replay pending.'}))});
+console.log(JSON.stringify({mappedEntries:entries.length,nativeCases:native.cases,fullMemoryChecks:native.completeMemoryWriteChecks}));

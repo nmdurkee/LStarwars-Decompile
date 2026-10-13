@@ -1,0 +1,28 @@
+PLAYBACK PACKET TO SKELETAL POSE
+
+6829 exact original-PC comparisons, 0 mismatches.
+
+layerGate
+Native62e290 first calls pointer80fb94. Its initialized default62e190 selects masked layerindices throughmin(modelhierarchy+190 signedcount,32). With no selected layer, the full routine returns without writing packet or output matrices. Portable Evaluate returnsnull so callers preserve their destination.
+
+model
+Native model+4=hierarchy,model+c=per-animationclip pointer table; global29130e4+8=slotcount. Portable SkeletalPacketModel provides resolved joints, local bind matrices and nullable clips; Clips.Length is that global count. This source adapter does not reconstruct model loading.
+
+packet
+Byte31 nonzero enables transition selection. Signed16sourceID at32 andtargetID at34 must each be0<=ID<slotcount and have a loaded pointer. With both valid, blend times arepacketfloat10/14 andtargetweight=store(packetfloat8/packetfloatc). If onlytarget valid, evaluate it at14; otherwise valid source at10; neither falls back to bindpose. In nontransition mode onlyID36 andfloat0 matter. A transition with neither clip does not fall back tocurrentID36.
+
+bind
+Native5d36d0 no-override branch reads local bind matrices from hierarchy+170 and parentbytes from96-byte jointrecords+50. Rootparent255 copieslocal directly; others multiplylocal byparentworld. No animation-axis signflip or cumulative-scale update occurs. The native byte loop excludes256-joint termination from the bounded portable domain.
+
+integration
+SkeletalPacketDispatch.Evaluate consumes the already recovered AnimationPacket directly. It routes to SkeletalPose.Evaluate, SkeletalBlend.Evaluate, or BindPose under the verified default-layer/no-morph/no-POI conditions. Packet state remains unchanged. Caller437770 passes object+8 and nullmorph/POI outputs into62e290, establishing a real original usage of this branch.
+
+tail
+Native62e1e0 is still called, but its original nulloutput gate returns without point-of-interest work. The fixture does not replace it or any selector/sampler/blender/matrix computational callee. OriginalD3DXscalar policy remains explicit as documented by animation-skeletal-contract.json.
+
+Limits
+Default layer selector only; custom callbacks are not inferred. Morph output and both point-of-interest outputs must be absent.
+Valid finite Euler sampling/blending domains inherited from SkeletalPose/SkeletalBlend, including targetframe endpoint and frameCount>1 for a blend. The fourone-frame targetclips remain excluded from blend.
+Finite blend ratio and nonzero denominator; underflow/signedzero ratios are tested. Clip/model loading and full render pipeline62fbf0 are not reconstructed by this module.
+OriginalD3DXscalar policy is explicitly selected; live DLL CPU/config dispatch remains outside scope.
+Managed core and replay compile but are not executed; native-vs-Python evidence does not establish managed execution equivalence.

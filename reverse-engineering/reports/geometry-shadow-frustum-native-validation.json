@@ -1,0 +1,51 @@
+{
+  "schema": "geometry-shadow-frustum-native-v1",
+  "passed": true,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "cases": 2191,
+    "plane": 1164,
+    "floatWords": 37520,
+    "frustum": 1027
+  },
+  "errors": [],
+  "fixtureFile": "geometry-shadow-frustum-fixtures.json.gz",
+  "fixtureBytes": 351047,
+  "fixtureSHA256": "d665f56815800950e7c65f7a9f7456c3fbf990a6a05d1168aecb81b9b47742f8",
+  "paddingAudit": [
+    {
+      "stackPoison": 0,
+      "farW": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stackPoison": 305419896,
+      "farW": [
+        305419896,
+        305419896,
+        305419896,
+        305419896
+      ]
+    },
+    {
+      "stackPoison": 3735928559,
+      "farW": [
+        3735928559,
+        3735928559,
+        3735928559,
+        3735928559
+      ]
+    }
+  ],
+  "limits": [
+    "Original5c7fa0 plane and5c8030 corner/far-plane math plus real5b3920/5b3b30/5c0240/CRT conversion/5c19d0/5b30a0 run unchanged. No computational substitutions.",
+    "All326 authored portal first triangles in both windings and512 synthetic/degenerate planes; identity plus six authored CU2 camera transforms, controlled finite FOV/aspect/near/far parameters.",
+    "All meaningful XYZ, planeXYZW and nearW words compare bit-exact. Four far-cornerW words are proven uninitialized stack padding: three poison patterns propagate exactly, native bytes retained. Portable projection preserves caller padding rather than fabricating a defined value.",
+    "Finite inputs and intermediate outputs, nonzero aspect/near/sampledcosine, disjoint inputs/outputs; FOVrange-1..3 and both CRT conversion policies. No broad out-of-range trig conversion or partial alias claim.",
+    "Full outer5e8950 light-volume extraction, GPU outputs and compiled managed equality remain separate."
+  ]
+}

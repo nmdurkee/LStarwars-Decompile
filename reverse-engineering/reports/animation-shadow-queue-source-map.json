@@ -1,0 +1,69 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 2,
+  "mappings": [
+    {
+      "address": "0x5f9ed0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterShadowQueue.cs",
+      "sourceSha256": "c505f9549ae1e0726b1a728d6f174ab69df8ea665742dbd2324fd266423cd2ab",
+      "methods": [
+        {
+          "name": "CharacterShadowQueue.Enqueue",
+          "line": 35
+        }
+      ],
+      "coverage": "complete nonnegative-capacity queue writer with finite distance metadata",
+      "qualification": "Raw 64-byte matrix copy and three pointer/count pairs, signed top-byte widening, six parameter words, low-byte sequence tag, counter updates. Count >=280 is a no-op. Source/queue aliasing and nonfinite float metadata are excluded.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-queue-tests.json"
+    },
+    {
+      "address": "0x5f9fa0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterShadowQueue.cs",
+      "sourceSha256": "c505f9549ae1e0726b1a728d6f174ab69df8ea665742dbd2324fd266423cd2ab",
+      "methods": [
+        {
+          "name": "CharacterShadowQueue.Submit",
+          "line": 52
+        }
+      ],
+      "coverage": "complete terminated shadow-group producer under explicit scalar D3DX matrix policy",
+      "qualification": "All four outer gates, per-record submission gate and capacity test. Joint255 terminates. Active groups use jointWorld*objectWorld through recovered CharacterLayerSubmission.Concatenate, enqueue, then set global9718a4. Valid terminated records and finite matrices; no full shadow renderer or GPU claim.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-queue-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterShadowQueue.cs",
+      "sha256": "c505f9549ae1e0726b1a728d6f174ab69df8ea665742dbd2324fd266423cd2ab"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-queue-portable-verify.cs",
+      "sha256": "1be2a2e12c59365fb94efb9b4b83b8dede44276a1cc729fb5d2dd945b12bd6d5"
+    },
+    "entrypoint": "CharacterShadowQueueVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-queue-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 10368,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-shadow-queue-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-shadow-queue-tests.json",
+    "reverse-engineering/reports/animation-shadow-queue-assembly.json"
+  ]
+}

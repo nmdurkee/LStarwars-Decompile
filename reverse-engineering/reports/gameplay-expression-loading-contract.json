@@ -1,0 +1,92 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "evaluator": "0x5132a0 clears three DWORD globals 0x92224c,0x922250,0x922254, then always calls full parser 0x4f88e0 with resolver 0x513230. It does not use the runtime numeric shortcut: 1+2 and (1+2) both return 3, and an empty string returns 1 via terminator factor. After parsing, nonzero 0x922250 sets 0x922254 to 1. Value is stored float32 before return. Mutable lexer behavior is inherited unchanged from the shared parser.",
+    "resolver": "Each 0x513230 symbol sets SeenSymbol=1 and LastSymbolUnresolved=1. Optional game callback 0x9238c0 receives NULL creature and packet, symbol text, and an initially-zero output float. Nonzero callback return clears LastSymbolUnresolved. Unlike runtime 0x514850, a false callback retains any float it wrote: there is no parameter fallback or reserved Rand/true/false/max handling. RNG and runtime creature/packet globals stay unchanged.",
+    "lastSymbol": "LastSymbolUnresolved is overwritten on every symbol. The final flag therefore reflects the LAST resolved/looked-ahead symbol, rather than whether any symbol was unresolved. With only known handled, missing+known clears RequiresRuntime, while known+missing sets it. The portable code preserves this original rule; it does not fix or reinterpret it.",
+    "outputs": "Resolver always returns 0 and writes optional float and/or low-32-bits of signed-64 truncation using native 0x6e6b90 behavior. Direct resolver calls preserve the preexisting RequiresRuntime global. All optional-pointer combinations and finite values around signed-32/signed-64 boundaries are compared, including false callback return with a written value.",
+    "caller": "Condition loader 0x52b3f0 first checks parameter bindings and its constant table. Its fallback at decompiled/corpus-expanded/FUN_52b3f0.c:184 calls 0x5132a0 and stores the result at condition+8. Nonzero 0x922254 sets condition flags bit8, stores an expression index at+0xd, and retains a copied expression pointer at+0x10. This caller relationship is static original-PC evidence; the full tokenizer, allocator and loader body are not newly ported or claimed dynamically validated here.",
+    "verification": "422 original-PC comparisons pass: 180 expression/context cases,128 generated arithmetic/symbol cases and114 direct optional-output cases. All 40 resolver instructions and all 16 wrapper instructions execute in the fixture set. Native comparison includes result bits, classification flags, symbol/error call order, changed text, RNG and runtime pointer globals. The optional game callback is the sole substituted producer. Portable core and replay compile; execution is pending under the explicit compile-only instruction."
+  },
+  "commands": [],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 422,
+    "groups": {
+      "expressions": 180,
+      "generated": 128,
+      "symbolOutputs": 114
+    },
+    "mismatches": 0,
+    "examples": [],
+    "newNativeMappings": 2,
+    "authoredUseCredit": 0,
+    "method": "Unmodified5132a0 always calls the original recursive parser with actual513230; only optional game symbol production is a callback fixture. Compare float bits, symbol/error events, mutable text, all three classification globals, unchanged runtime pointer globals and unchanged RNG. Direct resolver cases exercise optional outputs and callback false-with-value behavior.",
+    "instructionCoverage": {
+      "0x513230": {
+        "total": 40,
+        "executed": 40
+      },
+      "0x5132a0": {
+        "total": 16,
+        "executed": 16
+      }
+    },
+    "limits": [
+      "Finite terminating ASCII grammar shares ScriptExpressions bounds.",
+      "Game-specific symbol production remains external. No whole52b3f0 condition-loader reconstruction claim.",
+      "The unresolved flag tracks the LAST symbol, not any unresolved symbol; preserved as original behavior.",
+      "Managed core/replay compile only."
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-expression-loading-native-fixtures.json",
+      "bytes": 113853,
+      "sha256": "9fd0e08d498ae2a0a5b157b96a1b083528a910092e801276fe95d4f08f6bb432"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ScriptExpressionLoading.cs",
+      "bytes": 2444,
+      "sha256": "aa7191ac627da23f72204432c7a5c7d75fe1a916d8e68b4b5337c7ac16e7c348"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-expression-loading-portable-verify.cs",
+      "bytes": 5011,
+      "sha256": "e5d0b81e498ddb92eb6ab136043cc0f1dc23b6b7b315050216db1423393345b0"
+    },
+    "entrypoint": "GameplayExpressionLoadingVerify.Main",
+    "arguments": [
+      "reports/gameplay-expression-loading-native-fixtures.json",
+      "reports/gameplay-expression-loading-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-expression-loading-verify.exe",
+        "bytes": 54784,
+        "sha256": "1514c564be58c08ecca2f4777612eaccb15ca743900b8eeb54b4777357652e01"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    },
+    "adapters": [
+      "ExpressionLoadContext owns the three native loader globals.",
+      "GameSymbol supplies game-specific values and handled status with null runtime context."
+    ]
+  },
+  "remaining": [
+    "Finite terminating ASCII grammar shares ScriptExpressions bounds.",
+    "Game-specific symbol production remains external. No whole52b3f0 condition-loader reconstruction claim.",
+    "The unresolved flag tracks the LAST symbol, not any unresolved symbol; preserved as original behavior.",
+    "Managed core/replay compile only."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x5da980",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterVisibility.cs",
+      "sourceSha256": "9083f107e815637e82e09cebd0693f6c49cc2251af7e97d5ec79a54c4ab67095",
+      "methods": [
+        {
+          "name": "CharacterVisibility.Classify",
+          "line": 19
+        }
+      ],
+      "coverage": "complete finite character-bounds preprocessing with scalar camera-classifier dependency",
+      "qualification": "Both flag9739a8 branches. Valid localmin/max, finite transforms andstoredintermediates; alternate branch usesfirstjointtranslation. Calls recoveredDynamicBounds.Classify under originalscalar297c0d0=0/fifthargument0 domain. SIMD,unresolvedcamera production andGPU excluded.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-visibility-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterVisibility.cs",
+      "sha256": "9083f107e815637e82e09cebd0693f6c49cc2251af7e97d5ec79a54c4ab67095"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/geometry/DynamicBounds.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-visibility-portable-verify.cs",
+      "sha256": "63d1749954f2713dfe8246a90f5decce7a8148f065f022d03dd286be440b46d1"
+    },
+    "entrypoint": "CharacterVisibilityVerify.Main",
+    "arguments": [
+      "reports/animation-character-visibility-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 5888,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-character-visibility-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-visibility-tests.json",
+    "reverse-engineering/reports/animation-character-visibility-assembly.json"
+  ]
+}

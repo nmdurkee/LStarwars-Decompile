@@ -1,0 +1,22 @@
+1870 original-PC comparisons, zero mismatches;65 authored uses. Core/replay compile only.
+
+parsing
+First call parses goalrange substring with skip10, then any range substring with skip6, whole jediGoodie_attack, then attack_override with the same seven whole names as EngageOpponent. It stores only goalrange (not attack range) from numeric arguments. It unconditionally resets packet+70 attack range to float0.2 after parsing. Existing flags, JediGoodie byte69 and override are retained unless the recognized token changes them. Nonzero override writes low byte to self1085 before checking opponent.
+
+lifetime
+Null creature/reference/world self returns1; valid self marks global876cd0=1, otherwise command yields0. Opponent reference+e4 and controller+4 must be nonnull; original then dereferences its world pointer without a null check. The portable attachment explicitly rejects that invalid state. Resolved target sets world-self eec bit0x20 before the same active/valid, blocked28b, mode43 and controlled-ownerTimer1.5 eligibility gates as EngageOpponent.
+
+movement
+Distance uses opponent world position minus script reference position, with exact x87 squared-distance arithmetic. Restricted assignment bitef4:2000 changes controller goal itself to0 and clears packetbit2 when assigned player is allowed; otherwise writes recovered attacker-band range and setsbit2. Withoutbit2, mode1 intent radius0 and goal=float32(targetRadius3e8+goal+controllerRadius120). Withbit2, distance below(goal-0.5)^2 gives mode2; distance within upper(goal+0.5)^2 boundary only sets look; otherwise mode1. Intent uses controllerRadius120, target path438 and sixwords420. Every intent call forces movement byte13f=0; the no-intent look branch retains its old value.
+
+input
+Packet attack range<=0 unconditionally ORs input16-bit word+5a with2, then ORs input32-bit word+8 with global80227c. Positive range rejects target mode90 first, then computes float32(targetRadius3e8+packetRange+selfRadius3e8), squares and explicitly stores that square tofloat32. Distance must be strictly less than this stored threshold. JediGoodie byte69 adds self eec bit0x400 only after attack input is queued. This command neither uses the EngageOpponent permission matrix, firing timer, visibility byte nor player obstruction check, and never directly applies damage.
+
+validation
+1870 comparisons include all65 authored argument lists in four contexts,900 movement states,432 target/input gates,64 assignment-band cases,96 retained-bit cases and six x87 midpoint permutations.308 of310 disassembled instructions execute; the two unexecuted instructions at447b17/447b1e are skipped alignment no-ops (lea esp,[esp];mov edi,edi). Instruction coverage is not a proof of all path combinations.
+
+Remaining
+Finite valid record attachments; opponent reference with nonnull controller must have a nonnull world pointer as required by original dereference.
+Ordinary movement intent and queued attack input only; actual attacks, damage and formations remain downstream systems.
+Authored operands run in supplied contexts; local script-variable values are external.
+Managed core/replay compile only.

@@ -1,0 +1,78 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 3,
+  "newNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x5c6dc0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SecondaryVisibility.cs",
+      "sourceSha256": "af1c0dde6bc4b68d3460dab61d0dd20d2876921265db605698a0ce4924546181",
+      "methods": [
+        {
+          "name": "SecondaryVisibility.IntersectsVolume",
+          "line": 39
+        }
+      ],
+      "coverage": "complete finite box/plane predicate for nonnegative plane count0..12",
+      "qualification": "Eight original corners; each plane requires at least one strictly positive distance. Exact original float32 dotXYZ store followed by separate float32 addition ofD. No planes accepts; booleanAL only is the return contract. Unordered endpoints permitted. Finite inputs and stored intermediates.",
+      "comparisonStatus": "Original native exact differential passed; managed compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-secondary-visibility-tests.json"
+    },
+    {
+      "address": "0x5c7050",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SecondaryVisibility.cs",
+      "sourceSha256": "af1c0dde6bc4b68d3460dab61d0dd20d2876921265db605698a0ce4924546181",
+      "methods": [
+        {
+          "name": "SecondaryVisibility.BuildMask",
+          "line": 57
+        }
+      ],
+      "coverage": "complete nonnegative volume loop within bounded count0..128",
+      "qualification": "ORs1<<(index&31) for each accepted volume, preserving32-bit x86 shift behavior. Empty volume list returns0 without reading endpoints. Valid resolved volume records.",
+      "comparisonStatus": "Original native exact differential passed; managed compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-secondary-visibility-tests.json"
+    },
+    {
+      "address": "0x5ea6a0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SecondaryVisibility.cs",
+      "sourceSha256": "af1c0dde6bc4b68d3460dab61d0dd20d2876921265db605698a0ce4924546181",
+      "methods": [
+        {
+          "name": "SecondaryVisibility.Evaluate",
+          "line": 65
+        }
+      ],
+      "coverage": "complete finite secondary visibility cache for nonnegative bounded context count",
+      "qualification": "Nonzero refresh clears9715a0 before recomputation. Zero refresh plus nonzero cache flag reads only existing masks. Every recompute stores all masks and sets flag1 even with count0. Aggregate mask positivity is signed; masks with bit31 set do not pass. Count0..128, valid state arrays; context and input pointers can be absent on cached path.",
+      "comparisonStatus": "Original native exact differential passed; managed compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-secondary-visibility-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SecondaryVisibility.cs",
+      "sha256": "af1c0dde6bc4b68d3460dab61d0dd20d2876921265db605698a0ce4924546181"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-secondary-visibility-portable-verify.cs",
+      "sha256": "074176fc6d67d1272445cf7308bce1aaa5b35952df96415221cc6206584244fd"
+    },
+    "entrypoint": "SecondaryVisibilityVerify.Main",
+    "arguments": [
+      "reports/animation-secondary-visibility-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 2818,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-secondary-visibility-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-secondary-visibility-tests.json",
+    "reverse-engineering/reports/animation-secondary-visibility-assembly.json"
+  ]
+}

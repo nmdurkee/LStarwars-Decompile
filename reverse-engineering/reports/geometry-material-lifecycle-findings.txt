@@ -1,0 +1,24 @@
+Joined material lifecycle
+
+MaterialLifecycle.Merge connects the stable cache, pool and CPU refresh
+modules with no new native address credit.1,056 original5e5020 chains pass:
+576misses and480hits, using480 authored708-byte materials from60scenes.
+103,809,024 compact-image bytes, returns, pending counts, factory calls and
+declaration requests match the composed Python model exactly.
+
+The original constructor/default initializer/registration queue and refresh
+execute576times each. Original declaration-cache lookup executes1,152times.
+Only1,104 shader-factory7416a0 calls remain a controlled mutable boundary.
+This closes the previously separate constructor and refresh callbacks in
+the parent clone chain, without claiming shader compiler/device behavior.
+
+64 synthetic misses intentionally exercise real refresh changing the clone
+layout. Original final lookup then returns0; the portable composition keeps
+that result. Author material misses all subsequently hit the cache. Program
+aliasing, delayed index reads, device-mode and texture mutations flow through
+the full parent chain. Same-thread lists, zero locks, finite valid capacities
+and images bound the proof; invalid/error paths remain excluded.
+
+Core and Main MaterialLifecycleHarness compile. Replay takes compressedInput
+fixture/outputFile; geometry-material-lifecycle-check.py prepares or compares
+saved output, never launches. Managed equality and GPU output remain unclaimed.

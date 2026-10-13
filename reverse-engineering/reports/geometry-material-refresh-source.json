@@ -1,0 +1,214 @@
+{
+  "schema": "recovered-geometry-material-refresh-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/MaterialRefresh.cs",
+      "bytes": 4525,
+      "sha256": "b6067d789894084c29bd8f356b5b22ca9d62e9e1925ff43d0e5e6406b3c0e16a"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x601030",
+      "method": "MaterialRefresh.Refresh",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-zero-lock-service-composition",
+      "limitations": "CPU field/reference/color operations and shader dispatch;7416a0 factory explicit, declaration resolution verified on original cached branch. Old positive IDs1..400; finite usedRGB*255 inInt32 range. Zero lock token. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    },
+    {
+      "address": "0x741620",
+      "method": "MaterialRefresh.ProgramByIndex",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Unsigned0..400 index maps manager+4+index*1240; other indices return0. No pointer wrapping. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    },
+    {
+      "address": "0x7415b0",
+      "method": "MaterialRefresh.Release",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Valid program image; DWORD reference subtraction wraps. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    },
+    {
+      "address": "0x6e27d0",
+      "method": "MaterialRefresh.FirstMode",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Device+654 bit20 produces16 or0; native ECX becomes explicit. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    },
+    {
+      "address": "0x6e27f0",
+      "method": "MaterialRefresh.SecondMode",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Device+654 bit20 produces1 or0; native ECX becomes explicit. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    },
+    {
+      "address": "0x741770",
+      "method": "MaterialRefresh.RequestDefault",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-service-wrapper",
+      "limitations": "Exact manager/runtime/material/mode0/trailing0/0 forwarding to explicit7416a0 factory; wrapper arguments and native thiscall stack cleanup verified. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    },
+    {
+      "address": "0x741790",
+      "method": "MaterialRefresh.RequestMode",
+      "sourceFile": "reconstructed/geometry/MaterialRefresh.cs",
+      "coverage": "bounded-service-wrapper",
+      "limitations": "Exact manager/runtime/material/suppliedmode/trailing0/0 forwarding to explicit7416a0 factory; shader program generation excluded. Managed comparison pending.",
+      "evidence": "geometry-material-refresh-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory",
+    "MaterialProgramFactory (original7416a0 shader-service boundary)",
+    "MaterialRefreshServices.ResolveDeclaration (original cached declaration result)"
+  ],
+  "native": {
+    "report": "geometry-material-refresh-native-validation.json",
+    "passed": true,
+    "counts": {
+      "refresh": 1280,
+      "lookup": 406,
+      "release": 6,
+      "firstMode": 256,
+      "secondMode": 256,
+      "defaultRequest": 1,
+      "modeRequest": 4,
+      "authoredMaterials": 480,
+      "factoryCalls": 2005,
+      "checkedBytes": 144769024
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "limits": [
+      "Original601030 plus program-index/release/mode/wrapper helpers execute unchanged; only thiscall7416a0 shader factory is an explicit mutable boundary. Native wrappers and original cached declaration7418c0/741860 execute.",
+      "Controlled factory returns logical records, mutates reference counters, and can alias/change first-result index or device mode between requests. This is not a shader compiler/device implementation.",
+      "Zero-lock runtime297ae20=0; valid positive old shader IDs1..400 and finite used color products in signedInt32 range. Refresh fixtures use oldIDs1..3; standalone lookup covers boundary400/401.",
+      "Authored708-byte materials preserve source fields with controlled old shader slots/registration selector. Negative texture count skips color refresh; zero count updates; positive count adjusts layout.",
+      "Whole compact image, return where meaningful and six-argument factory ABI compared. Fixed device mode byte mirrored into explicit fixture location.",
+      "No managed/game/GPU launch."
+    ],
+    "assembly": {
+      "file": "reports/geometry-material-refresh-assembly.json",
+      "bytes": 35195,
+      "sha256": "abcad67f38f574fe3cc748ae248626845fb98a6d5a5e654f4adc040a6e69bf7b"
+    },
+    "pseudocode": [
+      {
+        "file": "decompiled/corpus-expanded/FUN_601030.c",
+        "bytes": 2101,
+        "sha256": "df8c2b0881cc21cfab149385f5dc7ba572778da6263a0a2c6737b7af512c29c6"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_741620.c",
+        "bytes": 354,
+        "sha256": "cfcee2a7e1ff8123da08baa00dcbb902b62a6230602d614e48092af3d3a2df0c"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_7415b0.c",
+        "bytes": 328,
+        "sha256": "e2787ad86067ecc3063204a7d2be2e3529dbacf897bdf9730ca0e117a0e5c779"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_6e27d0.c",
+        "bytes": 406,
+        "sha256": "aa741ed6c27cf4c140a20900e37304ee38cb12c375e3ec0c9c5a4a757850f12c"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_6e27f0.c",
+        "bytes": 325,
+        "sha256": "b9ed065852d19812e5500ac5805efc59696b1cdd41e4df0b8afe0af350211ef2"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_741770.c",
+        "bytes": 339,
+        "sha256": "f89ef518e893cfc188353c49169ec8a05e4ed2725605e41cc1c5fcf2e70ffa1d"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_741790.c",
+        "bytes": 364,
+        "sha256": "35a15e7755610cd6e8e66cc2aace051b8c63427edc37e94597b1d5b6a336b841"
+      }
+    ]
+  },
+  "managed": {
+    "schema": "geometry-material-refresh-managed-check-v1",
+    "caseCount": 2209,
+    "nativeEvidence": "geometry-material-refresh-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\material-refresh.bin.gz",
+    "fixtureBytes": 412006,
+    "fixtureSHA256": "beef16538f7401669c45ad2aaec46cb2af21d1a8888cde3c172e53a16a318b02",
+    "uncompressedBytes": 144806080,
+    "uncompressedSHA256": "bfa3a84493e4d065ac60bc890e722b4ac1dfb376300f0b41340ad98a84077c1c",
+    "status": "prepared-not-executed",
+    "mainType": "MaterialRefreshHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Managed equality pending; shader factory mutable boundary, cached declaration resolution, zero locks."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.MaterialRefresh.dll",
+    "bytes": 6144,
+    "sha256": "73085888871c7a904ec80eda18a12ecfc58f9e7d28e0081ebc36a17f846c41fb"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/MaterialRefreshHarness.cs",
+    "bytes": 3187,
+    "sha256": "964b126c0aa47db1b18555d56539361f398c23d103ccb8de13574e2829a46862"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.MaterialRefresh.dll MaterialRefresh.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.MaterialRefresh.dll /out:MaterialRefreshHarness.exe harness\\MaterialRefreshHarness.cs"
+  },
+  "observations": [
+    "Positive signed texture count updates+b8 and ensures byte15c nonzero, adding layout800 only if mask3800 absent. Unregistered bit800000 withcontrol+3c0 adds layout40000.",
+    "Both positive old signed shader indices+1f4/+1f6 release references before requesting replacements. Duplicate IDs release the same count twice; DWORD subtraction wraps.",
+    "Unregistered material branch requests one default program and overwrites only+1f4. Secondary+1f6 remains unchanged even though its reference was released.",
+    "Normal branch requests modes16/1 when devicebit20 ison, otherwise0/0. It re-reads mode for the second call, preserving callback changes to device state.",
+    "First program WORD index is read only after the second factory call. Aliased results and changes to the first result during the second call are retained.",
+    "Declaration resolution reads live layout after factory callbacks. Packed color refresh occurs only for textureCount exactly0; negative values preserve existing color, unlike default initializer600f20.",
+    "Native7416a0 factory uses thiscall cleanup of20argumentbytes. Wrapper741770/741790 remain original during tests; only factory is bypassed with explicit mutable service."
+  ],
+  "remainingGaps": [
+    {
+      "id": "shader-factory",
+      "address": "0x7416a0",
+      "status": "Explicit mutable program-factory service; shader compiler/cache allocation and device creation not ported by this batch."
+    },
+    {
+      "id": "declaration-cache-miss",
+      "address": "0x7418c0",
+      "status": "Original cached-hit resolver verified; missing-key declaration creation separate."
+    },
+    {
+      "id": "shader-locks",
+      "status": "Original zero-lock branch only; OS synchronization excluded."
+    },
+    {
+      "id": "invalid-reference-or-color",
+      "status": "Valid old positive program IDs and finiteInt32 color products; malformed IDs/invalid floating-point conversion excluded."
+    },
+    {
+      "id": "clone-refresh-composition",
+      "status": "Pool/clone and refresh now separately buildable and verified; their joined native miss chain with this new factory boundary is the next integration slice."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core/replay compile; no launch."
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "scan": "51d310 receives packet in ESI, path in EDI and query vector pointer on stack. It preserves selected point143 if below path10, otherwise writes255. Cursor142 resets to0 when initially >= the chosen count. It initializes best distance from the existing selected point, then inspects up to four candidates using real5b3c50 distance stored to float32 and strict less-than replacement. Direct scan always executes four iterations. Cursor increments as a byte and wraps only when greater than count, so index==count can be read inside a call. The source requires an explicitly supplied extra backing row and does not invent it.",
+    "subset": "Nonzero path7a and packet1ec bit4 select the DWORD-stride path8c candidate list; each entry contributes only its low byte. CandidateCount7a is used for cursor reset/wrap; selected-point validity still uses PointCount10. Before distance evaluation the original compares selected POINT ID143 against candidate ORDINAL142 rather than candidateIndices[142]. The subset loop returns early when its cursor reaches the initial ordinal, otherwise performs four iterations. The same inclusive count behavior can read candidate entry==count. This behavior is machine-code verified, not normalized to a conventional list scan.",
+    "materialize": "51d500 takes packet in ECX and selected point143. Zero adjacency-count28 returns0 without writes. Otherwise point position4/8/c is copied to packet1b4/1b8/1bc,1c0 is zeroed, and1c4 receives max(point10-1,1) using original finite x87 subtraction/store. Fields1cc..1e0 are zeroed, then1cc receives current path158,1d0 receives the FIRST adjacency connection. Byte1d4 is1 when that connection endpoint0 equals selected point, else0;1dc is0.0 for that same endpoint match and1.0 otherwise. No allocation or external world callback is involved.",
+    "status": "51d750 takes packet in EAX. Matching path158/targetPath1cc with nonnull targetConnection1d0 returns0 without scanning. Otherwise it scans around packet target position1b4, then materializes only when selected143 is below path10. It returns1 for a newly materialized target or-1 when no eligible selected point/adjacency exists. The three return values are preserved explicitly.",
+    "nextPoint": "51f6b0 returns0 without routing when currentConnection15c equals targetConnection1d0. Otherwise it calls actual51be90 and returns0 on no result. A nonnull returned connection yields1 whether or not an output pointer is supplied. When supplied, output receives three raw words from the opposite endpoint of the returned connection: endpoint1 for returned direction0, endpoint0 otherwise. Portable TryNextPoint directly composes PathRouting.NextConnection, retaining route cache updates and diagnostics. Its output buffer is a separate uint[3]; aliases into routing records are outside this bounded interface.",
+    "validation": "2,472 original-PC comparisons cover the scan/materialization/status helpers, including768 authored-data samples across all203 decoded nonempty paths. Authored materialization uses first/middle/last points; authored scanning is limited to paths with enough real rows for all four reads. Synthetic cases explicitly supply extra sentinel backing for count0..255 and candidate-count edges, byte cursor wrap, strict ties, subset ordinal skips and radius thresholds. The exact-distance midpoint regression distinguishes original x87 behavior from the previous double intermediate. Another4,420 original51f6b0â†’51be90/51a890 chains use24 authored routing graphs plus one synthetic graph, optional outputs and raw signed-zero/NaN copies. All6,892 comparisons pass;266 of268 instructions across the four bodies execute, with only two unreachable alignment NOPs omitted. Core and both replay harnesses compile; managed execution remains pending."
+  },
+  "verification": {
+    "checks": 6892,
+    "mismatches": 0,
+    "targeting": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 2472,
+      "mismatches": 0,
+      "groups": {
+        "scan": 1209,
+        "ensure": 393,
+        "materialize": 102,
+        "authored": 768
+      },
+      "examples": [],
+      "authoredPaths": 203,
+      "instructionCoverage": {
+        "0x51d310": {
+          "total": 138,
+          "executed": 136,
+          "missing": [
+            "0x51d488",
+            "0x51d48f"
+          ]
+        },
+        "0x51d500": {
+          "total": 63,
+          "executed": 63,
+          "missing": []
+        },
+        "0x51d750": {
+          "total": 32,
+          "executed": 32,
+          "missing": []
+        }
+      },
+      "method": "Original51d310/51d500/51d750 with actual5b3c50 distance arithmetic. Entire0x10d8 actor image compared. Prepared extra backing points/candidate entries preserve index==count behavior; authored scan samples never read unavailable sentinel records. Finite float input domain."
+    },
+    "nextPoint": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 4420,
+      "mismatches": 0,
+      "examples": [],
+      "graphs": 25,
+      "instructionCoverage": {
+        "total": 35,
+        "executed": 35,
+        "missing": []
+      },
+      "method": "Original51f6b0 calls actual51be90 and51a890. Optional independent output buffer, exact position word copies, current/goal identity gate, route caches and diagnostic events compared. Authored graph positions plus synthetic signed-zero/NaN raw copy payloads."
+    },
+    "authoredUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathTargeting.cs",
+      "bytes": 4712,
+      "sha256": "6206dd40bc3e77930d275b6f508b0f73cae445a3e46edcaf76fce2a6a4d7b0d9"
+    },
+    "harnesses": [
+      {
+        "source": {
+          "path": "reverse-engineering/tools/gameplay-path-targeting-portable-verify.cs",
+          "bytes": 5438,
+          "sha256": "b334dd6348b40c0d768c42afd2cfa735cb9c4a760a1bd86bf5fa38e5296eb07f"
+        },
+        "entrypoint": "GameplayPathTargetingVerify.Main",
+        "arguments": [
+          "reports/gameplay-path-targeting-native-fixtures.json",
+          "reports/gameplay-path-targeting-csharp-validation.json"
+        ],
+        "nativeCases": 2472,
+        "fixtures": {
+          "path": "reverse-engineering/reports/gameplay-path-targeting-native-fixtures.json",
+          "bytes": 2004512,
+          "sha256": "0e3bc3ac58ee64126537b51816b5b271ff002bdb495f3c1b431c123c449c63ce"
+        },
+        "compile": {
+          "exitCode": 0,
+          "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+          "artifact": {
+            "path": "reverse-engineering/reconstructed/bin/gameplay-path-targeting-verify.exe",
+            "bytes": 468992,
+            "sha256": "21bf2318f6b6145c7aff74e5776d433c8944085be224f8d1aacbbea0b6e8f533"
+          },
+          "managedExecution": "Not attempted under compile-only instruction."
+        }
+      },
+      {
+        "source": {
+          "path": "reverse-engineering/tools/gameplay-path-nextpoint-portable-verify.cs",
+          "bytes": 5704,
+          "sha256": "ab9215293dec2bb1604a42ccd780ad128ffa0b7adcbe19191a78634b19a8610e"
+        },
+        "entrypoint": "GameplayPathNextPointVerify.Main",
+        "arguments": [
+          "reports/gameplay-path-nextpoint-native-fixtures.json",
+          "reports/gameplay-path-nextpoint-csharp-validation.json"
+        ],
+        "nativeCases": 4420,
+        "fixtures": {
+          "path": "reverse-engineering/reports/gameplay-path-nextpoint-native-fixtures.json",
+          "bytes": 1753215,
+          "sha256": "dbbc6f465a18015c9964aaf37a13ba0b9ad13e98896e83dc7dcd09fd4356e6e5"
+        },
+        "compile": {
+          "exitCode": 0,
+          "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+          "artifact": {
+            "path": "reverse-engineering/reconstructed/bin/gameplay-path-nextpoint-verify.exe",
+            "bytes": 469504,
+            "sha256": "5c9517235f107052cece0cef32ba1f7aa52a1101695e00801ef12ae6880c20b4"
+          },
+          "managedExecution": "Not attempted under compile-only instruction."
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathRouting.cs",
+        "bytes": 7501,
+        "sha256": "8a3f0096fcf19f3e056739bbb860ca0c50702c7f20d47fc6f989d0e1ddf66275"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+        "bytes": 9950,
+        "sha256": "782e834cdd926dce18c3534e0f3b7ecfdc6b70c06a9118ffadc26af78054b5e8"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+        "bytes": 11112,
+        "sha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/CreateCreatures.cs",
+        "bytes": 17180,
+        "sha256": "f7c5ebde9971cf65d8511dacceaf5336c743aad10c55837aeb3eeb36559432b8"
+      }
+    ],
+    "arithmeticDependencies": [
+      "AnimationPlayback.cs (PlaybackWide and FiniteX87)",
+      "CharacterContexts.cs"
+    ],
+    "dependencyNote": "Normal combined core source set; do not replace exact distance or x87 helpers with ordinary double sums."
+  },
+  "remaining": [
+    "These helpers produce path targets and a next-point projection. Larger51d7b0 steering,51e910/51f1b0 wandering and51b1f0 traversal/clearance tests remain unreconstructed by this module.",
+    "Prepared records must preserve actual point/candidate backing at index==count when the original loop reaches it. The existence, initialization and lifetime of that extra backing in every live level remains unresolved. Authored validation never fabricates an unavailable sentinel row.",
+    "Finite position/radius arithmetic and valid referenced adjacency connections are required; nonfinite arithmetic, malformed pointers and aliasing scan query with cursor storage are excluded. Next-point raw copies preserve all32-bit payloads, including NaN and signed zero.",
+    "Existing routing diagnostic512860 remains an explicit service. No new native mapping is credited for existing distance/routing helpers; this fragment maps only the four new entry points.",
+    "No new authored script-command use credit. Tests use parsed navigation records and synthetic runtime states, not full loaded-game simulations.",
+    "Native x86 versus independent Python comparisons passed. Compiled C# replay and game playtesting have not run."
+  ]
+}

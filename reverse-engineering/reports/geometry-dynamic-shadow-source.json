@@ -1,0 +1,301 @@
+{
+  "schema": "recovered-geometry-dynamic-shadow-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicSubmission.cs",
+      "bytes": 14892,
+      "sha256": "8b9d63a78b4cb415552ad81f2517cd24db3c60527be301bc9f082c6cb58f6fab"
+    }
+  ],
+  "nativeMappings": [],
+  "compositionMappings": [
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicObjectSubmission.SubmitWithShadows",
+      "sourceFile": "reconstructed/geometry/DynamicSubmission.cs",
+      "coverage": "supporting-normal-shadow-refinement-no-new-address-credit",
+      "limitations": "Finite scalar visibility; successful disjoint bounded memory, context count0..128 and volume count0..128 (full caller fixtures0..2/0..33). Explicit secondary service. Native batch uses ordinary/prefix, same-layout materials, zero sway/fade, null skin/morph. Original/model exact; managed execution pending.",
+      "evidence": "geometry-dynamic-shadow-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    },
+    {
+      "file": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "bytes": 3766,
+      "sha256": "b90bd8411c6b733ea3c920bc2865c70ab6856d38ee08a51be232e43cd39c755a"
+    },
+    {
+      "file": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "bytes": 5548,
+      "sha256": "38adc2eca7c6c215f1e120be260e20ab9f8cda81f7150f7482c251bbf1da981e"
+    },
+    {
+      "file": "reconstructed/geometry/ShaderContextEmission.cs",
+      "bytes": 8247,
+      "sha256": "1fe0f45a945f0d033280851a6d37530a74f2f59b68549e3eccadc5379c945d53"
+    },
+    {
+      "file": "reconstructed/geometry/ShadowContextEmission.cs",
+      "bytes": 1304,
+      "sha256": "b42d4c65a41c9a6d90d30d0b48dbd7e9dc5b915badb580757e34d5484ac30e99"
+    },
+    {
+      "file": "reconstructed/geometry/DynamicSelection.cs",
+      "bytes": 3333,
+      "sha256": "c8e5d927008cacfb89a6e986cc947074b36beda02a213e3d05a130356f10ba6a"
+    },
+    {
+      "file": "reconstructed/geometry/DynamicBounds.cs",
+      "bytes": 5610,
+      "sha256": "d6a8888d4a0f6c98e8b0dd6ccc6f64bf08632d98d15ec3fac4c1989c51e23dc8"
+    },
+    {
+      "file": "reconstructed/animation/CharacterContexts.cs",
+      "bytes": 14461,
+      "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+    },
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 20731,
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    {
+      "file": "reconstructed/animation/SecondaryVisibility.cs",
+      "bytes": 4475,
+      "sha256": "af1c0dde6bc4b68d3460dab61d0dd20d2876921265db605698a0ce4924546181"
+    }
+  ],
+  "native": {
+    "report": "geometry-dynamic-shadow-native-validation.json",
+    "schema": "geometry-dynamic-shadow-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1024,
+      "secondary": 930,
+      "volumeTests": 3155,
+      "shadowShader": 3055,
+      "shadowPackets": 3055,
+      "normalPackets": 1151,
+      "shadowOnlyCases": 270
+    },
+    "normalCounts": {
+      "cases": 1024,
+      "authoredSpecials": 0,
+      "checkedBytes": 1073709056,
+      "draws": 4206,
+      "ordinary": 3739,
+      "prefix": 467,
+      "bounds": 240,
+      "shaderEmissions": 1151,
+      "earlyReturns": 51
+    },
+    "sourceObjects": 480,
+    "sources": 60,
+    "errors": [],
+    "fixtureFile": "geometry-dynamic-shadow-fixtures.json.gz",
+    "fixtureBytes": 1955710,
+    "fixtureSHA256": "77ebb1a063021acfad23c613719653123961616bcfb1ae7bc2c47bf94445cb38",
+    "limits": [
+      "Full original5f0f00 normal/shadow path with actual5ea6a0/5c7050/5c6dc0 visibility, signed cached masks, both shader emitters, allocator and ordinary/prefix writers. Observation hooks only.",
+      "480 authored local bounds/world/LOD objects across60scenes, controlled relocated material/shadow-context records. Authored portal planes probe secondary math; no claim of shipped shadow-volume construction.",
+      "Zero sway/fade, null skin/morph, same-layout overrides, finite scalar arithmetic and successful disjoint capacities. Context count0..2, volume count0..33 includes modulo32 mask shifts and signed bit31 aggregate.",
+      "Whole1MiB persistent image compared including mirrored mask array/shader/bounds/scratch state, excluding established32-byte cache/output adapter. Exact writer and packet-record ordering checked.",
+      "Shadow-only packets may be emitted while the original return remains0; cleanup of9715a0 depends on captured incoming cache flag. GPU consumption and managed runtime equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "DynamicShadowHarness",
+    "arguments": [
+      "reports/geometry-dynamic-shadow-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1024,
+    "harness": {
+      "file": "reconstructed/geometry/harness/DynamicShadowHarness.cs",
+      "bytes": 5679,
+      "sha256": "715aed2890d07dd06dbef5fa64d286da9d9a5ae294b86b9952c4e411712a9cc6"
+    },
+    "compileStatus": "passed",
+    "comparison": "Persistent byte image plus shader/bounds/mask mirrors, visibility and cache flag, draw tuples and packet record order. No managed launch."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\Recovered.Geometry.DynamicShadow.dll",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\SortedPackets.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\FrameReset.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicCommandSupport.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\OrdinaryMeshPackets.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\ShaderContextEmission.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\ShadowContextEmission.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicSelection.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicBounds.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicSubmission.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\CharacterContexts.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\AnimationPlayback.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\SecondaryVisibility.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:exe",
+          "/out:C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicShadowHarness.exe",
+          "/main:DynamicShadowHarness",
+          "/reference:System.Web.Extensions.dll",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\SortedPackets.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\FrameReset.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicCommandSupport.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\OrdinaryMeshPackets.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\ShaderContextEmission.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\ShadowContextEmission.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicSelection.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicBounds.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\DynamicSubmission.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\CharacterContexts.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\AnimationPlayback.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\SecondaryVisibility.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\geometry\\harness\\DynamicShadowHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.DynamicShadow.dll",
+      "bytes": 49152,
+      "sha256": "e7cd38c1efbb55d10d69a747be08f8a7c321242dd0ec5548b8d7468c9459d412"
+    },
+    "harnessAssembly": {
+      "file": "reconstructed/geometry/DynamicShadowHarness.exe",
+      "bytes": 58880,
+      "sha256": "47015b8ff3c6200e131caa5d682d4f22206fccb92ac2c5b260fa7ac253bd0806"
+    }
+  },
+  "observations": [
+    "SubmitWithShadows appends explicit DynamicShadowServices to the prior full overload. Existing signatures remain compatible wrappers and still reject nonzero context count without services. DrawRecords adds diagnostic packet-record order alongside unchanged draw tuples.",
+    "Instance flag20 and global context count>0 trigger5ea6a0(refresh0) on the separately transformed raw minimum and maximum. Incoming9715a0 is captured before evaluation. Both normal and secondary visibility zero return early without final cleanup.",
+    "The supplied service bridges SecondaryVisibility state: Count/Contexts/Masks plus CacheFlag synchronized with DynamicSubmissionState.ShadowMask. Recomputed masks use original two-store plane math; cached masks use signed positivity. A negative mask alone does not establish secondary visibility.",
+    "Normal visible draws retain material bitset, override and607590 behavior. Secondary visible draws are independent of normal visibility, disabled by9738a8, and suppressed for material(+40>>14)&3 values1/3.",
+    "Each context reads signed volume count+710 and a mask from96e550 when the current cache flag is nonzero, otherwise all bits. Volume shifts wrap modulo32. Selected record is context+volume*380+2a4, with+44 when material byte268 is nonzero.",
+    "Each shadow record receives the display-owner pointer, reserves one command, writes opcode80/type3/material pointer, runs actual607820, then dispatches5e0530 with metadata1. Shared transform cache and source command index are preserved across normal and shadow records.",
+    "Final override reset always occurs after completed iteration.9715a0 clears only when the captured incoming flag was zero. Shadow-only packet emission may return normal visibility0; the fixture contains270 such cases.",
+    "Full original instructions execute unchanged except read-only observation hooks.1,024 cases cover480 authored bounds/world/LOD records across60scenes, relocated controlled contexts/materials, and authored portal-plane probes. This is not a claim that these controlled shadow volumes were constructed by the original runtime.",
+    "The managed harness supplies the separately recovered SecondaryVisibility implementation and compares all persistent image bytes, mask globals, visibility, cache flag, draw tuples and record order. It compiles; it has not executed."
+  ],
+  "remainingGaps": [
+    {
+      "id": "combined-feature-cross-product",
+      "status": "Skin/morph, billboards, sway, distance fade and different-layout material merge retain compatible services, but their simultaneous shadow cross product is not in this batch."
+    },
+    {
+      "id": "shadow-context-producer",
+      "status": "Context/volume/record layouts and consumers recovered; this batch supplies controlled relocated records and authored plane probes, not the original light/shadow context builder."
+    },
+    {
+      "id": "simd-visibility",
+      "status": "Scalar clipping only; SIMD clipping remains separate."
+    },
+    {
+      "id": "fade-midpoints",
+      "status": "Existing finite DistanceFade service retains its documented untested arithmetic-midpoint limitation."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core, replay and compatibility harnesses compile; managed equality pending."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU packet scheduling only; GPU shadow rendering and device behavior remain unclaimed."
+    }
+  ],
+  "pseudocode": {
+    "file": "decompiled/corpus-expanded/FUN_5f0f00.c",
+    "bytes": 7597,
+    "sha256": "5605e6e144035481c60036d00a04a4ac71139ee833741a730c5e491900c632bf"
+  },
+  "modelDependencies": [
+    {
+      "file": "tools/geometry-dynamic-shadow-native.py",
+      "bytes": 12348,
+      "sha256": "721f0d3faab90e6bd27f71c3fb08035aa21774b0aa63cc466201e92aa5f7d639"
+    },
+    {
+      "file": "tools/geometry-dynamic-submission-native.py",
+      "bytes": 13519,
+      "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+    },
+    {
+      "file": "tools/geometry-dynamic-command-native.py",
+      "bytes": 8040,
+      "sha256": "a03cdb76e8d9fe6757f2bdd511f15fa811fd231ba74c394a55af88eaa47643f8"
+    },
+    {
+      "file": "tools/geometry-ordinary-packets-native.py",
+      "bytes": 8092,
+      "sha256": "c91d38400c3c43ad5aa01417cdf2d17b0a93221f762b424757f7c63ad453275e"
+    },
+    {
+      "file": "tools/geometry-shader-emission-native.py",
+      "bytes": 8703,
+      "sha256": "4d0f2fe404ead9619861fed2ef5d8e8f7d3836be33335552d0aff9f0b199fcbd"
+    },
+    {
+      "file": "tools/geometry-dynamic-bounds-native.py",
+      "bytes": 10539,
+      "sha256": "3d81018a6792d2b72c428895f6ab38966eeb72f933312f54ce1edde66b4cda5e"
+    },
+    {
+      "file": "tools/animation-x87.py",
+      "bytes": 1730,
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    }
+  ],
+  "sourceInputs": [
+    {
+      "file": "reports/geometry-dynamic-submission-fixtures.json.gz",
+      "bytes": 2549819,
+      "sha256": "8adf026993c401b419a53082ca9ac462388d5f6b4d6ce111b8b8dd06dec02004"
+    },
+    {
+      "file": "reports/geometry-dynamic-submission-native-validation.json",
+      "bytes": 21342,
+      "sha256": "7543b2e2167b5411f6176ef37f6c2894612d0d576b3c4ba9de2182d35d360f22"
+    },
+    {
+      "file": "reports/geometry-portal-predicate-fixtures.json",
+      "bytes": 871298,
+      "sha256": "85110d0086cd845ec87f59663aeea4494e866792e0c1f23fc6db1d822e6dba45"
+    },
+    {
+      "file": "reports/animation-secondary-visibility-contract.json",
+      "bytes": 6092,
+      "sha256": "9314a807d14043d9db762a353cb9c33ea65e7b6a49bf877489646c488bdc9f23"
+    }
+  ]
+}

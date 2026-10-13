@@ -1,0 +1,39 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "d3dx": {
+    "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "bytes": 3727720,
+    "preferredBase": "0x400000",
+    "mappedBase": "0x20000000",
+    "matrixImplementationRva": "0x163599",
+    "highlowRelocations": 40053,
+    "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+  },
+  "comparisons": 10368,
+  "counts": {
+    "synthetic": 1344,
+    "authored": 8256,
+    "authoredBoundRigs": 244,
+    "authoredGroups": 1144,
+    "direct": 768
+  },
+  "mismatches": 0,
+  "examples": [],
+  "fixture": {
+    "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+    "bytes": 483494,
+    "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+  },
+  "authoredBindings": {
+    "path": "reports/animation-shadow-queue-bindings.json",
+    "sha256": "cf9e4df4d402591e7159f0a7d08ccf7d956126c71b6e30c87d5e3549189a0472"
+  },
+  "method": "Original 5f9fa0 and 5f9ed0 execute unchanged, including original 5c0500 and explicitly selected original D3DX9_35 scalar matrix body. Observation-only hooks record call order. Compare entire 29,120-byte queue, count, sequence and submission flag. No computational callbacks replaced.",
+  "limits": [
+    "Nonnegative queue count; finite joint/world arithmetic and float metadata. Direct matrix copy accepts arbitrary 64-bit-pattern bytes without arithmetic.",
+    "Disjoint source and queue storage; valid terminated bindings. Invalid source pointers, missing sentinel and allocation failures are excluded.",
+    "Authored pointer fields are proven PNTR relocations and normalized to source offsets; this queue does not dereference them. Full shadow-volume generation, GPU submission and renderer timing remain outside this scope.",
+    "Authored matrices are bind-world matrices prepared with explicit scalar arithmetic, not runtime clip scheduling."
+  ]
+}

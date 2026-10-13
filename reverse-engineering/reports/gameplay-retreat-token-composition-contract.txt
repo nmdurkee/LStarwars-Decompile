@@ -1,0 +1,13 @@
+212 original-PC checks; zero mismatches. No new source or function mappings.
+
+composition
+Original 0x535d60 retreat executes the actual registered 0x43c0c0 movement-token callback, then the real 0x514920 parser for unconsumed tokens. Portable replay supplies FacingCommands.MovementToken to RetreatExpressionAdapter. That callback recognizes whole case-insensitive RUN=0, WALK=1, TIPTOE=2; other tokens remain unconsumed. Thus both movement-token and expression behavior are reconstructed in this composed path, apart from optional game-specific symbol production.
+
+registration
+Original 0x43c830 calls 0x517040 with 0x43c0c0; setter stores it into 0x9238b0. The callback was already mapped in the facing batch. No additional native address or authored use is credited here.
+
+verification
+212 new original-PC composition comparisons pass: 180 combinations of production tokens, prior mode bytes and opponent/controller presence, plus 32 persistent ticks. Every argument list includes a consumed production movement token; the original callback executes without replacement. Native command state, event order, text changes and RNG are compared. Portable replay compiles; no generated managed program is executed.
+
+remaining
+GameSymbol is null in these fixtures, not claimed globally absent. Finite ASCII parser bounds and independent token buffers still apply. No actor position or navigation simulation is performed.

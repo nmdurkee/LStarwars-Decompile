@@ -1,0 +1,97 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 6829,
+    "counts": {
+      "dispatch": 6129,
+      "layers": 700
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredBindHierarchies": 688,
+    "authoredDispatchClipPairs": 470,
+    "fixture": {
+      "path": "reports/animation-packet-pose-native-fixtures.json.gz",
+      "bytes": 6592592,
+      "sha256": "dcea7c488105154c0499ba7c782929ca4d393d97677be48d0e357930c2d455d5"
+    },
+    "elapsedSeconds": 83.14949488639832
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkeletalPacketDispatch.cs",
+      "sha256": "b5a197714fede8411a864b004c81737a296630508506728be3b9964b9514d599"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/SkeletalBlend.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-packet-pose-portable-verify.cs",
+      "sha256": "ad1723afd15ea255e9bb93bfb7240401501800852f659ec05650cbc2edcf8ad8"
+    },
+    "entrypoint": "SkeletalPacketDispatchVerify.Main",
+    "arguments": [
+      "reports/animation-packet-pose-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 6829,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-packet-pose-compile.json"
+  },
+  "contracts": {
+    "layerGate": "Native62e290 first calls pointer80fb94. Its initialized default62e190 selects masked layerindices throughmin(modelhierarchy+190 signedcount,32). With no selected layer, the full routine returns without writing packet or output matrices. Portable Evaluate returnsnull so callers preserve their destination.",
+    "model": "Native model+4=hierarchy,model+c=per-animationclip pointer table; global29130e4+8=slotcount. Portable SkeletalPacketModel provides resolved joints, local bind matrices and nullable clips; Clips.Length is that global count. This source adapter does not reconstruct model loading.",
+    "packet": "Byte31 nonzero enables transition selection. Signed16sourceID at32 andtargetID at34 must each be0<=ID<slotcount and have a loaded pointer. With both valid, blend times arepacketfloat10/14 andtargetweight=store(packetfloat8/packetfloatc). If onlytarget valid, evaluate it at14; otherwise valid source at10; neither falls back to bindpose. In nontransition mode onlyID36 andfloat0 matter. A transition with neither clip does not fall back tocurrentID36.",
+    "bind": "Native5d36d0 no-override branch reads local bind matrices from hierarchy+170 and parentbytes from96-byte jointrecords+50. Rootparent255 copieslocal directly; others multiplylocal byparentworld. No animation-axis signflip or cumulative-scale update occurs. The native byte loop excludes256-joint termination from the bounded portable domain.",
+    "integration": "SkeletalPacketDispatch.Evaluate consumes the already recovered AnimationPacket directly. It routes to SkeletalPose.Evaluate, SkeletalBlend.Evaluate, or BindPose under the verified default-layer/no-morph/no-POI conditions. Packet state remains unchanged. Caller437770 passes object+8 and nullmorph/POI outputs into62e290, establishing a real original usage of this branch.",
+    "tail": "Native62e1e0 is still called, but its original nulloutput gate returns without point-of-interest work. The fixture does not replace it or any selector/sampler/blender/matrix computational callee. OriginalD3DXscalar policy remains explicit as documented by animation-skeletal-contract.json."
+  },
+  "verification": {
+    "method": "Full original62e290, original default62e190, bind fallback5d36d0, original pose/blend wrappers and numeric callees execute in isolated x86. Read-only hooks observe pose dispatch arguments; independently predicted request records and all matrixbits must match. No services are replaced. Synthetic cross-product covers signed IDs, zero/nonzero modebytes and missingclip combinations; authored bind matrices are source-byte reads.",
+    "nativeOnlyInvariants": [
+      "Untouched tail of raw layerindex destination",
+      "Scratch arena pointer restored"
+    ],
+    "tools": [
+      {
+        "path": "tools/animation-packet-pose-fixture.py",
+        "sha256": "29ea9ae29eea5816b0660683c158873478e2ee812acbcff7ae08e79b37642eb3"
+      },
+      {
+        "path": "tools/animation-packet-pose-verify.py",
+        "sha256": "576331c820a3f2bad37895adcf29279e05dc3a2b6ad953adde6cee36667772a8"
+      },
+      {
+        "path": "tools/animation-packet-pose-report.py",
+        "sha256": "5283b0675e52e5e6c8f73d1719741745397b0b22573097d05bfbe7a5f0f5e785"
+      }
+    ]
+  },
+  "limits": [
+    "Default layer selector only; custom callbacks are not inferred. Morph output and both point-of-interest outputs must be absent.",
+    "Valid finite Euler sampling/blending domains inherited from SkeletalPose/SkeletalBlend, including targetframe endpoint and frameCount>1 for a blend. The fourone-frame targetclips remain excluded from blend.",
+    "Finite blend ratio and nonzero denominator; underflow/signedzero ratios are tested. Clip/model loading and full render pipeline62fbf0 are not reconstructed by this module.",
+    "OriginalD3DXscalar policy is explicitly selected; live DLL CPU/config dispatch remains outside scope.",
+    "Managed core and replay compile but are not executed; native-vs-Python evidence does not establish managed execution equivalence."
+  ]
+}

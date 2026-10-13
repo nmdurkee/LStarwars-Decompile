@@ -1,0 +1,40 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x4f7fb0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserTokens.cs",
+      "sourceSha256": "b97bc83f107d58d99a26ce7109d06515b4193166b9b9bd169676df4cd784a500",
+      "methods": [
+        {
+          "name": "TextParserTokens.Next",
+          "line": 16
+        }
+      ],
+      "coverage": "bounded whole helper with binary token service",
+      "qualification": "Disjoint valid parser/line/token/delimiter buffers; line length below4096 and readable raw cursor range. Text tokens preserve byte values; supplied delimiter strings are terminated. Binary encoding parser remains a service. Token capacity mask is retained literally, including non-power-of-two capacities7/31. First punctuation character may be emitted as its own token; quotes suppress delimiters and empty quotes return an empty token. 1230 shipped sample/group source lines are fed to this token reader after externally stripping line comments; native file/line scanner is separate. Table stack depth starts-1..9; depths>=7 reject. No authored command credit, managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-tokens-tests.json"
+      ]
+    },
+    {
+      "address": "0x4f10e0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserTokens.cs",
+      "sourceSha256": "b97bc83f107d58d99a26ce7109d06515b4193166b9b9bd169676df4cd784a500",
+      "methods": [
+        {
+          "name": "TextParserTokens.PushTable",
+          "line": 8
+        }
+      ],
+      "coverage": "bounded whole helper with binary token service",
+      "qualification": "Disjoint valid parser/line/token/delimiter buffers; line length below4096 and readable raw cursor range. Text tokens preserve byte values; supplied delimiter strings are terminated. Binary encoding parser remains a service. Token capacity mask is retained literally, including non-power-of-two capacities7/31. First punctuation character may be emitted as its own token; quotes suppress delimiters and empty quotes return an empty token. 1230 shipped sample/group source lines are fed to this token reader after externally stripping line comments; native file/line scanner is separate. Table stack depth starts-1..9; depths>=7 reject. No authored command credit, managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-tokens-tests.json"
+      ]
+    }
+  ],
+  "commands": []
+}

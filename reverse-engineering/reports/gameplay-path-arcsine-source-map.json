@@ -1,0 +1,27 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original finite integer-arcsine approximation used by path corridor containment.",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x512900",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathArcSine.cs",
+      "sourceSha256": "55a90f5ce39ea7b839e5d32863ce1a8f5ddd99a07c4849825e244b85d345585f",
+      "methods": [
+        {
+          "name": "PathArcSine.Evaluate",
+          "line": 14
+        }
+      ],
+      "coverage": "complete finite[-1,1] approximate integer-arcsine helper, composing existing square-root implementation",
+      "qualification": "Finite[-1,1] input domain; NaN, infinities and out-of-range sine inputs are excluded. No substitution with Math.Asin or nominal mathematical arcsine: original polynomial error, constants, stores and truncation are part of the contract. No new authored command credit. The helper is a dependency of corridor containment51b1f0 and other callers. Managed replay has not executed; native comparisons are independent Python model versus original x86.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-arcsine-tests.json",
+        "reverse-engineering/reports/gameplay-path-arcsine-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-arcsine-contract.json"
+}

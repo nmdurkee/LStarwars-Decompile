@@ -1,0 +1,26 @@
+Normal submission with material lifecycle
+
+DynamicObjectSubmission.SubmitWithMaterialMerge adds the original5e5020
+service point to the stable normal caller. Default Submit delegates withnull
+and preserves its previous same-layout domain. MaterialLifecycle supplies
+the joined cache/constructor/refresh service. No new native address credit.
+
+360 complete original5f0f00 cases cover120 authored objects across60scenes:
+global override, tagged table override and empty tagged entry suppressing
+global fallback.600 merge calls include480 real clone constructors/refreshes
+and120cache reuses.960 actual declaration-cache lookups execute; only960
+shader-factory7416a0 calls are controlled mutable services.393 actual packet
+writers run (204ordinary,189prefix).70,767,360 persistent bytes compare with
+zero differences, including shader state, pool/cache/program state, pending
+queue, visibility bits, matrices and command buffers.
+
+Fixed global shader/scratch/bounds and queue count are mirrored into a compact
+image; the established32-byte portable transient stack window is excluded.
+No other native helper is skipped. This extends normal CPU behavior but does
+not claim shader factory/device creation, skin/morph, billboards, active fade,
+sway, shadow submission, SIMD clipping or GPU output.
+
+Core andboth original DynamicSubmissionHarness andnew DynamicMaterialHarness
+compile. New replay takes compressedInputFixture/outputFile; checker only
+prepares or compares saved output. Original1,568 native fixtures are retained
+unchanged. Native/model equality remains distinct from pending managed runs.

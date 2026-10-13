@@ -1,0 +1,27 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Full path steering target producer with bounded world adapters.",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x51d7b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathSteering.cs",
+      "sourceSha256": "8b1b3011f12fac35420c037f6c1f489b1bce3a0d4c2e3d57b1b77f7acd51bcfb",
+      "methods": [
+        {
+          "name": "PathSteering.Update",
+          "line": 80
+        }
+      ],
+      "coverage": "complete finite static/pre-refreshed caller control flow; neighboring-path and game-specific callback adapters explicit",
+      "qualification": "Finite loaded records; valid shared point/edge identities and routing topology, normal direction indices0/1, terminating routes, positive connection lengths and corner arcsine inputs within[-1,1]. Overflow, NaN/infinity, malformed pointers and zero-length normalization are excluded. Static or already-refreshed point backing only: fixture refresh bitsets are all set. Dynamic attachment/query aliasing and geometry mutation during corridor calls are not established by this caller batch. Neighboring-path transition51d5e0 is an explicit world adapter. The fixture records its calls and uses a no-op result; actual world rebind chains remain separate despite the helper having an existing independent contract. Registered9238fc special callback is an explicit adapter here. Selected callback flag changes and early-return behavior are verified; the three recovered PathActionDispatch variants and their deeper actions are not composed in this suite. SteeringPath typed views must share point records, connection topology and loaded identities. RouteInput/RouteOutput are source projection glue that synchronizes the existing route-cache representation, not additional recovered native entries. Authored geometry uses synthetic route tables and actor state and does not claim a live level traversal. No new authored command-use credit. Child helper call counts are informational and are not added to top-level comparisons. Portable core and replay harness compile, but managed execution was not attempted. Original-PC independent-model evidence is distinct from pending managed comparison.",
+      "comparisonStatus": "Original-PC composed-helper comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-steering-tests.json",
+        "reverse-engineering/reports/gameplay-path-steering-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-steering-contract.json"
+}

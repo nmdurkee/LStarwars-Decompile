@@ -1,0 +1,68 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "d3dx": {
+    "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "bytes": 3727720,
+    "preferredBase": "0x400000",
+    "mappedBase": "0x20000000",
+    "matrixImplementationRva": "0x163599",
+    "highlowRelocations": 40053,
+    "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+  },
+  "comparisons": 466,
+  "counts": {
+    "cases": 466,
+    "layerDraws": 6159,
+    "packets": 24636,
+    "skinPackets": 6960,
+    "ordinaryPackets": 8838,
+    "prefixPackets": 8838,
+    "locks": 112,
+    "noLayerDraws": 72,
+    "visibilityQueries": 48
+  },
+  "authoredRigs": 298,
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports\\animation-character-packets-native-fixtures.json.gz",
+    "bytes": 1779593,
+    "sha256": "5bc116c286a02f592907e91fba6a404ed88408ccd83558ff2d9262b34c8e0a77"
+  },
+  "dependencies": [
+    {
+      "path": "tools/geometry-dynamic-skin-native.py",
+      "sha256": "9f374025e56ebbadbdb54c64d0eb21b34e90f553e78e9da91e59e29dca492226"
+    },
+    {
+      "path": "tools/geometry-dynamic-submission-native.py",
+      "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+    },
+    {
+      "path": "tools/animation-morph-packets-verify.py",
+      "sha256": "5bd32ee1d9749fbc6620663960668836611ccd8f7748226cabfca026049163ff"
+    },
+    {
+      "path": "tools/animation-layer-submission-verify.py",
+      "sha256": "4eeab1f7b1810bfe2c7c23e41cd10f97988b8512b24b8d28637b36ba748b4ee8"
+    },
+    {
+      "path": "reports/animation-layer-submission-native-fixtures.json.gz",
+      "sha256": "a2ede96a2e3c088d650931b8b4cbd6d96ec0289e7f82a70e7eaeac89f6b94eb4"
+    },
+    {
+      "path": "reports/geometry-dynamic-submission-fixtures.json.gz",
+      "sha256": "8adf026993c401b419a53082ca9ac462388d5f6b4d6ce111b8b8dd06dec02004"
+    },
+    {
+      "path": "reports\\animation-morph-mesh-native-fixtures.json.gz",
+      "sha256": "eb5b1e9e608fa19072bd4e3a7a54b40f9836ed32e085e06a81d4337650b7560f"
+    }
+  ],
+  "method": "Original5f4ff0 ->5da980 ->5f0f00 -> material/shader helpers ->5e0530 -> ordinary/prefix/skin/morph writers. Original D3DX matrix code, original shadow producer globally disabled; only successful COM virtualLock/Unlock supplied. Independent models compare every persistent1MiB byte except32B transient packet scratch and64B host matrix scratch, shared cache/flags/cursor, draw order/palette hashes and COM events.",
+  "limits": [
+    "Authored bind matrices, full layer topology and source-matched skin mesh descriptors; controlled relocated scene/material bindings intentionally route each valid layer handle to the selected source mesh. This does not establish original per-layer mesh association.",
+    "Finite scalar camera/math, valid disjoint memory, successful buffer locking, no secondary visibility/dynamic shadows/sway/fade/billboard.",
+    "No live animation scheduler, graphics-device draw, or managed executable launch. Managed equivalence remains pending."
+  ]
+}

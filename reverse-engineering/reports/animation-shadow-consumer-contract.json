@@ -1,0 +1,120 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 3863,
+    "counts": {
+      "angles": 576,
+      "rotate": 607,
+      "prepare": 1720,
+      "queue": 960,
+      "shapeCalls": 14325,
+      "preparations": 1974,
+      "discardedRoots": 1863
+    },
+    "authoredBindingRigs": 244,
+    "authoredGroups": 1144,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports\\animation-shadow-consumer-native-fixtures.json.gz",
+      "bytes": 490672,
+      "sha256": "ce3beef3cac5b0bc0aff76cccce93e8e286329663da50a4bb8a53e0d71532e07"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-skeletal-fixture.py",
+        "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+      },
+      {
+        "path": "tools/animation-x87.py",
+        "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+      },
+      {
+        "path": "tools/animation-character-bounds-verify.py",
+        "sha256": "c39464270a138963ceea26a14e1050eda6bbe5edeeb93dd81b6910b5fb3e8c6c"
+      },
+      {
+        "path": "tools/gameplay-path-angle-verify.py",
+        "sha256": "77b53e1b6f2bb84316ddffde879db43c37bed99d84bbfcb4c419bc2ed2377c0d"
+      },
+      {
+        "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+        "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+      },
+      {
+        "path": "references\\native-animation-sine-table.f32",
+        "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+      }
+    ],
+    "method": "Original scheduler and all direction, angle-table and square-root helpers execute. Only three shape-generation services are supplied at exact native call boundaries; they record arguments and apply a deterministic GeneratedValue increment. Compare exact output words, ring, callback order/arguments, total, direction/root-call counts and untouched queue/camera backing. Direct helper checks replace no computational callbacks.",
+    "limits": [
+      "Finite vector/metadata values and finite stored squares; rotation angle plus16384 integral part must fit signedInt32. No NaN/Infinity or arbitrary out-of-range conversion claim.",
+      "Queue count is backed and at most280; nonpositive counts return after resetting GeneratedValue. Adjacent equal sequence bytes intentionally reuse acceptance, direction and upper/lower values.",
+      "Shape service implementations5e2920/5e3b50/5e4280 are not recovered here. Authored bindings retain original count/topology; ellipse/cylinder pointers and pair words are opaque service identities, not runtime object hydration.",
+      "Managed compilation/replay preparation only; no managed executable or live graphics device launch."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyShadowConsumer.cs",
+      "sha256": "147e8dee98a7702f598512bfac40cf78c9ff5f2671542137ae1a11a16602f5f8"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-consumer-portable-verify.cs",
+      "sha256": "fd44cec333cbc7a7a6eca03e8101f36ee56548023c46a8b9fc996bf68670f97d"
+    },
+    "entrypoint": "LegacyShadowConsumerVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-consumer-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3863,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-consumer-compile.json"
+  },
+  "contracts": {
+    "direction": "5e4600 computes yaw from(x,z), then pitch from(-y,sqrt(float(x*x+z*z))), using the exact original513-word angle table. Both signed integer results become floats; these are native angle units, not radians.5e4670 uses four original sine-table values after truncating pitch/yaw and their+16384 offsets; it float-stores the projectedZ before the yaw rotation.",
+    "preparation": "5e4740 clamps pitch below8192, measures vector length with original float square-sum/root boundaries, replaces the vector with rotated(0,0,length), and produces eight rotated(cos(theta),-sin(theta),0) ring rows for theta0,8192,...57344. The ring lives at9715b0 and is retained until another accepted sequence group prepares it.",
+    "queue": "5e4840 resets971878 to0 even for empty/negative count. It iterates the104-byte queue without clearing Count or records. Each new sequence byte+103 causes squared camera distance from matrix translation+48/+52/+56. The strict gate is float-stored distanceSquared < wide maximumDistance squared; equal radius rejects and negative radius has the same square.",
+    "sequence": "Only adjacent equal sequence bytes reuse the prior acceptance, direction and upper/lower parameters, even if their positions or metadata differ. Rejected groups skip all shapes; accepted groups prepare once. This preserves the original byte-sized grouping behavior rather than treating every record independently.",
+    "parameters": "Parameter0>=65536 selects the vertical marker branch: prepare(0,-1,0), then overwrite its Y with-4, with ellipse upper/lower from parameters1/2. Otherwise prepare the three parameter floats and multiply each direction component by4. Default ellipse limits are+10000000/-10000000. Beyond the fade-distance square the original computes a square root and discards it; this routine does not apply alpha fading.",
+    "shapes": "Within each accepted record the order is cylinders5e2920, ellipses5e3b50, then other5e4280. Nonzero pointer and positivebytecount are both required. Cylinder pointer advances64bytes, ellipse48bytes. Other count repeatedly dereferences the same two-word pair without advancing its pointer. Shape services receive exact record identity/direction/limits; their geometry generation is a separate boundary.",
+    "evidence": "3863 new original comparisons: 576 angle probes, 607 rotations, 1720 complete preparations and 960 queue invocations. All244 authored binding rigs/1144groups contribute source-bound layouts or vectors. 14325 service calls and every ring/output word match; direct helpers have no computational replacements.",
+    "scope": "Controlled direction/camera/distance parameters are test inputs, not evidence of which shadow lighting mode each shipped character selects. Source-bound shape pointers and raw pair values are opaque identities supplied to boundary callbacks; runtime relocation/content hydration is not inferred. Original service probes update the global counter deterministically without generating geometry.",
+    "managed": "Prepared replay invokes the real portable direction helpers and consumer, compares bitwise vectors/rings, ordered shape arguments and counter, and checks queue/camera remain unchanged. Native helper-call counts are verified separately against the independent Python model. Core and replay compile; managed execution remains pending."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-shadow-consumer-verify.py",
+      "sha256": "8d67937d2551230046ab670107137bd33c2fc78c61e0b2f99b8ba98da480cc1c"
+    },
+    {
+      "path": "tools/animation-shadow-consumer-report.py",
+      "sha256": "d32a919701f31da51e3a81f63bb7e9cd6df40752cb4caaf7d6243302b17b2684"
+    }
+  ],
+  "limits": [
+    "Finite vector/metadata values and finite stored squares; rotation angle plus16384 integral part must fit signedInt32. No NaN/Infinity or arbitrary out-of-range conversion claim.",
+    "Queue count is backed and at most280; nonpositive counts return after resetting GeneratedValue. Adjacent equal sequence bytes intentionally reuse acceptance, direction and upper/lower values.",
+    "Shape service implementations5e2920/5e3b50/5e4280 are not recovered here. Authored bindings retain original count/topology; ellipse/cylinder pointers and pair words are opaque service identities, not runtime object hydration.",
+    "Managed compilation/replay preparation only; no managed executable or live graphics device launch.",
+    "No shape generator entrypoint credit. The callback boundary is scoped to read-only queue/camera/direction/ring arguments plus GeneratedValue updates.",
+    "Shared numeric/table helpers retain their previous evidence; new entrypoint count is exactly4."
+  ]
+}

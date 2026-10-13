@@ -1,0 +1,101 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 4528,
+    "counts": {
+      "synthetic": 900,
+      "authored": 2064,
+      "skinWrapper": 788,
+      "rigidWrapper": 776
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredRigs": 688,
+    "fixture": {
+      "path": "reports/animation-layer-submission-native-fixtures.json.gz",
+      "bytes": 703543,
+      "sha256": "a2ede96a2e3c088d650931b8b4cbd6d96ec0289e7f82a70e7eaeac89f6b94eb4"
+    },
+    "method": "Original5f4ff0,5c0350,5c0500,point transforms and explicitly selected originalD3DX9_35 scalar implementation execute. Visibility5da980/secondary5ea6a0 anddynamic5f0f00 are bounded service callbacks; attachments5f9fa0 executes its original globally disabled branch. Output call order,matrix bits via hashes,palette bytes,arena cursor,visibility state andreturn flags compared. Selected callbacks advance the shared arena cursor, validating reservation before rigid submission and later reads.",
+    "limits": [
+      "Finite disjoint matrix arrays andvalid layer records; counts0..256.",
+      "Visibility anddynamic rendering consumers remain adapters; no fullrender/GPU/shadow equivalence.",
+      "Authored bind-world input matrices derive from hash-boundlocal binds with the same explicit scalar policy; clip scheduling is notclaimed.",
+      "Callback mutation of hierarchy/jointarrays excluded. Allocator increments are explicit syntheticservice effects, not full downstreampacketallocation integration."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterLayerSubmission.cs",
+      "sha256": "dd405bada650ea5931a2610874d3f715cd11f97b6b8ae11c536843c6634412a8"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-layer-submission-portable-verify.cs",
+      "sha256": "929aa4434d73dd00be10cbb0586f1f34ebf3eb9d3c8b163ca0e1209863a8a80a"
+    },
+    "entrypoint": "CharacterLayerSubmissionVerify.Main",
+    "arguments": [
+      "reports/animation-layer-submission-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 4528,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-layer-submission-compile.json"
+  },
+  "contracts": {
+    "layout": "GHG hierarchy+168 u32jointcount,+174 inversebindmatrixarray,+190 layercount,+194 layerarray. Each20-byte layer contains name+0,perjoint rigidhandlearray+4,smoothhandle+8,alternate rigidarray+c,alternate smoothhandle+10. Each12-byte handle contains scene+0,legacy special+4,display special+8. Submission requires nonzero handle,scene anddisplay special; legacy field is not tested.",
+    "visibility": "Global806ccc is a signed visibility cache. Value-1 invokes5da980; other values are used directly. Positive966384 also transforms localbounds+1ac/+1b8 aspoints through objectworld and invokes5ea6a0 withmode1. If both resultszero,9715a0 is reset andthe function returns0. Otherwise cached visibility is temporarily set to the firstresult,attachments5f9fa0 is called, andthe previouscache is restored after submissions. SubmissionFlag9715a0 is always cleared on normalreturn.",
+    "selection": "Positive requestedcount andnull signed16layermap select layer0 once. A providedmap skips negative/out-of-range IDs, retains duplicates andordering. Nonpositivecounts still pass visibility/attachment preparation but do not visitlayers. A nonnull morphpointerlist isindexed by selected-list ORDINAL, including positions whose IDs were skipped; it is not indexedby layerID.",
+    "allocation": "Any nonnull smooth oralternate-smooth handle triggers a fulljointpalette reservation even ifscene/display pointers laterreject thehandle. Cursor firstaligns16 then128, andreserves jointCount*64 bytes BEFORE anyrigid submissions. Matrices are filled afterrigid/alternate-rigid groups, before smoothgroups. Callbackincrements tosharedcursor are preserved bynext reservations.",
+    "rigid": "Rigid andalternate-rigid arrays are visited inthatorder, joint0 upward. Every nonnull handle first computes jointWorld*objectWorld through5c0500, even ifscene/display validation laterrejects it. Validhandles call5f0f00(mode0,nullskin,nullmorph). Resultflags areORed.",
+    "smooth": "5c0350 computes inverseBind[j]*jointWorld[j] independently foreachjoint. Smooth thenalternate-smooth validhandles call5f0f00 withobjectWorld,mode2,the128-aligned preparedpalette,andthe selectedordinalmorphpointer. Both smoothvariants share the samepalette andmorphoutput. Native resultflags areORed withrigidresults.",
+    "matrices": "5c0350 and5c0500 forward matrix products to importedD3DXMatrixMultiply. Nativefixtures load andrelocate the pinnedinstalledd3dx9_35.dll andexplicitly bind thegameIAT toits scalarimplementation. C# delegates toSkeletalPose.D3dx9_35ScalarMultiply; thispolicy retains64-significand intermediates andfloat32stores. OS/CPU exportdispatch remainsunreconstructed.",
+    "integration": "CharacterSubmissionServices.Submit receives resolvedhandle,transform,mode,preparedskin address/matrices andmorphidentity. A host canresolve morphidentity toMorphWeights output andpass thepalette into thedynamicpacket path. Visibility,secondaryregionvisibility,attachments and5f0f00 effects areexplicitboundaries; source doesnot silently claim thoseconsumers. State.Palettes owns preparedmatrixpayloads atlogicalnative addresses."
+  },
+  "verification": {
+    "method": "Original5f4ff0,5c0350,5c0500,point transforms and explicitly selected originalD3DX9_35 scalar implementation execute. Visibility5da980/secondary5ea6a0 anddynamic5f0f00 are bounded service callbacks; attachments5f9fa0 executes its original globally disabled branch. Output call order,matrix bits via hashes,palette bytes,arena cursor,visibility state andreturn flags compared. Selected callbacks advance the shared arena cursor, validating reservation before rigid submission and later reads.",
+    "details": "900synthetic orchestration cases plus3selection modes for each688authored rigs,788directskinarraychecks and776directrigidproducts. All-layer selection,null defaultlayer,reverse/duplicate/invalidIDs,null morphtable,invalidhandles,zerojoints,nonpositivecounts,visible/culled/secondaryonly gates andsynthetic consumerallocation effects included. Native model checks internal callorder; managed replay checks orderedexternal events andpayloadbits, without exposinginternalpurehelpercallobservation.",
+    "tools": [
+      {
+        "path": "tools/animation-layer-submission-verify.py",
+        "sha256": "4eeab1f7b1810bfe2c7c23e41cd10f97988b8512b24b8d28637b36ba748b4ee8"
+      },
+      {
+        "path": "tools/animation-skeletal-fixture.py",
+        "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+      },
+      {
+        "path": "tools/animation-layer-submission-report.py",
+        "sha256": "32603ef7548ff49d4c4e443a6f47243aeaa9cab656806a3af72bcdca028e7011"
+      }
+    ]
+  },
+  "limits": [
+    "Finite disjoint matrix arrays andvalid layer records; counts0..256.",
+    "Visibility anddynamic rendering consumers remain adapters; no fullrender/GPU/shadow equivalence.",
+    "Authored bind-world input matrices derive from hash-boundlocal binds with the same explicit scalar policy; clip scheduling is notclaimed.",
+    "Callback mutation of hierarchy/jointarrays excluded. Allocator increments are explicit syntheticservice effects, not full downstreampacketallocation integration.",
+    "Managed sources/replay compile only; original-versus-independent-model checks do not establish managed execution equivalence."
+  ]
+}

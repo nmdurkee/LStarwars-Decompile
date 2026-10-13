@@ -1,0 +1,45 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Connection binding and cyclic subroute selection, plus host spawn composition.",
+  "primaryNativeEntryPoints": 2,
+  "mappings": [
+    {
+      "address": "0x51b7f0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorPathBinding.cs",
+      "sourceSha256": "fb29028934a92d4fa722457a51297c28acb2f2fe38bc0186cee5823720492cfb",
+      "methods": [
+        {
+          "name": "ActorPathBinding.SelectRoute",
+          "line": 42
+        }
+      ],
+      "coverage": "full cyclic selection helper over valid prepared records",
+      "qualification": "Finite valid loaded path/point/connection records; direction word index0..8, finite nonzero horizontal length, original sine table. No allocation, traversal scheduler, actual movement or collision response is claimed.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed; portable source/harness compiled, managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-binding-tests.json",
+        "reverse-engineering/reports/gameplay-path-binding-assembly.json"
+      ]
+    },
+    {
+      "address": "0x51b890",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorPathBinding.cs",
+      "sourceSha256": "fb29028934a92d4fa722457a51297c28acb2f2fe38bc0186cee5823720492cfb",
+      "methods": [
+        {
+          "name": "ActorPathBinding.Bind",
+          "line": 57
+        }
+      ],
+      "coverage": "full finite connection binding helper over valid prepared records",
+      "qualification": "Finite valid loaded path/point/connection records; direction word index0..8, finite nonzero horizontal length, original sine table. No allocation, traversal scheduler, actual movement or collision response is claimed.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed; portable source/harness compiled, managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-binding-tests.json",
+        "reverse-engineering/reports/gameplay-path-binding-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-binding-contract.json"
+}

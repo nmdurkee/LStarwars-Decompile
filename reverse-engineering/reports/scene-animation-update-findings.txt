@@ -1,0 +1,40 @@
+SCENERY ANIMATION UPDATE
+
+14865 original-PC checks, zero mismatches.7 mapped entrypoints; managed replay prepared and compiled, not executed.
+
+callOrder
+PC world frame0x491d50 calls0x5f4b90(scene,FRAMETIME*60), then0x5a1780(activeGroups). Call UpdateScene first, execute its ordered pose/copy work, then UpdateGroups. Character skeletal clocks use a separate contract; do not reuse their30Hz step scale here.
+
+temporal
+Target0x60-byte record stores rate+0x40, first/wait threshold+0x44, interval+0x48, local frame+0x4c, flags+0x50 and previous evaluation+0x58. Playingbit1 advances local frame by rate*frameDelta with one x87 multiply/add andfloat32store. Waitingbit4 clears atframe>=first; on clearing subtract(first-1). While still waiting, evaluation retains the previous processed instance evaluation time, initialized0 for the scene call.
+
+range
+With waiting clear, frames beyond clipend but before intervalend evaluate atclipend while local time keeps advancing. Repeatingbit8 wraps atinterval+end by an int32 truncation of a storedfloat32ratio, not general mathematical floor. Repeat amount is separately storedfloat32 before subtraction. Belowframe1 stops and clamps. Backwardsbit2 changes evaluation time toend+1-time, without reversing local time. Paused instances bypass backwards transformation.
+
+visibility
+State lookup index is flags>>22; cursor isbyte(flags>>14). Reference-count word belowthe lookup table<2 clears the scene table pointer. Active lookup allows processing hidden display records; otherwise visibilitybit2 is required. State-track cursor moves forward/backward through key times and compares values atold/new cursor. Only changedvalues update display visibility. A change tozero suppresses that instance pose evaluation/copy for the current call. A following unchangedzero state may still evaluate an existing clip, as in the original.
+
+groupUpdate
+5a1780 performs no delta-time addition. It clears activebit1, handles pendingstopbit2, clamps or wraps member times against ordered start/end, aggregates active-direction state1forward/3backward, and assigns stoppedstate0start/2end/4between. Group wrap subtracts tofloat32 before adding/subtracting the opposite endpoint. Looping performs one wrap only, even for overshoot longer than a range.
+
+retirement
+When a previously active group becomes inactive, it setsstopbit2 and stays queued until the next update. Otherwise inactive groups remove from their owning queue and refresh state immediately. Removal clearsqueuedbit4 only when the owning queue exists. Reset clears targetplaying/waiting, copies startframe and rate1, and performs removal/refresh inside each member iteration; empty reset leaves queue membership unchanged.
+
+specialFlags
+Before adjusting members, the group ORs all reference no-visibility-test predicates. If that aggregate differs from the newly active state, it assigns every reference the active state. Instance references useflagsbit8; display references useflagsbit0x80. This comparison of aggregates can leave mixed reference bits unchanged when anytrue already matches an active group.
+
+poseBoundary
+UpdateScene emits EvaluatePose and CopyPose work per processed instance, preserving source ordering and cached evaluation decisions. UpdateGroups invokes a changed-frame hook in original552760 call order. The host must implement matrix evaluation/copy/draw translation and any cache/bounds effects of552760; callbacks must not mutate list membership, playback rate or unrelated targets during these bounded updates.
+
+Evidence
+Original full5a1780/5a0720/5a0fb0 and full5f4b90 with SALI-only and authored ANI5 animation slots. No instruction/callback replacement. Read-only hooks record552760,5ea390 and5c19d0 calls. Complete projected target/group/reference flags, queue order and matrix-evaluation/copy requests compared.
+480 original sequential frames over12 scenarios preserve native live records between clock and group calls, including forward/backward playback, loops, boundary clamping and next-frame queue retirement.
+
+Limits
+Group reevaluation executes original552760 missing-clip branch; its ordered pose requests are verified. The scene clock separately executes original curve/matrix/copy code on12 authored clips.
+Portable pose matrix evaluation/copy remains an ordered work item; actual matrices are not reconstructed by this module. Existing independent scene-pose tests validate the decoded animation evaluator separately.
+Finite inputs, positive repeat period and bounded int32 quotient only. Invalid pointers, NaNs, infinities, inconsistent intrusive queues and concurrent mutations excluded.
+Portable managed execution pending; compilation is separate.
+Managed source accepts valid finite arrays/records. Repeat period must be positive and the truncated ratio must fitInt32. State tracks are nonempty and at most256 keys.
+ScenePlaybackScene and wrappers project native pointers and metadata. Native member allocation5a0810 and bounds builder5a0c20 were inspected but are not ported or counted.
+Full raw numeric NuSpecialGetNoVisiTest return differs by reference type; the portable predicate intentionally exposesbool. Setter scope isBoolean input only.

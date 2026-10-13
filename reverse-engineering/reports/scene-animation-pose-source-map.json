@@ -1,0 +1,180 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 9,
+  "refines": [
+    "0x5f4b90"
+  ],
+  "scope": "Scene pose fragment.0x5f4b90 extends an existing mapping, not a new native address.",
+  "mappings": [
+    {
+      "address": "0x5ce350",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.Sample",
+          "line": 78
+        }
+      ],
+      "coverage": "bounded shipped scene scalar path",
+      "qualification": "One node, nine curves, types6/7/constants, null channel mask, global forced-end switch0x9737dd disabled. Source-relative carrier adapter is not the native loader.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5ca830",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.SamplePacked16",
+          "line": 65
+        }
+      ],
+      "coverage": "finite valid packed16 helper",
+      "qualification": "Subkeys0..3, positive stride, sufficient readable padding; invalid selector/pointer and nonfinite arithmetic excluded.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5ea390",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.Evaluate",
+          "line": 120
+        },
+        {
+          "name": "SceneAnimationPose.Build",
+          "line": 113
+        }
+      ],
+      "coverage": "finite shipped scene pose consumer",
+      "qualification": "Uses recovered scalar subset, original supplied sine table, int32-fitting radian conversion. Euler radians regardless of ANI5 format flag; no renderer work.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5f3390",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.Evaluate",
+          "line": 120
+        }
+      ],
+      "coverage": "forwarding wrapper to recovered bounded pose consumer",
+      "qualification": "Wrapper delegates to5ea390; inherits its bounded data domain.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5b5300",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.Rotation",
+          "line": 99
+        }
+      ],
+      "coverage": "finite native-table Euler rotation helper",
+      "qualification": "Integer angles wrap in native16-bit lookup convention. Caller supplies original32768-float sine table.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5b4c30",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.ScaleRows",
+          "line": 106
+        }
+      ],
+      "coverage": "finite nonaliased row-scale helper",
+      "qualification": "Three input scalars and sixteen-float matrix, finite stores. Aliased raw pointer behavior excluded.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5b4900",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.Translate",
+          "line": 109
+        }
+      ],
+      "coverage": "finite nonaliased matrix-translation helper",
+      "qualification": "Three input scalars and sixteen-float matrix, finite stores. Aliased raw pointer behavior excluded.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x552760",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.EvaluateChangedFrame",
+          "line": 132
+        }
+      ],
+      "coverage": "cache/evaluation/copy/translation after pointer resolution",
+      "qualification": "Target/clip/base pointers supplied by projected binding. Missing-target/missing-clip and unchanged-frame no-op preserved. Native5ea660 bounds effects are an ordered host callback;5df480 bounds math not ported.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    },
+    {
+      "address": "0x5f4b90",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationPose.cs",
+      "sourceSha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30",
+      "methods": [
+        {
+          "name": "SceneAnimationPose.ApplyWork",
+          "line": 124
+        }
+      ],
+      "coverage": "matrix-evaluation/copy/translation tail of scene tick",
+      "qualification": "Extends SceneAnimationUpdate.UpdateScene with SceneAnimationPose.ApplyWork; both source mappings must be retained. Not an additional distinct native routine. Ordered work evaluates when requested, reuses cached matrix otherwise, then copies and adds base translation.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-pose-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/SceneAnimationPose.cs",
+      "sha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs"
+    ],
+    "harness": {
+      "path": "tools/scene-animation-pose-portable-verify.cs",
+      "sha256": "7b3f9abc485a60b6b85d503d3ac38866b2c9c92a54a1715e0874e7b661b1d52e"
+    },
+    "entrypoint": "SceneAnimationPoseVerify.Main",
+    "arguments": [
+      "reports/scene-animation-pose-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 103156,
+    "status": "Compiled only; managed execution not attempted.",
+    "compileEvidence": "reports/scene-animation-pose-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/scene-animation-pose-tests.json",
+    "reverse-engineering/reports/scene-animation-pose-assembly.json"
+  ]
+}

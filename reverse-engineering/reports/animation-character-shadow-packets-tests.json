@@ -1,0 +1,67 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "d3dx": {
+    "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "bytes": 3727720,
+    "preferredBase": "0x400000",
+    "mappedBase": "0x20000000",
+    "matrixImplementationRva": "0x163599",
+    "highlowRelocations": 40053,
+    "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+  },
+  "comparisons": 466,
+  "counts": {
+    "cases": 466,
+    "layerDraws": 6979,
+    "packets": 75530,
+    "skinPackets": 20798,
+    "shadowPackets": 49446,
+    "secondaryCalls": 6995,
+    "volumeTests": 2950,
+    "shadowShaderCalls": 49446,
+    "locks": 54,
+    "zeroReturnWithPackets": 46,
+    "noLayerDraws": 48
+  },
+  "authoredRigs": 298,
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports\\animation-character-shadow-packets-native-fixtures.json.gz",
+    "bytes": 1956264,
+    "sha256": "963b17f7b694268858431774246244f3e594d228f54be3823f2fba7d15d098ae"
+  },
+  "dependencies": [
+    {
+      "path": "tools/animation-character-packets-verify.py",
+      "sha256": "4754993949c50c1b2a88187a0183537f202731be8502d8cf6190e384d9796853"
+    },
+    {
+      "path": "tools/geometry-dynamic-shadow-native.py",
+      "sha256": "721f0d3faab90e6bd27f71c3fb08035aa21774b0aa63cc466201e92aa5f7d639"
+    },
+    {
+      "path": "tools/geometry-dynamic-skin-native.py",
+      "sha256": "9f374025e56ebbadbdb54c64d0eb21b34e90f553e78e9da91e59e29dca492226"
+    },
+    {
+      "path": "tools/geometry-dynamic-submission-native.py",
+      "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+    },
+    {
+      "path": "reports\\animation-morph-mesh-native-fixtures.json.gz",
+      "sha256": "eb5b1e9e608fa19072bd4e3a7a54b40f9836ed32e085e06a81d4337650b7560f"
+    },
+    {
+      "path": "reports/animation-layer-submission-native-fixtures.json.gz",
+      "sha256": "a2ede96a2e3c088d650931b8b4cbd6d96ec0289e7f82a70e7eaeac89f6b94eb4"
+    }
+  ],
+  "method": "Actual original5f4ff0 through secondary predicates, full5f0f00 normal/shadow scheduler, both shader emitters, real skin/morph/ordinary/prefix packet writers and original D3DX matrix code. Only successful COM Lock/Unlock supplied. Every persistent1MiB byte including mirrored masks compared, excluding32B packet scratch and64B host matrix scratch; layer entry palette/matrix hashes, cursor/flags, packet order and COM events agree.",
+  "limits": [
+    "Controlled relocated handles bind full authored layer topology to one source-matched mesh; exact shipped layer-to-mesh loader association remains unproven.",
+    "Finite scalar valid state; shadow contexts/planes are controlled fixtures, not original volume producers.",
+    "Billboard, sway, fade, material merge and active character shadow-queue production remain separate.",
+    "No GPU/live scheduler or managed executable launch."
+  ]
+}

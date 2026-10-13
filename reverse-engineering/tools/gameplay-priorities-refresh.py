@@ -62,7 +62,7 @@ for batch in old['suggestedBatches']:
 old['suggestedBatches'] = batches
 old['completedPriorityBatches'] = completed
 native_index = json.loads((ROOT/'reports/gameplay-native-index.json').read_text(encoding='utf-8'))
-old['externalCompletedContracts'] = [dict(name=c['name'], kind='scp-action', address=c['address'], sourceUses=c['sourceUses'], report=c['report'], checks=c['checks'], includedInGameplayCheckTotals=False, scope=c['scope'], countQualification=c.get('countQualification')) for c in native_index['externalCommandContracts']]
+old['externalCompletedContracts'] = [dict(name=c['name'], kind='scp-action' if c.get('address') else 'multiple-command-kinds', address=c.get('address'), sourceUses=c['sourceUses'], report=c['report'], checks=c['checks'], reviewChecks=c.get('reviewChecks',0), includedInGameplayCheckTotals=False, scope=c['scope'], countQualification=c.get('countQualification')) for c in native_index['externalCommandContracts']]
 c = old['counts']
 c.update(catalogNames=len(rows), boundedContractNames=len(rows)-len(remaining), uncontractedNames=len(remaining), uncontractedSourceUses=sum(r['sourceUses'] for r in remaining), nativeBoundButUncontractedNames=sum(r['status']=='dispatch-only' for r in remaining), missingNativeBindingNames=len(old['missingNativeBindings']), missingNativeBindingSourceUses=sum(r['sourceUses'] for r in old['missingNativeBindings']), top20SourceUses=sum(r['sourceUses'] for r in top), top20MissingBindings=sum(r['status']=='unbound-name' for r in top))
 PATH.write_text(json.dumps(old, indent=2)+'\n', encoding='utf-8')

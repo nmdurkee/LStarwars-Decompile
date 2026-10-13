@@ -1,0 +1,169 @@
+{
+  "schema": "recovered-geometry-shadow-camera-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowCamera.cs",
+      "bytes": 3458,
+      "sha256": "8aab76d351ec56f76e72289dba314f2d1519692b9c422cb42e4a9cf1675587c5"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5b5a40",
+      "method": "ShadowCamera.RigidInverse",
+      "sourceFile": "reconstructed/geometry/ShadowCamera.cs",
+      "coverage": "whole-helper-finite-disjoint-or-exact-self-alias",
+      "limitations": "Transposed basis algorithm, not a general matrix inverse. Finite stored results; exact original/model bits, managed execution pending.",
+      "evidence": "geometry-shadow-camera-native-validation.json"
+    },
+    {
+      "address": "0x5b7670",
+      "method": "ShadowCamera.Perspective",
+      "sourceFile": "reconstructed/geometry/ShadowCamera.cs",
+      "coverage": "whole-helper-bounded-finite-perspective",
+      "limitations": "DegreeFOV absolute1..170, nonzeroaspect/tangent/cosine andfar!=near, original sine table, finite stored outputs. Both original CRT policies tested; managed equality pending.",
+      "evidence": "geometry-shadow-camera-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/animation/CharacterContexts.cs",
+      "bytes": 14461,
+      "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+    },
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 20731,
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-camera-native-validation.json",
+    "schema": "geometry-shadow-camera-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 4108,
+      "inverse": 2060,
+      "floatWords": 65728,
+      "inplace": 1030,
+      "perspective": 2048
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-camera-fixtures.json.gz",
+    "fixtureBytes": 421572,
+    "fixtureSHA256": "e87f9a5ea0e5d91ac604618cc9d4f38d4c109cdc9ac0343fb1fb9cda244127b4",
+    "limits": [
+      "Actual original5b5a40/5b7670 instructions execute unchanged, including original CRT conversion helpers for both policy modes.",
+      "Rigid inverse algorithm transposes3x3 and transforms negated translation; all finite source matrices execute, but it is only mathematically an inverse for orthonormal affine bases. In-place and disjoint outputs verified.",
+      "Projection FOV is degrees; bounded absoluteFOV1..170, nonzero aspect/tangent/cosine andfar!=near, finite stored outputs. Original sine table used, two truncations are retained.",
+      "Source includes six raw authoredCU2matrices plus synthetic data; projection parameters are controlled. Partial memory overlap and nonfinite/overflow domains excluded.",
+      "C# compilation/equality remain separate; outer5e8950 andGPU output are not covered here."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowCameraHarness",
+    "arguments": [
+      "reports/geometry-shadow-camera-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 4108,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowCameraHarness.cs",
+      "bytes": 2825,
+      "sha256": "d47ddf595d67672f0fb993a7f3ed3a543cca3f2cec61b5681de9adb77c6cf8ea"
+    },
+    "compileStatus": "passed",
+    "comparison": "Full512B persistent image including all16matrix words; original conversion angles retained in native fixture."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowCamera.dll",
+          "ShadowCamera.cs",
+          "..\\animation\\CharacterContexts.cs",
+          "..\\animation\\AnimationPlayback.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowCamera.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowCameraHarness.exe",
+          "harness\\ShadowCameraHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowCamera.dll",
+      "bytes": 20480,
+      "sha256": "9f5f17c0df865781a725881e9da708cc0ef2e486afc3115d754ec5cfe15d06f9"
+    }
+  },
+  "observations": [
+    "RigidInverse negates input translation into storedfloat32 lanes, transposes the3x3basis, and computes ordered extended products/additions into stored translation. It overwrites affine fourth column0/0/0/1. Original code supports exactselfalias through temporary swaps; source clones input to preserve that result.",
+    "This is a rigid inverse algorithm. Arbitrary finite matrices are evaluated with original behavior, but only orthonormal affine bases give a mathematical inverse. No inferred general inverse, scale correction or normalization is added.",
+    "Perspective consumes degreeFOV, keeps halfFOV in extended precision, and truncates halfFOV*182.04444885253906 and halfFOV*(-182.04444885253906) separately using the original CRT helper. Sine index=(first>>1)&7fff; cosineindex=((4000-second)>>1)&7fff.",
+    "Storedfloat32 tangent is sampled sine/cosine. Matrix00=1/(tangent*aspect),11=1/tangent,22=far/(far-near),23=1,32=(-far*near)/(far-near), allotherlanes0. Far-near and tangent*aspect retain extended intermediates; no invented float32 store.",
+    "4108 original comparisons include2060rigidinverse outputs(1030exactselfalias),2048perspective outputs,65728bit-exactfloatwords. Six authoredCU2matrices and1024synthetic matrices are retained; controlled projection inputs exercise both CRT policies.",
+    "Source/replay compile only. Inputs and outputs are finite and bounded, aliasing beyond exactselfidentity is excluded. Outer volume producer5e8950 and GPU outputs remain separate."
+  ],
+  "remainingGaps": [
+    {
+      "id": "outer-shadow-producer",
+      "status": "5e8950 integration remains separate."
+    },
+    {
+      "id": "numeric-domain",
+      "status": "Finite outputs, bounded degreeFOV and nonzero denominators; partial memory overlap and nonfinite/overflow excluded."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU matrices only."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-camera-native.py",
+    "bytes": 5718,
+    "sha256": "b2f6f3a8552348c29ee4cadec655fed97102026bc2e14cc4040297201b8ca451"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-camera-assembly.json",
+    "bytes": 16994,
+    "sha256": "31355e0eb675e79e249d2204626bbbcb01eec0db834d83ebb47653a2c9ed3fb2"
+  },
+  "sourceInputs": [
+    {
+      "file": "exports/cutscenes/LEVELS/EPISODE_V/ENDING/EPISODE5ENDING_A/EPISODE5ENDING_A.CU2.json",
+      "bytes": 4274,
+      "sha256": "3d5c91da2a27d9cd4db3e10e0e7b22daf7bc35bce6920aabada47e6da441dc87"
+    },
+    {
+      "file": "references/native-animation-sine-table.f32",
+      "bytes": 131072,
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    }
+  ]
+}

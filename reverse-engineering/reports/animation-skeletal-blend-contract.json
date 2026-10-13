@@ -1,0 +1,125 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 7238,
+    "counts": {
+      "blend": 6768,
+      "evaluate": 470
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredBlendCarriers": 2907,
+    "skippedAuthoredCarriers": [
+      {
+        "path": "CHARS/BENKENOBI/RIDE.AN3",
+        "sourceSha256": "62a3ce9a64670ca00f0e34075943f3e10cf2af2d91e3bce89cc5d8d4d8ae51d3",
+        "reason": "Original blend path divides by frameCount-1; finite-domain module excludes frameCount1."
+      },
+      {
+        "path": "CHARS/SANSWEET/RIDE.AN3",
+        "sourceSha256": "62a3ce9a64670ca00f0e34075943f3e10cf2af2d91e3bce89cc5d8d4d8ae51d3",
+        "reason": "Original blend path divides by frameCount-1; finite-domain module excludes frameCount1."
+      },
+      {
+        "path": "CHARS/TUSKENRAIDER/RIDE_BANTHA.AN3",
+        "sourceSha256": "90f2d0660642f19729a67a92949006f1657d7c6448fcb419fd4b92c88be8fd4a",
+        "reason": "Original blend path divides by frameCount-1; finite-domain module excludes frameCount1."
+      },
+      {
+        "path": "CHARS/TUSKENRAIDER/RIDE_DEWBACK.AN3",
+        "sourceSha256": "38ce7f052bc71e5543f3e874581ff8601fd40b0060bbb7caf3365078a16bf14c",
+        "reason": "Original blend path divides by frameCount-1; finite-domain module excludes frameCount1."
+      }
+    ],
+    "sourceBoundWrapperPairs": 470,
+    "baseFixture": {
+      "path": "reports/animation-skeletal-native-fixtures.json.gz",
+      "sha256": "9a54d6025e104220762256d046e7c9d339633961a807789d92badfbc60a63f35"
+    },
+    "fixture": {
+      "path": "reports/animation-skeletal-blend-native-fixtures.json.gz",
+      "bytes": 6557556,
+      "sha256": "b70fa0cd2036eb7203c84f861f705a3b0078639d765a789798ba9fc17483ed78"
+    },
+    "elapsedSeconds": 91.86928009986877
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkeletalBlend.cs",
+      "sha256": "6fc20f3c74e40f004e3b45fdb9bb3956f0436e4c378353fe4cfce0f23bf1a6d0"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-skeletal-blend-portable-verify.cs",
+      "sha256": "5889b3938e038b3f522a76ae9dfab7c1fc07570bd9e074e35fdc0d6d586c2e1f"
+    },
+    "entrypoint": "SkeletalBlendVerify.Main",
+    "arguments": [
+      "reports/animation-skeletal-blend-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 7238,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-skeletal-blend-compile.json"
+  },
+  "contracts": {
+    "weight": "Weight is target contribution. StoreinverseWeight=1-weight. Active target channels store delta=target-old, then store(old+delta*weight). Inactive translation/rotation store(old*inverseWeight); inactive scale stores(old*inverseWeight+weight). Nodeflags are oldFlags OR targetFlags; unselected nodes remain unchanged.",
+    "rotation": "For active Euler rotation only, storedelta beyond plus/minus3.1415927410125732 is converted using x87(delta*65536/6.2831854820251465), truncated toint32, reduced to signed16bits, then multiplied by original qword9.58738019107841e-05 and storedfloat32 before blending. Equality at eitherpi boundary does not wrap. This quantization differs from a continuous modulo2pi expression.",
+    "root": "Optional root output is the unblended target root translation, withZ negated. If targettranslationflag isoff, writepositivezeroXYZ. A nonzerostartnode or zeroprocessedcount leaves output untouched. This helper does not perform world movement or root callback effects.",
+    "sampling": "Within the target endpoint domain, native target scalar sampling matches the independently recovered SkeletalPose.Sample stores and masks. Unlike plain sampling, original5cdd50 has no one-key shortcut before division by(frameCount-1). Four authored one-frame carriers are explicitly excluded from this finite blend domain; their game-side caller treatment remains unresolved.",
+    "wrapper": "Original5ebb90 pushes current conversion mode into a depth<4 global stack, samples source at(sourceFrame-1), blends target at(targetFrame-1), builds hierarchy using sourceclip nodecount, pops scratch twice and restores conversion mode/depth. With Eulerclips and initialmode0, the entire verified branch staysEuler. Native oldstackslot is overwritten0 rather than restored. Portable computation has no shared global mode/scratch state.",
+    "dependency": "Parent concatenation remains an explicit SkeletalMatrixConcatenator policy. Tests choose original source-hashed installed D3DX scalar instructions via the bounded fixture described by animation-skeletal-contract.json. Live CPU/config dispatch is not reconstructed."
+  },
+  "verification": {
+    "method": "Exact original5cdd50 plus original numeric callees compared with independent finite Python model. Full original5ebb90 wrappers additionally execute source sampling, target blending, matrix hierarchy construction, original scratch allocation/pop and mode-stack writes. No original computational instruction replacement. Ordered little-endianfloat32 output hashes preserve everybit including signedzero.",
+    "nativeOnlyInvariants": [
+      "Untouched record padding",
+      "Scratch pointer restored",
+      "Conversion stack depth restored",
+      "Conversion global restored",
+      "Pushed stack slot overwritten0"
+    ],
+    "tools": [
+      {
+        "path": "tools/animation-skeletal-blend-fixture.py",
+        "sha256": "5d4f8d995513bda85ed2b7563ac3833f66e287f571da6445e4be39ec7f99a8a6"
+      },
+      {
+        "path": "tools/animation-skeletal-blend-verify.py",
+        "sha256": "4eb43200b88b91c4be3870919f7f4c104b2e4a7bf4befa6f04f9d66c74ff9c84"
+      },
+      {
+        "path": "tools/animation-skeletal-blend-report.py",
+        "sha256": "26f159a0ea9fc04351aca5821327a6a3b7813c1054cd2e7e10336c1366533d50"
+      }
+    ]
+  },
+  "limits": [
+    "Finite input/intermediate/store values, int32-fitting angle conversion, valid pointers/ranges. NaN/infinity/overflow, frameCount1 and targettime beyond authored endpoint excluded.",
+    "Quaternion alternatives, override/root callbacks, incompatible node counts, mode stack overflow and nonzero initial conversion mode remain outside the portable wrapper.",
+    "Authored scalar tests cover2907of2911carriers at bounded frames. Four excluded one-frame source paths are listed individually; no silent fallback is introduced.",
+    "Source-bound same-folder/equal-node-count clip pairs are fixture choices, not a reconstructed native clip resolver. Packet-to-skeletal-pose selection and skinning upload remain outstanding.",
+    "Compiled managed core/harness not executed; native-vs-Python evidence does not establish managed equivalence."
+  ]
+}

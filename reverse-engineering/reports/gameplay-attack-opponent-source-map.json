@@ -1,0 +1,35 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "AttackOpponent integration fragment. Existing helper mappings receive no duplicate credit.",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x447ac0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/AttackOpponent.cs",
+      "sourceSha256": "2cba52cb9e75fd0f3fcadae14b8c514ad78e8ecc0909b1e753cb51f308dbfe83",
+      "methods": [
+        {
+          "name": "AttackOpponentCommand.Execute",
+          "line": 29
+        }
+      ],
+      "coverage": "complete bounded original SCP command using recovered targeting and ordinary intent helpers",
+      "qualification": "Valid finite attached records; queue attack input only. Formation expansion, world producers and attack/damage consumers remain external.",
+      "comparisonStatus": "Original-PC/Python differential passed; C# core and replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-attack-opponent-tests.json",
+        "reverse-engineering/reports/gameplay-attack-opponent-assembly.json"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "AttackOpponent",
+      "address": "0x447ac0",
+      "sourceUses": 65,
+      "qualification": "Movement and queued attack input contract; downstream attacks/damage excluded."
+    }
+  ],
+  "contract": "reverse-engineering/reports/gameplay-attack-opponent-contract.json"
+}

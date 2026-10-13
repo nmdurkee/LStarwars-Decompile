@@ -1,0 +1,133 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "cases": 1282,
+    "mismatches": 0,
+    "examples": [],
+    "authoredUses": {
+      "JudderGameCamera": 2,
+      "BehindCamera": 7,
+      "ResetGameCamera": 8,
+      "CameraShake": 1,
+      "EndCameraCut": 21
+    },
+    "nativeCalls": {
+      "0x451c20": 182,
+      "0x5147c0": 202,
+      "0x44d210": 82,
+      "0x549bb0": 61,
+      "0x44d110": 104,
+      "0x549de0": 72,
+      "0x54fa60": 20,
+      "0x44d300": 36,
+      "0x54a2f0": 38,
+      "0x576c40": 39,
+      "0x441c00": 817
+    },
+    "adapters": [],
+    "comparison": "Complete576-byte camera and alternate-camera records plus1020-byte binding region and cut/RNG scalars per case.",
+    "limits": [
+      "Finite operands and float32 position differences; behind-camera comparison retains extended sign even on float32 underflow.",
+      "Judder helper covers nonspatial fourth-argument-zero branch used by the script command; distance attenuation remains unrecovered.",
+      "World camera/settings/actor records are supplied; no live camera movement or rendered output.",
+      "Managed replay remains unexecuted."
+    ]
+  },
+  "commands": [
+    {
+      "name": "EndCameraCut",
+      "address": "0x451c20",
+      "sourceUses": 21
+    },
+    {
+      "name": "JudderGameCamera",
+      "address": "0x44d110",
+      "sourceUses": 2
+    },
+    {
+      "name": "CameraShake",
+      "address": "0x44d210",
+      "sourceUses": 1
+    },
+    {
+      "name": "ResetGameCamera",
+      "address": "0x44d300",
+      "sourceUses": 8
+    },
+    {
+      "name": "BehindCamera",
+      "address": "0x441c00",
+      "sourceUses": 7
+    }
+  ],
+  "entries": [
+    {
+      "address": "0x451c20",
+      "method": "CameraEffects.EndCut"
+    },
+    {
+      "address": "0x44d110",
+      "method": "CameraEffects.Judder"
+    },
+    {
+      "address": "0x44d210",
+      "method": "CameraEffects.Shake"
+    },
+    {
+      "address": "0x44d300",
+      "method": "CameraEffects.ResetCommand"
+    },
+    {
+      "address": "0x549bb0",
+      "method": "CameraEffects.SetShake"
+    },
+    {
+      "address": "0x549de0",
+      "method": "CameraEffects.SetJudder"
+    },
+    {
+      "address": "0x54a2f0",
+      "method": "CameraEffects.Reset"
+    },
+    {
+      "address": "0x576c40",
+      "method": "CameraEffects.ClearBindings"
+    },
+    {
+      "address": "0x441c00",
+      "method": "CameraEffects.Behind"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/CameraEffects.cs",
+      "bytes": 6642,
+      "sha256": "06ca774986239d4b8e4c0d8b0c885a42a0dddf541bf939eb42160820b4b5cf75"
+    },
+    "harness": {
+      "path": "tools/native-camera-effects-portable-verify.cs",
+      "bytes": 4456,
+      "sha256": "cc9ce5a5cc2f95c27ab1c6e016673ce30a12b46d34190f4be72427174c99a4d0"
+    },
+    "entrypoint": "CameraEffectsVerify.Main",
+    "arguments": [
+      "reports/native-camera-effects-vectors.json.gz",
+      "reports/native-camera-effects-csharp-validation.json"
+    ],
+    "compileReport": "reports/reconstructed-build.json",
+    "execution": "Prepared, not executed."
+  },
+  "limits": [
+    "Finite operands and float32 position differences; behind-camera comparison retains extended sign even on float32 underflow.",
+    "Judder helper covers nonspatial fourth-argument-zero branch used by the script command; distance attenuation remains unrecovered.",
+    "World camera/settings/actor records are supplied; no live camera movement or rendered output.",
+    "Managed replay remains unexecuted."
+  ],
+  "notes": [
+    "EndCameraCut parses each end-time relative to elapsed, with float32 operand storage before addition.",
+    "Judder time substring has native fixed skip5; finalZ axis consumes shared QRandom and may flip sign. Non-increasing magnitude leaves axis/sign untouched.",
+    "Reset preserves unmentioned bytes, initializes two fields from unsigned settings bytes and clears exactly0x3fc cut-binding bytes.",
+    "BehindCamera uses actor+0x80, float32 differences and ordered extended dot product; tiny negative values remain behind even if a float32 dot store would round to-0."
+  ]
+}

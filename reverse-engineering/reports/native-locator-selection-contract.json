@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-10-12T22:19:51.765Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "nearest": {
+      "address": "0x51fef0",
+      "description": "Require set, actor, actor packet and primary reference. Optional reservation cleanup. Eligible candidates are unassigned when requested and outside the prepared view when radius!=0. Start best at float32 range squared for positive range, otherwise FLT_MAX. Strictly smaller float32 squared distance to either supplied reference wins. First ties survive; selection writes packet+a4 and owner byte.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_51fef0.c"
+      ]
+    },
+    "farthest": {
+      "address": "0x520080",
+      "description": "Require set/actor/packet, then optional cleanup and same culling. Start best0. Primary distance must exceed best; secondary, when present, must also exceed best, then use the smaller distance. Range0 is unbounded; other range values, including negative, require distance strictly less than the unstored square. Failed range leaves previous best intact.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_520080.c"
+      ]
+    },
+    "random": {
+      "address": "0x520220",
+      "description": "Count eligible first-pass candidates using supplied primary reference, optional culling and <= distance threshold. Positive range stores its square tofloat32; nonpositive uses FLT_MAX. If count>0 advance actual integerLCG95e5d4 and choose remainder modulo count. Second pass uses actor+5c position and omits culling while retaining reservation gating. Candidate ordinals can differ between passes: selection may choose a candidate rejected in pass1 or fail to reach the chosen ordinal. Never normalize the passes.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_520220.c"
+      ]
+    },
+    "distance": {
+      "address": "0x5b3c50",
+      "description": "Supporting nonnull scratch branch stores each difference and final sum tofloat32; products and ordered sums use x87 64-bit intermediate precision. This is already mapped elsewhere and earns no additional native-entry credit here.",
+      "evidence": [
+        "reports/native-locator-set-assembly.json"
+      ]
+    }
+  },
+  "commands": [],
+  "native": {
+    "cases": 1231,
+    "mismatches": 0,
+    "fullRegionComparisons": 9848,
+    "groups": {
+      "nearest": 411,
+      "farthest": 410,
+      "random": 410
+    },
+    "method": "Original selectors, reservation cleanup/index callback, distance scratch routine, sphere culling and both matrix helpers execute unchanged. Actual integer LCG state retained. Complete actor/owner/packet/locator/reference/camera input regions compared."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorSetSelection.cs",
+      "bytes": 4029,
+      "sha256": "302787f496cac88e8ee32206a8f48317b69429b6458485cb65763e525bea101a"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-locator-selection-portable-verify.cs",
+      "bytes": 6482,
+      "sha256": "e7213cd9f8f81690db88f79826ed49861dd196cb2f2cbeb804e5fc794a473b1d"
+    },
+    "entrypoint": "LocatorSelectionVerify.Main",
+    "arguments": [
+      "reports/native-locator-selection-vectors.json",
+      "reports/native-locator-selection-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-locator-selection-vectors.json",
+      "bytes": 8383190,
+      "sha256": "cfcaa77adca6b9ccdb35f64d6f7e570c6ce0ebd2c64ad10bb08bdcc14a6c9ee6"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Valid finite prepared world, locators, actor packet, view matrices and reference vectors. Float32 distance/range-square outputs stay finite.",
+    "Farthest/random require primary vector on active candidates; nearest has native null-primary gate.",
+    "No authored command credit until dispatcher integration; managed replay pending."
+  ]
+}

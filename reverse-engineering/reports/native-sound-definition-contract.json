@@ -1,0 +1,57 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "initialization": "Compose651530 using current sound count, then process ordered tokens. Unknown tokens including group/seq do not alter this handler; separate Group declarations are not included.",
+    "names": "Bounded copy keeps at most31 name bytes plusNUL, hashes that stored name, prepends signed-short bucket chain. Filename appends .wav to the mutable token, compares full ASCII names to existing banks, updates reference count and low15-bit bank ID or allocates a63-byte bank name.",
+    "disabled": "Disable/comment flags suppress bank allocation and leave low15-bit ID7fff; existing bank names still increment reference count. Missing disabled name allocates only name storage. Its pointer is2948ed0+newNameCount*64; the decompiler typed-array expression obscures this byte stride.",
+    "parameters": "Pitch passes signed integer bits; priority clamps-128..127, volume0..16383, fcat0..65535. Pan,pitch/volume randomness, attenuation and four rumble parameters use native finite-float clamps. Tokens remain ordered, so earlier disable/comment changes later fname processing.",
+    "finalization": "Clear100000,set200000, memmove full64-byte record to backup, increment global sound count. Token/numeric services modify only prepared parser storage; original scanner and numeric text conversion are outside scope."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 1342,
+    "mismatches": 0,
+    "authoredSampleLines": 1130,
+    "authoredCompared": 1130,
+    "visitedInstructions": 654,
+    "bytesComparedPerCase": 802816,
+    "examples": [],
+    "method": "Original6516a0 with original651530, CRC hash, ASCII comparators, append/bounded-copy and final memmove. Only parser next-token/integer/real readers are declared services. Exact token-read sequence and complete prepared sound/global/arena image compare after each sample.",
+    "limits": [
+      "Finite float32 numeric-service returns and terminated ASCII tokens, adequate disjoint sound/bank/name/hash buffers; one sample processed per case, with prepared prior bank/head state.",
+      "Shipped1130 sample lines are independently tokenized into explicit inputs; native scanner and numeric text parsing are not claimed. Group declarations and audio backend remain outside this handler.",
+      "Existing signed-short bucket heads are preserved; repeated name tokens can create native self-links. This batch does not follow such malformed cyclic chains.",
+      "Runtime memory uses virtual addresses in owned byte arrays. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundDefinitionParser.cs",
+      "bytes": 5147,
+      "sha256": "5e8a840c785b95c85e71af0e98ddd609b36325d468c72b3da885ad4dd67508c6"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-definition-portable-verify.cs",
+      "bytes": 5836,
+      "sha256": "8f1bea94602c77a3310b6c5052033c1c14b37c009b24adbeac9fa33c6e5dcdca"
+    },
+    "entrypoint": "SoundDefinitionVerify.Main",
+    "arguments": [
+      "reports/native-sound-definition-vectors.json.gz",
+      "reports/native-sound-definition-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-definition-vectors.json.gz",
+      "bytes": 107575,
+      "sha256": "629539ad22e07d7b2c1324ad8e33053e1bbd17140be5ca0b12def0a3ed530630"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Finite float32 numeric-service returns and terminated ASCII tokens, adequate disjoint sound/bank/name/hash buffers; one sample processed per case, with prepared prior bank/head state.",
+    "Shipped1130 sample lines are independently tokenized into explicit inputs; native scanner and numeric text parsing are not claimed. Group declarations and audio backend remain outside this handler.",
+    "Existing signed-short bucket heads are preserved; repeated name tokens can create native self-links. This batch does not follow such malformed cyclic chains.",
+    "Runtime memory uses virtual addresses in owned byte arrays. Managed replay pending."
+  ]
+}

@@ -1,0 +1,30 @@
+PC LEGACY ELLIPSE SHADOW GEOMETRY
+
+638 new original comparisons;0 mismatches.
+
+record
+The first48-byte binding resource is12floats: center then three local axes. The writer transforms center and center+axis endpoints, then subtracts transformed center. Axis evaluation order is offsets6,3,9. Each squared length is float-stored before the root and its reciprocal is float-stored; zero length gives inverse0.
+
+ring
+For each adjacent pair of the shared eight direction-ring rows, project onto each axis using its inverse length. Coefficients are float-stored. Reconstruct offset in axis order3,6,9, float-store it, then add world center and float-store again. These separate stores matter and are absent from the simplified decompiler expression.
+
+geometry
+Always emits eight side quads,32XYZ/color records, using[current,current+direction*5,next+direction*5,next]. VertexCount increases32 and GeneratedValue increases16 (two per edge). The color word comes from separate global2854c00. Unsigned GroupCount<250 adds one start/count8 metadata entry; saturated metadata does not stop geometry.
+
+parameters
+Original fourth/fifth stack parameters are not read by this PC body. Native fixtures pass quietNaN/infinity poison in them while preserving finite active inputs. The consumer's upper/lower values therefore have no effect here. Ring rows are read-only; this writer does not regenerate them.
+
+evidence
+638 NEW complete original comparisons, all42 authored records across12 rigs, plus128 synthetic records with random/zero axes and matrices. 20416 emitted vertices and full20,480-byte images/counters match, with no native computational callbacks. Three actual square-root calls per invocation are observed.
+
+integration
+Uses existing LegacyShadowGeometryState and LegacyPolygonShadows.TransformPoint plus the already recovered SquareRoot. The legacy consumer can replace its ellipse service with this writer; the queue-to-ellipse composed caller is not newly verified in this helper batch. Cylinder5e2920 remains separate.
+
+managed
+Prepared replay compares the full persistent image and counters, checking all inputs/ring remain unchanged. Library and replay compile; managed execution remains pending.
+
+Limits
+Finite ellipse/matrix/direction/ring and finite stored results. Degenerate zero axes retain inverse-length0.
+Adequate disjoint output backing;250-entry metadata capacity does not stop vertex writes.
+No managed executable or graphics-device launch.
+One new native entrypoint. Existing scheduler, polygon writer and earlier projections remain unchanged.

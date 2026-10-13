@@ -1,0 +1,95 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x4f29a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserNumbers.cs",
+      "sourceSha256": "5f0a7526be61b757646092a0139f4ff4c518c088b7057238d1527e7fcf54470a",
+      "methods": [
+        {
+          "name": "TextParserNumbers.Decimal",
+          "line": 10
+        }
+      ],
+      "coverage": "bounded whole numeric conversion and text-mode token reader",
+      "qualification": "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here. Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes. Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-numbers-tests.json"
+      ]
+    },
+    {
+      "address": "0x4f8cb0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserNumbers.cs",
+      "sourceSha256": "5f0a7526be61b757646092a0139f4ff4c518c088b7057238d1527e7fcf54470a",
+      "methods": [
+        {
+          "name": "TextParserNumbers.Hexadecimal",
+          "line": 16
+        }
+      ],
+      "coverage": "bounded whole numeric conversion and text-mode token reader",
+      "qualification": "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here. Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes. Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-numbers-tests.json"
+      ]
+    },
+    {
+      "address": "0x4f28e0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserNumbers.cs",
+      "sourceSha256": "5f0a7526be61b757646092a0139f4ff4c518c088b7057238d1527e7fcf54470a",
+      "methods": [
+        {
+          "name": "TextParserNumbers.Real",
+          "line": 29
+        }
+      ],
+      "coverage": "bounded whole numeric conversion and text-mode token reader",
+      "qualification": "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here. Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes. Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-numbers-tests.json"
+      ]
+    },
+    {
+      "address": "0x4f9e70",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserNumbers.cs",
+      "sourceSha256": "5f0a7526be61b757646092a0139f4ff4c518c088b7057238d1527e7fcf54470a",
+      "methods": [
+        {
+          "name": "TextParserNumbers.ReadInteger",
+          "line": 50
+        }
+      ],
+      "coverage": "bounded whole numeric conversion and text-mode token reader",
+      "qualification": "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here. Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes. Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-numbers-tests.json"
+      ]
+    },
+    {
+      "address": "0x4f8100",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/TextParserNumbers.cs",
+      "sourceSha256": "5f0a7526be61b757646092a0139f4ff4c518c088b7057238d1527e7fcf54470a",
+      "methods": [
+        {
+          "name": "TextParserNumbers.ReadReal",
+          "line": 54
+        }
+      ],
+      "coverage": "bounded whole numeric conversion and text-mode token reader",
+      "qualification": "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here. Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes. Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-text-numbers-tests.json"
+      ]
+    }
+  ],
+  "refines": [
+    "0x4f28e0"
+  ],
+  "newNativeEntries": 4,
+  "commands": []
+}

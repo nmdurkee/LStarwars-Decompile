@@ -1,0 +1,34 @@
+CHARACTER EULER SKELETAL POSE
+
+15791 exact original-PC comparisons, 0 mismatches.
+
+buffer
+Native buffer+8 points to48-byte Euler records, grouped translationXYZ/+0,rotationXYZ/+16,scaleXYZ/+32. Padding words+12/+28/+44 remain untouched. Flags are buffer+c pointer, quaternion marker byte+6 becomes0. Portable represents only nine meaningful scalars/node and flags, preserving unselected node entries.
+
+scalar
+5cc0d0 stores frame-first, its product with(keyCount-1), and division by(frameCount-1) separately tofloat32, then clamps to0..keyCount-1; keyCount1 selects0. Active masks are2,1,8. Inactive translation/rotation become0; inactive scale becomes1. Only active dynamic channels advance compressed bytes/scales. Type6 uses original reciprocal and float32 intermediate stores. Constants ignore headerconstantIndex; per-curve interpolation masks are not read. Start offset skips prior nodes while preserving native output indices.
+
+rotationBind
+5e9d90 takes min(hierarchy+168 count,clip+4 count). Joints are96bytes with bindmatrix at0 and parentbyte+50. Flag1 chooses Euler rotation through original sine table; flag20 then applies bind3x3. Without flag1, flag20 copies the full animation-bindmatrix, otherwise identity. This differs from always multiplying identity by only the bind3x3.
+
+scale
+Flag8 row-scales the upper3x3 and stores parent cumulative scale times local scale. Without it cumulative scale copies parent scale. Flag10 computes reciprocal parent scale and column-scales allfour rows; any zero parent component instead zeros all three inverse and cumulative components. Root parent255 begins withunity; rootflag40 resets cumulative scale to unity after local construction.
+
+matrix
+Flag2 adds sampled translation to existing matrix translation. Final sign flips are matrixindices2,6,8,9,11,14. Nonroots multiply local by parent world using the explicit imported-matrix policy. Unanimated hierarchy tail matrices become identity; cumulative scales for those tail nodes are not newly written.
+
+wrapper
+5eb790 evaluates at sourceframe=store(frame-1), using the hierarchy count as requested sampled node count, then builds hierarchy matrices. Original wrapper scratch allocator/pops are executed in fixtures; portable owns managed arrays and has no raw scratch pointer.
+
+matrixDependency
+Game5c0500 imports D3DXMatrixMultiply via IAT751324. Fixtures load source-hashed installed32-bitd3dx9_35.dll into isolated scratch, apply40,053HIGHLOW relocations, and bind directly to original scalarRVA163599. No OS initialization or DLL export CPU/config selection executes. Portable Build requires a concatenation delegate; D3dx9_35ScalarMultiply supplies the tested scalar policy.
+
+integration
+Caller can connect existing AnimationPacket clip/frame state to SkeletalClip and Evaluate; no packet-to-pose selector adapter is inferred. Gameplay.SceneAnimationPose supplies previously verified shared rotation/row-scale/translation arithmetic only. Character hierarchy semantics are independently validated.
+
+Limits
+Finite inputs, finite stores, valid ranges/topological hierarchy, int32-fitting radian conversion; NaN/infinity/overflow and invalid pointers excluded.
+Quaternion sampling/conversion, skeletal blending, root-motion callbacks, override lookup/callbacks, and renderer/skinning upload remain outside this module.
+The selected scalar DLL implementation does not establish which implementation live CPU/config dispatch would select.
+All authored2911carriers sampled atfourtimes, not everyframe. All688authoredrigs checked; same-folder equal-node-count clip associations are fixture choices, not proof of native loader binding.
+Managed core and replay harness compiled but not executed; independent Python agreement is not managed execution equivalence.

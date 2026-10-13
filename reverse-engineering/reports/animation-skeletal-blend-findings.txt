@@ -1,0 +1,28 @@
+CHARACTER EULER SKELETAL BLENDING
+
+7238 exact original-PC comparisons, 0 mismatches.
+
+weight
+Weight is target contribution. StoreinverseWeight=1-weight. Active target channels store delta=target-old, then store(old+delta*weight). Inactive translation/rotation store(old*inverseWeight); inactive scale stores(old*inverseWeight+weight). Nodeflags are oldFlags OR targetFlags; unselected nodes remain unchanged.
+
+rotation
+For active Euler rotation only, storedelta beyond plus/minus3.1415927410125732 is converted using x87(delta*65536/6.2831854820251465), truncated toint32, reduced to signed16bits, then multiplied by original qword9.58738019107841e-05 and storedfloat32 before blending. Equality at eitherpi boundary does not wrap. This quantization differs from a continuous modulo2pi expression.
+
+root
+Optional root output is the unblended target root translation, withZ negated. If targettranslationflag isoff, writepositivezeroXYZ. A nonzerostartnode or zeroprocessedcount leaves output untouched. This helper does not perform world movement or root callback effects.
+
+sampling
+Within the target endpoint domain, native target scalar sampling matches the independently recovered SkeletalPose.Sample stores and masks. Unlike plain sampling, original5cdd50 has no one-key shortcut before division by(frameCount-1). Four authored one-frame carriers are explicitly excluded from this finite blend domain; their game-side caller treatment remains unresolved.
+
+wrapper
+Original5ebb90 pushes current conversion mode into a depth<4 global stack, samples source at(sourceFrame-1), blends target at(targetFrame-1), builds hierarchy using sourceclip nodecount, pops scratch twice and restores conversion mode/depth. With Eulerclips and initialmode0, the entire verified branch staysEuler. Native oldstackslot is overwritten0 rather than restored. Portable computation has no shared global mode/scratch state.
+
+dependency
+Parent concatenation remains an explicit SkeletalMatrixConcatenator policy. Tests choose original source-hashed installed D3DX scalar instructions via the bounded fixture described by animation-skeletal-contract.json. Live CPU/config dispatch is not reconstructed.
+
+Limits
+Finite input/intermediate/store values, int32-fitting angle conversion, valid pointers/ranges. NaN/infinity/overflow, frameCount1 and targettime beyond authored endpoint excluded.
+Quaternion alternatives, override/root callbacks, incompatible node counts, mode stack overflow and nonzero initial conversion mode remain outside the portable wrapper.
+Authored scalar tests cover2907of2911carriers at bounded frames. Four excluded one-frame source paths are listed individually; no silent fallback is introduced.
+Source-bound same-folder/equal-node-count clip pairs are fixture choices, not a reconstructed native clip resolver. Packet-to-skeletal-pose selection and skinning upload remain outstanding.
+Compiled managed core/harness not executed; native-vs-Python evidence does not establish managed equivalence.

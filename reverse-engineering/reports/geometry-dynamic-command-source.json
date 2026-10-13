@@ -1,0 +1,150 @@
+{
+  "schema": "recovered-geometry-dynamic-command-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "bytes": 3766,
+      "sha256": "b90bd8411c6b733ea3c920bc2865c70ab6856d38ee08a51be232e43cd39c755a"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x603530",
+      "method": "DynamicCommandSupport.Reserve",
+      "sourceFile": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite nonnegative command count<=1000000, valid disjoint record/control/arena memory, no address wrap. Native cases cover counts0/1/2/3/8/16/255/512 and all16 cursor alignments; EAX allocator-control return verified. Managed comparison pending.",
+      "evidence": "geometry-dynamic-command-native-validation.json"
+    },
+    {
+      "address": "0x603ad0",
+      "method": "DynamicCommandSupport.StoreAlpha",
+      "sourceFile": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Complete command.resource+0x3c store extends existing SceneSubmission.ClampInstanceAlpha pure-result projection; same native entry, not new address credit. Quiet-NaN payload/sign and signed zero retained; signaling NaNs rejected. Managed comparison pending.",
+      "evidence": "geometry-dynamic-command-native-validation.json"
+    },
+    {
+      "address": "0x603b10",
+      "method": "DynamicCommandSupport.StoreSignedMetadata",
+      "sourceFile": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Signed32 integer converted to float32 at command.resource+0x38. Finite valid pointers; original second argument unused. Managed comparison pending.",
+      "evidence": "geometry-dynamic-command-native-validation.json"
+    },
+    {
+      "address": "0x5fd220",
+      "method": "DynamicCommandSupport.SetOverride",
+      "sourceFile": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Explicit shader pointer replaces global0x9868a0. Original second/fourth arguments ignored. Raw scalar word preserves non-NaN and quiet-NaN payload; signaling NaNs rejected. Identifier DWORD and WORD increments wrap. Managed comparison pending.",
+      "evidence": "geometry-dynamic-command-native-validation.json"
+    },
+    {
+      "address": "0x5e0530",
+      "method": "DynamicCommandSupport.SelectPacketRoutine",
+      "sourceFile": "reconstructed/geometry/DynamicCommandSupport.cs",
+      "coverage": "small-extracted-branch",
+      "limitations": "Only exact routine-selection predicate; selected packet writer and ABI forwarding are not executed by the portable projection. Native downstream targets are recorded then skipped. Managed comparison pending.",
+      "evidence": "geometry-dynamic-command-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory"
+  ],
+  "native": {
+    "report": "geometry-dynamic-command-native-validation.json",
+    "passed": true,
+    "counts": {
+      "reserve": 128,
+      "alpha": 524,
+      "metadata": 543,
+      "override": 56,
+      "dispatch": 1696,
+      "checkedBytes": 40992768
+    },
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "excludedSignalingNanCount": 17,
+    "assembly": {
+      "file": "reports/geometry-dynamic-command-assembly.json",
+      "bytes": 22013,
+      "sha256": "8462972e934d554d82c86fb787aa17917fac70a87de6c1601bc8f2c5860ea465"
+    }
+  },
+  "managed": {
+    "schema": "geometry-dynamic-command-managed-check-v1",
+    "caseCount": 1251,
+    "dispatchCases": 1696,
+    "excludedSignalingNanCases": 17,
+    "nativeEvidence": "geometry-dynamic-command-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-command-support.bin.gz",
+    "fixtureBytes": 2831946,
+    "fixtureSHA256": "9c11a1bc2d54eda621124a03868c0a3babfb74c89c0bca394b0168034d68eafe",
+    "uncompressedBytes": 41053128,
+    "uncompressedSHA256": "4e3234493700f8c6b1cea1d6e39cc92cd6865a8c2b53a6e5239581a75236026e",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicCommandSupportHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Compiled C# equality pending; no executable launch."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicSupport.dll",
+    "bytes": 5120,
+    "sha256": "2c07f914a9f03c29a3b189b7ec39995a0ffb8d0f82d4de56a10b23fed429ac1e"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicCommandSupportHarness.cs",
+    "bytes": 2318,
+    "sha256": "65571293b70151d2328b3ed5837bfd0ddd4f40c23cca41d9cd99b9c504ddc8f7"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.DynamicSupport.dll DynamicCommandSupport.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicSupport.dll /out:DynamicCommandSupportHarness.exe harness\\DynamicCommandSupportHarness.cs"
+  },
+  "fields": {
+    "record+0x14/+0x18/+0x24": "Current command tail/saved link/current reserved command cursor",
+    "shader+0x20/+0x1e": "Wrapping DWORD identifier and WORD scalar-key identifier",
+    "shader+0xf4/+0xf8/+0xfc": "First override argument/raw float scalar/material pointer",
+    "shader+0x180": "Cached optional scalar payload reset to0",
+    "material+0xb4": "High bit gates special preceding command packet path",
+    "selected command byte0": "0x8f selects5e0490 first regardless other mode flags",
+    "command-0x20 byte0": "0xb0/0xae/0xaf allow5e02b0 when material high bit and signed count>1"
+  },
+  "remainingGaps": [
+    {
+      "id": "full-dynamic-submission",
+      "address": "0x5f0f00",
+      "status": "Dependency work; transformed-bound visibility,LOD and full material/mesh submission remain separate."
+    },
+    {
+      "id": "dynamic-packet-writers",
+      "addresses": [
+        "0x5e0200",
+        "0x5e02b0",
+        "0x5e0390",
+        "0x5e0490"
+      ],
+      "status": "Selection verified; writer bodies and matrix/morph/billboard payloads still separate."
+    },
+    {
+      "id": "signaling-nan",
+      "status": "17 raw original-instruction Unicorn observations preserved separately. Emulator retains signaling bit; physical-PC behavior not established, domain rejected in source."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core and replay compile; comparison pending; no launch/bypass."
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "CPU helper data only; GPU output unclaimed."
+    }
+  ]
+}

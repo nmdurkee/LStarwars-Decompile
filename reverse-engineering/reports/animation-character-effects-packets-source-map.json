@@ -1,0 +1,81 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5f4ff0"
+  ],
+  "mappings": [
+    {
+      "address": "0x5f4ff0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterEffectsPacketPipeline.cs",
+      "sourceSha256": "da4f71efac817bcbcdb0bfcbab696e41d00c9fcd5a087381ad2d7b6f01a625a3",
+      "methods": [
+        {
+          "name": "CharacterEffectsPacketPipeline.Submit",
+          "line": 17
+        }
+      ],
+      "coverage": "extends prior character mixed/shadow packets with actual sway and distance fade services",
+      "qualification": "Retains previous character layer/secondary/packet projections; supplies ObjectSway.Transform and SceneSubmission.DistanceFade to the existing dynamic caller. Covers mixed mesh/billboard, shadow, both sway conversion modes and finite fade inputs including original NaN result. Typed model/context/mesh/camera/sway inputs remain resolved; exact shipped loader and active legacy shadow queue remain separate. No new native addresses.",
+      "comparisonStatus": "New original effects composition exact; portable core/replay compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-effects-packets-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterEffectsPacketPipeline.cs",
+      "sha256": "da4f71efac817bcbcdb0bfcbab696e41d00c9fcd5a087381ad2d7b6f01a625a3"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "reconstructed/geometry/ShaderContextEmission.cs",
+      "reconstructed/geometry/DynamicSelection.cs",
+      "reconstructed/geometry/DynamicSubmission.cs",
+      "reconstructed/animation/CharacterPacketPipeline.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "reconstructed/geometry/ShadowContextEmission.cs",
+      "reconstructed/geometry/ObjectSway.cs",
+      "reconstructed/geometry/SceneSubmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-effects-packets-portable-verify.cs",
+      "sha256": "3305f69eab206a6b0a3ba363d4316e2ec640a0808f84eb11671e6982c5737e65"
+    },
+    "entrypoint": "CharacterEffectsPacketPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-effects-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 360,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-effects-packets-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-effects-packets-tests.json",
+    "reverse-engineering/reports/geometry-dynamic-sway-native-validation.json",
+    "reverse-engineering/reports/geometry-dynamic-fade-native-validation.json",
+    "reverse-engineering/reports/animation-character-mixed-packets-tests.json"
+  ]
+}

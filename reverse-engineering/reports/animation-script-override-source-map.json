@@ -1,0 +1,63 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 2,
+  "mappings": [
+    {
+      "address": "0x62e000",
+      "sourceFile": "reverse-engineering/reconstructed/animation/ScriptAnimationOverride.cs",
+      "sourceSha256": "1a6e5ecf88a1a6dc10b4de5b189a4b5c9c65ad211f42e9594abca98be8fde016",
+      "methods": [
+        {
+          "name": "ScriptAnimationOverride.FindAction",
+          "line": 35
+        }
+      ],
+      "coverage": "resolved character-local animation-name table helper",
+      "qualification": "Finite terminated76-byte native rows projected as Name/Action entries; null character/table/name termination and null query represented. Native byte case-folding preserved for non-NUL Latin1 input. Duplicate names return first matching signed16 action.",
+      "comparisonStatus": "Original native differential passed; managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-script-override-tests.json"
+    },
+    {
+      "address": "0x516980",
+      "sourceFile": "reverse-engineering/reconstructed/animation/ScriptAnimationOverride.cs",
+      "sourceSha256": "1a6e5ecf88a1a6dc10b4de5b189a4b5c9c65ad211f42e9594abca98be8fde016",
+      "methods": [
+        {
+          "name": "ScriptAnimationOverride.Run",
+          "line": 46
+        }
+      ],
+      "coverage": "whole command control flow with explicit expression service",
+      "qualification": "Embedded controller at actor+2c8; owner and underlying object pointer gates projected as booleans. Expression514920 remains Func<string,float>; exact first-token selection and repeated calls retained. Name lookup executes recovered62e000 semantics; no model loading or expression-parser equivalence claimed.",
+      "comparisonStatus": "Original native differential passed; managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-script-override-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/ScriptAnimationOverride.cs",
+      "sha256": "1a6e5ecf88a1a6dc10b4de5b189a4b5c9c65ad211f42e9594abca98be8fde016"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/AnimationControl.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-script-override-portable-verify.cs",
+      "sha256": "9a9f37a89e8277b05c31eb8abdcd58d24d24d352f1ce2eec86195fdeefcf4b08"
+    },
+    "entrypoint": "ScriptAnimationOverrideVerify.Main",
+    "arguments": [
+      "reports/animation-script-override-native-fixtures.json.gz",
+      "<output.json>"
+    ],
+    "preparedComparisons": 9039,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-script-override-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-script-override-tests.json",
+    "reverse-engineering/reports/animation-script-override-assembly.json"
+  ]
+}

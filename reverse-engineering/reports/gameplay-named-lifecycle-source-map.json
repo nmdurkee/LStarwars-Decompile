@@ -1,0 +1,47 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Named actor activation and deactivation; actual state/reinitialization composition, explicit world refresh services.",
+  "primaryNativeEntryPoints": 2,
+  "mappings": [
+    {
+      "address": "0x41f6d0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/NamedActorLifecycle.cs",
+      "sourceSha256": "c09622740df5a5c80909ea63a079afe21214c1caa51d5bb694c13cf4cf4667ad",
+      "methods": [
+        {
+          "name": "NamedActorLifecycle.Activate",
+          "line": 56
+        }
+      ],
+      "coverage": "complete bounded named activation control flow, placement copies and recovered spawn-reset composition",
+      "qualification": "No full allocation, character loader, terrain collision, animation backend or world lifecycle claim. ResetState52f800, ResetTerrain5728a0, ClearTerrain572660 and Refresh595af0 remain explicit services on the unspawned path. Spawned default composes the already recovered41c120 body; its retained services and record-domain restrictions remain in force. Attachment destruction4364e0 and release4882d0 are inherited adapters on deactivation. Primary native fixtures use synthetic prepared actor/name/script records. No additional authored command occurrences are credited here; graph ActivateChar is owned by its separate wrapper contract. Physical and typed script projections require a host synchronization contract. Raw script pointer slots are not a second managed state representation. The33 spawned composition fixtures compare complete raw actor deltas but retain reinitialization script-binding callbacks. Malformed pointers, inconsistent actor/image identity graphs and callback-induced record replacement are outside the bounded contract. Raw placement copies preserve arbitrary32-bit payloads; reinitialization arithmetic uses its existing finite-input domain. Managed core and replay harnesses compiled only; no C#-versus-native runtime comparison or in-game playtest is claimed.",
+      "comparisonStatus": "Original-PC comparisons passed; portable core/replays compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-named-lifecycle-tests.json",
+        "reverse-engineering/reports/gameplay-named-lifecycle-assembly.json",
+        "reverse-engineering/reports/gameplay-named-reinitialization-tests.json"
+      ]
+    },
+    {
+      "address": "0x414c50",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/NamedActorLifecycle.cs",
+      "sourceSha256": "c09622740df5a5c80909ea63a079afe21214c1caa51d5bb694c13cf4cf4667ad",
+      "methods": [
+        {
+          "name": "NamedActorLifecycle.Deactivate",
+          "line": 86
+        }
+      ],
+      "coverage": "complete bounded named deactivation guards and recovered deactivation/state transition composition",
+      "qualification": "No full allocation, character loader, terrain collision, animation backend or world lifecycle claim. ResetState52f800, ResetTerrain5728a0, ClearTerrain572660 and Refresh595af0 remain explicit services on the unspawned path. Spawned default composes the already recovered41c120 body; its retained services and record-domain restrictions remain in force. Attachment destruction4364e0 and release4882d0 are inherited adapters on deactivation. Primary native fixtures use synthetic prepared actor/name/script records. No additional authored command occurrences are credited here; graph ActivateChar is owned by its separate wrapper contract. Physical and typed script projections require a host synchronization contract. Raw script pointer slots are not a second managed state representation. The33 spawned composition fixtures compare complete raw actor deltas but retain reinitialization script-binding callbacks. Malformed pointers, inconsistent actor/image identity graphs and callback-induced record replacement are outside the bounded contract. Raw placement copies preserve arbitrary32-bit payloads; reinitialization arithmetic uses its existing finite-input domain. Managed core and replay harnesses compiled only; no C#-versus-native runtime comparison or in-game playtest is claimed.",
+      "comparisonStatus": "Original-PC comparisons passed; portable core/replays compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-named-lifecycle-tests.json",
+        "reverse-engineering/reports/gameplay-named-lifecycle-assembly.json",
+        "reverse-engineering/reports/gameplay-named-reinitialization-tests.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-named-lifecycle-contract.json"
+}

@@ -74,7 +74,7 @@ roles.update({
  '5d9ce0':'Portal priority-dependent facing gate, then vertex/clip-plane classification0/1/2 with x87 float32 stores.',
  '5d92b0':'Native-verified bounded room selection: first candidates, exact old-priority ordering and first shared portal side.',
  '5eeb30':'Portal entry with verified selection/gating/camera-copy/room-flag/handoff; child volume and recursive propagation adapted.',
- '5ee940':'Recursive portal traversal with depth/cycle guards and room marking; end-to-end propagation remains unverified.',
+ '5ee940':'Original recursive portal traversal verified over all authored graphs: depth/cycle guards, real child volumes, room flags and instance bits.',
  '5d6f30':'Grid visibility producer: camera XZ cell and RLE bitset selection; static observation only.',
  '5d8fb0':'Visibility tree evaluator entry selected when portal path disabled; static observation only.'
 })
@@ -93,10 +93,13 @@ roles.update({
  '5d9140':'160-byte clip header and aligned plane arena reservation; appends header pointer to caller-owned list.',
  '5d91b0':'Header copy overwrites fresh plane pointer with source pointer, yielding shallow plane alias; reservation still advances.',
  '5d9850':'Packs up to eight planes into two matrices; missing columns use the extra camera plane.',
- '5d9f50':'Projects portal winding through prepared0x80b888 matrix and clamps component bounds; prepared diagonal projection tested.',
+ '5d9f50':'Projects portal winding through prepared0x80b888 matrix and clamps component bounds; perspective division and zero-W fixtures verified.',
  '5da040':'Strict XY rectangle intersection with register inputs; output Z preserved.',
- '5ee750':'Partially clipped portal branch: camera-plane gate, rectangle intersection and rectangular child volume; static observation only.',
- '5d9a00':'Four-plane child volume from screen rectangle and camera/FOV state; not independently reconstructed here.'
+ '5ee750':'Verified partially clipped portal chain: camera-plane0/1/4 gate, projected rectangle intersection and FOV child volume.',
+ '5d9a00':'Verified four-plane child volume from screen rectangle, original sine table, exact FOV phase and prepared camera state.',
+ '5d9130':'Stores caller-provided portal recursion depth into GSNH+0xe4.',
+ '602550':'Scene load finalizer; final call initializes portal depth to GSNH+0x6c portal count. Empty-resource native path verified.',
+ '5ef1d0':'Scene resource initialization caller of602550; complete native loading/GPU resource creation not reconstructed here.'
 })
 edges=[
  ('492b40','491d50','conditional world update'),('492b40','4927f0','conditional render-production branch'),('492b40','4fd050','platform completion returns next delta'),
@@ -138,6 +141,7 @@ edges.extend([
  ('5ee750','5d9f50','positive camera-plane winding projection'),('5ee750','5da040','parent/portal screen intersection'),('5ee750','5d9a00','rectangular child volume'),
  ('5d9a00','5d9140','four-plane allocation'),('5d9a00','5d9850','packed plane matrices')
 ])
+edges.extend([('5ef1d0','602550','load finalization'),('602550','5d9130','default portal traversal depth equals portal count')])
 nodes=[]
 for address,role in roles.items():
  path='decompiled/corpus-expanded/FUN_'+address+'.c';f=file_record(path);source=(B/path).read_text();ev=re.search(r'ev_[a-f0-9]+',source)
@@ -200,6 +204,14 @@ fields.extend([
  ('global','0x95fba8/0x95fbac/0x95fbb0','camera position used for child edge volumes'),
  ('global','0x80b888','prepared projection matrix copied by portal bounds helper')
 ])
+fields.extend([
+ ('GSNH','+0x9c/+0xdc','16-entry child-volume pointer array and allocated count'),
+ ('GSNH','+0xe4','runtime portal depth limit; loader initializes from portal count+0x6c'),
+ ('global','0x963f54','16 signed16 ancestor-room slots used by recursive cycle guard'),
+ ('camera','+0x40/+0x44','FOV and aspect consumed by rectangular volume builder'),
+ ('global','0x755d18','exact double angle scale10430.3779296875'),
+ ('global','0x97ad50/0x97ad90','inverse projection cache / copied original projection; cache side effect remains outside portable result')
+])
 validation=json.loads((R/'geometry-render-native-validation.json').read_text())
 report={'schema':'pc-frame-render-integration-v1','binarySHA256':validation['binarySHA256'],'nodes':nodes,
  'directEdges':[{'from':'0x'+a,'to':'0x'+b,'meaning':m,'evidence':'decompiled/corpus-expanded/FUN_'+a+'.c'}for a,b,m in edges],
@@ -223,7 +235,7 @@ report={'schema':'pc-frame-render-integration-v1','binarySHA256':validation['bin
   'https://learn.microsoft.com/en-us/windows/win32/api/d3d9/nf-d3d9-idirect3ddevice9-present'
  ],'unknowns':[
   'World-scene and named-special submission edges are now traced and dispatch tested, but GHG-layer/dynamic-packet generation is not reconstructed end to end.',
-  'Native geometric frustum, room containment/selection, portal facing/clip predicates and room-to-instance visibility writes are verified separately. Camera system, child-volume construction/recursive traversal, grid/tree visibility, shadow extrusion and synchronization remain incomplete.',
+  'Prepared-camera portal recursion, child volumes, projection results and room/instance visibility are native-validated within16allocated volumes. Live camera/projection producer, inverse-cache side effects, grid/tree visibility, shadow extrusion and synchronization remain incomplete.',
   'No original GPU pixel comparison, shader execution or full-frame device emulation; CPU helper tests are not a working renderer.',
   'Dynamic morph-buffer upload branch remains a static observation in this report.',
   'Original requests for UV resets and changes to speed scale remain separate runtime-owner work.'
@@ -246,21 +258,28 @@ report['portalVisibilityValidation']['report']='geometry-portal-visibility-nativ
 portalVolumes=json.loads((R/'geometry-portal-volume-native-validation.json').read_text())
 report['portalVolumeValidation']={k:portalVolumes[k]for k in ['passed','counts','zeroSignDifferences','signedZeroDetails']}
 report['portalVolumeValidation']['report']='geometry-portal-volume-native-validation.json'
+portalRuntime=json.loads((R/'geometry-portal-runtime-native-validation.json').read_text())
+report['portalRuntimeValidation']={k:portalRuntime[k]for k in ['passed','counts','signedZeroDifferences','traversalSummary','excludedUnsafeCases']}
+report['portalRuntimeValidation']['report']='geometry-portal-runtime-native-validation.json'
+portalBoundaries=json.loads((R/'geometry-portal-runtime-boundaries.json').read_text())
+report['portalRuntimeBoundaryValidation']={'report':'geometry-portal-runtime-boundaries.json','passed':portalBoundaries['passed'],'counts':portalBoundaries['counts']}
 (R/'geometry-render-integration.json').write_text(json.dumps(report,indent=2)+'\n')
 sourceStatus={'schema':'recovered-geometry-source-status-v1','namespace':'Recovered.Geometry','core':file_record('reconstructed/geometry/MaterialUv.cs'),'harness':file_record('reconstructed/geometry/harness/Program.cs'),'coreAssembly':artifact_record('reconstructed/geometry/Recovered.Geometry.dll'),'harnessAssembly':artifact_record('reconstructed/geometry/GeometryUvHarness.exe'),'build':{'status':'passed','compiler':r'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe','platform':'compiler default AnyCPU','dependencies':'System/System.Core framework only; no Unity or original game linking'},'compiledDifferentialCheck':{'status':'blocked-os-access-denied','log':'geometry-recovered-uv-validation.log','reason':'Ordinary generated harness launch returns WinError5. Reproduced by root using central combined-library build. No security or ACL modifications; no alternate host execution.','resultClaim':'pending; existing JS/Python native results do not establish compiled C# equivalence','runner':'tools/geometry-recovered-uv-check.py','optionalArguments':['--harness','--assembly']},'independentContractEvidence':'geometry-uv-native-validation.json','frameIntegrationEvidence':'geometry-render-integration.json','limits':['Core covers bounded current708-byte material UV evaluation and reset state only.','Signed32 conversion domain only; nonfinite/overflow conversions rejected.','No renderer, scene scheduler, game loop, or Unity implementation.']}
 sourceStatus['additionalCore']=file_record('reconstructed/geometry/SceneSubmission.cs')
-sourceStatus['coreModules']=[file_record('reconstructed/geometry/'+name)for name in ['MaterialUv.cs','SceneSubmission.cs','Clipping.cs','PortalSelection.cs','PortalVisibility.cs','PortalVolumes.cs']]
+sourceStatus['coreModules']=[file_record('reconstructed/geometry/'+name)for name in ['MaterialUv.cs','SceneSubmission.cs','Clipping.cs','PortalSelection.cs','PortalVisibility.cs','PortalVolumes.cs','PortalTraversal.cs']]
 sourceStatus['sharedSourceDependency']=file_record('reconstructed/animation/AnimationPlayback.cs')
-sourceStatus['sharedSourceDependency']['api']='Recovered.Animation.FiniteX87.Dot3PlusConstant; exact64-significand finite arithmetic, not a game-native function.'
+sourceStatus['sharedSourceDependency']['api']='Recovered.Animation.FiniteX87.Dot3PlusConstant and internal PlaybackWide Add/Multiply/Divide/FromDouble/TruncateInt32/Store; exact64-significand finite arithmetic adapters, not game-native entries.'
 sourceStatus['additionalContractEvidence']='geometry-visibility-native-validation.json'
-sourceStatus['clippingContractEvidence']=['geometry-clipping-native-validation.json','geometry-portal-native-validation.json','geometry-room-selection-native-validation.json','geometry-portal-visibility-native-validation.json','geometry-portal-volume-native-validation.json']
+sourceStatus['clippingContractEvidence']=['geometry-clipping-native-validation.json','geometry-portal-native-validation.json','geometry-room-selection-native-validation.json','geometry-portal-visibility-native-validation.json','geometry-portal-volume-native-validation.json','geometry-portal-runtime-native-validation.json','geometry-portal-runtime-boundaries.json']
 sourceStatus['roomSelectionHarness']=file_record('reconstructed/geometry/harness/PortalSelectionHarness.cs')
 sourceStatus['roomSelectionManagedCheck']={'runner':'tools/geometry-room-selection-check.py','report':'geometry-room-selection-managed-check.json','status':'prepared-not-executed','fixtureCount':15296,'harness':'reconstructed/geometry/GeometryRoomHarness.exe','build':'passed','execution':'not attempted; existing Windows execution denial remains separate'}
 sourceStatus['portalVisibilityHarness']=file_record('reconstructed/geometry/harness/PortalVisibilityHarness.cs')
 sourceStatus['portalVisibilityManagedCheck']={'runner':'tools/geometry-portal-visibility-check.py','report':'geometry-portal-visibility-managed-check.json','status':'prepared-not-executed','fixtureCount':6448,'harness':'reconstructed/geometry/GeometryVisibilityHarness.exe','build':'passed','execution':'not attempted; existing Windows execution denial remains separate'}
 sourceStatus['portalVolumeHarness']=file_record('reconstructed/geometry/harness/PortalVolumeHarness.cs')
 sourceStatus['portalVolumeManagedCheck']={'runner':'tools/geometry-portal-volume-check.py','report':'geometry-portal-volume-managed-check.json','status':'prepared-not-executed','fixtureCount':3586,'expectedScalars':172128,'harness':'reconstructed/geometry/GeometryVolumeHarness.exe','build':'passed','execution':'not attempted; existing Windows execution denial remains separate'}
-sourceStatus['limits'][0]='Core covers current708-byte material UV evaluation/reset, bounded CPU visibility/LOD/fade/clip-control/sort projections, prepared-plane predicates, room selection and room-to-instance visibility bits. Caller supplies child volumes, traversal, grid/tree visibility and runtime integration.'
+sourceStatus['portalRuntimeHarness']=file_record('reconstructed/geometry/harness/PortalTraversalHarness.cs')
+sourceStatus['portalRuntimeManagedCheck']={'runner':'tools/geometry-portal-runtime-check.py','report':'geometry-portal-runtime-managed-check.json','status':'prepared-not-executed','fixtureCount':portalRuntime['counts']['traversal'],'harness':'reconstructed/geometry/GeometryTraversalHarness.exe','mainType':'PortalTraversalHarness','arguments':['inputFixture','originalSineTable','output'],'build':'passed','execution':'not attempted; existing Windows execution denial remains separate'}
+sourceStatus['limits'][0]='Core covers current708-byte material UV evaluation/reset, bounded CPU submission projections, prepared-plane predicates, room selection and modern portal recursion with real child-plane/bitset math. Caller supplies camera/projection state, initial room/volume/flags, grid/tree evaluation and wider runtime integration.16-volume cap and signed-zero numerical limits are explicit.'
 sourceStatus['nativeMappings']=[
  {'address':'0x5dfbd0','method':'MaterialUv.Advance','coverage':'bounded-whole-helper-projection','limitations':'Managed memberships replace pointer chain; mutex excluded; finite signed32 conversion domain.'},
  {'address':'0x601330','method':'MaterialUv.Tick','coverage':'whole-wrapper-contract','limitations':'Caller-owned state replaces globals; includes recovered6012a0 tail.'},
@@ -293,12 +312,20 @@ sourceStatus['nativeMappings'].extend([
  {'address':'0x5d91b0','method':'PortalClipVolume.ShallowCopy','coverage':'bounded-helper-projection','limitations':'Copied header fields/packed matrices and shared plane-array identity retained. Native arena/list reservation side effects omitted; managed allocation used instead.'},
  {'address':'0x5da040','method':'PortalVolumes.IntersectXY','coverage':'bounded-whole-helper-projection','limitations':'Finite decoded register inputs; strict comparisons and output XY writes, preserving Z/rejected outputs. No pointer alias side effects or nonfinite x87 comparison domain; compiled execution pending.'}
 ])
+sourceStatus['nativeMappings'].extend([
+ {'address':'0x5d9f50','method':'PortalProjection.Bounds','coverage':'projection-and-bounds-result','limitations':'Finite prepared matrix and nonempty signed16 winding; exact late-store projective division,zero-W behavior and clamped bounds. Native inverse-cache update omitted; signed-zero bit and compiled equivalence unclaimed.'},
+ {'address':'0x5d9a00','method':'PortalProjection.FromRectangle','coverage':'bounded-whole-helper-projection','limitations':'Prepared finite camera/FOV/aspect and original sine table; finite intermediates and signed32 phase conversion only. Managed volume replaces native arena/list allocation; compiled execution pending.'},
+ {'address':'0x5ee750','method':'PortalTraversal.Partial','coverage':'bounded-whole-helper-projection','limitations':'Finite portal/parent/camera inputs,disabled debug rendering; returns0/1/4 with real projection/intersection/FOV planes. Inverse-cache/native allocator side effects omitted; compiled execution pending.'},
+ {'address':'0x5ee940','method':'PortalTraversal.Traverse / Walk','coverage':'bounded-caller-contract-projection','limitations':'Initial root/current equal,previous=-1,depth0; modern display mode0x4000; valid authored-like room/portal arrays and prepared camera. Preserves entry order,cycle/depth guards,room flags,instance bits and plane aliases. At most16allocated clip headers; unsafe17th rejected. Native allocator addresses,disabled debug rendering and inverse-cache side effects omitted; compiled execution pending.'}
+])
 for mapping in sourceStatus['nativeMappings']:
- mapping['sourceFile']='reconstructed/geometry/'+('MaterialUv.cs'if mapping['method'].startswith('MaterialUv.')else 'SceneSubmission.cs'if mapping['method'].startswith('SceneSubmission.')else 'PortalSelection.cs'if mapping['method'].startswith('PortalSelection.')else 'PortalVisibility.cs'if mapping['method'].startswith(('PortalVisibility.','PortalVolumePredicates.'))else 'PortalVolumes.cs'if mapping['method'].startswith(('PortalVolumes.','PortalClipVolume.'))else 'Clipping.cs')
+ mapping['sourceFile']='reconstructed/geometry/'+('MaterialUv.cs'if mapping['method'].startswith('MaterialUv.')else 'SceneSubmission.cs'if mapping['method'].startswith('SceneSubmission.')else 'PortalSelection.cs'if mapping['method'].startswith('PortalSelection.')else 'PortalVisibility.cs'if mapping['method'].startswith(('PortalVisibility.','PortalVolumePredicates.'))else 'PortalVolumes.cs'if mapping['method'].startswith(('PortalVolumes.','PortalClipVolume.'))else 'PortalTraversal.cs'if mapping['method'].startswith(('PortalProjection.','PortalTraversal.'))else 'Clipping.cs')
 sourceStatus['adaptersWithoutNativeEntry']=['UvMaterial.DecodeCurrentRecord','NativeSineTable.DecodeLittleEndian','UvLayer/UvMaterial/UvScene/UvAnimationSet/UvClock','Point3/ClipBounds/ClipObject/SceneVisibility/VisibilityInputs/SortRecord','MaterialUv.EvaluateAxis is an extracted internal branch of5dfbd0, not a separate entry.','TruncateToNativeInt32 is a bounded integer-conversion adapter, not full6e6b90 reconstruction.']
 sourceStatus['adaptersWithoutNativeEntry'].extend(['NativeFrustum.DecodeNativePlaneBlock','PortalPlane','Shared Recovered.Animation.FiniteX87 arithmetic is an instruction-semantics adapter, not a native entry.'])
 sourceStatus['adaptersWithoutNativeEntry'].extend(['PortalRoom','PortalLink','PortalSelectionHarness is fixture I/O, not a native runtime helper.'])
 sourceStatus['adaptersWithoutNativeEntry'].extend(['PortalSphere and PortalVisibilityHarness fixture I/O','Native600bd0 pointer attachment is verified but intentionally has no portable C# equivalent.'])
 sourceStatus['adaptersWithoutNativeEntry'].extend(['PortalClipVolume typed header storage and PortalVolumeHarness fixture I/O','Native5d9140 arena reservation and5d9f50 prepared-projection calls are verified at stated fixture bounds but not counted as portable source.'])
+sourceStatus['adaptersWithoutNativeEntry'][-1]='Native5d9140 arena reservation is verified but not a portable entry;5d9f50 projection result has its own bounded mapping,omitting the inverse-cache side effect.'
+sourceStatus['adaptersWithoutNativeEntry'].extend(['PortalCamera/RuntimePortal/RuntimePortalRoom/PortalRuntimeScene/PortalVisit/PortalTraversalState are decoded data adapters.','PortalTraversalHarness fixture preparation and caller-provided world/projection matrices are not original live camera production.','Native5d9130 depth setter and602550 empty-resource finalizer are verified but not separately counted as reconstructed source.'])
 (R/'geometry-recovered-source.json').write_text(json.dumps(sourceStatus,indent=2)+'\n')
 print(json.dumps({'nodes':len(nodes),'directEdges':len(edges),'fields':len(fields),'nativeTests':validation['tests'],'compiledCore':'build passed; execution blocked'}))

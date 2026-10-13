@@ -1,0 +1,305 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "nativeEvidence": {
+    "tests": "reports/gameplay-trigger-tests.json",
+    "assembly": "reports/gameplay-trigger-assembly.json",
+    "verifier": "tools/gameplay-trigger-verify.py",
+    "checks": 36377,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports/gameplay-trigger-native-fixtures.json.gz",
+      "bytes": 316789,
+      "sha256": "b2394c91c0101df80c9795e427e7a71ceade175269627d5da3f060fac334c186"
+    },
+    "groups": {
+      "reader-InTriggerArea": {
+        "checks": 4839,
+        "mismatches": 0
+      },
+      "reader-PlayerInTriggerArea": {
+        "checks": 4815,
+        "mismatches": 0
+      },
+      "reader-Player2InTriggerArea": {
+        "checks": 4675,
+        "mismatches": 0
+      },
+      "reader-EitherPlayerInTriggerArea": {
+        "checks": 5060,
+        "mismatches": 0
+      },
+      "lookup-find": {
+        "checks": 950,
+        "mismatches": 0
+      },
+      "lookup-bindSelf": {
+        "checks": 860,
+        "mismatches": 0
+      },
+      "lookup-bindPlayers": {
+        "checks": 1223,
+        "mismatches": 0
+      },
+      "producer-state-and-masks": {
+        "checks": 6631,
+        "mismatches": 0
+      },
+      "producer-entire-record-write-bounds": {
+        "checks": 6631,
+        "mismatches": 0
+      },
+      "authored-literal-comparison": {
+        "checks": 693,
+        "mismatches": 0
+      }
+    }
+  },
+  "contracts": {
+    "readers": "All four readers return exactfloat0/1 from cached object mask+0x2b0/+0x2b4. An initialized area wins over processor+0xa0; either must have nonnull owner+0x38. The index is arithmetic(area-owner.areas)>>6. PC computes low=1u<<(index&31), high=sign_extend(low). Therefore index31 tests lowbit31 OR any highbit; index32 wraps to lowbit0. These are preserved native semantics, not a conventional64-bit bitset.",
+    "selection": "InTriggerArea checks script-creature+0xd0 directly without another dereference. Player1/2 are AI-system+0x138c/+0x1390. PlayerInTriggerArea alone additionally requires system+0x38 area table. Either checks player1 thenplayer2. No reader recomputes containment or liveness.",
+    "lookup": "0x51acd0 checks nonnull system, signed count+0x34>0, then scans64-byte records from+0x38 in order. Name comparator is original0x4f8b10: ASCIIa-z and everybyte>=0xe0 fold by subtracting32. First duplicate wins. Initializers0x52d0b0/0x52d160 returnnull for absent operand, otherwise this lookup; named binding failure consequently falls back to processor area when a reader runs.",
+    "producer": "0x43b7c0 receives area inEDI, derives its index from globalworld0x802c54->+0x2ae8AI->+0x38areas (independent of area.owner), clears only area.state bits0..2, and scans signed globalcount0x93d500 objects from0x93d504 withstride0x10d8. Objects require flags+0x1fc bits1 and0x1000, and restrictedbyte+0x28b==0 OR timer+0x1010>0 OR flagsbit0x80. Skipped objects retain old masks.",
+    "containment": "Original0x5b3800 subtracts area.position+0x10 from object.position+0x5c, storingfloat32. Original0x5b3620 rotates aboutY by negative signedarea.yaw+0x28 using original32768float table at0x29899a0, indices((angle+0x4000)>>1)&0x7fff and(angle>>1)&0x7fff. Each sum of products uses x87precision64 beforefloat32store. Inclusive bounds are [-halfWidth,+halfWidth],[-0.1f,height],[-halfDepth,+halfDepth]. Nativeqwordconstant0x755d20 equals exactpromotedfloat32(-0.1), not binary64(-0.1). Height is not a centered half-height.",
+    "maskAndStateWrites": "Inside ORs the same signed32-bit mask intoobject+0x2b0/+0x2b4. Outside uses __allshl(1,index): tests low8bitshift, zero forshift>=64, then clears that full64bitmask. Inside area.state|=1 for objecteligibilitybit0x80; state|=4 ifobject+0x1f8bit1, otherwise |=2 ifstateflagsbit4clear. Statebit3andhigher survive. There is no PC bit3 occupancy update in this function.",
+    "schedulingBoundary": "Caller0x43b940 iterates one current area selected by AI-system byte+0x1384, increments/resets that byte, and continues other AI work. This batch ports the occupancy helper only; it does not reconstruct the entire frame scheduling function."
+  },
+  "fieldLayout": {
+    "area": {
+      "stride": 64,
+      "name": 0,
+      "position": 16,
+      "halfWidth": 28,
+      "height": 32,
+      "halfDepth": 36,
+      "yawInt16": 40,
+      "runtimeByte": 42,
+      "owner": 56
+    },
+    "object": {
+      "stride": 4312,
+      "position": 92,
+      "stateFlags": 504,
+      "eligibilityFlags": 508,
+      "restrictedByte": 651,
+      "maskLow": 688,
+      "maskHigh": 692,
+      "restrictedTimer": 4112
+    },
+    "aiSystem": {
+      "count": 52,
+      "areas": 56,
+      "nextAreaByte": 4996,
+      "player1": 5004,
+      "player2": 5008
+    }
+  },
+  "authored": {
+    "carriers": 173,
+    "areas": 425,
+    "scriptOccurrences": 693,
+    "byCommand": {
+      "EitherPlayerInTriggerArea": 386,
+      "InTriggerArea": 165,
+      "PlayerInTriggerArea": 141,
+      "Player2InTriggerArea": 1
+    },
+    "bindingScopes": {
+      "same-directory authored AI2": 686,
+      "no unique local AI2; synthetic binding only": 7
+    },
+    "literalComparisons": 693,
+    "comparisonOmissions": [],
+    "namedBindingMisses": [
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_V/E5CHARACTERBONUS/E5CHARACTERBONUS_A/AI/LEVEL1.SCP",
+        "line": 23,
+        "text": "if EitherPlayerInTriggerArea \"Lift_Area_1\" == 1 goto OpenLift",
+        "operand": "Lift_Area_1",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_VI/ENDORBATTLE/ENDORBATTLE_D/AI/LEVEL.SCP",
+        "line": 46,
+        "text": "if EitherPlayerInTriggerArea \"Airlock_A\" == 1 and",
+        "operand": "Airlock_A",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/TIEFIGHTER.SCP",
+        "line": 20,
+        "text": "if InTriggerArea \"End\" == 1 goto DogFight_Approach",
+        "operand": "End",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/TIEFIGHTER.SCP",
+        "line": 33,
+        "text": "if InTriggerArea \"End\" == 1 goto DogFight_Approach",
+        "operand": "End",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/TIEFIGHTER.SCP",
+        "line": 57,
+        "text": "if InTriggerArea \"End\" == 0 goto Trench_Flee",
+        "operand": "End",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/TIEFIGHTER.SCP",
+        "line": 68,
+        "text": "if InTriggerArea \"End\" == 0 goto Trench_Flee",
+        "operand": "End",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/TIEFIGHTER.SCP",
+        "line": 79,
+        "text": "if InTriggerArea \"End\" == 0 goto Trench_Flee",
+        "operand": "End",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      },
+      {
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_IV/DEATHSTARBATTLE/DEATHSTARBATTLE_C/AI/TIEFIGHTER.SCP",
+        "line": 91,
+        "text": "if InTriggerArea \"End\" == 0 goto Trench_Flee",
+        "operand": "End",
+        "bindingScope": "same-directory authored AI2",
+        "bindingIndex": -1
+      }
+    ],
+    "note": "Each of425 decoded AI2 areas is projected into native runtime records for9 position cases, and every name is checked through lookup plus both initializers. Raw16bitangle is used. Loader construction, actual scene binding, and authored state-byte initialization are not claimed. Same-directory name matching is source linkage, not execution of the world loader."
+  },
+  "portable": {
+    "core": [
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/gameplay/TriggerConditions.cs"
+    ],
+    "harness": "reverse-engineering/tools/gameplay-trigger-portable-verify.cs",
+    "entrypoint": "GameplayTriggerVerify.Main",
+    "args": [
+      "reverse-engineering/reports/gameplay-trigger-native-fixtures.json.gz",
+      "reverse-engineering/references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 29746,
+    "nativeOnlyAdditionalChecks": 6631,
+    "managedStatus": "Compiled, not executed",
+    "source": {
+      "path": "reconstructed/gameplay/TriggerConditions.cs",
+      "bytes": 7212,
+      "sha256": "b83bdd81f91c00bc316b1584dd5aa9f43bb560ea5f8c58538ab55fa018ec7295"
+    },
+    "sourceMap": "reports/gameplay-trigger-source-map.json",
+    "compile": [
+      {
+        "command": [
+          "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/optimize+",
+          "/platform:anycpu",
+          "/target:library",
+          "/out:C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\trigger-build\\Recovered.Triggers.dll",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\CharacterContexts.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\AnimationPlayback.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\TriggerConditions.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "artifact": {
+          "path": "reconstructed/gameplay/trigger-build/Recovered.Triggers.dll",
+          "bytes": 18944,
+          "sha256": "656285f590a7f003423192392d0d787da8f2985a0d608172fe6b4b3e0f5fcfb6"
+        }
+      },
+      {
+        "command": [
+          "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/optimize+",
+          "/platform:anycpu",
+          "/target:exe",
+          "/out:C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\trigger-build\\TriggerDifferential.exe",
+          "/main:GameplayTriggerVerify",
+          "/reference:System.Web.Extensions.dll",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\CharacterContexts.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\animation\\AnimationPlayback.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\reconstructed\\gameplay\\TriggerConditions.cs",
+          "C:\\Users\\NathanDurkee\\OneDrive - SpectrumVoIP\\Desktop\\SW\\reverse-engineering\\tools\\gameplay-trigger-portable-verify.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "artifact": {
+          "path": "reconstructed/gameplay/trigger-build/TriggerDifferential.exe",
+          "bytes": 27648,
+          "sha256": "f5c8ff1d320b53be4b36f4d90bbe9924053f5f8fc0cf9cb87a025537eb48375a"
+        }
+      }
+    ],
+    "sourceHashes": [
+      {
+        "path": "reconstructed/animation/CharacterContexts.cs",
+        "bytes": 14461,
+        "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+      },
+      {
+        "path": "reconstructed/animation/AnimationPlayback.cs",
+        "bytes": 19541,
+        "sha256": "a8c818bfc8d406bfd299e6a7f7216231db7b76fc203af0ce1e4a674ed79ea1bf"
+      },
+      {
+        "path": "reconstructed/gameplay/TriggerConditions.cs",
+        "bytes": 7212,
+        "sha256": "b83bdd81f91c00bc316b1584dd5aa9f43bb560ea5f8c58538ab55fa018ec7295"
+      },
+      {
+        "path": "tools/gameplay-trigger-portable-verify.cs",
+        "bytes": 6787,
+        "sha256": "0b96bbe9309895a38ebca2ab3770f8771f7a67149a1120a2a1f9854363d6f32d"
+      },
+      {
+        "path": "tools/gameplay-trigger-verify.py",
+        "bytes": 16161,
+        "sha256": "d1d9130839ba7b60837477a111f39741b9e4c0eef386d1f2229db38c804dc9e7"
+      },
+      {
+        "path": "tools/gameplay-trigger-report.py",
+        "bytes": 10352,
+        "sha256": "17cae9ffd36ebe3e1d82b4208376abced38cdb7b0f339ef6a67c7cd29f7e56d2"
+      },
+      {
+        "path": "tools/animation-x87.py",
+        "bytes": 1730,
+        "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+      },
+      {
+        "path": "tools/native-x86.py",
+        "bytes": 2451,
+        "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+      }
+    ],
+    "hostGuards": [
+      "Name adapters accept non-NUL Latin1 strings only; invalid backing arrays fail explicitly.",
+      "Math scope requires finite source fields, original finite sine-table values, and finite intermediatefloat32positions. No malformed raw-pointer or NaN semantics are claimed.",
+      "World/system/object references and signedareaindices are supplied as explicit projections; no allocation/lifetime or frame-loop equivalence."
+    ]
+  },
+  "limits": [
+    "Finite positions/extents/timers and a complete original sine table. NaNs, infinities, invalid raw pointers, concurrent mutation, and malformed unterminated names excluded.",
+    "TriggerSystem/TriggerArea/TriggerObject are explicit runtime projections, not the full loader or object lifetime implementation.",
+    "Producer scheduling in0x43b940 and global world/object-array population remain external. Eligibility-skipped objects preserve stale trigger masks.",
+    "Authored AI2 upload maps recovered file fields into runtime fields; native AI2 loading is not executed here. Source angle raw16bits is used, not BrickBench degree conversion.",
+    "Same-directory AI2 name resolution is source evidence only; shared scripts without a unique local carrier retain an explicit synthetic binding scope.",
+    "Managed core/harness compile separately; no generated managed executable is run."
+  ]
+}

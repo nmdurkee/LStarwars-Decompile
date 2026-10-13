@@ -1,0 +1,81 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "construction": "51c150 subtracts the actor radius plus the original float32 0.05 constant from the three node radii, clamps negative results, adjusts each connection heading by the recovered arcsine helper, and constructs two offset lines. The real 5bee20 line parameters must both lie inclusively in [0,1]. A failed result preserves the output bytes. Success explicitly interpolates the first edge height before scaling and adding its direction. Exact float stores, signed angle wrapping, and x87 intermediate precision are retained.",
+    "cache": "51c430 caches the ordered edge identities in packet190/194. A cache hit returns whether either flag20/40 is set without rechecking geometry, actor radius, or the path. A miss clears both flags and writes keys before testing the four shared-endpoint orientations. It tests the second outer point against the first edge using 51b1f0 with raw stamp mode1. Containment suppresses corner construction. Otherwise two swapped constructions write packet198/1a4 and independently assign flag20/40. Failed constructions leave previous output vectors unchanged.",
+    "validation": "2,843 independent original-PC records pass: 2,168 direct corner constructions and 675 complete cache calls. All 440 instructions in both bodies execute. Cache calls execute the actual corridor helper; constructions execute actual arcsine, line-parameter, vector, square-root, and CRT instructions without behavior adapters. Cases include all endpoint orientations, cache flags, stamp collisions, route masks and boundaries, parallel lines, radius clamps, arbitrary finite heights and seeded layouts."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2843,
+    "counts": {
+      "construct": 2168,
+      "cache": 675
+    },
+    "mismatches": 0,
+    "examples": [],
+    "instructionCoverage": {
+      "total": 440,
+      "executed": 440,
+      "missing": []
+    },
+    "authoredCommandUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathCorners.cs",
+      "bytes": 6297,
+      "sha256": "3f45f4888355d7dc24fe7d171de7aed6eb16909e8aa29f4b5e2692af374dd832"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-corners-portable-verify.cs",
+      "bytes": 5815,
+      "sha256": "21f734a69b0ccdb8086f9ee11e139a712a8f808fa5e98d655ce141f56620ea3f"
+    },
+    "entrypoint": "GameplayPathCornersVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-corners-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-path-corners-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-corners-native-fixtures.json",
+      "bytes": 1380665,
+      "sha256": "8a68b7e43827887b0b5096c227354d5cdb5047f20c3f25c1793d2d2be59c3ab3"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathCornerMath.cs",
+        "bytes": 2390,
+        "sha256": "caac19325777b3fb03cf7706393b9e2b5bc63446d08caf30189bd335668203b1"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathCorridor.cs",
+        "bytes": 6926,
+        "sha256": "edeae3a6631202b779fd92a81d7a4527e1aa4dae97869b1b01f281c74432e7d3"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathArcSine.cs",
+        "bytes": 1802,
+        "sha256": "55a90f5ce39ea7b839e5d32863ce1a8f5ddd99a07c4849825e244b85d345585f"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-corners-verify.exe",
+        "bytes": 599040,
+        "sha256": "2536e5360fd296e0086cfa4c8a679df5d5c3d2b5cbbb999c6ea3b017fbe1cd7d"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Finite coordinates and intermediates, positive edge lengths, both arcsine ratios in [-1,1], valid loaded point/edge backing and disjoint caller outputs. NaN, infinity and pointer faults are excluded.",
+    "Native fixtures use static nodes. Mutable scene attachment refresh and query/point aliasing during containment are not validated by this batch; the core retains PathCorridor's snapshot query domain.",
+    "The supplied CorridorPath must match packet158. Loader allocation, backing lifetime and pointer identity projection remain host responsibilities.",
+    "No authored command-use credit and no new credit for underlying helpers. The 675 cache calls are included in the 2,843 records; child helper executions are not additive. Full51d7b0 steering remains separate.",
+    "Portable replay compiled only; no managed executable was launched. Native comparisons use an independent exact-arithmetic model."
+  ]
+}

@@ -9,14 +9,18 @@ $buildDirectory = Join-Path $reconstructionDirectory 'bin'
 New-Item -ItemType Directory -Path $buildDirectory -Force | Out-Null
 $sourcePaths = @($manifest.modules | ForEach-Object { $_.files } | ForEach-Object { [IO.Path]::GetFullPath((Join-Path $reconstructionDirectory $_)) })
 $compilerArgs = @('/nologo', '/target:library', '/optimize+', '/platform:anycpu', ('/out:' + (Join-Path $buildDirectory 'Recovered.Runtime.dll'))) + $sourcePaths
-& $compiler @compilerArgs
+$libraryResponse = Join-Path $buildDirectory 'library-build.rsp'
+$compilerArgs | ForEach-Object { '"' + $_ + '"' } | Set-Content -Encoding UTF8 -LiteralPath $libraryResponse
+& $compiler ('@' + $libraryResponse)
 if ($LASTEXITCODE -ne 0) { throw 'Recovered library compilation failed.' }
 $harnessBuilt = $false
 $harnessPaths = @()
 if (-not $LibraryOnly) {
     $harnessPaths = @($manifest.harnessFiles | ForEach-Object { [IO.Path]::GetFullPath((Join-Path $reconstructionDirectory $_)) })
     $compilerArgs = @('/nologo', '/target:exe', '/optimize+', '/platform:anycpu', '/r:System.Web.Extensions.dll', '/main:RecoveredSourceVerify', ('/out:' + (Join-Path $buildDirectory 'RecoveredSourceVerify.exe'))) + $sourcePaths + $harnessPaths
-    & $compiler @compilerArgs
+    $verifierResponse = Join-Path $buildDirectory 'verifier-build.rsp'
+    $compilerArgs | ForEach-Object { '"' + $_ + '"' } | Set-Content -Encoding UTF8 -LiteralPath $verifierResponse
+    & $compiler ('@' + $verifierResponse)
     if ($LASTEXITCODE -ne 0) { throw 'Combined verifier compilation failed.' }
     $harnessBuilt = $true
 }

@@ -1,0 +1,225 @@
+{
+  "schema": "recovered-geometry-shadow-light-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowLight.cs",
+      "bytes": 4669,
+      "sha256": "ef28a276bef499133276aa663fd0c82527d2a2b692b8bfc4ecedf58e5ca11d99"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5b7390",
+      "method": "ShadowLight.LookAt",
+      "sourceFile": "reconstructed/geometry/ShadowLight.cs",
+      "coverage": "whole-helper-finite-disjoint",
+      "limitations": "Finite disjoint source/context/output domain. Actual original normalization/order and signedzero retained; nonzero orthographic denominators. Original/model passes; managed equality pending.",
+      "evidence": "geometry-shadow-light-native-validation.json"
+    },
+    {
+      "address": "0x5952c0",
+      "method": "ShadowLight.ConfigureView",
+      "sourceFile": "reconstructed/geometry/ShadowLight.cs",
+      "coverage": "whole-helper-finite-disjoint",
+      "limitations": "Finite disjoint source/context/output domain. Actual original normalization/order and signedzero retained; nonzero orthographic denominators. Original/model passes; managed equality pending.",
+      "evidence": "geometry-shadow-light-native-validation.json"
+    },
+    {
+      "address": "0x5c6c10",
+      "method": "ShadowLight.ConfigureViewCdecl",
+      "sourceFile": "reconstructed/geometry/ShadowLight.cs",
+      "coverage": "complete-ABI-wrapper",
+      "limitations": "Finite disjoint source/context/output domain. Actual original normalization/order and signedzero retained; nonzero orthographic denominators. Original/model passes; managed equality pending.",
+      "evidence": "geometry-shadow-light-native-validation.json"
+    },
+    {
+      "address": "0x5b79d0",
+      "method": "ShadowLight.Orthographic",
+      "sourceFile": "reconstructed/geometry/ShadowLight.cs",
+      "coverage": "whole-helper-finite-nonzero-extents",
+      "limitations": "Finite disjoint source/context/output domain. Actual original normalization/order and signedzero retained; nonzero orthographic denominators. Original/model passes; managed equality pending.",
+      "evidence": "geometry-shadow-light-native-validation.json"
+    },
+    {
+      "address": "0x595360",
+      "method": "ShadowLight.ConfigureOrthographic",
+      "sourceFile": "reconstructed/geometry/ShadowLight.cs",
+      "coverage": "whole-helper-finite-nonzero-extents",
+      "limitations": "Finite disjoint source/context/output domain. Actual original normalization/order and signedzero retained; nonzero orthographic denominators. Original/model passes; managed equality pending.",
+      "evidence": "geometry-shadow-light-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/ShadowExtraction.cs",
+      "bytes": 3986,
+      "sha256": "470688e4264604df135f6fa9847dcabfe5662e7c00e608fda9a7ea11ab4e4627"
+    },
+    {
+      "file": "reconstructed/geometry/ShadowCamera.cs",
+      "bytes": 3458,
+      "sha256": "8aab76d351ec56f76e72289dba314f2d1519692b9c422cb42e4a9cf1675587c5"
+    },
+    {
+      "file": "reconstructed/geometry/ShadowFrustum.cs",
+      "bytes": 4908,
+      "sha256": "9cb3418f104e2c18977f5e8b84abb3b21e69632e183624d4336e7df958997776"
+    },
+    {
+      "file": "reconstructed/geometry/ShadowVolume.cs",
+      "bytes": 5514,
+      "sha256": "17a5deafb08979d59739419d1429459c62d42d5c8303b81b04aba20324999993"
+    },
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    },
+    {
+      "file": "reconstructed/animation/CharacterContexts.cs",
+      "bytes": 14461,
+      "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+    },
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 20731,
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-light-native-validation.json",
+    "schema": "geometry-shadow-light-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 2816,
+      "lookat": 512,
+      "persistentBytes": 23068672,
+      "orthographic": 512,
+      "setup": 512,
+      "wrapper": 512,
+      "projection": 512,
+      "chain": 256
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-light-fixtures.json.gz",
+    "fixtureBytes": 811742,
+    "fixtureSHA256": "16d2a9c24b7ea77a1b93ae6a41288d8c0dc7b910ee09b5ed194c2dbb4ff18497",
+    "limits": [
+      "Actual5b7390/5952c0/5c6c10/5b79d0/595360 plus original normalization execute unchanged.256 sequential original setup+orthographic+extraction chains also execute.",
+      "Finite disjoint inputs/outputs, nonzero orthographic denominator and bounded extraction domain. Degenerate eye=target/parallelup supported with original zero-normal behavior.",
+      "Normalization arithmetic uses stricter private wide support; existing gameplay5b3b30 native map is not duplicated.",
+      "Six authored CU2 camera matrices only in composed extraction; light source/target/up and projection extents are controlled. Upstream596a30 player/light-selection math, registration/consumer chain andGPU remain separate.",
+      "Only proven extraction padding normalized in256 chaincases; raw native padding words retained. Managed runtime equality remains pending."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowLightHarness",
+    "arguments": [
+      "reports/geometry-shadow-light-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 2816,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowLightHarness.cs",
+      "bytes": 3536,
+      "sha256": "9126c250a6258334dfa09a6474924e3340bf5702726f6985e9a03ee34dc95799"
+    },
+    "compileStatus": "passed",
+    "comparison": "Full8192B image; only proven extractionpadding normalized in composedchain fixtures."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowLight.dll",
+          "ShadowLight.cs",
+          "ShadowExtraction.cs",
+          "ShadowCamera.cs",
+          "ShadowFrustum.cs",
+          "ShadowVolume.cs",
+          "SortedPackets.cs",
+          "FrameReset.cs",
+          "..\\animation\\CharacterContexts.cs",
+          "..\\animation\\AnimationPlayback.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowLight.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowLightHarness.exe",
+          "harness\\ShadowLightHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowLight.dll",
+      "bytes": 39936,
+      "sha256": "3c0b6a5782cecb71d4a16b9d12a24f65ee5295fc629c3a3157479c5b0cc5ae02"
+    }
+  },
+  "observations": [
+    "LookAt5b7390 stores target-eye differences, normalizes forward, normalizes cross(up,forward) into right, then normalizes cross(forward,right) into vertical. Basisvectors fill output columns; translations are ordered(-eyeX*axisX-eyeY*axisY)-eyeZ*axisZ. Fourthcolumn0/0/0/1.",
+    "ConfigureView5952c0 independently normalizes target-eye and stores context+770XYZ/W1, copies eyeXYZ/W1 to+760, then actualLookAt populates+780. It leaves the second lightmatrix+7c0 and unrelated contextbytes untouched.5c6c10 is the cdecl context-pointer ABI adapter.",
+    "Orthographic5b79d0 uses extents(left,right,bottom,top,near,far). DiagonalXYZ=2/(high-low), translationXYZ=(low+high)/(low-high); remaininglanes0 exceptW1. Extended sums/differences/divisions are retained until finalfloat32 stores. ConfigureOrthographic595360 writes context+800mode0 then emits thismatrix at+7c0.",
+    "Existing gameplayFacingMath.Normalize mapping remains authoritative for its own earlier domain. This module uses private extended-precision normalization support to preserve stricter instruction order and signedzero, without adding a duplicate native entrymap.",
+    "2816 original comparisons cover512each lookAt/orthographic/setup/ABIwrapper/projectionsetter plus256sequential lightsetup+orthographic+full5e8950extraction chains;23068672persistentbytes compare exactly except alreadyproven undefined extractionpadding.",
+    "Finite synthetic source/target/up/extents include coincidenteye/target andparallelup degeneracies. Composedextraction uses six authoredCU2cameratransforms. All computationalnativecalls execute; no native source/target selector or gameplaylight choice is invented.",
+    "Cores/replay compile only. Upstream596a30 obtains player/camera/lightvalues and splitdistances; it remains outside thisbatch. Actualregistry/consumer integration and GPUoutput remain separate."
+  ],
+  "remainingGaps": [
+    {
+      "id": "upstream-light-selection",
+      "status": "596a30 player/light/camera query and splitdistances remain separate."
+    },
+    {
+      "id": "registration-consumer-integration",
+      "status": "Verified producer matrices/volumes have not yet been carried through original registry and actual drawconsumer in thisbatch."
+    },
+    {
+      "id": "numeric-domain",
+      "status": "Finite disjoint inputs/outputs and nonzero ortho denominators; overflow/nonfinite/alias excluded."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU light configuration only."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-light-native.py",
+    "bytes": 6792,
+    "sha256": "d034ed336a89ac94aa147c8fb571e162b76993a5420dcf2caeff691d1fa772c0"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-light-assembly.json",
+    "bytes": 35990,
+    "sha256": "a7671cde99118cfc740fd5b852b75e38744d48c255b9b90ca43ae3f8948f5c93"
+  }
+}

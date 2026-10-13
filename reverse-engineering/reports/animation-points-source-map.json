@@ -1,0 +1,89 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 3,
+  "refines": [
+    "0x62e290"
+  ],
+  "mappings": [
+    {
+      "address": "0x5daae0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPoints.cs",
+      "sourceSha256": "ec8647803cf722aa8224d7817e957317ad0bdf4f6aaa4e657387b9e221e886c5",
+      "methods": [
+        {
+          "name": "SkeletalPoints.EvaluatePoint",
+          "line": 23
+        }
+      ],
+      "coverage": "finite resolved point transform branch",
+      "qualification": "Native lookup and joint indices must resolve into supplied arrays. The PC routine directly uses joint255 as matrix index255; the Android local-only fallback is not reproduced. Explicit imported D3DX scalar policy.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-points-tests.json"
+    },
+    {
+      "address": "0x62e1e0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPoints.cs",
+      "sourceSha256": "ec8647803cf722aa8224d7817e957317ad0bdf4f6aaa4e657387b9e221e886c5",
+      "methods": [
+        {
+          "name": "SkeletalPoints.WritePoints",
+          "line": 33
+        }
+      ],
+      "coverage": "resolved enabled point output loop",
+      "qualification": "Both outputs null returns before model access. Otherwise exactly16 enable words control independent position/matrix outputs. Enabled lookups and joints must be valid and finite; disabled destinations remain untouched.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-points-tests.json"
+    },
+    {
+      "address": "0x62e290",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPoints.cs",
+      "sourceSha256": "ec8647803cf722aa8224d7817e957317ad0bdf4f6aaa4e657387b9e221e886c5",
+      "methods": [
+        {
+          "name": "SkeletalPoints.EvaluatePacket",
+          "line": 48
+        }
+      ],
+      "coverage": "default-layer skeletal branch extended with point outputs",
+      "qualification": "Refines SkeletalPacketDispatch.Evaluate with optional POI outputs. No selected layer means no writes. Morph output remains absent, and output enablement comes from supplied model state rather than an inferred asset loader.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-points-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkeletalPoints.cs",
+      "sha256": "ec8647803cf722aa8224d7817e957317ad0bdf4f6aaa4e657387b9e221e886c5"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/SkeletalBlend.cs",
+      "reconstructed/animation/SkeletalPacketDispatch.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-points-portable-verify.cs",
+      "sha256": "5d2135406adbe235d419c6093f3289e9744f9b93606dabec824b3f23d1c0ee59"
+    },
+    "entrypoint": "SkeletalPointsVerify.Main",
+    "arguments": [
+      "reports/animation-points-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 10298,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-points-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-points-tests.json",
+    "reverse-engineering/reports/animation-points-assembly.json"
+  ]
+}

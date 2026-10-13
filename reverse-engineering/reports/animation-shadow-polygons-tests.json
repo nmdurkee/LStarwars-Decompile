@@ -1,0 +1,51 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "comparisons": 4144,
+  "counts": {
+    "point": 1024,
+    "direction": 1024,
+    "authoredQuietNaNFaces": 4,
+    "polygon": 2096,
+    "vertices": 418932,
+    "acceptedFaces": 27178,
+    "normalTransforms": 38424,
+    "pointTransforms": 209466
+  },
+  "authoredGroups": 496,
+  "authoredRigs": 198,
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports\\animation-shadow-polygons-native-fixtures.json.gz",
+    "bytes": 436441,
+    "sha256": "89e1bd6bc8cc7a7e6536b56141db9e5f1985bbf89de1d94b0a3a54159d58a6da"
+  },
+  "dependencies": [
+    {
+      "path": "tools/animation-skeletal-fixture.py",
+      "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "tools/animation-character-bounds-verify.py",
+      "sha256": "c39464270a138963ceea26a14e1050eda6bbe5edeeb93dd81b6910b5fb3e8c6c"
+    },
+    {
+      "path": "reports/animation-shadow-queue-bindings.json",
+      "sha256": "cf9e4df4d402591e7159f0a7d08ccf7d956126c71b6e30c87d5e3549189a0472"
+    },
+    {
+      "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+      "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+    }
+  ],
+  "method": "Original full5e4280 and its scalar5c03e0/5c0490 callees execute without callback replacement. Compare entire1MiB persistent fixture, vertex/group/generated counters and exact transform-call counts. Direct helpers include original in-place source/output probes and all output bits.",
+  "limits": [
+    "Finite vertices/matrices/direction and finite stored results. Face normals may additionally contain quietNaNs, which pass the native unordered comparison; four authored such faces and96 synthetic quietNaN probes are retained. Direct transform helpers remain finite-only. No arbitrary overlapping source/matrix/output memory.",
+    "Resolved nonnegative edge counts, backed polygon and vertex arrays, sufficient output capacity. Output group table saturates at250; vertex output continues.",
+    "Authored pair fields are verified PNTR relocations with bounded source payload hashes. This recovers CPU side quads; no cap generation, GPU draw or exact Unity rasterization claim.",
+    "Managed replay is prepared/compiled only; no generated managed executable launched."
+  ]
+}

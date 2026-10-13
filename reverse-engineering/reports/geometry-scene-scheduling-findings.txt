@@ -1,0 +1,42 @@
+Original normal scene scheduling
+
+The recognized normal chain is601df0 ->5f5830 ->5f3c80 ->5eeb30,
+followed by5f5380 static LOD/frustum selection and source-order5f0f00 dynamic
+handoffs.5f0d70 later consumes display dirty bit4 through5df910/5df880.
+The per-room mask/query helpers have no direct recognized calls in the corpus;
+scheduling reads the625-byte instance mask atGSNH+13c/context+1c instead.
+
+240 integrated native cases across all60 portal scenes pass,plus480 repeated/
+global-skip calls. Source data includes38,202 bounds,38,432 static clip records,
+15,960 dynamic special records,403 room definitions and326 portals. The original
+chain made47,552 frustum calls,selected34,556 static clips and issued40,970
+ordered dynamic handoffs. Static parity/material bits,clip bits,shader context,
+context flags,portal results,call order and exact selected transform bytes agree.
+All34,556 defined alpha outputs are1.0; nontrivial fades remain covered by the
+earlier independent fade suite,not newly established here.
+
+128 synthetic scheduler gate cases and12 direct preparation cases pass. They
+cover dirty/global skip,zero static clips,dynamic skip/bit16,inactive specials,
+portal filtering/bypass,0/-1/valid matrix pointers,disabled/null workspace and
+legacy versus alternate instance-count ownership. Empty static clips do not
+set dirty bit4. Repeated dirty calls execute the original empty debug callback;
+global skip returns before that callback.
+
+Boundaries are explicit.5f0f00 receives the actual original-selected handle and
+matrix,which are recorded before returning0; its packet/material/GPU effects
+are outside this batch. Original portal traversal,static visibility,frustum,
+LOD and normal scheduling execute unchanged. The external D3DX multiplication
+used only while preparing frustum fixtures is a declared scalar adapter. Camera
+world/projection data are prepared inputs. Grid/tree/shadow/alternate-camera
+branches remain excluded. The original16-volume limit is unchanged; safe cases
+were selected from the prior complete-entry suite.
+
+SceneScheduling.cs reconstructs the bounded caller contracts and105-DWORD
+shader-context copy helper. Core and SceneSchedulingHarness compile in a
+separate assembly without altering the stable geometry map/assembly. The
+4,081,901-byte fixture covers240 authored cases plus128+12 boundaries. Checker
+tools/geometry-scene-scheduling-check.py prepares or compares saved output only.
+Harness arguments are inputFixture/originalSineTable/outputFile. Managed
+execution remains pending; no operating-system bypass or GPU claim is made.
+Three source mappings,hashes,field offsets and remaining gaps are in the separate
+geometry-scene-scheduling-source.json for shared integration.

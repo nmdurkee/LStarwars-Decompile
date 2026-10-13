@@ -1,0 +1,231 @@
+{
+  "generatedAt": "2026-10-12T21:11:35.336Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "SetLocator": {
+      "address": "0x445cf0",
+      "description": "First-call ordered parser. Empty arguments preserve the previous selected locator; a nonempty unknown-token list clears it. name= is a substring; personal/indexed/nearest are whole tokens. Default target is creature reference, not its first pointed world object. A missing named callback preserves self; a callback returning null suppresses the write. Suffix generation still uses the original creature reference, even when writing another actor. Nearest scans contiguous name_0, name_1,... until first lookup failure, minimizing squared 3D distance with strict less-than and initial cutoff 1e9; first tie wins. Writes target packet+0xa4.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_445cf0.c",
+          "line": 7,
+          "address": "0x445cf0"
+        }
+      ]
+    },
+    "SnapToLocator": {
+      "address": "0x446060",
+      "description": "First-call ordered parser defaults to the world object pointed to by the creature reference. Failed named/player target resolution falls back to that self object. With no name it uses actor+0x36c; a failed explicit name does not fall back to the old locator. It copies locator position to seven actor vectors, heading low16 to three angle fields, and six opaque orientation words. Global snap origin is copied and velocity is replaced by the three native reset globals. RefreshTerrain always runs after a successful snap; dont_check_terrain skips only the second CheckTerrain callback. It changes neither the actor spawn locator nor packet selected locator. The PC random substring numeric offset is +9, preserved despite the usual +7 form elsewhere.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_446060.c",
+          "line": 9,
+          "address": "0x446060"
+        }
+      ],
+      "positionOffsets": [
+        "0x5c",
+        "0x80",
+        "0x8c",
+        "0x98",
+        "0x1b4",
+        "0x1cc",
+        "0x10bc"
+      ],
+      "angleOffsets": [
+        "0x58",
+        "0x5a",
+        "0x27a"
+      ],
+      "orientationOffset": "0x420"
+    },
+    "GotLocator": {
+      "address": "0x514ae0",
+      "description": "Returns float 1 for any nonnull packet selected-locator pointer and float 0 otherwise; does not validate or dereference the record.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_514ae0.c",
+          "line": 7,
+          "address": "0x514ae0"
+        }
+      ]
+    },
+    "lookup": {
+      "address": "0x51ac10",
+      "description": "Ordered, first case-insensitive name match over system count+0x24 and table+0x28, stride0x3c. Portable records preserve ordering and duplicate first-match behavior; live file attachment and table lifetime are host-owned.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_51ac10.c",
+          "line": 7,
+          "address": "0x51ac10"
+        }
+      ]
+    },
+    "GoToLocator": {
+      "address": "0x536700",
+      "description": "Missing creature/reference/world object/path/node completes immediately. Entry clears packet flags, copies selected locator to active, but retains existing wait and goal range. The movement-token callback gets first refusal. name or teleport substrings consume the next token, with only preceding personal/indexed/random modifiers affecting the generated name. Teleport writes reference position only and completes, without Snap caches or terrain callbacks. Entry wait defaults to 0.01 or one float-RNG interpolation only if the retained/parsed wait is zero. A bound target writes intent, builds facing point and yields. Later calls rewrite intent, optionally face opponent, enforce ground gating, and compare squared 3D/XZ distance against (delta*travelSpeed+float32(goalRange+0.1)) squared. Outside range, a specific flag/callback path can complete. Inside range, positive wait subtracts delta and clamps at zero but still yields; completion follows on the next in-range update.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_536700.c",
+          "line": 9,
+          "address": "0x536700"
+        }
+      ]
+    },
+    "FollowPlayer": {
+      "address": "0x452570",
+      "description": "Requires creature/reference/world object/follow system. Entry preserves existing packet flags, hold byte, cached target and goal range; consumed movement tokens skip other parsing. Flags control target-radius omission and direct off-path following; unknown operands set goal only while it remains zero. nearest stores the nearer player, ties choosing player0; nevertheless the subsequent actual follow helper always receives global player0. Signed party index -1 disables the offset; otherwise a positive override forces 0.01 or the indexed table offset adds to goal. hold_special_button ORs the native special mask into both world-object input words. This command normally yields indefinitely.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_452570.c",
+          "line": 9,
+          "address": "0x452570"
+        }
+      ]
+    },
+    "followIntent": {
+      "address": "0x534e10",
+      "description": "Selects either target path point/mode1 or actual controller position/mode7. Off-path mode requires its flag and path mismatch/missing path, eligible same node, a null node, source flag0x100000, or next-hop ordinal255 between different indices. Copies six raw target path words and uses target radius unless ignore-radius is set. This is route-state consumption, not route construction or motion integration.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_534e10.c",
+          "line": 7,
+          "address": "0x534e10"
+        }
+      ]
+    },
+    "intent": {
+      "address": "0x52fcb0",
+      "description": "Ordinary branch conditionally copies a nonnull point and nonnull six-word block, always writes radius/goal and replaces only the low3 flag bits. Enabled formation: modes1/4 dispatch an owner command only for the leader then delegate formation intent; mode5 becomes1; other modes use ordinary writes. Original nullable writes, all16 mode values, four flag patterns and null/disabled/leader/member formation branches were verified. Formation expansion remains an explicit adapter.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_52fcb0.c",
+          "line": 7,
+          "address": "0x52fcb0"
+        }
+      ]
+    },
+    "distances": {
+      "description": "Portable DistanceSquared represents the callers using nonnull float32 difference scratch vectors and final float32 squared-distance storage. It does not expose the native optional output-vector/null-output extended-precision ABI. FollowPlayer nearest uses the null-output distance path, which still stores all differences to float32 on its stack, followed by float32 sum before sqrt and float32 comparison values.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5b3c50.c",
+          "line": 7,
+          "address": "0x5b3c50"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5b3cf0.c",
+          "line": 7,
+          "address": "0x5b3cf0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_5becc0.c",
+          "line": 7,
+          "address": "0x5becc0"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "checks": 16766,
+    "mismatches": 0,
+    "suites": [
+      {
+        "name": "locator-binding",
+        "checks": 7851,
+        "report": "reverse-engineering/reports/gameplay-locator-binding-tests.json"
+      },
+      {
+        "name": "movement",
+        "checks": 6699,
+        "report": "reverse-engineering/reports/gameplay-movement-tests.json"
+      },
+      {
+        "name": "movement-helper",
+        "checks": 2216,
+        "report": "reverse-engineering/reports/gameplay-movement-helper-tests.json"
+      }
+    ],
+    "authoredOccurrences": {
+      "SnapToLocator": 186,
+      "GotLocator": 157,
+      "SetLocator": 222,
+      "FollowPlayer": 325,
+      "GoToLocator": 516
+    },
+    "retainedStateChains": 12,
+    "retainedStateSteps": 56,
+    "compiled": "Both source replay harnesses compile with Framework C# compiler; managed execution remains pending."
+  },
+  "portable": {
+    "sources": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+        "bytes": 9932,
+        "sha256": "957318d9161c4f1c4c69af0836f49249000fe95ddbb6c123154c6b80e242cb38"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/MovementCommands.cs",
+        "bytes": 11145,
+        "sha256": "a0a87462d1c142371ee1de25ed3e4a698f877d697f8694881e04a960fd7e222a"
+      }
+    ],
+    "harnesses": [
+      {
+        "entrypoint": "GameplayLocatorVerify.Main",
+        "path": "reverse-engineering/tools/gameplay-locator-portable-verify.cs",
+        "arguments": [
+          "reports/gameplay-locator-binding-native-fixtures.json",
+          "reports/gameplay-locator-csharp-validation.json"
+        ],
+        "nativeComparisons": 7851,
+        "bytes": 7668,
+        "sha256": "c3e7bfcb32a6be5029049ebd7febcd8087b7671eeb77f703333d31f9e7ca1d13",
+        "status": "Compiler exit0. Generated managed executable not launched; comparison pending."
+      },
+      {
+        "entrypoint": "GameplayMovementVerify.Main",
+        "path": "reverse-engineering/tools/gameplay-movement-portable-verify.cs",
+        "arguments": [
+          "reports/gameplay-movement-native-fixtures.json",
+          "reports/gameplay-movement-csharp-validation.json"
+        ],
+        "nativeComparisons": 6699,
+        "bytes": 10983,
+        "sha256": "2a712c8210e37f1020e189145a4c3e05e1b82211e9033b768569c4d30d3dca0b",
+        "status": "Compiler exit0. Generated managed executable not launched; comparison pending."
+      }
+    ],
+    "namespace": "Recovered.Gameplay",
+    "adapters": [
+      "Runtime actor/reference identity, current locator tables, player globals and packet attachment are supplied by the host.",
+      "Named-object binding, terrain refresh/check and source/world lifetime are explicit callbacks.",
+      "Movement-token callback0x9238b0, complete expression evaluator0x514920, angle rotation table, completion callback0x9238b8 and formation expansion remain services.",
+      "Fixtures consuming walk/run/tiptoe use arbitrary markers to verify callback precedence; their actual runtime mode values are not inferred."
+    ],
+    "hostGuards": [
+      "Shipped ASCII names and finite numeric operands only; name buffers over63 characters and unbound percent-format directives fail explicitly.",
+      "Nearest-prefix scan has a4096-record host budget. Missing malformed route arrays and invalid required actor/controller references fail explicitly.",
+      "The portable runtime uses resolved typed objects in place of raw PC pointer aliasing; six opaque path/orientation words remain preserved as raw uint32 values."
+    ]
+  },
+  "remaining": [
+    "Synthetic locator and actor tables; not runtime source attachment or actual level reachability.",
+    "No format directives, overlong native name buffers, invalid actor packet pointers, or nonfinite/overflow numeric operands.",
+    "Snap terrain refresh/check internals are recorded callback boundaries, not reconstructed by this suite.",
+    "Condition cases establish pointer presence only, not locator validity or source condition-chain execution.",
+    "Compiled C# execution remains pending.",
+    "Synthetic valid path/node/actor relationships; no actual world pathfinder, motion integration or terrain stepping.",
+    "Formation record is null in this suite; native formation-mode delegation is a separate boundary.",
+    "Movement token callback consumes walk/run/tiptoe using fixture markers, not claimed runtime speed-mode semantics.",
+    "Expression evaluation executes original PC code in fixtures; portable general expression evaluation remains a supplied service.",
+    "Finite scalar fixtures; arbitrary x87 rounding, NaN/overflow and bad pointer domains are excluded.",
+    "Managed compiled comparison remains pending.",
+    "Formation owner dispatch and expansion are observed adapters, not implemented formation algorithms.",
+    "Chains move creature position explicitly to the selected target; no pathfinder or physics step is claimed.",
+    "Finite float domains and valid pointers; compiled managed comparison remains pending.",
+    "The helper/retained-chain suite is native-only evidence; the two compiled replay harnesses cover the binding and movement command suites.",
+    "No locator-specific character motion, actual AI pathfinder, turning, collision integration, source-loader binding or complete locomotion loop is supplied.",
+    "Exact x87 equivalence beyond the finite authored/targeted operand domains remains unclaimed."
+  ]
+}

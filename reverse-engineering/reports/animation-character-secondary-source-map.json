@@ -1,0 +1,67 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5f4ff0"
+  ],
+  "scope": "Refines5f4ff0 secondary predicate composition, preserving prior layer, visibility, shadow and normal-packet projections.",
+  "mappings": [
+    {
+      "address": "0x5f4ff0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "sourceSha256": "ea2d1aa53cb1b3b554e875774e64ba08c1025a294a0086d78d9d0e91e02074ad",
+      "methods": [
+        {
+          "name": "CharacterSecondaryPipeline.Submit",
+          "line": 10
+        }
+      ],
+      "coverage": "extends CharacterRenderPipeline with actual secondary visibility and shared cache flag",
+      "qualification": "Retains CharacterRenderPipeline/CharacterLayerSubmission and supplies SecondaryVisibility.Evaluate at their5ea6a0 boundary. Synchronizes count966384 and flag9715a0 through predicate, draw callbacks and final clearing. Actual matrix and shadow queue helpers execute; dynamic5f0f00 remains an explicit bounded adapter. Separate CharacterPacketPipeline covers the normal no-secondary draw composition. No additional native entry point.",
+      "comparisonStatus": "Original native exact composition passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-secondary-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "sha256": "ea2d1aa53cb1b3b554e875774e64ba08c1025a294a0086d78d9d0e91e02074ad"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-secondary-portable-verify.cs",
+      "sha256": "ba5b7dfdc2529af1ba62b135f80f4e26e3c7ce28521a4f89989567169c4053cf"
+    },
+    "entrypoint": "CharacterSecondaryPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-secondary-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3152,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-character-secondary-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-secondary-tests.json",
+    "reverse-engineering/reports/animation-layer-submission-assembly.json",
+    "reverse-engineering/reports/animation-character-visibility-assembly.json",
+    "reverse-engineering/reports/animation-shadow-queue-assembly.json",
+    "reverse-engineering/reports/animation-secondary-visibility-assembly.json"
+  ]
+}

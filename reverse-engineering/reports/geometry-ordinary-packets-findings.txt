@@ -1,0 +1,32 @@
+Ordinary dynamic mesh packets
+
+Original603580 writes a64-byte transposed caller matrix after4-byte alignment.
+Its material,mesh and prior-payload arguments are unused. The two context
+getters return addresses that are ignored. It constructs scale/translation
+scratch matrices at2857230/28571f0 from80e258..80e264 but does not multiply them
+into the payload. Both scratch effects and the allocator result are retained.
+
+5f7610 copies transpose pairs in a fixed instruction order. In-place operation
+works; partially overlapping views preserve that original ordered read/write
+behavior rather than copying the whole matrix first.128 fixtures cover source
+offsets-60/-16/-4/0/4/16/60/128 with finite/subnormal/signed-zero/infinite and
+quiet-NaN words. Signaling NaNs remain outside this portable domain.
+
+5e0200 reserves two commands and writes8c(transform payload),82(mesh resource),
+cache and output pointers, clamped alpha and signed-int metadata at payload
+offsets60/56.5e02b0 reserves three commands: it first copies the opcode/resource
+from source command32bytes earlier, then writes8c/82 and patches only alpha.
+Original reserve,constructor,transpose,alpha and signed-int helpers all run
+unchanged in these tests; hooks merely record entry addresses.
+
+1,568 original-vs-Python cases pass, comparing6,422,528 complete snapshot bytes.
+480 authored matrices sampled across60 source scenes each run through the
+standalone producer, ordinary packet writer and prefix packet writer; the128
+overlap cases are additional. Source hashes and selected special indexes are
+preserved. GPU interpretation and the complete5f0f00 caller are not implied.
+
+OrdinaryMeshPackets.cs and Main OrdinaryMeshPacketsHarness compile with default
+AnyCPU. The63,710-byte gzip fixture takes compressedInputFixture/outputFile.
+geometry-ordinary-packets-check.py prepares or compares saved output and never
+launches it. Compiled equality remains pending. Billboard/deformed packet
+families and the full caller remain explicit next dependencies.

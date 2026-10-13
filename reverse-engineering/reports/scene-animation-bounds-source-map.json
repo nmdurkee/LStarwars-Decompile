@@ -1,0 +1,88 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x5ea660",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationBounds.cs",
+      "sourceSha256": "ebce6ac55e72454898b63838e71c8190fe97502736019259df33583deb7f7390",
+      "methods": [
+        {
+          "name": "SceneAnimationBounds.Notify",
+          "line": 69
+        }
+      ],
+      "coverage": "finite valid-reference gate/dirty-flag/bounds producer",
+      "qualification": "Projected nullable scene/descriptor/display references. Native routine is void; portable Boolean reports whether the update branch ran, not native return-value equivalence.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-bounds-tests.json"
+    },
+    {
+      "address": "0x5df480",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationBounds.cs",
+      "sourceSha256": "ebce6ac55e72454898b63838e71c8190fe97502736019259df33583deb7f7390",
+      "methods": [
+        {
+          "name": "SceneAnimationBounds.Rebuild",
+          "line": 52
+        }
+      ],
+      "coverage": "finite valid-record bounds transformation and meaningful record writes",
+      "qualification": "Uses original normal-instance/display animated transform selection, local min/max, descriptor format and bounds index. Native uninitialized W padding is explicitly excluded; portable preserves old padding and marks it unknown. Original final603a10->5f7490 callback is a true no-op.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-bounds-tests.json"
+    },
+    {
+      "address": "0x5b30a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationBounds.cs",
+      "sourceSha256": "ebce6ac55e72454898b63838e71c8190fe97502736019259df33583deb7f7390",
+      "methods": [
+        {
+          "name": "SceneAnimationBounds.TransformPoint",
+          "line": 46
+        }
+      ],
+      "coverage": "finite three-component affine point helper",
+      "qualification": "Row-vector matrix and x87 multiply/add order. Returns a new vector, covering native input/output aliasing by reading inputs before output stores; malformed pointers excluded.",
+      "comparisonStatus": "Original native differential passed; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-bounds-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/SceneAnimationBounds.cs",
+      "sha256": "ebce6ac55e72454898b63838e71c8190fe97502736019259df33583deb7f7390"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harnessDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/SceneAnimationBounds.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs"
+    ],
+    "harness": {
+      "path": "tools/scene-animation-bounds-portable-verify.cs",
+      "sha256": "b7c399abd20058ab13c0464fd04117bf3ea9a938f03736ffefcb72bbd9e44459"
+    },
+    "entrypoint": "SceneAnimationBoundsVerify.Main",
+    "arguments": [
+      "reports/scene-animation-bounds-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 22076,
+    "status": "Core/harness compiled, not executed.",
+    "compileEvidence": "reports/scene-animation-bounds-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/scene-animation-bounds-tests.json",
+    "reverse-engineering/reports/scene-animation-bounds-assembly.json"
+  ]
+}

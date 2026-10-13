@@ -1,0 +1,17 @@
+SHADOW CONTEXT REGISTRY
+
+{"register": 924, "cases": 2007, "checkedBytes": 49468536, "reset": 292, "count": 205, "any": 28, "context": 272, "mask": 286}
+
+Registration5d0560 first checks signed count<4, then context+808 nonzero and context+824 zero. Accepted context gains+824=1, enters next pointer slot, increments count and invalidates9715a0. Full registry returns before reading context.
+
+Reset5d05b0 clears+824 for each active pointer then resets count/cache. Existing pointers and masks remain unchanged, including inactive guard slots. Duplicate pointers do not change ordering semantics.
+
+GetCount preserves signed32 count; HasContexts is signed>0. GetContext reads a slot irrespective of active count. GetMask returnsffffffff when cacheflag0 before reading the index/array; a nonzero flag returns the cached raw mask word.
+
+596950 and596970 each consist of a direct JMP5d05b0; the fixtures execute both original entry thunks. They are mapped entries, not additional independent reset implementations.
+
+These globals are exactly the count/pointer/mask/cache fields consumed by SecondaryVisibility and DynamicObjectSubmission.SubmitWithShadows. The original registration API caps the live registry at four, narrower than the generic bounded consumer fixtures.
+
+2007 complete original comparisons include924 registration,292 reset,205 count,28 signed-positive,272 context and286 mask queries.32 sequential40-operation scenarios preserve stale slots/cache and repeated pointer cases.
+
+No context allocation, light-volume construction, GPU shadow rendering or managed execution is claimed.

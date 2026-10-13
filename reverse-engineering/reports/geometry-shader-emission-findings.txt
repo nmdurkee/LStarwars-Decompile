@@ -1,0 +1,47 @@
+CPU shader context emission and sorted command integration
+
+Original607590 first tests null shader or equal identifier words at+20 and
+returns immediately. Otherwise it compares six16-bit keys in order:
++24/+2c/+2e/+1e/+32/+30. Commands94/9a/a6/a5/ab/a9 carry their changed payloads.
+Five payload pointers are cached in shader+34/+110/+168/+180/+198; the final
+signed-byte descriptor is rebuilt when its key changes. Context keys update
+even when the optional final descriptor is absent and noA9command is emitted.
+The identifier updates after all subordinate work.
+
+The188-byte vector/matrix payload copies opaque words and inserts1.0 vectorW.
+The4-byte scalar uses a raw optional word or1.0. Another helper copies one raw
+word; a conditional payload writes one or five words. The optional byte-array
+payload has twoDWORD header values and converts signed bytes to exactfloat32
+integers. It reserves four-float blocks and preserves unused trailing bytes.
+The inline148-byte matrix payload includes a signed16-bit key in a wrapping
+32-bit token expression,matrix words,a zero-initialized local matrix with five
+assigned words,and four trailing source words. Native tests cover edge keys
+0/1/7fff/8000/ffff and identifier values0/1/ffffffff/80000000/7fffffff.
+
+All1,680 isolated original cases pass:640 payload/alignment cases,1,024 context
+key/cache/identifier/descriptor combinations,and16 null shader cases.
+8,856,384 state/call bytes match. Every64-key subset is covered,cached and
+uncached payloads,matching and different identifiers,and absent/empty/3/255
+byte descriptors. Additional payload lengths1/4/5/127 exercise rounding.
+
+Integration adds120 cases across all60 authored portal scenes. Original
+5e0d00 calls changed-context607590,which calls original payload writers and
+6034b0.6,422 changed shader calls,38,532 appends,6,902 payload calls and
+47,862,269 compared state/call bytes match. Independent tail choices ensure
+active materials exercise both original tail-equal and tail-different paths.
+This corrects a correlation in the earlier sorted fixture patterns; no
+unexecuted branch is silently inferred. Authored material flags/index maps/
+sort ranges combine with controlled valid runtime cursors,not a live capture.
+All original instructions execute unchanged; hooks only observe entries.
+
+ShaderContextEmission.cs has six bounded native mappings. CompleteSorted is
+an integration adapter toSortedPackets,not an extra recovered native entry.
+Both harnesses compile. Their gzip fixtures are2,244,390 and3,291,547bytes,
+respectively. Arguments are compressedInputFixture/outputFile. Check scripts
+only prepare or compare saved output. Compiled C# behavior remains pending.
+
+The static sorted-finalization callback now has a recovered finite CPU
+implementation including shader emission. Dynamic-list flush5de440 remains
+separate. This does not establish downstream GPU interpretation/rendering,
+a live engine frame,or a Unity project. Invalid pointers,partial metadata/
+arena overlap and allocator address overflow remain outside the source domain.

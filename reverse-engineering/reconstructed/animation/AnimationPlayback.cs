@@ -161,6 +161,42 @@ namespace Recovered.Animation
             }
             return Finish(sig, e + highest - 63, neg, round);
         }
+        // Truncation toward zero for finite values whose integral part fits Int32.
+        // Avoids a float/double store before native FOV index conversion.
+        internal int TruncateInt32()
+        {
+            if (significand == 0 || exponent <= -64) return 0;
+            if (exponent >= 0) throw new OverflowException("Finite x87 result exceeds Int32");
+            ulong magnitude = significand >> -exponent;
+            ulong limit = negative ? 0x80000000UL : 0x7fffffffUL;
+            if (magnitude > limit) throw new OverflowException("Finite x87 result exceeds Int32");
+            return negative ? unchecked(-(int)magnitude) : (int)magnitude;
+        }
+        // Explicit x87 FSTP qword rounding, for the few PC call sites that
+        // spill a wide intermediate to double before continuing arithmetic.
+        // Like Store(), exact zero has the shared representation's positive
+        // sign; nonzero underflow retains its sign.
+        internal double StoreDouble()
+        {
+            if (significand == 0) return 0;
+            int raw = exponent + 1086, shift = 11 + Math.Max(0, 1 - raw);
+            ulong q = 0;
+            if (shift < 64)
+            {
+                q = significand >> shift;
+                ulong r = significand & ((1UL << shift) - 1), half = 1UL << (shift - 1);
+                if (r > half || (r == half && (q & 1) != 0)) ++q;
+            }
+            else if (shift == 64 && significand > High) q = 1;
+            ulong bits = negative ? 0x8000000000000000UL : 0;
+            if (raw <= 0) bits |= q;
+            else
+            {
+                if (q == 0x20000000000000UL) { q >>= 1; ++raw; }
+                bits |= raw >= 2047 ? 0x7ff0000000000000UL : ((ulong)raw << 52) | (q & 0xfffffffffffffUL);
+            }
+            return BitConverter.Int64BitsToDouble(unchecked((long)bits));
+        }
         public float Store()
         {
             if (significand == 0) return 0;

@@ -150,3 +150,32 @@ The comparison harness tools/gameplay-createcreatures-portable-verify.cs exposes
 GameplayCreateCreaturesVerify.Main with fixture JSON and output JSON path arguments.
 Use reports/gameplay-createcreatures-native-fixtures.json as its input. Core and
 harness compilation passed; compiled differential execution remains pending.
+
+Locator selection and movement commands
+---------------------------------------
+LocatorCommands.cs supplies SetLocator, SnapToLocator, GotLocator and ordered
+locator lookup. MovementCommands.cs supplies GoToLocator, FollowPlayer, ordinary
+intent writes and path/node-state consumption. Neither file constructs paths or
+integrates actor velocity. Named binding, terrain callbacks, full expressions,
+movement-token interpretation, rotations and formation expansion have explicit
+host services. See reports/gameplay-locator-contract.json for the PC field map.
+
+Native verification passes 16,766 checks, covering all 1,406 authored command
+occurrences, 1,024 intent helper cases and 12 retained-memory update chains.
+FollowPlayer preserves the original nearest cache/player0-follow distinction.
+GoToLocator preserves the extra update after its positive wait reaches zero.
+
+Compiled harnesses expose public Main(string[] args), with two path arguments:
+  GameplayLocatorVerify (tools/gameplay-locator-portable-verify.cs)
+    reports/gameplay-locator-binding-native-fixtures.json, desired output JSON
+  GameplayMovementVerify (tools/gameplay-movement-portable-verify.cs)
+    reports/gameplay-movement-native-fixtures.json, desired output JSON
+Both require ScriptRuntime, Messages, CreateCreatures, LocatorCommands and
+MovementCommands. Compilation succeeds; no generated managed program was run.
+The additional helper/retained-chain suite currently has native-only evidence.
+
+TriggerConditions.cs and SceneAnimationControls.cs/ObstacleCommands.cs are
+independently supplied gameplay modules. Their precise adapters, source maps,
+native vectors and harness entrypoints are in gameplay-trigger-contract.json
+and native-obstacle-contract.json. The combined source map includes their
+explicit entries; it does not count transitive helper calls as reconstructed.

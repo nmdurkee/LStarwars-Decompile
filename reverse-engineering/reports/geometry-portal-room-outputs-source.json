@@ -1,0 +1,100 @@
+{
+  "schema": "recovered-geometry-room-outputs-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/PortalRoomOutputs.cs",
+      "bytes": 2023,
+      "sha256": "2818ef343c8ae3f6fab3be514110bd5b374d729081ac219c9a060c12d5a45aec"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5da2d0",
+      "method": "PortalRoomOutputs.HasClipForRoom",
+      "sourceFile": "reconstructed/geometry/PortalRoomOutputs.cs",
+      "coverage": "whole helper within valid allocated-header list; pointer scene presence/portal count represented by Boolean",
+      "evidence": "geometry-portal-room-outputs-native-validation.json"
+    },
+    {
+      "address": "0x5da330",
+      "method": "PortalRoomOutputs.WriteRoomMask",
+      "sourceFile": "reconstructed/geometry/PortalRoomOutputs.cs",
+      "coverage": "whole helper within valid successful-entry root and output bounds; null/no-portal branch retained",
+      "evidence": "geometry-portal-room-outputs-native-validation.json"
+    }
+  ],
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.RoomOutputs.dll",
+    "bytes": 4608,
+    "sha256": "f6ac360a83411598681d0309009732703658fe371ca9430575a71ad1b0b1141c"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/PortalRoomOutputsHarness.cs",
+    "bytes": 1997,
+    "sha256": "eb6f525824c3d5c5b838fbc32aab9ef74363094269b304ff03c2dd29102c63ad"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "reference": "reconstructed/geometry/Recovered.Geometry.dll",
+    "commands": [
+      "csc /nologo /target:library /reference:Recovered.Geometry.dll /out:Recovered.Geometry.RoomOutputs.dll PortalRoomOutputs.cs",
+      "csc /nologo /reference:Recovered.Geometry.dll /reference:Recovered.Geometry.RoomOutputs.dll /out:GeometryRoomOutputsHarness.exe harness\\PortalRoomOutputsHarness.cs"
+    ]
+  },
+  "managed": {
+    "schema": "portal-room-outputs-managed-check-v1",
+    "nativeEvidence": "geometry-portal-room-outputs-native-validation.json",
+    "fixtureCount": 7888,
+    "fixtureBytes": 112626,
+    "fixtureSHA256": "8db88e9f9e48db7e71f66013661ca8fbf8ffbca177b2d386677db4d2dea26768",
+    "expectedOutputBytes": 283808,
+    "expectedOutputSHA256": "0b30ca4f2ae16c1f6cc1d33cd5298491ce4fc714b6e7373cef32264db127c6f0",
+    "status": "prepared-not-executed",
+    "mainType": "PortalRoomOutputsHarness",
+    "arguments": [
+      "inputFixture",
+      "outputFile"
+    ],
+    "comparison": "All original query results,mask bytes,16-byte tail canaries and18 disabled calls; exact byte equality.",
+    "resultClaim": "No compiled-source equivalence until ordinary managed output is compared."
+  },
+  "native": {
+    "schema": "original-portal-room-outputs-v1",
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "passed": true,
+    "counts": {
+      "roomQueries": 90574,
+      "roomMasks": 7888,
+      "disabledQueries": 12,
+      "disabledMasks": 6
+    },
+    "errors": [],
+    "traversalCases": 7888,
+    "sourceRooms": 403,
+    "sourcePortals": 326,
+    "rootMaskQueryDifferenceCases": 7875,
+    "resultSHA256": "370246fddd617fe4613873fe49262fbeee4a3a04c53a1c2cb1a07886799a9a84",
+    "fixturesFile": "geometry-portal-room-outputs-fixtures.json.gz",
+    "scope": [
+      "Original5da2d0 and5da330 execute with no result or code adapters.",
+      "Input allocated-room sequences come directly from all validated original recursive outputs.",
+      "Room mask retains16-byte canary beyond the declared room count; null/no-portal calls leave output unchanged."
+    ],
+    "observations": [
+      "5da2d0 searches only allocated clip-header room IDs,including negative values; it does not independently include the root room.",
+      "5da330 clears declared room bytes,sets the current root,andsets each nonnegative allocated clip room.",
+      "Null scene or zero portal count makes5da2d0 return1 but makes5da330 a no-op."
+    ],
+    "limits": [
+      "Successful-entry root must be a valid room; invalid root would write outside native output and is excluded.",
+      "Portable compiled execution remains pending; no managed launches."
+    ]
+  },
+  "limits": [
+    "Original native behavior was compared against Python expectations. Compiled C# execution remains pending; no managed launch attempted.",
+    "Invalid root indices and corrupt header/output pointers are outside the portable adapter; native out-of-bounds writes are not reproduced.",
+    "Does not change the stable PortalTraversal source or existing shared source map."
+  ]
+}

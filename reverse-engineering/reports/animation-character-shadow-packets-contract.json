@@ -1,0 +1,146 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 466,
+    "counts": {
+      "cases": 466,
+      "layerDraws": 6979,
+      "packets": 75530,
+      "skinPackets": 20798,
+      "shadowPackets": 49446,
+      "secondaryCalls": 6995,
+      "volumeTests": 2950,
+      "shadowShaderCalls": 49446,
+      "locks": 54,
+      "zeroReturnWithPackets": 46,
+      "noLayerDraws": 48
+    },
+    "authoredRigs": 298,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports\\animation-character-shadow-packets-native-fixtures.json.gz",
+      "bytes": 1956264,
+      "sha256": "963b17f7b694268858431774246244f3e594d228f54be3823f2fba7d15d098ae"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-character-packets-verify.py",
+        "sha256": "4754993949c50c1b2a88187a0183537f202731be8502d8cf6190e384d9796853"
+      },
+      {
+        "path": "tools/geometry-dynamic-shadow-native.py",
+        "sha256": "721f0d3faab90e6bd27f71c3fb08035aa21774b0aa63cc466201e92aa5f7d639"
+      },
+      {
+        "path": "tools/geometry-dynamic-skin-native.py",
+        "sha256": "9f374025e56ebbadbdb54c64d0eb21b34e90f553e78e9da91e59e29dca492226"
+      },
+      {
+        "path": "tools/geometry-dynamic-submission-native.py",
+        "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+      },
+      {
+        "path": "reports\\animation-morph-mesh-native-fixtures.json.gz",
+        "sha256": "eb5b1e9e608fa19072bd4e3a7a54b40f9836ed32e085e06a81d4337650b7560f"
+      },
+      {
+        "path": "reports/animation-layer-submission-native-fixtures.json.gz",
+        "sha256": "a2ede96a2e3c088d650931b8b4cbd6d96ec0289e7f82a70e7eaeac89f6b94eb4"
+      }
+    ],
+    "method": "Actual original5f4ff0 through secondary predicates, full5f0f00 normal/shadow scheduler, both shader emitters, real skin/morph/ordinary/prefix packet writers and original D3DX matrix code. Only successful COM Lock/Unlock supplied. Every persistent1MiB byte including mirrored masks compared, excluding32B packet scratch and64B host matrix scratch; layer entry palette/matrix hashes, cursor/flags, packet order and COM events agree.",
+    "limits": [
+      "Controlled relocated handles bind full authored layer topology to one source-matched mesh; exact shipped layer-to-mesh loader association remains unproven.",
+      "Finite scalar valid state; shadow contexts/planes are controlled fixtures, not original volume producers.",
+      "Billboard, sway, fade, material merge and active character shadow-queue production remain separate.",
+      "No GPU/live scheduler or managed executable launch."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterShadowPacketPipeline.cs",
+      "sha256": "6c41ec0e574f088162cdd9cc7cfedda0ef223b0932a88a4411c7f6b53e82de9b"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "reconstructed/geometry/ShaderContextEmission.cs",
+      "reconstructed/geometry/DynamicSelection.cs",
+      "reconstructed/geometry/DynamicSubmission.cs",
+      "reconstructed/animation/CharacterPacketPipeline.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "reconstructed/geometry/ShadowContextEmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-shadow-packets-portable-verify.cs",
+      "sha256": "c41f204cd113205e6fd3d8e4caa08690db39c1ea9e9b8b08dcc06c1c7050a378"
+    },
+    "entrypoint": "CharacterShadowPacketPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-shadow-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 466,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-shadow-packets-compile.json"
+  },
+  "contracts": {
+    "composition": "One public bridge joins the existing character layer/palette loop, primary visibility, secondary mask evaluator, dynamic normal/shadow scheduler, shader emissions and ordinary/prefix/skin/morph packet writers. It reuses their implementations rather than claiming a new native entry point.",
+    "state": "CharacterSubmissionState owns original966384 count,806ccc visibility,9715a0 cache flag and allocator at entry. The outer secondary test forces refresh1 and stores masks; inner dynamic draws invoke refresh0 against the same masks and cache. Every dynamic return updates the character flag and cursor before the next layer. The final character cleanup restores original cached visibility and clears all projected cache flags, including zero-count and culled returns.",
+    "shadows": "The two supplied views must describe the same contexts: SecondaryVisibilityState supplies planes/masks; logical contextAddresses supply native volume count and packet records. Normal and shadow draws share matrix/skin/morph pointers and allocator. Shadow-only rendering may emit packets while returning0; caller OR return flags retain this native behavior. Context construction and registration remain separate producers.",
+    "palette": "Smooth palette storage is reserved before rigid submissions and filled immediately before smooth submission. Packet adapters verify forwarded palette identity, resolve mesh only for skin draws and read weights at pointer+8. Final materialization preserves palettes whose smooth handles were invalid. Source arrays, matrix scratch, packet arenas and context records must be valid and disjoint.",
+    "evidence": "466 original complete-chain checks across298 authored source rigs. Controlled source-matched full layer topology, secondary-only visibility, main/secondary culling, dynamic instance shadow bit disabled, zero context count, reversed/duplicate/invalid layer maps and weighted shadow-only smooth cases. 75530 packets, including49446 shadow packets and20798 skin/morph packets. Whole1MiB persistent image, mirrored mask guards, layer entry hashes/cursor/cache, emitted record order and COM events agree.",
+    "binding": "As in the earlier packet bridge, valid authored layer handles are rebound to one selected mesh from the same GHG through controlled scene/material records. This establishes the consumer ABI and temporal composition; it does not recover the shipped loader association. Shadow volumes here are controlled records with empty/accepting/rejecting plane sets.",
+    "managed": "Prepared replay compares whole-memory SHA256, mask/cache/cursor state, normal/shadow packet order and record identities, buffer locking events and layer submission count. Entry-only native matrix/palette diagnostics remain independently checked by the native/Python model. Both targets compile; no generated managed executable was launched."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-character-shadow-packets-verify.py",
+      "sha256": "0f3584c2ad63f572adabb9f6a56220565bbe3c617dd3fd9686f8399fd5ffd6b7"
+    },
+    {
+      "path": "tools/animation-character-shadow-packets-report.py",
+      "sha256": "d8846544836be7e16923b64523a480c03a93572ce03d3ee64157dfa0a6000047"
+    }
+  ],
+  "limits": [
+    "Controlled relocated handles bind full authored layer topology to one source-matched mesh; exact shipped layer-to-mesh loader association remains unproven.",
+    "Finite scalar valid state; shadow contexts/planes are controlled fixtures, not original volume producers.",
+    "Billboard, sway, fade, material merge and active character shadow-queue production remain separate.",
+    "No GPU/live scheduler or managed executable launch.",
+    "Full caller fixture contexts0..2 and volumes0..4; previously established helper bounds are not an authored live-count claim.",
+    "The legacy character shadow queue remains globally disabled in this new original chain; its active producer is independently verified by prior character pipeline tests.",
+    "Optional material merge remains an explicit service. Successful COM buffer locking only; GPU and managed runtime equality remain pending."
+  ]
+}

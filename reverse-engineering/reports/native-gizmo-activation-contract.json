@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-10-12T23:32:18.086Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "command": "464820 parses ordered tokens; case-insensitive substring name= takes precedence over type= then FALSE. Last name/type win; FALSE latches active0. Parse all arguments before one actual name lookup and activation. Unknown type name yields-1 and therefore all-type search.",
+    "type": "559e20 requires global type table, registry and name. It scans signed count and uses case-sensitive strcmp on inline type-name records, first match wins. Expanded gates refine the earlier NamedGizmoRegistry host projection.",
+    "dispatch": "55a250 requires global types, registry, record, byte record.type<signed type count and a nonnull activation slot. Nonzero raw signed active calls optional visibility(record,1) first, then rereads the activation slot from the original captured type record and calls activation(record,active). The fourth incoming argument is unused.",
+    "mutation": "Visibility may replace the activation slot or mutate the gizmo type. The activation reread uses the original type record. Clearing the activation pointer before this unguarded call is outside the valid domain. Type-array storage relocation during callbacks is excluded.",
+    "refinement": "Registered-index/global/registry checks and integer callback values refine the earlier GizmoCallbacks.SetActive delegate projection; old source remains available as a related projection.",
+    "boundaries": "Physical activation and visibility implementations are explicit services. Full original command/registry functions run, but their per-type simulation side effects are not recovered by this module."
+  },
+  "commands": [
+    {
+      "kind": "git-action",
+      "name": "ActivateGizmo",
+      "address": "0x464820",
+      "sourceUses": 56,
+      "qualification": "Full parsing/type/name/registered activation dispatch; physical type callbacks explicit."
+    }
+  ],
+  "native": {
+    "cases": 1792,
+    "mismatches": 0,
+    "fullRegionComparisons": 1792,
+    "groups": {
+      "FindType": 216,
+      "SetActive": 1008,
+      "ActivateGizmo": 568
+    },
+    "authoredUses": {
+      "ActivateGizmo": 56
+    },
+    "method": "Actual464820,559e20,55a020,558770,55a250 and string helpers; physical activation/visibility callbacks are explicit services. Compare callback order, raw signed activation argument, callback-slot reread, post-visibility retag behavior and complete fixture memory."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/GizmoActivation.cs",
+      "bytes": 2370,
+      "sha256": "e8420d8c7083f6485e58af27f362564fe61dc36aa3d7edbec8d91984d0e09abd"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-gizmo-activation-portable-verify.cs",
+      "bytes": 4982,
+      "sha256": "06881910a163235d9c60b5cf8565f2eb737199e82640772bc1813260b74ce6d6"
+    },
+    "entrypoint": "GizmoActivationVerify.Main",
+    "arguments": [
+      "reports/native-gizmo-activation-vectors.json",
+      "reports/native-gizmo-activation-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-gizmo-activation-vectors.json",
+      "bytes": 838668,
+      "sha256": "f47caeb1ddb1c199fb95244e75b20d9bde1cc88074315d0ae18f570746178abf"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite valid ASCII token/type/name buffers and bounded signed type counts. Global type table and registry pointers have independent gates.",
+    "Physical type callbacks are explicit service boundaries, not recovered world simulation. Callback array storage stays stable; tests permit activation-slot replacement and gizmo type mutation during visibility.",
+    "56 authored action operands replay on prepared name tables, not loaded-level binding. Managed replay pending."
+  ]
+}

@@ -1,0 +1,17 @@
+2843 original-PC comparisons, zero mismatches. Two new helper mappings. Portable replay compiles only.
+
+construction
+51c150 subtracts the actor radius plus the original float32 0.05 constant from the three node radii, clamps negative results, adjusts each connection heading by the recovered arcsine helper, and constructs two offset lines. The real 5bee20 line parameters must both lie inclusively in [0,1]. A failed result preserves the output bytes. Success explicitly interpolates the first edge height before scaling and adding its direction. Exact float stores, signed angle wrapping, and x87 intermediate precision are retained.
+
+cache
+51c430 caches the ordered edge identities in packet190/194. A cache hit returns whether either flag20/40 is set without rechecking geometry, actor radius, or the path. A miss clears both flags and writes keys before testing the four shared-endpoint orientations. It tests the second outer point against the first edge using 51b1f0 with raw stamp mode1. Containment suppresses corner construction. Otherwise two swapped constructions write packet198/1a4 and independently assign flag20/40. Failed constructions leave previous output vectors unchanged.
+
+validation
+2,843 independent original-PC records pass: 2,168 direct corner constructions and 675 complete cache calls. All 440 instructions in both bodies execute. Cache calls execute the actual corridor helper; constructions execute actual arcsine, line-parameter, vector, square-root, and CRT instructions without behavior adapters. Cases include all endpoint orientations, cache flags, stamp collisions, route masks and boundaries, parallel lines, radius clamps, arbitrary finite heights and seeded layouts.
+
+Remaining
+Finite coordinates and intermediates, positive edge lengths, both arcsine ratios in [-1,1], valid loaded point/edge backing and disjoint caller outputs. NaN, infinity and pointer faults are excluded.
+Native fixtures use static nodes. Mutable scene attachment refresh and query/point aliasing during containment are not validated by this batch; the core retains PathCorridor's snapshot query domain.
+The supplied CorridorPath must match packet158. Loader allocation, backing lifetime and pointer identity projection remain host responsibilities.
+No authored command-use credit and no new credit for underlying helpers. The 675 cache calls are included in the 2,843 records; child helper executions are not additive. Full51d7b0 steering remains separate.
+Portable replay compiled only; no managed executable was launched. Native comparisons use an independent exact-arithmetic model.

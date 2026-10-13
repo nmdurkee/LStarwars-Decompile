@@ -1,0 +1,129 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "getters": "67a600,67a670,67a690 return full-width-1 for null result pointers, otherwise zero-extend bytes at ground+60, upper+61, lower+60. They do not clamp. 67a6e0 follows the result object container and index2961fdc; null container or index-1 returns-1. Otherwise record stride38, word2c==1 selects signed word30; other types return-1. The native performs no further index bounds check.",
+    "angles": "54fec0 writes the first global angle92b0c4 from Direction(vector.z,vector.y), optionally publishes it, rotates the vector by its negation around X via5b35a0, then writes the negated Direction(rotated.x,rotated.y) to optional output and global92b0c0. Angles wrap to16 bits. RotateX preserves X, computes Y=c*y-s*z and Z=y*s+c*z with original table indexing, x87 wide intermediates and float32 stores; in-place operation is verified.",
+    "apply": "572440 uses its supplied height independently from actor21c. Missing height2000000 clears1014,107b and106c; valid height gets ground byte, clamps it to0..31, sets107b=2, and uses character tuning90 bit8000 and material flags bit2 to decide whether1014 retains the height. publish!=0 updates raw E42, clamped285 and actorF24 normal; actor21c chooses default or result normal. Upper/lower heights are copied from global query results. Upper metadata is clamped to0..16 then masked by8034c4|95100c|40, except mode globals951288/951154 together suppress types7 and16. Lower metadata clamps to0..31. Missing heights use byte255 and clear upper angle words. The optional callback951010 executes at the end.",
+    "refresh": "5728a0 queries5506f0(actor,actor+5c,5,ffffffff), stores floor21c, and calls572440. A missing floor clearsD6C/285/E42 and writes the default normal; a valid floor selectsD6C from material flag8 and writes two copies of the normal angles. It computes bytes286/287 from upper metadata types1 or9 and comparisons against predictedY84 and bounds17c/188, then resets upper/lower sentinels and calls572440 again. If tuning bit8000 is clear,1014 is still missing and106c!=-1,553500 supplies a possible secondary height. The optional callback runs once more. Callback mutations are reread at later guards.",
+    "evidence": "4747 original-PC top-level comparisons pass against an independent model, covering all389 instructions in eight bodies. This includes all256 values and null cases for three metadata getters, object sentinel/type/id combinations, in-place rotations, optional angle outputs, terrain sentinels/masks and callback field mutations. The actual result getters, angle-table lookup and rotation bodies execute unchanged within caller fixtures. The geometric queries5506f0/553500 and callback951010 are bounded services. Nested helper calls are not additional primary comparisons."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 4747,
+    "counts": {
+      "material": 257,
+      "upperType": 257,
+      "lowerType": 257,
+      "object": 120,
+      "rotate": 2338,
+      "normal": 668,
+      "apply": 352,
+      "refresh": 498
+    },
+    "mismatches": 0,
+    "examples": [],
+    "instructionCoverage": {
+      "0x5728a0": {
+        "total": 145,
+        "executed": 145,
+        "missing": []
+      },
+      "0x572440": {
+        "total": 130,
+        "executed": 130,
+        "missing": []
+      },
+      "0x54fec0": {
+        "total": 42,
+        "executed": 42,
+        "missing": []
+      },
+      "0x5b35a0": {
+        "total": 34,
+        "executed": 34,
+        "missing": []
+      },
+      "0x67a600": {
+        "total": 7,
+        "executed": 7,
+        "missing": []
+      },
+      "0x67a670": {
+        "total": 7,
+        "executed": 7,
+        "missing": []
+      },
+      "0x67a690": {
+        "total": 7,
+        "executed": 7,
+        "missing": []
+      },
+      "0x67a6e0": {
+        "total": 17,
+        "executed": 17,
+        "missing": []
+      }
+    },
+    "services": [
+      "5506f0 actor-aware terrain query",
+      "553500 secondary height query",
+      "951010 optional callback"
+    ],
+    "topLevelComparisonsOnly": true,
+    "authoredCommandUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/TerrainActorState.cs",
+      "bytes": 9032,
+      "sha256": "b70b11df3546cd1519ef091484012251213f7f75cb7f82b1e2cb0932c2553383"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-terrain-state-portable-verify.cs",
+      "bytes": 8095,
+      "sha256": "0a6b33465fbbc282eed487028439016ce6fa2ab00ae93930c1e0e3129b4755f3"
+    },
+    "entrypoint": "GameplayTerrainStateVerify.Main",
+    "arguments": [
+      "reports/gameplay-terrain-state-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-path-angle-table.u16",
+      "reports/gameplay-terrain-state-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-terrain-state-native-fixtures.json",
+      "bytes": 1139394,
+      "sha256": "18266b595814d2e927a662c6a79c1273896f66a912f2af49d3f76da21b269638"
+    },
+    "tables": [
+      {
+        "path": "reverse-engineering/references/native-animation-sine-table.f32",
+        "bytes": 131072,
+        "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+      },
+      {
+        "path": "reverse-engineering/reports/gameplay-path-angle-table.u16",
+        "bytes": 1026,
+        "sha256": "35e5094c1387d087543073af7c92e184affc1f354be19a64f04788956d371d60"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-terrain-state-verify.exe",
+        "bytes": 649728,
+        "sha256": "60c907a5237d93705a1636919fd6293a9acddc7424ec24b1eb939bcf5bc498f6"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Finite float inputs, original angle/sine tables, valid actor/character/tuning/result backing. Object indices other than-1 must refer to loaded records. Invalid pointer faults and nonfinite arithmetic are outside the contract.",
+    "5506f0 actor-aware query,553500 secondary query and callback951010 remain explicit services. This batch reconstructs result consumption, not terrain triangle traversal, collision response or world allocation.",
+    "Normal-angle optional outputs do not overlap vector backing. RotateX supports destination==source; arbitrary partially overlapping storage is excluded.",
+    "Callback mutations are supported by rereading mutable world and actor state; tests cover selected actor-field changes. Material285 must remain a loaded table index when a callback changes it. Native would otherwise index outside the intended table.",
+    "Metadata labels remain offsets/role descriptions, not inferred material names. Synthetic fixtures use supplied finite geometry and flag tables; no authored command-use credit is assigned.",
+    "Portable source and replay harness compiled successfully. Managed execution and compiled comparison remain pending; no generated managed binary was launched."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-10-12T23:26:22.045Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "binding": "440ff0 returns the physical object pointer from the first matching name record in global force type7f8cc4.4410b0 additionally requires physical flags+a0 bit100. Existing55a020/558770 projections reused.",
+    "usingForce": "4678f0 requires nonnull target and actor, actor byte7b5 exactly8, and exact actor10cc physical-object pointer identity.441050 tests global primary player93d810 and returns float0/1.",
+    "platform": "441180 requires nonnull bound and primary player, either grounded byte281/282, signed-short ground index27e !=-1, readable current terrain transform, and transform height+34<=actor Y+60. Then ordered linked list bound+28 -> group+18, node+24 -> descriptor+2 must contain the ground-object short. No platform bit test in the condition itself.",
+    "reuse": "TerrainObjectConditions inclusive-height predicate and ActorStatusWorld fields are reused; Force simulation, physics updates and loaded-scene binding remain external."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "PlayerUsingForce",
+      "address": "0x441050",
+      "sourceUses": 41,
+      "qualification": "Mode8 and physical-target identity; actual Force simulation remains external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "PlayerOnForcePlatform",
+      "address": "0x441180",
+      "sourceUses": 38,
+      "qualification": "Grounded inclusive-height check and ordered platform membership; physics remains external."
+    }
+  ],
+  "native": {
+    "cases": 4388,
+    "mismatches": 0,
+    "fullRegionComparisons": 4388,
+    "groups": {
+      "BindUsingForce": 761,
+      "BindForcePlatform": 758,
+      "IsUsingForce": 224,
+      "PlayerUsingForce": 224,
+      "PlayerOnForcePlatform": 2421
+    },
+    "authoredUses": {
+      "PlayerUsingForce": 41,
+      "PlayerOnForcePlatform": 38
+    },
+    "method": "Unchanged original wrappers,4678f0,55a020 and558770; exact pointer identity, float32 returns, accessor order and complete fixture memory compared to independent bounded model."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ForceConditions.cs",
+      "bytes": 3181,
+      "sha256": "15235e6b0f1d07134d425549bf602794c16c5fc0a9f8677178302471f738b7db"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-force-conditions-portable-verify.cs",
+      "bytes": 5936,
+      "sha256": "3a90bfde9b3bf07a729b44e0320327fde442314de57af14303077a4409a75a92"
+    },
+    "entrypoint": "ForceConditionsVerify.Main",
+    "arguments": [
+      "reports/native-force-conditions-vectors.json",
+      "reports/native-force-conditions-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-force-conditions-vectors.json",
+      "bytes": 2468155,
+      "sha256": "045ee4bc8586d14f6ee081a6904c361adc6df49c1657babe0726155466951a2b"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite heights and readable terrain backing; unsafe negative/out-of-range ground indices, missing transforms and missing platform member groups excluded after actual short-circuit gates.",
+    "Ordered finite acyclic member lists projected to short-index arrays. Physical Force simulation and loaded-level binding remain external.",
+    "Authored operand names replayed against prepared type/name tables, not a captured loaded level. Managed replay pending."
+  ]
+}

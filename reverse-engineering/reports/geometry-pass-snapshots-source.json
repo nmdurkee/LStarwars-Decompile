@@ -1,0 +1,166 @@
+{
+  "schema": "recovered-geometry-pass-snapshots-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/PassSnapshots.cs",
+      "bytes": 2329,
+      "sha256": "514977451a01b66ccf258b99c41edce2109cc49c357c94b81f255315f8666ba2"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5f3950",
+      "method": "PassSnapshots.Capture",
+      "sourceFile": "reconstructed/geometry/PassSnapshots.cs",
+      "coverage": "whole-cpu-caller-with-recovered-pending-list",
+      "limitations": "Complete disjoint pass/snapshot arrays, valid bounded pending state, selected constructed volumes0/1 and eight-index volume capacity. Actual original chain/model agrees; managed equality pending.",
+      "evidence": "geometry-pass-snapshots-native-validation.json"
+    },
+    {
+      "address": "0x5f39e0",
+      "method": "PassSnapshots.CaptureThunk",
+      "sourceFile": "reconstructed/geometry/PassSnapshots.cs",
+      "coverage": "whole-cpu-caller-with-recovered-pending-list",
+      "limitations": "Complete disjoint pass/snapshot arrays, valid bounded pending state, selected constructed volumes0/1 and eight-index volume capacity. Actual original chain/model agrees; managed equality pending.",
+      "evidence": "geometry-pass-snapshots-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/PendingPackets.cs",
+      "bytes": 5100,
+      "sha256": "96d1b0ac2101b1ff1e64edda44d10911b4dfa9f41661bd0dbec984f1ee0ee507"
+    },
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    }
+  ],
+  "native": {
+    "report": "geometry-pass-snapshots-native-validation.json",
+    "schema": "geometry-pass-snapshots-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 520,
+      "persistentBytes": 9677440,
+      "emptyIndex": 72,
+      "active": 400,
+      "entry0x5f3950": 340,
+      "entry0x5f39e0": 180
+    },
+    "errors": [],
+    "fixtureFile": "geometry-pass-snapshots-fixtures.json.gz",
+    "fixtureBytes": 2011945,
+    "fixtureSHA256": "a10ffa84c14c7075c3c70288b01023c0c9dd0385f0812f28cd9e09a666b9b226",
+    "limits": [
+      "Original5f3950 and direct thunk5f39e0 execute actual5efff0/5fca40, with no computational stubs.",
+      "Complete current0x218-byte state and sixteen supplied snapshot slots are byte-compared. This is a validated fixture capacity, not an inferred universal native limit.",
+      "Active valid contexts use volume0/1 and pre-append count0..7 in eight slots+354..370. Disabled or empty-index cases preserve original context/volume short-circuit behavior.",
+      "Controlled exact layouts with all pending-list categories and160 sequential capture calls. Source-derived pending-list coverage remains in its independent native report.",
+      "CPU state/pending packet output only. GPU submission, resource lifecycle and managed runtime equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "PassSnapshotsHarness",
+    "arguments": [
+      "reports/geometry-pass-snapshots-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 520,
+    "harness": {
+      "file": "reconstructed/geometry/harness/PassSnapshotsHarness.cs",
+      "bytes": 3342,
+      "sha256": "8adf3df824bca32f7c28a605c54ca86bffec4ed333b20d38666799bf66704d2d"
+    },
+    "compileStatus": "passed",
+    "comparison": "Complete context/arena/current/snapshot bytes, pending state and snapshot count."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.PassSnapshots.dll",
+          "PassSnapshots.cs",
+          "PendingPackets.cs",
+          "SortedPackets.cs",
+          "FrameReset.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.PassSnapshots.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:PassSnapshotsHarness.exe",
+          "harness\\PassSnapshotsHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.PassSnapshots.dll",
+      "bytes": 15360,
+      "sha256": "34f8d57bde77256a08c0a815a37484a56600af66dd13d39e4440137b910b78b6"
+    }
+  },
+  "observations": [
+    "Original5f3950 calls5efff0 and writes its returned index to current pass offset0 at9718a0. If current active flag+38 is zero or index is-1, it does not dereference the selected context.",
+    "For active nonempty passes, context+808 controls whether the selected volume receives the index. Enabled contexts append to volume+354[volume+374] and increment+374. Disabled contexts clear current active+38 instead. Both branches replace current offset0 withffffffff.",
+    "Thus a disabled selected context can discard the newly finalized pass index from the snapshot, while the pending descriptor remains allocated. This behavior is preserved. Volume index at current+40 is only read on the enabled nonempty path.",
+    "The caller always copies exactly134 DWORDs,0x218 bytes, from current9718a0 to9640f0+count*0x218, then increments95fbb8. Entry5f39e0 is a direct jump to the same helper; extra caller arguments are ignored.",
+    "Portable source composes PendingPackets.FinalizeList directly. Current/snapshot storage and count are explicit global adapters. Source fixtures provide16 snapshot slots; this is a validated supplied capacity, not a newly asserted universal native maximum.",
+    "520 actual original-chain cases cover both entrypoints, active/disabled/empty combinations, volume0/1, all eight pre-append slots and160 sequential snapshots. All9,677,440 persistent bytes plus adapted state match the model; original packet finalization and cache-reset instructions execute without stubs.",
+    "Invalid context pointers on inactive/empty paths and invalid volume values on disabled contexts verify short-circuit behavior. The portable method likewise delays those reads. No GPU commands are executed by this CPU chain.",
+    "Core and replay compile. Managed equality, special outer596870 drawing and broader resource lifetime remain separate; no runtime playtest has been performed."
+  ],
+  "remainingGaps": [
+    {
+      "id": "special-shadow-pass",
+      "status": "596870 orchestration and its draw callback remain separate."
+    },
+    {
+      "id": "capacity",
+      "status": "Caller-supplied snapshot capacity and valid eight-slot volume pass arrays required; native overflow behavior is not reproduced."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU snapshots/pending descriptors only."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-pass-snapshots-native.py",
+    "bytes": 5615,
+    "sha256": "b69780696aead493fb198264d2227efdba65a5aedd0429748161a4a712801bac"
+  },
+  "assembly": {
+    "file": "reports/geometry-pass-snapshots-assembly.json",
+    "bytes": 4380,
+    "sha256": "7ffa0905f09589987fe047d39ffba78dab47e812580c6d76ad0e3eace19d536e"
+  }
+}

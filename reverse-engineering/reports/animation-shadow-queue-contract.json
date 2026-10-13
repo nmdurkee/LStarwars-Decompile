@@ -1,0 +1,104 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 10368,
+    "counts": {
+      "synthetic": 1344,
+      "authored": 8256,
+      "authoredBoundRigs": 244,
+      "authoredGroups": 1144,
+      "direct": 768
+    },
+    "mismatches": 0,
+    "examples": [],
+    "fixture": {
+      "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+      "bytes": 483494,
+      "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+    },
+    "authoredBindings": {
+      "path": "reports/animation-shadow-queue-bindings.json",
+      "sha256": "cf9e4df4d402591e7159f0a7d08ccf7d956126c71b6e30c87d5e3549189a0472"
+    },
+    "method": "Original 5f9fa0 and 5f9ed0 execute unchanged, including original 5c0500 and explicitly selected original D3DX9_35 scalar matrix body. Observation-only hooks record call order. Compare entire 29,120-byte queue, count, sequence and submission flag. No computational callbacks replaced.",
+    "limits": [
+      "Nonnegative queue count; finite joint/world arithmetic and float metadata. Direct matrix copy accepts arbitrary 64-bit-pattern bytes without arithmetic.",
+      "Disjoint source and queue storage; valid terminated bindings. Invalid source pointers, missing sentinel and allocation failures are excluded.",
+      "Authored pointer fields are proven PNTR relocations and normalized to source offsets; this queue does not dereference them. Full shadow-volume generation, GPU submission and renderer timing remain outside this scope.",
+      "Authored matrices are bind-world matrices prepared with explicit scalar arithmetic, not runtime clip scheduling."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterShadowQueue.cs",
+      "sha256": "c505f9549ae1e0726b1a728d6f174ab69df8ea665742dbd2324fd266423cd2ab"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-queue-portable-verify.cs",
+      "sha256": "1be2a2e12c59365fb94efb9b4b83b8dede44276a1cc729fb5d2dd945b12bd6d5"
+    },
+    "entrypoint": "CharacterShadowQueueVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-queue-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 10368,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-shadow-queue-compile.json"
+  },
+  "contracts": {
+    "groups": "Hierarchy+0x19c points to 16-byte shadow-group records, terminated by joint byte255 at +15; +0x1a0 suppresses submission when nonzero. Record +0/+4/+8 are relocated pointers, +12/+13/+14 counts. PC consumer5e4840 confirms first resource stride48 and second stride64; the third repeatedly consumes the same two-word pair. OpenSaga names the first two ellipse and cylinder. All 3,432 pointer fields in 1,144 authored groups are present in the actual PNTR table.",
+    "gates": "5f9fa0 requires byte8264c4 nonzero, int8264bc exactly1, nonnull group pointer and zero hierarchy suppression. Each nonterminal group additionally requires signed queuecount973fe8 <280 and global80babc nonzero. A full queue still scans to the sentinel. A rejected group does not read its joint transform and does not alter submission flag9718a4.",
+    "producer": "Each accepted group multiplies jointWorld[group.joint]*objectWorld via original5c0500/imported D3DX scalar implementation, calls5f9ed0 with the three pointer/count pairs, then sets9718a4 to1. Queue capacity can cut a group list mid-way. Joint255 is only a sentinel; it is never a matrix index in this producer.",
+    "row": "Queuebase9666b0, capacity280, stride104. Row+0 copies 64 matrix bytes; +40/+44/+48 store the three pointers; +4c/+50/+54 copy2854bf4/8/c; +58 sign-extends byte2854c03 to32 bits. Float973fe0/4 are loaded/stored at+5c/+60. Counts go to+64/+65/+66. Low byte of sequence973fdc goes to+67, then queuecount increments and sequence wraps modulo2^32. Matrix bits are copied without arithmetic by the writer.",
+    "authored": "All688 hash-bound GHG carriers scanned:244 contain1,144 groups,444 have null group pointers, none have authored suppression, and all joint indices are valid. Relative pointers are normalized to source offsets for fixture identities; queue production only copies them. Payload ranges and hashes are preserved in animation-shadow-queue-bindings.json. The third pointer is preserved as an opaque pair, not mislabelled as a standard mesh.",
+    "integration": "A CharacterSubmissionServices.SubmitAttachments closure can call CharacterShadowQueue.Submit with hierarchy-specific bindings and shared queue state. This closes the former5f9fa0 boundary. Subsequent5f9da0/5e4840 shadow-volume generation, render-state commands and drawing remain separate. No assumption that these PC shadow operations are the final Unity implementation."
+  },
+  "verification": {
+    "method": "Original 5f9fa0 and 5f9ed0 execute unchanged, including original 5c0500 and explicitly selected original D3DX9_35 scalar matrix body. Observation-only hooks record call order. Compare entire 29,120-byte queue, count, sequence and submission flag. No computational callbacks replaced.",
+    "details": "1,344 synthetic cases,8,256 authored cases (688rigs times12gate/capacity scenarios),768 direct raw-copy cases. Includes all256 sign-extension byte values, sequence wrap, signedzero/subnormal/max-finite distance fields, sentinel first/mid-list, ignored records after sentinel, full/overfull queues and noncanonical nonzero gates. Entire queue hash detects unintended writes.",
+    "tools": [
+      {
+        "path": "tools/animation-shadow-queue-verify.py",
+        "sha256": "544a5c63c721f098ec2a8d7518fb82758354237819b410682fffce93675a5e10"
+      },
+      {
+        "path": "tools/animation-skeletal-fixture.py",
+        "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+      },
+      {
+        "path": "tools/animation-shadow-queue-report.py",
+        "sha256": "05e373e6ee838fa35c81639f6d3ba7a7942871dc44ca0e89f1b6e3cd16c5b649"
+      }
+    ]
+  },
+  "limits": [
+    "Nonnegative queue count; finite joint/world arithmetic and float metadata. Direct matrix copy accepts arbitrary 64-bit-pattern bytes without arithmetic.",
+    "Disjoint source and queue storage; valid terminated bindings. Invalid source pointers, missing sentinel and allocation failures are excluded.",
+    "Authored pointer fields are proven PNTR relocations and normalized to source offsets; this queue does not dereference them. Full shadow-volume generation, GPU submission and renderer timing remain outside this scope.",
+    "Authored matrices are bind-world matrices prepared with explicit scalar arithmetic, not runtime clip scheduling.",
+    "Managed source and replay compile only; original-versus-model checks do not establish managed execution equivalence."
+  ]
+}

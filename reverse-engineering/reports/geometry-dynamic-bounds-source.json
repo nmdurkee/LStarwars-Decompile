@@ -1,0 +1,167 @@
+{
+  "schema": "recovered-geometry-dynamic-bounds-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicBounds.cs",
+      "bytes": 5610,
+      "sha256": "d6a8888d4a0f6c98e8b0dd6ccc6f64bf08632d98d15ec3fac4c1989c51e23dc8"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x6042e0",
+      "method": "DynamicBounds.Classify",
+      "sourceFile": "reconstructed/geometry/DynamicBounds.cs",
+      "coverage": "bounded-scalar-branch",
+      "limitations": "Scalar runtime297c0d0=0 and native fifth argument0. Enabled=false returns1 unchanged; otherwise finite bounds/matrix/scalars and finite stored transformed values. Explicit view/far/slope inputs and scratch arrays replace globals. SIMD604110 excluded. Native-vs-Python classification and every float word exact, including signed zero. Compiled C# comparison pending.",
+      "evidence": "geometry-dynamic-bounds-native-validation.json"
+    },
+    {
+      "address": "0x5b5430",
+      "method": "DynamicBounds.MultiplyAffine",
+      "sourceFile": "reconstructed/geometry/DynamicBounds.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite affine arithmetic with finite stored results; returned new matrix replaces native destination buffer. Native exact input/output aliases verified; arbitrary partial overlaps excluded. Perspective column input ignored; output0/0/0/1. Native-vs-Python classification and every float word exact, including signed zero. Compiled C# comparison pending.",
+      "evidence": "geometry-dynamic-bounds-native-validation.json"
+    },
+    {
+      "address": "0x603f10",
+      "method": "DynamicBounds.TransformPoints",
+      "sourceFile": "reconstructed/geometry/DynamicBounds.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Finite packed XYZ input, valid16-float matrix, count<=1000000; no input/output overlap. Native four-point/remainder loops reduced to same per-point arithmetic. Stored results finite. Native-vs-Python classification and every float word exact, including signed zero. Compiled C# comparison pending.",
+      "evidence": "geometry-dynamic-bounds-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "Recovered.Animation.PlaybackWide with local ordered IEEE zero-sign tracking"
+  ],
+  "dependencySources": [
+    {
+      "file": "reconstructed/animation/AnimationPlayback.cs",
+      "bytes": 19541,
+      "sha256": "a8c818bfc8d406bfd299e6a7f7216231db7b76fc203af0ce1e4a674ed79ea1bf"
+    },
+    {
+      "file": "reconstructed/animation/CharacterContexts.cs",
+      "bytes": 14461,
+      "sha256": "36397899ea78c709d01fc275f9b8028da8fc7f1ac7189aeb9391b0ade5667b35"
+    }
+  ],
+  "native": {
+    "report": "geometry-dynamic-bounds-native-validation.json",
+    "passed": true,
+    "counts": {
+      "box": 4404,
+      "affineAlias": 160,
+      "packedPoints": 140,
+      "floatWords": 196477,
+      "signedZeroDifferences": 0
+    },
+    "classes": {
+      "0": 3232,
+      "1": 1116,
+      "2": 56
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "cameraPreparation": {
+      "file": "exports/cutscenes/LEVELS/EPISODE_V/ENDING/EPISODE5ENDING_A/EPISODE5ENDING_A.CU2.json",
+      "sha256": "3d5c91da2a27d9cd4db3e10e0e7b22daf7bc35bce6920aabada47e6da441dc87",
+      "indices": [
+        0,
+        5
+      ],
+      "method": "Float32 NumPy inverse of authored CU2 world transforms; camera production/inversion is fixture preparation, not native runtime reconstruction."
+    },
+    "assembly": {
+      "file": "reports/geometry-dynamic-bounds-assembly.json",
+      "bytes": 134830,
+      "sha256": "3b94af371a3243469d012686717ad3f686d21387ac68e314bfe6d359c261e56e"
+    }
+  },
+  "managed": {
+    "schema": "geometry-dynamic-bounds-managed-check-v1",
+    "caseCount": 4704,
+    "nativeEvidence": "geometry-dynamic-bounds-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-bounds.bin.gz",
+    "fixtureBytes": 38222,
+    "fixtureSHA256": "4f0347c143cccf9f3101bb8bf3e17ba907107ca23acb0806af3a1febf06040a9",
+    "uncompressedBytes": 1208684,
+    "uncompressedSHA256": "0eddcab8bdd3ab1094936091032d60cf04507513eb9218d5b6132514382bd0e6",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicBoundsHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Compiled C# equality pending; all classification and float words required exact, including signed zero."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicBounds.dll",
+    "bytes": 20992,
+    "sha256": "c3729a778e501103bfea8dabb2a3d397b0efe7701f4671c85cd9d00456f1162a"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicBoundsHarness.cs",
+    "bytes": 2303,
+    "sha256": "956e9b5abf4ab6e3b1bad8982f943df8f135512dd29720ed6848e028118f7c46"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /out:Recovered.Geometry.DynamicBounds.dll DynamicBounds.cs ..\\animation\\CharacterContexts.cs ..\\animation\\AnimationPlayback.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.DynamicBounds.dll /out:DynamicBoundsHarness.exe harness\\DynamicBoundsHarness.cs"
+  },
+  "fields": {
+    "0x80e85c": "Classification enabled;0 returns1 with scratch unchanged",
+    "0x297c0d0": "0 scalar branch; nonzero SIMD branch excluded",
+    "0x80b708": "Prepared view matrix",
+    "0x280c480": "Combined affine transform scratch",
+    "0x973730/0x973734/0x97374c": "Near/far/global far override",
+    "0x966378/0x97313c": "Horizontal/vertical slopes",
+    "0x80e8f0..0x80e8fc": "Four replicated selected far floats"
+  },
+  "observations": [
+    "Nonzero caller far wins; otherwise nonzero global override wins; otherwise camera far.",
+    "Null transform and original806680 sentinel both copy the view matrix unchanged. Other transforms use original affine multiply.",
+    "Eight corner masks in original order:0,7,4,3,2,6,1,5. Near/far bits32/16; left/right1/2; lower/upper8/4. All-corner bitwise AND rejects; zero OR accepts; otherwise partial.",
+    "Disabled branch does not mutate combined matrix/far scratch or dereference bound contents.",
+    "Initial168 signed-zero model differences were corrected by ordered IEEE zero tracking and omitting nonexistent translation additions in linear affine rows.192 targeted sign-pattern cases added;196477 words now compare exactly."
+  ],
+  "remainingGaps": [
+    {
+      "id": "simd-box",
+      "address": "0x604110",
+      "status": "Not represented; scalar runtime branch explicitly selected."
+    },
+    {
+      "id": "unsupported-native-mode",
+      "status": "Nonzero fifth argument6042e0 calls literal ret helper then loops forever; excluded rather than simulated."
+    },
+    {
+      "id": "camera-runtime",
+      "status": "Two CU2 world matrices inverted with NumPy for fixtures; live camera-view production remains separate."
+    },
+    {
+      "id": "dynamic-caller",
+      "address": "0x5f0f00",
+      "status": "Transformed clipping dependency now recovered; LOD/material selection and full caller integration still separate."
+    },
+    {
+      "id": "signed-zero",
+      "status": "Resolved in native-vs-Python model: all196477 words exact after192 targeted sign cases; compiled C# comparison pending."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compile passed; no launch; saved-output comparison pending."
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "CPU classification only; GPU results unclaimed."
+    }
+  ]
+}

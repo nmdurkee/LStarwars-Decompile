@@ -1,0 +1,48 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x603710",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphMeshDeformation.cs",
+      "sourceSha256": "971b7136f6e10a4fdb0e1c050aa7cd88430b372fa7c07e47f9e115dc6956badb",
+      "methods": [
+        {
+          "name": "MorphMeshDeformation.Build",
+          "line": 39
+        }
+      ],
+      "coverage": "CPU deformation and joint-palette output, valid finite successful-lock branch",
+      "qualification": "All descriptor/palette/vertex output bytes and logical arena cursor writes. Finite active XYZ/deltas/weights, valid ranges and nonwrapping logical addresses. Device virtual Lock/Unlock methods remain explicit successful services; managed owned arrays replace actual pointers. No GPU draw/device failure or malformed/alias behavior claim. Authored composition runs original BSA evaluator into original CPU consumer; renderer selection remains external.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-mesh-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/MorphMeshDeformation.cs",
+      "sha256": "971b7136f6e10a4fdb0e1c050aa7cd88430b372fa7c07e47f9e115dc6956badb"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/MorphWeights.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-morph-mesh-portable-verify.cs",
+      "sha256": "ac5ed629245967be420fd2d01d561a55aabebca020ac7640c334fcaf23ef73d4"
+    },
+    "entrypoint": "MorphMeshDeformationVerify.Main",
+    "arguments": [
+      "reports/animation-morph-mesh-native-fixtures.json.gz",
+      "<output.json>"
+    ],
+    "preparedComparisons": 4369,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-morph-mesh-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-morph-mesh-tests.json",
+    "reverse-engineering/reports/animation-morph-mesh-assembly.json"
+  ]
+}

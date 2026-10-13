@@ -1,0 +1,35 @@
+Scalar dynamic transformed-box clipping
+
+Original6042e0 generates eight local-box corners, transforms them by local*view,
+forms near/far/left/right/lower/upper outcodes and returns0outside,1inside,2partial.
+The global enable0 path returns1 before dereferencing bounds and leaves scratch
+unchanged. Null transform or806680 sentinel copies the view. Caller far wins
+when nonzero, then global override, then camera far. Chosen far is replicated
+to four original scratch floats. Nonzero fifth argument is an unsupported
+native infinite-loop path and is explicitly excluded.
+
+The general path uses original5b5430 affine multiplication, not imported D3DX.
+Original603f10 packs XYZ point transforms in a four-point loop plus remainder.
+Both recovered methods use the shared finite64-significand x87 helper. Side
+predicate products multiply two float32 values exactly in double, with no
+prematurefloat32 store. The scalar runtime branch297c0d0=0 is selected; the
+alternate SIMD604110 implementation remains separate.
+
+4,404 original classifier cases across60 authored source scenes pass, plus96
+affine destination/input alias cases and12 packed-point dimensions0..17.
+196,477 float words compare exactly, including signed zero. An initial168
+zero-sign differences were corrected by ordered IEEE zero propagation and
+omitting a nonexistent translation addition in affine linear rows.192
+targeted sign cases were added(128point,64affine); no differences remain.
+Original bits and the correction are retained. Results:
+3,232outside,1,116inside,56partial.480 authored special local min/max and matrix
+records are evaluated with three prepared views and three far-mode pairs.
+Two views are float32 NumPy inverses of authored CU2 camera world transforms;
+this is fixture preparation, not proof of native camera-view production.
+
+DynamicBounds.cs and Main DynamicBoundsHarness compile with shared animation
+PlaybackWide dependencies. The compact gzip fixture takes
+compressedInputFixture/outputFile. geometry-dynamic-bounds-check.py only
+prepares or compares saved output, requiring every classification and float
+word to match, including signed zero. Managed execution
+remains pending. No game, managed harness or GPU was launched.

@@ -108,7 +108,9 @@ export function parseNu2(b,source='buffer') {
       if(!Number.isInteger(first)||first<0||first>=commands.length)throw Error('Display start not a command');
       while(last<commands.length&&commands[last].flags!==4)last++;
       if(last>=commands.length)throw Error('No display terminator');
-      displayLists.push({index,address:addr,order:u(addr),first,last,firstBounds:s(addr+0x22),boundsCount:s(addr+0x20)});
+      // Original5e0d00 indexes material pointer tables with these uint16
+      // fields. Historical signed bounds labels remain compatibility only.
+      displayLists.push({index,address:addr,order:u(addr),first,last,firstMaterial:b.readUInt16LE(addr+0x22),materialCount:b.readUInt16LE(addr+0x20),firstBounds:s(addr+0x22),boundsCount:s(addr+0x20),legacyRangeFieldSemantics:{firstBounds:'firstMaterial (reinterpret uint16)',boundsCount:'materialCount (reinterpret uint16)'}});
     }
     const mc=u(a+0x10),mp=ptr(a+0x14);range(mp,mc*12,'game models');
     for(let index=0;index<mc;index++){
@@ -119,7 +121,11 @@ export function parseNu2(b,source='buffer') {
     const modelIndex=new Map(models.map(m=>[m.address,m.index]));
     for(let index=0;index<sc;index++){
       let addr=sp+index*0xd0,namePtr=ptr(addr+0xb4),end=b.indexOf(0,namePtr);if(end<0||end-namePtr>4096)throw Error('Unterminated special object name');
-      specialObjects.push({index,address:addr,name:b.toString('utf8',namePtr,end),model:modelIndex.get(ptr(addr+0xb0)),initialMatrix:mat(addr),matrix:mat(addr+64),boundsCenter:[f(addr+128),f(addr+132),f(addr+136)],boundsExtent:[f(addr+144),f(addr+148),f(addr+152)],boundsIndex:u(addr+0xc0),remoteIABL:u(addr+0xc4),visibilityFunction:u(addr+0xb8)});
+      // Original PC 5df480 consumes these special-local fields as min/max,
+      // unlike the separate BNDS center/extent records. Keep historical names
+      // as explicitly labelled compatibility aliases in future metadata.
+      const boundsMinimum=[f(addr+128),f(addr+132),f(addr+136)],boundsMaximum=[f(addr+144),f(addr+148),f(addr+152)];
+      specialObjects.push({index,address:addr,name:b.toString('utf8',namePtr,end),model:modelIndex.get(ptr(addr+0xb0)),initialMatrix:mat(addr),matrix:mat(addr+64),boundsMinimum,boundsMaximum,boundsCenter:boundsMinimum,boundsExtent:boundsMaximum,legacyBoundsFieldSemantics:{boundsCenter:'boundsMinimum',boundsExtent:'boundsMaximum'},boundsIndex:u(addr+0xc0),remoteIABL:u(addr+0xc4),visibilityFunction:u(addr+0xb8)});
     }
   }
   const inid=chunks.find(c=>c.tag==='INID');let dynamicInstanceIndices=[];

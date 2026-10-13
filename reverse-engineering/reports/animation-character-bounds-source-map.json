@@ -1,0 +1,78 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 3,
+  "newNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x55d2b0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterPredictedBounds.cs",
+      "sourceSha256": "82dca5e1866ddaeae0e7768628217d5367b2f1eaa07aeee6a61ab8785d0c4503",
+      "methods": [
+        {
+          "name": "CharacterPredictedBounds.Update",
+          "line": 45
+        }
+      ],
+      "coverage": "complete finite predicted bounds update with resolved character/model/context data",
+      "qualification": "Consumes embedded POI translations or transformed bottom vector, updates flags, center, box endpoints and context query point. Preserves double velocity prediction on primary point flag8 branch; raw fallback point copies; context flag priority; float spills and strict wide threshold comparison. Caller supplies resolved point selectors, enabled words and signed-context flags. No terrain resolution or pose generation.",
+      "comparisonStatus": "Original native exact differential passed; managed compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-bounds-tests.json"
+    },
+    {
+      "address": "0x5b3200",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterPredictedBounds.cs",
+      "sourceSha256": "82dca5e1866ddaeae0e7768628217d5367b2f1eaa07aeee6a61ab8785d0c4503",
+      "methods": [
+        {
+          "name": "CharacterPredictedBounds.TransformDirection",
+          "line": 31
+        }
+      ],
+      "coverage": "complete finite scalar direction transform numeric output",
+      "qualification": "Three dot products using matrix3x3 only, original x87 intermediate rounding and explicit float stores. Portable API owns output; exact in-place native probes establish matching numeric result, not a shifted-pointer-alias contract.",
+      "comparisonStatus": "Original native exact differential passed; managed compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-bounds-tests.json"
+    },
+    {
+      "address": "0x5b37d0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterPredictedBounds.cs",
+      "sourceSha256": "82dca5e1866ddaeae0e7768628217d5367b2f1eaa07aeee6a61ab8785d0c4503",
+      "methods": [
+        {
+          "name": "CharacterPredictedBounds.AddVectors",
+          "line": 37
+        }
+      ],
+      "coverage": "complete finite scalar three-vector addition numeric output",
+      "qualification": "Three independent float32 sums. Portable API owns output; original exact in-place and disjoint outputs both verified. Shifted overlapping pointers are outside the API.",
+      "comparisonStatus": "Original native exact differential passed; managed compile only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-character-bounds-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterPredictedBounds.cs",
+      "sha256": "82dca5e1866ddaeae0e7768628217d5367b2f1eaa07aeee6a61ab8785d0c4503"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-bounds-portable-verify.cs",
+      "sha256": "53456f5d5444ab1de4123aa67b06f91ee9323cd6ec2d02364cb547e079f63e2d"
+    },
+    "entrypoint": "CharacterPredictedBoundsVerify.Main",
+    "arguments": [
+      "reports/animation-character-bounds-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 4366,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-bounds-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-character-bounds-tests.json",
+    "reverse-engineering/reports/animation-character-bounds-assembly.json"
+  ]
+}

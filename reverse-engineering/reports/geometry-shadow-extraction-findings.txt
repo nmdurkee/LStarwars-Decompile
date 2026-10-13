@@ -1,0 +1,17 @@
+COMPLETE CPU CAMERA-TO-SHADOW-VOLUME EXTRACTION
+
+{"cases": 1024, "volumes": 768, "persistentBytes": 8388608}
+
+Entry takes ECX=context and stack(camera,cuts,cutCount), callee pops12bytes. Original global978440 receives perspective;97ac80 receives rigid view inverse. Portable arguments expose these two global output matrices explicitly.
+
+Perspective inputdegreeFOV=float32(cameraFOV*180.0/3.1415927410125732), aspect=float32(1/cameraAspect), near/far fromcamera+48/+4c. Original fixed doubleconstants and extended intermediates are retained. Camera translation goes tocontext+740XYZ/W1; camera thirdbasis row to+750XYZ/W0.
+
+Context+710 receivescutCount-1, even-1 forcutCount0. Up tothreecutvalues copy to+700. Eachadjacentpair selects a volume atstride380; native temporarily replacescamera near/far, calls actualfrustum5c8030, plane selection5c82c0, aggregate5c8540, then restores originalcamera near/far.
+
+Eachvolume: two raw64B lightmatrices copy fromcontext+780/+7c0 to+0/+40, cornerXYZ at+120, planes+1a0,count+260,farplane+270,center+280,position+290,radius+2a0. Splitnormalization records atcontext+720 each16B are(0,0,1/nextcut,-1). Remainingpersistentbytes are preserved.
+
+Original helperpadding propagates through this completechain: fourfarcornerW and onepositionW pervolume. Comparison normalizes only these provenundefinedwords; all raw native padding words/context bytes are retained. Portable writes only meaningfullanes and preserves priorpadding.
+
+1024 complete originalchains pass across768volumes and8388608persistentbytes, with256cases eachcutcount0/1/2/3. SixrawauthoredCU2matrices plusidentity are reused; projection,cuts,direction and lightmatrices are controlled inputs, not reconstructed upstream light configuration.
+
+No computationalcalls are replaced. C#source and replay compile only. Live contextregistration, light configuration producers, GPU draws and managedruntime equality remain separate.

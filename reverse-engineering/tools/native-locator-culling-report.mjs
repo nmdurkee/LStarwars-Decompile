@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const root='reverse-engineering/',read=p=>JSON.parse(fs.readFileSync(root+p));
+const tests=read('reports/native-locator-culling-tests.json');if(tests.mismatches)throw Error('Native mismatches');
+const file=p=>{const b=fs.readFileSync(root+p);return{path:root+p,bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')};};
+const source=file('reconstructed/gameplay/LocatorViewCulling.cs'),harness=file('tools/native-locator-culling-portable-verify.cs');
+const contracts={
+ planes:{address:'0x5b3ec0',description:'Four affine matrix columns dotted with a three-component point plus row4 translation, x87 64-bit intermediate arithmetic and float32 output. Native computes columns1,2,3 before0, allowing point/output identity; portable produces a fresh array.',evidence:['reports/native-locator-set-assembly.json']},
+ outside:{address:'0x5d6620',description:'Optionally transform through object matrix, then always through prepared global view matrix. Reject if radius+(viewZ-near)<0 or radius+(far-viewZ)<0 using unstored x87 sums. Otherwise evaluate four prepared affine plane distances and reject any float32 result below negative radius. All boundary equalities count inside. Plane/view preparation and camera lifetime remain external.',evidence:['reports/native-locator-set-assembly.json','reports/native-locator-culling-tests.json']}
+};
+const lines=fs.readFileSync(source.path,'utf8').split(/\r?\n/);
+const mappings=[['0x5b3ec0','LocatorViewCulling.PlaneDistances'],['0x5d6620','LocatorViewCulling.Outside']].map(([address,name])=>({address,sourceFile:source.path,sourceSha256:source.sha256,methods:[{name,line:lines.findIndex(s=>s.includes(' '+name.split('.')[1]+'('))+1}],coverage:'whole helper on bounded attached runtime records',qualification:tests.limits.join(' '),comparisonStatus:'Original native/model differential passed; managed replay pending.',nativeEvidence:['reverse-engineering/reports/native-locator-culling-tests.json']}));
+const commands=[];
+const report={generatedAt:new Date().toISOString(),binarySha256:tests.binarySha256,contracts,commands,native:{cases:tests.checks,mismatches:0,fullRegionComparisons:tests.fullRegionComparisons,groups:tests.groups,authoredUses:tests.authoredUses,method:tests.method},portable:{source,harness,entrypoint:'LocatorCullingVerify.Main',arguments:['reports/native-locator-culling-vectors.json','reports/native-locator-culling-csharp-validation.json'],fixtures:file('reports/native-locator-culling-vectors.json'),build:'reports/reconstructed-build.json',managedExecution:'Pending; no generated executable launched.'},limits:tests.limits};
+fs.writeFileSync(root+'reports/native-locator-culling-contract.json',JSON.stringify(report,null,2)+'\n');fs.writeFileSync(root+'reports/native-locator-culling-source-map.json',JSON.stringify({binarySha256:tests.binarySha256,mappings,commands},null,2)+'\n');console.log(JSON.stringify({checks:tests.checks,mappings:mappings.length,authoredUses:0}));

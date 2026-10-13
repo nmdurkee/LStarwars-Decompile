@@ -1,0 +1,59 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "initialize": "650280 checks signed global2962044 for any nonzero value before touching the cursor. Otherwise align uint32 cursor to4, store2947d80 table pointer, reserve1024bytes, and fill256 CRC words with polynomial04c11db7 and8 shifts per word. Finally set initialized=1.",
+    "repeat": "Repeated calls preserve table/global/cursor while initialized remains nonzero. Explicit external resets to0 allocate anew. Portable offsets replace process addresses and the returned uint array is usable by EffectSoundRegistry.",
+    "prefix": "650470 uses the same original ASCII uppercase hash as650430, but truncates at unsigned maximum byte count or firstNUL. Empty input and zero limit do not access table words. No final XOR or reflected polynomial is introduced.",
+    "composition": "Every prefix fixture calls original650280 first and consumes that actual table with650470; no runtime-table service is substituted."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 1985,
+    "mismatches": 0,
+    "groups": {
+      "init": 256,
+      "prefix": 1729
+    },
+    "originalEntryCalls": 3970,
+    "initializationSteps": 512,
+    "tableWords": 256,
+    "examples": [],
+    "method": "Original650280 initializes the actual arena/CRC table;650470 consumes it directly with no replacements. Exact table words, arena cursor/global pointer/init flag and complete64KiB image compare at every initialization step, plus unchanged input region and hash result for every prefix call.",
+    "limits": [
+      "Valid disjoint cursor variable, aligned table destination and readable name storage. Offsets represent original pointers portably; native uint32 alignment/wrap arithmetic is preserved but invalid wrapped process addresses are excluded.",
+      "Persistent signed initialization flag gates on any nonzero value. Repeated calls retain existing table/cursor; explicit external resets to0 cause another aligned1024-byte allocation.",
+      "ASCII names only because original signed-byte high-bit indexing can read before the hash table. Prefix length is unsigned32-bit and stops at firstNUL.",
+      "Allocator ownership and sound database/bucket population remain outside this two-helper scope. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundHashInitialization.cs",
+      "bytes": 1500,
+      "sha256": "5047bcec528f92cbf24e56b5ebede30ab5c3062050e646b282d6acaaed2cd947"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-hash-portable-verify.cs",
+      "bytes": 3789,
+      "sha256": "bb03dea9ea868ca85d565ff846bef96b3ecf57ad0f77fd9a954b66e55bce4775"
+    },
+    "entrypoint": "SoundHashInitializationVerify.Main",
+    "arguments": [
+      "reports/native-sound-hash-vectors.json.gz",
+      "reports/native-sound-hash-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-hash-vectors.json.gz",
+      "bytes": 42040,
+      "sha256": "96d650d727e54c591ddfe220883b46d415c2418a1b927f74f35552b823545b6b"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Valid disjoint cursor variable, aligned table destination and readable name storage. Offsets represent original pointers portably; native uint32 alignment/wrap arithmetic is preserved but invalid wrapped process addresses are excluded.",
+    "Persistent signed initialization flag gates on any nonzero value. Repeated calls retain existing table/cursor; explicit external resets to0 cause another aligned1024-byte allocation.",
+    "ASCII names only because original signed-byte high-bit indexing can read before the hash table. Prefix length is unsigned32-bit and stops at firstNUL.",
+    "Allocator ownership and sound database/bucket population remain outside this two-helper scope. Managed replay pending."
+  ]
+}

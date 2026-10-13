@@ -1,0 +1,126 @@
+{
+  "schema": "native-obstacle-contract-v1",
+  "updated": "2026-10-12T21:13:02.095Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "nativeEvidence": "reports/native-obstacle-tests.json",
+  "assemblyEvidence": "reports/native-obstacle-assembly.json",
+  "vectors": "reports/native-obstacle-vectors.json",
+  "vectorsSha256": "c0609ba06dabff5c42e6f10de9843061a348a3566a245dc6697853cdcc7efdcb",
+  "primaryNativeEntryPoints": 23,
+  "sources": [
+    {
+      "path": "reconstructed/gameplay/SceneAnimationControls.cs",
+      "sha256": "51f0d97f75bb86fe42080362aeb92bd4dfaf3d3c652eb48e9e2e27ef5d680252"
+    },
+    {
+      "path": "reconstructed/gameplay/ObstacleCommands.cs",
+      "sha256": "629187b53e072d886f523e5749804bdd6418a07b3bc13d85668110623c6c5e8b"
+    }
+  ],
+  "harness": {
+    "path": "tools/native-obstacle-portable-verify.cs",
+    "sha256": "2d560a246e7673c40247709e1dab12ce401f1a4e7c7f197e3ceb116a83f0388a",
+    "main": "ObstacleDifferential",
+    "arguments": [
+      "reports/native-obstacle-vectors.json",
+      "reports/native-obstacle-csharp-validation.json",
+      "reports/native-obstacle-review-tests.json"
+    ],
+    "execution": "Pending; no generated managed executable launched."
+  },
+  "native": {
+    "comparisonRecords": 18915,
+    "mismatches": 0,
+    "failures": 0,
+    "groups": {
+      "command": 1736,
+      "scene-control": 10500,
+      "obstacle-helper": 1440,
+      "gizmo-output": 3600,
+      "condition": 80,
+      "locked-condition": 256,
+      "initializer": 16,
+      "scene-boundary": 600,
+      "authored-condition": 687
+    }
+  },
+  "independentReview": {
+    "path": "reports/native-obstacle-review-tests.json",
+    "sha256": "ea40815f1f310226a1b646ca7c3a59c1e9866e47b6daf50915dd8164ce1309c1",
+    "nativeCases": 472,
+    "mismatches": 0
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "ObstacleAtStart",
+      "uses": 153
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ObstacleAtEnd",
+      "uses": 178
+    },
+    {
+      "kind": "scp-action",
+      "name": "PlayObstacle",
+      "uses": 105
+    },
+    {
+      "kind": "scp-action",
+      "name": "PlayGizObstacle",
+      "uses": 57
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ObstacleLockedShut",
+      "uses": 1
+    },
+    {
+      "kind": "scp-condition",
+      "name": "SpecialAtStart",
+      "uses": 7
+    },
+    {
+      "kind": "scp-condition",
+      "name": "SpecialAtEnd",
+      "uses": 6
+    },
+    {
+      "kind": "git-action",
+      "name": "PlayObstacle",
+      "uses": 139
+    },
+    {
+      "kind": "git-action",
+      "name": "PlaySpecial",
+      "uses": 219
+    }
+  ],
+  "catalogUses": 865,
+  "validAuthoredUsesExercised": 864,
+  "sourceFormOmissions": [
+    {
+      "authored": {
+        "name": "ObstacleAtEnd",
+        "kind": "scp-condition",
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/LEVEL.SCP",
+        "line": 31,
+        "text": "if ObstacleAtEnd == 0 goto RetractBridge"
+      },
+      "reason": "Missing quoted operand; initializer/loader interpretation is not inferred."
+    }
+  ],
+  "adapters": [
+    "0x55a020 named registry lookup; all scene-control, list, obstacle helper, output dispatch and condition bodies execute original bytes."
+  ],
+  "limits": [
+    "Finite scene fields and effective playback rates, valid acyclic member lists, explicit registry/world/reference bindings. Membership/target aliases preserve iteration order. No animation tick, rendering, collision world or reference lifetime implementation. Missing-name null dereference in LockedShut and malformed missing-operand source line are outside the contract.",
+    "SCP retains a previously found target when a later named lookup fails; GIT performs only one lookup for its last name token.",
+    "SCP stayshut forces reverse playback; GIT stayshut changes the stay flag without overriding the final FORWARD/BACKWARD choice.",
+    "AtStart is true for a nonnull gizmo whose output callback is unavailable (outputzero), while a null gizmo yieldsfalse.",
+    "Snap changes member frames without refreshing group state or list membership. Special-output reads may refresh the group state.",
+    "Native x87 seek tests include signed zero, subnormal and extreme finite values; exact float input bits are retained in replay fixtures.",
+    "Compilation does not establish C# runtime equivalence. Original-source comments/names and complete game behavior are not recovered by these contracts."
+  ]
+}

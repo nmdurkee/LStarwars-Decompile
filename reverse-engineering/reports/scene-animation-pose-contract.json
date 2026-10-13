@@ -1,0 +1,90 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 103156,
+    "groups": {
+      "scalar": 50181,
+      "pose": 50181,
+      "rotation": 2042,
+      "scale": 160,
+      "translate": 160,
+      "changedFrame": 240,
+      "applyWork": 192
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredClips": 16127,
+    "syntheticClips": 200,
+    "fixture": {
+      "path": "reports/scene-animation-pose-native-fixtures.json.gz",
+      "sha256": "7438f146ae8e110a8e32b2e95d52556262917b98407f7c2d4464ae0bc2f5b5e2",
+      "bytes": 7467452
+    },
+    "elapsedSeconds": 57.645655393600464
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/SceneAnimationPose.cs",
+      "sha256": "089d6e33a7a92632536275ab4ba5df284d3ea810ce396f90135470ecbf9cca30"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs"
+    ],
+    "harness": {
+      "path": "tools/scene-animation-pose-portable-verify.cs",
+      "sha256": "7b3f9abc485a60b6b85d503d3ac38866b2c9c92a54a1715e0874e7b661b1d52e"
+    },
+    "entrypoint": "SceneAnimationPoseVerify.Main",
+    "arguments": [
+      "reports/scene-animation-pose-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 103156,
+    "status": "Compiled only; managed execution not attempted.",
+    "compileEvidence": "reports/scene-animation-pose-compile.json"
+  },
+  "sineTable": {
+    "path": "references/native-animation-sine-table.f32",
+    "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+  },
+  "contracts": {
+    "payload": "SceneAnimationClip clones the single-node nine-channel ANI4 or ANI5 payload; ANI4 offsets are payload-relative and ANI5 signed pointers field-relative. Native loaded absolute pointers are not accepted. Range-checked source padding must include all packed endpoint reads even if the final interpolation fraction is zero.",
+    "keyTime": "0x5ce350 stores frame-first tofloat32, stores its product with(keyCount-1), stores division by(frameCount-1), then clamps to0..keyCount-1. A one-key clip chooses key0. Whole key truncates, low2bits select one of4 packed subkeys, and a per-channel mask lowbit suppresses fractional interpolation.",
+    "packed6": "Factors use the original qword0.015873020514845848 and separatefloat32 stores. Subkeys0..2 also store the interpolated factor before applying endpoint range. Subkey3 stores both endpoint reconstructions before interpolation. Per-channel scale and minimum use one finalfloat32store.",
+    "packed16": "For subkeys0..2, the interpolated12-bit weight divided by4095 is storedfloat32 before endpoint range/scale/minimum. Subkey3 stores reconstructed values from both neighboring packed blocks before interpolation. Constants use u16table*globalScale+globalMinimum with one store.",
+    "matrix": "Scene rotation channels3..5 are Euler radians, scaled by original qword10430.3779296875 and truncated towardzero toint32.0x5b5300 uses the original32768-value sine table and x87 operation order. Flagsbit1 enables rotation;bit8 enables row scale;translation channels0..2 always apply. Final sign flips are matrixindices2,6,8,9,11,14.",
+    "cache": "552760 returns for missing resolvedtarget, missingclip, or equal previous evaluation. Otherwise evaluate target, update previous time, copy to unoffset cache, add base translation to target, then invoke bounds update. ApplyWork consumes scene-tick decisions: evaluate cache only when requested, but copy cache to target whenever CopyPose istrue, adding base translation after each copy.",
+    "integration": "A SceneAnimationPoseBinding connects the existing ScenePlaybackInstance to its source clip, matrix cache, target transform and base translation. UpdateScene output must be applied in source order before UpdateGroups; group changed-frame hooks call EvaluateChangedFrame. Full native pointer resolution and renderer-owned5ea660/5df480 bounds effects remain a host boundary."
+  },
+  "verification": {
+    "method": "Original full5ce350/5ea390 plus original callees and standalone rotation/scale/translation helpers execute in isolated x86. Exactuint32 outputs compared; no numeric tolerance, no native code/callback replacement. Authored cases cover every exported GSC clip at3times, not everyframe. Cache tests execute original full552760 or5f4b90 with native bounds-owner flag disabled; read-only hook records552760 bounds-call ordering aftertarget/cache writes.",
+    "managedProjection": "Application fixtures additionally assert unchanged unrelated native target bytes. That raw-byte invariant is native-only and excluded from prepared managed comparison because projected records do not store those bytes.",
+    "tools": [
+      {
+        "path": "tools/scene-animation-pose-fixture.py",
+        "sha256": "1e2407d1ee50374ccaad69d85ecef44e2014ee41331fd0e15c54a3bc6d2cf1b3"
+      },
+      {
+        "path": "tools/scene-animation-pose-verify.py",
+        "sha256": "998b07b816f77a60762a45f0b96a0cf561f136e8c42c3753d1949ffbcd2fa93d"
+      },
+      {
+        "path": "tools/scene-animation-pose-report.py",
+        "sha256": "f85aa8744f1da8eee521a662c71af9a0caa1af7f484ae9bb7cc3cd887b01add3"
+      }
+    ]
+  },
+  "limits": [
+    "Finite input and stored intermediate/output values; int32-fitting radian conversion and valid sufficient raw source ranges. NaNs,infinities,overflow/invalid memory behavior excluded.",
+    "Scene scalar shape is the complete shipped GSC shape:16127 ANI5 clips with1node and9channels. General character/cutscene shapes, types8/9/10, channel masks and forced-end sampling remain outside this module.",
+    "No skeletal blending, audio/event dispatch, renderer draw submission or bounds rebuild is claimed. Native bounds helper execution is skipped by its actual disabled-owner flag in cache fixtures, not replaced.",
+    "Managed binaries compiled but not executed; original-vs-independent-Python evidence does not establish managed execution equivalence."
+  ]
+}

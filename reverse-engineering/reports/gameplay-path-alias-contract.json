@@ -1,0 +1,102 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "registration": "Original43c830 has PUSH43c780 at43c905 and CALL516ff0 at43c90a. The original setter writes9238d8; isolated probes with0 and43c780 confirm that slot. This evidence closes the previously unidentified callback in51af40. Registration setter and55f450 global getter receive no new mapping credit here.",
+    "validity": "5cfac0 returns false for a null reference or both null normal/display words. It ignores the scene word.5d0450 matches either nonzero normal identity or nonzero display identity; the scene words and the other pointer may differ.",
+    "resolution": "55fd40 checks reference validity, group-table presence and signed world group count. Native groups use a signed16-bit member count and signed16-bit byte stride. It stops at the first group containing a matching reference, then searches that group from its beginning for the first member satisfying actual5cfd60 visibility. Success copies all three words in order. If that first matching group has no visible member, failure leaves the reference unchanged and does not search later groups.",
+    "callback": "43c780 ignores its supplied context, calls the already recovered55f450 getter, and resolves against the then-current world. GameResolve exposes this timing using a host projection of that global getter. PathReferenceAliases.Attach closes PathPointRefresh.ResolveUnavailable and keeps raw point40/44/48 words synchronized with its typed scene reference.",
+    "validation": "2,229 original-PC records:28 validity,729 identity comparisons,204 direct resolution,1,220 actual43c780 callback cases and48 complete51af40->43c780->55fd40 chains. All pass with zero mismatch.117/118 instructions execute; only alignment LEA55fd7d is skipped. Group ordering, absent/negative counts, variable positive byte strides, first-match failure, scene-gate differences, normal/display priority, stationary versus animated refreshed targets and blocked-point callback suppression are covered. No runtime behavior replacement is used in alias resolution or its refresh chains."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2229,
+    "counts": {
+      "valid": 28,
+      "same": 729,
+      "resolve": 204,
+      "callback": 1220,
+      "refreshChain": 48
+    },
+    "mismatches": 0,
+    "examples": [],
+    "registration": {
+      "0x0": "0x0",
+      "0x43c780": "0x43c780",
+      "initializerCalls": [
+        {
+          "address": "0x43c905",
+          "bytes": "6880c74300",
+          "mnemonic": "push",
+          "operands": "0x43c780"
+        },
+        {
+          "address": "0x43c90a",
+          "bytes": "e8e1a60d00",
+          "mnemonic": "call",
+          "operands": "0x516ff0"
+        }
+      ]
+    },
+    "instructionCoverage": {
+      "total": 118,
+      "executed": 117,
+      "missing": [
+        "0x55fd7d"
+      ]
+    },
+    "authoredCommandUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathReferenceAliases.cs",
+      "bytes": 3661,
+      "sha256": "0df5aa284747f75eb8f52c82ee0053ff6ee0c62a071d45deec1cbca20c9d0c4b"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-alias-portable-verify.cs",
+      "bytes": 12552,
+      "sha256": "0e6df93efc4a3d50082bc1be22802adfabe49d2312eed63396e823aacf090e43"
+    },
+    "entrypoint": "GameplayPathAliasVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-alias-native-fixtures.json",
+      "reports/gameplay-path-angle-table.u16",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-path-alias-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-alias-native-fixtures.json",
+      "bytes": 356082,
+      "sha256": "ffbdc729a10b9216865e3b858a75633f232f39285c054579c4e8929e1b39f3ef"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathPointRefresh.cs",
+        "bytes": 6554,
+        "sha256": "12e0dcc72997c094445461997f7ddef9b123bb4aaa6f44d1e90310108463f714"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathAngles.cs",
+        "bytes": 1569,
+        "sha256": "5db83bdf4fce71f6733e1c139572ec27a46393c4ceaba23a609e7bd14750b726"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-alias-verify.exe",
+        "bytes": 532992,
+        "sha256": "bdfff68bf8876944cc02a2cfd9dddd0482b123ed5010d17c208423d95b4b206a"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "The portable world is a projection of already loaded native alias groups and scene records. The loader must preserve signed counts, group order, valid member backing and reference identities; decoding/lifetime of the native variable-stride allocation remains a host boundary.",
+    "Nonnegative valid backing addresses, finite transforms in composed refresh cases. Native invalid pointers, pathological overlapping records and malformed strides are excluded. Null reference is explicitly supported by the validity/resolution entrypoints; identity comparison requires two valid reference records.",
+    "The current-world provider stands for the independently recovered55f450 global getter. It is not a scene-name lookup or an invented fallback callback.",
+    "No new authored script-use credit.48 refresh compositions are included in2,229, not additive. Prior refresh2,766 and angle32,041 suites are not counted again.",
+    "The C# replay compiled; managed execution remains pending. Native comparisons use an independent model against original x86."
+  ]
+}

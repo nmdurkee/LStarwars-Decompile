@@ -1,0 +1,17 @@
+SHADOW LIGHT EXTRUSION AND AGGREGATE GEOMETRY
+
+{"floatWords": 47252, "cases": 3075, "planes": 1536, "bounds": 1539}
+
+SelectPlanes stores -120*directionXYZ tofloat32, visits six faces in original table order, computes cross(b-a,c-a), and classifies the stored ordered dot with extrusion as facing when >=0. Non-facing faces append normalized negative cross and negative stored point dot.
+
+Twelve source edges join known adjacent faces. Different facing classifications produce a plane through first edge point, second edge point, and first plus extrusion; argument winding is chosen by first adjacent face. The function stops at nine total planes and returns count inEAX, despite decompiler void labeling.
+
+Aggregate accumulates all eight cornerXYZ sequentially with float32 stores then multiplies by.125. CenterW copies first cornerW. It calculates float32 differences and ordered squared lengths for all corners, updating a maximum accumulator in memory.
+
+Assembly5c8794/5c8795 passes the LAST squared distance still onx87 stack to5c0240, then overwrites the maximum with its square root. Native fixtures distinguish returned radius from maximum-based radius in884cases. Portable code preserves this original behavior without silently repairing it.
+
+PositionXYZ=centerXYZ-float32(directionXYZ*100), with a stored subtraction. PositionW reads an uninitialized stack local: poison0/12345678/deadbeef transfers exactly. Portable projection preserves caller positionW; native raw bytes and audit retain the evidence.
+
+3075 original comparisons cover1536plane sets and1539aggregates;47252meaningfulfloatwords compare bit-exact.1024camera-derived corner sets use identity plus six raw authoredCU2transforms with controlled projection/light inputs;512syntheticsets include degenerate/asymmetric geometry. All64face masks occur; plane counts0/5/6/8/9 occur.
+
+All original nested cross, normalization, plane, sqrt and cookie instructions execute unchanged. Managed core/replay compile only. This is CPU math evidence, not the outer light configuration producer or GPU output.

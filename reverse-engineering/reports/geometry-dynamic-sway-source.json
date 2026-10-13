@@ -1,0 +1,152 @@
+{
+  "schema": "recovered-geometry-dynamic-sway-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicSubmission.cs",
+      "bytes": 14892,
+      "sha256": "8b9d63a78b4cb415552ad81f2517cd24db3c60527be301bc9f082c6cb58f6fab"
+    }
+  ],
+  "nativeMappings": [],
+  "compositionMappings": [
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicObjectSubmission.SubmitWithSway",
+      "sourceFile": "reconstructed/geometry/DynamicSubmission.cs",
+      "coverage": "supporting-normal-sway-refinement-no-new-address-credit",
+      "limitations": "Explicit recovered ObjectSway service with disjoint64-byte scratch. Normal zero shadows/fade, ordinary/prefix commands, finite scalar math, same-layout material selection. Native/model exact, managed equality pending.",
+      "evidence": "geometry-dynamic-sway-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/ObjectSway.cs",
+      "bytes": 5683,
+      "sha256": "ed3c9c2f144b4012ca3a9f4a20bf83314ff4d9a923fcd8be0f196d1ad9973e14"
+    }
+  ],
+  "native": {
+    "report": "geometry-dynamic-sway-native-validation.json",
+    "schema": "geometry-dynamic-sway-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1044,
+      "zeroSway": 64
+    },
+    "normalCounts": {
+      "cases": 1044,
+      "authoredSpecials": 0,
+      "checkedBytes": 68386176,
+      "draws": 1521,
+      "ordinary": 886,
+      "prefix": 635,
+      "bounds": 490,
+      "shaderEmissions": 1521,
+      "earlyReturns": 306
+    },
+    "swayCalls": 980,
+    "authoredSpecials": 245,
+    "sources": 4,
+    "errors": [],
+    "fixtureFile": "geometry-dynamic-sway-fixtures.json.gz",
+    "fixtureBytes": 540166,
+    "fixtureSHA256": "ab63a348351115a256879c4b32f318f7b2bb7178613ef12f1a50189ed443464c",
+    "limits": [
+      "Full original5f0f00 with actual5ec590/5ec3d0/RNG/sine/CRT helpers before actual scalar bounds, transformed-center LOD, material/shader and ordinary/prefix packets. Observation hooks only.",
+      "All245 nonzero authored sway specials from4carriers in both conversion modes and forced/scalar visibility;64 zero-sway regressions. Raw authored coefficient shorts, min/max, matrix and LOD offsets are preserved with source hashes. Runtime material/arena records remain controlled relocated fixtures.",
+      "Original temporary stack matrix captured at5ec590 return and mirrored into the explicit64-byte portable scratch adapter; native source and all later consumer instructions remain unchanged. Entire64KiB persistent image compared except established32-byte cache/output adapter.",
+      "Normal zero-shadow/fade, same-layout overrides, null skin/morph. Billboard, skin and fade cross-products not included in this sway caller batch.",
+      "Finite scalar math, valid disjoint scratch, bounded resources and trig-product signed64 domain. No live runtime loader, GPU or managed execution claim."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "DynamicSwayHarness",
+    "arguments": [
+      "reports/geometry-dynamic-sway-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1044,
+    "harness": {
+      "file": "reconstructed/geometry/harness/DynamicSwayHarness.cs",
+      "bytes": 4962,
+      "sha256": "7d43ae0212d1f0172a0c56cf1c11e8eed657944d8e396ca49035c81d5bd4c537"
+    },
+    "compileStatus": "passed",
+    "comparison": "Whole persistent byte image with captured temporary-matrix mirror, returned visibility, shadow mask, draw tuples and sway call count"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "command": [
+      "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+      "/nologo",
+      "/reference:Recovered.Geometry.SortedPackets.dll",
+      "/reference:Recovered.Geometry.DynamicSubmission.dll",
+      "/reference:Recovered.Geometry.ObjectSway.dll",
+      "/reference:System.Web.Extensions.dll",
+      "/out:DynamicSwayHarness.exe",
+      "harness\\DynamicSwayHarness.cs"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "",
+    "assembly": {
+      "file": "reconstructed/geometry/DynamicSwayHarness.exe",
+      "bytes": 14848,
+      "sha256": "d7ae08ba2f54ebaa3fc8d2506b80e4f53531971bf4304ed4de9eb9e4ea808ebe"
+    }
+  },
+  "observations": [
+    "SubmitWithSway appends an explicit Func<uint,int,int,uint> temporary-matrix service to the existing full CPU service overload. All earlier method signatures remain compatible wrappers; they retain rejection of nonzero sway without a service.",
+    "Special+ca is read as signed16; if nonzero, the callback receives source matrix and signed amplitude/seed(+c8). Its returned logical matrix address replaces the source before scalar visibility, center transformation, distance/LOD and every packet writer.",
+    "The supplied recovered service calls ObjectSway.Transform into a disjoint64-byte scratch slot. Native stack matrix is captured immediately at original5ec590 return and mirrored into that slot for exact comparison; later native consumers remain unchanged.",
+    "All245 nonzero authored specials across4carriers run in both original CRT conversion modes with forced and scalar visibility, plus64 zero-sway regressions.1044 complete caller cases include980 sway calls,490 scalar bounds calls and1521 packets. Original local min/max, matrix, coefficient shorts and LOD offsets are source-bound.",
+    "The same original sway matrix is consumed for culling, transformed center/distance and copied/transposed packet payload. This verifies the caller boundary beyond standalone coefficient equality.",
+    "The global amplitude/rate/time producer and asset load-time hydration remain separate. This fixture proves raw authored values through relocated valid CPU records, not a live captured draw. All compatibility/current sources compile; no managed launch."
+  ],
+  "remainingGaps": [
+    {
+      "id": "dynamic-shadow",
+      "status": "Nonzero shadow scheduling remains outside the caller; animation-owned secondary visibility helper is now available."
+    },
+    {
+      "id": "combined-feature-cross-product",
+      "status": "Sway with skin/morph/billboard/fade or different-layout merge is not covered in this batch, though service signatures compose."
+    },
+    {
+      "id": "runtime-producers",
+      "status": "Raw source records and explicit sway globals; load-time hydration and live global producers separate."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Source and replay compile; no managed launch."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU matrix/packets only."
+    }
+  ],
+  "modelDependencies": [
+    {
+      "file": "tools/geometry-dynamic-sway-native.py",
+      "bytes": 6189,
+      "sha256": "89ea03560db7e5f2f671f4869c79d00613054131b9cd5755fb9f04e0dc69ca78"
+    },
+    {
+      "file": "tools/geometry-sway-native.py",
+      "bytes": 7783,
+      "sha256": "669738bbc94709c920e6910a37b4a7dae7cc2332e9e2855ceb4ed8ad1306f878"
+    },
+    {
+      "file": "tools/geometry-dynamic-submission-native.py",
+      "bytes": 13519,
+      "sha256": "ddf0d39fcb7d2caa97c1af145bb527b43617880831f7f800bafbe8e0170f25ae"
+    }
+  ],
+  "laterRefinement": "geometry-dynamic-shadow-source.json"
+}

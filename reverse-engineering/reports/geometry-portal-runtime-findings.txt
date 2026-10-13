@@ -1,0 +1,104 @@
+Original PC recursive portal runtime
+
+The unmodified0x5ee940 traversal now executes with original classifiers,
+projection,edge/FOV child builders,shallow copies,room flags and instance-bit
+writers.7,888 cases cover every one of403 rooms and326 portals across60 scenes.
+They compare full625-byte visibility results,room flags,recursive entry order,
+ancestor paths,child room IDs,plane-pointer aliases,and all child planes/matrices/
+screen bounds.16,869 entries and allocated volumes include16,855 marked visits;
+the remaining entries stop at native guards. Maximum allocation is16 volumes.
+There are zero numeric or state mismatches in the admitted cases.
+
+This closes the previously supplied child-volume/traversal boundary for prepared
+camera state and valid modern-display data. It is not a complete renderer or
+proof that all possible runtime camera states fit the original storage limits.
+
+Independent component coverage
+1,304 original0x5d9f50 projection cases cover all326 windings with four explicit
+matrices,including projective division and zero homogeneous W.432 original
+0x5d9a00 cases cover nine camera transforms,four FOVs,three aspects and four
+rectangles.3,912 original0x5ee750 cases yield1,937 rejects,369 new volumes and
+1,606 straddles; untouched output pointers on0/4 are checked. Combined with
+the recursion cases,954,180 child-volume scalars agree numerically.
+
+Boundary addendum executes30 original FOV conversion slices,22 direct depth/
+ancestor guards and75 self-link,cycle,duplicate-link,previous-room and depth-cap
+graphs. Signed zero,±1 and adjacent float inputs around signed32 conversion
+limits are retained. The original conversion writesInt64; portable conversion
+intentionally rejects integral results outsideInt32. Direct depth16/17 probes
+test the native guard; the ordinary portable entry starts atdepth0.
+
+Runtime depth ownership
+Although every serialized GSNH+0xe4 is0,the original scene resource finalizer
+0x602550 calls0x5d9130(GSNH,GSNH+0x6c),setting depth to portal count. The source
+load function0x5ef1d0 calls this finalizer. This assignment is independently
+verified in60 original-finalizer cases with authored portal counts and empty
+buffer/material arrays,which avoid GPU resource creation. The full recursive
+suite covers this loader-default depth plus controlled0/1/4/15 caps. Original
+later depth overrides are not inferred from the serialized value.
+
+Storage exclusions
+Original clip pointers occupy GSNH+0x9c..0xdb:16 entries,followed by count+0xdc.
+A17th pointer write would overwrite adjacent state. Four prepared cases in
+CLOUDCITYESCAPE_A(root2) and_C(root6),at a widened FOV with forced active/visible
+flags and eitherdepth15 or loader-default depth,require that17th allocation in
+the independently checked model. They are recorded as explicit unsupported
+cases and excluded before original writes. Source throws at this bound.
+No native corruption,clamping,or hidden alternate path is substituted.
+
+Observed traversal rules
+The ancestor loop tests path indices[0,depth-2],then rejects depth>=16. It writes
+the current slot,marks root-room membership unconditionally or clipped child
+membership through the original predicates,then ORs room flag4. The authored
+portal list order is retained; previous-room links and inactive portals are
+skipped. Classification1 creates edge planes. Classification2 invokes the
+camera-plane partial helper. That helper requires strictly positive vertex
+distances: nonepositive rejects,amixture returns4,allpositive projects and
+intersects screen rectangles before building a four-plane FOV volume.
+On4 the original header copy shares its predecessor's plane pointer. Repeated
+room visits are possible through different branches; there is no global
+visited-room suppression. Source preserves this ordering and alias identity.
+
+Projection/FOV math
+Projection first stores homogeneous W and its reciprocal tofloat32,then
+multiplies each still-wide coordinate dot product by that stored reciprocal.
+W0 produces reciprocal0. Bounds clamp each coordinate to[-1,1]. The original
+function also computes an inverse cache at0x97ad50; the recursive path consumes
+the projection result,not that cache. The portable projection result omits this
+side effect and does not claim a complete generic matrix-inverse reconstruction.
+
+FOV construction stores half-FOV tofloat32,multiplies by the original exact
+double10430.3779296875,then truncates. Original32768-entry sine bytes determine
+tangent and aspect scaling. Each slope,squared length,sqrt,reciprocal and plane
+component follows its observedfloat32 store. Shared integer PlaybackWide retains
+64-significand intermediates where a prematurefloat32/double result is wrong.
+The world camera/projection fixtures are prepared inputs; live camera ownership
+and its view/projection assembly are not recovered by these comparisons.
+
+Precision and source status
+The complete native/Python suite has60 signed-zero-only differences. They remain
+numerically equal and explicitly distinct from bit equivalence. Native planes
+retain exact byte hex; original packed/screen float values preserve zero signs.
+The earlier edge-only batch has its separately documented1,254 zero-sign cases.
+No compiled C# execution has occurred; all source equality claims are limited
+to original x86 versus the Python model until ordinary execution is available.
+
+PortalTraversal.cs adds four bounded native mappings:5d9f50 projection/bounds
+result,5d9a00 prepared-state FOV volumes,5ee750 partial child chain and5ee940
+modern traversal. Together with prior modules it compiles as dependency-free
+C# using shared AnimationPlayback.cs/CharacterContexts.cs. Its scene/room/camera
+classes are explicit decoded adapters,not reconstructed original class layouts.
+Arena addresses and disabled debug rendering are omitted; volume order and
+shared-plane identity are retained. Root selection/entry orchestration remains
+separate from the public traversal's root/current-equal,previous=-1,depth0 input.
+
+PortalTraversalHarness.Main(input,sineTable,output) compiles. The compact fixture
+contains7,888cases,60shared scenes and1,264prepared camera states in1,412,413bytes.
+tools/geometry-portal-runtime-check.py prepares only by default and supports
+ordinary --harness/--module/--compare replay. Managed launch remains pending the
+existing Windows execution denial; no alternate host or security change is used.
+
+Next boundaries
+Full portal-entry integration with live camera state,projection inverse-cache
+consumers,room-output queries,portal activation/state owners,grid/tree visibility,
+dynamic/GHG/shadow packets,and GPU pixels remain distinct unresolved work.

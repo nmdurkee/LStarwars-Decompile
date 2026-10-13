@@ -1,0 +1,70 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5e4840"
+  ],
+  "mappings": [
+    {
+      "address": "0x5e4840",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowGeometryPipeline.cs",
+      "sourceSha256": "36ade9c0b4e3144afc6727ae499e79a8af2c0495937347b16d31f9edc536ae71",
+      "methods": [
+        {
+          "name": "LegacyShadowGeometryPipeline.Process",
+          "line": 9
+        }
+      ],
+      "coverage": "refines legacy queue with all three actual CPU geometry writers",
+      "qualification": "Retains LegacyShadowConsumer.Process scheduler/direction projection and composes LegacyCylinderShadows.Emit, LegacyEllipseShadows.Emit and LegacyPolygonShadows.Emit. Exact typed resource resolvers remain loader adapters; no replacement shape computation. GeneratedValue and shared ring synchronize in original mixed order. No new native address.",
+      "comparisonStatus": "Original complete queue-to-all-shapes CPU geometry exact; managed core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-geometry-pipeline-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyShadowGeometryPipeline.cs",
+      "sha256": "36ade9c0b4e3144afc6727ae499e79a8af2c0495937347b16d31f9edc536ae71"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs",
+      "reconstructed/animation/LegacyShadowConsumer.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs",
+      "reconstructed/animation/LegacyEllipseShadows.cs",
+      "reconstructed/animation/LegacyCylinderShadows.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-geometry-pipeline-portable-verify.cs",
+      "sha256": "ba28668b3f676ba919c37d8eec1437a6f766b826e029675aa9327b6ec6103b90"
+    },
+    "entrypoint": "LegacyShadowGeometryPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-geometry-pipeline-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 1464,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-geometry-pipeline-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-shadow-geometry-pipeline-tests.json",
+    "reverse-engineering/reports/animation-shadow-consumer-tests.json",
+    "reverse-engineering/reports/animation-shadow-polygons-tests.json",
+    "reverse-engineering/reports/animation-shadow-ellipse-tests.json",
+    "reverse-engineering/reports/animation-shadow-cylinder-tests.json"
+  ]
+}

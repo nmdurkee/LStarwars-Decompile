@@ -1,0 +1,54 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "comparisons": 3863,
+  "counts": {
+    "angles": 576,
+    "rotate": 607,
+    "prepare": 1720,
+    "queue": 960,
+    "shapeCalls": 14325,
+    "preparations": 1974,
+    "discardedRoots": 1863
+  },
+  "authoredBindingRigs": 244,
+  "authoredGroups": 1144,
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports\\animation-shadow-consumer-native-fixtures.json.gz",
+    "bytes": 490672,
+    "sha256": "ce3beef3cac5b0bc0aff76cccce93e8e286329663da50a4bb8a53e0d71532e07"
+  },
+  "dependencies": [
+    {
+      "path": "tools/animation-skeletal-fixture.py",
+      "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    },
+    {
+      "path": "tools/animation-character-bounds-verify.py",
+      "sha256": "c39464270a138963ceea26a14e1050eda6bbe5edeeb93dd81b6910b5fb3e8c6c"
+    },
+    {
+      "path": "tools/gameplay-path-angle-verify.py",
+      "sha256": "77b53e1b6f2bb84316ddffde879db43c37bed99d84bbfcb4c419bc2ed2377c0d"
+    },
+    {
+      "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+      "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+    },
+    {
+      "path": "references\\native-animation-sine-table.f32",
+      "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+    }
+  ],
+  "method": "Original scheduler and all direction, angle-table and square-root helpers execute. Only three shape-generation services are supplied at exact native call boundaries; they record arguments and apply a deterministic GeneratedValue increment. Compare exact output words, ring, callback order/arguments, total, direction/root-call counts and untouched queue/camera backing. Direct helper checks replace no computational callbacks.",
+  "limits": [
+    "Finite vector/metadata values and finite stored squares; rotation angle plus16384 integral part must fit signedInt32. No NaN/Infinity or arbitrary out-of-range conversion claim.",
+    "Queue count is backed and at most280; nonpositive counts return after resetting GeneratedValue. Adjacent equal sequence bytes intentionally reuse acceptance, direction and upper/lower values.",
+    "Shape service implementations5e2920/5e3b50/5e4280 are not recovered here. Authored bindings retain original count/topology; ellipse/cylinder pointers and pair words are opaque service identities, not runtime object hydration.",
+    "Managed compilation/replay preparation only; no managed executable or live graphics device launch."
+  ]
+}

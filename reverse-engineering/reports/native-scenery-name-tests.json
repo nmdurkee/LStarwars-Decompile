@@ -1,0 +1,21 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "cases": 2682,
+  "accessorCases": 12,
+  "mismatches": 0,
+  "examples": [],
+  "groups": {
+    "byte-fold": 510,
+    "count-index-and-order": 360,
+    "null-guards": 12,
+    "randomized-bucket-order": 1800
+  },
+  "adapters": [],
+  "instrumentation": "Read-only entry hooks log accessor order without replacing instructions. All lookup, accessor and comparator bodies execute unchanged.",
+  "boundaries": [
+    "Projected valid global type and registry bucket arrays; name bytes encode Latin1 with C NUL termination.",
+    "Native type==count executes indexed lookup. Tests allocate the extra readable slot; an absent slot is an unsafe original read, not an invented null result.",
+    "Negative counts and record counts preserved. Invalid pointers, concurrent registry mutation and arbitrary callback side effects excluded."
+  ],
+  "vectors": "reports/native-scenery-name-vectors.json"
+}

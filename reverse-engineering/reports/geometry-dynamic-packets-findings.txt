@@ -1,0 +1,30 @@
+Dynamic material packet dependencies
+
+Original5de100 reserves exactly128bytes without aligning its caller cursor.
+It writes an85 header,two87 placeholders,an80 material command,two more87
+placeholders,an8b link and an84/control4 terminator. Both links use the original
+global80baa8(value8),while the saved-command and final-link indexes used by the
+caller are80baac=6 and80bab0=7. Five small setters modify only opcode,control
+and resource bytes; the extra material/index arguments to four setters are
+ignored by this PC binary. Unchanged packet padding is explicitly checked.
+
+Original5de390 sums unsigned16 group counts and searches that many material
+pointers for the first matching key of each nonempty sort group. A missing key
+leaves its existing first-material index unchanged. The key uses signed16
+truncation after shifting the material tag left4,then arithmetic-right-shift8,
+multiplied by0x20000,plus signed16 material+0x76. This is distinct from treating
+the initial tag or final priority as unsigned.
+
+600 unchanged original cases pass:320 setter cases,96 constructor/link-count/
+unaligned-cursor cases,120 authored/reversed material-table cases across60
+scenes,and64 signed-key boundary cases.1,696 range matches and3,812,352 compared
+state/call bytes agree. Constructor first/fourth ignored caller arguments are
+deliberately nonzero. Link counts1/2/6/8/16/255 verify the writer contract;
+only8 is the observed original global default.
+
+DynamicMaterialPackets.cs has seven native mappings and compiles with its
+harness. The508,037-byte gzip fixture covers every case. Main
+DynamicMaterialPacketsHarness takes compressedInputFixture/outputFile.
+Compiled execution remains pending. The actual5de440 add/remove/refcount and
+list-compaction algorithm is still separate work; these recovered dependencies
+make its next batch concrete. No game,managed harness,or GPU was launched.

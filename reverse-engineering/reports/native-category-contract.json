@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-10-12T23:37:42.656Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "find": "55bc20 scans signed capability count over12-byte records at global93b280 and uses actual4f8b10 byte case-folded name comparison. Absent table returns-1. Null stored names or query names never match; duplicate matching names select first.",
+    "bind": "440c00 requires query name, supplied system and global capability table before calling55bc20; returns-1 otherwise.",
+    "condition": "440c30 checks bound!=-1, creature and creature.reference, then calls actual55bc80 with reference.world actor. Other negative/out-of-count indexes return0. Null actor can return1 when both capability masks are0; field-requiring masks need readable actor/definition/class.",
+    "update": "455290 starts local enabledfalse every call. First calls scan whole TRUE/FALSE tokens in order, last recognized value wins; substring variants are ignored. For guarded creature/reference, write actor ef4bit20 to inverse enabled and preserve every other bit. Non-first calls setbit20 regardless of tokens. Return1 always within valid backing.",
+    "reuse": "ForceActions.HasCapability supplies exact mask and class exclusion behavior, without new helper credit. Shared OpponentFields.FlagsEf4 keeps the actor state projection consistent. Downstream update cadence is not inferred."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "CategoryIs",
+      "address": "0x440c30",
+      "sourceUses": 65,
+      "qualification": "Full native name binding and actor capability predicate with original helper and exact null gates."
+    },
+    {
+      "kind": "scp-action",
+      "name": "UseTimeBasedUpdate",
+      "address": "0x455290",
+      "sourceUses": 40,
+      "qualification": "Full parse/flag write and return; downstream update cadence remains external."
+    }
+  ],
+  "native": {
+    "cases": 1951,
+    "mismatches": 0,
+    "fullRegionComparisons": 1951,
+    "groups": {
+      "Find": 216,
+      "Bind": 281,
+      "CategoryIs": 982,
+      "UseTimeBasedUpdate": 472
+    },
+    "authoredUses": {
+      "UseTimeBasedUpdate": 40,
+      "CategoryIs": 65
+    },
+    "method": "Unchanged55bc20/440c00/440c30/455290 with actual55bc80 and4f8b10. Compare returned index/float/integer and complete fixture memory, including ef4 flags. No replacements."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/CategoryCommands.cs",
+      "bytes": 2479,
+      "sha256": "22b6c2ef5c3e74c39ef2c28d82d7015c87a5331a69140250f15cee5f3ce48c35"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-category-portable-verify.cs",
+      "bytes": 4214,
+      "sha256": "6bd91eeda0cd83b1445078d4a0ff535330323f16a115fb9ed293d45869fd3d49"
+    },
+    "entrypoint": "CategoryCommandsVerify.Main",
+    "arguments": [
+      "reports/native-category-vectors.json",
+      "reports/native-category-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-category-vectors.json",
+      "bytes": 3049713,
+      "sha256": "c177f67654d682972df6ad04ee9cfadd6058cbdacd368f80f2e354c6b5524e3c"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Bounded category table with nullable names and native case-folded comparisons. Actor definition/class requirements are inherited from actual capability masks.",
+    "Null actor is valid for mask-free CategoryIs but invalid for reached time-based-update flag write. Invalid backing cases explicitly excluded.",
+    "Only ef4bit20 producer recovered, not downstream update cadence. Authored operands exercised with prepared category tables; managed replay pending."
+  ]
+}

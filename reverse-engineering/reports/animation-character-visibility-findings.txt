@@ -1,0 +1,24 @@
+PC CHARACTER BOUNDS VISIBILITY
+
+5888 exact original comparisons; 0 mismatches.
+
+normal
+Withglobal9739a8 zero, copies localminimum fromhierarchy+1ac andmaximum from+1b8, thenforwards them andcallerobjectworld to6042e0 withrequestedFar0 andmode0. Jointmatrices are notread. Nullobjectworld isaccepted bytheunderlying default-view classifier.
+
+centered
+Withglobal9739a8 nonzero, computes extent=store32(max-min), thenhalf=store32(extent*0.5), low=-half andhigh=half. It copies all16objectmatrixfloats, thenadds firstjoint translation (jointmatrix+30/34/38) through theobjectbasis into objecttranslation. Thelocalboundscenter isnot added. Itforwards thecenteredbox andmodifiedmatrix to6042e0.
+
+order
+Original5b4960 evaluates Xtranslation as((M8*rootZ+M0*rootX)+M4*rootY)+M12; Y/Z evaluate((Mz*rootZ+My*rootY)+Mx*rootX)+translation. Each finalcoordinate storesfloat32. Halfextent subtraction andscale have separatefloat32stores. Signedzeros arepreserved, including unarynegation ofzero halfextents.
+
+classifier
+Composes thegeometry-owned DynamicBounds.Classify, retaining exactclassification0outside/1inside/2partial,CombinedMatrix/FarLanes scratchwrites andcorners. Disabledclassifier stillreceives preprocessed input fromthewrapper butdoesnot alteritsownscratch. No scalarclassifier reimplementation isduplicated.
+
+integration
+Use CharacterSubmissionServices.ResolveVisibility closure tocall CharacterVisibility.Classify withthecharacterlocalbounds,objectworld,firstjointmatrix andglobalcenterOnRoot state. This closes5da980 underthescalar classifierdomain. Secondaryshadow-lightvisibility5ea6a0 andattachmentqueue5f9fa0 remainseparate.
+
+Limits
+Finite bounds/matrices/camera andfinite storedresults; scalar297c0d0=0,unsupported6042e0 fifthargument0.
+centerOnRoot input mapsglobal9739a8. Alternate branch requiresvalidobjectworld andfirstjointmatrix.
+No SIMD,camera production,liveactor schedule orGPU equivalence.
+Compiled-only managed source/replay; original-versus-Python evidence doesnot establishmanagedexecution equivalence.

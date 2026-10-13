@@ -1,0 +1,64 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "d3dx": {
+    "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "bytes": 3727720,
+    "preferredBase": "0x400000",
+    "mappedBase": "0x20000000",
+    "matrixImplementationRva": "0x163599",
+    "highlowRelocations": 40053,
+    "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+  },
+  "comparisons": 360,
+  "counts": {
+    "cases": 360,
+    "layerDraws": 6240,
+    "packets": 51438,
+    "skinPackets": 7157,
+    "shadowPackets": 36742,
+    "secondaryCalls": 6600,
+    "volumeTests": 2160,
+    "shadowShaderCalls": 36742,
+    "locks": 57,
+    "zeroReturnWithPackets": 114,
+    "noLayerDraws": 0,
+    "swayCalls": 3960,
+    "fadeCalls": 3960,
+    "nonunitAlpha": 20842,
+    "nanAlpha": 3480,
+    "billboardPackets": 25719
+  },
+  "authoredRigs": 2,
+  "authoredMeshes": 8,
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports/animation-character-effects-packets-native-fixtures.json.gz",
+    "bytes": 2151625,
+    "sha256": "f89e5970cf102f2814357831a0e712447003d60942b355d13d1a87dbe5b8f147"
+  },
+  "dependencies": [
+    {
+      "path": "tools/animation-character-mixed-packets-verify.py",
+      "sha256": "331f3be20ab4d2d07448e014fe33351cfc12f7fd9fedc390d80250777ac3087b"
+    },
+    {
+      "path": "tools/geometry-sway-native.py",
+      "sha256": "669738bbc94709c920e6910a37b4a7dae7cc2332e9e2855ceb4ed8ad1306f878"
+    },
+    {
+      "path": "tools/geometry-dynamic-fade-native.py",
+      "sha256": "d8566c2c70b760621c45bcf00bbdeea61e340b14cd30490bf0f5bbe796449287"
+    },
+    {
+      "path": "tools/geometry-dynamic-shadow-native.py",
+      "sha256": "721f0d3faab90e6bd27f71c3fb08035aa21774b0aa63cc466201e92aa5f7d639"
+    }
+  ],
+  "method": "Original full character/secondary/shadow/mixed packet chain plus actual5ec590/5ec3d0 sway and5df7b0 fade/sqrt. Every persistent1MiB byte including last captured native stack sway matrix, layer hashes, masks/state, ordered packets/records, all sway matrices, fade input bits and forwarded alpha bits compared. Only successful COM buffer locking supplied.",
+  "limits": [
+    "Controlled source-matched mesh/billboard/layer bindings and explicit finite sway/fade/camera scenarios; exact shipped loader and runtime parameter producer remain separate.",
+    "Sway coefficients fit signed64 conversion bounds, both original conversion modes. Finite fade inputs can produce original NaN alpha at equal endpoints.",
+    "Active legacy character shadow queue, GPU execution and managed executable launch remain separate."
+  ]
+}

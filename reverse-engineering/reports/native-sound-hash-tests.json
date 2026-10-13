@@ -1,0 +1,20 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "checks": 1985,
+  "mismatches": 0,
+  "groups": {
+    "init": 256,
+    "prefix": 1729
+  },
+  "originalEntryCalls": 3970,
+  "initializationSteps": 512,
+  "tableWords": 256,
+  "examples": [],
+  "method": "Original650280 initializes the actual arena/CRC table;650470 consumes it directly with no replacements. Exact table words, arena cursor/global pointer/init flag and complete64KiB image compare at every initialization step, plus unchanged input region and hash result for every prefix call.",
+  "limits": [
+    "Valid disjoint cursor variable, aligned table destination and readable name storage. Offsets represent original pointers portably; native uint32 alignment/wrap arithmetic is preserved but invalid wrapped process addresses are excluded.",
+    "Persistent signed initialization flag gates on any nonzero value. Repeated calls retain existing table/cursor; explicit external resets to0 cause another aligned1024-byte allocation.",
+    "ASCII names only because original signed-byte high-bit indexing can read before the hash table. Prefix length is unsigned32-bit and stops at firstNUL.",
+    "Allocator ownership and sound database/bucket population remain outside this two-helper scope. Managed replay pending."
+  ]
+}

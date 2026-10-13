@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-10-12T21:59:12.084Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "ordinaryTransfer": {
+      "address": "0x4876a0",
+      "description": "Bounded to mode0, the exact mode used by candidate selector487ca0. Global0x951c5c blocks the entire function before any actor read or write. Otherwise swaps input+0xca4, opaque words+0xda8/+0x7fc/+0xdec/+0xea8/+0x1000, signed player index+0x280, auxiliary backing+0x800 and controlled bit0x80 at+0x1fc. Swaps only generic flags mask0x46f8 at+0x1f8. Resets source/target transient fields and zeroes both nonnull auxiliary buffers after the pointer swap. Runs source base-script reset before the ordinary timer/health tail. Only return0(blocked) and1(completed) occur in this ordinary body; caller487ca0 pending result2 remains a generic caller contract, not a discovered return of this path.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 9,
+          "address": "0x4876a0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_487ca0.c",
+          "line": 23,
+          "address": "0x487ca0"
+        }
+      ]
+    },
+    "cleanup": {
+      "description": "Source+0xd60 becomes0, target becomes float2; both+0xda4 take global0x802be8 bits. Source+0xef0 clears0x180000 and sets0x80; target sets0x80 then clears0x180000 at the shared tail. Both+0xee4/+0xee8 clear. Target+0x7c0 becomes float1. If source matches global pairFrom0x87a7c8 and target differs from pairTo0x87a7cc, both references and the following two words clear. Otherwise all four pair fields persist. Tests include self-aliasing transfer and aliased/null auxiliary/input attachments.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 109,
+          "address": "0x4876a0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 162,
+          "address": "0x4876a0"
+        }
+      ]
+    },
+    "playerAndHealth": {
+      "description": "After swapping player indices, each nonnegative index assigns its actor into the corresponding player slot. Index-1 or a nonnull linked object at+0xcd0 chooses maximum byte from that actor tuning+0xf4. An ordinary player index with no link uses global0x802bd4, except special level equality (game+0x128 ==global0x87b160), which preserves the prior maximum. Target current-health byte receives the old source byte and is capped only when its SIGNED interpretation exceeds unsigned target maximum; bytes128..255 consequently evade that cap. Zero becomes1 only if maximum is nonzero. Source gets the old target health on special level or when still controlled; otherwise it gets its new maximum or alternate+0xe39 when character-definition flags contain0x20. These explicit signed-byte rules were checked across0/1/127/128/255 and multiple maxima.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 39,
+          "address": "0x4876a0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 126,
+          "address": "0x4876a0"
+        }
+      ]
+    },
+    "reset": {
+      "address": "0x4a4ca0",
+      "description": "The helper zeroes five words at argument+0x6bc/+0x6c0/+0x650/+0x6cc/+0x654 and writes float0.2 at+0x6c4. Transfer passes actor+0x6c4, so the exported projection is actor+0xd80/+0xd84/+0xd14/+0xd90/+0xd18 zero and+0xd88=0x3e4ccccd. Field gameplay meanings are deliberately left unnamed; the exact write contract is established.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4a4ca0.c",
+          "line": 7,
+          "address": "0x4a4ca0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 63,
+          "address": "0x4876a0"
+        }
+      ]
+    },
+    "auxiliary": {
+      "address": "0x466820",
+      "description": "Nullable actor+0x800 pointer: a nonnull pointer causes exactly0x630 bytes to be zeroed, otherwise no effect. Native memset executes unchanged. Portable backing may be longer but must be at least0x630 bytes; extra bytes remain untouched. Tests cover two distinct buffers, shared-buffer aliasing and either/both null pointers.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_466820.c",
+          "line": 7,
+          "address": "0x466820"
+        }
+      ]
+    },
+    "baseScript": {
+      "address": "0x415000",
+      "description": "Checks the embedded script record at actor+0x2c8. A nonnull base script invokes0x514640(system,embedded,embedded,0,0,0,0,baseScript,baseScript+0x38), then clears actor+0x32c. A null base script makes no call and preserves+0x32c. The outer wrapper is recovered; complete script initializer semantics are a required service, and fixtures record its exact argument identity/order.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_415000.c",
+          "line": 7,
+          "address": "0x415000"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_514640.c",
+          "line": 7,
+          "address": "0x514640"
+        }
+      ]
+    },
+    "feedback": {
+      "address": "0x54a8d0",
+      "description": "A zero feedback handle does nothing. Otherwise the signed integer amount is loaded directly by x87 FILD, divided by float32 global0x925024 and rounded to float32 before0x698900(handle,duration,0,0,0). There is no premature float32 conversion of the integer. Ordinary transfer passes amount2 and the first word through the swapped target input record. Additional cases include signed int extrema and16777217 to distinguish the arithmetic. Platform feedback remains external.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_54a8d0.c",
+          "line": 9,
+          "address": "0x54a8d0"
+        },
+        {
+          "path": "reverse-engineering/reports/gameplay-player-transfer-assembly.json",
+          "address": "0x54a8d0"
+        }
+      ]
+    },
+    "integration": {
+      "description": "OrdinaryPlayerTransferAdapter implements TagControlServices.Transfer using the recovered mode0 body. It shares actor flags, player arrays and TagControlState (including+0xcd0 and+0x7c0), avoiding duplicate independent field state. Thirty-two original-code fixtures run SetTaggable ->487ca0 ->4876a0 ->reset/clear/bind/feedback wrappers ->55e410 without substituting any of these game functions. Only deep script initializer and platform feedback are replaced. The release branch still requires an explicit takeover/vehicle service.",
+      "evidence": [
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_44f930.c",
+          "line": 8,
+          "address": "0x44f930"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_487ca0.c",
+          "line": 7,
+          "address": "0x487ca0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c",
+          "line": 9,
+          "address": "0x4876a0"
+        },
+        {
+          "path": "reverse-engineering/decompiled/corpus-expanded/FUN_55e410.c",
+          "line": 7,
+          "address": "0x55e410"
+        }
+      ]
+    }
+  },
+  "commands": [],
+  "verification": {
+    "checks": 565,
+    "mismatches": 0,
+    "groups": {
+      "transfer": 477,
+      "tag": 32,
+      "feedback": 56
+    },
+    "method": "Unmodified ordinary mode0 transfer4876a0 with original reset4a4ca0, buffer-clear466820, rebind wrapper415000 and feedback wrapper54a8d0. Only deep script initialization514640 and platform feedback698900 are substituted.",
+    "reports": [
+      "reverse-engineering/reports/gameplay-player-transfer-tests.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-player-transfer-native-fixtures.json",
+      "bytes": 1030341,
+      "sha256": "bd0342f562e2988ab1a93eb5df1db79f2048a944822a27672a159a416a14feb7"
+    },
+    "newAuthoredCommandUses": 0,
+    "coverageNote": "Reduces a real SetTaggable transfer boundary; prior92 uses are not counted again."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PlayerTransfer.cs",
+      "bytes": 8493,
+      "sha256": "9d8de136bd06e434cc873436e672ade9104533200202f495cd5b803c02689dbe"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-player-transfer-portable-verify.cs",
+      "bytes": 8489,
+      "sha256": "0205867d19af79cd64aaa3c80b3e5105a9b69363f90b954198c2a9044cacfcd3"
+    },
+    "entrypoint": "GameplayPlayerTransferVerify.Main",
+    "arguments": [
+      "reports/gameplay-player-transfer-native-fixtures.json",
+      "reports/gameplay-player-transfer-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/TagControls.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-player-transfer-verify.exe",
+        "bytes": 49152,
+        "sha256": "5de2c5e5cb74d70b0afbb01e929c2c9bff22ed13156b404107521bcfe2d1b27e"
+      },
+      "managedExecution": "Not attempted; compile-only instruction preserved."
+    },
+    "adapters": [
+      "Deep script initialization0x514640, platform feedback0x698900 and takeover/vehicle release0x4882d0 remain explicit services.",
+      "World attachment must share actor/tag/transfer state object identities. Auxiliary buffers preserve reference aliasing.",
+      "Opaque swapped words retain exact bits without guessed pointer ownership or gameplay meaning."
+    ]
+  },
+  "remaining": [
+    "Mode1 takeover is explicitly excluded; this is the exact mode0 path called by tag candidate selector487ca0.",
+    "Valid two-actor records, nullable auxiliary buffers, signed personal index-1 or0..7, finite nonzero feedback divisor.",
+    "Deep script initialization and platform feedback remain service adapters; managed replay comparison pending."
+  ]
+}

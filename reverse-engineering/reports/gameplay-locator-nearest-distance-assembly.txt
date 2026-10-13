@@ -1,0 +1,115 @@
+005becc0 mov eax, dword ptr [esp + 0xc]
+005becc4 sub esp, 0xc
+005becc7 test eax, eax
+005becc9 je 0x5bed1e
+005beccb mov ecx, dword ptr [esp + 0x10]
+005beccf fld dword ptr [ecx]
+005becd1 mov edx, dword ptr [esp + 0x14]
+005becd5 fsub dword ptr [edx]
+005becd7 push ecx
+005becd8 fstp dword ptr [eax]
+005becda fld dword ptr [ecx + 4]
+005becdd fsub dword ptr [edx + 4]
+005bece0 fstp dword ptr [eax + 4]
+005bece3 fld dword ptr [ecx + 8]
+005bece6 fsub dword ptr [edx + 8]
+005bece9 fstp dword ptr [esp + 0x1c]
+005beced fld dword ptr [esp + 0x1c]
+005becf1 fst dword ptr [eax + 8]
+005becf4 fld dword ptr [eax + 4]
+005becf7 fld dword ptr [eax]
+005becf9 fmul st(0), st(0)
+005becfb fld st(1)
+005becfd fmulp st(2)
+005becff faddp st(1)
+005bed01 fld st(1)
+005bed03 fmulp st(2)
+005bed05 faddp st(1)
+005bed07 fstp dword ptr [esp + 0x1c]
+005bed0b fld dword ptr [esp + 0x1c]
+005bed0f fstp dword ptr [esp]
+005bed12 call 0x5c0240
+005bed17 add esp, 4
+005bed1a add esp, 0xc
+005bed1d ret 
+005bed1e mov eax, dword ptr [esp + 0x10]
+005bed22 mov ecx, dword ptr [esp + 0x14]
+005bed26 fld dword ptr [eax]
+005bed28 fsub dword ptr [ecx]
+005bed2a push ecx
+005bed2b fstp dword ptr [esp + 4]
+005bed2f fld dword ptr [eax + 4]
+005bed32 fsub dword ptr [ecx + 4]
+005bed35 fstp dword ptr [esp + 8]
+005bed39 fld dword ptr [eax + 8]
+005bed3c fsub dword ptr [ecx + 8]
+005bed3f fstp dword ptr [esp + 0xc]
+005bed43 fld dword ptr [esp + 4]
+005bed47 fld dword ptr [esp + 8]
+005bed4b fld dword ptr [esp + 0xc]
+005bed4f fld st(1)
+005bed51 fmulp st(2)
+005bed53 fld st(2)
+005bed55 fmulp st(3)
+005bed57 fxch st(1)
+005bed59 faddp st(2)
+005bed5b fmul st(0), st(0)
+005bed5d faddp st(1)
+005bed5f fstp dword ptr [esp + 0x1c]
+005bed63 fld dword ptr [esp + 0x1c]
+005bed67 fstp dword ptr [esp]
+005bed6a call 0x5c0240
+005bed6f add esp, 4
+005bed72 add esp, 0xc
+005bed75 ret 
+005c0240 fldz 
+005c0242 fld dword ptr [esp + 4]
+005c0246 fcom st(1)
+005c0248 fnstsw ax
+005c024a test ah, 5
+005c024d jp 0x5c0252
+005c024f fstp st(0)
+005c0251 ret 
+005c0252 fstp st(1)
+005c0254 call 0x6e9530
+005c0259 fstp dword ptr [esp + 4]
+005c025d fld dword ptr [esp + 4]
+005c0261 ret 
+005c0262 int3 
+005c0263 int3 
+005c0264 int3 
+005c0265 int3 
+005c0266 int3 
+005c0267 int3 
+005c0268 int3 
+005c0269 int3 
+005c026a int3 
+005c026b int3 
+005c026c int3 
+005c026d int3 
+005c026e int3 
+005c026f int3 
+005c0270 fldz 
+005c0272 fld dword ptr [esp + 4]
+005c0276 fcom st(1)
+005c0278 fnstsw ax
+005c027a test ah, 0x41
+005c027d jp 0x5c0282
+005c027f fstp st(0)
+005c0281 ret 
+005c0282 fstp st(1)
+005c0284 call 0x6e9530
+005c0289 fstp dword ptr [esp + 4]
+005c028d fld dword ptr [esp + 4]
+005c0291 fld1 
+005c0293 fdivrp st(1)
+005c0295 fstp dword ptr [esp + 4]
+005c0299 fld dword ptr [esp + 4]
+005c029d ret 
+005c029e int3 
+005c029f int3 
+005c02a0 fld dword ptr [esp + 4]
+005c02a4 fld dword ptr [esp + 8]
+005c02a8 fcom st(1)
+005c02aa fnstsw ax
+005c02ac test ah, 5

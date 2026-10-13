@@ -1,0 +1,32 @@
+{
+  "schema": "original-portal-room-outputs-v1",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "passed": true,
+  "counts": {
+    "roomQueries": 90574,
+    "roomMasks": 7888,
+    "disabledQueries": 12,
+    "disabledMasks": 6
+  },
+  "errors": [],
+  "traversalCases": 7888,
+  "sourceRooms": 403,
+  "sourcePortals": 326,
+  "rootMaskQueryDifferenceCases": 7875,
+  "resultSHA256": "370246fddd617fe4613873fe49262fbeee4a3a04c53a1c2cb1a07886799a9a84",
+  "fixturesFile": "geometry-portal-room-outputs-fixtures.json.gz",
+  "scope": [
+    "Original5da2d0 and5da330 execute with no result or code adapters.",
+    "Input allocated-room sequences come directly from all validated original recursive outputs.",
+    "Room mask retains16-byte canary beyond the declared room count; null/no-portal calls leave output unchanged."
+  ],
+  "observations": [
+    "5da2d0 searches only allocated clip-header room IDs,including negative values; it does not independently include the root room.",
+    "5da330 clears declared room bytes,sets the current root,andsets each nonnegative allocated clip room.",
+    "Null scene or zero portal count makes5da2d0 return1 but makes5da330 a no-op."
+  ],
+  "limits": [
+    "Successful-entry root must be a valid room; invalid root would write outside native output and is excluded.",
+    "Portable compiled execution remains pending; no managed launches."
+  ]
+}

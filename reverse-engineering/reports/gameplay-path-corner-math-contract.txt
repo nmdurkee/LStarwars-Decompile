@@ -1,0 +1,16 @@
+6498 original-PC comparisons, zero mismatches. Three new helper mappings. Portable replay compiles only.
+
+angles
+5be590 adds and5be5b0 subtracts full32-bit inputs, masks to16 bits, then returns signed16-bit extension in EAX. Overflow and high input bits wrap;0x8000 is negative.
+
+lines
+5bee20 computes3D infinite-line parameters. It stores the direction cross product tofloat32, computes its norm using original ordered x87 operations andsqrt, stores reciprocal norm then its square, and evaluates the two numerators with float32 displacement components. Each numerator is stored before multiplication by the stored inverse-square scale. Both outputs are written even when the zero scale makes the return false. There is no coplanarity or0..1 segment check; those checks belong to callers.
+
+validation
+6,498 original-PC records pass:4,352 line-parameter cases and1,073 cases for each angle helper. All179 instructions execute. Line cases include zero/parallel/near-parallel and skew3D directions plus4,096 seeded finite layouts. Angle cases cover wrap boundaries and1,024 full32-bit random pairs. Actual5c0240/CRT square root executes, with no behavior adapter. The source directly reuses BuildEffectSound.SquareRoot.
+
+Remaining
+Finite inputs and intermediates, disjoint valid input/output buffers; underflow to zero is retained but overflow/NaN/infinity are excluded.
+The Boolean only tests whether the stored inverse-square scale is nonzero. It must not be interpreted as proof that two finite3D segments intersect.
+This is a dependency of51c150 path-corner construction, not the completed corner or51d7b0 steering contract.
+No authored command credit; no re-credit for square root or arithmetic support. Managed replay compiled only; native comparisons use an independent exact-arithmetic model.

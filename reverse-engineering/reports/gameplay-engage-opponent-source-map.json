@@ -1,0 +1,35 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "EngageOpponent integration fragment. Reused helpers receive no duplicate address credit.",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x447f00",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/EngageOpponent.cs",
+      "sourceSha256": "d1acd9ac2c96073a5a9743d68394a9a4adf69ef18760fcab49d47484e80976cc",
+      "methods": [
+        {
+          "name": "EngageOpponentCommand.Execute",
+          "line": 61
+        }
+      ],
+      "coverage": "complete bounded original SCP command with recovered helper composition",
+      "qualification": "Finite valid actor/packet/world attachments; actual name/number/RNG/ordinary movement/assignment/band/player obstruction reused. Formation expansion and downstream navigation/input consumers remain adapters. Permission mask producer unresolved.",
+      "comparisonStatus": "Original-PC/Python differential passed; C# source/replay compile, managed comparison not run.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-engage-opponent-tests.json",
+        "reverse-engineering/reports/gameplay-engage-opponent-assembly.json"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "EngageOpponent",
+      "address": "0x447f00",
+      "sourceUses": 263,
+      "qualification": "Bounded command contract; navigation/input consumption, formation expansion and world-state production remain external."
+    }
+  ],
+  "contract": "reverse-engineering/reports/gameplay-engage-opponent-contract.json"
+}

@@ -1,0 +1,51 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "configure": "Preserve buffer for equal word count. For changed count, retain original empty retirement behavior, allocate twice count bytes, zero them, then update count and source.",
+    "commit": "Copy mask before signaling, reread device after event, call slot44, then update fixed voice receiver2972c48. Mutable device boundaries remain explicit."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 864,
+    "mismatches": 0,
+    "visitedInstructions": 60,
+    "noopCalls": 144,
+    "bytesComparedPerCase": 49152,
+    "examples": [],
+    "method": "Original698710/698e70 and actual memset/memcpy/no-op696a90 execute. Allocation, SetEvent, COM slot44 and voice update are mutable services; all image bytes and ordered service entry hashes compare.",
+    "limits": [
+      "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded.",
+      "Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals.",
+      "Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundMaskLifecycle.cs",
+      "bytes": 1722,
+      "sha256": "6f1123e1730d5088a52a3c6951b197cbf6477b73882c8515df6b86a3589a7275"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-mask-portable-verify.cs",
+      "bytes": 5360,
+      "sha256": "072802424b1d1fe04abe7d7d8558e13f8e57dbe5af5d2b130517a5c09419fb82"
+    },
+    "entrypoint": "SoundMaskVerify.Main",
+    "arguments": [
+      "reports/native-sound-mask-vectors.json.gz",
+      "reports/native-sound-mask-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-mask-vectors.json.gz",
+      "bytes": 82995,
+      "sha256": "b32c289353d8085e1be2e8afcfc3aa18c3f239471247c5c9a21eafd6f90b6f6c"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded.",
+    "Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals.",
+    "Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending."
+  ]
+}

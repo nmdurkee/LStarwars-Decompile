@@ -1,0 +1,110 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 5,
+  "refines": [
+    "0x62e290"
+  ],
+  "mappings": [
+    {
+      "address": "0x5c9c40",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphWeights.cs",
+      "sourceSha256": "03bf314a347187e44460761e082bc1a6895cf2e517ad7de96f85df939e550ad0",
+      "methods": [
+        {
+          "name": "MorphWeights.PrepareTime",
+          "line": 53
+        }
+      ],
+      "coverage": "finite valid legacy timing branch",
+      "qualification": "Legacy BSA duration>=1, valid chunk table and native integer conversion range. Duration1/end early return only defines Frame,Chunk,Mask,ByteIndex; native LocalFrame/Subframe lanes are not claimed in that special case. ANI4/ANI5 branch excluded.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-tests.json"
+    },
+    {
+      "address": "0x5c9520",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphWeights.cs",
+      "sourceSha256": "03bf314a347187e44460761e082bc1a6895cf2e517ad7de96f85df939e550ad0",
+      "methods": [
+        {
+          "name": "MorphWeights.SampleCurve",
+          "line": 64
+        }
+      ],
+      "coverage": "finite valid type1/type2 legacy scalar branches",
+      "qualification": "Explicit source-byte bit masks, chunk offsets and valid consecutive key records. Type0 constant reads are caller semantics, not attributed to this native entry. Types3/4/5/6 and malformed/out-of-range data excluded.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-tests.json"
+    },
+    {
+      "address": "0x5d3a20",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphWeights.cs",
+      "sourceSha256": "03bf314a347187e44460761e082bc1a6895cf2e517ad7de96f85df939e550ad0",
+      "methods": [
+        {
+          "name": "MorphWeights.Single",
+          "line": 89
+        }
+      ],
+      "coverage": "single-clip successful-allocation output branch",
+      "qualification": "Legacy-v2 BSA types0/1/2, nonnegative layer IDs, finite values and valid key records. Null map selects layer0; out-of-range positive layer allocates empty output. Managed arrays replace native pool ownership; exhaustion and skipped negative layer slots excluded.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-tests.json"
+    },
+    {
+      "address": "0x5d3dc0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphWeights.cs",
+      "sourceSha256": "03bf314a347187e44460761e082bc1a6895cf2e517ad7de96f85df939e550ad0",
+      "methods": [
+        {
+          "name": "MorphWeights.Blend",
+          "line": 95
+        }
+      ],
+      "coverage": "two-clip successful-allocation output branch",
+      "qualification": "Either source/target may be absent; missing layer/channel contributeszero. Maximum participating channel count retained. Finite sampled values/weight and output, native double-stored inverse weight and x87 final sum preserved. Pool ownership remains managed.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-tests.json"
+    },
+    {
+      "address": "0x62e290",
+      "sourceFile": "reverse-engineering/reconstructed/animation/MorphWeights.cs",
+      "sourceSha256": "03bf314a347187e44460761e082bc1a6895cf2e517ad7de96f85df939e550ad0",
+      "methods": [
+        {
+          "name": "MorphWeights.EvaluatePacket",
+          "line": 105
+        }
+      ],
+      "coverage": "default-layer morph output branch refinement",
+      "qualification": "Complements SkeletalPacketDispatch/SkeletalPoints without replacing their mappings. Returns false for no selected layers (preserve output), true+null for no valid morphclip (write null). Nullable morph table is separate from skeletal table. Full native62e290 fixtures use a one-joint bind skeleton and nullPOI outputs; no full renderer/GPU equivalence.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-morph-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/MorphWeights.cs",
+      "sha256": "03bf314a347187e44460761e082bc1a6895cf2e517ad7de96f85df939e550ad0"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-morph-portable-verify.cs",
+      "sha256": "d9d7a17154e4c0ca1f69351b2b82038e909f1e296137b379569ba5236826582a"
+    },
+    "entrypoint": "MorphWeightsVerify.Main",
+    "arguments": [
+      "reports/animation-morph-native-fixtures.json.gz",
+      "<output.json>"
+    ],
+    "preparedComparisons": 29631,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-morph-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-morph-tests.json",
+    "reverse-engineering/reports/animation-morph-assembly.json"
+  ]
+}

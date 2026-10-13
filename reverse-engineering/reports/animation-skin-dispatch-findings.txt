@@ -1,0 +1,24 @@
+PC SKIN / MORPH PACKET DISPATCH
+
+3512 exact original comparisons; 0 mismatches.
+
+abi
+Original5e0530 registers ECX=command pointer,EDX=world matrix,ESI=material packet record. Eight stack arguments: material,signed command index,output array,transform cache,skin palette pointer,morph weight pointer,alpha,signed metadata. The decompiler five-argument prototype is incomplete. This routine has no separate mode parameter.
+
+selection
+Opcode8f selects the billboard writer before checking the skin pointer; that branch is excluded from this composed source. Otherwise nonnull skin selects5e0390, regardless of material flags, previous opcode or nullable morph pointer. Null skin permits prefix5e02b0 only when material+b4 highbit is set, signed index>1 and command[-32] is b0/ae/af; all remaining cases use5e0200.
+
+forwarding
+Each writer receives EAX=record and EDI=output. Ordinary receives command,world,cache,alpha,metadata. Prefix receives command,world,cache,alpha. Skin receives command,world,cache,skin,morph,metadata; it does not receive alpha and its writer forces1.0. The source preserves both morph-null skinning and morph-nonnull deformation; nonnull morph with null skin takes the ordinary/prefix route and does not read weights.
+
+effects
+Recovered writers retain allocator alignment/link tails, matrix payload and scratch writes, output pointer conventions, signed metadata conversion, alpha clamping and CPU deformation. Full1MiB logical memory snapshots and nested original calls are compared. Four distinct source skin-buffer addresses verify real pointer forwarding while their bytes contain diverse joint identities.
+
+integration
+Geometry DynamicObjectSubmission can call this adapter after selecting a material/command and resolving the actual skin palette to byte matrices and nullable morph weights. The character caller third mode label must not replace the skin pointer predicate. Native5f0f00 material/LOD behavior and billboard rendering are outside this fragment; their existing modules remain unchanged.
+
+Limits
+Billboard opcode8f excluded from this full-writer composition; prior selection projection retains its precedence evidence.
+Valid disjoint memory, finite active deformation, non-signaling-NaN transform/alpha words and successful buffer lock.
+CPU packet production only; no full5f0f00 caller or GPU draw equivalence.
+Managed source execution remains pending; compile only.

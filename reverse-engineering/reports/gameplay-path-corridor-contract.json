@@ -1,0 +1,94 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "gates": "51b1f0 tests the final argument as a raw DWORD: any nonzero value, including float negative-zero bits, enables edge17/path78 deduplication and stamps before subsequent gates. Arguments5 and8 are unused. A non255 route with a previous connection first checks the current edge route mask, then the first shared previous endpoint boundary5a. Full32-bit route255 is the bypass; the actual low8-bit shift can intersect a16-bit mask only for counts0..15.",
+    "refresh": "Both endpoint pointers and both effective radii are cached before51af40. Each radius remains unchanged when <=margin+float32(0.05), otherwise its float32 subtraction is used. Dynamic node2a and path18 refreshed bits gate the explicit callback. For endpoint1 the bit index is reread from edge11 after the first callback, but the cached original endpoint pointer is passed. Fixtures mutate radii, position, height, edge length, edge endpoint1 and refreshed bits, validating this ordering.",
+    "containment": "The query is transformed into edge-local X/Z with the signed16-bit edge angle and original sine table. When abs(float32(radius1-radius0))<=length, the tapered corridor has inclusive circular end caps and a strict lateral middle test. Endpoint Y intervals are selected near caps; the center linearly interpolates bounds using exact ordered x87 intermediates and float32 stores. When the radius difference exceeds length, containment reduces to the larger endpoint cylinder. The normal cap squared distance stays extended for comparison; the large-radius branch explicitly stores it to float32 first.",
+    "output": "Successful nonnull hit writes edge identity at+4, clears byte8, sets flag1, assigns flag8 from either small-radius test, and stores localZ/length and localX at+10/+14. Failure leaves hit untouched. Float negative-zero in local coordinates and progress is retained. No output allocation is inferred.",
+    "validation": "5628 original-PC comparisons pass with zero mismatch. 512/518 instructions execute; six negative-index correction instructions are unreachable after MOVZX byte and are listed explicitly. 562 selected authored connections across decoded AI2 path records contribute2248 cases using endpoints, midpoint and above-height probes. Two selected nonpositive-length connections are excluded, not invented. The remaining cases cover gates, radius/height edges,2048 seeded rotated shapes, mutable callbacks, signed zero and nullable outputs. Native512900,5c0240/CRT,5b3620 and the distance helper execute unchanged; only51af40 is hooked. Portable replay compiles only."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 5628,
+    "mismatches": 0,
+    "examples": [],
+    "sampledAuthoredConnections": 562,
+    "excludedNonpositiveLengthConnections": 2,
+    "instructionCoverage": {
+      "total": 518,
+      "executed": 512,
+      "missing": [
+        "0x51b31d",
+        "0x51b31e",
+        "0x51b321",
+        "0x51b357",
+        "0x51b358",
+        "0x51b35b"
+      ]
+    },
+    "authoredGeometryCases": 2248,
+    "authoredCommandUseCredit": 0,
+    "notCountedAgain": [
+      "PathArcSine512900 independent20678 tests",
+      "Existing square-root, sine rotation and distance helper suites"
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathCorridor.cs",
+      "bytes": 6926,
+      "sha256": "edeae3a6631202b779fd92a81d7a4527e1aa4dae97869b1b01f281c74432e7d3"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-corridor-portable-verify.cs",
+      "bytes": 7130,
+      "sha256": "04df9aaae856ddad750d5787c71bd619c1eb4f7b1536366a04bf6c355c99bacf"
+    },
+    "entrypoint": "GameplayPathCorridorVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-corridor-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-path-corridor-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-corridor-native-fixtures.json",
+      "bytes": 3194832,
+      "sha256": "0f9e35b96c250057ab5697b2320f32b2adbb9f865930c0fafbd561647b95f5b0"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathArcSine.cs",
+        "bytes": 1802,
+        "sha256": "55a90f5ce39ea7b839e5d32863ce1a8f5ddd99a07c4849825e244b85d345585f"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/BuildEffectSound.cs",
+        "bytes": 4278,
+        "sha256": "de4c1908b3f9482d61473ad929e8c9c2b5166c7544ea887f949ad9aacba55875"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+        "bytes": 20731,
+        "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-corridor-verify.exe",
+        "bytes": 498688,
+        "sha256": "7536cd1a986269f18011d17401f45091fa62b5d7b655220627c541e782c504c5"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "51af40 attached/dynamic point transformation remains an explicit mutable refresh service; this fragment does not implement attachment transforms.",
+    "Finite inputs and intermediates, valid point/backing records and sine table, positive finite horizontal length; the center interpolation denominator must be nonzero when that branch is reached. NaN, infinity, malformed pointers and zero-length connections are outside this contract.",
+    "The query vector is a stable value snapshot. Native callbacks that mutate query storage, replace the point backing array, or alias the hit with inputs are outside these fixtures. Raw edge/node fields are retained; no general navigation or collision-engine equivalence is claimed.",
+    "The temporary native localY passed to rotation is uninitialized but never affects persistent X/Z results; portable code sets its unused Y to zero.",
+    "No new authored script-command credit. Authored AI2 geometry cases validate this helper only; they do not reconstruct live moving-node state.",
+    "Native comparisons use an independent Python arithmetic/state model against original x86. The C# replay compiled; managed execution remains pending under the compile-only instruction."
+  ]
+}

@@ -1,0 +1,28 @@
+Material refresh and shader-service dispatch
+
+MaterialRefresh recovers601030 CPU refresh plus741620 lookup,7415b0 release,
+6e27d0/6e27f0 device mode getters and741770/741790 factory wrappers.2,209
+original-x86 checks pass:1,280refresh cases,406index lookups,6reference
+wrapping cases,512mode-byte cases and5wrapper calls.480 authored materials
+from60scenes are included.144,769,024 full-image bytes and2,005 factory
+argument sequences match the Python model with0errors.
+
+The original caller/helpers/wrappers and cached declaration resolver execute
+unchanged. Only7416a0 shader factory is a controlled mutable service. It can
+alias returned programs, modify the first result during the second call,
+change device flags or texture count. These mutations are deliberately
+retained to verify read ordering, not to imitate a full shader compiler.
+
+Both positive old shader IDs release references before requests. The default
+unregistered branch writes primary only: secondary retains its oldWORD even
+after release. Normal branch obtains mode16/1 or0/0 from devicebit20, re-reading
+before the second request. It reads the first result's WORD only after the
+second call. TextureCount==0 repacks color; negative counts preserve color,
+unlike600f20 default initialization. RGB packing truncates and wraps bytes.
+
+Zero locks, valid indices and finiteInt32-range color products bound this
+module. Shader factory/declaration creation,OS synchronization and invalid
+conversions remain separate. Core and Main MaterialRefreshHarness compile;
+compressedInputFixture/outputFile replay is prepared, not launched. The
+geometry-material-refresh-check.py tool only prepares/compares saved output.
+Native/model equality does not claim compiled execution or GPU output.

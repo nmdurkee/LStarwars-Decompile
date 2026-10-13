@@ -1,0 +1,125 @@
+{
+  "schema": "recovered-geometry-dynamic-selection-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicSelection.cs",
+      "bytes": 3333,
+      "sha256": "c8e5d927008cacfb89a6e986cc947074b36beda02a213e3d05a130356f10ba6a"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicSelection.SelectLod",
+      "sourceFile": "reconstructed/geometry/DynamicSelection.cs",
+      "coverage": "small-extracted-branch",
+      "limitations": "Finite nonempty bounded threshold array and finite nonnegative stored squared distance; signed forced index. No center/distance,fade,visibility or matrix-sway producer reconstruction implied. Compiled comparison pending; not complete5f0f00.",
+      "evidence": "geometry-dynamic-selection-native-validation.json"
+    },
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicSelection.ChooseMaterial",
+      "sourceFile": "reconstructed/geometry/DynamicSelection.cs",
+      "coverage": "small-extracted-branch",
+      "limitations": "Valid finite material/table pointers; clone5e5020 is an explicit callback boundary for layout mismatch. No clone allocation/cache implementation. Compiled comparison pending; not complete5f0f00.",
+      "evidence": "geometry-dynamic-selection-native-validation.json"
+    },
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicSelection.FilterChain",
+      "sourceFile": "reconstructed/geometry/DynamicSelection.cs",
+      "coverage": "small-extracted-branch",
+      "limitations": "Finite acyclic material chain of at most1000000 records, preserving native order and raw gate bytes. No visibility marking,shader or packet side effects. Compiled comparison pending; not complete5f0f00.",
+      "evidence": "geometry-dynamic-selection-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory"
+  ],
+  "native": {
+    "report": "geometry-dynamic-selection-native-validation.json",
+    "passed": true,
+    "counts": {
+      "lod": 5928,
+      "material": 96,
+      "mergeBoundary": 24
+    },
+    "sources": 60,
+    "authoredLodCoverage": {
+      "authoredArrays": 480,
+      "multiLod": 2,
+      "unique": 3,
+      "maximumLevels": 3
+    },
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "boundaries": [
+      "Only LOD/material-selection branches from5f0f00: visibleoverride1,zero shadow count,no fade or matrix-sway. Original center/transform/distance helpers run unchanged.",
+      "Three output boundaries5fd220/607590/5e0530 recorded or skipped; shader/packet side effects unclaimed by this slice.",
+      "Material clone5e5020 records arguments then returns controlled material5; clone allocation/cache behavior is not reconstructed.",
+      "Authored threshold arrays combined with controlled one-part-per-LOD models so selected index is observable. Distances use a single nonzero coordinate, avoiding an inferred general distance arithmetic model.",
+      "No managed executable or GPU launched."
+    ]
+  },
+  "managed": {
+    "schema": "geometry-dynamic-selection-managed-check-v1",
+    "caseCount": 6024,
+    "nativeEvidence": "geometry-dynamic-selection-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-selection.bin.gz",
+    "fixtureBytes": 1391,
+    "fixtureSHA256": "fdcb4bfe905849b783539bc176d898298e42ef1faecdc62dea067dab88acb843",
+    "uncompressedBytes": 122576,
+    "uncompressedSHA256": "aadcd7c9c44758650b75c6f4520006c8dbea341c6d3a3e51499667e52a3f71a0",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicSelectionHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Compiled branch equivalence pending; no whole5f0f00 or GPU claim."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicSelection.dll",
+    "bytes": 5120,
+    "sha256": "1fa9a14ce06e1ecf382ce4cc68a514d6673b36a14f2edc0bdaae93aaced68260"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicSelectionHarness.cs",
+    "bytes": 2574,
+    "sha256": "c58908cba4996a225d86c32b7578209dcf7bea1e04598f07ff75f00bef13313e"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.DynamicSelection.dll DynamicSelection.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicSelection.dll /out:DynamicSelectionHarness.exe harness\\DynamicSelectionHarness.cs"
+  },
+  "observations": [
+    "Forced LOD0 uses strict distance<threshold; equality keeps current level. Any other signed forced index walks until equality or the zero terminator; negative forced indexes therefore reach terminator. An initialzero always chooseslevel0.",
+    "Nonzero material tag plus present override table suppresses global fallback even when that table entry is0. Zero tag or absent table selects global override when nonzero.",
+    "Selected replacement with different source/layout+1f0 calls unresolved5e5020; equal layout uses replacement directly.",
+    "Filtermode1 accepts gateA255 or allthreezero; every othermode accepts gateA!=255."
+  ],
+  "remainingGaps": [
+    {
+      "id": "whole-dynamic-submission",
+      "address": "0x5f0f00",
+      "status": "Three branches recovered; remaining arithmetic,visibility/material marking,shader/packet orchestration and shadow paths not represented by this module."
+    },
+    {
+      "id": "material-clone-cache",
+      "address": "0x5e5020",
+      "status": "Boundary callback recorded; native linked lookup/allocation/copy behavior remains separate."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compile passed,fixture prepared; no launch."
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "Branch choices only; GPU output unclaimed."
+    }
+  ]
+}

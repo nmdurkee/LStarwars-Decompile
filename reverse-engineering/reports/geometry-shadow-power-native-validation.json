@@ -1,0 +1,30 @@
+{
+  "schema": "geometry-shadow-power-native-v1",
+  "passed": true,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "cases": 1290,
+    "zero": 42,
+    "zero-bypass": 42,
+    "persistentBytes": 768840,
+    "hit": 300,
+    "ordered-hit": 64,
+    "initialization-stale-hit": 32,
+    "miss": 948,
+    "ring-miss": 64,
+    "nan-slot-miss": 64,
+    "stateful-sequence": 1024
+  },
+  "errors": [],
+  "fixtureFile": "geometry-shadow-power-fixtures.json.gz",
+  "fixtureBytes": 95244,
+  "fixtureSHA256": "055d52baec6798c6fc76b0ba140b06c62e1fab46ee22c0b8454878efc28c3918",
+  "limits": [
+    "Actual5be630 and actualCRT6e9040/6e8fac execute unchanged; a fixture-only caller stores ST0 tofloat32. CRT policy29a9c44=0.",
+    "Cache model takes original storedfloat32 missresult as explicit mathematical backend; cache, mutation, ordering and invocation counts are verified, not independently reconstructed transcendental equivalence.",
+    "Zero inputs bypass state/exponent; nonzero inputs finite, misses positive, finite returned results. Arbitrary quietNaN cache keys are ignored. No claim about negative-miss CRT behavior or signalingNaN results.",
+    "Initialization clears only32basewords to7f7fffff; ringcursor/exponents/results retained. Rings0..31 onmiss; invalid cursors tested only zero/hit branches where notread.",
+    "Stateful1024calls cover ringwrap and eviction; all32linearhit/ringpositions, staleinitializationhits, signedzeros and firstduplicate precedence included.",
+    "Persistent byte totals cover cache region+initflag, not internal CRT globals. Portable compiled execution remains pending."
+  ]
+}

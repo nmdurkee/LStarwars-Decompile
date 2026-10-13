@@ -1,0 +1,51 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "groups": {
+    "command": 1736,
+    "scene-control": 10500,
+    "obstacle-helper": 1440,
+    "gizmo-output": 3600,
+    "condition": 80,
+    "locked-condition": 256,
+    "initializer": 16,
+    "scene-boundary": 600,
+    "authored-condition": 687
+  },
+  "comparisonRecords": 18915,
+  "mismatches": 0,
+  "failures": 0,
+  "examples": [],
+  "catalogUses": 865,
+  "authoredUses": 864,
+  "authoredCounts": {
+    "scp-condition:ObstacleAtStart": 153,
+    "scp-condition:ObstacleAtEnd": 178,
+    "scp-action:PlayObstacle": 105,
+    "scp-action:PlayGizObstacle": 57,
+    "scp-condition:ObstacleLockedShut": 1,
+    "scp-condition:SpecialAtStart": 7,
+    "scp-condition:SpecialAtEnd": 6,
+    "git-action:PlayObstacle": 139,
+    "git-action:PlaySpecial": 219
+  },
+  "sourceFormOmissions": [
+    {
+      "authored": {
+        "name": "ObstacleAtEnd",
+        "kind": "scp-condition",
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_II/KAMINO/KAMINO_E/AI/LEVEL.SCP",
+        "line": 31,
+        "text": "if ObstacleAtEnd == 0 goto RetractBridge"
+      },
+      "reason": "Missing quoted operand; initializer/loader interpretation is not inferred."
+    }
+  ],
+  "adapters": [
+    "0x55a020 named registry lookup; all scene-control, list, obstacle helper, output dispatch and condition bodies execute original bytes."
+  ],
+  "limits": [
+    "Finite scalar inputs and valid linked records. Names resolved to synthetic world bindings. No renderer, animation tick or collision world integration.",
+    "LockedShut requires successful initialized object; failed lookup would dereference null and is excluded.",
+    "Native/Python comparison only; managed execution pending."
+  ]
+}

@@ -1,0 +1,19 @@
+SHADOW POWER CACHE
+
+{"cases": 1290, "zero": 42, "zero-bypass": 42, "persistentBytes": 768840, "hit": 300, "ordered-hit": 64, "initialization-stale-hit": 32, "miss": 948, "ring-miss": 64, "nan-slot-miss": 64, "stateful-sequence": 1024}
+
+The original uses 32 base values at 95e548, exponents at 95e440, and results at 95e4c0. Ring cursor 95e644 advances only on misses and wraps with bitmask31. Initialization flag is 8066c4.
+
+Positive and negative zero return positive zero before any cache or exponent access. Nonzero calls lazily clear the initialization flag and fill only the base array with Float32.MaxValue. Exponents, results and cursor remain unchanged.
+
+Linear search returns the first numerically matching base/exponent pair. Signed-zero exponents compare equal; NaN slot keys do not. The Float32.MaxValue initialization sentinel can immediately match a stale exponent/result entry: this behavior is preserved.
+
+A miss calls original CRT log at6e9040, multiplies by the float32 exponent in x87 precision, calls original CRT exp at6e8fac, then stores the result to float32 before caching and returning it. The portable module exposes this mathematical calculation as an explicit backend; it does not substitute System.Math.Pow.
+
+The native fixture executes the original helper and both CRT routines unchanged under CRT policy29a9c44=0. A fixture-only caller stores the returned ST0 value. Passive hooks verify the ordered log/exp calls only occur on misses. The independent cache model consumes the native miss result as the declared backend boundary.
+
+All 32 hit positions and replacement positions are covered, along with duplicate precedence, initialization stale hits, quiet-NaN unused keys, signed zeros, and a 1024-call stateful wrap/eviction sequence. Persistent comparisons include otherwise untouched bytes surrounding all cache arrays.
+
+This source can be bound to ShadowSelectionState.Power through a closure over ShadowPowerCache and a chosen backend. Selection source and its existing evidence are unchanged. Cache orchestration is recovered; a portable exact original CRT backend remains separate.
+
+C# core and replay compile for default AnyCPU. The replay compares the complete adapted cache state, output bits and backend invocation count against hash-bound original fixtures. It has not been executed.

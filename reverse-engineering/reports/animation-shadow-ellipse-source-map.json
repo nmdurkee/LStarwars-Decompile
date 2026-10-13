@@ -1,0 +1,61 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x5e3b50",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyEllipseShadows.cs",
+      "sourceSha256": "b619baa04167414326500acc9e04277a2ddb621449955433c3674d8dce75a138",
+      "methods": [
+        {
+          "name": "LegacyEllipseShadows.Emit",
+          "line": 33
+        }
+      ],
+      "coverage": "complete bounded ellipse CPU side writer",
+      "qualification": "Finite12-float ellipse, matrix, direction and eight-vector ring; exact native stores and zero-axis handling. Sufficient output backing and explicit global color. Native fourth/fifth stack arguments ignored, established by poisoned inputs. No graphics-device submission claim.",
+      "comparisonStatus": "Original full writer exact versus independent model; managed core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-ellipse-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyEllipseShadows.cs",
+      "sha256": "b619baa04167414326500acc9e04277a2ddb621449955433c3674d8dce75a138"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-ellipse-portable-verify.cs",
+      "sha256": "9a05974fedc8414ad3fd40e8000ad8159ffe67c89a9159205cdd33e61ceb6940"
+    },
+    "entrypoint": "LegacyEllipseShadowsVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-ellipse-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 638,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-ellipse-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-shadow-ellipse-tests.json",
+    "reverse-engineering/reports/animation-shadow-ellipse-assembly.json"
+  ]
+}

@@ -1,0 +1,31 @@
+4984 original-PC comparisons, zero mismatches;263 authored uses. All676 command instructions observed; portable replay compiled only.
+
+lifetime
+0x447f00 returns1 only when script creature, creature+d0 reference or its first-pointer world object is absent. Valid self marks global876cd0=1 and otherwise returns0. Cached target can fall back to creature+e4 reference only when absent/inactive or blocked with timer1010<=0; fallback requires controller pointer+4 and first world pointer. Positive blocked-cache timer retains that cache, then final target eligibility still rejects blocked28b. Attack override writes before fallback/eligibility. World self eec bit0x20 writes after resolving a nonnull target, before final eligibility.
+
+parsing
+First call initializes goal and interval from original1.5 globals and always advances shared RNG, including instant. It scans case-insensitive substrings in exact listed precedence; numeric skips are fixed10,10,9,13 and call recovered5147c0. static sets goal0; offscreen/minrange/minicut/circle set retained bits. Repeated circle toggles controller1e8 bit0x200 each time. Flags and old override/cache are not blanket-cleared. attack_override recognizes seven whole names, unknown resets override0. Explicit firerange suppresses default; otherwise goal0 gives9999.9, nonzero gives float32(goal+0.5). Initial timer is float32(interval*draw), with instant replacing draw value0 after consuming it.
+
+eligibility
+Target requires active1 and valid1000, blocked28b==0, mode7b5!=43, and either uncontrolled or ownerTimer1000<=1.5. Distance uses target position5c minus script reference position5c, deliberately distinct from world self position. Permission masks are supplied rows: game+298c header8 followed by uint64 entries, indexed by actor byte28d. Target bit>=64 is zero, not a C# masked shift. Goal permission uses script-reference row; firing uses world-self row. Matrix producer/meaning remain unresolved.
+
+movement
+Ef4 bit0x2000 routes through recovered assigned-target and ordered-band helpers. Otherwise goal0 is retained, and nonzero goal is retained only under original controlled/visibility and reference-row permission gates; fallback goal is0.1. Intent radius is min(effectiveGoal,target+3e8). Tuning bit0x100 and self protection bit0x10000 select hysteresis on packet bit0x10 around (goalÃ‚Â±0.5)^2. Near branches write mode2, movement byte13f=1 and sometimes protection8000. Ordinary branches preserve alternative global7f39e4 behavior, including the distance/10+distance test for minrange retreat, circle mode3 and mode1 approach. Calls use actual target path438 and six orientation words420 through recovered52fcb0. No fabricated pathfinding or position integration occurs.
+
+firing
+Requires world-self permission mask, tuning/protection gate, visibility byte288 or offscreen flag, and strict distanceÃ‚Â²<fireRangeÃ‚Â². It writes look target for ordinary tuning. During minicut with flag4, timer becomes float32(draw*interval+2); otherwise float32(timer-delta). Attack target ea0 is then assigned even if timer remains positive. Nonpositive timer restarts at float32(interval*0.5+draw*interval) before checking obstruction/assignment. Only unobstructed allowed target causes input+8 OR global80227c; no direct damage is performed. Obstruction is the recovered eight-player ray test, not world geometry.
+
+x87Regression
+Independent geometry review found a distance boundary counterexample: target(1,2^-12,2^-27) from origin has original squared distance0x3f800001, while double-only arithmetic yielded0x3f800000. Shared LocatorCommands.DistanceSquared now uses exact finite x87 sums. Six component permutations are permanent native command regressions; timer multiply-adds and opponent band/primitive sums also use shared finite x87 arithmetic. See reports/geometry-engage-review.json and reports/native-distance-rounding-contract.json.
+
+persistence
+Sixteen original-PC chains of24 ticks preserve packet flags, goal, movement intent, RNG, timer and actor/input updates. Each chain initializes once and invokes subsequent ticks with firstCall=false. This adds384 state-transition comparisons without restarting world fixtures.
+
+authoredParsing
+All263 authored occurrences execute in four supplied contexts. 10 token occurrences are ignored by native substring parsing; these include intentionally altered-looking fXirerange/fXireinterval/sXtatic spellings and a bare2 operand. 14 numeric operands refer to script-local names; fixture contexts do not claim their runtime values. The actual parser fallback executes for unbound names. Source locations are retained in the usage report.
+
+Remaining
+Finite valid attached actor and permission-mask data; malformed pointers and out-of-range assigned player slots excluded.
+All263 authored argument lists tested in four supplied contexts; runtime script variable values are not reconstructed by this suite. Unbound variable names use actual numeric parser fallback.
+Ordinary movement intent updates are real; formation expansion and later navigation/damage/input consumers remain external.
+Portable managed comparison pending compile-only instruction.

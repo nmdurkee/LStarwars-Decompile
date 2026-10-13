@@ -1,0 +1,51 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "loop": "Open path, install Audio command table810470, read lines until0, get first token, dispatch iff first byte nonzero, then close. Native ignores token reader return.",
+    "banks": "After close reread bank count/base and write terminator first16bytes0/0/0/-1; preserve12remaining bytes. Load current bank base with caller cursor/opaque.",
+    "tail": "Clear200mask bytes after bank loading; reread2962034 to optionally apply100words; finish unconditionally, including missing-file case."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 288,
+    "mismatches": 0,
+    "visitedInstructions": 67,
+    "bytesComparedPerCase": 344064,
+    "examples": [],
+    "method": "Original6520b0 including actual memset executes. File/scanner/dispatch/close and bank/device services expose raw argument order and complete entry-image hashes; mutable count, bank base, mask and post-load flag changes are exercised.",
+    "limits": [
+      "This recovers configuration orchestration, not the native file scanner, dispatcher, bank loader or audio device. Valid parser/token/bank backing, adequate capacity and terminating service sequence are required.",
+      "The token-reader return value is ignored; dispatch tests current token first byte. Missing file still proceeds through bank terminator, load, zero mask, optional mask application and finish.",
+      "Bank terminator touches only its first16bytes. Post-load flag is reread after clearing200mask bytes. Services are synchronous and may mutate shared state. Managed replay pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/SoundConfiguration.cs",
+      "bytes": 1851,
+      "sha256": "0d477c2cb3de0ede643bfd65b786f0308fae1da9a3d6995dbcf6d5821a6f19f8"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-sound-configuration-portable-verify.cs",
+      "bytes": 6165,
+      "sha256": "2ec5c7ac4b2cbab498e6d961af87e139fe36f4a37c459938a9895abc4d1ad9c6"
+    },
+    "entrypoint": "SoundConfigurationVerify.Main",
+    "arguments": [
+      "reports/native-sound-configuration-vectors.json.gz",
+      "reports/native-sound-configuration-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-sound-configuration-vectors.json.gz",
+      "bytes": 82418,
+      "sha256": "b4c584220eb97be42d7c103b2ce04f458a0ffba2709bba73bce6e285caf824e3"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "This recovers configuration orchestration, not the native file scanner, dispatcher, bank loader or audio device. Valid parser/token/bank backing, adequate capacity and terminating service sequence are required.",
+    "The token-reader return value is ignored; dispatch tests current token first byte. Missing file still proceeds through bank terminator, load, zero mask, optional mask application and finish.",
+    "Bank terminator touches only its first16bytes. Post-load flag is reread after clearing200mask bytes. Services are synchronous and may mutate shared state. Managed replay pending."
+  ]
+}

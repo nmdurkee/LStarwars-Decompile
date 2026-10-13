@@ -1,0 +1,58 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5e0530"
+  ],
+  "mappings": [
+    {
+      "address": "0x5e0530",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "sourceSha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47",
+      "methods": [
+        {
+          "name": "SkinMeshPacketDispatch.BuildWithBillboards",
+          "line": 11
+        }
+      ],
+      "coverage": "complete four-branch selector and bounded CPU writer composition",
+      "qualification": "Adds BillboardMeshPackets ahead of the existing non-billboard Build API, preserving original opcode8f precedence and ignoring unused skin/morph/cache inputs on that branch. Existing geometry selector projection and non-billboard implementation retained. Scalar finite valid-memory payload domains, successful COM buffer services; no full caller,shader execution or GPU claim.",
+      "comparisonStatus": "All branch native evidence passed; unified managed replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-full-dispatch-contract.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "sha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-full-dispatch-portable-verify.cs",
+      "sha256": "a1e54d198f370143ded8a7da6eeae815fbaa6f1ca6c63a744a0878ab0c9f6dae"
+    },
+    "entrypoint": "FullSkinMeshPacketDispatchVerify.Main",
+    "arguments": [
+      "reports/animation-full-dispatch-fixtures.json",
+      "<result.json>"
+    ],
+    "preparedComparisons": 5135,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-full-dispatch-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-skin-dispatch-tests.json",
+    "reverse-engineering/reports/animation-billboard-tests.json"
+  ]
+}

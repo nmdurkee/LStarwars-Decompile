@@ -1,0 +1,33 @@
+PC CHARACTER SECONDARY AND SHADOW PACKET COMPOSITION
+
+466 original full-chain comparisons;0 mismatches.
+
+composition
+One public bridge joins the existing character layer/palette loop, primary visibility, secondary mask evaluator, dynamic normal/shadow scheduler, shader emissions and ordinary/prefix/skin/morph packet writers. It reuses their implementations rather than claiming a new native entry point.
+
+state
+CharacterSubmissionState owns original966384 count,806ccc visibility,9715a0 cache flag and allocator at entry. The outer secondary test forces refresh1 and stores masks; inner dynamic draws invoke refresh0 against the same masks and cache. Every dynamic return updates the character flag and cursor before the next layer. The final character cleanup restores original cached visibility and clears all projected cache flags, including zero-count and culled returns.
+
+shadows
+The two supplied views must describe the same contexts: SecondaryVisibilityState supplies planes/masks; logical contextAddresses supply native volume count and packet records. Normal and shadow draws share matrix/skin/morph pointers and allocator. Shadow-only rendering may emit packets while returning0; caller OR return flags retain this native behavior. Context construction and registration remain separate producers.
+
+palette
+Smooth palette storage is reserved before rigid submissions and filled immediately before smooth submission. Packet adapters verify forwarded palette identity, resolve mesh only for skin draws and read weights at pointer+8. Final materialization preserves palettes whose smooth handles were invalid. Source arrays, matrix scratch, packet arenas and context records must be valid and disjoint.
+
+evidence
+466 original complete-chain checks across298 authored source rigs. Controlled source-matched full layer topology, secondary-only visibility, main/secondary culling, dynamic instance shadow bit disabled, zero context count, reversed/duplicate/invalid layer maps and weighted shadow-only smooth cases. 75530 packets, including49446 shadow packets and20798 skin/morph packets. Whole1MiB persistent image, mirrored mask guards, layer entry hashes/cursor/cache, emitted record order and COM events agree.
+
+binding
+As in the earlier packet bridge, valid authored layer handles are rebound to one selected mesh from the same GHG through controlled scene/material records. This establishes the consumer ABI and temporal composition; it does not recover the shipped loader association. Shadow volumes here are controlled records with empty/accepting/rejecting plane sets.
+
+managed
+Prepared replay compares whole-memory SHA256, mask/cache/cursor state, normal/shadow packet order and record identities, buffer locking events and layer submission count. Entry-only native matrix/palette diagnostics remain independently checked by the native/Python model. Both targets compile; no generated managed executable was launched.
+
+Limits
+Controlled relocated handles bind full authored layer topology to one source-matched mesh; exact shipped layer-to-mesh loader association remains unproven.
+Finite scalar valid state; shadow contexts/planes are controlled fixtures, not original volume producers.
+Billboard, sway, fade, material merge and active character shadow-queue production remain separate.
+No GPU/live scheduler or managed executable launch.
+Full caller fixture contexts0..2 and volumes0..4; previously established helper bounds are not an authored live-count claim.
+The legacy character shadow queue remains globally disabled in this new original chain; its active producer is independently verified by prior character pipeline tests.
+Optional material merge remains an explicit service. Successful COM buffer locking only; GPU and managed runtime equality remain pending.

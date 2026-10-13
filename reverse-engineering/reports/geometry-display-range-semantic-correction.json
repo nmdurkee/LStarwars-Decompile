@@ -1,0 +1,44 @@
+{
+  "schema": "geometry-display-range-correction-v1",
+  "appliesTo": "displayLists entries in prior geometry metadata",
+  "evidence": [
+    "decompiled/corpus-expanded/FUN_5e0d00.c",
+    "reports/geometry-sorted-packets-native-validation.json",
+    "reports/geometry-sorted-shader-native-validation.json"
+  ],
+  "offsets": {
+    "sort+0x20": "unsigned16 material count",
+    "sort+0x22": "unsigned16 first material index"
+  },
+  "legacyMapping": {
+    "boundsCount": "materialCount = boundsCount & 65535",
+    "firstBounds": "firstMaterial = firstBounds & 65535"
+  },
+  "futureParser": {
+    "path": "tools/geometry-nu2.mjs",
+    "sha256": "050486d2dba5ca8e8d06f0ed0f7843a33d789d3660f087e379a270a8aee35186",
+    "fields": [
+      "firstMaterial",
+      "materialCount",
+      "legacyRangeFieldSemantics"
+    ]
+  },
+  "existingMetadataRewritten": false,
+  "authoredNativeCoverage": {
+    "scenes": 60,
+    "sortRecords": 697,
+    "allRangesWithinMaterialTables": true
+  },
+  "parserValidation": {
+    "passed": true,
+    "sources": [
+      "LEVELS\\EPISODE_III\\ANEWHOPE\\ANEWHOPE_A\\ANEWHOPE_A_PC.GSC",
+      "LEVELS\\MAP\\MAP\\MAP_PC.GSC"
+    ],
+    "sortRecords": 26
+  },
+  "limits": [
+    "Semantic naming correction only; original metadata bytes preserved and no geometry re-export.",
+    "Legacy values were decoded signed16; reinterpret with&65535 before using them as material indices/counts."
+  ]
+}

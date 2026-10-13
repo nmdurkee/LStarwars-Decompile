@@ -1,0 +1,14 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "checks": 288,
+  "mismatches": 0,
+  "visitedInstructions": 67,
+  "bytesComparedPerCase": 344064,
+  "examples": [],
+  "method": "Original6520b0 including actual memset executes. File/scanner/dispatch/close and bank/device services expose raw argument order and complete entry-image hashes; mutable count, bank base, mask and post-load flag changes are exercised.",
+  "limits": [
+    "This recovers configuration orchestration, not the native file scanner, dispatcher, bank loader or audio device. Valid parser/token/bank backing, adequate capacity and terminating service sequence are required.",
+    "The token-reader return value is ignored; dispatch tests current token first byte. Missing file still proceeds through bank terminator, load, zero mask, optional mask application and finish.",
+    "Bank terminator touches only its first16bytes. Post-load flag is reread after clearing200mask bytes. Services are synchronous and may mutate shared state. Managed replay pending."
+  ]
+}

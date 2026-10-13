@@ -1,0 +1,97 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "bind": "51b890 operates on the embedded creature packet. A null requested connection OR null creature+d0 reference simply assigns current connection15c, selected route13c=ff and cursor13d=0; other connection geometry fields remain untouched. An unchanged connection/direction is a no-op unless state166 bit1 is set and bit4 is clear. Otherwise the requested direction DWORD is examined. Zero is unrestricted; nonzero containing98000000 invokes51b7f0 on the OLD current connection and returns without binding the requested one. Other nonzero values require any overlap with creature1f4; zero overlap returns unchanged.",
+    "geometry": "When connection/direction changes, it stores the low direction byte160, connection15c and clears139. It reads point index from connection10 and takes that point from path+7c with92-byte stride. Float32 differences X/Z from point4/c are rotated by the negated signed16 angle at connection12 using the original32768-entry sine table. It clears166 bit4, writes normalized localZ/connection1c to168 and localX to16c. This uses horizontal connection length, not total edge distance. The original local Y is uninitialized but only copied by the rotation helper; neither persistent result consumes it. The source computes only defined X/Z.",
+    "route": "After optional rebinding,166 bit1 set with bit4 clear validates selected route13c against the current connection14 mask using the original64-bit shift. A non-ff selection whose bit is absent becomesff. If selection isff,51b7f0 runs; bit4 is then set even if no route was found. Already selected valid routes are retained without checking actor membership again in this branch.",
+    "select": "51b7f0 first reads path14 byte route count. Zero count, null current connection or zero overlap between connection14 and actor13a returns unchanged. Starting at unsigned cursor13d (reset locally to0 if >=count), it scans cyclically until a matching bit is found or it returns to the starting index. On match it writes13c=index and13d=index+1. A ushort route mask means only indices0..15 can match; count up to255 affects cyclic scanning but does not wrap a C#32-bit shift into a false eligible bit. No RNG or path movement occurs here.",
+    "composition": "PathBindingReinitializationServices is an uncredited host adapter that replaces only ActorReinitialization BindPath with ActorPathBinding.Bind, taking the live actor position and same embedded creature. Other lifecycle operations forward unchanged. Thirty-six original41c120 chains execute actual51a7c0/51b890/51b7f0 and actual vector arithmetic. Their independent model composes the previously verified reinitialization write/order model with this binding model. Existing stable ActorReinitialization.cs was not changed.",
+    "authored": "Native replay includes1124 cases from562 source connections across203 paths in171 AI2 files. Sampling chooses first/middle/last valid edge per path and tests both authored direction flags; source file/hash/path/connection/offset are retained in fixtures. Node coordinates, rotation, flags, route mask and horizontal length are original decoded fields. Actor permission/membership/cursor are explicit synthetic runtime states, not claimed live-world captures. No additional shipped command use credit is claimed.",
+    "verification": "2056 original-PC comparisons pass with zero mismatches. All61 selection and108 binding instructions execute. Entire actor images are compared as byte deltas, including direct helpers, authored samples and36 reinitialization chains. Cases cover null targets/references, same/changed connection and direction, special flags selecting the old connection, permission rejection, route-count/mask/cursor boundaries, signed rotations, negative/positive nonzero lengths and zero-position differences. Direction-word indices0..8 cover valid36-byte record reads. Core and replay compile; managed execution remains pending."
+  },
+  "commands": [],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2056,
+    "groups": {
+      "bind": 493,
+      "select": 403,
+      "authored": 1124,
+      "reinitializationComposition": 36
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredSampleConnections": 562,
+    "authoredFiles": 171,
+    "authoredPaths": 203,
+    "method": "Unmodified51b890/51b7f0 with actual rotation and CRT shift, independent64-significand finite arithmetic model, all actor bytes compared. Additionally original41c120 executes both helpers as a chain; other lifecycle service boundaries remain recorded. Authored edges sampled first/middle/last per saved path and both direction flags.",
+    "instructionCoverage": {
+      "0x51b7f0": {
+        "total": 61,
+        "executed": 61,
+        "missing": []
+      },
+      "0x51b890": {
+        "total": 108,
+        "executed": 108,
+        "missing": []
+      }
+    },
+    "limits": [
+      "Prepared finite loaded records; zero connection length, malformed pointers, nonfinite values and direction-word reads outside36-byte record excluded.",
+      "Native uninitialized local Y is copied by rotation but never consumed by either persistent X/Z result; source intentionally computes only defined X/Z.",
+      "Authored samples use source node/edge coordinates and flags, with synthetic route membership/permission state; no live path traversal or collision is claimed.",
+      "Managed compile only; independent-model native validation is distinct from pending managed replay."
+    ],
+    "authoredUseCredit": 0,
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-binding-native-fixtures.json",
+      "bytes": 892134,
+      "sha256": "b402d1a7135d1609b719d0480192122d16c42e11fe7ab2d6f4581ccd8b34a2f1"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ActorPathBinding.cs",
+      "bytes": 6895,
+      "sha256": "fb29028934a92d4fa722457a51297c28acb2f2fe38bc0186cee5823720492cfb"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-binding-portable-verify.cs",
+      "bytes": 11251,
+      "sha256": "fa3f1e54f7a6af3fef7df5b49f6cacbad2597a8626f7a69f8f4f1e6001eb039b"
+    },
+    "entrypoint": "GameplayPathBindingVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-binding-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-path-binding-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-binding-verify.exe",
+        "bytes": 40448,
+        "sha256": "5fa7fef6c28a5a5781ba934a428526baf76ec39e334bd090fd8a7799f5fa5883"
+      },
+      "managedExecution": "Not attempted; compile-only instruction."
+    },
+    "compositionAdapter": {
+      "name": "PathBindingReinitializationServices",
+      "newNativeEntryCredit": 0,
+      "remaining": "Other thirteen reinitialization lifecycle operations remain forwarded to explicit services."
+    }
+  },
+  "remaining": [
+    "Prepared finite loaded records; zero connection length, malformed pointers, nonfinite values and direction-word reads outside36-byte record excluded.",
+    "Native uninitialized local Y is copied by rotation but never consumed by either persistent X/Z result; source intentionally computes only defined X/Z.",
+    "Authored samples use source node/edge coordinates and flags, with synthetic route membership/permission state; no live path traversal or collision is claimed.",
+    "Managed compile only; independent-model native validation is distinct from pending managed replay."
+  ]
+}

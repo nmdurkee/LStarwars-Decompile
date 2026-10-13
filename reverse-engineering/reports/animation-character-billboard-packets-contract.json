@@ -1,0 +1,152 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 504,
+    "counts": {
+      "cases": 504,
+      "layerDraws": 9284,
+      "packets": 85672,
+      "skinPackets": 0,
+      "shadowPackets": 57528,
+      "secondaryCalls": 8040,
+      "volumeTests": 3024,
+      "shadowShaderCalls": 57528,
+      "locks": 0,
+      "zeroReturnWithPackets": 98,
+      "noLayerDraws": 144,
+      "billboardPackets": 85672
+    },
+    "authoredRigs": 18,
+    "authoredResources": 72,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports/animation-character-billboard-packets-native-fixtures.json.gz",
+      "bytes": 2691872,
+      "sha256": "99beb65387574538d76db37b570b2b8ca6f58bfbeb1a764957962cde228f6385"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-character-shadow-packets-verify.py",
+        "sha256": "0f3584c2ad63f572adabb9f6a56220565bbe3c617dd3fd9686f8399fd5ffd6b7"
+      },
+      {
+        "path": "tools/animation-character-packets-verify.py",
+        "sha256": "4754993949c50c1b2a88187a0183537f202731be8502d8cf6190e384d9796853"
+      },
+      {
+        "path": "tools/geometry-dynamic-shadow-native.py",
+        "sha256": "721f0d3faab90e6bd27f71c3fb08035aa21774b0aa63cc466201e92aa5f7d639"
+      },
+      {
+        "path": "tools/animation-billboard-verify.py",
+        "sha256": "70e7233d3e49e0790d7730b011f5d0b645120a410b83572065bf4215025fbb28"
+      },
+      {
+        "path": "reports/animation-billboard-native-fixtures.json.gz",
+        "sha256": "adef129a690bfc4617518527c4c45e336f2a9a52d179a2c50c3f7350706b3982"
+      },
+      {
+        "path": "reports/animation-layer-submission-native-fixtures.json.gz",
+        "sha256": "a2ede96a2e3c088d650931b8b4cbd6d96ec0289e7f82a70e7eaeac89f6b94eb4"
+      }
+    ],
+    "method": "Full original character5f4ff0 -> secondary/normal/shadow5f0f00 ->5e0530 ->5e0490 -> billboard basis/scale helpers. All original CPU code with observation hooks; COM callbacks installed by shared fixture but never invoked. Whole1MiB persistent image and mirrored masks, ordered record/writer tuples, layer matrix/palette hashes and shared flags/cursor compared.",
+    "limits": [
+      "All authored GHG billboard resource records use their source rig topology and bind matrices, with controlled scene/material bindings. Does not establish shipped per-layer loader association.",
+      "View/forward inputs are explicit fixtures; finite scalar results and disjoint allocator capacity.",
+      "Sway/fade, different-layout material merge and active legacy character shadow queue remain separate.",
+      "Unused mesh scaffolding is not an asserted billboard input; poisoned morph pointers verify opcode8f bypass. No GPU or managed executable launch."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterBillboardPacketPipeline.cs",
+      "sha256": "46ea8c0a4e8b87f79baa173a1d5cdcc515b7c4b75806739eb3b6d5bb2fb77cb1"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "reconstructed/geometry/ShaderContextEmission.cs",
+      "reconstructed/geometry/DynamicSelection.cs",
+      "reconstructed/geometry/DynamicSubmission.cs",
+      "reconstructed/animation/CharacterPacketPipeline.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "reconstructed/geometry/ShadowContextEmission.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-billboard-packets-portable-verify.cs",
+      "sha256": "bfb36adc759ef6728737f3d32f016b0d86ad2f504c511f7252c01b8ad97470d2"
+    },
+    "entrypoint": "CharacterBillboardPacketPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-billboard-packets-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 504,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-character-billboard-packets-compile.json"
+  },
+  "contracts": {
+    "composition": "The previous character/secondary/shadow bridge is extended with the recovered billboard-first packet dispatcher. It receives explicit camera view and camera-forward vectors; no new live camera producer is claimed. All prior cache/cursor/palette sequencing remains. The source retains the existing normal mesh branch, whose separate evidence is referenced without counting it as new cases.",
+    "precedence": "Opcode8f is tested before resolving source meshes, deformation weights or skin matrices. Rigid and smooth layers both reach the billboard writer; smooth palettes are still allocated/prepared by the outer character routine because that work precedes packet selection. Poisoned morph identities are never dereferenced, and the prepared managed replay throws if its mesh resolver is invoked.",
+    "resources": "All72 authored GHG billboard records across18 source rigs are tested. The descriptor bytes and source skeleton/layer topology are hash-bound. Controlled relocated handles route each valid layer to the selected billboard descriptor from that same file; exact shipped per-layer mesh/material mapping remains separate.",
+    "verification": "504 new original complete-chain cases, zero differences: 85672 billboard packets, 57528 through shadow records; 98 return-zero cases with packets. Each resource is run under visible, shadow-only, computed visibility, reject-all, no-instance-shadow, reversed/duplicate/invalid map and zero-context/cull scenarios. Whole1MiB persistent image and mask guards, exact writer/record order, layer hashes and flags/cursor agree. No COM lock executes.",
+    "managed": "Replay compares full bytes, flags/count/cursor, ordered packets and destination records, submission count and empty COM events. It supplies actual recovered BillboardMeshPackets through the public bridge. Compilation succeeds; managed execution remains pending.",
+    "bounds": "Only finite scalar CPU payload behavior, inactive sway/fade and controlled same-layout materials. Camera input production, GPU billboard expansion and final pixels remain separate. Active legacy character shadow queue and mixed billboard/mesh command lists are not newly covered."
+  },
+  "reusedNormalEvidence": {
+    "path": "reports/animation-character-shadow-packets-tests.json",
+    "comparisons": 466,
+    "newComparisons": 0
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-character-billboard-packets-verify.py",
+      "sha256": "7c8359d01cad43c57d81b075013ad2a1491a6b133adcf1a437b90ea98349bedb"
+    },
+    {
+      "path": "tools/animation-character-billboard-packets-report.py",
+      "sha256": "912e61e484386937f2eab4b24b17ddd890439bbbc2666744b9d2f7f956b62f43"
+    }
+  ],
+  "limits": [
+    "All authored GHG billboard resource records use their source rig topology and bind matrices, with controlled scene/material bindings. Does not establish shipped per-layer loader association.",
+    "View/forward inputs are explicit fixtures; finite scalar results and disjoint allocator capacity.",
+    "Sway/fade, different-layout material merge and active legacy character shadow queue remain separate.",
+    "Unused mesh scaffolding is not an asserted billboard input; poisoned morph pointers verify opcode8f bypass. No GPU or managed executable launch.",
+    "Mixed billboard and ordinary/skin commands within one character draw are not part of the new native batch.",
+    "Prior normal/shadow skin cases are supporting evidence only and are not counted again.",
+    "Compiled managed replay remains unexecuted."
+  ]
+}

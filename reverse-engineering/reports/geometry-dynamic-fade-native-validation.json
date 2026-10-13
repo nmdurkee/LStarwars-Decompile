@@ -1,0 +1,42 @@
+{
+  "schema": "geometry-dynamic-fade-native-v1",
+  "passed": true,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "cases": 1086,
+    "fadeCalls": 1046,
+    "zeroFadeReturns": 107,
+    "skinWrites": 2616,
+    "ordinaryWrites": 650,
+    "prefixWrites": 650,
+    "nonunitForwarded": 156,
+    "nanForwarded": 56
+  },
+  "normalCounts": {
+    "cases": 1086,
+    "authoredSpecials": 0,
+    "checkedBytes": 1138718784,
+    "draws": 3916,
+    "ordinary": 650,
+    "prefix": 650,
+    "bounds": 0,
+    "shaderEmissions": 3916,
+    "earlyReturns": 107
+  },
+  "authoredMeshes": 670,
+  "syntheticMeshes": 160,
+  "sourceObjects": 480,
+  "sources": 60,
+  "errors": [],
+  "fixtureFile": "geometry-dynamic-fade-fixtures.json.gz",
+  "fixtureBytes": 3721078,
+  "fixtureSHA256": "0f87b7ed4fd56d1dd984aa4f5d9af8885a41e32f98769e8e724be31f881680c8",
+  "limits": [
+    "Full original5f0f00 and5df7b0/sqrt execute unchanged, including shader and actual selected packet writer. Only successful COM virtual methods are supplied when deforming.",
+    "All670 authored morph meshes plus160 synthetic meshes,480 authored object min/max/matrices/LOD/fade pairs across60scenes; runtime fade flag enabled explicitly to exercise pairs.256 targeted finite endpoint/gating cases.",
+    "Exact zero fade returns0 before cache initialization, shader reset, shadow-mask cleanup or packet production. Equal endpoints can yield original negative quietNaN; bit pattern and forwarded alpha retained.",
+    "Ordinary/prefix writers use forwarded fade alpha; skin writer receives metadata but not alpha and forces1.0. Null skin with nonnull morph uses ordinary/prefix.",
+    "Finite start/end/distance inputs; this validates the existing numeric model at these fixtures, not every finite arithmetic midpoint. No shadows/sway/billboards/SIMD or different-layout merge in this batch.",
+    "Persistent1MiB image except32-byte portable cache/output scratch, fade arguments, alpha words and COM events compare. No managed/game/GPU launch."
+  ]
+}

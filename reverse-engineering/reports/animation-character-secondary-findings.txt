@@ -1,0 +1,25 @@
+PC CHARACTER SECONDARY VISIBILITY COMPOSITION
+
+3152 exact original comparisons; 0 mismatches.
+
+composition
+CharacterSecondaryPipeline.Submit clones the caller environment and replaces only its secondary callback with recoveredSecondaryVisibility.Evaluate. CharacterLayerSubmission still owns endpoint transforms, branching, draw ordering and palette allocation; CharacterRenderPipeline still owns primary visibility and shadow queue services.
+
+state
+CharacterSubmissionState is authoritative for shared966384 count and9715a0 flag. The adapter mirrors both before evaluating the actual predicate and copies its changed flag back before attachments or draws. Original5f4ff0 then clears the flag on every return, including primary/secondary culling. FinalSecondaryVisibilityState.CacheFlag receives that cleared value. Draw callbacks can mutate the same flag and later callbacks observe it.
+
+evidence
+3,152 original full-chain comparisons:688 authored rigs and100 synthetic rigs, each under four scenarios. Secondary-only visible submission, both invisible early cull, primary-visible with secondary masks, and zero-secondary-count early cull. Full shared mask arrays and guards, queue and arena contents, callback matrix/palette hashes, allocator/cached state, ordered flag observations and original secondary helper calls agree. Original shadow queue runs with source-derived bindings, including nearly full capacity.
+
+boundaries
+The dynamic draw remains an explicit callback with bounded return, allocator, shadow-sequence and9715a0 effects. This test does not execute dynamic shadow packet generation. Real normal dynamic packets are covered separately byCharacterPacketPipeline, whose current domain excludes nonzero secondary count. The new composition does not imply those two domains are already combined.
+
+managed
+Replay invokes the public adapter, checks shared masks/cache flag, queue/arena bytes, output flags/cursor/cache and explicit dynamic callback observations. Secondary predicate entry observations are internal to the implementation and excluded from the public event projection. Core and harness compile only; managed runtime comparison remains pending.
+
+Limits
+All688 authored rigs plus100 synthetic rigs, four branch states each; finite disjoint scalar/matrix domain.
+Plane/cached-volume production is controlled fixture data, not a claim of authored secondary scene loading.
+Dynamic5f0f00/shadow draw packets are external to this composition; real normal draw composition is proven separately by CharacterPacketPipeline.
+Managed replay compiled only; no game or generated executable launched.
+Managed module/replay compile only; no generated executable launched and managed differential status remains pending.

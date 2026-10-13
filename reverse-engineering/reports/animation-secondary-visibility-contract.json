@@ -1,0 +1,89 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 2818,
+    "counts": {
+      "volume": 2286,
+      "mask": 386,
+      "cache": 146,
+      "cached": 42,
+      "recomputed": 104
+    },
+    "authoredPortals": 326,
+    "mismatches": 0,
+    "examples": [],
+    "fixture": {
+      "path": "reports/animation-secondary-visibility-native-fixtures.json.gz",
+      "bytes": 126187,
+      "sha256": "d4d3791ad5ed41500f27f502a2bfb4cbe6841d54230987628ec15908366fac6f"
+    },
+    "dependencies": [
+      {
+        "path": "reports/geometry-portal-predicate-fixtures.json",
+        "sha256": "85110d0086cd845ec87f59663aeea4494e866792e0c1f23fc6db1d822e6dba45"
+      },
+      {
+        "path": "reports/geometry-portal-native-validation.json",
+        "sha256": "5337abe84206e850bf73ae94e37eda35d6e7cf0ad7d042836e096e33d9aecdb2"
+      },
+      {
+        "path": "tools/animation-skeletal-fixture.py",
+        "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+      }
+    ],
+    "method": "Unmodified5ea6a0/5c7050/5c6dc0 execute with no replacements. Compare boolean AL or full mask/EAX, shared flag, complete mask arrays including guards, exact nested-call order and unchanged persistent input memory. Plane model uses 64-significand intermediates and two separatefloat32 stores.",
+    "limits": [
+      "Finite endpoints/planes and finite stored arithmetic;0..12 planes per volume,0..128 volumes/contexts, valid disjoint records and nonnegative counts.",
+      "Authored portal planes/vertex bounds are input probes, not evidence of shipped secondary-volume construction.",
+      "No dynamic shadow packet generation or GPU behavior; managed replay compiled separately, execution pending."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SecondaryVisibility.cs",
+      "sha256": "af1c0dde6bc4b68d3460dab61d0dd20d2876921265db605698a0ce4924546181"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-secondary-visibility-portable-verify.cs",
+      "sha256": "074176fc6d67d1272445cf7308bce1aaa5b35952df96415221cc6206584244fd"
+    },
+    "entrypoint": "SecondaryVisibilityVerify.Main",
+    "arguments": [
+      "reports/animation-secondary-visibility-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 2818,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-secondary-visibility-compile.json"
+  },
+  "contracts": {
+    "layout": "State count966384, context pointer table96d9d0, mask table96e550, valid flag9715a0. Context+710 contains signed volume count. Each volume occupies380hex bytes, with four-float planes beginning1a0 and signed plane count260. Portable DTOs expose resolved arrays without claiming the producer/loader.",
+    "planes": "For each plane, original5c6dc0 enumerates corners000,010,110,100,001,011,111,101 from the two endpoints. It rejects when no corner has strictly positive distance. Tangency is rejected; zero planes accepts. First dotXYZ=(X*A+Y*B)+Z*C is evaluated with64-significand x87 rounding and storedfloat32. That stored value then addsD and storesfloat32 again. A generic one-store plane helper is incorrect here.",
+    "masks": "Original5c7050 ORs shifted bits using the low5 bits of the volume index. Counts32/33/64/65/128 are explicitly probed; these demonstrate shift behavior in synthetic valid memory, not an authored volume-count claim. The context routine returns0 for an empty list.",
+    "cache": "Original5ea6a0 bypasses all endpoint/context reads when refresh==0 and flag!=0, scanning cached masks for signed>0. A bit31 mask is negative even if other bits are set. Refresh!=0 forces recomputation, resetting the flag first; each computed mask overwrites only its active table entry. Final flag=1 even for count0. Cached count0 returns0 while preserving the prior nonzero flag. Poisoned pointers verify the fast path has no hidden producer calls.",
+    "evidence": "2,818 original comparisons:2,286 direct volume predicates,386 masks and146 cache calls. Inputs include all326 authored portal plane/bounding-box records as numeric probes,512 deterministic finite random sets,144 float-rounding boundary cases, mask wrapping and signed-cache tests. All persistent input bytes, mask guard entries, cache flag and nested call order checked; no original function replacement.",
+    "integration": "CharacterLayerSubmission already exposes the5ea6a0 boundary. Its sharedSubmissionFlag corresponds to thisCacheFlag, and SecondaryVisibilityCount corresponds to thisCount. An integrating caller must synchronize those fields around Evaluate; dynamic shadow packet emission and scene volume producers remain separate."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-secondary-visibility-verify.py",
+      "sha256": "a2c002010d1e079c7d29386f6ffa37851a9c85ddeae1d9d8bcf51239fca7a699"
+    },
+    {
+      "path": "tools/animation-secondary-visibility-report.py",
+      "sha256": "7b98d34fb062fe0121294bbc5a47a61b8109c247c93a471124869d38476c30cb"
+    }
+  ],
+  "limits": [
+    "Finite endpoints/planes and finite stored arithmetic;0..12 planes per volume,0..128 volumes/contexts, valid disjoint records and nonnegative counts.",
+    "Authored portal planes/vertex bounds are input probes, not evidence of shipped secondary-volume construction.",
+    "No dynamic shadow packet generation or GPU behavior; managed replay compiled separately, execution pending.",
+    "Only booleanAL of5c6dc0 is meaningful; native upperEAX is intentionally not normalized or claimed.",
+    "Negative count behavior, NaN/infinite inputs or overflowing float stores, aliasing and volume producer semantics remain outside the portable domain."
+  ]
+}

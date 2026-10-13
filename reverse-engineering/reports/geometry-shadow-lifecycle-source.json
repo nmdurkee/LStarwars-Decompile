@@ -1,0 +1,191 @@
+{
+  "schema": "recovered-geometry-shadow-lifecycle-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowContextLifecycle.cs",
+      "bytes": 3555,
+      "sha256": "04fd4fe613394e0281cd967e41bac485c9fc6b410a471cd3f7a270d5d83728da"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x55f3e0",
+      "method": "ShadowContextLifecycle.SetEnabled",
+      "sourceFile": "reconstructed/geometry/ShadowContextLifecycle.cs",
+      "coverage": "whole-helper-bounded-valid-memory",
+      "limitations": "Disjoint images/resources or exact self-copy (snapshot disjoint only). Constructed volume count<=2, negative count retains no-loop behavior. Successful nonwrapping32-byte-aligned snapshot capacity. Original/model exact; managed execution pending.",
+      "evidence": "geometry-shadow-lifecycle-native-validation.json"
+    },
+    {
+      "address": "0x5c8a00",
+      "method": "ShadowContextLifecycle.CopyVolume",
+      "sourceFile": "reconstructed/geometry/ShadowContextLifecycle.cs",
+      "coverage": "whole-helper-bounded-valid-memory",
+      "limitations": "Disjoint images/resources or exact self-copy (snapshot disjoint only). Constructed volume count<=2, negative count retains no-loop behavior. Successful nonwrapping32-byte-aligned snapshot capacity. Original/model exact; managed execution pending.",
+      "evidence": "geometry-shadow-lifecycle-native-validation.json"
+    },
+    {
+      "address": "0x5e8da0",
+      "method": "ShadowContextLifecycle.CopyContext",
+      "sourceFile": "reconstructed/geometry/ShadowContextLifecycle.cs",
+      "coverage": "whole-helper-bounded-valid-memory",
+      "limitations": "Disjoint images/resources or exact self-copy (snapshot disjoint only). Constructed volume count<=2, negative count retains no-loop behavior. Successful nonwrapping32-byte-aligned snapshot capacity. Original/model exact; managed execution pending.",
+      "evidence": "geometry-shadow-lifecycle-native-validation.json"
+    },
+    {
+      "address": "0x5f3020",
+      "method": "ShadowContextLifecycle.Snapshot",
+      "sourceFile": "reconstructed/geometry/ShadowContextLifecycle.cs",
+      "coverage": "whole-helper-bounded-valid-memory",
+      "limitations": "Disjoint images/resources or exact self-copy (snapshot disjoint only). Constructed volume count<=2, negative count retains no-loop behavior. Successful nonwrapping32-byte-aligned snapshot capacity. Original/model exact; managed execution pending.",
+      "evidence": "geometry-shadow-lifecycle-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-lifecycle-native-validation.json",
+    "schema": "geometry-shadow-lifecycle-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1408,
+      "enable": 128,
+      "checkedBytes": 92274688,
+      "volume": 512,
+      "context": 512,
+      "snapshot": 256
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-lifecycle-fixtures.json.gz",
+    "fixtureBytes": 472381,
+    "fixtureSHA256": "dd7941bc2b5c194dd3ddd0885f6d1bb9dc48fb42d42c3a545ff1453837f9c4b2",
+    "limits": [
+      "Four original helpers and actual selective-copy/cache-reset dependencies execute unchanged, observations only.",
+      "Disjoint source/destination/resource buffers or exact self-copy; partial overlap remains unsupported. Pure bit copies preserve arbitrary words, including float bit patterns without interpreting them.",
+      "Constructed volume capacity0..2 (negative count exercises native no-loop behavior), all32 snapshot alignments, repeated snapshots and enable transitions.",
+      "Snapshot captures the shallow context before resetting original source frame counts/tails and shared pointed-to cache/head resources. Padding gaps remain untouched.",
+      "No context-plane construction, GPU work or managed runtime equality claim."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowLifecycleHarness",
+    "arguments": [
+      "reports/geometry-shadow-lifecycle-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1408,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowLifecycleHarness.cs",
+      "bytes": 2619,
+      "sha256": "51eefb28a4dcc6442bdb5c84bbac1fbf4ab381bf40f7472e25793da7b5ba0369"
+    },
+    "compileStatus": "passed"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowLifecycle.dll",
+          "SortedPackets.cs",
+          "FrameReset.cs",
+          "ShadowContextLifecycle.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowLifecycle.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowLifecycleHarness.exe",
+          "harness\\ShadowLifecycleHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowLifecycle.dll",
+      "bytes": 13824,
+      "sha256": "f790a8c628d655f742c2489fd987968c6e55dc192ac733aab95bc8af62d64a12"
+    }
+  },
+  "observations": [
+    "SetEnabled rewinds both material-record tails from their head pointers for each allocated volume only on oldenabled0 to newnonzero. It stores the raw supplied flag and does not invalidate the registry cache.",
+    "CopyVolume transfers0..113,120..263,270..377 inclusive; padding114..11f,264..26f,378..37f remains untouched. CopyContext performs two volume copies then700..713 and720..827, preserving all padding gaps.",
+    "Copies preserve raw pointer words; shader caches and command heads remain shared. The portable verified domain permits disjoint buffers or exact self-copy, not arbitrary partial overlap.",
+    "Snapshot aligns the supplied arena cursor to32 bytes, advances by830, shallow-copies context, and only afterward resets the ORIGINAL source volume framecounts+374, both shader contexts and command heads/tails. Destination retains pre-reset inline fields while pointed resources alias the reset originals.",
+    "The original pointer allocator control is explicit in the portable API. Context/default producer and5fca40 are separately recovered; this snapshot composes actual native helper instructions with no service replacements.",
+    "1408 original comparisons cover128 enable transitions,512 each volume/context copy,256 snapshots, all32alignment offsets and64 sequential enable/two-snapshot chains. Output image and returned snapshot pointer compare exactly; void EAX values are not assigned semantics.",
+    "Plane construction and full frame/GPU consumption remain separate; source and replay compile, managed execution pending."
+  ],
+  "remainingGaps": [
+    {
+      "id": "partial-copy-overlap",
+      "status": "Disjoint and exact self-copy verified; partial overlap rejected."
+    },
+    {
+      "id": "shadow-plane-producer",
+      "status": "Camera/plane generation remains next math dependency."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core/replay compile only."
+    },
+    {
+      "id": "gpu-output",
+      "status": "CPU copy/reset state only."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-lifecycle-native.py",
+    "bytes": 5570,
+    "sha256": "b403803d96ba6d57a3d7f1d713f2b82d46f534d8bf7f0daecaa10f1d298eb57f"
+  },
+  "pseudocode": [
+    {
+      "file": "decompiled/corpus-expanded/FUN_55f3e0.c",
+      "bytes": 713,
+      "sha256": "85e0496c4532b27713d15c3737edc97497e670ebecb0d4fa0a890f848eee144d"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5c8a00.c",
+      "bytes": 4791,
+      "sha256": "3c4b6f065e70317d6333c2c60a3cb9a865d501c0019c02a474870b25e5947a47"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5e8da0.c",
+      "bytes": 3729,
+      "sha256": "ebb296e8e6620d6a42488ca181ede6672481cdad95b1aa0dbbbb185af8f3644f"
+    },
+    {
+      "file": "decompiled/corpus-expanded/FUN_5f3020.c",
+      "bytes": 1160,
+      "sha256": "cf3168bf1d8a34be89ca2417d41cb62d77b3a7f740ba58784ecf301ed3c86fa1"
+    }
+  ]
+}

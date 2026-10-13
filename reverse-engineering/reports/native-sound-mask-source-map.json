@@ -1,0 +1,40 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x698710",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SoundMaskLifecycle.cs",
+      "sourceSha256": "6f1123e1730d5088a52a3c6951b197cbf6477b73882c8515df6b86a3589a7275",
+      "methods": [
+        {
+          "name": "SoundMaskLifecycle.Configure",
+          "line": 14
+        }
+      ],
+      "coverage": "whole CPU mask lifecycle with allocation event device and voice services",
+      "qualification": "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded. Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals. Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-sound-mask-tests.json"
+      ]
+    },
+    {
+      "address": "0x698e70",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SoundMaskLifecycle.cs",
+      "sourceSha256": "6f1123e1730d5088a52a3c6951b197cbf6477b73882c8515df6b86a3589a7275",
+      "methods": [
+        {
+          "name": "SoundMaskLifecycle.Commit",
+          "line": 25
+        }
+      ],
+      "coverage": "whole CPU mask lifecycle with allocation event device and voice services",
+      "qualification": "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded. Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals. Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-sound-mask-tests.json"
+      ]
+    }
+  ],
+  "commands": []
+}

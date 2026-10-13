@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-10-12T22:10:50.794Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "actorIndex": {
+      "address": "0x43c7a0",
+      "description": "Registered index callback truncates argument to unsigned byte, compares against signed active count, requires actor+1fc bit1 and either bit1000 or actor+406 byte3. A nonzero actor+28b requires actor+1010 float strictly greater than0. Returns the reference record itself without its first-pointer dereference.",
+      "evidence": [
+        "reports/native-locator-set-assembly.json",
+        "reports/native-locator-reservations-tests.json"
+      ]
+    },
+    "refresh": {
+      "address": "0x51fe60",
+      "description": "Null set, absent index callback or nonpositive signed-byte count is a no-op. Owner bytes255 and128 are preserved sentinels. Other owners resolve through actual43c7a0. Missing/invalid actor, missing packet or missing selected locator yields selected byte255; otherwise truncate the signed locator-pointer difference divided by60 to its low byte. Mismatch with set index writes owner255. Selected locator and actor reservation token are never cleared here. A set index255 can therefore preserve an invalid owner.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_51fe60.c",
+        "reports/native-locator-set-assembly.json"
+      ]
+    },
+    "release": {
+      "address": "0x453810",
+      "description": "First call only. Default target is creature+d0 reference then its first-pointer world object. Every ordered case-insensitive character= substring replaces that target through the actual name callback; missing callback/name clears it and last token wins. A nonnull target receives zero at actor+36c. The packet+a4 selected locator stays unchanged.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_453810.c"
+      ]
+    },
+    "breakFormation": {
+      "address": "0x449c90",
+      "description": "If creature and its+144 formation are nonnull, clear only bit8 at formation+50. No first-call guard; always returns1. The typed formation projection does not infer behavior of downstream movement or formation allocation.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_449c90.c"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-command",
+      "name": "ReleaseLocator",
+      "address": "0x453810",
+      "sourceUses": 64
+    },
+    {
+      "kind": "scp-command",
+      "name": "BreakFormation",
+      "address": "0x449c90",
+      "sourceUses": 124
+    }
+  ],
+  "native": {
+    "cases": 951,
+    "mismatches": 0,
+    "fullRegionComparisons": 3804,
+    "groups": {
+      "release": 191,
+      "break": 264,
+      "index": 288,
+      "refresh": 208
+    },
+    "authoredUses": {
+      "BreakFormation": 124,
+      "ReleaseLocator": 64
+    },
+    "method": "Original command, index callback, reservation refresh and actual name binding execute unchanged. Only bounded CRT Player%d formatting is substituted. Complete actor, packet, owner and formation memory images are checked for collateral writes."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorReservations.cs",
+      "bytes": 2898,
+      "sha256": "92616e5b3c10eb6570be8da4e318684cba7e42d73f3710d71af1edd9e469ce87"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-locator-reservations-portable-verify.cs",
+      "bytes": 6114,
+      "sha256": "1257c7dcb9dafac142c8ac3aa90e39e23a96bfdc401c00ce7d3bc92717e464f7"
+    },
+    "entrypoint": "LocatorReservationsVerify.Main",
+    "arguments": [
+      "reports/native-locator-reservations-vectors.json",
+      "reports/native-locator-reservations-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-locator-reservations-vectors.json",
+      "bytes": 4288459,
+      "sha256": "b1efef182edb9bc3b0bdb368f49d5d3158a6189d10880b1db38577eae1f27731"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Valid nonoverlapping actor/packet/set/formation storage; selected locator indices represent aligned pointers relative to one locator base, no address wrap.",
+    "ASCII names, finite death timer, active table backing valid for every reachable index; count and set count preserve signed comparisons.",
+    "Managed replay is prepared and compiled, not executed."
+  ]
+}

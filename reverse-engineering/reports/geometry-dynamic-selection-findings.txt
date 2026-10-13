@@ -1,0 +1,30 @@
+Dynamic LOD/material-selection branches
+
+Three pure branch projections from5f0f00 are now buildable. SelectLod uses
+strict distance<threshold; equality retains the current level. Forcedindex0
+uses distance, any other signed forced value walks until matching index or
+zero terminator. Initialzero always chooseslevel0. Negative forced values
+therefore reach the terminator. Distances are supplied float32 squared values;
+the complete center/distance producer is not claimed by this projection.
+
+ChooseMaterial retains a subtle precedence rule: nonzero material+9a tag with
+a present override table selects its entry, including0. An empty tagged entry
+keeps the source material rather than falling back to the global override.
+Zero tag or absent table permits global override. Different+1f0 layout requires
+the unresolved5e5020 clone/cache callback. FilterChain preserves linked order:
+mode1 accepts gateA255 or allthree gatebytes zero; other modes require A!=255.
+
+5,928 original LOD cases and96 override/linked-gate cases pass.24 clone-boundary
+calls are observed.60 authored scenes supply threshold arrays, with controlled
+single-part LOD records used to expose the selected index. Original center,
+transform and distance helpers run; force-visibility1,zero shadows,no fade or
+sway bound this slice.5fd220/607590/5e0530 are skipped downstream boundaries;
+5e5020 returns a controlled clone. This does not validate their side effects
+or the complete dynamic caller. Synthetic threshold/equality/forced cases
+complement the actual authored-array coverage recorded in the source report.
+
+DynamicSelection.cs and Main DynamicSelectionHarness compile with default
+AnyCPU. The1,391-byte gzip fixture takes compressedInputFixture/outputFile;
+geometry-dynamic-selection-check.py prepares or compares saved results only.
+Managed execution remains pending. Three mappings share one native entry and
+must not be counted as three newly recovered functions.

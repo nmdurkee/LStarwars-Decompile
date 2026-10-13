@@ -1,0 +1,34 @@
+Material override clone/cache CPU reconstruction
+
+MaterialCloneCache ports iterator547580, same-thread node allocation5471c0,
+lookup5e4ee0, copy orchestration5e4f30 and wrapper5e5020. Constructor5e4b20
+and shader refresh601030 are explicit mutable services. Vertex declaration
+7418c0/741860 executes its original cached branch during native validation;
+the portable resolver returns those captured logical handles. No device
+creation or general material-pool allocation is claimed.
+
+1,638 cases compare73,801,728 full-image bytes with0 differences:72iterator,
+27node-allocation,540lookup,31multi-layout,968merge cases.480 authored708-byte
+materials from60scenes feed exact copy tests.527 constructor and refresh
+service sequences run, alongside527 original declaration-cache calls.
+Core and replay compile; native-versus-Python pass is not managed execution.
+
+Lookup uses replacement identity plus LIVE clone+1f0, not cached node+8.
+Creation copies177DWORDs, preserves allocated+28/+2c, clears+1f4/+1f6,
+ORsflagsWORD1, installs layout, resolves+2bc, calls refresh, then increments
+WORD+2c0. Callback changes to layout and counter are retained; Merge's final
+lookup may return0 after a refresh changes the requested layout. Same-thread
+list updates and16-bit count/flag wrapping are tested, including empty lists.
+
+An initial stack-offset suspicion was disproved by native tests. At5e4f9a,
+two outstanding pushed arguments make [esp+18] the local at entryESP-4;
+it does not replace the earlier template argument. Multi-layout requests
+keep the same template, including the tested case allocator+28 iszero.
+The published source and fixtures reflect this verified behavior.
+
+Valid finite disjoint template/clone images and successful miss allocations
+bound this module. Synchronization callbacks, cache exhaustion during clone
+creation, shader compilation/device allocation and malformed pointers remain
+outside it. Main MaterialCloneCacheHarness takes compressedInputFixture and
+outputFile. geometry-material-clone-check.py prepares or compares a saved
+result only. No managed executable, original game process or GPU was launched.

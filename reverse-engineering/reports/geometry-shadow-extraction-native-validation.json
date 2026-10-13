@@ -1,0 +1,31 @@
+{
+  "schema": "geometry-shadow-extraction-native-v1",
+  "passed": true,
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "counts": {
+    "cases": 1024,
+    "volumes": 768,
+    "persistentBytes": 8388608
+  },
+  "errors": [],
+  "cutCountHistogram": {
+    "0": 256,
+    "1": 256,
+    "2": 256,
+    "3": 256
+  },
+  "fixtureFile": "geometry-shadow-extraction-fixtures.json.gz",
+  "fixtureBytes": 574521,
+  "fixtureSHA256": "f7d6400c2c5fb397b2084448e0509b82b0de529aac878eb014507be9003ea3a5",
+  "constants": {
+    "degreeScale": 180.0,
+    "pi": 3.1415927410125732
+  },
+  "limits": [
+    "Complete original5e8950 chain and all real camera/frustum/plane/bounds helpers execute unchanged. No computational replacements.",
+    "Cutcount0..3 matches fixed two-volume context. Count0 storesactiveCount=-1, count1 zero. Inputs, context and output matrices disjoint; finite math and previously bounded camera domains.",
+    "Every volume writes four undefined far-cornerW words and one undefined positionW. Only these proven padding words are normalized for comparison; raw native words retained.",
+    "Camera near/far are restored exactly after per-split temporary changes. Persistent context and original global view/projection outputs compare exactly on known lanes.",
+    "Six authored CU2 transforms plus identity, controlled light directions/projection/cuts/context data. Prior light configuration and live registration, GPU output, managed runtime equality remain separate."
+  ]
+}

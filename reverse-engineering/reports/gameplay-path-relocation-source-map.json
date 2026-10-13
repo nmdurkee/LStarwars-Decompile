@@ -1,0 +1,63 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Path relocation, floor snap and standalone control reset.",
+  "primaryNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x43c9a0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathRelocation.cs",
+      "sourceSha256": "48ee3d15c45d9a3dd8a10260d7f5fc5449b5e00142559f326dd8e0a70cc3e706",
+      "methods": [
+        {
+          "name": "PathRelocation.Relocate",
+          "line": 72
+        }
+      ],
+      "coverage": "Complete finite-input relocation caller with terrain refresh, broader reset and alternate placement services; actual culling, floor snap and control reset implementations.",
+      "qualification": "Finite float inputs, valid loaded actor/reference/node/pad/world storage and prepared view matrices. Pointer faults, nonfinite arithmetic and arbitrary overlapping subrecords are outside the verified domain. Same actor/reference identity is explicitly tested. Terrain refresh5728a0, broader actor reset55e4a0 and alternate relocation4d1780 remain explicit mutable service boundaries. Native fixtures inject floor height but do not establish their internal behavior. World.LevelFlags projects the already recovered55f450 current-world level64 lookup. View construction and matrix updates remain separately owned. Existing5d6620 and54fa60 dependency execution adds no new native mapping here. The standalone55e4e0 helper refines a dependency previously projected in RespawnState; this batch neither modifies RespawnState nor credits that overlap as a second helper. The C# harness compiled successfully. Managed execution and compiled differential comparison remain pending under the compile-only instruction. No authored command-use credit is assigned.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-relocation-tests.json",
+        "reverse-engineering/reports/gameplay-path-relocation-assembly.json"
+      ]
+    },
+    {
+      "address": "0x572660",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathRelocation.cs",
+      "sourceSha256": "48ee3d15c45d9a3dd8a10260d7f5fc5449b5e00142559f326dd8e0a70cc3e706",
+      "methods": [
+        {
+          "name": "PathRelocation.SnapFloor",
+          "line": 46
+        }
+      ],
+      "coverage": "Complete finite-input floor-snap helper; current-world level flags projected as explicit host state.",
+      "qualification": "Finite float inputs, valid loaded actor/reference/node/pad/world storage and prepared view matrices. Pointer faults, nonfinite arithmetic and arbitrary overlapping subrecords are outside the verified domain. Same actor/reference identity is explicitly tested. Terrain refresh5728a0, broader actor reset55e4a0 and alternate relocation4d1780 remain explicit mutable service boundaries. Native fixtures inject floor height but do not establish their internal behavior. World.LevelFlags projects the already recovered55f450 current-world level64 lookup. View construction and matrix updates remain separately owned. Existing5d6620 and54fa60 dependency execution adds no new native mapping here. The standalone55e4e0 helper refines a dependency previously projected in RespawnState; this batch neither modifies RespawnState nor credits that overlap as a second helper. The C# harness compiled successfully. Managed execution and compiled differential comparison remain pending under the compile-only instruction. No authored command-use credit is assigned.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-relocation-tests.json",
+        "reverse-engineering/reports/gameplay-path-relocation-assembly.json"
+      ]
+    },
+    {
+      "address": "0x55e4e0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathRelocation.cs",
+      "sourceSha256": "48ee3d15c45d9a3dd8a10260d7f5fc5449b5e00142559f326dd8e0a70cc3e706",
+      "methods": [
+        {
+          "name": "PathRelocation.ResetControls",
+          "line": 57
+        }
+      ],
+      "coverage": "Complete loaded control-subobject reset projected onto actor+6c4, actual RNG arithmetic and pad writes; existing respawn projection remains unchanged.",
+      "qualification": "Finite float inputs, valid loaded actor/reference/node/pad/world storage and prepared view matrices. Pointer faults, nonfinite arithmetic and arbitrary overlapping subrecords are outside the verified domain. Same actor/reference identity is explicitly tested. Terrain refresh5728a0, broader actor reset55e4a0 and alternate relocation4d1780 remain explicit mutable service boundaries. Native fixtures inject floor height but do not establish their internal behavior. World.LevelFlags projects the already recovered55f450 current-world level64 lookup. View construction and matrix updates remain separately owned. Existing5d6620 and54fa60 dependency execution adds no new native mapping here. The standalone55e4e0 helper refines a dependency previously projected in RespawnState; this batch neither modifies RespawnState nor credits that overlap as a second helper. The C# harness compiled successfully. Managed execution and compiled differential comparison remain pending under the compile-only instruction. No authored command-use credit is assigned.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-relocation-tests.json",
+        "reverse-engineering/reports/gameplay-path-relocation-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-relocation-contract.json"
+}

@@ -1,0 +1,130 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 5,
+  "mappings": [
+    {
+      "address": "0x603610",
+      "sourceFile": "reverse-engineering/reconstructed/animation/BillboardMeshPackets.cs",
+      "sourceSha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b",
+      "methods": [
+        {
+          "name": "BillboardMeshPackets.BuildPayload",
+          "line": 38
+        }
+      ],
+      "coverage": "complete finite billboard132-byte payload",
+      "qualification": "Valid disjoint CPU memory; finite source and stored arithmetic, explicit camera view/forward inputs. Original square-root/vector helpers execute in oracle. No shader/GPU billboard expansion, vertex-buffer access or full dynamic caller claim. Value-returning matrix adapters exclude native pointer aliasing.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-billboard-tests.json"
+    },
+    {
+      "address": "0x603970",
+      "sourceFile": "reverse-engineering/reconstructed/animation/BillboardMeshPackets.cs",
+      "sourceSha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b",
+      "methods": [
+        {
+          "name": "BillboardMeshPackets.ResourceIdentity",
+          "line": 47
+        }
+      ],
+      "coverage": "whole resource passthrough helper",
+      "qualification": "Valid disjoint CPU memory; finite source and stored arithmetic, explicit camera view/forward inputs. Original square-root/vector helpers execute in oracle. No shader/GPU billboard expansion, vertex-buffer access or full dynamic caller claim. Value-returning matrix adapters exclude native pointer aliasing.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-billboard-tests.json"
+    },
+    {
+      "address": "0x5edbb0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/BillboardMeshPackets.cs",
+      "sourceSha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b",
+      "methods": [
+        {
+          "name": "BillboardMeshPackets.FaceCamera",
+          "line": 24
+        }
+      ],
+      "coverage": "complete finite view-basis and origin helper",
+      "qualification": "Valid disjoint CPU memory; finite source and stored arithmetic, explicit camera view/forward inputs. Original square-root/vector helpers execute in oracle. No shader/GPU billboard expansion, vertex-buffer access or full dynamic caller claim. Value-returning matrix adapters exclude native pointer aliasing.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-billboard-tests.json"
+    },
+    {
+      "address": "0x5edd10",
+      "sourceFile": "reverse-engineering/reconstructed/animation/BillboardMeshPackets.cs",
+      "sourceSha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b",
+      "methods": [
+        {
+          "name": "BillboardMeshPackets.FaceAxis",
+          "line": 29
+        }
+      ],
+      "coverage": "complete finite axis-constrained facing helper",
+      "qualification": "Valid disjoint CPU memory; finite source and stored arithmetic, explicit camera view/forward inputs. Original square-root/vector helpers execute in oracle. No shader/GPU billboard expansion, vertex-buffer access or full dynamic caller claim. Value-returning matrix adapters exclude native pointer aliasing.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-billboard-tests.json"
+    },
+    {
+      "address": "0x5e0490",
+      "sourceFile": "reverse-engineering/reconstructed/animation/BillboardMeshPackets.cs",
+      "sourceSha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b",
+      "methods": [
+        {
+          "name": "BillboardMeshPackets.Build",
+          "line": 51
+        }
+      ],
+      "coverage": "complete bounded CPU billboard packet writer",
+      "qualification": "Valid disjoint CPU memory; finite source and stored arithmetic, explicit camera view/forward inputs. Original square-root/vector helpers execute in oracle. No shader/GPU billboard expansion, vertex-buffer access or full dynamic caller claim. Value-returning matrix adapters exclude native pointer aliasing.",
+      "comparisonStatus": "Original native exact differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-billboard-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/BillboardMeshPackets.cs",
+      "sha256": "9e531bf1e9052ec08a9106f8a524519490f5025621702c0fa2fe24f99be2f23b"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-billboard-portable-verify.cs",
+      "sha256": "600af561dc8e1f7f954483b4f1e31da4b420b578056455496a08b744cb15ca91"
+    },
+    "entrypoint": "BillboardMeshPacketsVerify.Main",
+    "arguments": [
+      "reports/animation-billboard-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 5189,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-billboard-compile.json"
+  },
+  "numericSupport": {
+    "source": {
+      "path": "reconstructed/animation/AnimationPlayback.cs",
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    "harness": {
+      "path": "tools/animation-x87-double-portable-verify.cs",
+      "sha256": "dcc02e933874d11e1a7c18166eb84ab9a3bdbbc9a9dffe82ab797f8ea5cc8964"
+    },
+    "entrypoint": "PlaybackWideDoubleVerify.Main",
+    "arguments": [
+      "reports/animation-x87-double-tests.json",
+      "<result.json>"
+    ],
+    "preparedComparisons": 1621,
+    "status": "Compiled only; no managed execution.",
+    "nativeEvidence": "reports/animation-x87-double-tests.json",
+    "qualification": "Isolated original FSTP qword instruction with explicit finite80-bit inputs; not an extra recovered game function. Shared exact-zero representation is positive; nonzero underflow retains sign."
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-billboard-tests.json",
+    "reverse-engineering/reports/animation-billboard-assembly.json",
+    "reverse-engineering/reports/animation-x87-double-tests.json"
+  ]
+}

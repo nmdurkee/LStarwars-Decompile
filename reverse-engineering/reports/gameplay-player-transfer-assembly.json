@@ -1,0 +1,116 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "entry": "0x54a8d0",
+  "endExclusive": "0x54a906",
+  "reason": "Signed integer amount is loaded directly by FILD before division; no float32 rounding precedes FDIV. Result is rounded by FSTP before platform call.",
+  "instructions": [
+    {
+      "address": "0x54a8d0",
+      "bytes": "8b442404",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [esp + 4]"
+    },
+    {
+      "address": "0x54a8d4",
+      "bytes": "85c0",
+      "mnemonic": "test",
+      "operands": "eax, eax"
+    },
+    {
+      "address": "0x54a8d6",
+      "bytes": "742d",
+      "mnemonic": "je",
+      "operands": "0x54a905"
+    },
+    {
+      "address": "0x54a8d8",
+      "bytes": "d9ee",
+      "mnemonic": "fldz",
+      "operands": ""
+    },
+    {
+      "address": "0x54a8da",
+      "bytes": "83ec08",
+      "mnemonic": "sub",
+      "operands": "esp, 8"
+    },
+    {
+      "address": "0x54a8dd",
+      "bytes": "d9542404",
+      "mnemonic": "fst",
+      "operands": "dword ptr [esp + 4]"
+    },
+    {
+      "address": "0x54a8e1",
+      "bytes": "d91c24",
+      "mnemonic": "fstp",
+      "operands": "dword ptr [esp]"
+    },
+    {
+      "address": "0x54a8e4",
+      "bytes": "db442410",
+      "mnemonic": "fild",
+      "operands": "dword ptr [esp + 0x10]"
+    },
+    {
+      "address": "0x54a8e8",
+      "bytes": "6a00",
+      "mnemonic": "push",
+      "operands": "0"
+    },
+    {
+      "address": "0x54a8ea",
+      "bytes": "51",
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": "0x54a8eb",
+      "bytes": "d83524509200",
+      "mnemonic": "fdiv",
+      "operands": "dword ptr [0x925024]"
+    },
+    {
+      "address": "0x54a8f1",
+      "bytes": "d95c2414",
+      "mnemonic": "fstp",
+      "operands": "dword ptr [esp + 0x14]"
+    },
+    {
+      "address": "0x54a8f5",
+      "bytes": "d9442414",
+      "mnemonic": "fld",
+      "operands": "dword ptr [esp + 0x14]"
+    },
+    {
+      "address": "0x54a8f9",
+      "bytes": "d91c24",
+      "mnemonic": "fstp",
+      "operands": "dword ptr [esp]"
+    },
+    {
+      "address": "0x54a8fc",
+      "bytes": "50",
+      "mnemonic": "push",
+      "operands": "eax"
+    },
+    {
+      "address": "0x54a8fd",
+      "bytes": "e8fedf1400",
+      "mnemonic": "call",
+      "operands": "0x698900"
+    },
+    {
+      "address": "0x54a902",
+      "bytes": "83c414",
+      "mnemonic": "add",
+      "operands": "esp, 0x14"
+    },
+    {
+      "address": "0x54a905",
+      "bytes": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    }
+  ]
+}

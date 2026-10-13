@@ -1,0 +1,133 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "purpose": "51d7b0 produces the next steering target at packet104/108/10c and accepted radius110, updating path/connection/direction/cache/state fields. It does not commit actor position or velocity. The portable source includes every caller branch and calls recovered targeting, route distance/cache, binding, next-connection, corridor, corner and angle helpers.",
+    "target": "The caller saves eleven target words before EnsureTarget. A negative status stops at packetD0 reference position. Arrival requires permitted attachment state, nonzero target radius, vertical difference strictly between -0.5 and0.5, and squared distance strictly below the unrounded x87 radius product. Existing targets stop at the current reference. New targets with targetFlags4 restore the eleven saved words, call neighboring-path transition, and ensure the target again. Later radius approach intentionally retains the earlier distance/vector across that restore.",
+    "routing": "For distinct current/target connections, containment may bind immediately. Otherwise four ordered endpoint cost candidates combine clamped current progress, target progress and recovered route distances. Strict comparison preserves earlier ties. Directional40000000 bits suppress candidates; route masks and node membership/boundary bits can make target endpoint costs maximal. Flag100000 drives round-robin route retry, with a32-bit visited mask preventing repeated selected routes. Successful selection stores the destination point and follows containing next connections using the actual binding and routing helpers.",
+    "specialAndBlocked": "The optional registered special callback observes flag20000000 when the local current connection differs from target. Nonzero callback return sets40080000 and exits. Current or future directionalD8000000 flags stop and publish the raw requirement in packet1F8; unsupported other future requirements set600000 and fall back to the opposite endpoint. A fallback endpoint within squared distance1 is replaced by the reference position.",
+    "corridorAndCorners": "A direct target or next endpoint is used when contained by the current corridor. Otherwise51c430 caches two offset corner points. The caller compares signed16-bit differences between recovered horizontal headings, preferring corner40 for a negative difference and then corner20 for a positive difference. Selected detours set80000. The original query identity is passed through only to the special callback; corridor tests use the caller packet predicted-position words or local points.",
+    "precision": "Scalar sums/products preserve x87 intermediate precision with float32 stores at the original boundaries. In particular arrival compares the stored squared distance with an unrounded radius product; seven regression cases exercise values where rounding that product first changes the decision. The PathCorners overload receives the separate reference body radius instead of assuming packet storage and actor/reference share one image.",
+    "validation": "1,573 original-PC caller records match an independent model.1,212 of1,213 instructions execute; the sole skipped instruction is alignment LEA ESP,[ESP] at51e069. This includes64 cases using32 authored three-edge/four-node geometry chains, both initial directions, with source offsets/hashes retained. These chains preserve original positions, radii, height bounds, edge headings/lengths/distances and flags but use synthetic four-node route tables and caller state. The other1,509 cases cover target restoration, route retries, callbacks, all edge orientations, blocked flags, corner failures, absent targets, fallback and seeded finite states."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 1573,
+    "mismatches": 0,
+    "examples": [],
+    "authoredGeometryChains": 32,
+    "authoredGeometryCases": 64,
+    "helperCalls": {
+      "0x51d750": 1579,
+      "0x51b1f0": 2717,
+      "0x51a890": 3086,
+      "0x51b890": 1162,
+      "0x51be90": 1132,
+      "0x51c430": 236,
+      "0x51c150": 468,
+      "0x51b7f0": 442
+    },
+    "instructionCoverage": {
+      "total": 1213,
+      "executed": 1212,
+      "missing": [
+        "0x51e069"
+      ]
+    },
+    "authoredCommandUseCredit": 0,
+    "childHelperCallsAreAdditionalChecks": false,
+    "explicitServices": [
+      "0x51d5e0",
+      "registered slot0x9238fc"
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathSteering.cs",
+      "bytes": 14826,
+      "sha256": "8b1b3011f12fac35420c037f6c1f489b1bce3a0d4c2e3d57b1b77f7acd51bcfb"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-steering-portable-verify.cs",
+      "bytes": 9560,
+      "sha256": "2e1b08334beff6776a0e9581b68f236cbe948e1ea9f951dc44f9c24245df3942"
+    },
+    "entrypoint": "GameplayPathSteeringVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-steering-native-fixtures.json",
+      "references/native-animation-sine-table.f32",
+      "reports/gameplay-path-angle-table.u16",
+      "reports/gameplay-path-steering-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-steering-native-fixtures.json",
+      "bytes": 773069,
+      "sha256": "7f89fb120f83eb54f7883723b02cea758fdbd9b7ea95dd97ec76e8693ea51048"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathTargeting.cs",
+        "bytes": 4712,
+        "sha256": "6206dd40bc3e77930d275b6f508b0f73cae445a3e46edcaf76fce2a6a4d7b0d9"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathRouting.cs",
+        "bytes": 7501,
+        "sha256": "8a3f0096fcf19f3e056739bbb860ca0c50702c7f20d47fc6f989d0e1ddf66275"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ActorPathBinding.cs",
+        "bytes": 6895,
+        "sha256": "fb29028934a92d4fa722457a51297c28acb2f2fe38bc0186cee5823720492cfb"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathCorridor.cs",
+        "bytes": 6926,
+        "sha256": "edeae3a6631202b779fd92a81d7a4527e1aa4dae97869b1b01f281c74432e7d3"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathCorners.cs",
+        "bytes": 6297,
+        "sha256": "3f45f4888355d7dc24fe7d171de7aed6eb16909e8aa29f4b5e2692af374dd832"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathAngles.cs",
+        "bytes": 1569,
+        "sha256": "5db83bdf4fce71f6733e1c139572ec27a46393c4ceaba23a609e7bd14750b726"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/PathCornerMath.cs",
+        "bytes": 2390,
+        "sha256": "caac19325777b3fb03cf7706393b9e2b5bc63446d08caf30189bd335668203b1"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/BuildEffectSound.cs",
+        "bytes": 4278,
+        "sha256": "de4c1908b3f9482d61473ad929e8c9c2b5166c7544ea887f949ad9aacba55875"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+        "bytes": 9950,
+        "sha256": "782e834cdd926dce18c3534e0f3b7ecfdc6b70c06a9118ffadc26af78054b5e8"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-steering-verify.exe",
+        "bytes": 605184,
+        "sha256": "b46167b49619b0049f2aa8fa2403454ca4aa6cbbefcf6e155dfb5e7a2dbc459d"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Finite loaded records; valid shared point/edge identities and routing topology, normal direction indices0/1, terminating routes, positive connection lengths and corner arcsine inputs within[-1,1]. Overflow, NaN/infinity, malformed pointers and zero-length normalization are excluded.",
+    "Static or already-refreshed point backing only: fixture refresh bitsets are all set. Dynamic attachment/query aliasing and geometry mutation during corridor calls are not established by this caller batch.",
+    "Neighboring-path transition51d5e0 is an explicit world adapter. The fixture records its calls and uses a no-op result; actual world rebind chains remain separate despite the helper having an existing independent contract.",
+    "Registered9238fc special callback is an explicit adapter here. Selected callback flag changes and early-return behavior are verified; the three recovered PathActionDispatch variants and their deeper actions are not composed in this suite.",
+    "SteeringPath typed views must share point records, connection topology and loaded identities. RouteInput/RouteOutput are source projection glue that synchronizes the existing route-cache representation, not additional recovered native entries.",
+    "Authored geometry uses synthetic route tables and actor state and does not claim a live level traversal. No new authored command-use credit. Child helper call counts are informational and are not added to top-level comparisons.",
+    "Portable core and replay harness compile, but managed execution was not attempted. Original-PC independent-model evidence is distinct from pending managed comparison."
+  ]
+}

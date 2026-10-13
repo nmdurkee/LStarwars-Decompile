@@ -1,0 +1,108 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Actor activation commands, deactivation state helper and base-script switch.",
+  "primaryNativeEntryPoints": 4,
+  "mappings": [
+    {
+      "address": "0x4442f0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+      "sourceSha256": "45008d258b895f3a2af87384d63dd7c060734ea03177f5aa7b04c9b156287604",
+      "methods": [
+        {
+          "name": "ActorActivation.Activate",
+          "line": 122
+        },
+        {
+          "name": "ActorActivation.Run",
+          "line": 89
+        },
+        {
+          "name": "ActorActivation.ActivateActor",
+          "line": 78
+        }
+      ],
+      "coverage": "complete bounded Activate selection, counters and lifecycle dispatch",
+      "qualification": "Loaded actor/script/spawn records required. Reinitialization, attachment destruction and player-release callbacks remain explicit lifecycle boundaries; inherited ScriptMachine environment callbacks are absent in these fixtures.",
+      "comparisonStatus": "Original-PC comparisons passed; portable core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-activation-tests.json",
+        "reverse-engineering/reports/gameplay-activation-assembly.json"
+      ]
+    },
+    {
+      "address": "0x444490",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+      "sourceSha256": "45008d258b895f3a2af87384d63dd7c060734ea03177f5aa7b04c9b156287604",
+      "methods": [
+        {
+          "name": "ActorActivation.DeActivate",
+          "line": 124
+        },
+        {
+          "name": "ActorActivation.Run",
+          "line": 89
+        }
+      ],
+      "coverage": "complete bounded DeActivate selection and lifecycle dispatch",
+      "qualification": "Loaded actor/script/spawn records required. Reinitialization, attachment destruction and player-release callbacks remain explicit lifecycle boundaries; inherited ScriptMachine environment callbacks are absent in these fixtures.",
+      "comparisonStatus": "Original-PC comparisons passed; portable core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-activation-tests.json",
+        "reverse-engineering/reports/gameplay-activation-assembly.json"
+      ]
+    },
+    {
+      "address": "0x414bb0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+      "sourceSha256": "45008d258b895f3a2af87384d63dd7c060734ea03177f5aa7b04c9b156287604",
+      "methods": [
+        {
+          "name": "ActorActivation.DeactivateActor",
+          "line": 61
+        }
+      ],
+      "coverage": "complete bounded deactivation helper control flow and state writes",
+      "qualification": "Loaded actor/script/spawn records required. Reinitialization, attachment destruction and player-release callbacks remain explicit lifecycle boundaries; inherited ScriptMachine environment callbacks are absent in these fixtures.",
+      "comparisonStatus": "Original-PC comparisons passed; portable core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-activation-tests.json",
+        "reverse-engineering/reports/gameplay-activation-assembly.json"
+      ]
+    },
+    {
+      "address": "0x52c790",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+      "sourceSha256": "45008d258b895f3a2af87384d63dd7c060734ea03177f5aa7b04c9b156287604",
+      "methods": [
+        {
+          "name": "ActorActivation.ChangeBaseState",
+          "line": 44
+        }
+      ],
+      "coverage": "complete bounded base-state switch orchestration using existing ScriptMachine plus raw companion fields",
+      "qualification": "Loaded actor/script/spawn records required. Reinitialization, attachment destruction and player-release callbacks remain explicit lifecycle boundaries; inherited ScriptMachine environment callbacks are absent in these fixtures.",
+      "comparisonStatus": "Original-PC comparisons passed; portable core/replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-activation-tests.json",
+        "reverse-engineering/reports/gameplay-activation-assembly.json"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "Activate",
+      "address": "0x4442f0",
+      "sourceUses": 112,
+      "qualification": "Bounded selection/counters/direct Base transition; spawned lifecycle41c120 remains an explicit service."
+    },
+    {
+      "kind": "scp-action",
+      "name": "DeActivate",
+      "address": "0x444490",
+      "sourceUses": 39,
+      "qualification": "Bounded selection and actual414bb0/52c790 state transitions; attachment destruction/control release remain services."
+    }
+  ],
+  "contract": "reverse-engineering/reports/gameplay-activation-contract.json"
+}

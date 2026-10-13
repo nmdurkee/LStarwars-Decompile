@@ -1,0 +1,141 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 7,
+  "scope": "Isolated scene update fragment for shared integration. No whole renderer/game-loop claim.",
+  "mappings": [
+    {
+      "address": "0x5a0720",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.Remove",
+          "line": 71
+        }
+      ],
+      "coverage": "whole valid-queue helper",
+      "qualification": "Queue availability gates removal and state refresh.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    },
+    {
+      "address": "0x5a0fb0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.Reset",
+          "line": 79
+        }
+      ],
+      "coverage": "whole finite valid-member helper",
+      "qualification": "Removal/refresh occurs inside member loop. Empty groups do not dequeue.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    },
+    {
+      "address": "0x5a1780",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.UpdateGroups",
+          "line": 91
+        }
+      ],
+      "coverage": "finite queue/group state loop with ordered pose reevaluation boundary",
+      "qualification": "Endpoint clamp/wrap, flags, visibility-test bits, active direction and delayed retirement recovered.0x552760 matrix/bounds effects remain a host operation.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    },
+    {
+      "address": "0x5f4b90",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.UpdateScene",
+          "line": 146
+        }
+      ],
+      "coverage": "bounded temporal and state-visibility stage, with ordered matrix work output",
+      "qualification": "Finite valid instance/display records; actual curve evaluation, matrix copy and draw translation emitted as work items. Pointer resolution, allocation and renderer effects remain external.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    },
+    {
+      "address": "0x5da480",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.EvaluateState",
+          "line": 135
+        }
+      ],
+      "coverage": "whole finite nonempty byte-indexed state-track helper",
+      "qualification": "Track count1..256, valid finite key arrays. Larger native u16 counts and invalid memory behavior excluded.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    },
+    {
+      "address": "0x5cfde0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.GetNoVisibilityTest",
+          "line": 60
+        }
+      ],
+      "coverage": "Boolean projection of whole reference-flag predicate",
+      "qualification": "Native display path returns0x80; portable return normalizes that nonzero result totrue. Raw numeric return equivalence is not claimed.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    },
+    {
+      "address": "0x5cfd90",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "methods": [
+        {
+          "name": "SceneAnimationUpdate.SetNoVisibilityTest",
+          "line": 64
+        }
+      ],
+      "coverage": "whole setter within Boolean input domain",
+      "qualification": "Instance path uses bit0x8; display path usesbit0x80. Non-Boolean integer input behavior excluded.",
+      "comparisonStatus": "Original native differential passed. Compiled C# behavior pending.",
+      "sourceSha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061",
+      "nativeEvidence": "reverse-engineering/reports/scene-animation-update-tests.json"
+    }
+  ],
+  "nativeEvidence": [
+    "reverse-engineering/reports/scene-animation-update-tests.json",
+    "reverse-engineering/reports/scene-animation-update-assembly.json"
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "sha256": "1b1dcde996517b1f02ede8a68a87f78a9f9b26cf5c3a10e5ac0b298f7c9c8061"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs"
+    ],
+    "harness": {
+      "path": "tools/scene-animation-update-portable-verify.cs",
+      "sha256": "b945ac6915e7effe6fd0e7b493fb740eab694054144c810d366b2ef57bc0cd01"
+    },
+    "entrypoint": "SceneAnimationUpdateVerify.Main",
+    "arguments": [
+      "reports/scene-animation-update-native-fixtures.json.gz",
+      "<output.json>"
+    ],
+    "preparedComparisons": 14865,
+    "status": "Core and harness compiled; not executed.",
+    "compileEvidence": "reports/scene-animation-update-compile.json"
+  }
+}

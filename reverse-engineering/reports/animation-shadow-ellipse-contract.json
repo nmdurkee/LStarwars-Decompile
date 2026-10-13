@@ -1,0 +1,105 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 638,
+    "counts": {
+      "cases": 638,
+      "vertices": 20416,
+      "roots": 1914
+    },
+    "authoredRigs": 12,
+    "authoredGroups": 42,
+    "authoredEllipses": 42,
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports\\animation-shadow-ellipse-native-fixtures.json.gz",
+      "bytes": 84720,
+      "sha256": "291dc4647823c8722d00b05188a9a3e968e38954a753f7af12bd295fa8cd76be"
+    },
+    "dependencies": [
+      {
+        "path": "tools/animation-shadow-consumer-verify.py",
+        "sha256": "8d67937d2551230046ab670107137bd33c2fc78c61e0b2f99b8ba98da480cc1c"
+      },
+      {
+        "path": "tools/animation-shadow-polygons-verify.py",
+        "sha256": "b13d34e6fe73fac99d1763835e9db4b7598c4b6fd2839e27c0a869804901f744"
+      },
+      {
+        "path": "reports/animation-shadow-queue-bindings.json",
+        "sha256": "cf9e4df4d402591e7159f0a7d08ccf7d956126c71b6e30c87d5e3549189a0472"
+      },
+      {
+        "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+        "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+      }
+    ],
+    "method": "Original5e3b50 and actual scalar point/root helpers execute without computational replacements. Entire20,480-byte backing, vertex/group/generated counters and untouched ring match independent64-significand model. Two extra stack parameters carry nonfinite poison to establish they are ignored.",
+    "limits": [
+      "Finite ellipse/matrix/direction/ring and finite stored results. Degenerate zero axes retain inverse-length0.",
+      "Adequate disjoint output backing;250-entry metadata capacity does not stop vertex writes.",
+      "No managed executable or graphics-device launch."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyEllipseShadows.cs",
+      "sha256": "b619baa04167414326500acc9e04277a2ddb621449955433c3674d8dce75a138"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-ellipse-portable-verify.cs",
+      "sha256": "9a05974fedc8414ad3fd40e8000ad8159ffe67c89a9159205cdd33e61ceb6940"
+    },
+    "entrypoint": "LegacyEllipseShadowsVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-ellipse-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 638,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-ellipse-compile.json"
+  },
+  "contracts": {
+    "record": "The first48-byte binding resource is12floats: center then three local axes. The writer transforms center and center+axis endpoints, then subtracts transformed center. Axis evaluation order is offsets6,3,9. Each squared length is float-stored before the root and its reciprocal is float-stored; zero length gives inverse0.",
+    "ring": "For each adjacent pair of the shared eight direction-ring rows, project onto each axis using its inverse length. Coefficients are float-stored. Reconstruct offset in axis order3,6,9, float-store it, then add world center and float-store again. These separate stores matter and are absent from the simplified decompiler expression.",
+    "geometry": "Always emits eight side quads,32XYZ/color records, using[current,current+direction*5,next+direction*5,next]. VertexCount increases32 and GeneratedValue increases16 (two per edge). The color word comes from separate global2854c00. Unsigned GroupCount<250 adds one start/count8 metadata entry; saturated metadata does not stop geometry.",
+    "parameters": "Original fourth/fifth stack parameters are not read by this PC body. Native fixtures pass quietNaN/infinity poison in them while preserving finite active inputs. The consumer's upper/lower values therefore have no effect here. Ring rows are read-only; this writer does not regenerate them.",
+    "evidence": "638 NEW complete original comparisons, all42 authored records across12 rigs, plus128 synthetic records with random/zero axes and matrices. 20416 emitted vertices and full20,480-byte images/counters match, with no native computational callbacks. Three actual square-root calls per invocation are observed.",
+    "integration": "Uses existing LegacyShadowGeometryState and LegacyPolygonShadows.TransformPoint plus the already recovered SquareRoot. The legacy consumer can replace its ellipse service with this writer; the queue-to-ellipse composed caller is not newly verified in this helper batch. Cylinder5e2920 remains separate.",
+    "managed": "Prepared replay compares the full persistent image and counters, checking all inputs/ring remain unchanged. Library and replay compile; managed execution remains pending."
+  },
+  "verificationTools": [
+    {
+      "path": "tools/animation-shadow-ellipse-verify.py",
+      "sha256": "004b8bb189cac5b6127410676c9e3115d78e6429767d808163369e42c1bc0eff"
+    },
+    {
+      "path": "tools/animation-shadow-ellipse-report.py",
+      "sha256": "54f67dbb6d0f0338e7ab405584bfdbb67a24fe3c566cd8e879c74ecc5e41a9cf"
+    }
+  ],
+  "limits": [
+    "Finite ellipse/matrix/direction/ring and finite stored results. Degenerate zero axes retain inverse-length0.",
+    "Adequate disjoint output backing;250-entry metadata capacity does not stop vertex writes.",
+    "No managed executable or graphics-device launch.",
+    "One new native entrypoint. Existing scheduler, polygon writer and earlier projections remain unchanged."
+  ]
+}

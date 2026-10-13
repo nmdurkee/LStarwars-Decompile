@@ -4,9 +4,9 @@ Reverse-engineering research for the PC x86 game, with an eventual Unity / Quest
 
 ## Current checkpoint
 
-- 14,697 distinct native function entries cataloged across the retained decompiler profiles.
-- 153 native entries mapped to bounded portable implementations in 26 C# core files, across combat, animation, gameplay, geometry, frame transitions, controller input, and navigation.
-- 10,086 of 20,836 cataloged script-command uses have bounded native contracts (48.4%). This does not imply equivalent whole-game behavior.
+- 14,704 native entries cataloged from retained decompiler profiles and independently verified callback boundaries.
+- 610 native entries mapped to bounded portable implementations in 170 C# core files, across combat, animation, gameplay, geometry, frame transitions, controller input, and navigation.
+- 17,886 of 20,836 cataloged script-command uses have bounded native contracts (85.8%). This does not imply equivalent whole-game behavior.
 - The integrated C# library and verifier compile. Every core source hash matches the recorded build.
 - Original-function tests run in isolated x86 emulation with each suite's adapters documented. These are separate from executing the reconstructed C#.
 - The initial combat C# subset passed 14,553 comparisons. Windows currently denies launching newly generated verification executables, so later managed comparisons remain pending.
@@ -24,7 +24,7 @@ Counts measure recorded work, **not a percentage of game completion**. Many mapp
 - [Latest checkpoint](reverse-engineering/reports/recovery-checkpoint.json)
 - [Compilation versus execution status](reverse-engineering/reports/reconstructed-execution-status.json)
 
-The main remaining work includes complete world/level loading, integrated character/combat behavior, outstanding script commands, recursive portal traversal, renderer and audio backends, and whole-game behavioral validation. Unity and Quest implementation has not begun.
+The main remaining work includes complete world/level loading, integrated character/combat behavior, outstanding script commands, complete scene visibility integration, renderer and audio backends, and whole-game behavioral validation. Unity and Quest implementation has not begun.
 
 ## Restore the evidence after cloning
 

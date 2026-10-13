@@ -1,0 +1,145 @@
+{
+  "schema": "recovered-geometry-shadow-power-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowPower.cs",
+      "bytes": 2244,
+      "sha256": "2c3b6d4a853ea2e6175482a139f7d08e60ca5da41a57c3c93188feef84f9f604"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5be630",
+      "method": "ShadowPower.Evaluate",
+      "sourceFile": "reconstructed/geometry/ShadowPower.cs",
+      "coverage": "cache-orchestration-with-explicit-transcendental-backend",
+      "limitations": "Finite nonzero inputs; zero bypass permits unused nonfinite exponent. Valid ring cursor on miss, finite returned results. Original CRT executes in native evidence; portable backend returns that stored float32 result. No independent CRT equivalence or managed execution claim.",
+      "evidence": "geometry-shadow-power-native-validation.json"
+    }
+  ],
+  "dependencies": [],
+  "native": {
+    "report": "geometry-shadow-power-native-validation.json",
+    "schema": "geometry-shadow-power-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1290,
+      "zero": 42,
+      "zero-bypass": 42,
+      "persistentBytes": 768840,
+      "hit": 300,
+      "ordered-hit": 64,
+      "initialization-stale-hit": 32,
+      "miss": 948,
+      "ring-miss": 64,
+      "nan-slot-miss": 64,
+      "stateful-sequence": 1024
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-power-fixtures.json.gz",
+    "fixtureBytes": 95244,
+    "fixtureSHA256": "055d52baec6798c6fc76b0ba140b06c62e1fab46ee22c0b8454878efc28c3918",
+    "limits": [
+      "Actual5be630 and actualCRT6e9040/6e8fac execute unchanged; a fixture-only caller stores ST0 tofloat32. CRT policy29a9c44=0.",
+      "Cache model takes original storedfloat32 missresult as explicit mathematical backend; cache, mutation, ordering and invocation counts are verified, not independently reconstructed transcendental equivalence.",
+      "Zero inputs bypass state/exponent; nonzero inputs finite, misses positive, finite returned results. Arbitrary quietNaN cache keys are ignored. No claim about negative-miss CRT behavior or signalingNaN results.",
+      "Initialization clears only32basewords to7f7fffff; ringcursor/exponents/results retained. Rings0..31 onmiss; invalid cursors tested only zero/hit branches where notread.",
+      "Stateful1024calls cover ringwrap and eviction; all32linearhit/ringpositions, staleinitializationhits, signedzeros and firstduplicate precedence included.",
+      "Persistent byte totals cover cache region+initflag, not internal CRT globals. Portable compiled execution remains pending."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowPowerHarness",
+    "arguments": [
+      "reports/geometry-shadow-power-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1290,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowPowerHarness.cs",
+      "bytes": 3488,
+      "sha256": "eee5b848c8ced8b00097ba1fa95166919008435f64057a6d08362a5069d13ed5"
+    },
+    "compileStatus": "passed",
+    "comparison": "Cache bytes, returned float32 bits and explicit backend calls; recorded original miss result is the math boundary."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowPower.dll",
+          "ShadowPower.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowPower.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowPowerHarness.exe",
+          "harness\\ShadowPowerHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowPower.dll",
+      "bytes": 4096,
+      "sha256": "87d98b4290b09ed308386ef7d645896cbe3b68915d2ea912edadec6a8888bbfe"
+    }
+  },
+  "observations": [
+    "The original uses 32 base values at 95e548, exponents at 95e440, and results at 95e4c0. Ring cursor 95e644 advances only on misses and wraps with bitmask31. Initialization flag is 8066c4.",
+    "Positive and negative zero return positive zero before any cache or exponent access. Nonzero calls lazily clear the initialization flag and fill only the base array with Float32.MaxValue. Exponents, results and cursor remain unchanged.",
+    "Linear search returns the first numerically matching base/exponent pair. Signed-zero exponents compare equal; NaN slot keys do not. The Float32.MaxValue initialization sentinel can immediately match a stale exponent/result entry: this behavior is preserved.",
+    "A miss calls original CRT log at6e9040, multiplies by the float32 exponent in x87 precision, calls original CRT exp at6e8fac, then stores the result to float32 before caching and returning it. The portable module exposes this mathematical calculation as an explicit backend; it does not substitute System.Math.Pow.",
+    "The native fixture executes the original helper and both CRT routines unchanged under CRT policy29a9c44=0. A fixture-only caller stores the returned ST0 value. Passive hooks verify the ordered log/exp calls only occur on misses. The independent cache model consumes the native miss result as the declared backend boundary.",
+    "All 32 hit positions and replacement positions are covered, along with duplicate precedence, initialization stale hits, quiet-NaN unused keys, signed zeros, and a 1024-call stateful wrap/eviction sequence. Persistent comparisons include otherwise untouched bytes surrounding all cache arrays.",
+    "This source can be bound to ShadowSelectionState.Power through a closure over ShadowPowerCache and a chosen backend. Selection source and its existing evidence are unchanged. Cache orchestration is recovered; a portable exact original CRT backend remains separate.",
+    "C# core and replay compile for default AnyCPU. The replay compares the complete adapted cache state, output bits and backend invocation count against hash-bound original fixtures. It has not been executed."
+  ],
+  "remainingGaps": [
+    {
+      "id": "portable-transcendentals",
+      "status": "Original CRT log/exp executes in fixtures; portable exact arithmetic backend is not reconstructed."
+    },
+    {
+      "id": "nonfinite-domain",
+      "status": "Signaling NaNs, nonfinite nonzero calls/results and negative-base misses are outside validated domain."
+    },
+    {
+      "id": "runtime-cache-lifetime",
+      "status": "State object adapts original globals; ownership/thread lifetime and broader reset scheduling are not reconstructed here."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-power-native.py",
+    "bytes": 6957,
+    "sha256": "ec47fde5bb0791dfd6840b00d4468ee6e7a7081890d3aafbe5b3a0a0c8e24062"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-power-assembly.json",
+    "bytes": 10371,
+    "sha256": "eaabfce1c6a53869c9cd515424bb45ae312b245b23660ca9a2cf0d0817caa526"
+  }
+}

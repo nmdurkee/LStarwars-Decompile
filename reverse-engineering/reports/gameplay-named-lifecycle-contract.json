@@ -1,0 +1,131 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "guard": "Both41f6d0 and414c50 first call58a900(null), selecting global9553d4. Enabled1d with nonnull Mission4 returns without lookup. Otherwise null name returns, and actual440120 invokes registered43c220 then dereferences its returned actor-reference first word. Missing callback/reference/world returns. Restricted-mode global93b2a4, when nonzero, additionally requires actor1f8 bit400. Named activation also requires actor1fc bit1000 clear; named deactivation deliberately has no active-bit test.",
+    "unspawned": "For spawn byte400==255, activation sets1fc bit1000 and invokes52c790(actor+2c8,\"Base\") regardless of state lookup success. Null position skips every placement/reset operation. A nonnull position is copied sequentially as three raw32-bit words to5c/60/64, preserving aliasing with the same actor. Low16 heading is stored at27a,58,5a. Next52f800 receives system,actor,actor+2c8,255,1. Positions are read again after that callback: copied to80 and98, global93d620/624/628,8c,1cc,1b4,10bc. Global93b0cc/d0/d4 is copied todf8 and68. Then5728a0(actor) and572660(actor,0) execute in order.",
+    "spawned": "For spawn byte400!=255, activation invokes actual41c120(actor,world2ae8), ignoring supplied position and heading. The portable default directly calls the recovered ActorReinitialization.Reinitialize on prepared records. An optional SpawnReinitialize service is available for hosts not yet providing those records. A separate33-case native composition executes the real named helper and real reinitialization body together, including actual accessory/path-set/direction helpers. Its fourteen downstream services remain explicit.",
+    "refresh": "Both successful activation branches call595af0(actor,world2ab4), reading the context after previous callbacks. The selected actor is returned even when reset or refresh callbacks clear its active bit.595af0 is an explicit environment/scene refresh adapter, not a fabricated no-op implementation. Neither named helper increments or decrements the script group counters.",
+    "deactivate": "Named deactivation calls actual414bb0. It handles attachedCd0 through existing destruction/control-release services, clears active1000, then switches to InActive for non255 spawn slots. A successful state transition writes phase406=0 and spawn87=2; otherwise phase406=4. It performs no595af0 refresh. Existing ActorActivation.DeactivateActor provides this behavior without a duplicate native-entry claim.",
+    "representation": "NamedActorWorld.Images retains original physical byte fields. ActorStateRecord flags/position/spawn are imported from it for actual name lookup and final returned metadata. Typed ScriptPacket and ActivationActorFields are the authority for script state; raw actor2c8..3ff bytes are intentionally excluded from the primary physical-image comparison and represented by the separately checked semantic script snapshot. NamedServices callbacks receive the world/image and must treat it as the physical authority; their changes are reread in original order. No pointer-bearing ScriptPacket bytes are fabricated. Fully loaded, mutually consistent actor-reference/world-image records are required.",
+    "verification": "449 primary original-PC comparisons cover both named bodies and execute every one of their151 instructions. Actual mission/name/state/deactivation helpers run; spawned reinitialization is intercepted only in this primary suite. Additional33 original named→41c120 comparisons execute the real spawn reset chain and compare whole actor/formation byte deltas, returned identity, origin and ordered service probes. Primary placement cases include overlapping58/5c/60 sources, another actor as source, signed zero and NaN payload copies, callback-mutated position/active flags/global reset vector/context, null names/systems/callbacks, reference aliases and missing scripts. Native comparisons total482, zero mismatch. Both portable replay harnesses compile; managed execution is pending and has not been attempted."
+  },
+  "verification": {
+    "checks": 482,
+    "mismatches": 0,
+    "primary": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 449,
+      "groups": {
+        "activate": 237,
+        "deactivate": 212
+      },
+      "mismatches": 0,
+      "examples": [],
+      "instructionCoverage": {
+        "0x41f6d0": {
+          "total": 128,
+          "executed": 128,
+          "missing": []
+        },
+        "0x414c50": {
+          "total": 23,
+          "executed": 23,
+          "missing": []
+        }
+      }
+    },
+    "composition": {
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "checks": 33,
+      "mismatches": 0,
+      "examples": [],
+      "method": "Original41f6d0 executes58a900,440120/43c220 and actual41c120 with4b6b80,51a7c0,5b3620,5b37d0,5b3710. Reinitialization retains its fourteen explicit services and final595af0 is recorded. Complete actor/formation byte deltas, origin, return identity and ordered callback probes compared.",
+      "limits": [
+        "Existing downstream reinitialization services remain explicit; no whole lifecycle or terrain/animation backend equivalence.",
+        "Valid finite prepared spawn/locator/formation records; no actual game world allocation."
+      ]
+    },
+    "authoredUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/NamedActorLifecycle.cs",
+      "bytes": 5704,
+      "sha256": "c09622740df5a5c80909ea63a079afe21214c1caa51d5bb694c13cf4cf4667ad"
+    },
+    "harnesses": [
+      {
+        "source": {
+          "path": "reverse-engineering/tools/gameplay-named-lifecycle-portable-verify.cs",
+          "bytes": 16599,
+          "sha256": "080efa4dc1caa91ecd75546fa7044699a8825ff16387eb41afe993113db52370"
+        },
+        "entrypoint": "GameplayNamedLifecycleVerify.Main",
+        "arguments": [
+          "reports/gameplay-named-lifecycle-native-fixtures.json",
+          "reports/gameplay-named-lifecycle-csharp-validation.json"
+        ],
+        "nativeCases": 449,
+        "fixtures": {
+          "path": "reverse-engineering/reports/gameplay-named-lifecycle-native-fixtures.json",
+          "bytes": 269625,
+          "sha256": "8e2c80e838097cd066c826c1222f7e259198f55b6d94aef38ed6c10895f507f9"
+        },
+        "compile": {
+          "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+          "exitCode": 0,
+          "artifact": {
+            "path": "reverse-engineering/reconstructed/bin/gameplay-named-lifecycle-verify.exe",
+            "bytes": 458240,
+            "sha256": "d7c4a38337d524e7fcb343cd4d151c5b300b6134a19ecf7d4716f1834390de1b"
+          },
+          "managedExecution": "Not attempted under compile-only instruction."
+        }
+      },
+      {
+        "source": {
+          "path": "reverse-engineering/tools/gameplay-named-reinitialization-portable-verify.cs",
+          "bytes": 10316,
+          "sha256": "705c50f252eebf8c22ccb754f2765e5bb7e004184585e94305ed9e2e726ee3be"
+        },
+        "entrypoint": "GameplayNamedReinitializationVerify.Main",
+        "arguments": [
+          "reports/gameplay-named-reinitialization-native-fixtures.json",
+          "references/native-animation-sine-table.f32",
+          "reports/gameplay-named-reinitialization-csharp-validation.json"
+        ],
+        "nativeCases": 33,
+        "fixtures": {
+          "path": "reverse-engineering/reports/gameplay-named-reinitialization-native-fixtures.json",
+          "bytes": 61471,
+          "sha256": "73992aae050d9ed4bebb57792cdec5e0c6d109ff07f13a3ea273ca12a38ce78e"
+        },
+        "compile": {
+          "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+          "exitCode": 0,
+          "artifact": {
+            "path": "reverse-engineering/reconstructed/bin/gameplay-named-reinitialization-verify.exe",
+            "bytes": 461824,
+            "sha256": "b5c0ef2390c9157f0d133b541934208d48c5cfcdc86fdee6629b97451af9e615"
+          },
+          "managedExecution": "Not attempted under compile-only instruction."
+        }
+      }
+    ],
+    "directDependencies": [
+      "reverse-engineering/reconstructed/gameplay/ActorActivation.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "reverse-engineering/reconstructed/gameplay/LevelModeConditions.cs"
+    ],
+    "transitiveDependencies": "Existing ScriptRuntime/FlowRuntime/Messages, ObstacleCommands SceneryText, CharacterContexts and AnimationPlayback with their normal source dependencies. Harnesses compile with the current combined core source set, excluding RecoveredSourceVerify dispatch harness."
+  },
+  "remaining": [
+    "No full allocation, character loader, terrain collision, animation backend or world lifecycle claim. ResetState52f800, ResetTerrain5728a0, ClearTerrain572660 and Refresh595af0 remain explicit services on the unspawned path.",
+    "Spawned default composes the already recovered41c120 body; its retained services and record-domain restrictions remain in force. Attachment destruction4364e0 and release4882d0 are inherited adapters on deactivation.",
+    "Primary native fixtures use synthetic prepared actor/name/script records. No additional authored command occurrences are credited here; graph ActivateChar is owned by its separate wrapper contract.",
+    "Physical and typed script projections require a host synchronization contract. Raw script pointer slots are not a second managed state representation. The33 spawned composition fixtures compare complete raw actor deltas but retain reinitialization script-binding callbacks.",
+    "Malformed pointers, inconsistent actor/image identity graphs and callback-induced record replacement are outside the bounded contract. Raw placement copies preserve arbitrary32-bit payloads; reinitialization arithmetic uses its existing finite-input domain.",
+    "Managed core and replay harnesses compiled only; no C#-versus-native runtime comparison or in-game playtest is claimed."
+  ]
+}

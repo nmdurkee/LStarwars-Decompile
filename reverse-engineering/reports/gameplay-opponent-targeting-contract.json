@@ -1,0 +1,78 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "assignment": "0x43d410 rejects null self. Actors without ef4 bit0x2000 accept any target including null. Restricted actors require assigned byte1084 other than255 and exact target equality to that player slot. Valid slot domain0..7/255 is supplied.",
+    "range": "0x43d450 reads signed personal byte280 from self+3ac reference. Indices outside0..8 return fixed0.75. Each selected row has17 entries at stride8. Before finding self, it counts entries with assigned byte1084==255, increments a band when that count reaches signed global threshold, and clears that counter. Matching self returns float32(band*globalStep+globalBase). Null/limit without self returns globalBase. Original globals threshold32,step0.75,base0.75; duplicate entries, zero/negative thresholds and early null are preserved.",
+    "precision": "Dot/squared sums and band multiply-add use shared FiniteX87/PlaybackWide integer arithmetic with64-significand rounding, rather than ordinary double sums. Thirteen additional midpoint/band cases accompany the geometry-discovered distance regression.",
+    "primitive": "0x551730 forms center-origin with float32 differences. It computes and stores float32 dot, rejects negative dot, then separately stores float32 squared length, dot squared and their residual. Residual <= supplied squared radius succeeds. Only success writes optional output. Direction is not normalized or constrained by this helper; negative cancellation residuals are retained. Finite nonoverflowing float inputs are the portable contract.",
+    "obstruction": "0x440150 returns false if self generic flags1f8 contain1 or4. It normalizes targetOrigin80-selfOrigin80 using original float32 distance,sqrt,reciprocal and scaling. Scans eight current player references; only nonnull active1/valid1000 records other than self/target, strictly nearer than target, qualify. Tests each using recovered ray/sphere primitive with float32(candidateRadius1dc+0.125)^2. First hit returns true. This is a player-record obstruction test, not a terrain/collision-world raycast."
+  },
+  "commands": [],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 2978,
+    "groups": {
+      "assignment": 360,
+      "band": 422,
+      "raySphere": 916,
+      "obstruction": 1280
+    },
+    "mismatches": 0,
+    "examples": [],
+    "method": "Original 0x43d410,0x43d450,0x551730,0x440150 and numeric/vector callees run unchanged. Independent Python projection compared per case; no callbacks substituted in these helper calls.",
+    "limits": [
+      "Finite float32 inputs, valid eight-slot player assignment or255, supplied table/actor attachments.",
+      "Table generation and permission-mask producer are not included.",
+      "No managed execution; C# comparison awaits permitted execution."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/OpponentTargeting.cs",
+      "bytes": 5238,
+      "sha256": "ef08475d2d44e40025b3eff3b5cd7e924d93a34707666279cc45179d531b5078"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-opponent-targeting-portable-verify.cs",
+      "bytes": 4394,
+      "sha256": "105f679383c7d13108900cb2e5fb02620edf1cea33f7e6c9012c14f5c164986e"
+    },
+    "entrypoint": "GameplayOpponentTargetingVerify.Main",
+    "arguments": [
+      "reports/gameplay-opponent-targeting-native-fixtures.json",
+      "reports/gameplay-opponent-targeting-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-opponent-targeting-native-fixtures.json",
+      "bytes": 875225,
+      "sha256": "7e013e428759f3894714d9bc63bb0ea84ebb8da35dc960653146cc0992512ece"
+    },
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/gameplay/ActorStateCommands.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-opponent-targeting-verify.exe",
+        "bytes": 57344,
+        "sha256": "446d3efba9b4e08dedca80f21a90a1bc2e6201d4950335bfd17886425690d08b"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    },
+    "adapters": [
+      "Actor/reference attachment, eight player slots, attacker-table construction and runtime field updates remain caller supplied.",
+      "No behavior callbacks are substituted within the native helper suite."
+    ]
+  },
+  "remaining": [
+    "Finite float32 inputs, valid eight-slot player assignment or255, supplied table/actor attachments.",
+    "Table generation and permission-mask producer are not included.",
+    "No managed execution; C# comparison awaits permitted execution."
+  ]
+}

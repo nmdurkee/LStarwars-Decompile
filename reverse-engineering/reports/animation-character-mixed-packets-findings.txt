@@ -1,0 +1,25 @@
+PC CHARACTER MIXED BILLBOARD AND MESH PACKETS
+
+240 new original comparisons;0 mismatches.
+
+scope
+The existing CharacterBillboardPacketPipeline implementation is unchanged. New fixtures close its previously documented mixed-list gap by placing opcode82 mesh and opcode8f billboard commands in the same source-matched character submissions, in both command orders.
+
+data
+30 billboard descriptors and8 mesh records from2 authored Mace Windu lightsabre GHGs. Their real31-joint rigs include rigid and smooth layers. Controlled relocated handle/material bindings are retained and do not imply original shipped layer-to-mesh hydration.
+
+ordering
+Each mixed list traverses original normal/shadow shader emission and packet selection. Billboard-first cases leave typed skin/weight data unread for that command; the next mesh command still sees the original palette/weights. Mesh-first cases preserve the previously created matrix/cache data when the billboard follows. Whole persistent bytes and exact destination-record order test these interactions.
+
+evidence
+240 new original comparisons, zero mismatches. 39478 total packets: 19739 billboard, 5353 skin/morph, 12466 ordinary and1920 prefix; 28918 target shadow records. Normal+shadow, shadow-only, weighted smooth shadow-only and reordered/duplicate/invalid layer selections are covered. Counts do not reuse prior single-mode fixtures.
+
+managed
+Dedicated replay invokes the unchanged public bridge and checks full image hashes, shared state, packet/record ordering, COM events and layer submission count. Both managed targets compile; execution remains pending.
+
+Limits
+Same-source authored rigid/smooth layer topology, billboard descriptors and selected meshes from two Mace Windu lightsabre GHGs. Runtime handle/material bindings controlled; exact loader association not claimed.
+Finite scalar explicit camera inputs, inactive sway/fade, valid bounded memory. Weighted cases use one shadow volume to retain allocator capacity.
+No GPU/live scheduler or managed executable launch.
+No core implementation changes or new native addresses in this refinement.
+Managed runtime equality remains pending; compile success is not a differential pass.

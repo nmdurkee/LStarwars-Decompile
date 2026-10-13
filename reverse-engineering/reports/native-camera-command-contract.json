@@ -1,0 +1,106 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "commands": [
+    {
+      "name": "CameraCut",
+      "address": "0x4509d0",
+      "sourceUses": 142
+    }
+  ],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "cases": 861,
+    "rotationCases": 512,
+    "authoredUses": 142,
+    "mismatches": 0,
+    "examples": [],
+    "originalCalls": {
+      "0x4509d0": 861,
+      "0x51ac10": 214,
+      "0x5b35a0": 756,
+      "0x5b3620": 244,
+      "0x577880": 439,
+      "0x5147c0": 1472,
+      "0x5d6170": 92,
+      "0x43c220": 110,
+      "0x5cf5b0": 50,
+      "0x5cf9e0": 46,
+      "0x6e69ef": 5,
+      "0x5cf510": 6
+    },
+    "adapters": {
+      "0x6e69ef": "Bounded CRT Player%d formatting only; all target/numeric/locator/scene/camera/math routines execute original instructions."
+    },
+    "limits": [
+      "Finite bounded decimal/parameter operands with integral angle conversion in Int32.",
+      "Explicit target plus FollowTgt is excluded due native stack-pointer lifetime; no shipped occurrence uses this combination.",
+      "Scene diagnostic-missing-name global disabled; static minusone transform and invalid backing pointers are excluded.",
+      "Position/lifetime/world records are prepared; this is not live camera motion or rendered output.",
+      "Compiled managed execution remains pending."
+    ]
+  },
+  "entries": [
+    {
+      "address": "0x4509d0",
+      "method": "CameraCommands.Cut",
+      "scope": "Bounded CameraCut parser and source-priority selection with actual numeric, locator, registered actor and scene lookups in native fixtures."
+    },
+    {
+      "address": "0x5cf510",
+      "method": "CameraSceneLookup.FindDynamic",
+      "scope": "Normal dynamic name lookup with diagnostic fallback disabled; decoded ordered records supplied by host. Extends earlier SceneVisibilityRegistry.Find projection with reference outputs."
+    },
+    {
+      "address": "0x5cf5b0",
+      "method": "CameraSceneLookup.Find",
+      "scope": "Static/dynamic name lookup and output reference selection; current scene records supplied by host. Extends earlier SceneVisibilityRegistry.Find projection with reference outputs."
+    },
+    {
+      "address": "0x5cf9e0",
+      "method": "CameraSceneLookup.Position",
+      "scope": "Static and dynamic transform selection; dynamic0/-1 overrides use instance coordinates, static0 uses instance coordinates. Valid nonnull backing required."
+    },
+    {
+      "address": "0x5b35a0",
+      "method": "CameraCommands.RotateX",
+      "scope": "Original sine table and in-place-safe finite vector arithmetic; explicit x87 intermediate and float32 store semantics."
+    }
+  ],
+  "angleConstant": {
+    "address": "0x7578a0",
+    "littleEndianHex": "000000206cc16640",
+    "value": 182.04444885253906,
+    "rule": "First truncate operand to integer degrees; negate integer forX; multiply by exact stored double; truncate again toInt32."
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/CameraCommands.cs",
+      "bytes": 9945,
+      "sha256": "81515817a6e8be4caed899051316b1172b55c46f9939b03a57afa7482e5f42bc"
+    },
+    "harness": {
+      "path": "tools/native-camera-command-portable-verify.cs",
+      "bytes": 7139,
+      "sha256": "1c18b174902c38f6069d847463b994837d703dc0182b9a07a049e55358a651a5"
+    },
+    "entrypoint": "CameraCommandVerify.Main",
+    "arguments": [
+      "reports/native-camera-command-vectors.json",
+      "references/native-animation-sine-table.f32",
+      "reports/native-camera-command-csharp-validation.json"
+    ],
+    "preparedCases": 1373,
+    "compileReport": "reports/reconstructed-build.json",
+    "execution": "Not executed."
+  },
+  "limits": [
+    "Finite bounded decimal/parameter operands with integral angle conversion in Int32.",
+    "Explicit target plus FollowTgt is excluded due native stack-pointer lifetime; no shipped occurrence uses this combination.",
+    "Scene diagnostic-missing-name global disabled; static minusone transform and invalid backing pointers are excluded.",
+    "Position/lifetime/world records are prepared; this is not live camera motion or rendered output.",
+    "Compiled managed execution remains pending.",
+    "Original FollowTgt on an explicit stack-local target is excluded, rather than silently assigning a persistent target lifetime.",
+    "Recovered locator and actor bindings supply records; no live world loading or animated position attachment is performed.",
+    "RotateY/address5b3620 is already mapped by FacingMath and is not counted as another recovered native entry."
+  ]
+}

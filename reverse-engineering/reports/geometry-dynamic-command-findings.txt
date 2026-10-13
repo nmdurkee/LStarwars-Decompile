@@ -1,0 +1,35 @@
+Dynamic geometry command support
+
+Four complete finite helpers and one bounded dispatcher predicate are now
+ported.603530 aligns the arena cursor to16, patches the previous tail link,
+reserves count16-byte commands, writes an8d/control1 terminator pointing to
+saved+16, updates record tail/current cursor and returns the allocator-control
+pointer.603ad0 clamps/stores alpha at command.resource+3c;603b10 stores signed32
+integer converted to float32 at resource+38.5fd220 updates explicit shader
+override fields, increments DWORD/WORD identifiers with wrapping and clears
+the cached scalar payload. Its second/fourth native arguments are unused.
+
+5e0530 first selects5e0490 for command0x8f. Otherwise a nonzero mode selects
+5e0390. Zero mode selects5e02b0 only when material+b4 high bit is set, signed
+command count>1 and the preceding command32bytes earlier is0xb0/0xae/0xaf;
+otherwise5e0200. These selected writer bodies are explicit skipped boundaries
+in the dispatcher test. No complete packet-writer claim follows from this.
+
+Original-vs-Python comparisons pass1,251 complete-helper cases plus1,696
+dispatcher cases, with40,992,768 state bytes checked. Counts:128 reservation,
+524 alpha,543 signed-integer store and56 override cases. The signed-integer
+set includes Int32 extremes and values adjacent to2^24 float32 rounding ties.
+Every opcode byte and signed count/mode boundaries are covered in selection.
+
+17 signaling-NaN inputs are separately preserved with unchanged-original
+instruction observations. Unicorn retained the signaling quiet-bit in FLD/
+FSTP cases. Physical-PC signaling behavior is not established by that result;
+the portable helpers reject signaling NaNs. Compared inputs include finite
+values, subnormals, signed zeros,infinities and quiet NaNs. Quiet payload/sign
+bits are retained directly rather than relying on host NaN arithmetic.
+
+DynamicCommandSupport.cs and Main DynamicCommandSupportHarness compile with
+ordinary AnyCPU. The2,831,946-byte gzip fixture takes compressedInputFixture
+and outputFile; geometry-dynamic-command-check.py only prepares or compares
+saved results. Managed equivalence remains pending.603ad0 upgrades an existing
+pure-result mapping and must not be counted as a new native address.

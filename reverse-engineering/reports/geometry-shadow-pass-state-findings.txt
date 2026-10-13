@@ -1,0 +1,19 @@
+SHADOW PASS STATE AND REGISTRATION
+
+{"cases": 1440, "reset": 192, "persistentBytes": 36270720, "adapter": 192, "select": 192, "mode": 192, "invalidate": 192, "tail": 240, "call": 240}
+
+Original5d4290 selectively clears17 DWORDs in the0x218-byte state at9718a0 and writesffffffff at offsets0/40; all other bytes remain untouched. It returns1. Adapter5d4300 forwards an unused argument and returns the same result.
+
+SelectVolume5954c0 writes active=1 at9718d8, context ECX at9718dc, and raw volume argument at9718e0. It does not dereference the context, validate the volume or issue packets.
+
+Mode helper5d0530 returns the previous806ccc value. Nonzero first argument stores the second; zero storesffffffff regardless of the second. This is significant in596870, whose apparent restore call uses zero and therefore disables rather than restoring the supplied old word.
+
+Invalidate5d0650 clears only shared visibility-cache flag9715a0. Registration wrappers596920/596980 require byte8264c4!=0 and DWORD8264bc==2, then register primary context955b38 through original5d0560. One wrapper tail-jumps after replacing its caller argument; the other makes an ordinary call.
+
+The actual registry helper preserves its existing full-capacity, enabled and duplicate checks. Inactive gates do not touch state; full-capacity registration does not dereference the supplied context. Native fixtures use invalid context pointers in both cases.
+
+1440 original cases compare all persistent context bytes, pass-state bytes, mode, registry words and defined returns. The native register entry hook confirms exact gated invocation counts, without replacing the helper.
+
+Native caller4927f0 updates shadow selection596a30, resets pass state, registers through596920 around normal scene drawing, then later invokes special shadow pass596870. That latter routine still requires packet-list finalization5efff0 and snapshot5f3950 before this recovered state logic forms a complete frame path.
+
+Only CPU state adapters and registry gates are reconstructed here. No claims about full pass scheduling, packet-list/GPU execution or managed runtime equivalence. Core and replay compile successfully.

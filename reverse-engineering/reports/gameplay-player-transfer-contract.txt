@@ -1,0 +1,49 @@
+ORDINARY PLAYER TRANSFER AND TAG INTEGRATION
+
+565 original-PC comparisons, zero mismatches; no repeated authored-use credit. Core/replay compile only.
+
+ordinaryTransfer
+Bounded to mode0, the exact mode used by candidate selector487ca0. Global0x951c5c blocks the entire function before any actor read or write. Otherwise swaps input+0xca4, opaque words+0xda8/+0x7fc/+0xdec/+0xea8/+0x1000, signed player index+0x280, auxiliary backing+0x800 and controlled bit0x80 at+0x1fc. Swaps only generic flags mask0x46f8 at+0x1f8. Resets source/target transient fields and zeroes both nonnull auxiliary buffers after the pointer swap. Runs source base-script reset before the ordinary timer/health tail. Only return0(blocked) and1(completed) occur in this ordinary body; caller487ca0 pending result2 remains a generic caller contract, not a discovered return of this path.
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:9 (0x4876a0)
+reverse-engineering/decompiled/corpus-expanded/FUN_487ca0.c:23 (0x487ca0)
+
+cleanup
+Source+0xd60 becomes0, target becomes float2; both+0xda4 take global0x802be8 bits. Source+0xef0 clears0x180000 and sets0x80; target sets0x80 then clears0x180000 at the shared tail. Both+0xee4/+0xee8 clear. Target+0x7c0 becomes float1. If source matches global pairFrom0x87a7c8 and target differs from pairTo0x87a7cc, both references and the following two words clear. Otherwise all four pair fields persist. Tests include self-aliasing transfer and aliased/null auxiliary/input attachments.
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:109 (0x4876a0)
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:162 (0x4876a0)
+
+playerAndHealth
+After swapping player indices, each nonnegative index assigns its actor into the corresponding player slot. Index-1 or a nonnull linked object at+0xcd0 chooses maximum byte from that actor tuning+0xf4. An ordinary player index with no link uses global0x802bd4, except special level equality (game+0x128 ==global0x87b160), which preserves the prior maximum. Target current-health byte receives the old source byte and is capped only when its SIGNED interpretation exceeds unsigned target maximum; bytes128..255 consequently evade that cap. Zero becomes1 only if maximum is nonzero. Source gets the old target health on special level or when still controlled; otherwise it gets its new maximum or alternate+0xe39 when character-definition flags contain0x20. These explicit signed-byte rules were checked across0/1/127/128/255 and multiple maxima.
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:39 (0x4876a0)
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:126 (0x4876a0)
+
+reset
+The helper zeroes five words at argument+0x6bc/+0x6c0/+0x650/+0x6cc/+0x654 and writes float0.2 at+0x6c4. Transfer passes actor+0x6c4, so the exported projection is actor+0xd80/+0xd84/+0xd14/+0xd90/+0xd18 zero and+0xd88=0x3e4ccccd. Field gameplay meanings are deliberately left unnamed; the exact write contract is established.
+reverse-engineering/decompiled/corpus-expanded/FUN_4a4ca0.c:7 (0x4a4ca0)
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:63 (0x4876a0)
+
+auxiliary
+Nullable actor+0x800 pointer: a nonnull pointer causes exactly0x630 bytes to be zeroed, otherwise no effect. Native memset executes unchanged. Portable backing may be longer but must be at least0x630 bytes; extra bytes remain untouched. Tests cover two distinct buffers, shared-buffer aliasing and either/both null pointers.
+reverse-engineering/decompiled/corpus-expanded/FUN_466820.c:7 (0x466820)
+
+baseScript
+Checks the embedded script record at actor+0x2c8. A nonnull base script invokes0x514640(system,embedded,embedded,0,0,0,0,baseScript,baseScript+0x38), then clears actor+0x32c. A null base script makes no call and preserves+0x32c. The outer wrapper is recovered; complete script initializer semantics are a required service, and fixtures record its exact argument identity/order.
+reverse-engineering/decompiled/corpus-expanded/FUN_415000.c:7 (0x415000)
+reverse-engineering/decompiled/corpus-expanded/FUN_514640.c:7 (0x514640)
+
+feedback
+A zero feedback handle does nothing. Otherwise the signed integer amount is loaded directly by x87 FILD, divided by float32 global0x925024 and rounded to float32 before0x698900(handle,duration,0,0,0). There is no premature float32 conversion of the integer. Ordinary transfer passes amount2 and the first word through the swapped target input record. Additional cases include signed int extrema and16777217 to distinguish the arithmetic. Platform feedback remains external.
+reverse-engineering/decompiled/corpus-expanded/FUN_54a8d0.c:9 (0x54a8d0)
+reverse-engineering/reports/gameplay-player-transfer-assembly.json (0x54a8d0)
+
+integration
+OrdinaryPlayerTransferAdapter implements TagControlServices.Transfer using the recovered mode0 body. It shares actor flags, player arrays and TagControlState (including+0xcd0 and+0x7c0), avoiding duplicate independent field state. Thirty-two original-code fixtures run SetTaggable ->487ca0 ->4876a0 ->reset/clear/bind/feedback wrappers ->55e410 without substituting any of these game functions. Only deep script initializer and platform feedback are replaced. The release branch still requires an explicit takeover/vehicle service.
+reverse-engineering/decompiled/corpus-expanded/FUN_44f930.c:8 (0x44f930)
+reverse-engineering/decompiled/corpus-expanded/FUN_487ca0.c:7 (0x487ca0)
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:9 (0x4876a0)
+reverse-engineering/decompiled/corpus-expanded/FUN_55e410.c:7 (0x55e410)
+
+Remaining
+Mode1 takeover is explicitly excluded; this is the exact mode0 path called by tag candidate selector487ca0.
+Valid two-actor records, nullable auxiliary buffers, signed personal index-1 or0..7, finite nonzero feedback divisor.
+Deep script initialization and platform feedback remain service adapters; managed replay comparison pending.

@@ -1,0 +1,123 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 5,
+  "mappings": [
+    {
+      "address": "0x5cc0d0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+      "sourceSha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d",
+      "methods": [
+        {
+          "name": "SkeletalPose.Sample",
+          "line": 81
+        }
+      ],
+      "coverage": "bounded Euler scalar branch",
+      "qualification": "Header formatbit0 clear, global0x9737de zero, nine curves/node, active type6/constants, finite values and valid partial node ranges. Quaternion/conversion alternatives excluded; source carrier normalization is an adapter, not the native loader.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-skeletal-tests.json"
+    },
+    {
+      "address": "0x5e9d90",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+      "sourceSha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d",
+      "methods": [
+        {
+          "name": "SkeletalPose.Build",
+          "line": 117
+        }
+      ],
+      "coverage": "bounded Euler hierarchy consumer",
+      "qualification": "No root/override callbacks; topological parents or255, finite values and int32-fitting radian conversion. Original parent matrix callee imports D3DXMatrixMultiply; explicit supplied concatenation policy remains a dependency. Fixtures select original installed DLL scalar implementation.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-skeletal-tests.json"
+    },
+    {
+      "address": "0x5eb790",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+      "sourceSha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d",
+      "methods": [
+        {
+          "name": "SkeletalPose.Evaluate",
+          "line": 141
+        }
+      ],
+      "coverage": "single-clip computational branch",
+      "qualification": "Original full wrapper verified with native scratch allocation/pop and no root/adjustment callbacks. Portable managed buffer ownership replaces scratch allocation; frame subtract1, scalar and hierarchy consumer are reconstructed. Inherits explicit parent concatenation policy.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-skeletal-tests.json"
+    },
+    {
+      "address": "0x5b5700",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+      "sourceSha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d",
+      "methods": [
+        {
+          "name": "SkeletalPose.MultiplyLinear",
+          "line": 105
+        }
+      ],
+      "coverage": "finite 3x3 matrix product",
+      "qualification": "Native alias-safe branch exercised through original character consumer; portable returns a new matrix. Raw invalid-pointer and overlapping-partial-region behavior excluded.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-skeletal-tests.json"
+    },
+    {
+      "address": "0x5b4a50",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+      "sourceSha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d",
+      "methods": [
+        {
+          "name": "SkeletalPose.ScaleColumns",
+          "line": 108
+        }
+      ],
+      "coverage": "finite affine column scale",
+      "qualification": "Allfour rows, columns0..2 including translation; final column untouched. Nonaliased three-value scale input.",
+      "comparisonStatus": "Original native differential passed under explicit scalar D3DX policy; compiled managed behavior pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-skeletal-tests.json"
+    }
+  ],
+  "externalImplementations": [
+    {
+      "module": "d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "rva": "0x163599",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+      "method": "SkeletalPose.D3dx9_35ScalarMultiply",
+      "qualification": "Identified original x87 scalar implementation, not a main-game native entry point and not a reconstruction of the export CPU/config dispatch. Both native fixture and portable caller choose this policy explicitly."
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkeletalPose.cs",
+      "sha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-skeletal-portable-verify.cs",
+      "sha256": "0c79047ae48122ea17de711cb50d1a50a7c052a104e9ad934972cda42017e30e"
+    },
+    "entrypoint": "SkeletalPoseVerify.Main",
+    "arguments": [
+      "reports/animation-skeletal-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 15791,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-skeletal-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-skeletal-tests.json",
+    "reverse-engineering/reports/animation-skeletal-assembly.json"
+  ]
+}

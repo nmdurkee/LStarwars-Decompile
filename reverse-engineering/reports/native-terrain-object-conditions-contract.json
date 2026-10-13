@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-10-12T23:05:19.210Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "sceneIndex": "5cffb0: when reference.static is nonnull, scan scene+20 instance records of stride50 for identity equality with static+40, using signed scene+1c count; return first index or-1. Otherwise return dynamic+c0 integer when present, else-1.",
+    "terrainIndex": "67c760: sceneIndex-1 returns-1 immediately. For other indexes, terrain registry must exist. Scan signed terrain+a48c count over6c-byte records; require transform+40 nonnull and signed-short scene id+4a equal the integer input. First match wins; no transform dereference here.",
+    "binding": "4418c0: absent global terrain returns-1. Perform actual ordinary current-scene name lookup5cf5b0, scene-index projection, and terrain lookup. Static and dynamic scenes have distinct index production. Diagnostic dynamic fallback is disabled in the bounded domain.",
+    "condition": "441910: primary player required; bound must not be-1; either grounded byte281/282 nonzero; signed-short player27e must equal bound. Then read current terrain record transform+34 and return1 iff its float height<=player+60 Y. This read does not test terrainCount; valid backing still required.",
+    "reuse": "CameraSceneLookup and ActorStatusWorld are shared projections. Scene/terrain loader association and physics producer remain external."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "PlayerOnObject",
+      "address": "0x441910",
+      "sourceUses": 73,
+      "qualification": "Original scene-to-terrain binding and grounded object/height condition; live physics and loading remain external."
+    }
+  ],
+  "native": {
+    "cases": 3271,
+    "mismatches": 0,
+    "fullRegionComparisons": 3271,
+    "groups": {
+      "index": 72,
+      "terrain": 50,
+      "bind": 402,
+      "condition": 2747
+    },
+    "authoredUses": 73,
+    "method": "Original scene lookup, scene-index projection, terrain lookup and PlayerOnObject condition all execute unchanged without replacements; exact returns and full source/player/terrain memory compared."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/TerrainObjectConditions.cs",
+      "bytes": 3403,
+      "sha256": "2ac22ff346d5cbfc14fd31fe1f2c7ed1ed9fc6cca360bd1333c49edea0fa1146"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-terrain-object-conditions-portable-verify.cs",
+      "bytes": 4471,
+      "sha256": "9505593cecef6632f24f7d82b629a15e6f4e26dad801b968c7ce43b23d96a4ed"
+    },
+    "entrypoint": "TerrainObjectConditionsVerify.Main",
+    "arguments": [
+      "reports/native-terrain-object-conditions-vectors.json",
+      "reports/native-terrain-object-conditions-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-terrain-object-conditions-vectors.json",
+      "bytes": 1753650,
+      "sha256": "d4ff4140cdebf06ed11454447a90a316807c7c4d17b5230ccd3917554d4fc239"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Valid finite matrices/heights and readable terrain backing for matching grounded-player indexes. Invalid native pointer chains explicitly excluded.",
+    "Prepared static-instance identities, signed-short terrain links and current-scene records; actual scene/terrain loader association remains external. Dynamic diagnostic fallback97388c is disabled.",
+    "Authored name probes retain literal names against prepared tables; they are not claims that each real level binding has been loaded. Managed replay pending."
+  ]
+}

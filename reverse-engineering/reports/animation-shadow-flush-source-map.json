@@ -1,0 +1,95 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 4,
+  "newNativeEntryPoints": 4,
+  "mappings": [
+    {
+      "address": "0x5e28c0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowFlush.cs",
+      "sourceSha256": "aae4557d23eebf55e62ac51209d06a336471a738af5990c46b64f48f065e18ac",
+      "methods": [
+        {
+          "name": "LegacyShadowFlush.Allocate",
+          "line": 21
+        }
+      ],
+      "coverage": "complete disjoint-cursor backing partition",
+      "qualification": "Unsigned32-bit cursor wrap; returned vertex/start/edge addresses correspond to native global writes. No backing memory dereference or cursor/global alias.",
+      "comparisonStatus": "Original CPU control/word effects exact versus independent model; managed source/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-flush-tests.json"
+    },
+    {
+      "address": "0x5f9b20",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowFlush.cs",
+      "sourceSha256": "aae4557d23eebf55e62ac51209d06a336471a738af5990c46b64f48f065e18ac",
+      "methods": [
+        {
+          "name": "LegacyShadowFlush.Overlay",
+          "line": 28
+        }
+      ],
+      "coverage": "complete overlay device-call scheduling",
+      "qualification": "Three explicit stencil words and opaque handles; graphics wrappers are nonmutating services, no GPU execution claim.",
+      "comparisonStatus": "Original CPU control/word effects exact versus independent model; managed source/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-flush-tests.json"
+    },
+    {
+      "address": "0x5f9c30",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowFlush.cs",
+      "sourceSha256": "aae4557d23eebf55e62ac51209d06a336471a738af5990c46b64f48f065e18ac",
+      "methods": [
+        {
+          "name": "LegacyShadowFlush.DrawVolumes",
+          "line": 38
+        }
+      ],
+      "coverage": "bounded two-pass volume device-call scheduling",
+      "qualification": "Vertex count multiple4 and at most14000; group count at most250. Immediate inline global addresses and wraparound primitive counts/pointers preserved. Graphics service does not mutate CPU inputs.",
+      "comparisonStatus": "Original CPU control/word effects exact versus independent model; managed source/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-flush-tests.json"
+    },
+    {
+      "address": "0x5f9da0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyShadowFlush.cs",
+      "sourceSha256": "aae4557d23eebf55e62ac51209d06a336471a738af5990c46b64f48f065e18ac",
+      "methods": [
+        {
+          "name": "LegacyShadowFlush.Flush",
+          "line": 53
+        }
+      ],
+      "coverage": "complete gate/reset scheduling with geometry/device services",
+      "qualification": "Enabled byte, mode1, any nonzero signed queue count. Geometry service may modify only geometry counters; device/cache calls nonmutating. Actual all-shape pipeline exists separately but is not composed in this batch.",
+      "comparisonStatus": "Original CPU control/word effects exact versus independent model; managed source/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-flush-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyShadowFlush.cs",
+      "sha256": "aae4557d23eebf55e62ac51209d06a336471a738af5990c46b64f48f065e18ac"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-flush-portable-verify.cs",
+      "sha256": "40f7d0dab904e0d7c5e16123e9284518dc16eb107dcec72505682a698a5a1aca"
+    },
+    "entrypoint": "LegacyShadowFlushVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-flush-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 2180,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-flush-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-shadow-flush-tests.json",
+    "reverse-engineering/reports/animation-shadow-flush-assembly.json"
+  ]
+}

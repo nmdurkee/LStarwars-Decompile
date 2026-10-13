@@ -1,0 +1,45 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Nearest linked-path candidate and target-path selection used by steering.",
+  "primaryNativeEntryPoints": 2,
+  "mappings": [
+    {
+      "address": "0x51d1f0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathTransitions.cs",
+      "sourceSha256": "352a7727da442120403652875fc5f0ba2d40e9e3bd96434adf295e410466e8f0",
+      "methods": [
+        {
+          "name": "PathTransitions.Nearest",
+          "line": 31
+        }
+      ],
+      "coverage": "complete finite nearest-candidate helper with failure output preservation",
+      "qualification": "Finite input coordinates, scores and distance results; valid disjoint output buffers for the direct helper. Inputs that overflow squared distance, NaN/infinity and malformed pointers are excluded. Loaded candidate rows, signed group indexes, ordered group members, actor reference and path membership tables are explicit host projections. The byte counts must agree with the supplied backing arrays. Negative group indexes are supported only with observed valid backing, not arbitrary memory access. This is a concrete dependency of51d7b0. It does not yet implement that entire steering dispatcher or prove live movement/collision integration. No new authored command or AI2-use credit. The group fixtures are synthetic valid runtime records; no inferred shipped inter-path link is claimed. Managed replay compiled only. Native comparison counts include child-call compositions once per top-level record; prior targeting/binding/distance suites are not counted again.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-transition-tests.json",
+        "reverse-engineering/reports/gameplay-path-transition-assembly.json"
+      ]
+    },
+    {
+      "address": "0x51d5e0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathTransitions.cs",
+      "sourceSha256": "352a7727da442120403652875fc5f0ba2d40e9e3bd96434adf295e410466e8f0",
+      "methods": [
+        {
+          "name": "PathTransitions.Select",
+          "line": 38
+        }
+      ],
+      "coverage": "bounded target-path selection, including actual path binding and stale-distance behavior",
+      "qualification": "Finite input coordinates, scores and distance results; valid disjoint output buffers for the direct helper. Inputs that overflow squared distance, NaN/infinity and malformed pointers are excluded. Loaded candidate rows, signed group indexes, ordered group members, actor reference and path membership tables are explicit host projections. The byte counts must agree with the supplied backing arrays. Negative group indexes are supported only with observed valid backing, not arbitrary memory access. This is a concrete dependency of51d7b0. It does not yet implement that entire steering dispatcher or prove live movement/collision integration. No new authored command or AI2-use credit. The group fixtures are synthetic valid runtime records; no inferred shipped inter-path link is claimed. Managed replay compiled only. Native comparison counts include child-call compositions once per top-level record; prior targeting/binding/distance suites are not counted again.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-transition-tests.json",
+        "reverse-engineering/reports/gameplay-path-transition-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-transition-contract.json"
+}

@@ -1,0 +1,183 @@
+{
+  "schema": "recovered-geometry-dynamic-submission-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/DynamicSubmission.cs",
+      "bytes": 14892,
+      "sha256": "8b9d63a78b4cb415552ad81f2517cd24db3c60527be301bc9f082c6cb58f6fab"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5f0f00",
+      "method": "DynamicObjectSubmission.Submit",
+      "sourceFile": "reconstructed/geometry/DynamicSubmission.cs",
+      "coverage": "bounded-normal-branch-composition",
+      "limitations": "Normal path only: zero shadows/sway, inactive fade, null skin/morph inputs, ordinary/prefix commands, same-layout overrides, finite math and bounded valid disjoint metadata/arena images. No clone/cache, billboard, SIMD clipping, shadow or GPU behavior. Fixed globals and native stack scratch become explicit inputs. Managed comparison pending.",
+      "evidence": "geometry-dynamic-submission-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "DynamicBounds.Classify",
+    "DynamicBounds.TransformPoints",
+    "DynamicSelection.SelectLod",
+    "DynamicSelection.ChooseMaterial",
+    "DynamicSelection.FilterChain",
+    "DynamicCommandSupport.SetOverride",
+    "DynamicCommandSupport.SelectPacketRoutine",
+    "ShaderContextEmission.Emit",
+    "OrdinaryMeshPackets.BuildOrdinary",
+    "OrdinaryMeshPackets.BuildWithPrefix",
+    "Recovered.Animation.PlaybackWide",
+    "RenderPacketMemory"
+  ],
+  "native": {
+    "report": "geometry-dynamic-submission-native-validation.json",
+    "passed": true,
+    "counts": {
+      "cases": 1568,
+      "authoredSpecials": 480,
+      "checkedBytes": 102710272,
+      "draws": 1413,
+      "ordinary": 781,
+      "prefix": 632,
+      "bounds": 504,
+      "shaderEmissions": 1413,
+      "earlyReturns": 856
+    },
+    "returnClasses": {
+      "0": 856,
+      "1": 638,
+      "2": 42,
+      "4294967294": 32
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "limits": [
+      "All original caller and nested scalar bounds, center/distance, override, shader, ordinary/prefix writer helpers execute unchanged. Observation hooks only.",
+      "Authored local bounds, transforms and LOD thresholds combined with controlled relocated runtime material/control/packet images; not a captured live frame.",
+      "Normal zero-shadow, zero-sway, inactive-fade, null skin/morph input path. Same-layout overrides only; clone/cache and billboard excluded.",
+      "Every persistent compact-image byte compared; explicit32-byte portable stack-scratch adapter excluded. Native globals shader/scratch/bounds mirrored into compact image after execution.",
+      "Finite math; nonnegative bounded material indexes, terminated LOD lists and acyclic material chains. SIMD clipping and GPU backend excluded.",
+      "No managed executable or game process launched."
+    ],
+    "pseudocode": {
+      "file": "decompiled/corpus-expanded/FUN_5f0f00.c",
+      "bytes": 7597,
+      "sha256": "5605e6e144035481c60036d00a04a4ac71139ee833741a730c5e491900c632bf"
+    },
+    "modelDependencies": [
+      {
+        "file": "tools/geometry-dynamic-bounds-native.py",
+        "bytes": 10539,
+        "sha256": "3d81018a6792d2b72c428895f6ab38966eeb72f933312f54ce1edde66b4cda5e"
+      },
+      {
+        "file": "tools/geometry-dynamic-command-native.py",
+        "bytes": 8040,
+        "sha256": "a03cdb76e8d9fe6757f2bdd511f15fa811fd231ba74c394a55af88eaa47643f8"
+      },
+      {
+        "file": "tools/geometry-ordinary-packets-native.py",
+        "bytes": 8092,
+        "sha256": "c91d38400c3c43ad5aa01417cdf2d17b0a93221f762b424757f7c63ad453275e"
+      },
+      {
+        "file": "tools/geometry-shader-emission-native.py",
+        "bytes": 8703,
+        "sha256": "4d0f2fe404ead9619861fed2ef5d8e8f7d3836be33335552d0aff9f0b199fcbd"
+      },
+      {
+        "file": "tools/animation-x87.py",
+        "bytes": 1730,
+        "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+      }
+    ]
+  },
+  "managed": {
+    "schema": "geometry-dynamic-submission-managed-check-v1",
+    "caseCount": 1568,
+    "nativeEvidence": "geometry-dynamic-submission-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\dynamic-submission.bin.gz",
+    "fixtureBytes": 1471906,
+    "fixtureSHA256": "adfb53a5ee257a1c70e299906e1ed73b9ae3e09dcbc0e2c09773a5a46b822cfc",
+    "uncompressedBytes": 103017608,
+    "uncompressedSHA256": "cd4a5c78850414b19565a1336bcbe75de9eac3dcaff63011dce98bd6d960a7a1",
+    "status": "prepared-not-executed",
+    "mainType": "DynamicSubmissionHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Managed equality pending. Normal finite ordinary/prefix branch only; GPU output unclaimed."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.DynamicSubmission.dll",
+    "bytes": 29696,
+    "sha256": "26d4e7da593f8c68c4d5ad070d75165a53e7e72c883eb1f8abc4bed95c6983d3"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/DynamicSubmissionHarness.cs",
+    "bytes": 3107,
+    "sha256": "c73f8f069b5c0020d5f2356dfa645deab81df6dd7ec723b9837e1ad9b03d273a"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.ShaderEmission.dll /reference:Recovered.Geometry.DynamicSupport.dll /reference:Recovered.Geometry.OrdinaryPackets.dll /reference:Recovered.Geometry.DynamicSelection.dll /out:Recovered.Geometry.DynamicSubmission.dll DynamicSubmission.cs DynamicBounds.cs ..\\animation\\CharacterContexts.cs ..\\animation\\AnimationPlayback.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicSubmission.dll /out:DynamicSubmissionHarness.exe harness\\DynamicSubmissionHarness.cs"
+  },
+  "observations": [
+    "Null handle and invisible zero-shadow cases return before final shader/reset mutation; existing shadow mask is preserved.",
+    "Bounds result is returned unchanged, including a supplied negative forced visibility other than-1; any nonzero result submits normal draws.",
+    "Center adds min/max with float32 stores, multiplies0.5 with a float32 store, then transforms. Camera subtraction stores each float32 difference before extended squared-distance accumulation.",
+    "Current material owner+74 gainsmask0x2. Its bit15 chooses material bitset+58/+5c; record+4 selects byte/bit. Same-layout override precedence and linked gate order compose existing recovered branches.",
+    "Every accepted material sets global shader overrides then performs real607590 emission before actual5e0530 ordinary/prefix writer dispatch.",
+    "Source command array contains indexes into16-byte commands. Flag+b4 highbit, signed commandindex>1 and preceding command-32 opcodeb0/ae/af select prefix writer.",
+    "Instanceflag20 plus shadowmetadata-disable0 selects metadata1 even when shadow count is0. Ordinary writer patches it; prefix writer preserves source transpose lane.",
+    "Final5fd220 zeros override inputs and increments context counters even when no materials pass filtering. Zero-shadow normal path then clears9715a0."
+  ],
+  "remainingGaps": [
+    {
+      "id": "dynamic-shadow-submission",
+      "status": "Zero-shadow branch only; shadow bounds and per-light packet schedules remain separate."
+    },
+    {
+      "id": "dynamic-sway",
+      "address": "0x5ec590",
+      "status": "Nonzero special+ca rejected."
+    },
+    {
+      "id": "dynamic-active-fade-integration",
+      "address": "0x5df7b0",
+      "status": "Existing standalone fade helper is not integrated into this composed branch."
+    },
+    {
+      "id": "material-clone-cache",
+      "address": "0x5e5020",
+      "status": "Different-layout override rejected by missing callback; allocation/cache not invented."
+    },
+    {
+      "id": "morph-skin-caller-integration",
+      "address": "0x5e0390",
+      "status": "Animation-owned MorphMeshPackets is separately verified; this caller exposes only null skin/morph inputs."
+    },
+    {
+      "id": "billboard-packets",
+      "address": "0x5e0490",
+      "status": "Unsupported by this caller."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Source and replay compile; no managed launch."
+    },
+    {
+      "id": "gpu-backend",
+      "status": "CPU packet memory only; GPU interpretation, final imagery and performance unclaimed."
+    }
+  ],
+  "laterRefinement": "geometry-dynamic-skin-source.json"
+}

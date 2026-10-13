@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-10-12T22:24:56.300Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "command": {
+      "address": "0x453aa0",
+      "description": "First-call only. Default target is script creature reference then its world pointer; ordered character= lookups can replace/clear it. Ordered substring numeric keys share one maximum range; max_player_range latches primary-player selection and takes precedence over opponent selection even if a later max_range changes the number. Last name= chooses global world set collection; absent name uses caller packet+a8 without changing it. Ignore-assigned defaults false for next, true otherwise. Selection priority is first, next, random, farthest, nearest. First uses signed set count!=0, assigns entry0 even for negative counts, and ignores culling/reservations. Next uses the recovered EDI convention, looping/bouncing and finish flags. Primary reference is player when latched, else opponent if requested and present, else actor; optional second player supplies the second point. Caller locator base and global name collection are distinct inputs. All131 authored argument lists were exercised; runtime world population remains supplied.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_453aa0.c",
+        "reports/native-locator-set-assembly.json",
+        "reports/native-locator-set-command-tests.json"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-command",
+      "name": "GetLocatorFromSet",
+      "address": "0x453aa0",
+      "sourceUses": 131
+    }
+  ],
+  "native": {
+    "cases": 965,
+    "mismatches": 0,
+    "fullRegionComparisons": 4825,
+    "groups": {
+      "authored": 393,
+      "synthetic": 572
+    },
+    "authoredUses": 131,
+    "method": "Full original453aa0 with real ordered parsing/numeric resolver/name callback/set lookup/reservation refresh/selection/culling/RNG. Only bounded CRT Player%d formatting is replaced. Separate helper-order and complete region comparisons."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LocatorSetCommands.cs",
+      "bytes": 4311,
+      "sha256": "f34424903bc0a8a5a8f0cbbc57bda076757d2c631b12dc4455b34e9856970782"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-locator-set-command-portable-verify.cs",
+      "bytes": 7223,
+      "sha256": "d7c78ed31b6c1b56d1494763aa8f55d9eaea07944faebf6304618582850506fb"
+    },
+    "entrypoint": "LocatorSetCommandVerify.Main",
+    "arguments": [
+      "reports/native-locator-set-command-vectors.json",
+      "reports/native-locator-set-command-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-locator-set-command-vectors.json",
+      "bytes": 5212674,
+      "sha256": "a0be15ff30a3f0c332a2264dd657b8ac531c0612cde564d7421bfb6f2f581627"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Valid prepared runtime actor/packet/locator collections and primary player when a selector reads that position. ASCII tokens and bounded numeric operands.",
+    "Original world-owned name collection and caller-owned locator base remain distinct supplied records; attached set records may share index/owner arrays.",
+    "Managed replay pending; no live navigation/locomotion or world-loader equivalence."
+  ]
+}

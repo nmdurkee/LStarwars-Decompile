@@ -1,0 +1,24 @@
+NORMAL BILLBOARD CALLER
+
+{"authoredResources": 1367, "billboardWrites": 6492, "cases": 1623, "syntheticResources": 256}
+{"cases": 1623, "authoredSpecials": 0, "checkedBytes": 106312992, "draws": 6492, "ordinary": 0, "prefix": 0, "bounds": 0, "shaderEmissions": 6492, "earlyReturns": 0}
+
+Existing SubmitWithPackets and SubmitWithDistanceFade signatures are retained. Opcode8f now reaches a supplied packet delegate; no-delegate basic entrypoints still reject billboard commands explicitly.
+
+Opcode is checked before material prefix flags or preceding-command reads. Billboard dispatch takes priority over nonnull skin/morph inputs. The typed replay selects the billboard branch before resolving any skin, weight or mesh-delta arrays.
+
+The explicit adapter calls animation-owned SkinMeshPacketDispatch.BuildWithBillboards with caller request fields and explicit view/camera-forward inputs. BillboardMeshPackets builds the132-byte world/scale/facing payload and90/8f command pair.
+
+All1367 authored billboard descriptor records across100carriers plus256 synthetic descriptors/worlds run through original5f0f00, shader emission and complete billboard math. Four real linked-material packet writes per case give6492 writes. Invalid nonnull skin/morph sentinels stay unread.
+
+The matrix attached to each authored billboard is the first actual model-associated special where available; identity fallback remains labelled in the upstream fixture. Normal local bounds/LOD metadata are independently source-bound480 objects across60scenes. This is a composed fixture, not a reconstructed live draw capture.
+
+All prior native evidence keeps its narrower original scope. Source/compatibility replay hashes are refreshed, and all five replay entrypoints compile. No managed executable or GPU process was launched.
+
+Limits
+Full original normal5f0f00 -> shader emission ->5e0530 ->5e0490 ->603610/603970 and all original camera-facing/vector/sqrt helpers. Observation hooks only, no computational services.
+All1367 authored billboard descriptor records across100carriers, source-bound world transforms (identity fallback explicitly retained where not associated), plus256 synthetic descriptors/worlds. Normal bounds/LOD from480 authored objects across60scenes; camera view/forward remain explicit fixtures.
+Each case emits four actual billboard packets through linked material gates. Invalid nonnull skin/morph sentinels alternate with null pointers; billboard branch never reads those inputs.
+Finite inputs/intermediates, forcedVisibility1, same-layout materials, zero shadows/sway/fade and successful disjoint allocator capacity. No different-layout material merge or live camera producer claim.
+Whole64KiB persistent state including shader and scratch/bounds mirrors, excluding32-byte portable cache/output adapter; exact return, shadow mask and writer tuples compare.
+CPU payload construction only. Backend/GPU billboard expansion, final image and managed runtime equality remain separate.

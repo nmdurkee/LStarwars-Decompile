@@ -1,0 +1,30 @@
+2766 original-PC comparisons, zero mismatches. 4 new helper mappings. Portable replay compiles only.
+
+scope
+Original attached path-point visibility, position and connection refresh; closes the51af40 service for PathCorridor.
+
+binding
+Normal-instance references take priority over display references. Only5cfd60 gates on scene presence, then normal flags44 bit0 or display flagsb8 bit1. Transform and animation getters ignore that scene gate. Normal animated transform is selected when nonnull; display animation0/-1 falls back to its base matrix. Typed records explicitly project these pointer/sentinel relations.
+
+gating
+A zero dynamic2a byte returns. Otherwise51af40 derives the point index from contiguous5c-stride backing, tests and sets its refreshed bit before visibility/resolution. An already blocked point2b bit4 never invokes the optional9238d8 resolver. If its original scene reference becomes visible, the point bit clears and paired edge-word bit0x10000000 clears only when the opposite endpoint is also unblocked.
+
+missing
+An initially unblocked but invisible reference may call the registered9238d8 service. Null or false sets point2b bit4 and paired0x10000000 on every adjacent edge, then returns. True is trusted without a second visibility check; callback writes are observed before transformation. The callback may repair the projected scene reference and raw point fields.
+
+geometry
+The selected matrix transforms point4c local coordinates with the already recovered5b30a0 implementation. World minimum/maximum Y are point1c/24 plus newY. Every adjacent edge gets horizontal length and heading from endpoint1 minus endpoint0. For nonzero edge20 extra radius, paired edge bit0x08000000 is set exactly when length exceeds the ordered wide sum currentRadius+extra+otherRadius; zero leaves existing bits unchanged. Moved bit2 is set when any position differs numerically, or unchanged position still has animation flags50 bit0 and nonzero speed40.
+
+composition
+PathPointRefresh.Attach wires the recovered method to the existing PathCorridor.Refresh callback without editing PathCorridor.130 complete original51b1f0->51af40 chains compare predicate result, hit bytes, nodes, all adjacent edges, seen bits and resolver events. These130 are included in this suite total, not new command/use or mapping credit.
+
+validation
+2,766 comparison records pass:192 getter triples,2,444 refresh cases and130 corridor chains.286/290 instructions execute across the four new helpers; three negative-index repairs are outside valid backing and one alignment LEA is skipped.2,048 randomized affine/local/neighbor arrangements cover both edge endpoint directions, restored/missing references, paired flags, stationary animation, zero-distance edges and exact table-angle composition. Original transform, xz distance/sqrt, angle functions and CRT conversion execute unchanged; only the optional registered resolver is a fixture service.
+
+Remaining
+The9238d8 custom reference resolver remains an explicit optional mutable callback. Its registration and game-specific resolution logic are not implemented here.
+Valid nonnegative point indices in contiguous original5c-stride backing, valid adjacency and resolved scene records, finite arithmetic. Normal animation pointer-1 is not a fallback and is excluded as invalid; display0/-1 is explicitly represented by null.
+Scene loading, reference lifetime, record aliasing beyond these projected fields, and platform ownership remain host responsibilities. Raw point/edge fields and identity relations are preserved; this is not full navigation-engine completion.
+Synthetic finite geometry cases and original-call compositions are exercised; no new authored AI2/command credit is assigned to this suite.
+Angle helper32,041 tests and prior corridor5,628 tests are independent and not included again in the2,766 total. The130 compositions are already included, not additive.
+Managed replay compiled only; original-PC comparisons are independent Python model versus x86.

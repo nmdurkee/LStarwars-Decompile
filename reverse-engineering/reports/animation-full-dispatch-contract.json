@@ -1,0 +1,73 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "sha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-full-dispatch-portable-verify.cs",
+      "sha256": "a1e54d198f370143ded8a7da6eeae815fbaa6f1ca6c63a744a0878ab0c9f6dae"
+    },
+    "entrypoint": "FullSkinMeshPacketDispatchVerify.Main",
+    "arguments": [
+      "reports/animation-full-dispatch-fixtures.json",
+      "<result.json>"
+    ],
+    "preparedComparisons": 5135,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-full-dispatch-compile.json"
+  },
+  "nativeEvidenceReused": [
+    {
+      "kind": "mesh",
+      "path": "reports/animation-skin-dispatch-native-fixtures.json.gz",
+      "sha256": "e7576e122b86ba6d7d02a7200dfcb387b39144e65bd5dee566ea1e991ad44899",
+      "nativeCases": 3512,
+      "evidence": "reports/animation-skin-dispatch-tests.json"
+    },
+    {
+      "kind": "billboard",
+      "path": "reports/animation-billboard-native-fixtures.json.gz",
+      "sha256": "adef129a690bfc4617518527c4c45e336f2a9a52d179a2c50c3f7350706b3982",
+      "nativeCases": 1623,
+      "evidence": "reports/animation-billboard-tests.json"
+    }
+  ],
+  "uniqueReusedNativeCases": 5135,
+  "additionalNativeComparisons": 0,
+  "mismatches": 0,
+  "scope": "Unified host composition of all four actual original5e0530 branches; evidence is reused explicitly, not counted as new original execution.",
+  "behavior": [
+    "Opcode8f invokes recovered BillboardMeshPackets before touching skin,weights,cache or material flags.",
+    "All other opcodes delegate to the unchanged Build API, preserving skin-pointer selection and ordinary/prefix behavior.",
+    "New full replay invokes BuildWithBillboards for every case; a nonnull empty skin adapter and invalid cache sentinel on billboard cases establish the intended public branch precedence.",
+    "Existing Build remains a backward-compatible non-billboard API."
+  ],
+  "limits": [
+    "Finite scalar CPU payloads and valid storage; original branch-specific exclusions retain force.",
+    "All5,135 source-replay cases reuse native observations from the earlier suites. No duplicate native-case increment is claimed.",
+    "Managed harness compiled only; no generated executable launched."
+  ],
+  "readerSources": [
+    {
+      "path": "tools/animation-skin-dispatch-portable-verify.cs",
+      "sha256": "d8aaeeb58ed9432452499a02f9b984dd98a50ef16c03fdc75f3a2849b680e271"
+    },
+    {
+      "path": "tools/animation-billboard-portable-verify.cs",
+      "sha256": "600af561dc8e1f7f954483b4f1e31da4b420b578056455496a08b744cb15ca91"
+    }
+  ]
+}

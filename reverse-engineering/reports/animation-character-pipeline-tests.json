@@ -1,0 +1,68 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "d3dx": {
+    "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "bytes": 3727720,
+    "preferredBase": "0x400000",
+    "mappedBase": "0x20000000",
+    "matrixImplementationRva": "0x163599",
+    "highlowRelocations": 40053,
+    "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+  },
+  "comparisons": 6304,
+  "counts": {
+    "synthetic": 800,
+    "submitted": 4728,
+    "culled": 1576,
+    "authored": 5504
+  },
+  "mismatches": 0,
+  "examples": [],
+  "fixture": {
+    "path": "reports/animation-character-pipeline-native-fixtures.json.gz",
+    "bytes": 945738,
+    "sha256": "71f9fd8f678d466acf7677a042a0c45a685f40af58eb33766a876b77e3dd4271"
+  },
+  "dependencies": [
+    {
+      "path": "reports/animation-layer-submission-native-fixtures.json.gz",
+      "sha256": "a2ede96a2e3c088d650931b8b4cbd6d96ec0289e7f82a70e7eaeac89f6b94eb4"
+    },
+    {
+      "path": "reports/animation-shadow-queue-native-fixtures.json.gz",
+      "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+    },
+    {
+      "path": "reports/animation-character-visibility-native-fixtures.json.gz",
+      "sha256": "bd147040d78af738d682a01cf9c25f766e57f9dfec16c8a5e6f09707496ed403"
+    },
+    {
+      "path": "tools/animation-layer-submission-verify.py",
+      "sha256": "4eeab1f7b1810bfe2c7c23e41cd10f97988b8512b24b8d28637b36ba748b4ee8"
+    },
+    {
+      "path": "tools/animation-shadow-queue-verify.py",
+      "sha256": "544a5c63c721f098ec2a8d7518fb82758354237819b410682fffce93675a5e10"
+    },
+    {
+      "path": "tools/animation-character-visibility-verify.py",
+      "sha256": "c3a4569c69bede320ddc736d424d345b9ec0c46b1d0f53264001a939495eabd0"
+    },
+    {
+      "path": "tools/geometry-dynamic-bounds-native.py",
+      "sha256": "3d81018a6792d2b72c428895f6ab38966eeb72f933312f54ce1edde66b4cda5e"
+    },
+    {
+      "path": "tools/animation-skeletal-fixture.py",
+      "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+    }
+  ],
+  "method": "Original 5f4ff0 ->5da980/6042e0 ->5f9fa0/5f9ed0 and all matrix helpers run together unchanged. Secondary visibility5ea6a0 and draw5f0f00 remain explicit test adapters. Draw callbacks observe queue state before mutating sequence and allocator. Verify ordered callbacks, palettes, arena contents/cursor, restored cache, submission flags, camera scratch and full shadow queue.",
+  "limits": [
+    "Finite scalar camera and original D3DX9_35 matrix policy; immutable authored hierarchy/joint inputs.",
+    "Draw callbacks are bounded observation/return/allocator/sequence effects, not a claim of full dynamic renderer/GPU behavior.",
+    "Secondary5ea6a0 remains external. Corner arrays are stack-local diagnostics and are not claimed as persistent after later native calls.",
+    "No live actor scheduling or final engine integration."
+  ]
+}

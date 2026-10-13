@@ -1,0 +1,23 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x6521b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SoundInitialization.cs",
+      "sourceSha256": "138d9674eb6596dafe77e64a2b4aacb8e522a1a63e3dea06ea4cf79699e2ec74",
+      "methods": [
+        {
+          "name": "SoundInitialization.Initialize",
+          "line": 25
+        }
+      ],
+      "coverage": "whole bounded sound setup with explicit configuration service",
+      "qualification": "Valid disjoint arena/cursor/builtin records/globals and terminated ASCII bank/path strings. Name slots64bytes, path capacity264bytes, enabled sound IDs0..1599. Invalid capacity/pointers/negative mask index excluded. The load service may redirect sound records, change counts/cursor/name count and both masks; final scan rereads the current sound pointer and count. Existing nonzero CRC initialized flag preserves its table. Raw virtual32-bit addresses index owned byte arrays only. No native pointer or external process access. Configuration parsing, bank loading and audio hardware remain external. Managed replay pending.",
+      "comparisonStatus": "Original native/model differential passed; managed replay pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/native-sound-initialization-tests.json"
+      ]
+    }
+  ],
+  "commands": []
+}

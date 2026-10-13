@@ -1,0 +1,28 @@
+PC SECONDARY BOX VISIBILITY
+
+2818 original comparisons;0 mismatches.
+
+layout
+State count966384, context pointer table96d9d0, mask table96e550, valid flag9715a0. Context+710 contains signed volume count. Each volume occupies380hex bytes, with four-float planes beginning1a0 and signed plane count260. Portable DTOs expose resolved arrays without claiming the producer/loader.
+
+planes
+For each plane, original5c6dc0 enumerates corners000,010,110,100,001,011,111,101 from the two endpoints. It rejects when no corner has strictly positive distance. Tangency is rejected; zero planes accepts. First dotXYZ=(X*A+Y*B)+Z*C is evaluated with64-significand x87 rounding and storedfloat32. That stored value then addsD and storesfloat32 again. A generic one-store plane helper is incorrect here.
+
+masks
+Original5c7050 ORs shifted bits using the low5 bits of the volume index. Counts32/33/64/65/128 are explicitly probed; these demonstrate shift behavior in synthetic valid memory, not an authored volume-count claim. The context routine returns0 for an empty list.
+
+cache
+Original5ea6a0 bypasses all endpoint/context reads when refresh==0 and flag!=0, scanning cached masks for signed>0. A bit31 mask is negative even if other bits are set. Refresh!=0 forces recomputation, resetting the flag first; each computed mask overwrites only its active table entry. Final flag=1 even for count0. Cached count0 returns0 while preserving the prior nonzero flag. Poisoned pointers verify the fast path has no hidden producer calls.
+
+evidence
+2,818 original comparisons:2,286 direct volume predicates,386 masks and146 cache calls. Inputs include all326 authored portal plane/bounding-box records as numeric probes,512 deterministic finite random sets,144 float-rounding boundary cases, mask wrapping and signed-cache tests. All persistent input bytes, mask guard entries, cache flag and nested call order checked; no original function replacement.
+
+integration
+CharacterLayerSubmission already exposes the5ea6a0 boundary. Its sharedSubmissionFlag corresponds to thisCacheFlag, and SecondaryVisibilityCount corresponds to thisCount. An integrating caller must synchronize those fields around Evaluate; dynamic shadow packet emission and scene volume producers remain separate.
+
+Limits
+Finite endpoints/planes and finite stored arithmetic;0..12 planes per volume,0..128 volumes/contexts, valid disjoint records and nonnegative counts.
+Authored portal planes/vertex bounds are input probes, not evidence of shipped secondary-volume construction.
+No dynamic shadow packet generation or GPU behavior; managed replay compiled separately, execution pending.
+Only booleanAL of5c6dc0 is meaningful; native upperEAX is intentionally not normalized or claimed.
+Negative count behavior, NaN/infinite inputs or overflowing float stores, aliasing and volume producer semantics remain outside the portable domain.

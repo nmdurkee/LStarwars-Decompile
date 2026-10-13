@@ -1,0 +1,37 @@
+Frame reset and parity advance
+
+Original 0x5dfab0 flips display parity for the global and registered displays,
+runs 0x5ddd10 in order, clears registered owner+0x44, resets the pending count,
+clears each sorted node flag bit1, resets the global shader template and leaves
+the lock. Registered counts0/1/2/7/256 and populated reset tables are covered.
+
+Original 0x5ddd10 acts only when forced or display flags&6 are nonzero. It
+clears selected material and clip buffers using native padded16-byte blocks.
+Forced reset also fills the previous clip buffer0xff; previous material bits
+remain untouched. A material's opaque+0x14 becomes+0x10; slot+0x34 becomes0
+when forced or otherwise the result of old==0, then+0x30 selects+0x28/+0x2c.
+This is not an XOR toggle for arbitrary old values. Repeated table pointers
+retain repeated updates and shared command-context references retain aliasing.
+Flags clear bits1/2/3 only after the active work completes.
+
+The command reset0x5fca40 performs seven sized sentinel writes. Shader reset
+0x5fd100 clears seven DWORD caches in an object and resets global command
+sentinels.0x5fd160 applies both to the same global template. Randomized opaque
+bytes and exact unchanged-byte checks establish the scope of each write.
+
+1,668 original cases pass:720 authored display resets across60 scenes,
+832 padding/gate/alias boundaries,32 cases for each of three context helpers,
+and20 integrated original frame advances.28,381,684 state/call bytes compare
+without mismatch. The original block-fill and CRT code run unchanged; hook
+callbacks only observe entries. No internal native implementation is replaced.
+The zero-lock original branch runs unchanged; OS synchronization is excluded.
+
+FrameReset.cs and its harness compile independently. A322,118-byte gzip input
+contains every case. FrameResetHarness arguments are compressedInputFixture
+and outputFile. The checker prepares or compares saved output only. Compiled
+managed behavior remains pending; no managed executable was launched.
+Five mappings and current source hashes are in geometry-frame-reset-source.
+Counts are bounded to1,000,000 as a portable validation domain, not a recovered
+native cap. Malformed pointers, arithmetic-overflow counts and partial memory
+overlap are outside this module. Dynamic flush/sorted completion and GPU work
+remain distinct phases.

@@ -1,0 +1,19 @@
+SHADOW CONTEXT CONSTRUCTION
+
+{"cases": 6984, "context-pool": 2048, "checkedBytes": 123365376, "shader-pool": 2048, "command-pool": 2048, "volume": 256, "context": 256, "create": 328}
+
+All three pools have8 slots and a used-byte plus signed cursor after slot storage. Starting at cursor, scan to7 then0 tocursor-1; set the first available bit and advance cursor modulo8. Exhaustion returns0 without mutation.
+
+Strides are830(context),40(shader cache),10(command head). Original fixed pools are9740a8,978230 and974020. Portable source makes pool addresses explicit; fixtures retain original logical globals.
+
+Volume initialization5f5ce0 writes raw float constants at100/104/110 and zeroes260 plane count/374 frame count. It allocates two command heads and shader contexts, saves their pointers at334/338 and32c/330, and clears exactly two44-byte records at2a4/2e8.
+
+Each record receives shader pointer+8 and head/tail+10/+14. Head opcode8d/type1 gets a null link+4. Existing5fca40 performs its seven sized sentinel writes; untouched shader/head bytes are retained.
+
+Context initializer5f5d90 invokes two volume initializers with380 stride. It sets allocated volume count70c=2 and active710=0, enabled808=0, registry824=0, other scalar defaults, and returns the original context pointer (Ghidra incorrectly labels void).
+
+Create5f7420 uses the context allocator then initializes only when nonnull. Context-pool exhaustion never accesses subordinate pools. The constructor has no null handling after command/shader allocation; insufficient subordinate capacity is an explicit portable unsupported case.
+
+Native6984 cases include exhaustive6144 allocator occupancy/cursor combinations,256 volume and256 context cases,328 create cases, and32 sequential two-context construction chains. No computational substitution or device callbacks.
+
+The resulting packet records are precisely those consumed by the recovered dynamic shadow scheduler. Plane production remains5e8950 through5c8030/5c82c0/5c8540; enabling/updating contexts and GPU operations remain separate.

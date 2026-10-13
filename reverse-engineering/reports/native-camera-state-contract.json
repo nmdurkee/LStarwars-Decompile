@@ -1,0 +1,73 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Three native camera-state helpers; no script parser or live camera update claimed.",
+  "native": {
+    "schema": "original-pc-camera-state-v1",
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "cases": 3028,
+    "counts": {
+      "finish": 2124,
+      "select": 612,
+      "configure": 292
+    },
+    "mismatches": 0,
+    "writeSetMismatches": 0,
+    "completeMemoryWriteChecks": 9084,
+    "errors": [],
+    "writeErrors": [],
+    "nativeCalls": {
+      "0x5765b0": 2740,
+      "0x577790": 904,
+      "0x577880": 292
+    },
+    "adapters": [],
+    "limits": [
+      "Finite float inputs; active built-in record alias and its pointer/duration field overlay are included.",
+      "No live camera update, scene selection, or rendering is executed.",
+      "Portable managed replay is prepared, not run."
+    ]
+  },
+  "entries": [
+    {
+      "address": "0x5765b0",
+      "method": "CameraState.FinishCurrent",
+      "behavior": "Finish current camera record, conditionally advancing progress to duration minus0.5 before clearing its blend field."
+    },
+    {
+      "address": "0x577790",
+      "method": "CameraState.Select",
+      "behavior": "Select a cut record, reset transition state, preserve unrelated bytes, clear follow references and finish the current record."
+    },
+    {
+      "address": "0x577880",
+      "method": "CameraState.Configure",
+      "behavior": "Initialize built-in point-camera header, conditionally copy coordinates, select it, then install requested follow references."
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/CameraState.cs",
+      "bytes": 3544,
+      "sha256": "1dc905b2e7f9a096fa53fcec3411e14299542494efc4f0296418ba748f0291a0"
+    },
+    "harness": {
+      "path": "tools/native-camera-state-portable-verify.cs",
+      "bytes": 4579,
+      "sha256": "5e747f8d1351f33a423cacef3bf9e39ee8e38e3b8ea7622fd133c0aa63bd00de"
+    },
+    "entrypoint": "CameraStateVerify.Main",
+    "arguments": [
+      "reports/native-camera-state-vectors.json",
+      "reports/native-camera-state-csharp-validation.json"
+    ],
+    "preparedCases": 3028,
+    "compileReport": "reports/reconstructed-build.json",
+    "status": "Managed execution pending; current compilation and hash freshness tracked by integrated build report."
+  },
+  "limits": [
+    "Finite float inputs; active built-in record alias and its pointer/duration field overlay are included.",
+    "No live camera update, scene selection, or rendering is executed.",
+    "Portable managed replay is prepared, not run."
+  ],
+  "writeSet": "Every case compares all bytes of the surrounding1152-byte global region,12288-byte data region and separate4-byte border scalar."
+}

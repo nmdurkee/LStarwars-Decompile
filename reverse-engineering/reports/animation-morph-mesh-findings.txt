@@ -1,0 +1,31 @@
+PC CPU MORPH DEFORMATION
+
+4369 exact original-PC comparisons; 0 mismatches.
+
+descriptor
+56-byte PC mesh record: stride u16+8, up to8 joint-indexbytes+10 (255 terminates), firstVertex u32+20, vertexCount+24, resourcepointer+36, targetCount+40, targetpointerarray+44, dynamicVertexOutput+52. Targets are nullable pointers to densely packed XYZ float32 delta vectors,12 bytes per vertex independent of base stride.
+
+bypass
+Null weight pointer or targetCount0 clears original descriptor+52 and returns the source descriptor through the out pointer. It does not lock/copy vertex data; it still emits the joint palette.
+
+allocation
+Deformation copies the descriptor to align32(cursor), advances56bytes, then successful buffer lock happens. It places vertex bytes at align32(cursor), advances vertexCount*stride, and stores this address in copieddescriptor+52. Source descriptor+52 is preserved on this path. Palette follows immediately without another alignment: u32count then64bytes per joint, bounded by eight indices/255 sentinel.
+
+deformation
+Native6e5b90 invokes resource COM vtable+0x2c Lock with firstVertex*stride,vertexCount*stride,&mappedPointer,0x10. Native4ef660 copies the full locked range. Each vertex visits targets in increasing index; null delta or zero weight skips. Each XYZ component stores float32(current + delta*weight) after the original64-significand x87 product/sum, so order and per-target rounding matter. Every other vertex byte, including normals, is copied unchanged. Original6e5bc0 invokes vtable+0x30 Unlock.
+
+palette
+Each active byteindex selects the corresponding64-byte matrix verbatim. No matrix multiplication or palette index remap occurs in603710. The palette base is returned in EAX, despite decompiler void annotation. The caller-supplied sixth stack argument is unused.
+
+composition
+Native5d3a20 runs its original time/key sampling and pool allocators and returns a weight-object pointer whose floatarray begins+8. That exact pointer is fed into603710. Both weight bits and resulting descriptor/vertex/palette bytes match the independent finite-x87 model. Fixtures select the first compatible same-directory BSA, decoded smooth layer, and frames1/midpoint/duration; this is a neutral test selection, not a live clip-selection claim.
+
+callerProvenance
+Original5f4ff0 chooses weightObject=weightPointers[selectedLayerListOrdinal], then sends it with prepared joint matrices into smooth and alternateSmooth5f0f00 calls (mode2). Rigid and alternateRigid paths pass null. 5e0390 calls603710, emits opcode0x99 referencing palette and0x98 referencing descriptor. These call sites are instruction evidence; their complete selection/packet/GPU behavior is not reconstructed by this module.
+
+Limits
+Finite active position/delta/weight values and outputs; valid dimensions, buffer ranges, target tables and matrices.
+No aliasing between source/targets/output or pointer arithmetic wraparound.
+COM success is an explicit service boundary. HRESULT/global device error state, allocation failure, real resource upload and GPU execution remain unresolved.
+Full character renderer layer/clip selection is corroborated by call-site assembly only, not claimed as a reconstructed routine.
+Managed source and replay compile only; original-native-versus-independent-model checks do not establish managed execution equivalence.

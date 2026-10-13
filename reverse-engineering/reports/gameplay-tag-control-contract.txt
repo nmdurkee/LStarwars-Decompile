@@ -1,0 +1,25 @@
+TAGGING AND PLAYER-SELECTION CONTROL
+
+491 original-PC comparisons, zero mismatches;92 authored uses. Core/replay compile only.
+
+SetTaggable
+First-call only; always returns1. Default target is self reference->world object. character= replaces the target; tag_to= replaces the preferred replacement; both use the actual registered name resolver. Whole FALSE latches disabled while TRUE does not reset it. A nonnull target gets bit2 at+0x7c5 set when disabled and cleared otherwise. If disabling a controlled target (+0x1fc bit0x80), an absent linked object at+0xcd0 invokes candidate transfer; failed/deferred transfer forces disabled back to false. A present linked object invokes takeover/vehicle release instead. Both branches refresh player globals before the final bit write. No controlled bit means no transfer, release or refresh.
+reverse-engineering/decompiled/corpus-expanded/FUN_44f930.c:8 (0x44f930)
+
+candidates
+Preferred candidate wins if valid; otherwise scan all8 player slots in order. Candidate must differ from source, have+0x1fc active1 and valid0x1000, lack controlled0x80, have blocked byte+0x28b==0 and lack tag-disabled bit2 at+0x7c5. Missing candidates return0 without service calls. Selected candidate invokes0x4876a0(source,candidate,0,0,argument). Result2 stores float3 at source+0x7c0, candidate at+0x7c8, clears bit8 and sets bit4 at+0x7c5, then returns0. Result0 returns0. Every other result exchanges controlled bit0x80 using PRE-service values while preserving other POST-service flags, then returns1. Tests include service mutation to distinguish captured from fresh values.
+reverse-engineering/decompiled/corpus-expanded/FUN_487ca0.c:7 (0x487ca0)
+
+players
+Refresh uses only player slots0/1, unlike the eight-slot candidate scan. A controlled slot0 becomes primary and controlled slot1 becomes secondary. If slot0 is not controlled, controlled slot1 becomes primary and secondary clears. If neither is controlled, primary clears but an early return leaves secondary unchanged. Null slots and duplicate slot references are covered.
+reverse-engineering/decompiled/corpus-expanded/FUN_55e410.c:7 (0x55e410)
+
+services
+Full transfer0x4876a0 and vehicle/takeover release0x4882d0 remain explicit typed services. Native tests replace only these world-mutating services and bounded CRT Player%d formatting; SetTaggable, actual named lookup, candidate selection and player refresh execute original bytes. Service calls, arguments, return effects, flag mutations and refresh ordering are compared. This does not implement possession, controller rebinding, model swaps or mounted-character release.
+reverse-engineering/decompiled/corpus-expanded/FUN_4876a0.c:9 (0x4876a0)
+reverse-engineering/decompiled/corpus-expanded/FUN_4882d0.c:9 (0x4882d0)
+
+Remaining
+Character transfer/world ownership implementation and vehicle/takeover release side effects remain explicit adapters.
+Actor records and player arrays use valid bounded identities; ASCII token strings.
+Managed replay compiled only; no generated executable launch.

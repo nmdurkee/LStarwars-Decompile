@@ -1,0 +1,63 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Angle wrapping and3D line parameters used by path corners.",
+  "primaryNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x5be590",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathCornerMath.cs",
+      "sourceSha256": "caac19325777b3fb03cf7706393b9e2b5bc63446d08caf30189bd335668203b1",
+      "methods": [
+        {
+          "name": "PathCornerMath.AddAngles",
+          "line": 20
+        }
+      ],
+      "coverage": "complete integer wrapped-angle addition",
+      "qualification": "Finite inputs and intermediates, disjoint valid input/output buffers; underflow to zero is retained but overflow/NaN/infinity are excluded. The Boolean only tests whether the stored inverse-square scale is nonzero. It must not be interpreted as proof that two finite3D segments intersect. This is a dependency of51c150 path-corner construction, not the completed corner or51d7b0 steering contract. No authored command credit; no re-credit for square root or arithmetic support. Managed replay compiled only; native comparisons use an independent exact-arithmetic model.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-corner-math-tests.json",
+        "reverse-engineering/reports/gameplay-path-corner-math-assembly.json"
+      ]
+    },
+    {
+      "address": "0x5be5b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathCornerMath.cs",
+      "sourceSha256": "caac19325777b3fb03cf7706393b9e2b5bc63446d08caf30189bd335668203b1",
+      "methods": [
+        {
+          "name": "PathCornerMath.DifferenceAngles",
+          "line": 21
+        }
+      ],
+      "coverage": "complete integer wrapped-angle subtraction",
+      "qualification": "Finite inputs and intermediates, disjoint valid input/output buffers; underflow to zero is retained but overflow/NaN/infinity are excluded. The Boolean only tests whether the stored inverse-square scale is nonzero. It must not be interpreted as proof that two finite3D segments intersect. This is a dependency of51c150 path-corner construction, not the completed corner or51d7b0 steering contract. No authored command credit; no re-credit for square root or arithmetic support. Managed replay compiled only; native comparisons use an independent exact-arithmetic model.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-corner-math-tests.json",
+        "reverse-engineering/reports/gameplay-path-corner-math-assembly.json"
+      ]
+    },
+    {
+      "address": "0x5bee20",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathCornerMath.cs",
+      "sourceSha256": "caac19325777b3fb03cf7706393b9e2b5bc63446d08caf30189bd335668203b1",
+      "methods": [
+        {
+          "name": "PathCornerMath.LineParameters",
+          "line": 24
+        }
+      ],
+      "coverage": "complete bounded finite3D line-parameter primitive with exact stores",
+      "qualification": "Finite inputs and intermediates, disjoint valid input/output buffers; underflow to zero is retained but overflow/NaN/infinity are excluded. The Boolean only tests whether the stored inverse-square scale is nonzero. It must not be interpreted as proof that two finite3D segments intersect. This is a dependency of51c150 path-corner construction, not the completed corner or51d7b0 steering contract. No authored command credit; no re-credit for square root or arithmetic support. Managed replay compiled only; native comparisons use an independent exact-arithmetic model.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-corner-math-tests.json",
+        "reverse-engineering/reports/gameplay-path-corner-math-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-corner-math-contract.json"
+}

@@ -1,0 +1,28 @@
+PC SKELETAL POINT OUTPUTS
+
+10298 exact original-PC checks; 0 mismatches.
+
+point
+5daae0 resolves byte lookup[logicalIndex] through hierarchy+18c, then80-byte point records at hierarchy+184. It multiplies point.localMatrix by jointWorld[point.byte44], stores a float32 matrix, then multiplies that matrix by objectWorld. Two matrix stores and their rounding are preserved.
+
+pcJoint255
+The PC code has no joint255 sentinel branch: it directly indexes jointWorld[255]. All26 such authored points are checked with an explicitly supplied synthetic finite slot255. Their26 packet/output bindings are disabled because ordinary computed hierarchy arrays do not supply that slot. The Android local-only behavior is not transplanted.
+
+outputs
+62e1e0 checks both output pointers before reading model. With either output present it visits exactly16slots and tests uint model+14+4*i againstzero. Each enabled slot writes XYZ from the final matrix translation and/or all16 matrixvalues. Disabled slots preserve prior destination bits.
+
+packet
+SkeletalPoints.EvaluatePacket extends the recovered default-layer62e290 branch. It computes the skeletal pose then enabled POI outputs, leaving AnimationPacket bytes untouched. An empty layer selection preserves every destination. Morph output remains null.
+
+authoredAdapter
+All688 rigs and3746 point records are source-byte/hash bound. Directpoint cases supply a synthetic one-entry lookup to exercise every record, including unreferenced points. Packet/output enable words are explicit fixture inputs based on valid observed lookups; they are not claimed to reconstruct native model initialization.
+
+matrixPolicy
+Original game matrix calls execute the original installed d3dx9_35 scalar implementation under the explicit policy in animation-skeletal-contract.json. CPU/OS dispatch is not inferred.
+
+Limits
+Finite resolved matrix and lookup domain. Missing lookup entries and invalid joint references are not assigned fallback semantics.
+Native joint255 direct indexing is retained as an explicit supplied-matrix requirement; runtime production of slot255 is unresolved.
+Model enable-word initialization, custom layer callbacks, morph outputs and full renderer integration remain outside this module.
+Inherited Euler pose/blend domain and explicit scalar DLL policy apply.
+Managed source and replay compile but have not executed; native-vs-Python evidence does not establish managed execution equivalence.

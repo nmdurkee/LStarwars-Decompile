@@ -1,0 +1,15 @@
+SHADOW CAMERA RIGID INVERSE AND PERSPECTIVE
+
+{"cases": 4108, "inverse": 2060, "floatWords": 65728, "inplace": 1030, "perspective": 2048}
+
+RigidInverse negates input translation into storedfloat32 lanes, transposes the3x3basis, and computes ordered extended products/additions into stored translation. It overwrites affine fourth column0/0/0/1. Original code supports exactselfalias through temporary swaps; source clones input to preserve that result.
+
+This is a rigid inverse algorithm. Arbitrary finite matrices are evaluated with original behavior, but only orthonormal affine bases give a mathematical inverse. No inferred general inverse, scale correction or normalization is added.
+
+Perspective consumes degreeFOV, keeps halfFOV in extended precision, and truncates halfFOV*182.04444885253906 and halfFOV*(-182.04444885253906) separately using the original CRT helper. Sine index=(first>>1)&7fff; cosineindex=((4000-second)>>1)&7fff.
+
+Storedfloat32 tangent is sampled sine/cosine. Matrix00=1/(tangent*aspect),11=1/tangent,22=far/(far-near),23=1,32=(-far*near)/(far-near), allotherlanes0. Far-near and tangent*aspect retain extended intermediates; no invented float32 store.
+
+4108 original comparisons include2060rigidinverse outputs(1030exactselfalias),2048perspective outputs,65728bit-exactfloatwords. Six authoredCU2matrices and1024synthetic matrices are retained; controlled projection inputs exercise both CRT policies.
+
+Source/replay compile only. Inputs and outputs are finite and bounded, aliasing beyond exactselfidentity is excluded. Outer volume producer5e8950 and GPU outputs remain separate.

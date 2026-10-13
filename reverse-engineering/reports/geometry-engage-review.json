@@ -1,0 +1,254 @@
+{
+  "schema": "geometry-engage-review-v1",
+  "nativeAddress": "0x447f00",
+  "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "finding": "Distance squared helper loses a positive term at float32 tie when summing products in double instead of original64-significand x87.",
+  "affectedSource": "reconstructed/gameplay/LocatorCommands.cs:102",
+  "caller": "reconstructed/gameplay/EngageOpponent.cs:100",
+  "fixture": {
+    "goal": 0.5,
+    "fireRange": 0,
+    "actorOverrides": {
+      "0": {
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "1": {
+        "position": [
+          1,
+          0.000244140625,
+          7.450580596923828e-09
+        ]
+      }
+    }
+  },
+  "exactDistanceExpression": "1 + 2^-24 + 2^-54",
+  "doubleThenFloat32Word": "0x3f800000",
+  "originalX87ThenFloat32Word": "0x3f800001",
+  "expectedNativeBehavior": "Movement intent mode1 because squared distance exceeds outer threshold1.",
+  "formerModelBehavior": "Face/no movement because squared distance equals1.",
+  "nativeModelMismatches": 1,
+  "details": [
+    {
+      "tokens": [],
+      "options": {
+        "goal": 0.5,
+        "fireRange": 0,
+        "actorOverrides": {
+          "0": {
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          "1": {
+            "position": [
+              1,
+              0.000244140625,
+              7.450580596923828e-09
+            ]
+          }
+        }
+      },
+      "first": false,
+      "delta": 0.10000000149011612,
+      "got": {
+        "result": 0,
+        "state": {
+          "packetFlags": 0,
+          "override": 0,
+          "cached": -1,
+          "fireRange": 0,
+          "interval": 1069547520,
+          "timer": 1048576000,
+          "goal": 1056964608,
+          "mode": 0,
+          "flags": 2147483649,
+          "point": [
+            1094713344,
+            1095761920,
+            1096810496
+          ],
+          "radius": 1056964608,
+          "intentGoal": 1056964608,
+          "words": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "look": -1,
+          "touched": 1,
+          "rng": 123,
+          "actors": [
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ]
+          ]
+        },
+        "events": [],
+        "intents": [
+          [
+            "intent",
+            1,
+            1056964608,
+            1,
+            1056964608
+          ]
+        ]
+      },
+      "want": {
+        "result": 0,
+        "state": {
+          "packetFlags": 0,
+          "override": 0,
+          "cached": -1,
+          "fireRange": 0,
+          "interval": 1069547520,
+          "timer": 1048576000,
+          "goal": 1056964608,
+          "mode": 9,
+          "flags": 2147483648,
+          "point": [
+            1119092736,
+            1119223808,
+            1119354880
+          ],
+          "radius": 1048576000,
+          "intentGoal": 1056964608,
+          "words": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "look": 1,
+          "touched": 1,
+          "rng": 123,
+          "actors": [
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ],
+            [
+              2779096485,
+              289411106,
+              12,
+              -1,
+              16
+            ]
+          ]
+        },
+        "events": [],
+        "intents": []
+      }
+    }
+  ],
+  "scope": "Read-only review; gameplay owner notified. No source edit or managed execution."
+}

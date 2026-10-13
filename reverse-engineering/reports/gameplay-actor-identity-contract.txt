@@ -1,0 +1,21 @@
+ACTOR IDENTITY CONDITION
+
+912 original-PC comparisons, zero mismatches;138 authored uses. Core/replay compile only.
+
+initializer
+Null operand or absent name callback returns null. Otherwise invokes the actual registered actor-name callback and retains its reference record itself. It does not dereference the first-pointer world object. The cached reference persists when primary-player globals later change.
+reverse-engineering/decompiled/corpus-expanded/FUN_515730.c
+reverse-engineering/reports/gameplay-actor-state-contract.json
+
+IAm
+Null script creature or null creature+0xd0 reference returns float0. Exact equality between the reference and cached initializer result returns float1 before definition/name checks. Otherwise the reference+0x54 definition and its+0xc name must be nonnull; whole case-insensitive equality to the condition operand returns1, else0. It does not compare the world object, actor display name, type-group slot or current player ownership. Operand null gives no name match but can still pass cached pointer identity.
+reverse-engineering/reports/gameplay-actor-identity-assembly.json
+
+coverage
+All138 shipped IAm operands run through original initializer/callback/predicate in four contexts: unmatched/default, matching definition with bound identity, matching definition without callback, and absent creature. Targeted cases add null operand/reference/definition/name, stale binding after changed player globals, world-object/reference differences and explicit mismatching cached references. Predicate return is captured directly from x87 into float32. Script comparators/connectives are outside this small predicate suite and remain governed by the existing scheduler contracts.
+reverse-engineering/reports/gameplay-actor-identity-tests.json
+
+Remaining
+Valid runtime reference identity and definitions; record allocation/lifetime are supplied.
+ASCII operand/name comparisons; cached pointer identity persists across later player-global changes.
+Core/replay compile only; no generated managed executable launch.

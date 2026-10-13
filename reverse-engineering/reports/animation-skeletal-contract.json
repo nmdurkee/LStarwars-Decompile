@@ -1,0 +1,112 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 15791,
+    "counts": {
+      "pose": 1756,
+      "scalar": 13437,
+      "evaluate": 598
+    },
+    "mismatches": 0,
+    "examples": [],
+    "authoredClips": 2911,
+    "syntheticClips": 128,
+    "authoredRigs": 688,
+    "sameFolderEqualCountRigClipPairs": 470,
+    "elapsedSeconds": 96.87533497810364,
+    "fixture": {
+      "path": "reports/animation-skeletal-native-fixtures.json.gz",
+      "bytes": 6898632,
+      "sha256": "9a54d6025e104220762256d046e7c9d339633961a807789d92badfbc60a63f35"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkeletalPose.cs",
+      "sha256": "f2c30070c47f67fc0b7c7b9d80cfede9737a18003a4ba0cd93a1041d4455ba3d"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-skeletal-portable-verify.cs",
+      "sha256": "0c79047ae48122ea17de711cb50d1a50a7c052a104e9ad934972cda42017e30e"
+    },
+    "entrypoint": "SkeletalPoseVerify.Main",
+    "arguments": [
+      "reports/animation-skeletal-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 15791,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-skeletal-compile.json"
+  },
+  "externalImplementation": {
+    "module": "d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "rva": "0x163599",
+    "sourceFile": "reverse-engineering/reconstructed/animation/SkeletalPose.cs",
+    "method": "SkeletalPose.D3dx9_35ScalarMultiply",
+    "qualification": "Identified original x87 scalar implementation, not a main-game native entry point and not a reconstruction of the export CPU/config dispatch. Both native fixture and portable caller choose this policy explicitly."
+  },
+  "sineTable": {
+    "path": "references/native-animation-sine-table.f32",
+    "sha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+  },
+  "contracts": {
+    "buffer": "Native buffer+8 points to48-byte Euler records, grouped translationXYZ/+0,rotationXYZ/+16,scaleXYZ/+32. Padding words+12/+28/+44 remain untouched. Flags are buffer+c pointer, quaternion marker byte+6 becomes0. Portable represents only nine meaningful scalars/node and flags, preserving unselected node entries.",
+    "scalar": "5cc0d0 stores frame-first, its product with(keyCount-1), and division by(frameCount-1) separately tofloat32, then clamps to0..keyCount-1; keyCount1 selects0. Active masks are2,1,8. Inactive translation/rotation become0; inactive scale becomes1. Only active dynamic channels advance compressed bytes/scales. Type6 uses original reciprocal and float32 intermediate stores. Constants ignore headerconstantIndex; per-curve interpolation masks are not read. Start offset skips prior nodes while preserving native output indices.",
+    "rotationBind": "5e9d90 takes min(hierarchy+168 count,clip+4 count). Joints are96bytes with bindmatrix at0 and parentbyte+50. Flag1 chooses Euler rotation through original sine table; flag20 then applies bind3x3. Without flag1, flag20 copies the full animation-bindmatrix, otherwise identity. This differs from always multiplying identity by only the bind3x3.",
+    "scale": "Flag8 row-scales the upper3x3 and stores parent cumulative scale times local scale. Without it cumulative scale copies parent scale. Flag10 computes reciprocal parent scale and column-scales allfour rows; any zero parent component instead zeros all three inverse and cumulative components. Root parent255 begins withunity; rootflag40 resets cumulative scale to unity after local construction.",
+    "matrix": "Flag2 adds sampled translation to existing matrix translation. Final sign flips are matrixindices2,6,8,9,11,14. Nonroots multiply local by parent world using the explicit imported-matrix policy. Unanimated hierarchy tail matrices become identity; cumulative scales for those tail nodes are not newly written.",
+    "wrapper": "5eb790 evaluates at sourceframe=store(frame-1), using the hierarchy count as requested sampled node count, then builds hierarchy matrices. Original wrapper scratch allocator/pops are executed in fixtures; portable owns managed arrays and has no raw scratch pointer.",
+    "matrixDependency": "Game5c0500 imports D3DXMatrixMultiply via IAT751324. Fixtures load source-hashed installed32-bitd3dx9_35.dll into isolated scratch, apply40,053HIGHLOW relocations, and bind directly to original scalarRVA163599. No OS initialization or DLL export CPU/config selection executes. Portable Build requires a concatenation delegate; D3dx9_35ScalarMultiply supplies the tested scalar policy.",
+    "integration": "Caller can connect existing AnimationPacket clip/frame state to SkeletalClip and Evaluate; no packet-to-pose selector adapter is inferred. Gameplay.SceneAnimationPose supplies previously verified shared rotation/row-scale/translation arithmetic only. Character hierarchy semantics are independently validated."
+  },
+  "verification": {
+    "method": "Exact original-x86 versus independent Python model. Original game instructions and all numeric callees execute, including original DLL scalar multiplication and original scratch allocation in wrapper cases. No numeric tolerance. Expected replay outputs store SHA256 of ordered little-endianfloat32 words to keep fixtures compact; hashes retain signedzero. Authored joint matrices are read from source binary bytes, since JSON float metadata cannot preserve signedzero.",
+    "nativeOnlyInvariants": [
+      "Untouched sample padding words",
+      "Scratch arena restored after wrapper return"
+    ],
+    "tools": [
+      {
+        "path": "tools/animation-skeletal-fixture.py",
+        "sha256": "d78053aa2ef7c9a795ce228f8ea0e9a3d0c2bf793a98699625db6860514a6fe3"
+      },
+      {
+        "path": "tools/animation-skeletal-verify.py",
+        "sha256": "84f0e1fe439f5c808b4f908d7d3984b8ad7dab341d7e0a25ff911f62a4c1bda4"
+      },
+      {
+        "path": "tools/animation-skeletal-report.py",
+        "sha256": "ba9d9f5a275c116198235d4dfb707bf47399f10d8c078d38a1be72e8ab82906d"
+      }
+    ]
+  },
+  "limits": [
+    "Finite inputs, finite stores, valid ranges/topological hierarchy, int32-fitting radian conversion; NaN/infinity/overflow and invalid pointers excluded.",
+    "Quaternion sampling/conversion, skeletal blending, root-motion callbacks, override lookup/callbacks, and renderer/skinning upload remain outside this module.",
+    "The selected scalar DLL implementation does not establish which implementation live CPU/config dispatch would select.",
+    "All authored2911carriers sampled atfourtimes, not everyframe. All688authoredrigs checked; same-folder equal-node-count clip associations are fixture choices, not proof of native loader binding.",
+    "Managed core and replay harness compiled but not executed; independent Python agreement is not managed execution equivalence."
+  ]
+}

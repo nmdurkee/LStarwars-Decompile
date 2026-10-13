@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-10-12T22:33:30.356Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "command": {
+      "address": "0x44ac40",
+      "description": "Requires creature/reference/world-object chain. Parse only on entry, preserving packet+70 seek rate across commands unless seek= writes it. Requested speed starts1e9, multiplier1, min0, max1e9; multiply= latches multiplication independently of later ordinary numeric operands. Exact default/max=default load actor definition tuning; substring player_run_speed loads primary player tuning. clear is ignored as a token, leaving current requested value intact. Min/max become absolute and apply only to multiplied values with signed symmetric clamps. Seek-rate0 writes actor+ed4 immediately and returns1. Any nonzero rate writes packet+74 target instead; multiplying with actor sentinel loads default into the target, otherwise multiplies the existing target, not current actor speed. Positive seek with actor override below1e9 updates on entry and subsequent calls, snaps/returns1 when float32 absolute difference is strictly below float32.01, otherwise returns0. Other paths return1. This source preserves512 sequential ticks in addition to authored and boundary cases.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_44ac40.c",
+        "reports/native-run-speed-assembly.json"
+      ]
+    },
+    "seek": {
+      "address": "0x54fb40",
+      "description": "Store delta*rate tofloat32, cap only above1, preserve negative factors. Evaluate current+factor*(target-current) using unstored x87 intermediates then finalfloat32. Signed-zero inputs/results are retained explicitly in source and replay bits.",
+      "evidence": [
+        "decompiled/corpus-expanded/FUN_54fb40.c",
+        "reports/native-run-speed-assembly.json"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "SetRunSpeed",
+      "address": "0x44ac40",
+      "sourceUses": 86
+    }
+  ],
+  "native": {
+    "cases": 1743,
+    "mismatches": 0,
+    "fullRegionComparisons": 2238,
+    "groups": {
+      "commandTicks": 1119,
+      "helper": 624
+    },
+    "authoredUses": 86,
+    "method": "Original command, native numeric parsing and interpolation helper execute unchanged, with complete actor/packet region comparison and persistent update sequences. No helper substitutions."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/RunSpeedCommands.cs",
+      "bytes": 3841,
+      "sha256": "f94380e146736cb69655a57f6ead67e33c2db4530f21bdcda17d6ab149cc2cfc"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-run-speed-portable-verify.cs",
+      "bytes": 4589,
+      "sha256": "f762e956a5dbf3f69ac155ede6b953c7302571353008fcb87e63777ccb6dea65"
+    },
+    "entrypoint": "RunSpeedVerify.Main",
+    "arguments": [
+      "reports/native-run-speed-vectors.json",
+      "reports/native-run-speed-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-run-speed-vectors.json",
+      "bytes": 2524576,
+      "sha256": "33d66a734285d69c73cd5ff7847d3e73bc36cde9d0fc1ffefa23ed6c95dd0828"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite numeric values with finite intermediate/result storage; runtime actor/definition/primary-player attachment supplied.",
+    "Actor world dereference is distinct from controller reference. Existing seek/target packet fields persist unless written by original parsing.",
+    "Managed replay pending; downstream locomotion integration separate."
+  ]
+}

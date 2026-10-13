@@ -1,0 +1,204 @@
+{
+  "schema": "recovered-geometry-shadow-pass-state-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowPassState.cs",
+      "bytes": 2630,
+      "sha256": "0f5dd526d5a4e272ce4c63bb116329cc217d86941a200ce0fcc33b734d902a38"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5d4290",
+      "method": "ShadowPassState.Reset",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    },
+    {
+      "address": "0x5d4300",
+      "method": "ShadowPassState.ResetAdapter",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    },
+    {
+      "address": "0x5954c0",
+      "method": "ShadowPassState.SelectVolume",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    },
+    {
+      "address": "0x5d0530",
+      "method": "ShadowPassState.SetMode",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    },
+    {
+      "address": "0x5d0650",
+      "method": "ShadowPassState.Invalidate",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    },
+    {
+      "address": "0x596920",
+      "method": "ShadowPassState.RegisterPrimaryTail",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    },
+    {
+      "address": "0x596980",
+      "method": "ShadowPassState.RegisterPrimaryCall",
+      "sourceFile": "reconstructed/geometry/ShadowPassState.cs",
+      "coverage": "whole-helper-with-explicit-global-state-adapter",
+      "limitations": "Complete0x218-byte pass image and established registry count0..4 valid-context domain; no packet finalization or GPU behavior. Original/model comparison passes; managed execution pending.",
+      "evidence": "geometry-shadow-pass-state-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/ShadowContextRegistry.cs",
+      "bytes": 2754,
+      "sha256": "924bdf11ff46a17277f8acce6baa8a058591f319c57edd6bd9b973b363a3c19e"
+    },
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-pass-state-native-validation.json",
+    "schema": "geometry-shadow-pass-state-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1440,
+      "reset": 192,
+      "persistentBytes": 36270720,
+      "adapter": 192,
+      "select": 192,
+      "mode": 192,
+      "invalidate": 192,
+      "tail": 240,
+      "call": 240
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-pass-state-fixtures.json.gz",
+    "fixtureBytes": 220307,
+    "fixtureSHA256": "0cf52560926e9164ebc704ba4969f7bed69f54426fe60bd662a7efe2972c680b",
+    "limits": [
+      "All seven original entries and actual5d0560 registration execute unchanged. Observation hook verifies gated register calls; no computation replacement.",
+      "Reset/select copy raw32-bit fields in original0x218-byte state at9718a0. Unwritten bytes retained. Mode helper returns old806ccc and uses exact nonzero enable semantics.",
+      "Registry mutations retain established count0..4 and disjoint valid-context domain. Gate-disabled and full-registry cases supply invalid context pointers to prove short-circuit behavior.",
+      "Only CPU state, selection and registration covered. Actual596870 draw/packet finalization, full frame lifecycle, GPU output and managed runtime equality remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowPassStateHarness",
+    "arguments": [
+      "reports/geometry-shadow-pass-state-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1440,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowPassStateHarness.cs",
+      "bytes": 3799,
+      "sha256": "6ebfa45eb5af712ee511bdbaf513b39a0d8702782cb3fd9345cbbd5f7a8af356"
+    },
+    "compileStatus": "passed",
+    "comparison": "Context/pass bytes, mode, registry and defined return values."
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowPassState.dll",
+          "ShadowPassState.cs",
+          "ShadowContextRegistry.cs",
+          "SortedPackets.cs",
+          "FrameReset.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowPassState.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowPassStateHarness.exe",
+          "harness\\ShadowPassStateHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowPassState.dll",
+      "bytes": 14336,
+      "sha256": "b77f89f99660d5018e261af9b215261c7b4e4136eade5bfc6dcef73dc9567ed2"
+    }
+  },
+  "observations": [
+    "Original5d4290 selectively clears17 DWORDs in the0x218-byte state at9718a0 and writesffffffff at offsets0/40; all other bytes remain untouched. It returns1. Adapter5d4300 forwards an unused argument and returns the same result.",
+    "SelectVolume5954c0 writes active=1 at9718d8, context ECX at9718dc, and raw volume argument at9718e0. It does not dereference the context, validate the volume or issue packets.",
+    "Mode helper5d0530 returns the previous806ccc value. Nonzero first argument stores the second; zero storesffffffff regardless of the second. This is significant in596870, whose apparent restore call uses zero and therefore disables rather than restoring the supplied old word.",
+    "Invalidate5d0650 clears only shared visibility-cache flag9715a0. Registration wrappers596920/596980 require byte8264c4!=0 and DWORD8264bc==2, then register primary context955b38 through original5d0560. One wrapper tail-jumps after replacing its caller argument; the other makes an ordinary call.",
+    "The actual registry helper preserves its existing full-capacity, enabled and duplicate checks. Inactive gates do not touch state; full-capacity registration does not dereference the supplied context. Native fixtures use invalid context pointers in both cases.",
+    "1440 original cases compare all persistent context bytes, pass-state bytes, mode, registry words and defined returns. The native register entry hook confirms exact gated invocation counts, without replacing the helper.",
+    "Native caller4927f0 updates shadow selection596a30, resets pass state, registers through596920 around normal scene drawing, then later invokes special shadow pass596870. That latter routine still requires packet-list finalization5efff0 and snapshot5f3950 before this recovered state logic forms a complete frame path.",
+    "Only CPU state adapters and registry gates are reconstructed here. No claims about full pass scheduling, packet-list/GPU execution or managed runtime equivalence. Core and replay compile successfully."
+  ],
+  "remainingGaps": [
+    {
+      "id": "packet-finalization",
+      "status": "5efff0 packet-list completion and5f3950 pass snapshot remain unreconstructed."
+    },
+    {
+      "id": "full-shadow-pass",
+      "status": "596870 drawing and packet finalization remain separate; these helpers cover CPU state prerequisites only."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-pass-state-native.py",
+    "bytes": 5323,
+    "sha256": "356f0eb2b8e032ac8067f4e6a1bd2c0a56a66c8b0a715a33c4135dfe3ea4bc2a"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-pass-state-assembly.json",
+    "bytes": 8436,
+    "sha256": "9673426c2442cd0b7169ff8b4bcafdf85fd894000f4048e905b9e288eb66304a"
+  }
+}

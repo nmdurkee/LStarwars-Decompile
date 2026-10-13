@@ -1,0 +1,17 @@
+LIGHT VIEW AND ORTHOGRAPHIC CONFIGURATION
+
+{"cases": 2816, "lookat": 512, "persistentBytes": 23068672, "orthographic": 512, "setup": 512, "wrapper": 512, "projection": 512, "chain": 256}
+
+LookAt5b7390 stores target-eye differences, normalizes forward, normalizes cross(up,forward) into right, then normalizes cross(forward,right) into vertical. Basisvectors fill output columns; translations are ordered(-eyeX*axisX-eyeY*axisY)-eyeZ*axisZ. Fourthcolumn0/0/0/1.
+
+ConfigureView5952c0 independently normalizes target-eye and stores context+770XYZ/W1, copies eyeXYZ/W1 to+760, then actualLookAt populates+780. It leaves the second lightmatrix+7c0 and unrelated contextbytes untouched.5c6c10 is the cdecl context-pointer ABI adapter.
+
+Orthographic5b79d0 uses extents(left,right,bottom,top,near,far). DiagonalXYZ=2/(high-low), translationXYZ=(low+high)/(low-high); remaininglanes0 exceptW1. Extended sums/differences/divisions are retained until finalfloat32 stores. ConfigureOrthographic595360 writes context+800mode0 then emits thismatrix at+7c0.
+
+Existing gameplayFacingMath.Normalize mapping remains authoritative for its own earlier domain. This module uses private extended-precision normalization support to preserve stricter instruction order and signedzero, without adding a duplicate native entrymap.
+
+2816 original comparisons cover512each lookAt/orthographic/setup/ABIwrapper/projectionsetter plus256sequential lightsetup+orthographic+full5e8950extraction chains;23068672persistentbytes compare exactly except alreadyproven undefined extractionpadding.
+
+Finite synthetic source/target/up/extents include coincidenteye/target andparallelup degeneracies. Composedextraction uses six authoredCU2cameratransforms. All computationalnativecalls execute; no native source/target selector or gameplaylight choice is invented.
+
+Cores/replay compile only. Upstream596a30 obtains player/camera/lightvalues and splitdistances; it remains outside thisbatch. Actualregistry/consumer integration and GPUoutput remain separate.

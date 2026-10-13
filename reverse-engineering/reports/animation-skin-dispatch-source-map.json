@@ -1,0 +1,59 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 0,
+  "refines": [
+    "0x5e0530"
+  ],
+  "scope": "Extends geometry selection-only mapping; retain DynamicCommandSupport.SelectPacketRoutine source and its full predicate domain.",
+  "mappings": [
+    {
+      "address": "0x5e0530",
+      "sourceFile": "reverse-engineering/reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "sourceSha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47",
+      "methods": [
+        {
+          "name": "SkinMeshPacketDispatch.Build",
+          "line": 27
+        }
+      ],
+      "coverage": "extends selection projection with original ABI and complete non-billboard writer composition",
+      "qualification": "Composes prior DynamicCommandSupport.SelectPacketRoutine with ordinary/prefix writers and MorphMeshPackets. Nonnull skin pointer selects5e0390 independently of morph pointer; no mode label is used. Billboard opcode8f is explicitly excluded from this full-writer adapter; prior geometry selection projection retains precedence evidence. Valid disjoint CPU state, successful COM services, non-signaling-NaN words and finite deformation. Diagnostic return is selected writer identity, not native EAX.",
+      "comparisonStatus": "Original native exact complete-chain differential passed; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-skin-dispatch-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/SkinMeshPacketDispatch.cs",
+      "sha256": "918fc9bbc7dbd69d553460e80099573f004de171968ff27dec96d18b6256cb47"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/animation/MorphMeshDeformation.cs",
+      "reconstructed/animation/MorphMeshPackets.cs",
+      "reconstructed/animation/BillboardMeshPackets.cs",
+      "reconstructed/geometry/SortedPackets.cs",
+      "reconstructed/geometry/FrameReset.cs",
+      "reconstructed/geometry/DynamicCommandSupport.cs",
+      "reconstructed/geometry/OrdinaryMeshPackets.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-skin-dispatch-portable-verify.cs",
+      "sha256": "d8aaeeb58ed9432452499a02f9b984dd98a50ef16c03fdc75f3a2849b680e271"
+    },
+    "entrypoint": "SkinMeshPacketDispatchVerify.Main",
+    "arguments": [
+      "reports/animation-skin-dispatch-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3512,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-skin-dispatch-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-skin-dispatch-tests.json",
+    "reverse-engineering/reports/animation-skin-dispatch-assembly.json"
+  ]
+}

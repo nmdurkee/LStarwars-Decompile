@@ -1,0 +1,63 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Original table-based heading math used by moving path attachments.",
+  "primaryNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x5be030",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathAngles.cs",
+      "sourceSha256": "5db83bdf4fce71f6733e1c139572ec27a46393c4ceaba23a609e7bd14750b726",
+      "methods": [
+        {
+          "name": "PathAngles.FirstQuadrant",
+          "line": 8
+        }
+      ],
+      "coverage": "complete finite nonnegative first-quadrant table helper; original low16-bit result",
+      "qualification": "Finite inputs; first-quadrant helper requires nonnegative components, not both zero, and the exact513-word table. General direction handles zero inputs. NaN/infinity and invalid table storage are excluded. Native upper EAX bits of5be030 are not part of the ushort return contract. The angle table is an original-data dependency with explicit provenance, not a newly derived analytic approximation. No authored command credit. Managed replay compiled only; native results compare an independent Python model with original x86.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-angle-tests.json",
+        "reverse-engineering/reports/gameplay-path-angle-assembly.json"
+      ]
+    },
+    {
+      "address": "0x5be2d0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathAngles.cs",
+      "sourceSha256": "5db83bdf4fce71f6733e1c139572ec27a46393c4ceaba23a609e7bd14750b726",
+      "methods": [
+        {
+          "name": "PathAngles.Direction",
+          "line": 15
+        }
+      ],
+      "coverage": "complete finite signed full-width direction-angle helper",
+      "qualification": "Finite inputs; first-quadrant helper requires nonnegative components, not both zero, and the exact513-word table. General direction handles zero inputs. NaN/infinity and invalid table storage are excluded. Native upper EAX bits of5be030 are not part of the ushort return contract. The angle table is an original-data dependency with explicit provenance, not a newly derived analytic approximation. No authored command credit. Managed replay compiled only; native results compare an independent Python model with original x86.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-angle-tests.json",
+        "reverse-engineering/reports/gameplay-path-angle-assembly.json"
+      ]
+    },
+    {
+      "address": "0x5bfe00",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/PathAngles.cs",
+      "sourceSha256": "5db83bdf4fce71f6733e1c139572ec27a46393c4ceaba23a609e7bd14750b726",
+      "methods": [
+        {
+          "name": "PathAngles.Radians",
+          "line": 22
+        }
+      ],
+      "coverage": "complete finite angle-to-radians wrapper with original float32 store",
+      "qualification": "Finite inputs; first-quadrant helper requires nonnegative components, not both zero, and the exact513-word table. General direction handles zero inputs. NaN/infinity and invalid table storage are excluded. Native upper EAX bits of5be030 are not part of the ushort return contract. The angle table is an original-data dependency with explicit provenance, not a newly derived analytic approximation. No authored command credit. Managed replay compiled only; native results compare an independent Python model with original x86.",
+      "comparisonStatus": "Original-PC comparisons passed; portable replay compile only.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-path-angle-tests.json",
+        "reverse-engineering/reports/gameplay-path-angle-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-path-angle-contract.json"
+}

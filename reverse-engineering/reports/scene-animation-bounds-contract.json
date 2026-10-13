@@ -1,0 +1,172 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "comparisons": 22076,
+    "mismatches": 0,
+    "examples": [],
+    "authoredInstances": 19838,
+    "authoredFiles": 185,
+    "poseChainCases": 120,
+    "unboundInstances": [],
+    "paddingAudit": [
+      {
+        "centerFormat": false,
+        "stackWord": "0x0",
+        "rawOutput": [
+          0,
+          0,
+          0,
+          0,
+          1073741824,
+          1082130432,
+          1086324736,
+          0
+        ]
+      },
+      {
+        "centerFormat": false,
+        "stackWord": "0x12345678",
+        "rawOutput": [
+          0,
+          0,
+          0,
+          305419896,
+          1073741824,
+          1082130432,
+          1086324736,
+          305419896
+        ]
+      },
+      {
+        "centerFormat": false,
+        "stackWord": "0xdeadbeef",
+        "rawOutput": [
+          0,
+          0,
+          0,
+          3735928559,
+          1073741824,
+          1082130432,
+          1086324736,
+          3735928559
+        ]
+      },
+      {
+        "centerFormat": true,
+        "stackWord": "0x0",
+        "rawOutput": [
+          1065353216,
+          1073741824,
+          1077936128,
+          1075627121,
+          1065353216,
+          1073741824,
+          1077936128,
+          0
+        ]
+      },
+      {
+        "centerFormat": true,
+        "stackWord": "0x12345678",
+        "rawOutput": [
+          1065353216,
+          1073741824,
+          1077936128,
+          1075627121,
+          1065353216,
+          1073741824,
+          1077936128,
+          305419896
+        ]
+      },
+      {
+        "centerFormat": true,
+        "stackWord": "0xdeadbeef",
+        "rawOutput": [
+          1065353216,
+          1073741824,
+          1077936128,
+          1075627121,
+          1065353216,
+          1073741824,
+          1077936128,
+          3735928559
+        ]
+      }
+    ],
+    "elapsedSeconds": 19.539648294448853,
+    "fixture": {
+      "path": "reports/scene-animation-bounds-native-fixtures.json.gz",
+      "bytes": 1928642,
+      "sha256": "39c56130c8ea48c9ee2d285d73bea349335d489cdbda87f41afe7e0cf5dbff0f"
+    }
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/gameplay/SceneAnimationBounds.cs",
+      "sha256": "ebce6ac55e72454898b63838e71c8190fe97502736019259df33583deb7f7390"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs"
+    ],
+    "harnessDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/SceneAnimationBounds.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs"
+    ],
+    "harness": {
+      "path": "tools/scene-animation-bounds-portable-verify.cs",
+      "sha256": "b7c399abd20058ab13c0464fd04117bf3ea9a938f03736ffefcb72bbd9e44459"
+    },
+    "entrypoint": "SceneAnimationBoundsVerify.Main",
+    "arguments": [
+      "reports/scene-animation-bounds-native-fixtures.json.gz",
+      "references/native-animation-sine-table.f32",
+      "<output.json>"
+    ],
+    "preparedComparisons": 22076,
+    "status": "Core/harness compiled, not executed.",
+    "compileEvidence": "reports/scene-animation-bounds-compile.json"
+  },
+  "contracts": {
+    "gate": "5ea660 requires reference, display pointer, scene pointer, descriptor pointer and descriptor+0x74 flag0x10000. It ORs display+0xb8 bit0x400 before calling5df480. Missing preconditions leave flags and bounds unchanged.",
+    "selection": "5df480 prefers normal instance transform when reference+4 is nonnull: instance is*(normal+0x40), animated matrix is*(instance+0x48), fallback is instance itself. Otherwise display+0xc4 supplies animated matrix unless0/-1; fallback is display+0x40. Display remains required for its local box and bounds index even on the normal-instance path.",
+    "localBox": "Display+0x80 and+0x90 are local minimum/maximum XYZ. They are not center/extents. Original half-size stores(max-min)float32 before multiplying0.5; center similarly stores(max+min)float32 before0.5.",
+    "worldBox": "Multiply local half-size by the absolute upper3x3 to get world axis-aligned half-extents; each component has one finalfloat32store. Transform local center by the full selected affine matrix with native x87 order. Descriptor+0x44 points to32-byte records indexed by display+0xc0.",
+    "format": "Descriptor flag0x4000 writes centerXYZ at+0, auxiliary sqrt(ex+ey+ez) at+0xc (zero ifsumnegative), and half-extentsXYZ at+0x10. Without that flag, write center-extentXYZ then center+extentXYZ. The auxiliary is reproduced literally; no claim it is a geometric bounding-sphere radius.",
+    "padding": "Original copies uninitialized stack words into W lanes+0xc/+0x1c for min/max format, and+0x1c for center/extent format. Controlled stack patterns verify these vary independently of all meaningful inputs. Portable leaves old Values in those lanes and sets KnownMask0x77 or0x7f. Consumers must honor the mask; complete32-byte equivalence is not claimed.",
+    "integration": "Connect SceneAnimationPoseBinding.RefreshBounds by assigning its latest TargetMatrix into the corresponding bounds-reference animated matrix and invoking Notify.120 full original552760->5ea390->5ea660->5df480 chains verify original curve, cache, translation and bounds behavior. Other cases cover both format modes and all gate/fallback branches. Original603a10 is a forwarding thunk to5f7490, a ret; it causes no additional PC side effect."
+  },
+  "verification": {
+    "method": "Original full5ea660/5df480 and callees execute in isolated x86 with no instruction or callback replacement. Exact meaningfuluint32 output lanes, dirtyflags and untouched neighboring records compared. All19838 exported animated instance bindings across185 scenes use source-bound matrices/localboxes. Runtime gate is enabled explicitly for the authored arithmetic cases; not a claim that shipped source flags alone control live initialization.",
+    "composition": "120 native full552760 calls use synthetic but valid packed animation clips; prepared managed harness composes SceneAnimationPose and SceneAnimationBounds through the real callback binding.",
+    "sourceBinding": "Raw source local min/max/base matrices are read at special record offsets; animation-instance matrix and objectindex come from existing source-hashed export. All instances resolved without missing object bindings.",
+    "tools": [
+      {
+        "path": "tools/scene-animation-bounds-fixture.py",
+        "sha256": "7213bdae3ad776ad731433096f3c90a4644b10ddb9ed8b51eb32397d370037f9"
+      },
+      {
+        "path": "tools/scene-animation-bounds-verify.py",
+        "sha256": "7b223a6c516cf813c8d95c1a2271f81d5e7aa3ad9e6b8e0c52b03a5215580bf2"
+      },
+      {
+        "path": "tools/scene-animation-bounds-report.py",
+        "sha256": "b811ac57df4d871dd78915e7877473f3dc331562a845e5bf4d8263b2c551956f"
+      }
+    ]
+  },
+  "limits": [
+    "Finite inputs and stored intermediate/results, valid accessible records and target index. NaN/infinity/overflow and invalid raw pointers excluded.",
+    "Undefined padding is deliberately outside the equivalence claim and is represented by KnownMask. Geometry consumers currently recovered use XYZ/extent and ignore these W lanes.",
+    "This producer updates draw/culling bounds; collision-world rebuilding or moving-platform membership is not performed by these routines.",
+    "Managed binaries compiled only; native-vs-independent-Python evidence does not establish managed execution equivalence."
+  ]
+}

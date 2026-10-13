@@ -1,0 +1,75 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "angles": "5be590 adds and5be5b0 subtracts full32-bit inputs, masks to16 bits, then returns signed16-bit extension in EAX. Overflow and high input bits wrap;0x8000 is negative.",
+    "lines": "5bee20 computes3D infinite-line parameters. It stores the direction cross product tofloat32, computes its norm using original ordered x87 operations andsqrt, stores reciprocal norm then its square, and evaluates the two numerators with float32 displacement components. Each numerator is stored before multiplication by the stored inverse-square scale. Both outputs are written even when the zero scale makes the return false. There is no coplanarity or0..1 segment check; those checks belong to callers.",
+    "validation": "6,498 original-PC records pass:4,352 line-parameter cases and1,073 cases for each angle helper. All179 instructions execute. Line cases include zero/parallel/near-parallel and skew3D directions plus4,096 seeded finite layouts. Angle cases cover wrap boundaries and1,024 full32-bit random pairs. Actual5c0240/CRT square root executes, with no behavior adapter. The source directly reuses BuildEffectSound.SquareRoot."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 6498,
+    "counts": {
+      "lines": 4352,
+      "add": 1073,
+      "subtract": 1073
+    },
+    "mismatches": 0,
+    "examples": [],
+    "instructionCoverage": {
+      "total": 179,
+      "executed": 179,
+      "missing": []
+    },
+    "authoredCommandUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathCornerMath.cs",
+      "bytes": 2390,
+      "sha256": "caac19325777b3fb03cf7706393b9e2b5bc63446d08caf30189bd335668203b1"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-corner-math-portable-verify.cs",
+      "bytes": 2068,
+      "sha256": "1e3b3f3f27a20dbace57e6b8ef67259519c188c84e283c1f5b38d4f23dd269f4"
+    },
+    "entrypoint": "GameplayPathCornerMathVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-corner-math-native-fixtures.json",
+      "reports/gameplay-path-corner-math-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-corner-math-native-fixtures.json",
+      "bytes": 1012124,
+      "sha256": "d2d321551c7e23f51fe75598f79c30fea86df6f70a63b70afe9c4780e03bf600"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/BuildEffectSound.cs",
+        "bytes": 4278,
+        "sha256": "de4c1908b3f9482d61473ad929e8c9c2b5166c7544ea887f949ad9aacba55875"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+        "bytes": 20731,
+        "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-corner-math-verify.exe",
+        "bytes": 544256,
+        "sha256": "6e3781f975262a18062792dfa26d17ceee7bf5efd332588d8bdd3a3619f08229"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Finite inputs and intermediates, disjoint valid input/output buffers; underflow to zero is retained but overflow/NaN/infinity are excluded.",
+    "The Boolean only tests whether the stored inverse-square scale is nonzero. It must not be interpreted as proof that two finite3D segments intersect.",
+    "This is a dependency of51c150 path-corner construction, not the completed corner or51d7b0 steering contract.",
+    "No authored command credit; no re-credit for square root or arithmetic support. Managed replay compiled only; native comparisons use an independent exact-arithmetic model."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 1,
+  "newNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x5e2920",
+      "sourceFile": "reverse-engineering/reconstructed/animation/LegacyCylinderShadows.cs",
+      "sourceSha256": "7d696b3abd3e52fc6a17f8ad0a2d01f629e143bc192d513eb93231ef7bb0644a",
+      "methods": [
+        {
+          "name": "LegacyCylinderShadows.Emit",
+          "line": 55
+        }
+      ],
+      "coverage": "complete bounded cylinder CPU side writer",
+      "qualification": "Finite active resource words, matrix and direction, finite stored results, adequate disjoint output backing. Raw center-X low bit selects four or ten sides. Ignored words 9 and 13..15 remain opaque. Precise float/double spills and native counter differences retained. No graphics-device submission claim.",
+      "comparisonStatus": "Original complete writer exact versus independent model; managed core/replay compiled only.",
+      "nativeEvidence": "reverse-engineering/reports/animation-shadow-cylinder-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/LegacyCylinderShadows.cs",
+      "sha256": "7d696b3abd3e52fc6a17f8ad0a2d01f629e143bc192d513eb93231ef7bb0644a"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/gameplay/PathAngles.cs",
+      "reconstructed/gameplay/BuildEffectSound.cs",
+      "reconstructed/gameplay/ObstacleCommands.cs",
+      "reconstructed/gameplay/SceneryNameBindings.cs",
+      "reconstructed/animation/LegacyPolygonShadows.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-shadow-cylinder-portable-verify.cs",
+      "sha256": "454ccfc78bc978743536ca86ebc31a4018b7a7791b04e6adbc14055699abf78b"
+    },
+    "entrypoint": "LegacyCylinderShadowsVerify.Main",
+    "arguments": [
+      "reports/animation-shadow-cylinder-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3874,
+    "status": "Compiled only; managed execution pending.",
+    "compileEvidence": "reports/animation-shadow-cylinder-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-shadow-cylinder-tests.json",
+    "reverse-engineering/reports/animation-shadow-cylinder-assembly.json"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "primaryNativeEntryPoints": 3,
+  "mappings": [
+    {
+      "address": "0x5f4ff0",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterLayerSubmission.cs",
+      "sourceSha256": "dd405bada650ea5931a2610874d3f715cd11f97b6b8ae11c536843c6634412a8",
+      "methods": [
+        {
+          "name": "CharacterLayerSubmission.Submit",
+          "line": 79
+        }
+      ],
+      "coverage": "character-layer selection, transform preparation and ordered renderer handoffs",
+      "qualification": "Visibility5da980,secondary5ea6a0,attachment5f9fa0 anddynamic5f0f00 remain explicit service boundaries. Attachment original globally-disabled branch executes in fixtures. Valid immutable layer/joint arrays, finite transforms, nonnegative nonwrapping arena; map IDs signed16. Scalar D3DX policy explicit. Callback arena increments are tested synthetic effects, not a full downstream renderer claim.",
+      "comparisonStatus": "Original native exact differential passed under explicit scalar D3DX policy; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-layer-submission-tests.json"
+    },
+    {
+      "address": "0x5c0350",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterLayerSubmission.cs",
+      "sourceSha256": "dd405bada650ea5931a2610874d3f715cd11f97b6b8ae11c536843c6634412a8",
+      "methods": [
+        {
+          "name": "CharacterLayerSubmission.PrepareSkin",
+          "line": 53
+        }
+      ],
+      "coverage": "finite disjoint matrix-array wrapper under explicit scalar D3DX policy",
+      "qualification": "Count0..256, valid inverse-bind andjointmatrix arrays. Computes left[i]*right[i] in source order using original installedD3DX9_35 scalar implementation as oracle. Negative counts, pointeraliasing and CPU/OS export dispatch excluded.",
+      "comparisonStatus": "Original native exact differential passed under explicit scalar D3DX policy; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-layer-submission-tests.json"
+    },
+    {
+      "address": "0x5c0500",
+      "sourceFile": "reverse-engineering/reconstructed/animation/CharacterLayerSubmission.cs",
+      "sourceSha256": "dd405bada650ea5931a2610874d3f715cd11f97b6b8ae11c536843c6634412a8",
+      "methods": [
+        {
+          "name": "CharacterLayerSubmission.Concatenate",
+          "line": 49
+        }
+      ],
+      "coverage": "finite single-matrix wrapper under explicit scalar D3DX policy",
+      "qualification": "Valid16float matrices andownedoutput. The original forwards to imported D3DXMatrixMultiply; fixture explicitly binds originalD3DX9_35 scalar implementation. No claim that every physical CPU selects this policy or that arbitrary pointer alias cases are reconstructed.",
+      "comparisonStatus": "Original native exact differential passed under explicit scalar D3DX policy; compiled managed execution pending.",
+      "nativeEvidence": "reverse-engineering/reports/animation-layer-submission-tests.json"
+    }
+  ],
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterLayerSubmission.cs",
+      "sha256": "dd405bada650ea5931a2610874d3f715cd11f97b6b8ae11c536843c6634412a8"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-layer-submission-portable-verify.cs",
+      "sha256": "929aa4434d73dd00be10cbb0586f1f34ebf3eb9d3c8b163ca0e1209863a8a80a"
+    },
+    "entrypoint": "CharacterLayerSubmissionVerify.Main",
+    "arguments": [
+      "reports/animation-layer-submission-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 4528,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-layer-submission-compile.json"
+  },
+  "nativeEvidence": [
+    "reverse-engineering/reports/animation-layer-submission-tests.json",
+    "reverse-engineering/reports/animation-layer-submission-assembly.json"
+  ]
+}

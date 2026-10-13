@@ -1,0 +1,21 @@
+SHADOW CONTEXT STARTUP AND PARAMETERS
+
+{"cases": 1352, "float": 280, "persistentBytes": 23892544, "cdecl": 280, "integer": 280, "initialize": 512}
+
+Scalar parameter helper5953b0 takes context in ECX and pops8 stack bytes. Adapter5c6c90 accepts three cdecl arguments. Integer helper5c6cc0 recognizes only selector4 at context+800 and selector5 at+804.
+
+Scalar selector mapping:0->80c,1->810,2->814,3->818,6/7->110,8->490,9/10/11->104,12/13/14->100,15/16->484,17/18->480,19->81c,20->820. All others are no-ops. Native out-of-range comparison is unsigned, so negative selector bit patterns also fall through.
+
+Unknown selector fixtures pass an invalid context address and prove it is not dereferenced. Known scalar stores execute original x87 load/store and preserve finite subnormal/signed-zero bits. Signaling NaNs are deliberately outside the scalar source domain.
+
+Original596530 allocates the first context and stores its pointer in955b38, configures its fields and orthographic matrix, then allocates/configures the second at955b3c. Each context consumes four command and four shader slots, exhausting all eight slots in those pools.
+
+Both contexts get integer mode804=2 and orthographic extents[-60,60,-60,60,0,300], with mode800=0. Primary scalar fields80c/810/814/818 are0.85/3.5/0.4/0.2; secondary fields are0.25/3.5/0.85/0.2. Stored values use exact original float32 words.
+
+Primary biases100/104/480/484 are0.0001; secondary biases100/104 are0.0001 while480/484 retain constructor defaults. Primary stays disabled. The final inlined enable transition sets secondary808=1 after rewinding its four record tails to heads.
+
+The portable initializer reuses recovered constructor, orthographic and enable helpers, exposes the original two global pointers as a returned pair, and preserves untouched pool bytes. It checks sufficient pool capacity; the original has no valid allocation-failure path for this caller.
+
+1352 complete original comparisons include512 complete startup chains,280 float helper calls,280 cdecl calls and280 integer calls. All three allocation cursors and varied context occupancy are exercised; all persistent bytes and ordered original constructor/parameter/matrix call entries agree with the model.
+
+Existing constructor/light/lifecycle sources are unchanged. This closes the initial state producer used by ShadowSelection, but it does not implement broader frame ownership, registry scheduling, resource destruction or GPU rendering. C# core/replay compile only.

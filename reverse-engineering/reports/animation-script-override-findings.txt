@@ -1,0 +1,31 @@
+SCP OVERRIDE ANIMATION
+
+9039 exact original-PC checks; 0 mismatches.
+
+guards
+516980 returns1 before writes unless script packet, packet+0xd0 owner, owner+0 underlying object and firstTime are nonzero. firstTime is tested for zero, not equality1. Native zero/negative signed token count resets both override fields to-1 after valid pointer gates.
+
+precedence
+Each token first tests exact case-insensitive from=All, then searches for from= anywhere, then to= anywhere. Last assignment wins. Exact from=All stores low16 of global character system+8; a prefixed xfrom=All resolves the literal name All instead. A missing destination (-1) clears source at the end; valid destination with missing source remains stored but inactive.
+
+lookup
+62e000 traverses characterData+10 in76-byte rows until null name. A case-insensitive first match returns signed16 row+8. Native folding maps ASCII a-z and every byte>=e0 by subtracting0x20, including nonletterbytes; Unicode/invariant string comparison is not substituted.
+
+expression
+Every otherwise-unrecognized token with a processor invokes514920(packet,processor,tokens[0]), stores its float32 return at processor+9c, and then continues. reset/clear/default have no dedicated reset branch. They clear overrides because no to= was resolved, and also evaluate as expressions. The reconstructed command accepts an explicit expression service. The native fixture executes original514920/callees with a null custom symbol callback.
+
+objectAlias
+Native player script controller is embedded at actor+2c8. Command output controller+126/+128 therefore aliases actor+3ee/+3f0 consumed by418ca0. Existing AnimationControl.AdvancePlayerWithoutEvents copies bookkeeping fields then substitutes requested action when source!= -1 and either source233 with context!=28, or requestedAction==source. The consumer hardcodes233, whereas the command reads global count; fixtures test mismatched counts rather than silently equating them.
+
+authored
+All102 shipped command occurrences replayed in four actor/firstTime/context scenarios. Resolved target bindings are synthetic fixture inputs, not asserted live character resolution. Lookup additionally checks3004 name/action pairs produced by the prior original-native authored block parser, in source order per configuration; source file hashes checked. Exact names and swapped case are both checked.
+
+chain
+1506 full original command-to418ca0 chains verify embedding and substitutions. Selection callback is suppressed by APIflag40000 and model pointer isnull, so original consumer returns after verified bookkeeping/override. This does not claim full active-model animation timing for these cases; that helper remains separately bounded and tested.
+
+Limits
+Non-NUL byte strings and valid terminated definition rows. The managed array boundary replaces native pointer traversal.
+Expression evaluation514920 is a portable service boundary; fixture coverage does not claim arbitrary expression or custom callback equivalence.
+Authored lookup table records are known original-parser outputs under documented prior flags; character initialization/inheritance remains its separate contract.
+Command chains validate the actual no-model early return; renderer, model activation and full gameplay loop remain outside this batch.
+Managed source and harness compile only, with execution pending.

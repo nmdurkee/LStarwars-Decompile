@@ -1,0 +1,116 @@
+{
+  "schema": "recovered-geometry-finish-pipeline-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/SceneFinishPipeline.cs",
+      "bytes": 7327,
+      "sha256": "6e2fe3301196240f59e5f15d4e8017ccdc0feea6f6ff0210a7b70552ece1dda7"
+    }
+  ],
+  "nativeMappings": [],
+  "compositionMappings": [
+    {
+      "address": "0x5f0d70",
+      "method": "SceneFinishPipeline.Run",
+      "sourceFile": "reconstructed/geometry/SceneFinishPipeline.cs",
+      "coverage": "composition-adapter-of-existing-native-mappings",
+      "existingNativeMapping": "StaticFinalization.Finish in geometry-static-finish-source.json",
+      "limitations": "Zero-lock normal finish only; finite<=256 registered scenes, dimensions<=1000000, valid writable pointers, acyclic sorted links and available command capacity. DynamicMaterialQueue finite domain applies. Metadata/packet regions must not partially overlap; identical command targets and matrix aliases retained. Compiled execution pending."
+    }
+  ],
+  "dependencies": [
+    "DynamicMaterialQueue.Flush",
+    "StaticFinalization.PatchMaterials",
+    "StaticFinalization.PatchAlpha",
+    "SceneSubmission.PatchClipControls",
+    "ShaderContextEmission.CompleteSorted",
+    "RenderPacketMemory"
+  ],
+  "native": {
+    "report": "geometry-finish-pipeline-native-validation.json",
+    "passed": true,
+    "counts": {
+      "cases": 60,
+      "sources": 60,
+      "queuedAdds": 240,
+      "clipPatches": 40,
+      "alphaPatches": 40,
+      "materialPatches": 120,
+      "changedShaderCalls": 837,
+      "appendCalls": 5022,
+      "checkedBytes": 47080960
+    },
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "boundaries": [
+      "Entire original5f0d70 and called CPU helpers execute unchanged; observation hooks only. Lock handle0 selects original no-lock path.",
+      "Each case combines4 new dynamic material additions with actual authored clip-item/predecessor-matrix alias maps, material flag/gate records, control material indexes and sort ranges. Runtime packet links,visibility bits,shader contexts and registry are controlled valid fixtures, not a recorded game frame.",
+      "Dynamic groups have native null-owner branch; finite static registry has1 authored owner per case.",
+      "CPU memory and call order only; managed execution and GPU consumption unclaimed."
+    ]
+  },
+  "managed": {
+    "schema": "geometry-finish-pipeline-managed-check-v1",
+    "caseCount": 60,
+    "nativeEvidence": "geometry-finish-pipeline-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\scene-finish-pipeline.bin.gz",
+    "fixtureBytes": 2771827,
+    "fixtureSHA256": "de4e495ebe5a872188b4801fcd0b3a016c38980a86b870a9345247909936ec87",
+    "uncompressedBytes": 47082888,
+    "uncompressedSHA256": "f5c4fcdfccd7491d0549441f9e8c8c57a8b9f972ca6964cf544e0e135de141d6",
+    "status": "prepared-not-executed",
+    "mainType": "SceneFinishPipelineHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Compiled C# equality pending; no program launch performed."
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/SceneFinishPipelineHarness.cs",
+    "bytes": 1765,
+    "sha256": "d72a25df8eaee4a0d5567b7816c93363927948a4861b61b85c147ea5d9716c7b"
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.FinishPipeline.dll",
+    "bytes": 8192,
+    "sha256": "25f81e1aefe5a092f456fb6de62b60910aecc6eee839ddefafe7ca7313519139"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.dll /reference:Recovered.Geometry.StaticFinish.dll /reference:Recovered.Geometry.FrameReset.dll /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.ShaderEmission.dll /reference:Recovered.Geometry.DynamicPackets.dll /reference:Recovered.Geometry.DynamicQueue.dll /out:Recovered.Geometry.FinishPipeline.dll SceneFinishPipeline.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.FinishPipeline.dll /out:SceneFinishPipelineHarness.exe harness\\SceneFinishPipelineHarness.cs"
+  },
+  "adapters": [
+    "Raw original pointer records become typed StaticFinishScene views only while invoking existing patch helpers. Duplicate material command targets share compact item indices; repeated matrix pointers share float arrays. Only control bytes and the alpha lane are committed.",
+    "Passed memory root replaces original0x973dbc, root+0x118/root+0x178 are current/previous24-DWORD counters; root+0x1e8 is zero lock handle; root+0x110 is shared sort head.",
+    "Shader global template,allocator control,signed-byte descriptor,token base and material gate mode are supplied explicitly.",
+    "Diagnostic entry-address list is not a native return value."
+  ],
+  "remainingGaps": [
+    {
+      "id": "dynamic-submission",
+      "address": "0x5f0f00",
+      "status": "Selection and transform handoff remains separate; the new fixture queues valid material additions explicitly."
+    },
+    {
+      "id": "nonzero-os-lock",
+      "status": "Original lock acquisition/release side effects are external; only original zero-handle branches validated."
+    },
+    {
+      "id": "live-game-frame",
+      "status": "Authored maps combined with controlled runtime state; not captured live frame state."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled only; saved-output comparison pending."
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "CPU byte streams and state verified; GPU visual output unclaimed."
+    }
+  ]
+}

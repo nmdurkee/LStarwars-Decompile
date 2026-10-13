@@ -1,0 +1,28 @@
+8370 original-PC comparisons; zero mismatches. Two mappings, no new command-use credit. Portable compile only.
+
+distance
+51a890 first returns FLT_MAX if the base routing-row pointer is null, even when start==destination; otherwise equal indices return0. Base routing uses matrix[current][destination] as an ordinal into current point adjacency. Slot255 or an edge whose ushort routeMask overlaps the exclusion DWORD returns FLT_MAX. It follows the opposite endpoint and adds edge total distance18 with a float32 store each step. An immediately repeated edge returns accumulated distance, including self-loop/repeated-edge fixtures; the function does not demand that destination was reached. Longer nonterminating malformed cycles are outside the source domain and receive a managed guard.
+
+cache
+Only group255 with exclusion0 uses the two-entry cache at node2e/2f and38/3c. A match in either slot returns its stored value. A miss shifts first entry to second, installs destination in first and zeroes first distance before walking. Normal success, no-route or exclusion failure stores the final result. A null adjacency connection returns FLT_MAX through an early path that leaves the newly installed cache distance at0. Synthetic null-edge fixtures preserve this observable distinction. Loaded cache contents are trusted; a cache hit does not revalidate graph flags.
+
+subroute
+A selected route requires start node58 membership bit; absence returns FLT_MAX. If destination is a member, route pointMap translates current/destination indices into that subgroup matrix. Out-of-range translated indices call512860 diagnostic and return FLT_MAX. If destination is outside, every listed exit is scored as distance(start,exit,selectedRoute,0) plus distance(exit,destination,255,selectedRouteBit), treating either FLT_MAX leg as FLT_MAX. Strictly smaller costs win. A start/exit or exit/destination identity uses zero for that leg. The source preserves recursion and float32 leg/addition stores; loaded valid exit membership prevents recursive malformed loops.
+
+next
+51be90 receives its creature packet in EAX and an output direction pointer as the stack argument. Null destination/current connection returns0 without touching direction. Start is current connection endpoint1 for direction byte0 and endpoint0 for any nonzero direction. Aligned destination index outside0..255 returns0. Base matrix ordinal below the start adjacency count chooses an edge and writes whether that edge endpoint0 differs from start. This direction write can persist even if later route checks return no edge.
+
+subgroupNext
+Selected-route absence from start node58 returns no edge. If the start boundary5a bit is absent OR the base chosen edge has the selected routeMask bit, it uses the subgroup table. A destination outside membership chooses the strictly minimum two-leg exit cost using the real Distance method; no finite candidate returns0. It then indexes subgroup matrix through start/target pointMap and selects an adjacency ordinal if in range. If the start boundary bit is set and the base edge has no route bit, the base edge is retained. Boundary5a is retained as its observed field/mask role; broader game labeling is not invented.
+
+source
+RoutingPath/Point/Connection/Group are portable loaded-table records. PC pointers become explicit connection identities and aligned point indices. Runtime loaders, dynamic table rebuilding, actor movement and collision remain separate. The two native bodies are reconstructed; only512860 diagnostic dispatch is an explicit side-effect callback. Defensive recursion/cycle guards apply outside terminating valid native inputs. Nonfinite or overflowing intermediate distances and invalid native backing pointers are excluded.
+
+verification
+8370 original-PC comparisons pass with zero mismatches across24 authored graphs containing all64 shipped subroutes and5 synthetic branch graphs. Tests include inside/outside subgroup destinations, exits, membership rejection, exclusion masks, both cache slots/misses, null base table, absent destination/current edge, signed invalid destination indices, null adjacency, repeated edge/self-loop and invalid subgroup map. Native51be90 calls the original51a890 recursively; neither body is replaced. Cache byte/float deltas and output direction are compared, not just returned distance. Historical base-route validation is referenced separately and not recounted. All next-helper instructions execute; remaining unexecuted distance instructions are reported exactly in tests. Portable core and replay compile; managed differential remains pending.
+
+Remaining
+This is route-table consumption, not a complete movement or collision solver.
+Loaded graph and membership/exit masks are required. Invalid pointers, unaligned destinations, malformed nonterminating graphs and nonfinite/overflowing distances are outside the reconstruction domain.
+Diagnostic512860 is observed through an explicit callback; full diagnostics infrastructure is not reconstructed.
+Pending managed execution is kept distinct from passing original-PC independent-model checks.

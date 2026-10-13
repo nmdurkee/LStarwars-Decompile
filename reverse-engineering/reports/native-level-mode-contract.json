@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-10-12T23:42:50.156Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "mission": "58a900 chooses explicit state or global9553d4 fallback; requires nonzero byte1d and nonnull opaque mission pointer+4.442aa0 calls this helper with null and returns float0/1.",
+    "minicut": "442bb0 is true for nonzero global855de0, or for nonzero fourth argument together with nonzero global9514e4. Globals are32-bit; argument interpretation remains unnamed.",
+    "hubBinding": "491b30 scans exactly10 names from native table7fab24, case-insensitive first match; null or missing returns-1. Names are hash-bound in native-hub-area-names.json.",
+    "hubCondition": "491b70 MOVSX reads signed16-bit global87b460 and compares to full32-bit bound. It permits matching-1. Initial int32 model produced2 mismatches, corrected and covered by upper-word regression cases.",
+    "visitedBinding": "442320 requires query/system/current chapter. Scan unsigned-byte chapter7d count of signed-short global-level IDs at60; compare query to inline level table951b78 records stride130 name+40. Return chapter-local ordinal, not global ID.",
+    "visitedCondition": "4423b0 sentinel-1 returns0. Otherwise read saved chapter-local record stride2e28 DWORD+2800 at87b2cc, maskbit0 and convert to float0/1. Other invalid indexes lack native guards and are outside prepared backing.",
+    "boundaries": "Mission/global mode producers, chapter loading and save persistence remain external. Original fixed hub names and independent prepared runtime records are used, not live game or loaded-save replay."
+  },
+  "commands": [
+    {
+      "kind": "scp-condition",
+      "name": "MissionMode",
+      "address": "0x442aa0",
+      "sourceUses": 49,
+      "qualification": "Full native helper/condition semantics on prepared mode/chapter/save state; producers and live-level loading external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "InMiniCut",
+      "address": "0x442bb0",
+      "sourceUses": 36,
+      "qualification": "Full native helper/condition semantics on prepared mode/chapter/save state; producers and live-level loading external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "InHubArea",
+      "address": "0x491b70",
+      "sourceUses": 42,
+      "qualification": "Full native helper/condition semantics on prepared mode/chapter/save state; producers and live-level loading external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "BeenToLevel",
+      "address": "0x4423b0",
+      "sourceUses": 31,
+      "qualification": "Full native helper/condition semantics on prepared mode/chapter/save state; producers and live-level loading external."
+    }
+  ],
+  "native": {
+    "cases": 1022,
+    "mismatches": 0,
+    "fullRegionComparisons": 1022,
+    "groups": {
+      "ResolveMission": 144,
+      "MissionMode": 242,
+      "InMiniCut": 104,
+      "BindHubArea": 66,
+      "InHubArea": 196,
+      "BindVisitedLevel": 221,
+      "BeenToLevel": 49
+    },
+    "authoredUses": {
+      "MissionMode": 49,
+      "BeenToLevel": 31,
+      "InMiniCut": 36,
+      "InHubArea": 42
+    },
+    "method": "Original7 helper/condition entries execute with actual case-folded string comparison and native fixed hub-name table. Exact opaque mission handle, float/index returns and complete input memory; no replacements."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/LevelModeConditions.cs",
+      "bytes": 2876,
+      "sha256": "835a1aea2ee9ead2b0988dbf2e0e2400f66c715a6cea7defe26fa073fc5958ea"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-level-mode-portable-verify.cs",
+      "bytes": 4121,
+      "sha256": "b2efea2ea70522c60392ef4b4e7b3901d8825ed30d8f1583eeeb14947456b46e"
+    },
+    "entrypoint": "LevelModeConditionsVerify.Main",
+    "arguments": [
+      "reports/native-level-mode-vectors.json",
+      "reports/native-level-mode-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-level-mode-vectors.json",
+      "bytes": 488428,
+      "sha256": "2745b61dfcb514b90edd5cb851ba267f3e6fe13a74bcda802e9070cc9715b568"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Prepared chapter table with signed-short global-level IDs and unsigned-byte local count; readable nonnegative referenced level IDs and save-record indexes except native sentinel-1.",
+    "Hub global is signed16-bit, compared to the full32-bit bound; upper stored bits do not participate. Mission pointer remains opaque. Mini-cut globals and save/chapter producers remain external.",
+    "Authored condition operands preserved on prepared runtime records, not loaded save-file or level execution. Managed replay pending."
+  ]
+}

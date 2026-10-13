@@ -1,0 +1,39 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "comparisons": 2180,
+  "counts": {
+    "draw": 514,
+    "deviceEvents": 152584,
+    "geometryServices": 74,
+    "overlay": 128,
+    "flush": 514,
+    "allocate": 1024
+  },
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports/animation-shadow-flush-native-fixtures.json.gz",
+    "sha256": "02442af4dece51dc091711f72a57f628c37d0c23dc7ea82b2ef49c0d1c24e1e7",
+    "bytes": 3989778
+  },
+  "services": {
+    "0x6e5700": 1,
+    "0x6e5290": 1,
+    "0x6e5340": 2,
+    "0x6e5630": 2,
+    "0x6e5670": 3,
+    "0x6e56c0": 1,
+    "0x6e5590": 4,
+    "0x6e4980": 3,
+    "0x6e49b0": 4,
+    "0x6df8b0": 0,
+    "0x5e4840": 2
+  },
+  "method": "Original CPU schedulers execute; exact device-wrapper and build-geometry calls are recorded at stated services. Compare full inline memory, unchanged external globals, ordered arguments, resets and allocation words. Geometry service applies explicit fixture counter changes; no actual GPU calls.",
+  "limits": [
+    "Device/cache services are recording boundaries and do not mutate tracked CPU state. Flush geometry service may change only vertex/group/generated counters.",
+    "Direct draw counts are bounded: vertexCount divisible by4 and at most14000, groupCount at most250; edge/start words retain full32-bit wrap semantics.",
+    "Draw scheduler uses immediate inline globals rather than allocated pointer contents. Preserve that original behavior; no assertion that this legacy GPU path is active or functional.",
+    "Allocate cursor is disjoint from global pointer slots; full32-bit cursor wrap allowed, allocation backing not dereferenced.",
+    "No managed or live graphics execution."
+  ]
+}

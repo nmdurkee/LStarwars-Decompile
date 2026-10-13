@@ -1,0 +1,81 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "d3dx": {
+    "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+    "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+    "bytes": 3727720,
+    "preferredBase": "0x400000",
+    "mappedBase": "0x20000000",
+    "matrixImplementationRva": "0x163599",
+    "highlowRelocations": 40053,
+    "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+  },
+  "comparisons": 718,
+  "counts": {
+    "cases": 718,
+    "queueEnqueues": 522,
+    "queueCalled": 676,
+    "queueBeforeDrawChecks": 11971,
+    "kind:populated": 298,
+    "activeBoundCases": 210,
+    "layerDraws": 11971,
+    "packets": 135160,
+    "skinPackets": 34256,
+    "shadowPackets": 90672,
+    "secondaryCalls": 12689,
+    "volumeTests": 5026,
+    "shadowShaderCalls": 90672,
+    "locks": 0,
+    "zeroReturnWithPackets": 41,
+    "noLayerDraws": 84,
+    "kind:empty": 42,
+    "kind:near-full": 42,
+    "kind:full": 42,
+    "kind:disabled": 42,
+    "kind:wrong-mode": 42,
+    "kind:suppressed": 42,
+    "kind:submission-disabled": 42,
+    "kind:no-layers": 42,
+    "kind:culled": 42,
+    "kind:secondary-only": 42
+  },
+  "authoredRigs": 298,
+  "authoredBoundRigs": 42,
+  "authoredBindingGroups": 120,
+  "bindingCatalogRigs": 244,
+  "mismatches": 0,
+  "fixture": {
+    "path": "reports\\animation-character-queue-packets-native-fixtures.json.gz",
+    "bytes": 3024875,
+    "sha256": "8ab17c5fc284c8ce823dd542c9abc49d8140a5ec3ee7f79aa3fdd8c09920b786"
+  },
+  "dependencies": [
+    {
+      "path": "tools/animation-character-shadow-packets-verify.py",
+      "sha256": "0f3584c2ad63f572adabb9f6a56220565bbe3c617dd3fd9686f8399fd5ffd6b7"
+    },
+    {
+      "path": "tools/animation-character-packets-verify.py",
+      "sha256": "4754993949c50c1b2a88187a0183537f202731be8502d8cf6190e384d9796853"
+    },
+    {
+      "path": "tools/animation-shadow-queue-verify.py",
+      "sha256": "544a5c63c721f098ec2a8d7518fb82758354237819b410682fffce93675a5e10"
+    },
+    {
+      "path": "reports\\animation-shadow-queue-native-fixtures.json.gz",
+      "sha256": "887e048013fac01c85e7fb00de322e2816e7d5d510003a85f67f3af4d557f54e"
+    },
+    {
+      "path": "reports\\animation-morph-mesh-native-fixtures.json.gz",
+      "sha256": "eb5b1e9e608fa19072bd4e3a7a54b40f9836ed32e085e06a81d4337650b7560f"
+    }
+  ],
+  "method": "Original5f4ff0 executes original legacy5f9fa0/5f9ed0 before actual normal/shadow dynamic packet calls. Original D3DX and packet writers execute; only successful COM Lock/Unlock is supplied. Entire persistent1MiB image plus entire29120-byte legacy queue, queue globals/call order, queue snapshot before every5f0f00 entry, layer/palette hashes, masks/cursor, packet order and COM events match independent models.",
+  "limits": [
+    "298 source-matched mesh rigs intersect42 of244 catalog rigs with shadow bindings;120 groups in that intersection. Exact shipped layer-to-mesh runtime loader association remains unproven; controlled handles route full authored topology to one source-matched mesh.",
+    "Queue initial populated slots contain preserved opaqueA5 bytes; this producer does not read or drain them. Shape pointers retain exact normalized authored offsets and are not dereferenced by this queue.",
+    "Finite scalar valid state; controlled shadow contexts and relocated scene/material records. Billboard/sway/fade have separate prior composition evidence and remain inactive in this sweep.",
+    "Two transient host-projection scratch regions remain excluded as in prior packet evidence. No graphics-device draw, queue drain, live scheduler or managed launch."
+  ]
+}

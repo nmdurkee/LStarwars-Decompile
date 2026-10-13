@@ -1,0 +1,25 @@
+PC CHARACTER SUBMISSION COMPOSITION
+
+6304 exact original comparisons; 0 mismatches.
+
+composition
+CharacterRenderPipeline.Submit delegates the ordering and selection loop to CharacterLayerSubmission.Submit. ResolveVisibility invokes CharacterVisibility.Classify with shared DynamicBoxState and first-joint root only in the center-on-root branch. SubmitAttachments invokes CharacterShadowQueue.Submit with the same world/joint matrices and caller-owned queue state. No duplicated native loop or numerical implementation is introduced.
+
+ordering
+Original5f4ff0 calls actual5da980 only when cached visibility is-1, then optional secondary visibility. If both invisible it clears the layer submission flag and leaves the queue unchanged. Otherwise it temporarily sets cached visibility, queues shadows, reserves skin palettes and calls rigid/smooth draw services in original order; it restores the prior visibility and clears the layer submission flag on return.
+
+sharedState
+Draw callback probes read the already-produced shadow count/sequence/flag, then mutate sequence modulo2^32 and advance the allocator. Expected later callback observations and final state confirm the adapter passes shared state by reference. Palette allocation remains before rigid callbacks; palette bytes remain inverseBind*jointWorld; morphpointers remain indexed by selection ordinal.
+
+coverage
+800 synthetic and5,504 authored composition cases (all688 rigs times8 scenarios): uncached normal/root-centered camera, disabled classifier, cached visibility bypass, secondary-only submission, early cull, zero selected layers, far-away camera rejection, full/nearly-full queue, reversed/duplicate/invalid layer maps and callback state changes. 4,728 submitted paths and1,576 culled paths. Entire queue and allocated arena are compared by SHA256 plus all relevant scalar state and ordered events.
+
+remaining
+Secondary region/light visibility5ea6a0 and dynamic mesh submission5f0f00 are callback services. Their fixture effects are precise bounded substitutes, not renderer equivalence. Runtime actor scheduling, GPU draw and PC shadow-volume rendering are not claimed. Stack-local transformed corners are not treated as persistent after subsequent calls.
+
+Limits
+Finite scalar camera and original D3DX9_35 matrix policy; immutable authored hierarchy/joint inputs.
+Draw callbacks are bounded observation/return/allocator/sequence effects, not a claim of full dynamic renderer/GPU behavior.
+Secondary5ea6a0 remains external. Corner arrays are stack-local diagnostics and are not claimed as persistent after later native calls.
+No live actor scheduling or final engine integration.
+Managed module/replay compile only; no generated executable launched and managed differential status remains pending.

@@ -45,6 +45,17 @@ if volumeReport.exists():
    gap['next']='Recover recursive traversal,partially clipped portal/FOV volumes,camera/projection/grid/tree production,and dynamic/shadow packets; validate compiled source in ordinary permitted execution.'
   if gap['id']=='compiled-cpu-runtime-verification':
    gap['evidence']+=' PortalVolumes.cs and harness compile;3,586 authored edge-volume cases are prepared in223,648bytes,172,128expected scalars,not executed.'
+runtimeReport=R/'geometry-portal-runtime-native-validation.json'
+if runtimeReport.exists():
+ runtime=json.loads(runtimeReport.read_text());assert runtime['passed'];runtimeManaged=json.loads((R/'geometry-portal-runtime-managed-check.json').read_text());bounds=json.loads((R/'geometry-portal-runtime-boundaries.json').read_text());assert bounds['passed']
+ for gap in r['gaps']:
+  if gap['id']=='visibility-game-state':
+   gap['status']='prepared-camera-modern-portal-recursion-native-validated-live-renderer-incomplete'
+   gap['evidence']=gap['evidence'].replace(' Live projection producer and partial-portal volume path remain open.','')
+   gap['evidence']+=f" Recursive traversal adds{runtime['counts']['traversal']} original cases over403rooms/326portals/60scenes,plus1,304projections/432FOVvolumes/3,912partial-portals;{runtime['counts']['childVolumeScalars']}volume scalars agree numerically. {len(runtime['excludedUnsafeCases'])}prepared cases exceed native16-volume storage and are excluded before unsafe writes. Loader602550 initializes depth to portal count,verified60times. Conversion/guard/cycle addendum passes127cases. C# compiles; execution remains pending."
+   gap['next']='Recover live portal-entry/camera/projection-cache consumers,room-output queries,activation/grid/tree owners,and dynamic/shadow packets; validate compiled source in ordinary permitted execution.'
+  if gap['id']=='compiled-cpu-runtime-verification':
+   gap['evidence']+=f" PortalTraversal.cs and harness compile;{runtimeManaged['fixtureCount']}complete cases are prepared in{runtimeManaged['fixtureBytes']}bytes,not executed. Shared PlaybackWide internal arithmetic and bounded TruncateInt32 are source dependencies."
 for name in ['geometry-clipping-native-validation.json','geometry-portal-native-validation.json','geometry-clipping-findings.txt']+(['geometry-room-selection-native-validation.json','geometry-room-selection-managed-check.json','geometry-room-selection-findings.txt']if roomReport.exists()else[]):
  if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
 if visibilityReport.exists():
@@ -52,6 +63,9 @@ if visibilityReport.exists():
   if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
 if volumeReport.exists():
  for name in ['geometry-portal-volume-native-validation.json','geometry-portal-volume-managed-check.json','geometry-portal-volume-findings.txt']:
+  if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
+if runtimeReport.exists():
+ for name in ['geometry-portal-runtime-native-validation.json','geometry-portal-runtime-boundaries.json','geometry-portal-runtime-managed-check.json','geometry-portal-runtime-findings.txt']:
   if name not in r['authoritativeReports']:r['authoritativeReports'].append(name)
 p.write_text(json.dumps(r,indent=2)+'\n')
 append='''\nPrepared-plane clipping follow-up
@@ -112,3 +126,18 @@ camera/projection producer remain open. No GPU equivalence is claimed.
  for name in ['geometry-findings.txt','geometry-render-integration.txt','geometry-visibility-findings.txt','geometry-clipping-findings.txt']:
   p=R/name;old=p.read_text()
   if 'Portal edge-volume follow-up' not in old:p.write_text(old+followup)
+if runtimeReport.exists():
+ followup=f'''\nRecursive portal runtime follow-up
+geometry-portal-runtime-findings.txt supersedes the earlier open recursive and
+partial-volume boundary: {runtime['counts']['traversal']} original complete cases cover403rooms/
+326portals/60scenes. Actual projection,FOV and edge planes,room flags,instance
+bits and shallow aliases agree numerically; {runtime['counts']['childVolumeScalars']}volume scalars pass.
+The original loader sets depth to portal count; that default and explicit caps
+are covered. {len(runtime['excludedUnsafeCases'])}prepared cases require an unsafe17th volume and are excluded.
+60signed-zero-only differences remain explicit. Seven geometry modules compile;
+the full ordinary harness is prepared but not executed. Live camera/entry/cache,
+room queries,activation/grid/tree and GPU/dynamic/shadow work remain open.
+'''
+ for name in ['geometry-findings.txt','geometry-render-integration.txt','geometry-visibility-findings.txt','geometry-clipping-findings.txt','geometry-portal-volume-findings.txt']:
+  p=R/name;old=p.read_text()
+  if 'Recursive portal runtime follow-up' not in old:p.write_text(old+followup)

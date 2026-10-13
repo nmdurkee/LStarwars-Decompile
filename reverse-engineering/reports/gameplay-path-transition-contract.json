@@ -1,0 +1,82 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "nearest": "51d1f0 scans every candidate row up to byte7a, taking the point ID from the low byte of each4-byte8c row. It uses original3D squared distance and strict smaller selection, preserving the first tie. Failure leaves both outputs untouched. Unlike the earlier incremental51d310 scan, this helper does not read a count==index extra row.",
+    "selection": "51d5e0 evaluates both current-edge endpoints using float32(squared actor-reference distance minus node14). Ties select endpoint1. Its node30 byte indexes the current path candidate rows; out-of-range returns false. The row+2 signed16-bit value indexes an8-byte system group record. Existing target-path identity takes priority if it occurs in that group; success calls actual51a7c0 binding even when that binding becomes a no-op.",
+    "stale": "Otherwise the group paths are visited in order using51d1f0 against the target position at packet1b4. The caller ignores that helper Boolean. The distance output starts as endpoint0 adjusted score, even when endpoint1 selected the group, and survives a failed/empty candidate search. That stale distance can cause an empty-candidate path to win. Strict smaller preserves the first winning path. This assembly behavior is explicitly retained, not repaired.",
+    "binding": "Portable selection directly reuses ActorReinitialization.BindPathSet. Original tests execute real51a7c0, including connection/progress resets and membership mask rebuilding. The two new mappings do not re-credit51a7c0 or squared-distance helpers.",
+    "validation": "4,404 original-PC comparison records pass with zero mismatch:2,069 direct nearest cases and2,335 complete selection/binding calls. All184 instructions in the two new functions execute. Fixtures cover empty lists, candidate counts through255, ties, endpoint/group gates, current-target preference, signed group indices with valid backing, retained outputs, member masks and2,048 seeded four-path layouts, each also sampled through the direct nearest helper. Entire actor byte changes or exact output words are compared. No behavior adapters execute in native fixtures."
+  },
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 4404,
+    "counts": {
+      "nearest": 2069,
+      "transition": 2335
+    },
+    "mismatches": 0,
+    "examples": [],
+    "instructionCoverage": {
+      "total": 184,
+      "executed": 184,
+      "missing": []
+    },
+    "authoredCommandUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PathTransitions.cs",
+      "bytes": 3776,
+      "sha256": "352a7727da442120403652875fc5f0ba2d40e9e3bd96434adf295e410466e8f0"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-path-transition-portable-verify.cs",
+      "bytes": 6063,
+      "sha256": "d209bdc6263150260463991c3825f369082a1eabb1e454b3196f33328468ae2b"
+    },
+    "entrypoint": "GameplayPathTransitionVerify.Main",
+    "arguments": [
+      "reports/gameplay-path-transition-native-fixtures.json",
+      "reports/gameplay-path-transition-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-path-transition-native-fixtures.json",
+      "bytes": 4763449,
+      "sha256": "4052f43393d4d4d89aa0906f9d7ca5d6139591981d83fd7514db5fe1245c3220"
+    },
+    "dependencies": [
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+        "bytes": 11112,
+        "sha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/gameplay/LocatorCommands.cs",
+        "bytes": 9950,
+        "sha256": "782e834cdd926dce18c3534e0f3b7ecfdc6b70c06a9118ffadc26af78054b5e8"
+      },
+      {
+        "path": "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+        "bytes": 20731,
+        "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+      }
+    ],
+    "compile": {
+      "exitCode": 0,
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-path-transition-verify.exe",
+        "bytes": 540160,
+        "sha256": "76363d6993c65114dc266cdfbe2560a04093f87a7b77a53391eb6c7c10be99c1"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    }
+  },
+  "remaining": [
+    "Finite input coordinates, scores and distance results; valid disjoint output buffers for the direct helper. Inputs that overflow squared distance, NaN/infinity and malformed pointers are excluded.",
+    "Loaded candidate rows, signed group indexes, ordered group members, actor reference and path membership tables are explicit host projections. The byte counts must agree with the supplied backing arrays. Negative group indexes are supported only with observed valid backing, not arbitrary memory access.",
+    "This is a concrete dependency of51d7b0. It does not yet implement that entire steering dispatcher or prove live movement/collision integration.",
+    "No new authored command or AI2-use credit. The group fixtures are synthetic valid runtime records; no inferred shipped inter-path link is claimed.",
+    "Managed replay compiled only. Native comparison counts include child-call compositions once per top-level record; prior targeting/binding/distance suites are not counted again."
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "d3dx": {
+      "path": "C:\\Windows\\SysWOW64\\d3dx9_35.dll",
+      "sha256": "2198022938156b790e9cfb0f7997494b66a11a1ad49b395be58251d635b66b26",
+      "bytes": 3727720,
+      "preferredBase": "0x400000",
+      "mappedBase": "0x20000000",
+      "matrixImplementationRva": "0x163599",
+      "highlowRelocations": 40053,
+      "binding": "Game IAT0x751324 explicitly bound to original scalar implementation; export CPU/config dispatch is not run."
+    },
+    "comparisons": 3152,
+    "counts": {
+      "cases": 3152,
+      "synthetic": 400,
+      "draws": 25596,
+      "secondaryCalls": 2364,
+      "mode0": 788,
+      "mode1": 788,
+      "mode2": 788,
+      "mode3": 788,
+      "authored": 2752
+    },
+    "mismatches": 0,
+    "fixture": {
+      "path": "reports/animation-character-secondary-native-fixtures.json.gz",
+      "bytes": 739603,
+      "sha256": "2bc5f4a316b6ec19ab626bf70ba3225da97e8469f3a21afcb05a8a799c2b0cf7"
+    },
+    "dependency": {
+      "path": "tools\\animation-character-pipeline-verify.py",
+      "sha256": "e723c1becf45e74aa0e73383a8e3066a78d82506f481b41d84fdc7dbcea5ffd3"
+    },
+    "method": "Original5f4ff0 invokes actual5ea6a0/5c7050/5c6dc0 and shadow queue/matrix routines. Only dynamic5f0f00 remains a bounded return/allocator/shadow-sequence/submission-flag adapter. Compare full queue/arena, masks and guards, ordered flag observations, output flags/cursor/cache and original nested predicate calls.",
+    "limits": [
+      "All688 authored rigs plus100 synthetic rigs, four branch states each; finite disjoint scalar/matrix domain.",
+      "Plane/cached-volume production is controlled fixture data, not a claim of authored secondary scene loading.",
+      "Dynamic5f0f00/shadow draw packets are external to this composition; real normal draw composition is proven separately by CharacterPacketPipeline.",
+      "Managed replay compiled only; no game or generated executable launched."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reconstructed/animation/CharacterSecondaryPipeline.cs",
+      "sha256": "ea2d1aa53cb1b3b554e875774e64ba08c1025a294a0086d78d9d0e91e02074ad"
+    },
+    "coreDependencies": [
+      "reconstructed/animation/CharacterContexts.cs",
+      "reconstructed/animation/AnimationPlayback.cs",
+      "reconstructed/gameplay/FlowRuntime.cs",
+      "reconstructed/gameplay/SpecialGizmo.cs",
+      "reconstructed/gameplay/SceneAnimationControls.cs",
+      "reconstructed/gameplay/SceneAnimationUpdate.cs",
+      "reconstructed/gameplay/SceneAnimationPose.cs",
+      "reconstructed/animation/SkeletalPose.cs",
+      "reconstructed/animation/CharacterLayerSubmission.cs",
+      "reconstructed/animation/CharacterVisibility.cs",
+      "reconstructed/animation/CharacterShadowQueue.cs",
+      "reconstructed/geometry/DynamicBounds.cs",
+      "reconstructed/animation/SecondaryVisibility.cs",
+      "reconstructed/animation/CharacterRenderPipeline.cs"
+    ],
+    "harness": {
+      "path": "tools/animation-character-secondary-portable-verify.cs",
+      "sha256": "ba5b7dfdc2529af1ba62b135f80f4e26e3c7ce28521a4f89989567169c4053cf"
+    },
+    "entrypoint": "CharacterSecondaryPipelineVerify.Main",
+    "arguments": [
+      "reports/animation-character-secondary-native-fixtures.json.gz",
+      "<result.json>"
+    ],
+    "preparedComparisons": 3152,
+    "status": "Compiled only; no managed execution.",
+    "compileEvidence": "reports/animation-character-secondary-compile.json"
+  },
+  "contracts": {
+    "composition": "CharacterSecondaryPipeline.Submit clones the caller environment and replaces only its secondary callback with recoveredSecondaryVisibility.Evaluate. CharacterLayerSubmission still owns endpoint transforms, branching, draw ordering and palette allocation; CharacterRenderPipeline still owns primary visibility and shadow queue services.",
+    "state": "CharacterSubmissionState is authoritative for shared966384 count and9715a0 flag. The adapter mirrors both before evaluating the actual predicate and copies its changed flag back before attachments or draws. Original5f4ff0 then clears the flag on every return, including primary/secondary culling. FinalSecondaryVisibilityState.CacheFlag receives that cleared value. Draw callbacks can mutate the same flag and later callbacks observe it.",
+    "evidence": "3,152 original full-chain comparisons:688 authored rigs and100 synthetic rigs, each under four scenarios. Secondary-only visible submission, both invisible early cull, primary-visible with secondary masks, and zero-secondary-count early cull. Full shared mask arrays and guards, queue and arena contents, callback matrix/palette hashes, allocator/cached state, ordered flag observations and original secondary helper calls agree. Original shadow queue runs with source-derived bindings, including nearly full capacity.",
+    "boundaries": "The dynamic draw remains an explicit callback with bounded return, allocator, shadow-sequence and9715a0 effects. This test does not execute dynamic shadow packet generation. Real normal dynamic packets are covered separately byCharacterPacketPipeline, whose current domain excludes nonzero secondary count. The new composition does not imply those two domains are already combined.",
+    "managed": "Replay invokes the public adapter, checks shared masks/cache flag, queue/arena bytes, output flags/cursor/cache and explicit dynamic callback observations. Secondary predicate entry observations are internal to the implementation and excluded from the public event projection. Core and harness compile only; managed runtime comparison remains pending."
+  },
+  "verification": {
+    "method": "Original5f4ff0 invokes actual5ea6a0/5c7050/5c6dc0 and shadow queue/matrix routines. Only dynamic5f0f00 remains a bounded return/allocator/shadow-sequence/submission-flag adapter. Compare full queue/arena, masks and guards, ordered flag observations, output flags/cursor/cache and original nested predicate calls.",
+    "tools": [
+      {
+        "path": "tools/animation-character-secondary-verify.py",
+        "sha256": "f85370a3aad0a0dde29b71c7b2c716d1dd0355b37c1e619a8624750490a43f47"
+      },
+      {
+        "path": "tools/animation-character-secondary-report.py",
+        "sha256": "30a9fcb7c168699fb146a21da20e1a55cebe72fab80bf8886770c695f6a7db58"
+      }
+    ],
+    "managedComparison": "Prepared replay compares shared masks/cache flag, camera, queue/arena bytes and explicit draw callbacks. Internal visibility/secondary/attachment entry diagnostics are excluded from managed public-event comparison."
+  },
+  "limits": [
+    "All688 authored rigs plus100 synthetic rigs, four branch states each; finite disjoint scalar/matrix domain.",
+    "Plane/cached-volume production is controlled fixture data, not a claim of authored secondary scene loading.",
+    "Dynamic5f0f00/shadow draw packets are external to this composition; real normal draw composition is proven separately by CharacterPacketPipeline.",
+    "Managed replay compiled only; no game or generated executable launched.",
+    "Managed module/replay compile only; no generated executable launched and managed differential status remains pending."
+  ]
+}

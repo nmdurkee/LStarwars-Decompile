@@ -1,0 +1,146 @@
+{
+  "schema": "recovered-geometry-material-lifecycle-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/MaterialLifecycle.cs",
+      "bytes": 1366,
+      "sha256": "1cc1fa6176bb223f5cc4bc9974adf5ab1228e0bd05766da79ff8ff79eeca70cf"
+    }
+  ],
+  "nativeMappings": [],
+  "compositionMappings": [
+    {
+      "address": "0x5e5020",
+      "method": "MaterialLifecycle.Merge",
+      "sourceFile": "reconstructed/geometry/MaterialLifecycle.cs",
+      "coverage": "supporting-composition-no-new-address-credit",
+      "limitations": "Composes stable MaterialCloneCache,MaterialPool,MaterialRefresh. Successful finite capacities, same-thread cache, zero locks; only shader7416a0 factory remains controlled, declaration resolver uses original cache hits. Managed execution pending.",
+      "evidence": "geometry-material-lifecycle-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/MaterialCloneCache.cs",
+      "bytes": 5404,
+      "sha256": "00a95ef076fb35220cf5a58ced2d08b50a9f28c070be3ffb2a49eef8e95dd75c"
+    },
+    {
+      "file": "reconstructed/geometry/MaterialPool.cs",
+      "bytes": 4152,
+      "sha256": "86178da6afd2dfe0fffa960b7159566d6341241a28c9a3894d1c4d04688f378f"
+    },
+    {
+      "file": "reconstructed/geometry/MaterialRefresh.cs",
+      "bytes": 4525,
+      "sha256": "b6067d789894084c29bd8f356b5b22ca9d62e9e1925ff43d0e5e6406b3c0e16a"
+    }
+  ],
+  "native": {
+    "report": "geometry-material-lifecycle-native-validation.json",
+    "passed": true,
+    "counts": {
+      "miss": 576,
+      "hit": 480,
+      "changedLayoutReturnsZero": 64,
+      "authoredMaterials": 480,
+      "checkedBytes": 103809024,
+      "constructors": 576,
+      "refreshes": 576,
+      "factories": 1104,
+      "declarations": 1152
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "limits": [
+      "Complete original5e5020\u2192cache/node\u21925e4f30\u21925e4b20/defaults/queue\u2192601030/ref/mode/wrappers and declaration-cache hits execute unchanged. Only7416a0 shader factory is a mutable controlled service.",
+      "Finite successful capacity, zero locks, same-thread cache, valid current708-byte material copies. Raw internal pointers are opaque except fields consumed by this chain.",
+      "Factory callback alias/index/device/texture mutations retained. Real refresh can change clone layout and cause original final lookup to return0; no fabricated successful clone return.",
+      "Authored480material records from60scenes plus synthetictexture/layout/registration cases. Native versus composed Python evidence; managed execution separate.",
+      "Device creation,shader compiler/cache internals,invalid capacities/pointers/conversions and GPU output excluded. No managed/game/GPU launch."
+    ],
+    "modelDependencies": [
+      {
+        "file": "tools/geometry-material-clone-native.py",
+        "bytes": 10877,
+        "sha256": "d5d4d4fc50398501f770131be1c7850a2b3d9e4fedccc1f8e6158b639461fcf3"
+      },
+      {
+        "file": "tools/geometry-material-pool-native.py",
+        "bytes": 9340,
+        "sha256": "ba034ea9fb922d39a010df67b3facfdae8f8cc0a8bfa06afcc8484a4f9944385"
+      },
+      {
+        "file": "tools/geometry-material-refresh-native.py",
+        "bytes": 9065,
+        "sha256": "60710ef41bc46dddaa3ddb44bed117748044a5eea463056a785e1992f9ba5bc1"
+      }
+    ]
+  },
+  "managed": {
+    "schema": "geometry-material-lifecycle-managed-check-v1",
+    "caseCount": 1056,
+    "nativeEvidence": "geometry-material-lifecycle-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\material-lifecycle.bin.gz",
+    "fixtureBytes": 354218,
+    "fixtureSHA256": "1812f79bbac80b5b631667b9f68fb0bcb0932a04f57bc8e30cd67f121bf298c2",
+    "uncompressedBytes": 103830152,
+    "uncompressedSHA256": "2be5f7846bc79b15a6034e4c419c074e509938e6cda915a3b83cb1bc69de3cd6",
+    "status": "prepared-not-executed",
+    "mainType": "MaterialLifecycleHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Managed equality pending; complete bounded clone/pool/refresh composition with shader-factory boundary and cached declaration resolver."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.MaterialLifecycle.dll",
+    "bytes": 4608,
+    "sha256": "fd4ec33f3a1e9a1785ef39222904070b4a3f8c454be1ca33cf98d345b24d0a19"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/MaterialLifecycleHarness.cs",
+    "bytes": 2958,
+    "sha256": "7560fb52c91c3961f0c5229caab0c4ab283aafa7836b8cf06489ce8554b8c066"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.MaterialClone.dll /reference:Recovered.Geometry.MaterialPool.dll /reference:Recovered.Geometry.MaterialRefresh.dll /out:Recovered.Geometry.MaterialLifecycle.dll MaterialLifecycle.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.MaterialClone.dll /reference:Recovered.Geometry.MaterialPool.dll /reference:Recovered.Geometry.MaterialRefresh.dll /reference:Recovered.Geometry.MaterialLifecycle.dll /out:MaterialLifecycleHarness.exe harness\\MaterialLifecycleHarness.cs"
+  },
+  "observations": [
+    "576 full native misses and480 cache hits preserve all compact-image bytes and original return/pending-queue behavior.480 authored material records come from60scenes.",
+    "Original constructor and refresh each execute576times; original declaration lookup1152times. Only1104 shader-factory calls are controlled mutable services.",
+    "64 synthetic misses create a clone whose layout is then changed by real601030 refresh, so5e5020 final lookup returns0. The adapter preserves this behavior rather than returning the allocated pointer directly.",
+    "Factory callbacks may alias/mutate program results,device modes and texture count. State effects propagate through real original parent routines and composed Python model."
+  ],
+  "remainingGaps": [
+    {
+      "id": "shader-factory-device",
+      "address": "0x7416a0",
+      "status": "Only remaining controlled factory in this joined chain; compiler/device creation separate."
+    },
+    {
+      "id": "declaration-cache-miss",
+      "address": "0x7418c0",
+      "status": "Cache-hit branch only."
+    },
+    {
+      "id": "dynamic-caller-link",
+      "address": "0x5f0f00",
+      "status": "Stable DynamicObjectSubmission same-layout domain remains unchanged; lifecycle can next supply its material-merge service."
+    },
+    {
+      "id": "locks-capacity-invalid",
+      "status": "Original lock/error/invalid-pointer branches remain excluded by dependencies."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Core/replay compile; no launch."
+    }
+  ]
+}

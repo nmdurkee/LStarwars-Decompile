@@ -1,0 +1,23 @@
+4404 original-PC comparisons, zero mismatches. Two new helper mappings. Portable replay compiles only.
+
+nearest
+51d1f0 scans every candidate row up to byte7a, taking the point ID from the low byte of each4-byte8c row. It uses original3D squared distance and strict smaller selection, preserving the first tie. Failure leaves both outputs untouched. Unlike the earlier incremental51d310 scan, this helper does not read a count==index extra row.
+
+selection
+51d5e0 evaluates both current-edge endpoints using float32(squared actor-reference distance minus node14). Ties select endpoint1. Its node30 byte indexes the current path candidate rows; out-of-range returns false. The row+2 signed16-bit value indexes an8-byte system group record. Existing target-path identity takes priority if it occurs in that group; success calls actual51a7c0 binding even when that binding becomes a no-op.
+
+stale
+Otherwise the group paths are visited in order using51d1f0 against the target position at packet1b4. The caller ignores that helper Boolean. The distance output starts as endpoint0 adjusted score, even when endpoint1 selected the group, and survives a failed/empty candidate search. That stale distance can cause an empty-candidate path to win. Strict smaller preserves the first winning path. This assembly behavior is explicitly retained, not repaired.
+
+binding
+Portable selection directly reuses ActorReinitialization.BindPathSet. Original tests execute real51a7c0, including connection/progress resets and membership mask rebuilding. The two new mappings do not re-credit51a7c0 or squared-distance helpers.
+
+validation
+4,404 original-PC comparison records pass with zero mismatch:2,069 direct nearest cases and2,335 complete selection/binding calls. All184 instructions in the two new functions execute. Fixtures cover empty lists, candidate counts through255, ties, endpoint/group gates, current-target preference, signed group indices with valid backing, retained outputs, member masks and2,048 seeded four-path layouts, each also sampled through the direct nearest helper. Entire actor byte changes or exact output words are compared. No behavior adapters execute in native fixtures.
+
+Remaining
+Finite input coordinates, scores and distance results; valid disjoint output buffers for the direct helper. Inputs that overflow squared distance, NaN/infinity and malformed pointers are excluded.
+Loaded candidate rows, signed group indexes, ordered group members, actor reference and path membership tables are explicit host projections. The byte counts must agree with the supplied backing arrays. Negative group indexes are supported only with observed valid backing, not arbitrary memory access.
+This is a concrete dependency of51d7b0. It does not yet implement that entire steering dispatcher or prove live movement/collision integration.
+No new authored command or AI2-use credit. The group fixtures are synthetic valid runtime records; no inferred shipped inter-path link is claimed.
+Managed replay compiled only. Native comparison counts include child-call compositions once per top-level record; prior targeting/binding/distance suites are not counted again.

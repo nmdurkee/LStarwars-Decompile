@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-10-12T23:20:45.805Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "selection": "450030 validates creature->reference->actor before writes. First call clears cached target6c, parses ordered case-insensitive keywords, and records up to16 targets with A0bit2 and without10000. name= is a substring. Duplicates retain weight. A single actual54fa60 RNG draw chooses by draw/(65535/count+1).",
+    "persistence": "Throwable68 and InRange69 are set but not cleared. inrange has no consumer in this routine. triggered_by_hit is a first-call local, not a cached flag; later calls ignore tokens and reuse selected6c.",
+    "request": "Only selected A0bit1 enters request path. Capability index is Flags74bit10 ?1:0; capability lookup occurs even for triggered_by_hit. Triggered mode sets A0bit8000 and returns0. Allowed mode writes creature goal=target+1c, input5a bit4 and actor10cc target.",
+    "throwable": "With cached Throwable68, attachmentD4 returns1 preserving request. Without attachment, clear input5a bit4 and actor10cc and return1, but retain creature goal. Nonthrowable returns1 only if467890 completion succeeds.",
+    "retry": "Denied capability plus global93b2a4 nonzero subtracts delta from packet9c with float32 store. Strictly negative resets0.5 and ORs global80228c into input8; exact zero does not retry. Returns0.",
+    "completion": "467890 rejects Flags74bit2; requires timer4c<=0 or A0bit2000, and absent Flags74bit40 or A0bit800. Optional group must be state0 for A0bit40 else state2.4415a0 adds null-bound guard and float0/1;441570 binds physical Force target.",
+    "capability": "55bc80 signed index must be within count. DefinitionMask0 skips definition gate. Maskbit8 additionally rejects ClassFlags94bit8000. All definition bits and secondary class90 bits must be present. Prepared table and pointer backing required.",
+    "boundaries": "Actual Force simulation, actor-input consumers and loader-produced associations remain external; no explicit behavioral adapters in original comparisons."
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "UseForce",
+      "address": "0x450030",
+      "sourceUses": 39,
+      "qualification": "Full target selection and request/return behavior with actual completion, permission and RNG helpers; Force simulation and input consumers external."
+    },
+    {
+      "kind": "scp-condition",
+      "name": "ForceComplete",
+      "address": "0x4415a0",
+      "sourceUses": 29,
+      "qualification": "Full bounded flag/timer/group completion query; simulation producers external."
+    }
+  ],
+  "native": {
+    "cases": 5828,
+    "mismatches": 0,
+    "fullRegionComparisons": 5828,
+    "groups": {
+      "IsComplete": 1500,
+      "ForceComplete": 1501,
+      "HasCapability": 1728,
+      "UseForce": 1022,
+      "BindComplete": 77
+    },
+    "authoredUses": {
+      "ForceComplete": 29,
+      "UseForce": 39
+    },
+    "method": "Unchanged450030,467890,55bc80,441570,4415a0 with actual55a020/558770/string helpers/54fa60. Compare full fixture memory, return values, callback order, cached target and global RNG; persistent sequences retain native/model memory."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ForceActions.cs",
+      "bytes": 5890,
+      "sha256": "a61dd3a9880decf4d0f3e2df2c25b60eb33830aa77b55b481ef424f60df3e020"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-force-action-portable-verify.cs",
+      "bytes": 8312,
+      "sha256": "0d9bc16d5d67fd2bee8e4c5a41e4e96e2900f3d88b1611253d3588c2e01e8a78"
+    },
+    "entrypoint": "ForceActionVerify.Main",
+    "arguments": [
+      "reports/native-force-action-vectors.json.gz",
+      "reports/native-force-action-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-force-action-vectors.json.gz",
+      "bytes": 61970,
+      "sha256": "3fbffcd28664bc3ff41954224bc458b2ea73015440f8e929f3913c2d41955b79"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Finite timer values, valid packet/actor/definition/class/input backing and bounded type/capability tables. Physical Force animation/update producers and controller consumers remain external.",
+    "Authored action operands use prepared name tables with one literal target binding; these are controlled compositions, not loaded-level replay.",
+    "Flags68/69 persist. triggered_by_hit is local to first-call parsing. inrange has no consumer in this routine. Managed replay pending."
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "recovered-geometry-shadow-players-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/ShadowPlayers.cs",
+      "bytes": 2510,
+      "sha256": "d31427108668339241f9428e99b68cd1692522622561869dac655c17de0ae9d7"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x55e340",
+      "method": "ShadowPlayers.AveragePosition",
+      "sourceFile": "reconstructed/geometry/ShadowPlayers.cs",
+      "coverage": "bounded-null-auxiliary-player-mean",
+      "limitations": "Exactly two resolved actor slots, finite arithmetic. Optional541bc0 collision-query auxiliary branch excluded;596a30 calls with auxiliarynull. No active actor leavesoutput untouched. Managed equality pending.",
+      "evidence": "geometry-shadow-players-native-validation.json"
+    },
+    {
+      "address": "0x5967b0",
+      "method": "ShadowPlayers.AverageDirection",
+      "sourceFile": "reconstructed/geometry/ShadowPlayers.cs",
+      "coverage": "whole-helper-finite-two-player-domain",
+      "limitations": "Exactly two resolved actor slots and explicit global95e5c8seed. Finite arithmetic; native max equality selects candidate signbits. Managed equality pending.",
+      "evidence": "geometry-shadow-players-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "file": "reconstructed/geometry/SortedPackets.cs",
+      "bytes": 10282,
+      "sha256": "3c20474e538ac9e28287e2edc12f571c0483816339540ad6d417a54465d287df"
+    },
+    {
+      "file": "reconstructed/geometry/FrameReset.cs",
+      "bytes": 7190,
+      "sha256": "f67b481001477f29446b2240e60e30763d715144cf7f2a9723fa84399edde2d6"
+    }
+  ],
+  "native": {
+    "report": "geometry-shadow-players-native-validation.json",
+    "schema": "geometry-shadow-players-native-v1",
+    "passed": true,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "counts": {
+      "cases": 1536,
+      "position": 768,
+      "active0": 684,
+      "persistentBytes": 12582912,
+      "direction": 768,
+      "active1": 682,
+      "active2": 170
+    },
+    "errors": [],
+    "fixtureFile": "geometry-shadow-players-fixtures.json.gz",
+    "fixtureBytes": 292551,
+    "fixtureSHA256": "40033eeb1d0c23645da818658bef7b625da2b1d11f40e97c623df727abaf9fd1",
+    "limits": [
+      "Actual55e340/5967b0 and original vectoradd/scale helpers execute, no computational replacements.",
+      "Exactly two resolved player slots, null/inactive/active combinations; actor+1fc bit80 controls inclusion. Position+5c, direction+5fc,strength+608 are exact observed fields.",
+      "55e340 scope is nullauxiliary, as used by596a30; collision query541bc0 auxiliarybranch is excluded. Noactive player leaves positionoutput untouched.",
+      "5967b0 seeds output from95e5c8 even withzeroactive, strength starts-1, equality selects latestcandidate strength including signedzero. Seed is included before dividingbyactivecount.",
+      "Finite stored arithmetic and disjointrecords/output; managed runtime equality and outer596a30 remain separate."
+    ]
+  },
+  "managed": {
+    "status": "prepared-not-executed",
+    "mainType": "ShadowPlayersHarness",
+    "arguments": [
+      "reports/geometry-shadow-players-fixtures.json.gz",
+      "resultJson"
+    ],
+    "caseCount": 1536,
+    "harness": {
+      "file": "reconstructed/geometry/harness/ShadowPlayersHarness.cs",
+      "bytes": 2586,
+      "sha256": "a6de46965bd88fcc3104b1269fefdfc5a6c901b23f96b5c5ce245862fa655a89"
+    },
+    "compileStatus": "passed"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "results": [
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/target:library",
+          "/out:Recovered.Geometry.ShadowPlayers.dll",
+          "ShadowPlayers.cs",
+          "SortedPackets.cs",
+          "FrameReset.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+          "/nologo",
+          "/reference:Recovered.Geometry.ShadowPlayers.dll",
+          "/reference:System.Web.Extensions.dll",
+          "/out:ShadowPlayersHarness.exe",
+          "harness\\ShadowPlayersHarness.cs"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "assembly": {
+      "file": "reconstructed/geometry/Recovered.Geometry.ShadowPlayers.dll",
+      "bytes": 13824,
+      "sha256": "932cb73cbabc53f3dbc20a3ec44cf7131d1585f7e4f39e19eaf0695e23530101"
+    }
+  },
+  "observations": [
+    "Both helpers inspect exactlyslots93d7f0 and93d7f4, skipnull or actor+1fc lackingbit80, and invoke actualvectoradd5b37d0/scaling5b3830.",
+    "AveragePosition55e340 startsXYZ0, adds active actor+5cXYZ in slotorder, multiplies byfloat32(1/activecount), returns1. Noactive returns0 and leavesoutputbytes untouched. The outer596a30 uses nullauxiliary; collision541bc0 optionalauxiliary branch is explicitlyexcluded.",
+    "AverageDirection5967b0 startsoutput fromglobal95e5c8XYZ and strength-1. Eachactive actor contributesdirection+5fcXYZ, then maximum strength+608 with candidate selected on equality. The seed is included before dividing byactivecount. Zeroactive returns0, seedXYZ and strength-1; otherwise returnsactualcount.",
+    "1536 original checks include768casesperhelper, allnull/inactive/active slotcombinations, signedzero/equal/negative strengths, nonzeroseeds and synthetic finite vectors.12582912persistentbytes andintegerresults match exactly.",
+    "Source/replay compile only. These are actual inputproducers for outer596a30, not reconstructed character/entity lifetime or optional collision behavior."
+  ],
+  "remainingGaps": [
+    {
+      "id": "auxiliary-collision-query",
+      "status": "55e340 nonnullauxiliary branch541bc0 excluded; shadowcallerusesnull."
+    },
+    {
+      "id": "outer-selection",
+      "status": "596a30 orchestration remains separate."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compiled, not executed."
+    },
+    {
+      "id": "numeric-domain",
+      "status": "Finite inputs/storedoutputs and disjointrecords/output; nonfinite/overflow excluded."
+    }
+  ],
+  "model": {
+    "file": "tools/geometry-shadow-players-native.py",
+    "bytes": 4177,
+    "sha256": "2397d2be6f564c253da660842c9a13c4c1c0fcee1f66021b82b257373644349b"
+  },
+  "assembly": {
+    "file": "reports/geometry-shadow-players-assembly.json",
+    "bytes": 16165,
+    "sha256": "0690dbbf4f578083d6983e6b9ddf6bb598aecc30323d6660cf6fab4dcffc9558"
+  }
+}

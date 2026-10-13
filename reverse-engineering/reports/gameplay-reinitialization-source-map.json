@@ -1,0 +1,81 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Actor spawn reinitialization caller, accessory reset, path-set binder and direction helper.",
+  "primaryNativeEntryPoints": 4,
+  "mappings": [
+    {
+      "address": "0x41c120",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "sourceSha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115",
+      "methods": [
+        {
+          "name": "ActorReinitialization.Reinitialize",
+          "line": 99
+        }
+      ],
+      "coverage": "complete caller control flow/direct writes with explicit downstream lifecycle services",
+      "qualification": "Prepared valid finite actor/spawn/locator/path/formation records. Fourteen external service operations record downstream lifecycle contracts; allocation, loaded animation, terrain and path traversal are not implemented.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed. Portable source/harness compile only; managed differential pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-reinitialization-tests.json",
+        "reverse-engineering/reports/gameplay-reinitialization-assembly.json"
+      ]
+    },
+    {
+      "address": "0x4b6b80",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "sourceSha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115",
+      "methods": [
+        {
+          "name": "ActorReinitialization.ResetAccessory",
+          "line": 77
+        }
+      ],
+      "coverage": "complete helper control flow/direct writes with547cb0 accessory service",
+      "qualification": "Accessory construction547cb0 remains an explicit service; callback character/flag rereads preserved.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed. Portable source/harness compile only; managed differential pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-reinitialization-tests.json",
+        "reverse-engineering/reports/gameplay-reinitialization-assembly.json"
+      ]
+    },
+    {
+      "address": "0x51a7c0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "sourceSha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115",
+      "methods": [
+        {
+          "name": "ActorReinitialization.BindPathSet",
+          "line": 86
+        }
+      ],
+      "coverage": "full helper over valid prepared path-set records and embedded creature",
+      "qualification": "Finite prepared records/table; malformed pointers and nonfinite values excluded.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed. Portable source/harness compile only; managed differential pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-reinitialization-tests.json",
+        "reverse-engineering/reports/gameplay-reinitialization-assembly.json"
+      ]
+    },
+    {
+      "address": "0x5b3710",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/ActorReinitialization.cs",
+      "sourceSha256": "dda76f3c38d5dca9c93249a4001d52368a60582d1c214b72862b6f7fb440a115",
+      "methods": [
+        {
+          "name": "ActorReinitialization.Direction",
+          "line": 73
+        }
+      ],
+      "coverage": "full finite scaled-direction helper with original sine table",
+      "qualification": "Finite prepared records/table; malformed pointers and nonfinite values excluded.",
+      "comparisonStatus": "Original-PC independent-model comparisons passed. Portable source/harness compile only; managed differential pending.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-reinitialization-tests.json",
+        "reverse-engineering/reports/gameplay-reinitialization-assembly.json"
+      ]
+    }
+  ],
+  "commands": [],
+  "contract": "reverse-engineering/reports/gameplay-reinitialization-contract.json"
+}

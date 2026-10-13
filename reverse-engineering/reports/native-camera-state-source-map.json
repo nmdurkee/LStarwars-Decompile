@@ -1,0 +1,45 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "Three native camera-state helpers; no script parser or live camera update claimed.",
+  "mappings": [
+    {
+      "address": "0x5765b0",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/CameraState.cs",
+      "methods": [
+        {
+          "name": "CameraState.FinishCurrent",
+          "line": 33
+        }
+      ],
+      "coverage": "bounded native state helper",
+      "qualification": "Finish current camera record, conditionally advancing progress to duration minus0.5 before clearing its blend field. Finite float32 inputs; built-in pointer/duration overlay is retained when the current record aliases it; typed identity replaces pointers. Live camera update and downstream rendering remain unrecovered.",
+      "comparisonStatus": "Original native model and full surrounding writes pass; compiled managed replay pending."
+    },
+    {
+      "address": "0x577790",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/CameraState.cs",
+      "methods": [
+        {
+          "name": "CameraState.Select",
+          "line": 41
+        }
+      ],
+      "coverage": "bounded native state helper",
+      "qualification": "Select a cut record, reset transition state, preserve unrelated bytes, clear follow references and finish the current record. Finite float32 inputs; built-in pointer/duration overlay is retained when the current record aliases it; typed identity replaces pointers. Live camera update and downstream rendering remain unrecovered.",
+      "comparisonStatus": "Original native model and full surrounding writes pass; compiled managed replay pending."
+    },
+    {
+      "address": "0x577880",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/CameraState.cs",
+      "methods": [
+        {
+          "name": "CameraState.Configure",
+          "line": 54
+        }
+      ],
+      "coverage": "bounded native state helper",
+      "qualification": "Initialize built-in point-camera header, conditionally copy coordinates, select it, then install requested follow references. Finite float32 inputs; built-in pointer/duration overlay is retained when the current record aliases it; typed identity replaces pointers. Live camera update and downstream rendering remain unrecovered.",
+      "comparisonStatus": "Original native model and full surrounding writes pass; compiled managed replay pending."
+    }
+  ]
+}

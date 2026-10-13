@@ -1,0 +1,88 @@
+{
+  "schema": "native-scenery-name-contract-v1",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "updated": "2026-10-12T21:12:31.830Z",
+  "mappings": [
+    {
+      "address": "0x55a020",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneryNameBindings.cs",
+      "methods": [
+        {
+          "name": "SceneryNameBindings.Find",
+          "line": 37
+        }
+      ],
+      "coverage": "whole lookup within valid projected arrays and pure name accessors",
+      "qualification": "Projected valid global type and registry bucket arrays; name bytes encode Latin1 with C NUL termination. Native type==count executes indexed lookup. Tests allocate the extra readable slot; an absent slot is an unsafe original read, not an invented null result. Negative counts and record counts preserved. Invalid pointers, concurrent registry mutation and arbitrary callback side effects excluded.",
+      "comparisonStatus": "Original native verified; portable compile and execution tracked independently.",
+      "nativeEvidence": "reverse-engineering/reports/native-scenery-name-tests.json",
+      "sourceSha256": "4db4a350b18585aea0d15d475dfea79c43795335d68710d5060e9005ea3d5937"
+    },
+    {
+      "address": "0x558770",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneryNameBindings.cs",
+      "methods": [
+        {
+          "name": "SceneryNameBindings.ObjectName",
+          "line": 18
+        }
+      ],
+      "coverage": "nullable gizmo/object name projection",
+      "qualification": "Projected valid global type and registry bucket arrays; name bytes encode Latin1 with C NUL termination. Native type==count executes indexed lookup. Tests allocate the extra readable slot; an absent slot is an unsafe original read, not an invented null result. Negative counts and record counts preserved. Invalid pointers, concurrent registry mutation and arbitrary callback side effects excluded.",
+      "comparisonStatus": "Original native verified; portable compile and execution tracked independently.",
+      "nativeEvidence": "reverse-engineering/reports/native-scenery-name-tests.json",
+      "sourceSha256": "4db4a350b18585aea0d15d475dfea79c43795335d68710d5060e9005ea3d5937"
+    },
+    {
+      "address": "0x5ae390",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/SceneryNameBindings.cs",
+      "methods": [
+        {
+          "name": "SceneryNameBindings.ObjectName",
+          "line": 18
+        }
+      ],
+      "coverage": "nullable gizmo/object name projection",
+      "qualification": "Projected valid global type and registry bucket arrays; name bytes encode Latin1 with C NUL termination. Native type==count executes indexed lookup. Tests allocate the extra readable slot; an absent slot is an unsafe original read, not an invented null result. Negative counts and record counts preserved. Invalid pointers, concurrent registry mutation and arbitrary callback side effects excluded.",
+      "comparisonStatus": "Original native verified; portable compile and execution tracked independently.",
+      "nativeEvidence": "reverse-engineering/reports/native-scenery-name-tests.json",
+      "sourceSha256": "4db4a350b18585aea0d15d475dfea79c43795335d68710d5060e9005ea3d5937"
+    }
+  ],
+  "refinesExistingMapping": "0x55a020 replaces the narrower NamedGizmoRegistry.Find mapping; it is not an additional native entry.",
+  "native": {
+    "lookupCases": 2682,
+    "accessorCases": 12,
+    "mismatches": 0,
+    "adapters": []
+  },
+  "integration": {
+    "evidence": "reports/native-obstacle-binding-tests.json",
+    "nativeCases": 2700,
+    "mismatches": 0,
+    "adapters": [],
+    "scope": "Prepared two-type/two-object registry, bounded valid tokens, finite scene fields and rates, well-formed member/queue records. Native temporal animation update and registry loader remain outside this suite."
+  },
+  "portable": {
+    "source": "reconstructed/gameplay/SceneryNameBindings.cs",
+    "harness": "tools/native-scenery-name-portable-verify.cs",
+    "preparedLookupCases": 2682,
+    "arguments": [
+      "reports/native-scenery-name-vectors.json",
+      "<output.json>"
+    ],
+    "execution": "Pending; no generated managed launch attempted."
+  },
+  "boundaries": [
+    "Projected valid global type and registry bucket arrays; name bytes encode Latin1 with C NUL termination.",
+    "Native type==count executes indexed lookup. Tests allocate the extra readable slot; an absent slot is an unsafe original read, not an invented null result.",
+    "Negative counts and record counts preserved. Invalid pointers, concurrent registry mutation and arbitrary callback side effects excluded."
+  ],
+  "notes": [
+    "The exact type==count indexed branch is retained when an extra projected slot is supplied; absent slot is explicitly out of domain.",
+    "Unknown negative or greater-than-count types scan all registered types in order. Null type table, registry or query returns null.",
+    "Null name accessors skip a type, signed nonpositive record counts skip its records, and first matching record wins. Original byte comparator executes unchanged in all native cases.",
+    "Accessor native pointer results are represented as object name values in portable code; twelve raw-pointer probes are additional native evidence, not managed equality claims.",
+    "Obstacle primary/review suites retain their older lookup adapter; the separate2700-case chain executes original lookup, accessors, comparator, command parsing, control functions and queue insertion without replacement callbacks."
+  ]
+}

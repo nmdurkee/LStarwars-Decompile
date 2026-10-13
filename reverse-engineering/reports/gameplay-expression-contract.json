@@ -1,0 +1,204 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "wrapper": "0x514920 uses the simple 0x4f28e0 prefix-number parser when every non-NUL ASCII byte is <=0x39 and none is slash. Thus 1+2 returns 1, (1+2) returns 0, and (1+2)/1 invokes the recursive parser and returns 3. The fast path leaves globals 0x92225c/0x922260 untouched. Slow evaluation stores creature/packet there, invokes 0x4f88e0 with resolver 0x514850, retains the creature global, and clears only the packet global on return.",
+    "lexer": "0x4f8420 keeps token kind/value, source pointer, cursor and symbol callback in a 20-byte context. Token kinds are +=0, -=1, *=2, /=3, (=4, )=5, terminator=6 and value=7. Semicolon stops without advancing. Space and tab handling increments the source BYTE at the current cursor rather than the cursor itself; alpha beta becomes alpha!beta. Unknown characters then preserve prior lexer state. Initial unknown bytes may read uninitialized native state and are deliberately rejected by the portable bounded entry.",
+    "number": "The full lexer differs from the prefix-number parser. Integer digits store float32 after multiply by ten and again after digit addition. Fractional digits store x87 digit*fraction+value once; fractional scale is separately stored float32 after division by ten. A repeated dot calls the actual no-op error helper and resets the scale to 0.1. Very small scales can underflow to zero, re-entering integer accumulation. The verified implementation uses existing finite x87 arithmetic and preserves signed zero.",
+    "grammar": "0x4f8790/0x4f8830/0x4f8880 implement unary minus, parentheses, product/quotient precedence and then sum/difference, with float32 stores between operations. Factor kind 6 returns 1. A value factor advances lookahead BEFORE reading its value field: 1alpha returns the following alpha value, and 2.5___tail returns the unresolved identifier value 0. Trailing alpha+ adds 1. Invalid operator factor calls the real no-op error helper and returns 0. Missing close-parenthesis also calls that helper and then advances.",
+    "symbols": "0x514850 handles whole case-insensitive Rand, false, true and max before any game callback. Rand uses existing original 0x5b9dd0 LCG behavior. Other names pass optional callback 0x9238c0 with the retained creature/packet globals; a nonzero callback result accepts its float output. Otherwise 0x5147c0 resolves the packet parameters or numeric prefix. Its param-substring path still selects slot 0, including param3. The resolver writes optional float and/or integer outputs and returns 0.",
+    "integerOutput": "Integer output takes the low 32 bits of native 0x6e6b90 signed-64 truncation. The comparison set includes negative fractions, values across signed-32 range and invalid signed-64 conversions: the latter yield INT64_MIN whose low word is 0. This helper is consumed but not newly mapped as an independently reconstructed function.",
+    "classification": "0x4f2770 classifies all 256 input byte values. Only ASCII letters, digits and underscore return 1. The lexer only begins identifiers on letters or underscore; digits enter number parsing.",
+    "integration": "ExpressionBuffer owns the mutable ASCII text. EvaluateToken is an unmapped host convenience that writes a changed buffer back into a string-array token. An OverrideAnimation adapter can call EvaluateToken(environment, creature, packet, tokens, 0), preserving its repeated evaluation of token zero. Other callers may retain ExpressionBuffer directly. GameSymbol remains a typed production callback boundary. Environment is intentionally mutable and must match the original shared global lifetime; no thread-safe or reentrant redesign is claimed.",
+    "verification": "The native wrapper, resolver, lexer and recursive parser execute unchanged. Checks compare float bits, RNG, callbacks, mutated text, global pointer identity tags, and lexer cursor/kind/value when initialized. Twelve persistent sequences exercise 96 ticks. All 256 classifier bytes and all resolver instructions are covered. Four null-resolver lexer instructions and the factor kind-8 error call are outside covered valid lexer-produced states. The portable replay compiles; managed execution remains pending under the explicit compile-only instruction."
+  },
+  "commands": [],
+  "verification": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 1326,
+    "groups": {
+      "expressions": 293,
+      "generated": 512,
+      "symbolOutputs": 169,
+      "identifierBytes": 256,
+      "persistent": 96
+    },
+    "mismatches": 0,
+    "examples": [],
+    "excludedProbes": [
+      {
+        "text": "alpha/beta",
+        "options": {
+          "packet": false
+        },
+        "native": {
+          "value": 4290772992,
+          "text": "alpha/beta",
+          "rng": 123,
+          "events": [
+            [
+              "symbol",
+              "alpha",
+              true,
+              false,
+              false,
+              null
+            ],
+            [
+              "symbol",
+              "beta",
+              true,
+              false,
+              false,
+              null
+            ]
+          ],
+          "slow": true,
+          "globalCreature": 1,
+          "globalPacket": 0,
+          "parser": {
+            "index": 10,
+            "kind": 6,
+            "value": 0
+          }
+        },
+        "reason": "nonfinite division result outside current portable arithmetic contract"
+      },
+      {
+        "text": "/alpha",
+        "options": {
+          "packet": false
+        },
+        "native": {
+          "value": 4290772992,
+          "text": "/alpha",
+          "rng": 123,
+          "events": [
+            [
+              "error"
+            ],
+            [
+              "symbol",
+              "alpha",
+              true,
+              false,
+              false,
+              null
+            ]
+          ],
+          "slow": true,
+          "globalCreature": 1,
+          "globalPacket": 0,
+          "parser": {
+            "index": 6,
+            "kind": 6,
+            "value": 0
+          }
+        },
+        "reason": "nonfinite division result outside current portable arithmetic contract"
+      }
+    ],
+    "method": "Original514920 wrapper,514850 resolver and4f8420/8790/8830/8880/88e0 expression parser execute unchanged. Only game symbol callback9238c0 is supplied; error helper4ef790 executes its actual no-op. Independent mutable-buffer/parser model compares valuebits, lexer cursor/token/value, callbacks, RNG and buffer mutation. Uninitialized unused lexer value is not compared.",
+    "limits": [
+      "ASCII bounded identifiers and terminating finite arithmetic; unknown initial-token/uninitialized stack and divide-by-zero/nonfinite results excluded.",
+      "Game-symbol callback is supplied and remains an adapter; reserved Rand/true/false/max and packet parameters are real native logic."
+    ],
+    "instructionCoverage": {
+      "0x4f2770": {
+        "total": 10,
+        "executed": 10,
+        "notExecuted": []
+      },
+      "0x4f8420": {
+        "total": 232,
+        "executed": 228,
+        "notExecuted": [
+          "0x4f86ab",
+          "0x4f86af",
+          "0x4f86b0",
+          "0x4f86b5"
+        ]
+      },
+      "0x4f8790": {
+        "total": 42,
+        "executed": 41,
+        "notExecuted": [
+          "0x4f87a6"
+        ]
+      },
+      "0x4f8830": {
+        "total": 27,
+        "executed": 27,
+        "notExecuted": []
+      },
+      "0x4f8880": {
+        "total": 26,
+        "executed": 26,
+        "notExecuted": []
+      },
+      "0x4f88e0": {
+        "total": 13,
+        "executed": 13,
+        "notExecuted": []
+      },
+      "0x514850": {
+        "total": 76,
+        "executed": 76,
+        "notExecuted": []
+      },
+      "0x514920": {
+        "total": 32,
+        "executed": 32,
+        "notExecuted": []
+      }
+    },
+    "fixtures": {
+      "path": "reverse-engineering/reports/gameplay-expression-native-fixtures.json",
+      "bytes": 266126,
+      "sha256": "91e40093c60d992a01fd7b108d376c7458695de2410587613670bc0d1a2accef"
+    },
+    "authoredUseCredit": 0
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/ScriptExpressions.cs",
+      "bytes": 10333,
+      "sha256": "32f5e291d755f1818ed9270984369c71c0d9b40853283c44b483fcf1fee84cb6"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/gameplay-expression-portable-verify.cs",
+      "bytes": 6354,
+      "sha256": "c0a93a386e2cf27de94f62a35d38a10c0ebe3a103650214693a716d69778b0ab"
+    },
+    "entrypoint": "GameplayExpressionVerify.Main",
+    "arguments": [
+      "reports/gameplay-expression-native-fixtures.json",
+      "reports/gameplay-expression-csharp-validation.json"
+    ],
+    "dependencies": [
+      "reverse-engineering/reconstructed/gameplay/FlowRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/ScriptRuntime.cs",
+      "reverse-engineering/reconstructed/gameplay/Messages.cs",
+      "reverse-engineering/reconstructed/animation/AnimationPlayback.cs",
+      "reverse-engineering/reconstructed/animation/CharacterContexts.cs"
+    ],
+    "compile": {
+      "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "exitCode": 0,
+      "artifact": {
+        "path": "reverse-engineering/reconstructed/bin/gameplay-expression-verify.exe",
+        "bytes": 55296,
+        "sha256": "7bf0bc6a1de534348445a78351a43b0c0fc78355c807a59bce9c4b62c3d4c7ac"
+      },
+      "managedExecution": "Not attempted under compile-only instruction."
+    },
+    "adapters": [
+      "GameSymbol callback produces game-specific symbol values; packet/reserved/RNG branches are implemented.",
+      "ExpressionBuffer and EvaluateToken replace pointer-buffer ownership without introducing new native function mappings."
+    ],
+    "limits": [
+      "ASCII strings without embedded NUL, identifiers <=255 bytes; recursion <=256 and token budget <=65536.",
+      "No promise for unknown initial tokens, null resolver with an identifier, overflow/nonfinite intermediates or division by zero. Such native undefined/exceptional behavior is not fabricated.",
+      "Existing numeric-prefix, packet parameter and RNG helpers are consumed; they are not counted as additional new mappings."
+    ]
+  }
+}

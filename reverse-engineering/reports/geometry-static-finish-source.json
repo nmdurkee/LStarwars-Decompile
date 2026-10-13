@@ -1,0 +1,138 @@
+{
+  "schema": "recovered-geometry-static-finish-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/StaticFinalization.cs",
+      "bytes": 6561,
+      "sha256": "ebe3e6947677a6a8a9756ee4888d97f78d23d4a9181d0b6543dcd71a14483152"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5df880",
+      "method": "StaticFinalization.PatchAlpha",
+      "sourceFile": "reconstructed/geometry/StaticFinalization.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Valid decoded command and clip records; preceding transforms retain reference aliasing. Original NaN payload and signed-zero clamp semantics retained. Compiled C# execution pending.",
+      "evidence": "geometry-static-finish-native-validation.json"
+    },
+    {
+      "address": "0x5e0bd0",
+      "method": "StaticFinalization.PatchMaterials",
+      "sourceFile": "reconstructed/geometry/StaticFinalization.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Valid material/command arrays and parity buffers; raw gate bytes retain unresolved broader semantic names. Compiled C# execution pending.",
+      "evidence": "geometry-static-finish-native-validation.json"
+    },
+    {
+      "address": "0x5f0d70",
+      "method": "StaticFinalization.Finish",
+      "sourceFile": "reconstructed/geometry/StaticFinalization.cs",
+      "coverage": "bounded-caller-contract-projection",
+      "limitations": "Up to 256 registered scenes; dynamic-list flush, sorted packet completion and nonzero locking remain explicit external callbacks. Tests use the unchanged original zero-lock path and empty orchestration tables; populated patchers tested separately. Compiled C# execution pending.",
+      "evidence": "geometry-static-finish-native-validation.json"
+    }
+  ],
+  "adaptersWithoutNativeEntry": [
+    "StaticFinishScene and MaterialControlTarget decode original pointer arrays and preserve item-to-matrix aliasing.",
+    "StaticFinishCallbacks explicitly delimit unresolved dynamic/sorted packet side effects and locking. Returned address list is diagnostic evidence, not a native data structure."
+  ],
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.StaticFinish.dll",
+    "bytes": 6656,
+    "sha256": "f3df0e88ffc7a798f2ccf39634df03a81c5b7896394e835b45e39c4f36f0d5e5"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/StaticFinalizationHarness.cs",
+    "bytes": 7562,
+    "sha256": "1013a6de3ae96fb8fa46d743cbb05a711b96883167ad7b94a3511639caae3fa0"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.dll /out:Recovered.Geometry.StaticFinish.dll StaticFinalization.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.dll /reference:Recovered.Geometry.StaticFinish.dll /out:StaticFinalizationHarness.exe harness/StaticFinalizationHarness.cs"
+  },
+  "native": {
+    "report": "geometry-static-finish-native-validation.json",
+    "passed": true,
+    "counts": {
+      "authoredAlpha": 240,
+      "authoredMaterial": 720,
+      "materialBoundary": 288,
+      "finish": 20,
+      "alphaMatrixWords": 4584192,
+      "commandBytes": 55078912
+    }
+  },
+  "managed": {
+    "schema": "static-finish-managed-check-v1",
+    "nativeEvidence": "geometry-static-finish-native-validation.json",
+    "sourceCount": 60,
+    "fixtureCounts": {
+      "authored": 960,
+      "materialBoundaries": 288,
+      "finish": 20
+    },
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\static-finish.bin.gz",
+    "fixtureBytes": 1480609,
+    "fixtureSHA256": "4dee398d00b17df8728b3ed3f27914f6116261be5b7861316dd166713b55a01d",
+    "uncompressedBytes": 9205860,
+    "uncompressedSHA256": "3da949b61b06f136889f46a0fc11caa1ae3fb4bd68ff7687d7471e1d8c5211a9",
+    "status": "prepared-not-executed",
+    "mainType": "StaticFinalizationHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "No compiled-source equivalence until ordinary compiled output is compared."
+  },
+  "dependencies": [
+    "SceneSubmission.PatchClipControls",
+    "SceneSubmission.ClampInstanceAlpha",
+    "SceneVisibility"
+  ],
+  "fieldSemantics": {
+    "DISP+0x68": "Per-clip alpha floats; null suppresses alpha patcher",
+    "mesh item byte0/byte1": "Type0x82 and nonzero control select alpha patch",
+    "preceding item+4 -> matrix+0x3c": "Alpha target, shared across items where authored",
+    "DISP+0x4c/+0x50/+0x54": "Material count, material pointer table, control record pointer table",
+    "material record+4/+0x0c": "Selected material index and target command pointer",
+    "material+0xf8/+0xf9/+0xfa": "Three raw gate bytes; do not infer RGB semantics",
+    "DISP+0x58/+0x5c": "Material parity bitsets; flags bit15 chooses current",
+    "global0x9739b8/0x9739bc": "Registered scene count and up-to-256 pointer slots",
+    "global0x973ed4 -> 0x973f34": "Copy 24 DWORD counters before sorted completion"
+  },
+  "remainingGaps": [
+    {
+      "id": "dynamic-list-flush",
+      "address": "0x5de440",
+      "status": "explicit callback; original internals not reconstructed here"
+    },
+    {
+      "id": "sorted-packet-completion",
+      "address": "0x5e0d00",
+      "status": "explicit callback; original internals not reconstructed here"
+    },
+    {
+      "id": "material-gate-byte-meaning",
+      "offsets": [
+        "0xf8",
+        "0xf9",
+        "0xfa"
+      ],
+      "status": "exact branch behavior recovered; semantic labels unresolved"
+    },
+    {
+      "id": "managed-execution",
+      "status": "compiled only; compressed fixture prepared; no execution or bypass attempted"
+    },
+    {
+      "id": "gpu-backend",
+      "status": "not claimed"
+    }
+  ]
+}

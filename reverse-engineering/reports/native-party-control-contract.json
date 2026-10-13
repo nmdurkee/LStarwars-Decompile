@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-10-12T22:49:31.572Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "restrictions": "44fa90 CannotDropIn and44fb90 NotWithParty are first-call-only. Default target dereferences creature+d0 reference into world object; ordered character= replaces target through actual registered lookup. Whole FALSE latches disabled. CannotDropIn performs tag_to= lookup but discards its return. Set eec bit04000000 or ef0 bit01000000, preserving all other bits.",
+    "override": "445910 starts enabled on every call. First call selects default reference at creature+d0, parses substring character (skip10) and whole FALSE, then caches reference in packet+6c. Missing callback preserves prior selection for character token. Subsequent calls ignore tokens and use cached reference with enabled=true.",
+    "reset": "Enabled cached reference with nonnull world object clears world1010 and1008. Nonzero world28b copies107e to107f, clears28b, loads definition+24 tuning bytef5 intoe38 and sets e39=4. Repeat for nonnull worldcd0 linked actor, including self alias. Then toggle cached reference1fc bit100; the final flag target is reference identity, not its world object.",
+    "state": "Uses existing ActorStateWorld resolver and shared TagControlWorld Blocked28b/LinkedCd0 records. Other lifecycle fields retain native offsets; no allocation, downstream AI takeover or party policy inferred."
+  },
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "CannotDropIn",
+      "address": "0x44fa90",
+      "sourceUses": 62,
+      "qualification": "Ordered original actor lookup and state writes; downstream live party and AI behavior external."
+    },
+    {
+      "kind": "scp-action",
+      "name": "NotWithParty",
+      "address": "0x44fb90",
+      "sourceUses": 58,
+      "qualification": "Ordered original actor lookup and state writes; downstream live party and AI behavior external."
+    },
+    {
+      "kind": "scp-action",
+      "name": "SetAIOverrideControl",
+      "address": "0x445910",
+      "sourceUses": 57,
+      "qualification": "Ordered original actor lookup and state writes; downstream live party and AI behavior external."
+    }
+  ],
+  "native": {
+    "cases": 1053,
+    "mismatches": 0,
+    "fullRegionComparisons": 1053,
+    "groups": {
+      "CannotDropIn": 312,
+      "SetAIOverrideControl": 441,
+      "NotWithParty": 300
+    },
+    "authoredUses": {
+      "CannotDropIn": 62,
+      "SetAIOverrideControl": 57,
+      "NotWithParty": 58
+    },
+    "method": "Original handlers and registered43c220 name resolver execute unchanged; only CRT Player%d formatting uses the existing bounded adapter. Full actor/controller/packet/source memory compared, including persistent callback state."
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/PartyControlCommands.cs",
+      "bytes": 3686,
+      "sha256": "a8203ed2f1f3643e657856c5f9cc88781b683dcb78823ed5c73761566f914c8f"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-party-control-portable-verify.cs",
+      "bytes": 6145,
+      "sha256": "eef95444fd14ecf8d4ccff73dacf6c89692fd2ff4b6f2ba5cd0ad0804d5a8a8f"
+    },
+    "entrypoint": "PartyControlVerify.Main",
+    "arguments": [
+      "reports/native-party-control-vectors.json",
+      "reports/native-party-control-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-party-control-vectors.json",
+      "bytes": 5551007,
+      "sha256": "4e95048eca09918417e5da205bfeb7e2170fe7bf71b22163eecb7177d4a25e00"
+    },
+    "build": "reports/reconstructed-build.json",
+    "managedExecution": "Pending; no generated executable launched."
+  },
+  "limits": [
+    "Attached finite actor/definition/tag state with valid pointer chains and ASCII operands. Actor allocation, lifecycle scheduling and downstream party/input consumers remain external.",
+    "AI override preserves native cached reference vs world-object distinction and first-call FALSE only. Runtime fields retain offsets until broader lifecycle meaning is proven.",
+    "Managed replay pending."
+  ]
+}

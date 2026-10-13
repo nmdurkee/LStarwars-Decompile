@@ -625,7 +625,7 @@
     {
       "address": "0x5ee940",
       "label": "FUN_5ee940",
-      "role": "Recursive portal traversal with depth/cycle guards and room marking; end-to-end propagation remains unverified.",
+      "role": "Original recursive portal traversal verified over all authored graphs: depth/cycle guards, real child volumes, room flags and instance bits.",
       "roleStatus": "reconstructed-description-from-original-PC",
       "evidenceId": "ev_fbc0fd73cf89a7f733f4465e4ab1049333b8e7c593c45a6546f4f82b49062809",
       "file": "decompiled/corpus-expanded/FUN_5ee940.c",
@@ -775,7 +775,7 @@
     {
       "address": "0x5d9f50",
       "label": "FUN_5d9f50",
-      "role": "Projects portal winding through prepared0x80b888 matrix and clamps component bounds; prepared diagonal projection tested.",
+      "role": "Projects portal winding through prepared0x80b888 matrix and clamps component bounds; perspective division and zero-W fixtures verified.",
       "roleStatus": "reconstructed-description-from-original-PC",
       "evidenceId": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "file": "decompiled/corpus-expanded/FUN_5d9f50.c",
@@ -795,7 +795,7 @@
     {
       "address": "0x5ee750",
       "label": "FUN_5ee750",
-      "role": "Partially clipped portal branch: camera-plane gate, rectangle intersection and rectangular child volume; static observation only.",
+      "role": "Verified partially clipped portal chain: camera-plane0/1/4 gate, projected rectangle intersection and FOV child volume.",
       "roleStatus": "reconstructed-description-from-original-PC",
       "evidenceId": "ev_fbc0fd73cf89a7f733f4465e4ab1049333b8e7c593c45a6546f4f82b49062809",
       "file": "decompiled/corpus-expanded/FUN_5ee750.c",
@@ -805,12 +805,42 @@
     {
       "address": "0x5d9a00",
       "label": "FUN_5d9a00",
-      "role": "Four-plane child volume from screen rectangle and camera/FOV state; not independently reconstructed here.",
+      "role": "Verified four-plane child volume from screen rectangle, original sine table, exact FOV phase and prepared camera state.",
       "roleStatus": "reconstructed-description-from-original-PC",
       "evidenceId": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
       "file": "decompiled/corpus-expanded/FUN_5d9a00.c",
       "bytes": 2942,
       "sha256": "c2eaa76039b519734ee7b3dd6532a48b19ff5dfc791e97e324abb26c2a0c779e"
+    },
+    {
+      "address": "0x5d9130",
+      "label": "FUN_5d9130",
+      "role": "Stores caller-provided portal recursion depth into GSNH+0xe4.",
+      "roleStatus": "reconstructed-description-from-original-PC",
+      "evidenceId": "ev_bd8f422ab2bc288e381e81a075ad63116995ee03e48e3608bccd82f55c6aad54",
+      "file": "decompiled/corpus-expanded/FUN_5d9130.c",
+      "bytes": 338,
+      "sha256": "0af8f8f8439f14eaae77432ed2d728149a9a32a010a7c83aa8fc418f5c9eaff8"
+    },
+    {
+      "address": "0x602550",
+      "label": "FUN_602550",
+      "role": "Scene load finalizer; final call initializes portal depth to GSNH+0x6c portal count. Empty-resource native path verified.",
+      "roleStatus": "reconstructed-description-from-original-PC",
+      "evidenceId": "ev_fc1ff40c7a3094b1e589789cc6fd4e7c7ceccf6febfdd6935cf97a0e254c7b0e",
+      "file": "decompiled/corpus-expanded/FUN_602550.c",
+      "bytes": 2063,
+      "sha256": "b5d9f06076d2306cf5e2673e2fa2d3ba44bbf461eda90eae54110e24fda026c9"
+    },
+    {
+      "address": "0x5ef1d0",
+      "label": "FUN_5ef1d0",
+      "role": "Scene resource initialization caller of602550; complete native loading/GPU resource creation not reconstructed here.",
+      "roleStatus": "reconstructed-description-from-original-PC",
+      "evidenceId": "ev_fbc0fd73cf89a7f733f4465e4ab1049333b8e7c593c45a6546f4f82b49062809",
+      "file": "decompiled/corpus-expanded/FUN_5ef1d0.c",
+      "bytes": 4440,
+      "sha256": "3044162bb36ef3c735ddda4f73212a30c04f6cba8b068a60fe2b6c7d79b947e3"
     }
   ],
   "directEdges": [
@@ -1275,6 +1305,18 @@
       "to": "0x5d9850",
       "meaning": "packed plane matrices",
       "evidence": "decompiled/corpus-expanded/FUN_5d9a00.c"
+    },
+    {
+      "from": "0x5ef1d0",
+      "to": "0x602550",
+      "meaning": "load finalization",
+      "evidence": "decompiled/corpus-expanded/FUN_5ef1d0.c"
+    },
+    {
+      "from": "0x602550",
+      "to": "0x5d9130",
+      "meaning": "default portal traversal depth equals portal count",
+      "evidence": "decompiled/corpus-expanded/FUN_602550.c"
     }
   ],
   "callbackTables": [
@@ -2076,6 +2118,36 @@
       "owner": "global",
       "offsetOrAddress": "0x80b888",
       "meaning": "prepared projection matrix copied by portal bounds helper"
+    },
+    {
+      "owner": "GSNH",
+      "offsetOrAddress": "+0x9c/+0xdc",
+      "meaning": "16-entry child-volume pointer array and allocated count"
+    },
+    {
+      "owner": "GSNH",
+      "offsetOrAddress": "+0xe4",
+      "meaning": "runtime portal depth limit; loader initializes from portal count+0x6c"
+    },
+    {
+      "owner": "global",
+      "offsetOrAddress": "0x963f54",
+      "meaning": "16 signed16 ancestor-room slots used by recursive cycle guard"
+    },
+    {
+      "owner": "camera",
+      "offsetOrAddress": "+0x40/+0x44",
+      "meaning": "FOV and aspect consumed by rectangular volume builder"
+    },
+    {
+      "owner": "global",
+      "offsetOrAddress": "0x755d18",
+      "meaning": "exact double angle scale10430.3779296875"
+    },
+    {
+      "owner": "global",
+      "offsetOrAddress": "0x97ad50/0x97ad90",
+      "meaning": "inverse projection cache / copied original projection; cache side effect remains outside portable result"
     }
   ],
   "originalInstructionValidation": {
@@ -2106,7 +2178,7 @@
   ],
   "unknowns": [
     "World-scene and named-special submission edges are now traced and dispatch tested, but GHG-layer/dynamic-packet generation is not reconstructed end to end.",
-    "Native geometric frustum, room containment/selection, portal facing/clip predicates and room-to-instance visibility writes are verified separately. Camera system, child-volume construction/recursive traversal, grid/tree visibility, shadow extrusion and synchronization remain incomplete.",
+    "Prepared-camera portal recursion, child volumes, projection results and room/instance visibility are native-validated within16allocated volumes. Live camera/projection producer, inverse-cache side effects, grid/tree visibility, shadow extrusion and synchronization remain incomplete.",
     "No original GPU pixel comparison, shader execution or full-frame device emulation; CPU helper tests are not a working renderer.",
     "Dynamic morph-buffer upload branch remains a static observation in this report.",
     "Original requests for UV resets and changes to speed scale remain separate runtime-owner work."
@@ -2284,5 +2356,81 @@
       "limit": "Numeric equality only: exact IEEE sign bits at zero are not reproduced by the finite rational helper, which collapses zero sign."
     },
     "report": "geometry-portal-volume-native-validation.json"
+  },
+  "portalRuntimeValidation": {
+    "passed": true,
+    "counts": {
+      "projection": 1304,
+      "rectangularVolumes": 432,
+      "partialPortals": 3912,
+      "traversal": 7888,
+      "childVolumeScalars": 954180
+    },
+    "signedZeroDifferences": 60,
+    "traversalSummary": {
+      "entries": 16869,
+      "markedRooms": 16855,
+      "allocatedVolumes": 16869,
+      "maximumVolumes": 16,
+      "classificationResults": {
+        "2": 8073,
+        "0": 6319,
+        "1": 3042
+      },
+      "partialResults": {
+        "1": 3102,
+        "0": 2134,
+        "4": 2837
+      }
+    },
+    "excludedUnsafeCases": [
+      {
+        "source": "LEVELS\\EPISODE_V\\CLOUDCITYESCAPE\\CLOUDCITYESCAPE_A\\CLOUDCITYESCAPE_A_PC.GSC",
+        "root": 2,
+        "camera": 0,
+        "mode": 1,
+        "depthLimit": 15,
+        "loaderDefaultDepth": false,
+        "reason": "Native clip pointer list capacity would be exceeded"
+      },
+      {
+        "source": "LEVELS\\EPISODE_V\\CLOUDCITYESCAPE\\CLOUDCITYESCAPE_A\\CLOUDCITYESCAPE_A_PC.GSC",
+        "root": 2,
+        "camera": 0,
+        "mode": 1,
+        "depthLimit": 16,
+        "loaderDefaultDepth": true,
+        "reason": "Native clip pointer list capacity would be exceeded"
+      },
+      {
+        "source": "LEVELS\\EPISODE_V\\CLOUDCITYESCAPE\\CLOUDCITYESCAPE_C\\CLOUDCITYESCAPE_C_PC.GSC",
+        "root": 6,
+        "camera": 0,
+        "mode": 1,
+        "depthLimit": 13,
+        "loaderDefaultDepth": true,
+        "reason": "Native clip pointer list capacity would be exceeded"
+      },
+      {
+        "source": "LEVELS\\EPISODE_V\\CLOUDCITYESCAPE\\CLOUDCITYESCAPE_C\\CLOUDCITYESCAPE_C_PC.GSC",
+        "root": 6,
+        "camera": 0,
+        "mode": 1,
+        "depthLimit": 15,
+        "loaderDefaultDepth": false,
+        "reason": "Native clip pointer list capacity would be exceeded"
+      }
+    ],
+    "report": "geometry-portal-runtime-native-validation.json"
+  },
+  "portalRuntimeBoundaryValidation": {
+    "report": "geometry-portal-runtime-boundaries.json",
+    "passed": true,
+    "counts": {
+      "angleConversion": 30,
+      "recursionGuards": 22,
+      "syntheticGraphs": 75,
+      "loaderDepthInitialization": 60
+    }
   }
 }

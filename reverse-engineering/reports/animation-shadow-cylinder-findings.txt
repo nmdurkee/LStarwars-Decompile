@@ -1,0 +1,30 @@
+PC LEGACY CYLINDER SHADOW GEOMETRY
+
+3874 new original comparisons; 0 mismatches.
+
+resource
+64-byte record: center at words0..2, primary axis at3..5, radial axes at6..8 and10..12. Words9 and13..15 are ignored, including authored nonfinite bit patterns. Bit0 of raw center-X chooses rounded ten-edge versus four-edge geometry; the bit stays in the float used for X. All950 authored records are covered:676 four-edge and274 rounded.
+
+basis
+Transform center and each center+axis endpoint using actual5c03e0, float-store endpoints/subtractions. Normalize cross(primaryAxis,direction) using scalar5b3920 arithmetic and5c0240 roots. Float-store each radial projection before the radius root. Primary length root is computed but discarded in the four-edge branch.
+
+rounding
+The ten-edge branch uses a double constant equal to float32(.707), not the nearest double literal. It retains x87 intermediate arithmetic plus explicit double spills in individual cap cases; adjacent edge endpoints can differ in their arithmetic order. The four-edge branch first float-stores radius*side. All emitted endpoints are float-stored again after adding world center.
+
+output
+Emit [a,a+direction*5,b+direction*5,b], colorffffffff, for4 or10edges. VertexCount increases16 or40. The ten-edge branch increments GeneratedValue by20; the four-edge branch leaves it unchanged. Unsigned GroupCount<250 records one start/count entry; metadata saturation does not stop geometry.
+
+evidence
+3874 NEW complete original comparisons, all950 authored records from128rigs/726bindinggroups, plus256synthetic records. 94000 vertices and 9110 actual root calls. Entire20,480-byte backing and counters match the independent model; no computational helpers replaced.
+
+integration
+Uses existing LegacyShadowGeometryState, TransformPoint and SquareRoot. Cross arithmetic is a private dependency, not an independently claimed new native entry. Queue-to-cylinder composition remains a separate follow-up.
+
+managed
+Portable replay checks the full image and counters, including preservation of opaque record words. Core and replay compiled successfully; managed execution pending.
+
+Limits
+Finite active resource/matrix/direction and stored results; sufficient disjoint output backing.
+Both flag branches, zero axes/direction and signed-zero matrices;250-entry metadata saturation does not stop vertices.
+No managed executable or graphics-device launch.
+One new native entrypoint. Existing scheduler, polygon and ellipse projections unchanged.

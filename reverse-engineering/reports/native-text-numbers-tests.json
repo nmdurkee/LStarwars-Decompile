@@ -1,0 +1,21 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "checks": 2927,
+  "mismatches": 0,
+  "visitedInstructions": 244,
+  "bytesComparedPerCase": 65540,
+  "groups": {
+    "decimal": 539,
+    "hex": 539,
+    "real": 539,
+    "read-int": 655,
+    "read-real": 655
+  },
+  "examples": [],
+  "method": "Original4f28e0/4f29a0/4f8cb0 and numeric readers4f8100/4f9e70 execute with actual shared token scanner. No computational hooks; exact raw32-bit results and complete prepared memory compare.",
+  "limits": [
+    "Terminated byte strings, numeric reader tokens below64bytes, finite stored floating intermediates. Text-mode reader composition covered; binary token decoding remains an explicit service in portable API, not exercised here.",
+    "Decimal integer wraps32bits and consumes optionalminus/digitprefix; no plus or whitespace. Hex consumeswholeinput, any invalidbyte returns0. Readers recognize$and0xprefixes.",
+    "Real parser does not implement exponent syntax. It rounds after every multiply, add, divisor scale and final divide; minuszero retained. Full audio parsing through these helpers is separate; managed execution pending."
+  ]
+}

@@ -1,0 +1,26 @@
+4554 original-PC comparisons, zero mismatches. Three bounded callback mappings. Portable replay compiles only.
+
+registration
+Steering51d7b0 calls global9238fc. Setter520440 writes that slot. Initialization407ad0 supplies4078d0;4816b0 supplies4813d0;4cbda0 supplies4cbba0. In contrast517000 writes9238dc and registers43c7a0, an actor-index resolver; it is not the steering callback.
+
+common
+All three callbacks resolve the world actor through reference word0. Actor state byte7b5==91 ORs global802278 into attachmentCA4 word8. The current connection word indexed by packet160 supplies required capabilities. Zero requirements or bit40000000 bypass action dispatch. Unsupported requirements or any98000000 bit stop at the reference position, zero packet110, set reference292 bit2000 and return1. The4813d0 variant also clears packet139.
+
+jump
+4078d0 and4cbba0 first test required8000, tuning90 bit40 clear, actorEA4 zero, state7b5!=60, and no supported requirement except8000. This calls52c790(reference word4, TakeOverJump), ignores its result and returns1. The4813d0 variant has no such special case.
+
+priority
+The actual original mask/function tables are retained in order. Only the first mask intersecting supported requirements is called. A nonzero return becomes1; zero falls through to the tail without trying later matching rows. The default table deliberately contains two masks pointing at406030. No semantic names are inferred from those addresses.
+
+tail
+After a selected handler returns zero, the code rereads packet1e8 bit20000000, actor7c5 bit2, global876ce4>0, current connection identity/direction and requiredD8000000 bits. If eligible,43c9a0 receives the cached world actor and the opposite endpoint in the currently selected path. Its result is ignored and the callback returns0.
+
+validation
+4,554 original-PC top-level records pass against an independent model, all317 body instructions executed. Tests cover every requirement bit, priority masks, all table rows, blocked and jump guards, byte91 attachment marking, return normalization, and callback changes to flags, direction, requirements and the global gate. Native fixtures intercept downstream handlers/state-switch/relocation as explicit services; these checks establish orchestration and state updates, not their internal behavior.
+
+Remaining
+Valid loaded actor, reference, connection, character/tuning and path backing; normal connection direction indices0/1. Invalid/null pointer faults are excluded.
+52c790 is independently recovered as ActorActivation.ChangeBaseState, but this module exposes the raw processor identity as an adapter; no additional helper mapping or composition credit here.
+The23 ordered table rows refer to22 distinct downstream handler addresses; those special action bodies remain explicit services in this batch. Relocation43c9a0 is also explicit.
+The original reference-to-world-actor identity is cached once; callback mutations to fields/gates/connection selection are reread as in the original. Native fixtures verify selected field mutations, not arbitrary memory aliasing.
+No authored command-use credit, no claim of completed51d7b0 steering or full navigation. Managed replay compiled only and was not executed.

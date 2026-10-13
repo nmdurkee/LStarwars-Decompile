@@ -1,0 +1,54 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "contracts": {
+    "bytes": "ReadByte refills at most4096bytes using signed current/end/total fields, rereads end after mutable file service, and returns preserved offset highbits with current byte in low8.",
+    "lines": "Text scanner retains quotes, strips semicolon comments outside quotes, consumes CR plus followingbyte, skips comment/blank lines and preserves original line-number behavior.",
+    "buffers": "Characters write through literal line capacity mask; terminal zero uses unmasked totalcount. Blank-line whitespace accumulation and non-power-of-two capacities are retained.",
+    "binary": "Nonzero parser+578 delegates binary line4fc390 and returns its exactDWORD."
+  },
+  "commands": [],
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "checks": 216,
+    "lineCalls": 2881,
+    "byteCalls": 20491,
+    "mismatches": 0,
+    "visitedInstructions": 161,
+    "bytesComparedPerCase": 65536,
+    "examples": [],
+    "method": "Original4fc2d0 buffered byte reader and4fc5b0 line parser compose unchanged. Only file-read4fb550 and binary-line4fc390 are services. Full memory after each line, exact rawDWORD byte returns, file requests and refill consumption compare.",
+    "limits": [
+      "Disjoint valid4096-byte refill storage, bounded line backing and positive capacity; service returns0..requested bytes. Two complete raw authoredAUDIO.CFG runs use17-byte and4096-byte service chunks, no external comment stripping.",
+      "Semicolon comments are active outside quotes, CR always consumes next byte, whitespace-only lines may retain accumulated whitespace, final terminator uses unmasked line count. Unterminated quoted lines retain native behavior.",
+      "ReadByte preserves offset bits above low8; callers consume low byte. No binary format/file system backend implementation or managed execution claimed."
+    ]
+  },
+  "portable": {
+    "source": {
+      "path": "reverse-engineering/reconstructed/gameplay/TextParserLines.cs",
+      "bytes": 2488,
+      "sha256": "6798d83f0d7eda8149b96bbdeec7654e0ffac6b19ee5c5c03537e2c883c4a216"
+    },
+    "harness": {
+      "path": "reverse-engineering/tools/native-text-lines-portable-verify.cs",
+      "bytes": 5464,
+      "sha256": "56bf41bac322e98dd1a7eebf8461d44c65a4c9bdee1d027e2c74726d2d98b33d"
+    },
+    "entrypoint": "TextParserLinesVerify.Main",
+    "arguments": [
+      "reports/native-text-lines-vectors.json.gz",
+      "reports/native-text-lines-csharp-validation.json"
+    ],
+    "fixtures": {
+      "path": "reverse-engineering/reports/native-text-lines-vectors.json.gz",
+      "bytes": 197413,
+      "sha256": "f2779ad19879d72a49b08fb3d9f579183744a0d39d750b51d8fa52c0fd70a203"
+    },
+    "managedExecution": "Prepared, compilation only; execution pending."
+  },
+  "limits": [
+    "Disjoint valid4096-byte refill storage, bounded line backing and positive capacity; service returns0..requested bytes. Two complete raw authoredAUDIO.CFG runs use17-byte and4096-byte service chunks, no external comment stripping.",
+    "Semicolon comments are active outside quotes, CR always consumes next byte, whitespace-only lines may retain accumulated whitespace, final terminator uses unmasked line count. Unterminated quoted lines retain native behavior.",
+    "ReadByte preserves offset bits above low8; callers consume low byte. No binary format/file system backend implementation or managed execution claimed."
+  ]
+}

@@ -1,0 +1,32 @@
+PC CHARACTER SWAY AND FADE PACKET COMPOSITION
+
+360 new original comparisons;0 mismatches.
+
+composition
+The public character bridge now supplies recovered sway and fade implementations to DynamicObjectSubmission.SubmitWithShadows. Existing layer selection, primary/secondary visibility, shadow scheduling and mixed billboard/skin/ordinary/prefix writers remain. A disjoint explicit64-byte scratch projects the original temporary stack sway matrix.
+
+sway
+Dynamic submission reads signed special+c8 seed and+ca amplitude. Nonzero amplitude runs original coefficients/matrix mutation before bounding points, distance/LOD and secondary tests. Source matrix remains unchanged; all subsequent packet writers receive the modified matrix. Runtime frame/amplitude/rate, original sine table and conversion selector are explicit ObjectSwayState inputs. Both original x87 and SSE conversion branches are exercised.
+
+fade
+The existing dynamic caller checks owner fade-table pointer and instance bit40, evaluates distance fade after LOD selection, and returns immediately on exact zero alpha. That branch skips cache initialization, shader reset and local shared-flag cleanup. Subsequent outer character draws still observe the shared state; final character cleanup clears it. Billboard/ordinary/prefix payloads receive alpha; skin writer retains its separate original forced1.0 behavior.
+
+boundaries
+Equal finite fade endpoints can produce a negative quietNaN after the original float-rounded square root; its exact word and propagation are retained in original fixtures. This is an observed result from finite inputs, not permission to pass arbitrary nonfinite positions or sway values. Trig products stay inside the established signed64 conversion domain.
+
+evidence
+360 new complete original comparisons: 3960 actual sway calls, 3960 fade calls, 51438 packets, 20842 forwarded nonunit alpha words including3480 NaNs. Whole persistent image, all captured sway matrices, fade arguments and forwarded alpha words, packet/record order, masks/cursor and COM events agree.
+
+bindings
+The source-matched Mace Windu GHG rigs, mesh and billboard descriptors are unchanged from the mixed-list batch. Sway/fade controls and relocated scene/material/volume records are explicit constructed inputs, not claims about those shipped characters using these flags. Exact runtime loader and parameter producers remain separate.
+
+managed
+Prepared replay uses the actual shared geometry sway/fade modules and compares complete image hashes, final sway scratch, packet/record order, flags/count/cursor, buffer events and submission count. Native-only internal call diagnostics are independently compared by the original/Python oracle. Both targets compile; managed execution remains pending.
+
+Limits
+Controlled source-matched mesh/billboard/layer bindings and explicit finite sway/fade/camera scenarios; exact shipped loader and runtime parameter producer remain separate.
+Sway coefficients fit signed64 conversion bounds, both original conversion modes. Finite fade inputs can produce original NaN alpha at equal endpoints.
+Active legacy character shadow queue, GPU execution and managed executable launch remain separate.
+Fade arithmetic equivalence is established for these original fixtures and prior helper/caller evidence; arbitrary finite midpoints are not exhaustively proved.
+No new native address credit. The source preserves previous single-mode entrypoints unchanged.
+Managed runtime comparison remains pending.

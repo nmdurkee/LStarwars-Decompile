@@ -1,0 +1,153 @@
+{
+  "schema": "recovered-geometry-ordinary-packets-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "bytes": 5548,
+      "sha256": "38adc2eca7c6c215f1e120be260e20ab9f8cda81f7150f7482c251bbf1da981e"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5f7610",
+      "method": "OrdinaryMeshPackets.Transpose",
+      "sourceFile": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Ordered pair copies preserve in-place and partial-overlap behavior. Input float words may be finite,infinite or quiet NaN; signaling NaNs excluded. Valid finite allocated memory; no pointer overflow. Managed comparison pending.",
+      "evidence": "geometry-ordinary-packets-native-validation.json"
+    },
+    {
+      "address": "0x603580",
+      "method": "OrdinaryMeshPackets.BuildTransform",
+      "sourceFile": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Allocator aligns to4 and reserves64 bytes. Explicit globals80e258..80e264 plus scratch destinations2857230/28571f0. Three trailing original arguments ignored; getter results unused. Scratch/metadata storage disjoint; transpose supports overlap. Valid finite allocated memory; no pointer overflow. Managed comparison pending.",
+      "evidence": "geometry-ordinary-packets-native-validation.json"
+    },
+    {
+      "address": "0x5e0200",
+      "method": "OrdinaryMeshPackets.BuildOrdinary",
+      "sourceFile": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Complete finite ordinary writer with two8c/82 commands, cache/output pointers, alpha and signed metadata. Original EAX record/EDI output become parameters; global allocator and scratch states explicit. Valid finite allocated memory; no pointer overflow. Managed comparison pending.",
+      "evidence": "geometry-ordinary-packets-native-validation.json"
+    },
+    {
+      "address": "0x5e02b0",
+      "method": "OrdinaryMeshPackets.BuildWithPrefix",
+      "sourceFile": "reconstructed/geometry/OrdinaryMeshPackets.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Complete finite prefix writer copying command-32 opcode/resource then8c/82. Alpha patched; metadata lane remains source transpose value. Original dispatcher restricts prefix opcode to b0/ae/af; direct helper itself copies any byte. Cases use those three authored-family opcodes. Valid finite allocated memory; no pointer overflow. Managed comparison pending.",
+      "evidence": "geometry-ordinary-packets-native-validation.json"
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory",
+    "DynamicCommandSupport.Reserve",
+    "DynamicCommandSupport.StoreAlpha",
+    "DynamicCommandSupport.StoreSignedMetadata"
+  ],
+  "native": {
+    "report": "geometry-ordinary-packets-native-validation.json",
+    "passed": true,
+    "counts": {
+      "transpose": 128,
+      "matrix": 480,
+      "ordinary": 480,
+      "prefix": 480,
+      "authoredMatrices": 480,
+      "checkedBytes": 6422528
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "assembly": {
+      "file": "reports/geometry-ordinary-packets-assembly.json",
+      "bytes": 30688,
+      "sha256": "14d2656e65981cf6930ab892406f6ae2a36e1f71f1de59f1a47cb2e3e817db82"
+    },
+    "modelDependency": {
+      "file": "tools/geometry-dynamic-command-native.py",
+      "bytes": 8040,
+      "sha256": "a03cdb76e8d9fe6757f2bdd511f15fa811fd231ba74c394a55af88eaa47643f8"
+    }
+  },
+  "managed": {
+    "schema": "geometry-ordinary-packets-managed-check-v1",
+    "caseCount": 1568,
+    "nativeEvidence": "geometry-ordinary-packets-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\ordinary-mesh-packets.bin.gz",
+    "fixtureBytes": 63710,
+    "fixtureSHA256": "7412bc52d8d211e6cedc42f5bf12ca82b89790d41082457d8aa6dfbd707e8050",
+    "uncompressedBytes": 6522888,
+    "uncompressedSHA256": "40bc07cc25d3b887add29179966878f9fb6cf4a45ef3aa9a613b9f02fd4f605b",
+    "status": "prepared-not-executed",
+    "mainType": "OrdinaryMeshPacketsHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Compiled C# equality pending; no executable launch."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.OrdinaryPackets.dll",
+    "bytes": 6144,
+    "sha256": "c13a2c5a82cea59b6d536b57d114719a2244c9718e3789344bc31f01d9c1f331"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/OrdinaryMeshPacketsHarness.cs",
+    "bytes": 2107,
+    "sha256": "feab8ca30dea2b1962fa2aa8ed54ef42c54e3d2329272bb15a25605b72fd3d84"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.DynamicSupport.dll /out:Recovered.Geometry.OrdinaryPackets.dll OrdinaryMeshPackets.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.OrdinaryPackets.dll /out:OrdinaryMeshPacketsHarness.exe harness\\OrdinaryMeshPacketsHarness.cs"
+  },
+  "observations": [
+    "603580 does not multiply scratch scale or translation into output: the payload is caller matrix transpose only.",
+    "5d6190/5d6180 merely return original context addresses and have unused results in this producer; no native-entry coverage is separately claimed for them.",
+    "5b45a0/5b4500 produce scratch diagonal scale and translation matrices. These effects are included in603580 checks; this batch does not claim their arbitrary standalone pointer alias domain.",
+    "The ordinary path writes payload+56 as signed integer converted tofloat32 and payload+60 as clamped alpha, after the transpose. Prefix path changes only alpha.",
+    "Diagnostic returned call lists are adapters, not native return values."
+  ],
+  "remainingGaps": [
+    {
+      "id": "dynamic-caller",
+      "address": "0x5f0f00",
+      "status": "Material selection, transformed visibility,LOD and full shader+packet caller integration remain separate."
+    },
+    {
+      "id": "billboard-packets",
+      "addresses": [
+        "0x603610",
+        "0x603970",
+        "0x5e0490"
+      ],
+      "status": "View-dependent billboard payload and complete writer remain separate."
+    },
+    {
+      "id": "deformed-packets",
+      "addresses": [
+        "0x603710",
+        "0x5e0390"
+      ],
+      "status": "Animation worker owns deformation payload investigation; complete writer integration pending."
+    },
+    {
+      "id": "signaling-nan",
+      "status": "Rejected due isolated emulator-vs-physical-PC load/store uncertainty documented in dynamic command report."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compile passed; saved-output comparison pending."
+    },
+    {
+      "id": "gpu-command-consumption",
+      "status": "CPU packet state verified; GPU output unclaimed."
+    }
+  ]
+}

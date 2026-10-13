@@ -1,0 +1,32 @@
+PC CHARACTER ACTIVE LEGACY QUEUE AND PACKET COMPOSITION
+
+718 new original comparisons;0 mismatches.
+
+composition
+Existing CharacterEffectsPacketPipeline forwards authored binding records and the shared CharacterShadowQueueState through CharacterSecondaryPipeline/CharacterRenderPipeline. The legacy queue is updated before the first layer draw; it remains distinct from secondary visibility masks and dynamic shadow packet contexts. This batch changes no core source.
+
+ordering
+The original caller tests primary and secondary visibility before invoking5f9fa0. When both reject, the queue stays unchanged and no draw occurs. With accepted visibility, queue submission precedes all layer iteration, including requestedCount0. A full queue, disabled global, mode!=1, hierarchy suppression or submission-disabled global prevents new queue records but does not prevent later actual packet draws.
+
+coverage
+718 new original caller cases across298 source rigs. The full244-source binding catalog intersects42 of these rigs, covering120 authored groups. Each intersecting rig additionally exercises empty/near-full/full queues, disabled/wrong-mode/suppressed/submission-disabled gates, no requested layers, total cull and secondary-only acceptance.
+
+queue
+Every29120-byte queue result, count, sequence and separate legacy submission flag matches. Populated slots start as opaqueA5 bytes and are preserved; source data is not read by this producer. Tests cover sequence wrap and signed packed-parameter top-byte storage. Every original5f0f00 entry observes the exact completed queue snapshot; no draw-stage callback substitutes native behavior.
+
+packets
+The original caller executes scalar D3DX, secondary tests, dynamic normal/shadow scheduling, shaders and packet writers. Full persistent1MiB state, layer/palette hashes, packet/record order, allocator/visibility state and COM event order match the independent model. Two documented host-projection transient scratch regions are excluded consistently with earlier evidence.
+
+managed
+Prepared replay exercises unchanged CharacterEffectsPacketPipeline with the active queue and compares every persistent image byte via hash, complete queue hash/globals, packet/record order, masks/cursor and buffer events. Native internal queue-call order and per-draw queue snapshots are independently checked by the original/Python oracle; the managed harness does not invent callbacks for them. Both targets compile; execution remains pending.
+
+remaining
+Authored binding pointers are normalized source offsets proven by PNTR relocation and are not dereferenced by this queue. Actual shape-volume generation/queue drain, runtime resource hydration and live device submission remain separate. Sway/fade/billboard composition has separate earlier evidence and remains inactive in this normal mesh sweep.
+
+Limits
+298 source-matched mesh rigs intersect42 of244 catalog rigs with shadow bindings;120 groups in that intersection. Exact shipped layer-to-mesh runtime loader association remains unproven; controlled handles route full authored topology to one source-matched mesh.
+Queue initial populated slots contain preserved opaqueA5 bytes; this producer does not read or drain them. Shape pointers retain exact normalized authored offsets and are not dereferenced by this queue.
+Finite scalar valid state; controlled shadow contexts and relocated scene/material records. Billboard/sway/fade have separate prior composition evidence and remain inactive in this sweep.
+Two transient host-projection scratch regions remain excluded as in prior packet evidence. No graphics-device draw, queue drain, live scheduler or managed launch.
+Zero new native addresses or core files. Existing effects and single-mode entrypoints are unchanged.
+Managed runtime comparison remains pending.

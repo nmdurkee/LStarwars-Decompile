@@ -1,0 +1,171 @@
+{
+  "schema": "recovered-geometry-material-pool-source-v1",
+  "namespace": "Recovered.Geometry",
+  "coreModules": [
+    {
+      "file": "reconstructed/geometry/MaterialPool.cs",
+      "bytes": 4152,
+      "sha256": "86178da6afd2dfe0fffa960b7159566d6341241a28c9a3894d1c4d04688f378f"
+    }
+  ],
+  "nativeMappings": [
+    {
+      "address": "0x5e5140",
+      "method": "MaterialPool.ResetRuntime",
+      "sourceFile": "reconstructed/geometry/MaterialPool.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Valid520-byte runtime destination ornull. Exact defaults and untouched surrounding bytes. Managed comparison pending.",
+      "evidence": "geometry-material-pool-native-validation.json"
+    },
+    {
+      "address": "0x600f20",
+      "method": "MaterialPool.Initialize",
+      "sourceFile": "reconstructed/geometry/MaterialPool.cs",
+      "coverage": "bounded-whole-helper-projection",
+      "limitations": "Valid material image; signed texture count. Used RGB*255 products finite and within signedInt32 range, native truncate-toward-zero packing. Invalid/overflow FISTP behavior excluded. Managed comparison pending.",
+      "evidence": "geometry-material-pool-native-validation.json"
+    },
+    {
+      "address": "0x5e4b20",
+      "method": "MaterialPool.Allocate",
+      "sourceFile": "reconstructed/geometry/MaterialPool.cs",
+      "coverage": "bounded-positive-count-zero-lock-branch",
+      "limitations": "Positive count and sufficient free708-byte slots; valid disjoint pending queue with at most600entries; original lock token0. Fatal exhaustion/overflow and uninitialized nonpositive-count branch excluded. Managed comparison pending.",
+      "evidence": "geometry-material-pool-native-validation.json"
+    }
+  ],
+  "compositionMappings": [
+    {
+      "address": "0x5e5020",
+      "method": "MaterialCloneCache.Merge with MaterialPool.Allocate constructor service",
+      "sourceFile": "reconstructed/geometry/MaterialCloneCache.cs",
+      "coverage": "supporting-composition-no-new-address-credit",
+      "limitations": "480 authored clone misses use original constructor; only shader refresh601030 remains controlled. Declaration lookup is prepopulated cache-hit branch. See replay composition in MaterialPoolHarness."
+    }
+  ],
+  "dependencies": [
+    "RenderPacketMemory"
+  ],
+  "native": {
+    "report": "geometry-material-pool-native-validation.json",
+    "passed": true,
+    "counts": {
+      "reset": 17,
+      "initialize": 1080,
+      "allocate": 170,
+      "cloneIntegration": 480,
+      "authoredMaterials": 480,
+      "checkedBytes": 78712832,
+      "constructorCalls": 650
+    },
+    "sources": 60,
+    "binarySHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "limits": [
+      "Original5e5140/600f20/5e4b20 and nested memset/zero-lock helpers execute unchanged. Successful positive-count pool and600-entry queue domain; lock token0.",
+      "480 original5e5020 clone chains include real pool constructor, cache/list helpers and declaration-cache lookup. Only shader refresh601030 remains a controlled mutable service in those cases.",
+      "Authored708-byte material fields are copied opaquely; initializer reads preserved RGB/signed texture count then resets runtime range. This is not complete game-state relocation.",
+      "Finite RGB*255 products inside signedInt32 range. Native temporarily forces truncation toward zero before low-byte packing. NaN/overflow FISTP behavior excluded.",
+      "Pool exhaustion,queue overflow,nonpositive allocation count and operating-system locks excluded. No managed/game/GPU launch."
+    ],
+    "assembly": {
+      "file": "reports/geometry-material-pool-assembly.json",
+      "bytes": 35204,
+      "sha256": "c5cf98f26babffaa396d4762f2b7c634d30fc2639b1652f11eae321532230f04"
+    },
+    "pseudocode": [
+      {
+        "file": "decompiled/corpus-expanded/FUN_5e5140.c",
+        "bytes": 661,
+        "sha256": "e00a0caac4be43768432fc04a853d5314d66f4902d8aad00d7dacecf4bd348c7"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_600f20.c",
+        "bytes": 1049,
+        "sha256": "20634e103ac768e3454f74f50fbe3b00814b3d228ea2fa6534868cb13b2e78d5"
+      },
+      {
+        "file": "decompiled/corpus-expanded/FUN_5e4b20.c",
+        "bytes": 2148,
+        "sha256": "8f96a60d3a6ac206043ad59d8135193c7309749bec369ade0d562b363e2acd3c"
+      }
+    ],
+    "cloneModelDependency": {
+      "file": "tools/geometry-material-clone-native.py",
+      "bytes": 10877,
+      "sha256": "d5d4d4fc50398501f770131be1c7850a2b3d9e4fedccc1f8e6158b639461fcf3"
+    }
+  },
+  "managed": {
+    "schema": "geometry-material-pool-managed-check-v1",
+    "caseCount": 1747,
+    "nativeEvidence": "geometry-material-pool-native-validation.json",
+    "fixtureFile": "reconstructed\\geometry\\fixtures\\material-pool.bin.gz",
+    "fixtureBytes": 732389,
+    "fixtureSHA256": "9f1f3f306a2f0ba7a254c185cb9e4d4579d8cb86de0b4a0c5285f6631f907b11",
+    "uncompressedBytes": 78772504,
+    "uncompressedSHA256": "1162cd51ebc8d75a532148e76559225a95bd65d841b34c19fb56cbd61cd80cc6",
+    "status": "prepared-not-executed",
+    "mainType": "MaterialPoolHarness",
+    "arguments": [
+      "compressedInputFixture",
+      "outputFile"
+    ],
+    "resultClaim": "Managed equality pending; successful positive pool capacity/zero locks, plus clone composition with shader refresh explicit."
+  },
+  "coreAssembly": {
+    "file": "reconstructed/geometry/Recovered.Geometry.MaterialPool.dll",
+    "bytes": 5632,
+    "sha256": "5b2e90d7270e68dd17b9917f9b92a75881e4a238d55cbb383f8a27f7db31b669"
+  },
+  "harness": {
+    "file": "reconstructed/geometry/harness/MaterialPoolHarness.cs",
+    "bytes": 2669,
+    "sha256": "d95acfdc5d114c15e29da922f0107ed744c00ce26b96c3afae1a159ebe8b6740"
+  },
+  "build": {
+    "status": "passed",
+    "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "platform": "default AnyCPU",
+    "workdir": "reconstructed/geometry",
+    "coreCommand": "csc /nologo /target:library /reference:Recovered.Geometry.SortedPackets.dll /out:Recovered.Geometry.MaterialPool.dll MaterialPool.cs",
+    "harnessCommand": "csc /nologo /reference:Recovered.Geometry.SortedPackets.dll /reference:Recovered.Geometry.MaterialClone.dll /reference:Recovered.Geometry.MaterialPool.dll /out:MaterialPoolHarness.exe harness\\MaterialPoolHarness.cs"
+  },
+  "observations": [
+    "Pool scan chooses first slot with flagsbyte bit0 clear AND material+3c0; it restarts at pool base for each allocation.",
+    "Each chosen708-byte slot iszeroed; defaultRGB/alpha are1, flags include type lowbyte shifted4 and5, material+40=3f962010 and+44=10. Unregistered allocation adds+44 mask800000.",
+    "Registered allocations append pointers in allocation order to the600-entry queue. Link+30 prepends each new material, so returned head is reverse allocation order.",
+    "Only the final returned head invokes600f20; earlier chained materials retain basic defaults without520-byte runtime initialization.",
+    "Runtime reset sets layout101, runtimeflags1000, parameterdefaults andfourffffffff words. Positive signed texture count sets+b8, byte15c andlayout901; registration0 adds layout40000.",
+    "Color branch explicitly switches x87 rounding totruncate, multiplies sourcefloat by double255, stores signedInt32 then masks lowbyte. ResultARGB has alpha255, sourceR atlowbyte, sourceG atbits8, sourceB atbits16. Colors outside0..1 wrap rather than clamp.",
+    "Full clone composition uses these real defaults/registration effects and preserves allocated+28/+2c zero before authored copy. Original cache helper/declaration hits run; only shader refresh iscontrolled."
+  ],
+  "remainingGaps": [
+    {
+      "id": "shader-material-refresh",
+      "address": "0x601030",
+      "status": "Remaining mutable service in clone integration; shader manager/device program behavior separate."
+    },
+    {
+      "id": "material-pool-failures",
+      "address": "0x5e4b20",
+      "status": "Sufficient capacity only; originalfatal diagnostics and invalid nonpositive-count stack reads not ported."
+    },
+    {
+      "id": "material-pool-locks",
+      "status": "Locktoken0 branch; OS synchronization excluded."
+    },
+    {
+      "id": "color-invalid-products",
+      "address": "0x600f20",
+      "status": "NaN/infinite/out-of-Int32 FISTP products excluded; finite successful integer products verified."
+    },
+    {
+      "id": "dynamic-caller-material-services",
+      "status": "Stable DynamicObjectSubmission still same-layout only; constructor/clone integration established separately."
+    },
+    {
+      "id": "managed-execution",
+      "status": "Compile passed; prepared replay not launched."
+    }
+  ]
+}

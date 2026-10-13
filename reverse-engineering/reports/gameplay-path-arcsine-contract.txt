@@ -1,0 +1,19 @@
+20678 original-PC comparisons, zero mismatches. One new helper mapping. Portable replay compiles only.
+
+approximation
+512900 is the original integer-angle arcsine approximation. For finite x in[-1,1], it computes float32 sqrt(1-x*x) with original x87 operation ordering and a float store before/after5c0240, then takes the minimum of that root and abs(x). Two independently clamped scaled values encode sign and the abs(x)≈0.70710677 branch. The odd polynomial includes terms through power9. Exact PC constants, ordered64-significand multiplication/addition and the intermediate float32 stores are retained; final scaling by10430.400390625 is truncated to the full native EAX integer.
+
+attribution
+Pinned OpenSaga Android source nutrig.c provided a cross-build polynomial hint. Every PC constant and arithmetic/store order was recovered from original512900 machine code, independently compared against the original executable. Source-level identity across builds is not assumed.
+
+composition
+PathArcSine.Evaluate directly reuses the independently recovered BuildEffectSound.SquareRoot for5c0240. PlaybackWide supplies exact finite x87 operations and its existing bounded integer truncation. This fragment credits512900 only, not those pre-existing helpers or CRT6e6b90.
+
+validation
+20,678 original-PC comparisons pass, zero mismatch; all112 instructions in512900 execute. Tests use a uniform grid over[-1,1],4,096 seeded random candidates and bit neighborhoods around subnormals, zero, the branch threshold and1, for both signs. Native5c0240 and the actual CRT6e6b90 tail execute unmodified. The portable core and replay compile; compiled managed comparison is pending.
+
+Remaining
+Finite[-1,1] input domain; NaN, infinities and out-of-range sine inputs are excluded.
+No substitution with Math.Asin or nominal mathematical arcsine: original polynomial error, constants, stores and truncation are part of the contract.
+No new authored command credit. The helper is a dependency of corridor containment51b1f0 and other callers.
+Managed replay has not executed; native comparisons are independent Python model versus original x86.
