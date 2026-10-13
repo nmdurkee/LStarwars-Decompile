@@ -1,0 +1,39 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "scope": "CreateSplineCreatures integration fragment. Reused helpers receive no duplicate address credit.",
+  "primaryNativeEntryPoints": 1,
+  "mappings": [
+    {
+      "address": "0x44a190",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/CreateSplineCreatures.cs",
+      "sourceSha256": "fb193514e0c3508ec5f4adc228c84e8a64c84a8111cde5dac0579130e2115fc9",
+      "methods": [
+        {
+          "name": "SplineCreatureSpawner.Parse",
+          "line": 123
+        },
+        {
+          "name": "SplineCreatureSpawner.Execute",
+          "line": 205
+        }
+      ],
+      "coverage": "bounded spline spawn command with world/spline/effect adapters",
+      "qualification": "Original ordered parser, spline-name table scans, RNG order, spawn arguments, relative-follower, distance placement, offset rotation and rider dispatch. Allocation, spline evaluation, follower construction, placement update and effects remain adapters; arbitrary-angle rotation precision not claimed.",
+      "comparisonStatus": "Original-PC/Python differential passed; C# source/replay compile, managed comparison not run.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-createsplinecreatures-tests.json",
+        "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "CreateSplineCreatures",
+      "address": "0x44a190",
+      "sourceUses": 121,
+      "qualification": "Bounded command contract; allocation, spline evaluation, follower construction and selected-spline production remain external."
+    }
+  ],
+  "contract": "reverse-engineering/reports/gameplay-createsplinecreatures-contract.json"
+}

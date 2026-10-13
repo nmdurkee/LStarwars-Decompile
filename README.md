@@ -5,8 +5,8 @@ Reverse-engineering research for the PC x86 game, with an eventual Unity / Quest
 ## Current checkpoint
 
 - 14,704 native entries cataloged from retained decompiler profiles and independently verified callback boundaries.
-- 610 native entries mapped to bounded portable implementations in 170 C# core files, across combat, animation, gameplay, geometry, frame transitions, controller input, and navigation.
-- 17,886 of 20,836 cataloged script-command uses have bounded native contracts (85.8%). This does not imply equivalent whole-game behavior.
+- 613 native entries mapped to bounded portable implementations in 173 C# core files, across combat, animation, gameplay, geometry, frame transitions, controller input, and navigation.
+- 18,007 of 20,836 cataloged script-command uses have bounded native contracts (86.4%). This does not imply equivalent whole-game behavior.
 - The integrated C# library and verifier compile. Every core source hash matches the recorded build.
 - Original-function tests run in isolated x86 emulation with each suite's adapters documented. These are separate from executing the reconstructed C#.
 - The initial combat C# subset passed 14,553 comparisons. Windows currently denies launching newly generated verification executables, so later managed comparisons remain pending.

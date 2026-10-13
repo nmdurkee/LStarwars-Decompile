@@ -1,13 +1,13 @@
 {
-  "updated": "2026-10-13T02:00:51.350299+00:00",
+  "updated": "2026-10-13T14:30:51.268041+00:00",
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "scope": "Every cataloged native entry and its explicit C# mapping/semantic labels. This does not inventory every recovered JavaScript parser or exact original HLSL source artifact.",
   "summary": {
     "recognizedEntries": 14704,
-    "entriesWithPortableMappings": 610,
+    "entriesWithPortableMappings": 613,
     "entriesWithContractLabels": 640,
     "portableModules": 7,
-    "portableSourceFiles": 170,
+    "portableSourceFiles": 173,
     "mappedEntriesOutsideCatalog": [],
     "wholeGameBuildable": false,
     "wholeGameEquivalenceEstablished": false
@@ -23,15 +23,15 @@
   "compilation": {
     "allManifestHarnessHashesMatchBuild": true,
     "harnessHashMismatches": [],
-    "buildHarnessCount": 176,
-    "manifestHarnessCount": 176,
+    "buildHarnessCount": 179,
+    "manifestHarnessCount": 179,
     "libraryHashMatchesBuild": true,
     "unifiedVerifierHashMatchesBuild": true,
     "report": "reports/reconstructed-build.json",
     "allManifestSourceHashesMatchBuild": true,
     "sourceHashMismatches": [],
-    "buildSourceCount": 170,
-    "manifestSourceCount": 170,
+    "buildSourceCount": 173,
+    "manifestSourceCount": 173,
     "executionStatus": "reports/reconstructed-execution-status.json"
   },
   "functions": [
@@ -11220,9 +11220,22 @@
       "path": "decompiled/corpus-expanded/FUN_44a190.c",
       "evidence": "ev_899eb35a27e8c18144a9bface4dcd684320477ea32232f25bcb19f5ddc9c569a",
       "sha256": "7dce8ee118f5ae8b213849026c1f02f5535540df8e6072b679e4c2655de3fef2",
-      "portableMappings": [],
+      "portableMappings": [
+        {
+          "module": "gameplay",
+          "address": "0x44a190",
+          "method": "SplineCreatureSpawner.Parse; SplineCreatureSpawner.Execute",
+          "coverage": "bounded spline spawn command with world/spline/effect adapters",
+          "limits": [
+            "Original ordered parser, spline-name table scans, RNG order, spawn arguments, relative-follower, distance placement, offset rotation and rider dispatch. Allocation, spline evaluation, follower construction, placement update and effects remain adapters; arbitrary-angle rotation precision not claimed."
+          ],
+          "sourceFile": "gameplay/CreateSplineCreatures.cs",
+          "evidence": "reports/gameplay-createsplinecreatures-contract.json",
+          "sourceSha256": "fb193514e0c3508ec5f4adc228c84e8a64c84a8111cde5dac0579130e2115fc9"
+        }
+      ],
       "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x44aac0",
@@ -87859,13 +87872,13 @@
         {
           "module": "animation",
           "address": "0x5e4840",
-          "method": "LegacyPolygonPipeline.Process",
-          "coverage": "refines legacy consumer with actual polygon geometry service",
+          "method": "LegacyShadowGeometryPipeline.Process",
+          "coverage": "refines legacy queue with all three actual CPU geometry writers",
           "limits": [
-            "Retains LegacyShadowConsumer.Process scheduler/direction projection and composes LegacyPolygonShadows.Emit for5e4280. Exact pair resolver and two remaining ellipse/cylinder shape services stay explicit; generated counter synchronizes in original call order. No new native address."
+            "Retains LegacyShadowConsumer.Process scheduler/direction projection and composes LegacyCylinderShadows.Emit, LegacyEllipseShadows.Emit and LegacyPolygonShadows.Emit. Exact typed resource resolvers remain loader adapters; no replacement shape computation. GeneratedValue and shared ring synchronize in original mixed order. No new native address."
           ],
-          "sourceFile": "animation/LegacyPolygonPipeline.cs",
-          "evidence": "reports/animation-shadow-polygon-pipeline-contract.json",
+          "sourceFile": "animation/LegacyShadowGeometryPipeline.cs",
+          "evidence": "reports/animation-shadow-geometry-pipeline-contract.json",
           "relatedProjections": [
             {
               "method": "LegacyShadowConsumer.Process",
@@ -87875,9 +87888,18 @@
               "limits": [
                 "Backed count<=280, finite state, adjacent sequence reuse, strict distance gate and source-derived shape strides/order.5e2920/5e3b50/5e4280 remain explicit immutable-argument shape services; callback may update GeneratedValue only. No generated shape/GPU equivalence claimed."
               ]
+            },
+            {
+              "method": "LegacyPolygonPipeline.Process",
+              "sourceFile": "animation/LegacyPolygonPipeline.cs",
+              "evidence": "reports/animation-shadow-polygon-pipeline-contract.json",
+              "coverage": "refines legacy consumer with actual polygon geometry service",
+              "limits": [
+                "Retains LegacyShadowConsumer.Process scheduler/direction projection and composes LegacyPolygonShadows.Emit for5e4280. Exact pair resolver and two remaining ellipse/cylinder shape services stay explicit; generated counter synchronizes in original call order. No new native address."
+              ]
             }
           ],
-          "sourceSha256": "dc04b49c84d3c729fa33311b38104f63d82883913090459932f242c694fbc212"
+          "sourceSha256": "36ade9c0b4e3144afc6727ae499e79a8af2c0495937347b16d31f9edc536ae71"
         }
       ],
       "contractLabels": [
@@ -125576,9 +125598,22 @@
       "path": "decompiled/corpus-expanded/FUN_698710.c",
       "evidence": "ev_d64f82d79bd9036ef98f897f1d4209ad19800693bd01752bbb2d417690313147",
       "sha256": "260fb4bbe193a59bf70ee278bb7a868344208bbaf665f34286d410560194ebbe",
-      "portableMappings": [],
+      "portableMappings": [
+        {
+          "module": "gameplay",
+          "address": "0x698710",
+          "method": "SoundMaskLifecycle.Configure",
+          "coverage": "whole CPU mask lifecycle with allocation event device and voice services",
+          "limits": [
+            "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded. Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals. Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending."
+          ],
+          "sourceFile": "gameplay/SoundMaskLifecycle.cs",
+          "evidence": "reports/native-sound-mask-contract.json",
+          "sourceSha256": "6f1123e1730d5088a52a3c6951b197cbf6477b73882c8515df6b86a3589a7275"
+        }
+      ],
       "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x698780",
@@ -126096,9 +126131,22 @@
       "path": "decompiled/corpus-expanded/FUN_698e70.c",
       "evidence": "ev_4289758b99e4c7501e635d810a16af61d296f1bd933ef263ce76cab568b7549e",
       "sha256": "34309f1f3eca52d3d4fb1024bdb6459ab4b8b503c77a22c18e6dccf7272af07d",
-      "portableMappings": [],
+      "portableMappings": [
+        {
+          "module": "gameplay",
+          "address": "0x698e70",
+          "method": "SoundMaskLifecycle.Commit",
+          "coverage": "whole CPU mask lifecycle with allocation event device and voice services",
+          "limits": [
+            "Nonnegative word counts0..256, adequate disjoint or exactly aliased source/buffer regions, successful allocation for nonzero size; undefined invalid capacities and partial-overlap memcpy excluded. Equal-count configuration preserves existing or null buffer. Changed count calls the original empty retirement routine, allocates and zeros. Caller-owned arguments override allocator mutations to globals. Commit copies before event/COM, rereads COM after event mutation and unconditionally updates fixed voice receiver2972c48 after a nonnull initial buffer. Hardware behavior and voice-update internals remain services. Managed replay pending."
+          ],
+          "sourceFile": "gameplay/SoundMaskLifecycle.cs",
+          "evidence": "reports/native-sound-mask-contract.json",
+          "sourceSha256": "6f1123e1730d5088a52a3c6951b197cbf6477b73882c8515df6b86a3589a7275"
+        }
+      ],
       "contractLabels": [],
-      "status": "pseudocode-no-portable-mapping-recorded"
+      "status": "bounded-portable-source-mapped"
     },
     {
       "address": "0x698ed0",

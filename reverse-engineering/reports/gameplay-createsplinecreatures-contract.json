@@ -1,0 +1,369 @@
+{
+  "generatedAt": "2026-10-13T14:29:39.302Z",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "address": "0x44a190",
+  "classification": "bounded command projection with world, spline and physical-effect adapters",
+  "commands": [
+    {
+      "kind": "scp-action",
+      "name": "CreateSplineCreatures",
+      "address": "0x44a190",
+      "sourceUses": 121
+    }
+  ],
+  "contracts": {
+    "entry": {
+      "description": "Non-first calls complete without resolving arguments or spawning. Every path returns EAX=1; Ghidra presents the entrypoint as void. Two return tails follow the first ret.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 75,
+          "excerpt": "if (param_6 == 0) {"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 665,
+          "excerpt": "0044aa96  mov eax, 1"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 672,
+          "excerpt": "0044aaa9  mov eax, 1"
+        }
+      ]
+    },
+    "parsing": {
+      "description": "Each token takes the first matching branch of a fixed ordered scan: mingroupsize, maxgroupsize, groupsize, type, script, mindistance, maxdistance, distance, use_selected_spline, splines=, spline=myspline, spline=, x/y/z_offset=, looping, addtoset=myset, addtoset=, relative_to_player, relative_to_locator=, ridden_by=myself, ridden_by=. Key/value forms are case-insensitive substring matches with fixed skips; bare flags are whole-token case-insensitive equality. \"type\" is a bare substring matched before every later key, so any token containing it is consumed as a type. use_selected_spline is only recognized while the selected-spline global 0x876d94 is non-null; otherwise the token falls through and is ignored. Scalars use original 0x5147c0; group sizes and numeric addtoset truncate through ftol.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 82,
+          "excerpt": "iVar3 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar5 * 4),\"mingroupsize\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 88,
+          "excerpt": "iVar3 = FUN_004f8a70(*(undefined4 *)(param_4 + iVar5 * 4),&DAT_0075772c);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 99,
+          "excerpt": "(iVar3 = FUN_004f8b10(\"use_selected_spline\","
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 137,
+          "excerpt": "\"relative_to_locator=\");"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 182,
+          "excerpt": "0044a426  cmp dword ptr [0x876d94], ebx"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 98,
+          "excerpt": "0044a303  push 0x75772c"
+        }
+      ]
+    },
+    "types": {
+      "description": "Up to ten short type IDs. Both type callbacks are required: byte ID255 and resolved ID-1 are rejected; callbacks still execute after the cap. Unlike CreateCreatures there is no hub, RandomMap or generic-goon path. One integer-RNG draw selects one type for every creature of the call, after the spline draw.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 229,
+          "excerpt": "else if ((((DAT_00923884 != (code *)0x0) && (DAT_00923894 != (code *)0x0)) &&"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 231,
+          "excerpt": "((sVar2 = (*DAT_00923894)(cVar1), sVar2 != -1 && (local_164 < 10)))) {"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 123,
+          "excerpt": "0044a360  cmp dword ptr [esp + 0x18], 0xa"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 448,
+          "excerpt": "0044a79a  call 0x5b9e90"
+        }
+      ]
+    },
+    "splines": {
+      "description": "Thirty-two spline slots. spline= takes the first case-insensitively equal name from the world+0x13c table (0x5d0690) and is bounded. splines= appends every name with the operand as a case-insensitive prefix (0x5d0740 via 0x4f8b80, length strlen(pattern)), limited to the remaining capacity; 0x4f8b80 always compares at least one byte, so an empty operand matches no non-empty name. spline=myspline appends packet+0xac when non-null WITHOUT a bound: index32 overwrites the first two type IDs in the native frame; the portable core rejects it. use_selected_spline wins over listed splines; otherwise the 16-bit LCG at 0x80253c (state*0x24cd+1) chooses index state/(0xffff/count+1).",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 187,
+          "excerpt": "iVar3 = FUN_005d0690(*(undefined4 *)(PTR_DAT_00802c54 + 0x13c),"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 201,
+          "excerpt": "iVar3 = FUN_005d0740(*(undefined4 *)(PTR_DAT_00802c54 + 0x13c),iVar3 + 8,"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 195,
+          "excerpt": "else if (*(int *)(param_2 + 0xac) != 0) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 265,
+          "excerpt": "iVar5 = FUN_0054fa60();"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 226,
+          "excerpt": "0044a4c2  mov dword ptr [esp + ecx*4 + 0xa4], eax"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 246,
+          "excerpt": "0044a50a  cmp dword ptr [esp + 0x10], 0x20"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 436,
+          "excerpt": "0044a777  call 0x54fa60"
+        }
+      ]
+    },
+    "countAndDistance": {
+      "description": "Default count1, minimum/maximum -1. Only when tokens exist, minimum>=0 and maximum>minimum, one shared integer-RNG draw chooses count inclusively; equal endpoints do NOT replace the count (differs from CreateCreatures). Default distance0, min/max distance 1e9. When both bounds differ from 1e9, one float-RNG draw r computes (1-r)*min+r*max in x87 precision, overwriting any explicit distance. Nothing spawns unless (selected or a listed spline), at least one type and count>0.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 252,
+          "excerpt": "if ((-1 < local_140) && (local_140 < local_138)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 257,
+          "excerpt": "if ((local_130 != 1e+09) && (local_128 != 1e+09)) {"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 260,
+          "excerpt": "local_134 = (1.0 - local_160) * local_130 + local_128 * local_160;"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 398,
+          "excerpt": "0044a6fc  fld dword ptr [esp + 0x4c]"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 423,
+          "excerpt": "0044a745  mov eax, dword ptr [esp + 0x20]"
+        }
+      ]
+    },
+    "spawnArguments": {
+      "description": "Allocator 0x43d890 receives the type (sign-extended short), null position, zero heading, script (default \"default\"), three zeros, the chosen spline, a pointer to the authored offset vector, the looping flag and addtoset; once per count. addtoset=myset uses packet byte+0xb0. Failed allocations consume attempts.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 273,
+          "excerpt": "iVar4 = FUN_0043d890(local_160,0,0,local_44,0,0,0,iVar5,&local_114,local_158,local_12c);"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 475,
+          "excerpt": "0044a7ed  call 0x43d890"
+        }
+      ]
+    },
+    "relativePlacement": {
+      "description": "On a non-null actor with relative_to_player or a resolved relative_to_locator: two limits start at -1 and, only when world+0x128 equals global 0x87b0a0, come from 0x4dca00(spline). 0x551c40(base, out, spline, looping, first, second) builds an eight-word follower copied over actor+0xe64; the base is player+0x80 when relative_to_player is set, else locator+0x10.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 280,
+          "excerpt": "FUN_004dca00(iVar5,&local_11c,&local_118);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 289,
+          "excerpt": "FUN_00551c40(iVar3,local_f8,iVar5,local_158,local_11c,local_118);"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 491,
+          "excerpt": "0044a82a  cmp edx, dword ptr [0x87b0a0]"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 525,
+          "excerpt": "0044a897  rep movsd dword ptr es:[edi], dword ptr [esi]"
+        }
+      ]
+    },
+    "distancePlacement": {
+      "description": "When distance!=0 (or NaN): advance the follower (0x5518a0), evaluate its spline at follower time+0x1c with signed mode byte+0x6 (0x550a20). Store heading in +0x58/+0x5a/+0x27a and -pitch in +0x278. If the actor offset at +0xe84 is non-zero, rotate it about X by -pitch then Y by heading with the original LUT helpers and add it. Copy the position to +0x5c, +0x98, +0x80, globals 0x93d620, +0x8c, call 0x55d2b0, then copy the updated +0x5c into +0x1b4 and +0x10bc. With distance0 no follower or position is touched.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 300,
+          "excerpt": "FUN_005518a0((undefined4 *)(iVar4 + 0xe64),local_134);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 301,
+          "excerpt": "FUN_00550a20(*(undefined4 *)(iVar4 + 0xe64),*(undefined4 *)(iVar4 + 0xe80),&local_150,"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 309,
+          "excerpt": "FUN_005b35a0(local_104,iVar4 + 0xe84,-local_108._0_2_);"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 328,
+          "excerpt": "FUN_0055d2b0(iVar4);"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 533,
+          "excerpt": "0044a8ab  jnp 0x44aa56"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 567,
+          "excerpt": "0044a927  test ah, 0x44"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 631,
+          "excerpt": "0044aa1f  call 0x55d2b0"
+        }
+      ]
+    },
+    "rider": {
+      "description": "ridden_by=myself requires self and its +0xd0 reference and reads the first word (possibly null); ridden_by= resolves through 0x440120 and overwrites. A non-null rider is attached with 0x488730(rider, actor, 0, 1) after placement, including when distance is zero.",
+      "evidence": [
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 141,
+          "excerpt": "\"ridden_by=myself\");"
+        },
+        {
+          "file": "reverse-engineering/decompiled/corpus-expanded/FUN_44a190.c",
+          "line": 337,
+          "excerpt": "FUN_00488730(local_13c,iVar4,0,1);"
+        },
+        {
+          "file": "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt",
+          "line": 651,
+          "excerpt": "0044aa66  call 0x488730"
+        }
+      ]
+    }
+  },
+  "verification": {
+    "checks": 5984,
+    "mismatches": 0,
+    "cases": 748,
+    "report": "reverse-engineering/reports/gameplay-createsplinecreatures-tests.json",
+    "tool": "reverse-engineering/tools/gameplay-createsplinecreatures-verify.py",
+    "method": "Original PC body plus original string, spline-table, numeric, RNG and vector helpers against an independent Python contract model; explicit world service hooks. Compiled C# comparison is a separate pending stage."
+  },
+  "sourceCoverage": {
+    "occurrences": 121,
+    "variantsPerOccurrence": 4,
+    "variants": [
+      "allocation fails",
+      "allocations succeed",
+      "allocations succeed with level spline limits active",
+      "allocations succeed without a selected spline"
+    ],
+    "baselineSpawnAttempts": 119,
+    "baselineSuccessfulActors": 119,
+    "noSpawnSources": [
+      {
+        "index": 1,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+        "line": 21,
+        "tokens": [
+          "type=MiscPod",
+          "spline=ai_general",
+          "script=ai_pod",
+          "addtoset=1",
+          "distance=2",
+          "x_offset=3",
+          "relative_to_player"
+        ]
+      },
+      {
+        "index": 6,
+        "source": "reverse-engineering/extracted/LEVELS/EPISODE_I/PODSPRINT/PODSPRINT_A/AI/LEVEL.SCP",
+        "line": 30,
+        "tokens": [
+          "type=MiscPod",
+          "spline=ai_general",
+          "script=ai_pod",
+          "addtoset=6",
+          "distance=12",
+          "x_offset=3",
+          "relative_to_player"
+        ]
+      }
+    ],
+    "branchCounts": {
+      "type": 189,
+      "spline=": 26,
+      "script": 121,
+      "distance": 51,
+      "!relative_to_player": 23,
+      "addtoset=": 92,
+      "x_offset=": 40,
+      "spline=myspline": 2,
+      "addtoset=myset": 2,
+      "y_offset=": 16,
+      "!use_selected_spline": 86,
+      "mindistance": 27,
+      "maxdistance": 27,
+      "splines=": 7,
+      "!looping": 15,
+      "relative_to_locator=": 10,
+      "ridden_by=": 8
+    },
+    "ignoredTokens": [],
+    "qualification": "Authored arguments are exact catalog values. The selected spline, spline table, world bindings and type metadata are synthetic; these results are not claims about runtime reachability in live levels. 86 shipped uses depend on use_selected_spline, i.e. on a prior selected-spline global (SelectRandomSpline is not yet contracted). noSpawnSources come only from the synthetic type fixture, which resolves hash slot 7 to -1 to exercise rejection."
+  },
+  "portable": {
+    "source": "reverse-engineering/reconstructed/gameplay/CreateSplineCreatures.cs",
+    "sha256": "fb193514e0c3508ec5f4adc228c84e8a64c84a8111cde5dac0579130e2115fc9",
+    "methods": [
+      "SplineCreatureSpawner.Parse",
+      "SplineCreatureSpawner.Execute"
+    ],
+    "harness": "reverse-engineering/tools/gameplay-createsplinecreatures-portable-verify.cs",
+    "harnessMain": "GameplayCreateSplineCreaturesVerify.Main",
+    "fixtures": "reverse-engineering/reports/gameplay-createsplinecreatures-native-fixtures.json",
+    "compiledStatus": "C#5-compatible core and unified verifier harness compile successfully. Managed differential execution remains pending under the Windows execution denial (Defender ASR prevalence rule).",
+    "adapters": [
+      "SplineSpawnServices resolves type, locator and rider references; the spline table is context data scanned by the portable core.",
+      "Allocation, relative-follower construction, level spline limits, follower advance, spline evaluation and post-placement update are services; only their arguments, order and field effects are established.",
+      "Shared integer, float and 16-bit RNG ownership remains host-supplied; native state and draw order are compared in fixtures.",
+      "AngleTable supplies the original sine LUT; rotation is exercised on cardinal fixture angles only."
+    ],
+    "hostGuards": [
+      "Reject a 33rd spline=myspline candidate instead of overwriting the type array.",
+      "Reject out-of-int32/nonfinite numeric operands, tokens whose fixed skip passes their terminator, scripts beyond 63 characters, and spawn counts beyond the operation budget.",
+      "Reject negative type-RNG indices."
+    ],
+    "precision": "Distance lerp reproduces x87 64-bit-mantissa rounding via exact double products plus a two-sum midpoint correction; rotation arithmetic is exact for cardinal LUT values only."
+  },
+  "remaining": [
+    "World/name/type/locator/rider/allocation/spline-evaluation/effect calls are explicit fixture adapters. The original parser, loop, spline-name table scans (0x5d0690/0x5d0740), scalar evaluator, all three RNGs and cardinal vector helpers execute unchanged.",
+    "The synthetic spline table holds every authored spline=/splines= name; it does not establish which splines exist in a live level.",
+    "Spline follower layout beyond the fields this command touches, spline evaluation and post-placement update are services.",
+    "Actor comparisons cover documented fields, not every byte or downstream effects.",
+    "The 33rd spline=myspline write past the native 32-entry array, nonfinite operands, and tokens whose fixed skip passes their terminator are outside the bounded core.",
+    "Compiled C# differential execution remains pending under the Windows execution denial."
+  ]
+}

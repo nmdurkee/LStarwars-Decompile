@@ -171,6 +171,7 @@ public static class RecoveredSourceVerify
             case "scene-animation-update":return SceneAnimationUpdateVerify.Main(rest);
             case "navigation":return ConnectionDifferential.Main(rest);
             case "gameplay-createcreatures":return GameplayCreateCreaturesVerify.Main(rest);
+            case "gameplay-createsplinecreatures":return GameplayCreateSplineCreaturesVerify.Main(rest);
             case "geometry-volumes":PortalVolumeHarness.Main(rest);return 0;
             case "geometry-visibility":PortalVisibilityHarness.Main(rest);return 0;
             case "combat-kill":return KillDifferential.Main(rest);

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T02:03:47.192Z",
+  "generatedAt": "2026-10-13T14:30:23.397Z",
   "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
   "scope": "Explicit semantic mapping only. Does not count integer constants, transitive native callees, entire classes or adapters as recovered functions.",
   "compiledStatus": "C# core and combined verifier compiled; Windows denied execution of newly generated managed binaries. No compiled differential pass is claimed.",
@@ -6465,6 +6465,29 @@
         "reverse-engineering/reports/gameplay-player-transfer-tests.json"
       ],
       "fragment": "reverse-engineering/reports/gameplay-player-transfer-source-map.json"
+    },
+    {
+      "address": "0x44a190",
+      "sourceFile": "reverse-engineering/reconstructed/gameplay/CreateSplineCreatures.cs",
+      "sourceSha256": "fb193514e0c3508ec5f4adc228c84e8a64c84a8111cde5dac0579130e2115fc9",
+      "methods": [
+        {
+          "name": "SplineCreatureSpawner.Parse",
+          "line": 123
+        },
+        {
+          "name": "SplineCreatureSpawner.Execute",
+          "line": 205
+        }
+      ],
+      "coverage": "bounded spline spawn command with world/spline/effect adapters",
+      "qualification": "Original ordered parser, spline-name table scans, RNG order, spawn arguments, relative-follower, distance placement, offset rotation and rider dispatch. Allocation, spline evaluation, follower construction, placement update and effects remain adapters; arbitrary-angle rotation precision not claimed.",
+      "comparisonStatus": "Original-PC/Python differential passed; C# source/replay compile, managed comparison not run.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/gameplay-createsplinecreatures-tests.json",
+        "reverse-engineering/reports/gameplay-createsplinecreatures-assembly.txt"
+      ],
+      "fragment": "reverse-engineering/reports/gameplay-createsplinecreatures-source-map.json"
     }
   ]
 }

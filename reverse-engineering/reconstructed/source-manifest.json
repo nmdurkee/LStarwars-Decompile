@@ -1129,6 +1129,7 @@
         "gameplay/SceneAnimationBounds.cs",
         "gameplay/CameraEffects.cs",
         "gameplay/PlayerTransfer.cs",
+        "gameplay/CreateSplineCreatures.cs",
         "gameplay/SoundInitializationPipeline.cs",
         "gameplay/PlayerTransferScriptBridge.cs",
         "gameplay/RetreatExpressionAdapter.cs",
@@ -4954,6 +4955,16 @@
           ],
           "sourceFile": "gameplay/PlayerTransfer.cs",
           "evidence": "reports/gameplay-player-transfer-contract.json"
+        },
+        {
+          "address": "0x44a190",
+          "method": "SplineCreatureSpawner.Parse; SplineCreatureSpawner.Execute",
+          "coverage": "bounded spline spawn command with world/spline/effect adapters",
+          "limits": [
+            "Original ordered parser, spline-name table scans, RNG order, spawn arguments, relative-follower, distance placement, offset rotation and rider dispatch. Allocation, spline evaluation, follower construction, placement update and effects remain adapters; arbitrary-angle rotation precision not claimed."
+          ],
+          "sourceFile": "gameplay/CreateSplineCreatures.cs",
+          "evidence": "reports/gameplay-createsplinecreatures-contract.json"
         }
       ],
       "evidence": [
@@ -5041,7 +5052,8 @@
         "reports/native-sound-text-configuration-contract.json",
         "reports/native-sound-initialization-pipeline-contract.json",
         "reports/gameplay-path-relocation-contract.json",
-        "reports/native-sound-mask-contract.json"
+        "reports/native-sound-mask-contract.json",
+        "reports/gameplay-createsplinecreatures-contract.json"
       ],
       "supportingFiles": [
         "gameplay/SoundInitializationPipeline.cs",
@@ -6876,7 +6888,8 @@
     "geometry/harness/ShadowSetupHarness.cs",
     "geometry/harness/ShadowPassStateHarness.cs",
     "../tools/native-sound-mask-portable-verify.cs",
-    "../tools/animation-shadow-geometry-pipeline-portable-verify.cs"
+    "../tools/animation-shadow-geometry-pipeline-portable-verify.cs",
+    "../tools/gameplay-createsplinecreatures-portable-verify.cs"
   ],
   "verificationStatus": "Library and unified verifier compile. Windows denies new managed executables; initial combat subset14553 passed before the updated verifier became unavailable. Native original-function tests remain available.",
   "excluded": [
@@ -6888,5 +6901,5 @@
     "Full source-level gameplay equivalence",
     "Unity/Quest project"
   ],
-  "updated": "2026-10-13T02:03:47.345Z"
+  "updated": "2026-10-13T14:30:42.079Z"
 }
