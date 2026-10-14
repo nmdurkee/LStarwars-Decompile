@@ -1,0 +1,111 @@
+{
+  "scope": "Whole prepared own bodies 49f630 predictive projectile velocity, 5b4500 matrix identity with translation, 5d02e0 legacy/backend sprite scale; refines existing 5b3c50 to nullable output and live aliases. Three new entries, one refinement; no game or command credit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "validation": {
+    "nativeCases": 891,
+    "nativeAssertionGroups": 891,
+    "mismatches": 0,
+    "nativeComputationalAdapters": 0,
+    "preparedManagedAssertions": 891,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 259,
+    "dll": "reconstructed/bin/movement-phase33-20261013.dll",
+    "dllSha256": "9453d46bb95f5195162a548b2d5bfc4781c1155c6d4955d8d973e1aa71bfd9a6",
+    "execution": false
+  },
+  "boundaries": [
+    "Finite consumed arithmetic with nonzero speed and nonzero vertical division denominator; finite representable intermediate stores. Signaling NaN load/arithmetic behavior excluded.",
+    "All original vector length, distance, multiply-add, angle, square-root and CRT helpers execute unchanged; caller supplies exact sine and native 513-word angle tables.",
+    "Legacy sprite signed16 indices require readable prefix backing. Backend handle must resolve readable vector/radius. Legacy branch wins when both record words exist.",
+    "Distance supports null output, shifted input/output aliases and fresh reads. Matrix translation precedes identity stores, including forward source aliases. Aim output/input aliases occur after all predictor calculations.",
+    "Float-return capture is a transfer-only x86 stub; modified stub translation cache is invalidated before each invocation. Python model scalar operands are rounded to native float32 before arithmetic.",
+    "49f630 produces velocity and returns void; pod caller second range check uses saved target distance, not a flight-time return. Full inline caller binding remains next."
+  ],
+  "reaEvidence": [
+    {
+      "report": "reports/rea-continuous/1009-root-ballistic.result.json",
+      "evidenceId": "ev_5221d8d0450df98fd03bd76133e519fc3039e5022f8e2ada6f8a236ad3f83f6b",
+      "address": "0x49f630",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x49f630",
+            "end": "0x49f778"
+          }
+        ],
+        "total_bytes": 329,
+        "span_bytes": 329,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "report": "reports/rea-continuous/1010-root-matrix-origin.result.json",
+      "evidenceId": "ev_11e0a5dd64b73f0836982fb58e4d99ca465a952c8b7b757414c8347b063ee3eb",
+      "address": "0x5b4500",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5b4500",
+            "end": "0x5b4543"
+          }
+        ],
+        "total_bytes": 68,
+        "span_bytes": 68,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "report": "reports/rea-continuous/1011-root-distance-square.result.json",
+      "evidenceId": "ev_b2425d612f75c0630c9b415aafbd6a011119d4860c4a9a8b3d8d160b927e01c8",
+      "address": "0x5b3c50",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5b3c50",
+            "end": "0x5b3ceb"
+          }
+        ],
+        "total_bytes": 156,
+        "span_bytes": 156,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "report": "reports/rea-continuous/1012-root-sprite-scale.result.json",
+      "evidenceId": "ev_3548fb6520a5425cffdc8b2fcb836185251791fd61867f877b5d00d51ce3e6e3",
+      "address": "0x5d02e0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5d02e0",
+            "end": "0x5d0324"
+          }
+        ],
+        "total_bytes": 69,
+        "span_bytes": 69,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "hashes": {
+    "reconstructed/gameplay/movement-phase33-20261013-PodProjectileMath.cs": "36cde0c2cb48df149ff96b78584cbe103bcea98df24c4a662502173da204adc4",
+    "tools/movement-phase33-20261013-native.py": "5b9f403471788ff5df7144e769c7568d1c05d1d518d067491692d031f06009f2",
+    "tools/movement-phase33-20261013-portable-verify.cs": "331b7c128b1c8548370836c44f7750f632656ba9b4417598bd04330b7400f5dd",
+    "reports/movement-phase33-20261013-fixtures.json.gz": "57641a56475eaf67f75a5d402ebc81dba156bf1321bd71290d6a3b54579474ec",
+    "reports/movement-phase33-20261013-assembly.json": "57e66aa101205a6de79ab01ad0f10612c779f19ed51414255530581df4fe16cc"
+  }
+}

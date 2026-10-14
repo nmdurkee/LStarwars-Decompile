@@ -1,0 +1,1 @@
+648 original native cases / 1,748 comparisons zero. Complete allocation471/release450 bodies and two new1-byte diagnostic RETs. Actual world133 memset/SSE children execute; counters recorded. Arena/bump/debug headers/canaries/list/high-water branches covered; CRT/private-pool heap mechanisms explicit.378-core library compiled; managed replay unexecuted. Four new addresses.

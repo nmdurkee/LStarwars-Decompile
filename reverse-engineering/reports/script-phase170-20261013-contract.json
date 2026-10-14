@@ -1,0 +1,81 @@
+{
+  "scope": "Complete tolower7014A539bytes and isdigit700F7041bytes, raw32-bit args and locale-mode child forwarding.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1514,
+    "nativeChecks": 6056,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 105,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "70138E locale lower",
+      "700F21 locale digit"
+    ],
+    "compiledCoreInputs": 381,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase170-20261013-compile.dll",
+    "sourceSha256": "02afb3a885a7280681447873ef447c6553a8e0c5a7d127377475255e80f36ece",
+    "harnessSha256": "3d7eb75d3aeb8fbd0a4c30c7fe78b628cb2fb2bbd4bb2d285a143b2f8b001fc7",
+    "nativeOracleSha256": "890cb71b345d4b8da34c077157916c7205ddc2e7e483f74514e2401a15df809c",
+    "compileSha256": "7284b2e0bfea650a61d05b5638c0cb6f52279bd413f8d20de4c3fc67c8328a4f"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4295-script170-tolower.result.json",
+      "evidenceId": "ev_16120a6e9e152f2e795da8ac8fb0a9b2884c8bd2fa81c86ffe3090f810b0efda",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x7014a5",
+            "end": "0x7014cb"
+          }
+        ],
+        "total_bytes": 39,
+        "span_bytes": 39,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4296-script170-isdigit.result.json",
+      "evidenceId": "ev_c8a20ab988f825b1b4a6a5bc2f5ffdc9e04f86c85d93da91a74b26dd4a3d9b7f",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x700f70",
+            "end": "0x700f98"
+          }
+        ],
+        "total_bytes": 41,
+        "span_bytes": 41,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "When297CB10==0 Lower uses unsignedwrap(character-65)<=25, then adds32; every other full32-bit word returns unchanged, with no table access.",
+    "Digit uses full uint32 wrapped tablepointer82A668+character*2, reads only low classificationbyte and returns bit4 as0/4. No char clamping/normalization; negative/high words can alias mapped data or fault. Nonzero locale-mode flag calls70138E/700F21 with original full word and locale0; full returnedword preserved.",
+    "1514native cases/6056checks zero,105 expected unmapped classification reads. All256 bytes, negative/high/int boundaries and overflow aliases, randomized tablewords, all modeflags, arbitrary locale-child returns, and child mutations of original caller arg/mode followed exact native memory/return/events."
+  ],
+  "limitations": [
+    "LocaleLower70138E and LocaleDigit700F21 remain explicit services. Raw mapped classification table read domain; bad addresses fault with no prepared return.381core inputs and portable replay compile as library; managed replay UNEXECUTED. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "newMappedAddresses": [
+      "0x7014a5",
+      "0x700f70"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

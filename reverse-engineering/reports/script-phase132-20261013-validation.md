@@ -1,0 +1,1 @@
+1,554 original x86 full block-close cases; 3,108 comparisons; zero mismatches. Whole329bytebody on bounded memory/releaseCRT domains, exact zero/updatedposition padding spill up11bytes. No hooks. 359 core files plus harness compiled library only. Managed replay unexecuted.

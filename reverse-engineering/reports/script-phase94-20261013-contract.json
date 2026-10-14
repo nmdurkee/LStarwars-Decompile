@@ -1,0 +1,105 @@
+{
+  "scope": "Whole game-open dispatcher through concrete provider/container/stream/seek/poll children; formatting and final platform leaves explicit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "pollStandaloneCases": 9,
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 195,
+    "nativeChecks": 798,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "providerFormat",
+      "CreateFileIAT7510dc",
+      "SetFilePointerExIAT7510ec",
+      "CRTopen6dee30",
+      "finalCriticalSectionIATs",
+      "diagnostic4ef7b0"
+    ],
+    "closure": "Whole original4fa3f0→provider4f98c0/container4f9bd0/stream4ff2f0/public+Win32seek/poll4f01f0/cookie; no own-body or container adapters",
+    "compiledCoreInputs": 332,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase94-20261013-compile.dll",
+    "sourceSha256": "cb9e5f64f5a767adde21c7311da0a04cc48b96f2ddc4091cc11bad8c6a127082",
+    "harnessSha256": "50114ef89d93f0c408f4217268545c03c1b5a2629438a632422e5eaddb39790e",
+    "nativeOracleSha256": "e861a84125a64cbb00c8c8a588459c8c72d907867c78dc55f448c1cd04657a54",
+    "compileSha256": "865e54f1764ee655a871e0abd6cadf1bc5742fa6e4c4fc4ee375a1711455b4fb"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4140-script89-game-open.result.json",
+      "evidenceId": "ev_99bdd5d255b83bf76d28e899cb1f2060e64876efd1773ff4ff0845115f21c144",
+      "address": "0x4fa3f0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fa3f0",
+            "end": "0x4fa55c"
+          },
+          {
+            "start": "0x4fa560",
+            "end": "0x4fa5ea"
+          }
+        ],
+        "total_bytes": 504,
+        "span_bytes": 507,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4156-script94-async-poll.result.json",
+      "evidenceId": "ev_a1c85977a68a63208155314923a7aa20df4c72ed2ac31b915a3e65d8af815992",
+      "address": "0x4f01f0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f01f0",
+            "end": "0x4f01fc"
+          },
+          {
+            "start": "0x4f0200",
+            "end": "0x4f022d"
+          }
+        ],
+        "total_bytes": 59,
+        "span_bytes": 62,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase78-20261013-contract.json",
+    "reports/script-phase89-20261013-contract.json",
+    "reports/script-phase90-20261013-contract.json",
+    "reports/script-phase91-20261013-contract.json",
+    "reports/script-phase92-20261013-contract.json",
+    "reports/script-phase93-20261013-contract.json"
+  ],
+  "semantics": [
+    "Snapshots ASCII provider routing first. Only absent provider plus nonzero container and modes other than1/2 attempt concrete container open; nonzero handle returns early, otherwise rereads default provider800478. Callbackprovider22C formats private256-byte filename. LIVEtype2 appends exact static suffix;1 including NUL. LIVEtype1 parses signed filename bytes2/3 minus ASCII0 and calls CRT6dee30(first,second,filename+LIVEprovider48,mode,0); signed nonnegative return adds1000, else0.",
+    "Other provider types call real streamOpen4ff2f0. Signed negative index returns0; otherwise clears64-byte stream, writes index0 and mode34. mode1 skips size seeks and returns index+1. Other modes index<=16 seek end, store returned64-bit size18/1C and seek beginning. Negative signedHIGH retries, with diagnostics only when fourtharg0. mode0 publishes LIVE91ee90 to buffering2C; index>16 skips size/seek setup.",
+    "Polling4f01f0 is universally0: signed handle>=400 exits, while handle<400 necessarily satisfies second signed handle<800 exit. Its compressed traversal is unreachable for every32-bit argument. Mode3/index<=16 executes real poll once after end seek and once after reset; mode3/index>16 skips both, verified via observation-only native call counters.",
+    "195 game-open cases plus9 standalone poll boundary cases /798 native groups zero: providers0/1/2 and explicit/default routing; modes0/1/2/3/FFFFFFFF; streamindices0/16/17/63/fulltable; CreateFile0/success/FFFFFFFF; CRT0/7/7FFFFFFF/80000000/FFFFFFFF and signed highbytesFF/80 in parsed IDs; concrete container hit/miss routing, quiet/nonquiet negative seek retry and formatter mutation of provider type/buffer flag. Original provider/container/stream/seek/poll/cookie bodies execute, no own-body or container adapters."
+  ],
+  "limitations": [
+    "Prepared bounded terminated formatted filename fitting private256 bytes including suffix, ASCII provider routing and concrete container parents alreadycached400. Uncached recursive parent gameOpen remains service domain; formatter and finalOS/CRT/synchronization/diagnostic effects remain value ports.",
+    "504-byte gameOpen body spans507 and59-byte poll body spans62 because Ghidra sets are noncontiguous; assembly retains full spans.332core inputs plus harness compile; managed replayUNEXECUTED. Native poll call counters retained separately from managed seek ordinal replay.",
+    "Two new entries, no script command use, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4fa3f0",
+      "0x4f01f0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

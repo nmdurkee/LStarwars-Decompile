@@ -1,0 +1,62 @@
+{
+  "scope": "Original memory-file allocator and memory-handle reader; prepared20-slot table and disjoint bounded copies.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 832,
+    "nativeChecks": 1664,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [],
+    "closure": "Original4f02d0→20slot memoryfile table; original4fb550→4fb4f0→6e6d90 memory copy; no reader/allocation adapters",
+    "compiledCoreInputs": 309,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase71-20261013-compile.dll",
+    "sourceSha256": "6646f200f48fac3319e61733a4abf77d741cc4a028323fa0506d04a69ad63dd5",
+    "harnessSha256": "ced4a3704b1590df3f9d5a5f0ea2264dde0004f034769ce6a32ddfa483ca278c",
+    "nativeOracleSha256": "1e8b5d988fff289e6159e1c920bdb13485af283fd71b716644155dba1e085786",
+    "compileSha256": "c6c80e12cb0906c6001ac75ff28d55fa8e6965c9f08fa91ba436fe771e876c61"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4111-script71-memory-read.result.json",
+      "evidenceId": "ev_c11b02ea5df435d6471c003e87ec4945efd5d600b7284b47023f583ad67a6908",
+      "address": "0x4fb4f0",
+      "bodyBytes": 93
+    },
+    {
+      "file": "reports/rea-continuous/4112-script71-memory-open.result.json",
+      "evidenceId": "ev_4dd30ca77523c525830ae7655feeafe51d599263f74ae5d740b02569a059ac15",
+      "address": "0x4f02d0",
+      "bodyBytes": 113
+    },
+    {
+      "file": "reports/rea-continuous/4110-script71-read.result.json",
+      "evidenceId": "ev_94b87d5341770149704a8b1afe452b5ec605956911166a0b0df8eab6b09c2ff5",
+      "address": "0x4fb550",
+      "bodyBytes": 380,
+      "qualification": "Selected memory dispatch caller only; full buffered/CRT/compressed body not credited here."
+    }
+  ],
+  "semantics": [
+    "4f02d0 cdecl(data,length,mode) accepts signed positive length and mode0/1, scans20 records at2983740 stride20 for live+10 ==0. Writes inclusive end=data+length-1, mode+0c, base+0, cursor+8, live+10=1 and returns400+index. Null data is accepted without dereference; nonpositive lengths/invalid modes/full table return0.",
+    "4fb4f0 cdecl(handle,destination,count) memory path computes signedwrapped(end-cursor+1), selects signed minimum with requested count, skips memcpy/cursor update for0, otherwise real6e6d90 copy then adds count to live cursor. Mode and live flag are not read or validated.800+ tail to4faf60 remains explicit outside prepared allocated-memory handle domain.",
+    "832cases/1664return+whole-image groups0; null/nonnull allocation pointers, free slots0/1/7/19/full/multiple, lengths0/1/17/1024/signednegative, modes0/1/2/FFFFFFFF, direct and public4fb550 read at slots0/7/19, inclusive EOF, zero/excess counts and256seeded random preparedreads. Native allocator/read/copy execute originalbytes with no adapters.",
+    "Public4fb550 signed handle taxonomy >=1000 CRT6dee50,>=400 tail4fb4f0, lower cached/direct stream path is observed live REA evidence; only valid allocated memory branch receives composition proof, no4fb550entry credit."
+  ],
+  "limitations": [
+    "Read prepared handles400..413, cursor within data through inclusiveend+1, nonnegative selected copycount, enough mapped disjoint table/source/destination and bounded buffer. Negativecopycounts, wrapping/overlapping or invalid handle accesses are outside paired domain.",
+    "Compressed800+ and lower-handle buffered/OS/CRT reads remain outside this source memory specialization. Full Open body is concrete; valid memory Read body is concrete and original CRT copy executes.",
+    "309core sources+portable harness compile only; managed replay UNEXECUTED. No native/game executable launch, Git/shared manifest writes or broad checkpoint."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4f02d0",
+      "0x4fb4f0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

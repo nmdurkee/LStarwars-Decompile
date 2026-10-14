@@ -1,0 +1,116 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x64ff80",
+      "method": "PtlEmitterOrientation.Copy",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Ordered16 binary32 load/store matrix copy; finite/quietNaN/Infinity words and no signaling NaNs consumed. Preserves raw negativezero/subnormal/quiet payloads, shifted/un-aligned overlap propagation and unmodified backing. A separate consumed-word domain check finds0signaling NaNs in all paired copy cases. FPU flags and hardware signaling-NaN quieting are excluded.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x64ffe0",
+      "method": "PtlEmitterOrientation.RotateX",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "4x4 row-vector X rotation for finite used coordinates and finite supplied32768 sine entries; caches first-column participatingY words for all4 rows before stores, uses exactx8764-bit multiply/add/subtract and binary32 output rounding including signed zero/subnormal underflow.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x6500c0",
+      "method": "PtlEmitterOrientation.RotateY",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "4x4 row-vector Y rotation, finite used coordinates. Full signed32 angle wraps/adds4000 then shifts/masks15-bit table slots; original table supplied unchanged. Four cachedX words and freshZ reads retain native store order and unmodified cells. Finite unspilled arithmetic can round standalone outputs toInfinity; nested calls require their consumed intermediates finite.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x6501a0",
+      "method": "PtlEmitterOrientation.RotateZ",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "4x4 row-vector Z rotation, finite used coordinates with cachedX, freshY and exactx8764-bit operation/store boundaries. Generic managed double approximations are not used; negative zero and tiny signed underflow are preserved.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x684640",
+      "method": "PtlEmitterOrientation.Primary",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Prepared signed-index emitter backing; exactFFFFFFFF sentinel guard only. Copies supplied8065c0 runtime template to+40, signextends each low16 angle, then actual Z/Y matrix operations and positivezero+300 reset. Global emitter base is reread between bodies; copy can alias/mutate that global and change later routing. All math executes original unchanged in native oracle.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x6846a0",
+      "method": "PtlEmitterOrientation.Secondary",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Prepared signed-index emitter backing; copies template+80 then signextendedlow16 Z/Y/X in that order and positivezero+300 reset, with live emitter-base rereads and exactmatrix primitives.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x684720",
+      "method": "PtlEmitterOrientation.Mode",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Prepared signed-index emitter backing; mode lowbyte publishes before template+ C0 copy, then signextendedlow16 X/Y matrix bodies, including native tail jump. This path does not clear+300. All256mode bytes, negativeindices, mode-byte aliasing emitter pointer and prior copy-pointer aliases retained.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    }
+  ],
+  "dependsOn": [
+    "gameplay/world-phase19-20261013-ptl-declaration-activation.cs"
+  ],
+  "evidence": [
+    "reports/world-phase20-20261013-contract.json",
+    "reports/world-phase20-20261013-native-tests.json",
+    "reports/world-phase20-20261013-composed-tests.json",
+    "reports/world-phase20-20261013-rea-evidence.json"
+  ],
+  "harnessFile": "../tools/world-phase20-20261013-portable-verify.cs",
+  "verifierModule": "world-phase20-20261013",
+  "verifierClass": "WorldPhase2020261013Verify",
+  "fixture": "reports/world-phase20-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase20-20261013-managed-tests.json",
+  "nativeCases": 1512,
+  "nativeMismatches": 0,
+  "expectedManagedAssertions": 1512
+}

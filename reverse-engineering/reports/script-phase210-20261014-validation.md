@@ -1,0 +1,1 @@
+432 original native lifecycle cases / 864 comparisons zero. Whole raw bump create65/destroy24 bytes with actual application/privatepool/memset/SSE graph, no ports. Saved active pointer restored after create; destroy preserves current pointer even into freed storage.383-core library compile; managed replay unexecuted; zero address credit.

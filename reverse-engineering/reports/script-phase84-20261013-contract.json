@@ -1,0 +1,88 @@
+{
+  "scope": "Whole small/symbol length readers and complete prepared LZ2K decoder closure with no adapters.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 150,
+    "nativeChecks": 258,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [],
+    "closure": "Original4f9570/4f96b0→4f5d00/4f6000; complete4faea0→4fa320→4f9820/4f5f30→all table/bit/memory children, no adapters",
+    "compiledCoreInputs": 322,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase84-20261013-compile.dll",
+    "sourceSha256": "3af95ac721b37857851a92baedf2844fe5efae7281699d69f1acb7b3f4b95a98",
+    "harnessSha256": "511a610cded7f2423b7061d99c52869f72a80634196a8ee9b696def0f5a76948",
+    "nativeOracleSha256": "b4746fbd6810bbf02a33d5a81efc71d349236afee904a3293b64d75078879350",
+    "compileSha256": "d2fcd4a9489a1f5cb16bac7530bf8fc6f3888b0af3160f7033f653266fef39f9"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4133-script83-small-tree.result.json",
+      "evidenceId": "ev_8b49b1a9b2a3379e69e0b80cd5a3a2e05766257dd3e86ce751dfbf2434cec473",
+      "address": "0x4f9570",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f9570",
+            "end": "0x4f96ae"
+          }
+        ],
+        "total_bytes": 319,
+        "span_bytes": 319,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4134-script83-symbol-tree.result.json",
+      "evidenceId": "ev_1e8bb87f6f390febc809b8c471cfee746754cd4c85fa0ba797eb792e1ed90fb9",
+      "address": "0x4f96b0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f96b0",
+            "end": "0x4f9716"
+          },
+          {
+            "start": "0x4f9720",
+            "end": "0x4f9815"
+          }
+        ],
+        "total_bytes": 349,
+        "span_bytes": 358,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase81-20261013-contract.json",
+    "reports/script-phase82-20261013-contract.json",
+    "reports/script-phase83-20261013-contract.json"
+  ],
+  "semantics": [
+    "Small reader consumes countBits high bits; zero count consumes another same-width uniform leaf, clears entries length bytes and repeats leaf across256word direct table. countBits0 directly chooses uniform0. Nonzero sequence reads top3-bit length, extending unary7 through following1bits and consuming length-minus3 bits. At special index consumes2-bit zero insertion, then zero-fills unused entries and calls actual canonical builder.",
+    "Symbol reader consumes9-bit declared sequence count. Zero count consumes another9-bit uniform symbol, zeroes510 length bytes and repeats leaf across4096words. Positive count resolves shared small length tree with threshold19, consumes its code length; codes0/1/2 write zero runs1/(fourbits+3)/(ninebits+20), highercodes storecode-minus2. Zero-fills rest and calls actual510-symbol canonical builder.",
+    "RecoveredScriptCodec chains84 table readers→83 canonical builder→81 bit collector→82 symbol/distance/ring→81 wrapper/memcpy.150cases/258 complete images and decoder return groups zero, no adapters. Readers cover uniform0/countBits0/nonzero leaves, unary lengths to16, special zero insertions, uniform full trees depths1..8, short/long zero runs and direct/two-level small lookups.108 full decoder cases cover symbols0/17/255/256/257/509, distance categories0/1/13, outputs0/1/17/8192/8193/16384."
+  ],
+  "limitations": [
+    "Prepared complete/empty canonical code distributions, bounded length/zero runs, terminating unary codes and mapped disjoint buffers. Full decoder proof uses one uniform-symbol compressed block and prepared initial ring; arbitrary game archive corpus execution not claimed.",
+    "4f96b0 address set is noncontiguous349bytes/span358; assembly retains span.322core inputs plus portable replay harness compiled; managed replay UNEXECUTED. No command use credit, Git/shared manifest writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4f9570",
+      "0x4f96b0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

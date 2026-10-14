@@ -1,0 +1,42 @@
+{
+  "scope": "Release CRT file endpoints and whole public lifecycle CRTbranches",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 240,
+    "nativeChecks": 720,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 4,
+    "ports": [],
+    "closure": "Actual6dee30/40/50/60 releasefilezero leaves; full4f6b40size/4fb550read/4f6de0seek/4f99e0close CRTbranches naturallyusezero bodies, nohooks",
+    "compiledCoreInputs": 353,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase116-20261013-compile.dll",
+    "sourceSha256": "e3b500f2e7dbb21ace623deb8682e427da1869ca3586bd114f0aefd4876a9aba",
+    "harnessSha256": "092221eadd3e94e2141da23e92194c4a594d7fc2969605114b95dfc0b15f1c94",
+    "nativeOracleSha256": "2367c01202165368eefc50f1e7a25dbfb1f8de830f972e54f55d13c3cb83649a",
+    "compileSha256": "650ba87be88d1a18608993310373d80a3317b1fdb9629f8e0d3940a99cf5731b"
+  },
+  "semantics": [
+    "Each3bytefileendpoint XOR EAX,EAX;RET ignoresallinputs, performsnoI/O, returns0. No destinationwrites evenforinvalidpointer/nonpositivecount.",
+    "Actualpublic size4f6b40 andseek4f6de0 sign-extend0 toEDX:EAX; rawread4fb550 andclose4f99e0 naturallyreturn0 throughrealreleaseleafcalls. No adapters.",
+    "240nativecases720comparisons zero: directleafargumentarity0/1/2/5 with5EAXseeds; whole lifecycle1000..7FFFFFFFhandles, zero/signedcountboundaries, arbitrarylow/high/origin."
+  ],
+  "limitations": [
+    "LifecyclevalidsignedCRT handles>=1000 and<=7FFFFFFF; other taxonomiesreuse existing71–95 proofs.",
+    "353core andfixtureharnesscompiledlibraryonly; managedreplayUNEXECUTED. NativeEFLAGSoutsideportableprojection."
+  ],
+  "credit": {
+    "newEntries": 4,
+    "addresses": [
+      "0x6dee30",
+      "0x6dee40",
+      "0x6dee50",
+      "0x6dee60"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

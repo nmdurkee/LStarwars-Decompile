@@ -1,0 +1,87 @@
+{
+  "scope": "Whole stream close wrapper and public close taxonomy through actual memory/container release children.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 117,
+    "nativeChecks": 351,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "CloseHandleIAT7510e0",
+      "CRTclose6dee70"
+    ],
+    "closure": "Whole4f99e0 through actual4ff380/4f6bc0/memset; only final OS/CRT close normalized, negative retry impossible via actual stream child",
+    "compiledCoreInputs": 325,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase87-20261013-compile.dll",
+    "sourceSha256": "1a1c352ec78db4af79484738b62b2b0405bd60a0624b6014ed81ec97be9ef411",
+    "harnessSha256": "df2686405f6340bd03c64250acadc042c63125b8659c12198bfe2fb281981d25",
+    "nativeOracleSha256": "bc2d16ec2843be846f1225e23265a32384b30e4ab366deb760a7955366ee8d25",
+    "compileSha256": "52e8d9e6f48300848941e8f12c22ba452c587c7a0cd19a5e597358fdd66947f3"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4138-script87-stream-close.result.json",
+      "evidenceId": "ev_19a43ffb523978988b82a6e95f7b15b4ae430d5e415e7391b1cd52a9faf95ccc",
+      "address": "0x4ff380",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ff380",
+            "end": "0x4ff3a8"
+          }
+        ],
+        "total_bytes": 41,
+        "span_bytes": 41,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4115-script72-close.result.json",
+      "evidenceId": "ev_d1aa0515712501554c8e3c9cd09dc59e24b45fc01ad987de048e5f0a10ef9f98",
+      "address": "0x4f99e0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f99e0",
+            "end": "0x4f9a59"
+          }
+        ],
+        "total_bytes": 122,
+        "span_bytes": 122,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase72-20261013-contract.json",
+    "reports/script-phase86-20261013-contract.json"
+  ],
+  "semantics": [
+    "Stream4ff380 captures host HANDLE from8007a0+index*4, invokes final CloseHandle, overwrites slotFFFFFFFF regardless Boolean result, and returns1 for false/0 for any nonzero.",
+    "Public4f99e0 signed handle>=1000 routesCRT6dee70(handle-1000,0), >=400 routesactual4f6bc0 memory/compressed release, lower decrements handle to stream index and calls stream close. Since actual child returns0/1, its signed-negative retry4ef790 loop is unreachable for every final Win32 Boolean value.",
+    "After stream close, public body reads LIVEstream38; nonzero pointer owner is cleared, then realmemset clears64 bytes of stream and returns stream address. Callback changes to stream38 are preserved, while callback handle-table changes are overwritten by stream wrapper.",
+    "117cases/351 return/image/event groups zero: standalone stream and public caller, indices0/1/7, rawhandles0/FFFFFFFF/12345678, APIresults0/1/FFFFFFFF, buffer0/nonzero, memory400/407/413, compressed800/803, CRT1000/1007/7FFFFFFF and API mutations of handle-table/buffer ownership. Only final CloseHandleIAT7510e0 andCRTclose6dee70 normalized."
+  ],
+  "limitations": [
+    "Prepared mapped handle-table/stream records and allocated memory handles, nonnegative compressed release slots. UnderlyingOS/CRT effects are value ports; no arbitrary operating system launch.",
+    "325core inputs plus harness compiled; managed replay UNEXECUTED. Two new entries4ff380/4f99e0, no command use credit, Git/shared manifest/checkpoint writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4ff380",
+      "0x4f99e0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "scope": "Retained484fixture ownbodyprojection515320; supersededbyphase55 exactextendedcomparison after cancellation-boundary discovery.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 484,
+    "nativeChecks": 1452,
+    "mismatches": 0,
+    "faultCases": 1,
+    "managedExecution": false,
+    "compiledCoreInputs": 292,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase54-20261013-compile.dll",
+    "sourceSha256": "9058f337ae8e330ea7f53cf565cf8762419d6d50d7bb599f670bf7e2aeaed137",
+    "harnessSha256": "37502fed79387327834c060286e58c3ace46f817bb1eb5588478b4a0a1f217cf",
+    "nativeOracleSha256": "2276512196f60a5993c6acf836734edcb19a685d21284a6908df58bd38ec6481",
+    "compileSha256": "d1d438613de303e2820d46a344d2fd48e22f36fe2b9eef7ae7c8f7e40b7dd35d"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4070-script54-opponentbelow.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x515320"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "semantics": [
+    "515320 callback5argsST0; actor0 oractorE4opponent0 yields0 beforeotherreads. OpponentY isreferenceE4+60 directly, actorY isactorD0controller+60, controllerpointerisUNGUARDED onceopponentnonnull.",
+    "Originalx87 compares (actorY -double751788) >opponentY; threshold751788exact0.10000000149011612,notfloatliteral0.1double. FNSTSW AH41mask rejectsunordered/equal/less.",
+    "Boundedfinitefloat32 domain ±1e6 uses equivalent double difference comparison withoriginalthreshold; originalx87 execution paired atthreshold neighbors. QuietNaNunorderedfalse; signedInf casesretained.",
+    "484cases1452groupszero mismatches/1nullcontrollerfault:15edgevaluescrosspair,256randomnear-thresholdoffsets, nullguards/aliasfault, finite/zero/subnormal/Inf/quietNaN."
+  ],
+  "limitations": [
+    "Post-seal inspection identified untested cancellation counterexamples to algebraic double-difference projection even within±1e6 (actorYthreshold/opponentYnegativesubnormal). Only484retainedfixturepairs are validated54; usephase55 exactextendedcomparison as canonical515320 implementation.",
+    "Finite coordinates outside±1e6 explicitlyrejected byportableprojection; broadfullfiniteextendedcomparison notclaimed. Thisis boundedownbodyrecovery,not universalnumericdomain.",
+    "SignalingNaN/x87status/faultinstructionposition outsidepaired domain. Originalthresholdmodification rejected.",
+    "292cores+harnesslibrary compiled,managedreplayUNEXECUTED; noGit/sharedmanifest writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x515320"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

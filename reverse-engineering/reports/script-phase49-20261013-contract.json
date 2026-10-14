@@ -1,0 +1,71 @@
+{
+  "scope": "Original UTF16 line4fc390 and word4fc360 bodies composed with actual4fc2d0 refill byte reader.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 300,
+    "nativeChecks": 900,
+    "mismatches": 0,
+    "managedExecution": false,
+    "compiledCoreInputs": 287,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase49-20261013-compile.dll",
+    "sourceSha256": "39ce1844adf4638c23216590163846e787fe626299087b1cecd02936c7d3e01f",
+    "harnessSha256": "c393837c146efe4de99c5ff9174a810af8b29d9c3d56bb30eab79f3c36848307",
+    "nativeOracleSha256": "b86a115a8c8986ca5321e491e9b64103357153bcfae521e632e2e52e45b527ef",
+    "compileSha256": "c87e93ec2c024f87d98d5898b26755a3a4cbf8a7950f0333b7c76f9835978c5d"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4056-script48-binaryline.result.json",
+      "evidenceId": "ev_698012eec22e4f73cb6ce7d3c3c6aa54c7c7b49b638a1a46441a519afc1ededa",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fc390",
+            "end": "0x4fc556"
+          }
+        ],
+        "total_bytes": 455,
+        "span_bytes": 455,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    },
+    {
+      "path": "reports/rea-continuous/4058-script49-wordread.result.json",
+      "evidenceId": "ev_9b8a171b2ad7e888a743907c1b68b5248b41a9f28e1e6c4ba2345722f5f3516a",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fc360",
+            "end": "0x4fc388"
+          }
+        ],
+        "total_bytes": 41,
+        "span_bytes": 41,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    }
+  ],
+  "semantics": [
+    "Alwaysassembles littleendian inputword with two actual byte calls.4fc360 returnssecondbyte-call high16 unchanged plus assembledlow16; callers line useonlylow16.",
+    "4fc390 saves initial linepointer; increments51c andclears520; token-capacity518 signedSAR1-minus1 masks outputwordstores (NOTlinecapacity514), terminalzero usesunmaskedcount.",
+    "Quotes toggle andstoreword; semicoloncomments suppressedinsidequote; CRunconditionallyconsumestwoextra bytecalls (oneword), LFnot. Blanklinespreserve accumulatedwhitespacecount unlesscommentrestart resetscount.",
+    "Comments beforevisibletext restart andincrementlinecount; trailingcomments aftervisibletext consumeuntilnewline/zero thenfinish; quote state survives blank/restart paths peroriginal.",
+    "300 original native cases/900 groups/zero mismatches: UTF16/CJK/Greek, embeddedzero/oddEOF,CRLF/bareCR/blank/comment/quotedsemicolon/unclosedquote,chunk1/3/4096 and ringcapacities2/14/16/62/512."
+  ],
+  "limitations": [
+    "Final4fb550 bytes remain explicitservice; noOSread/game/managed executable launches.",
+    "Prepared finite valid disjointbuffers and nonwrappingcapacity >=2; arbitraryinvalidmemory domains excluded.",
+    "Wordhelper high16retention recoveredinstructionwise; testedrefill offsets below65536.",
+    "287-core+replay library compile success; managed replay UNEXECUTED.",
+    "No full binaryscript catalog producer credit yet; commanddispatchers currentlybyte strings. No Git/sharedmanifest writes."
+  ]
+}

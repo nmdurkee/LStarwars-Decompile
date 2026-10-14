@@ -1,0 +1,124 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "callbacks": {
+    "0x514990": "PreparedBuiltinPredicates.Timer",
+    "0x5149a0": "PreparedBuiltinPredicates.Random",
+    "0x5149f0": "PreparedBuiltinPredicates.AlwaysTrue",
+    "0x514ae0": "PreparedBuiltinPredicates.GotLocator",
+    "0x514b00": "PreparedBuiltinPredicates.GotLocatorSet",
+    "0x514b20": "PreparedBuiltinPredicates.OnPath",
+    "0x514b40": "PreparedBuiltinPredicates.PlayerOnPath",
+    "0x514b60": "PreparedBuiltinPredicates.OpponentOnPath",
+    "0x514b90": "PreparedBuiltinPredicates.TimeOffPath",
+    "0x514bb0": "PreparedBuiltinPredicates.CurrentLocatorIs",
+    "0x514f90": "PreparedBuiltinPredicates.GotTriggerArea",
+    "0x5151c0": "PreparedBuiltinPredicates.GotOpponent",
+    "0x5157b0": "PreparedBuiltinPredicates.Param"
+  },
+  "semantics": [
+    "Callbacks sharecdecl(system,packet,actor,condition14,condition18), ST0floatresult. Timer reads packet24; TimeOffPath actor208 withnullactor0; AlwaysTrue reads fifthargument rawfloatbits, notconstant1. QuietNaN/Infinity/signedzero storedbits preserved; signalingNaN stores/status excluded.",
+    "GotLocator/GotLocatorSet/GotTriggerArea readpacket A4/A8/A0 presence. OnPath readsactor166bit0; GotOpponent actorE4presence. Rawpresencewords neverdereferenced.",
+    "PlayerOnPath readsUNGUARDED system138c→playerreference4→controller166bit0. OpponentOnPath nullguardactor→E4reference→4controller166bit0. Neither guardsnullcontroller afternonnullreference; eightrecordedunmapped faults retaininitialimages.",
+    "CurrentLocatorIs testsnonnull fifthargument BEFOREreadingpacketA4; nullarg18 suppressesnullpacketfault. Random tails5b9dd0 actual95e5d4 LCG, returns23bitfraction.",
+    "Param5157b0 forwardsactor arg3,packet arg2,expression arg4 toactual514920; fifthargignored. Rawexpressionbridge preservespacket/context callbacks.",
+    "Actual52c880 executesall13 handlers in234predicate/comparison interoperations; onlygame-symbol callback suppliedforParam. Loadedcondition initializerArg18 remainsseparatebinding prerequisite;52b3f0 doesnotimplicitlyfillAlwaysTrue1."
+  ],
+  "validation": {
+    "nativeCases": 1698,
+    "nativeChecks": 6792,
+    "mismatches": 0,
+    "faultCases": 8,
+    "handlers": 13,
+    "managedExecution": false,
+    "compiledCoreInputs": 265,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase27-20261013-compile.dll"
+  },
+  "domains": [
+    "Mappedpreparedpacket/system/reference/controllerdata;256flagbytes,512randomseedsplus4edges; finite/Infinity/quietNaN scalarvalues.",
+    "Faultstatus andretainedimages paired, notregisterfaultposition/x87status. SignalingNaN stores outsidepaired domain; presencewords unrestricted.",
+    "Remaining36builtin handlers outsideadapter; gamesymbolcallback remainsservice. Managedreplaycompiled/unexecuted."
+  ],
+  "freshReaAnalysisLimitations": [
+    {
+      "path": "reports/rea-continuous/4015-script27-playerpath.result.json",
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514b40"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4016-script27-opponentpath.result.json",
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514b60"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4017-script27-param.result.json",
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x5157b0"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "provenance": "Three freshREA queries report no registeredfunction at addresses referenced directly bythe shippedbuiltin descriptor table. HistoricalREAcorpus, exact original-byte disassembly andisolated nativefunction execution establishownbody proof; no freshREA instructionmatch isclaimedfor these functions.",
+  "credit": {
+    "newEntries": 6,
+    "newMappedAddresses": [
+      "0x514b00",
+      "0x514b40",
+      "0x514b60",
+      "0x514b90",
+      "0x514f90",
+      "0x5157b0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

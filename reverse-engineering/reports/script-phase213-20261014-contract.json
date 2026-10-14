@@ -1,0 +1,42 @@
+{
+  "scope": "Complete raw byte swaps and live file endian exchange/get",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 618,
+    "nativeChecks": 1236,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [],
+    "rawEntryConsumers": [
+      "0x4efd80",
+      "0x4efda0",
+      "0x4efdd0",
+      "0x4efde0"
+    ],
+    "closure": "Whole raw word/dword byte-reversal and live endian exchange/get bodies; unaligned pointers andalias into state DWORD, zeroports",
+    "compiledCoreInputs": 386,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase213-20261014-compile.dll",
+    "sourceSha256": "decae83af25ebb46f9c3f8d2f9ed3cd060236415725370539751d3ad85e7d855",
+    "harnessSha256": "2266c177b8895991a9052badfbe348fbda1f5db898bc62443df0f4c8ec0e2ead",
+    "nativeOracleSha256": "4e7283117eec656c6dbba02db8aa1b0d6e1fd076c8458bd6a9407f6628ae51dc",
+    "compileSha256": "362d2de7910b2880f532894073e5708c0c9dd2650585397373ef96d940b366a0"
+  },
+  "semantics": [
+    "Swap16/32 snapshot the original bytes then reverse their order and preserve EAX input pointer. Unaligned source and aliases into global endian DWORD preserve exact writes.",
+    "Exchange performs a plain DWORD load/store at91EEA0 and returns previous value; it is not an atomic XCHG. Get returns current value unchanged. All nonzero values are retained as opaque DWORDs for existing typed-writer reversal."
+  ],
+  "limitations": [
+    "Prepared readable/writable2/4-byte targets, disjoint from original private stack. CPU flags/register artifacts except projected EAX outside portable state.",
+    "386 core inputs plus harness compiled library only; managed replay UNEXECUTED. All four exact raw entries unregistered; zero address credit."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "addresses": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

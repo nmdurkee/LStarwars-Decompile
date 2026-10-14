@@ -1,0 +1,1 @@
+2,313 original native cases / 6,930 return, image and direction-flag comparisons; zero mismatches. Complete CRT strrchr45 and strncpy292 bytes, no hooks. Disjoint/identical buffers, source padding readable for optimized fetches; partial overlap excluded.372-core library compiled; managed replay unexecuted.

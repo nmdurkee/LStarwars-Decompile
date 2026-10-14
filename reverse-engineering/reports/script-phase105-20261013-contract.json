@@ -1,0 +1,61 @@
+{
+  "scope": "Exact archive relocation memmove prerequisite, both unsigned direction branches and native return",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 468,
+    "nativeChecks": 936,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "Whole4ef660 actual byte move, both direction branches, alias/live overlapping input and native EAX",
+    "compiledCoreInputs": 343,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase105-20261013-compile.dll",
+    "sourceSha256": "a3b78bbec14d150bd8fed8164b8f863f241406940ef4034e345d80cbcf817a15",
+    "harnessSha256": "506a1966e8f77e917ef0b67b7b3d883aaf9b45c45bcce0afef84bb8b68e2d8d8",
+    "nativeOracleSha256": "a8c92b3cf51ba79379ab98701de8db21269a4ad6f644454147f0508a3a42b9c9",
+    "compileSha256": "c2b90a5f0b614b1b37ab04ab9469204bb276d5746dd2be5690eec65db79599b7"
+  },
+  "reaEvidence": [
+    {
+      "address": "0x4ef660",
+      "evidenceId": "ev_9e072b61d0795c8e84653d1ebb0f64887ca390d77a280e5d00f7890a5e761e7b",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ef660",
+            "end": "0x4ef6b3"
+          }
+        ],
+        "total_bytes": 84,
+        "span_bytes": 84,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4197-script105-copy.result.json"
+    }
+  ],
+  "semantics": [
+    "4ef660 compares destination/source as unsigned, copies forward ifdestination<source and backwardsotherwise; live overlapping bytes andselfcopy retained.",
+    "Native forwardEAXreturnsdestination+count (destination when count0); backwardEAXreturns0, includingcount0. This differs from standard libc memmove return behavior and is preserved.",
+    "468nativecases936groupszero with no hooks:6destinationoffsets×6sourceoffsets×13sizes0..127; all overlap/direction/alignment boundaries use actualwholebody."
+  ],
+  "limitations": [
+    "Mappedboundedcount<=16384C# guard; fixtures use512byteimage/count<=127, no pointerwrap/unmappedcopyclaimed.",
+    "343core sources+portable harness compiled library only, managed replayUNEXECUTED.",
+    "No authored commands/game/generatedexec/Git/shared manifests/checkpoints/host changes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4ef660"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

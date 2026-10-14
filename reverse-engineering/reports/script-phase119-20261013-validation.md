@@ -1,0 +1,1 @@
+449 original x86 cases; 593 comparisons; zero mismatches. Three complete raw entries credited0. User/savegetter use explicit portable void return projection; native EAX observed only. No hooks. 356 core files plus harness compiled library only. Managed replay unexecuted.

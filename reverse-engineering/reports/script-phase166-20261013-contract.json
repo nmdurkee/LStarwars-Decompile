@@ -1,0 +1,103 @@
+{
+  "scope": "Complete __wctomb_l701EBD79bytes, wctomb701F0C48bytes, mb_cur_max70AFE541bytes through actual wide core and locale/memset.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 605,
+    "nativeChecks": 2420,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 2,
+    "managedExecution": false,
+    "newEntries": 3,
+    "imports": {
+      "wide": 270534912,
+      "lastError": 270534928
+    },
+    "closure": "actual701EBD/701F0C/70AFE5→actual701D43/6EB53D/memset/SSE; Windows imports and locale runtime services explicit",
+    "compiledCoreInputs": 377,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase166-20261013-compile.dll",
+    "sourceSha256": "db962a87fbd8edaca0552f2a5dc2608ad4e71f6228b2046c79a491928a259d8f",
+    "harnessSha256": "09b78cdea07fd227a43ff8e7e14c6e75c1d2fbc9cc22a44ef355a8b184384ed9",
+    "nativeOracleSha256": "2a4c10bca3d091a3d7a87f339af3eadbc2439ccb3203d5ec67e96e1d4c351149",
+    "compileSha256": "6839b8d71a871c0ea0211b4e54c52064f0ff697b9c64a1752afc2b6f27d4eee0"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4285-script166-wide-local.result.json",
+      "evidenceId": "ev_a6fcc0d855ae018cc6268a5bcb12714d31361d87bded11abda5d00f26881c651",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701ebd",
+            "end": "0x701f0b"
+          }
+        ],
+        "total_bytes": 79,
+        "span_bytes": 79,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4286-script166-wide-standard.result.json",
+      "evidenceId": "ev_9ac83c9c638ddf0d468c5c143c881ee68d9ddb526106977c5f1dd77293dc8767",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701f0c",
+            "end": "0x701f3b"
+          }
+        ],
+        "total_bytes": 48,
+        "span_bytes": 48,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4288-script166-mb-cur-max.result.json",
+      "evidenceId": "ev_ce4f8168d3bb5e1027de13ddad9350ce72d630c3fdd3cc3b339b1ed024aaaf55",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x70afe5",
+            "end": "0x70b00d"
+          }
+        ],
+        "total_bytes": 41,
+        "span_bytes": 41,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Capacity obtains current thread, captures its locale6C, refreshes only when different from82A678 and thread70&82A594==0, then returns full32-bit locale+AC. No locale ownership changes or masking of negative capacities.",
+    "Local wrapper captures locale before setting private resultFFFFFFFF, constructs outer locale, then pushes private-context locale, live wchar, LIVE locale+AC capacity, live buffer and result pointer into actual701D43. Returns private count on success orFFFFFFFF on any error; captures return before outer owned-thread cleanup.",
+    "Standard wrapper sets resultFFFFFFFF and captures/pushes wchar and locale0 before actual capacity getter. Buffer is read after getter, matching callback mutations. Calls actual wide core and returns count orFFFFFFFF.",
+    "605native cases/2420comparisons zero,2 expected bad pointer/locale faults. Null/non-null output, all byte/wide/high character words, capacities0/1/4/256/80000000/FFFFFFFF, C/non-C conversion success/default/error122, initial owned/masked/high thread bits, refreshed locale, original caller wchar/buffer callback mutations and512-byte vector-zero. All three own bodies plus real conversion/ctor/memset execute unchanged."
+  ],
+  "limitations": [
+    "Win32 conversion/errors and thread/locale/errno/invalid runtime remain explicit services. Prepared mapped/disjoint private child and context frames; original live caller slots retain tested callback mutation ordering.",
+    "377core inputs and portable replay compile as library; managed replay UNEXECUTED. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "newMappedAddresses": [
+      "0x701ebd",
+      "0x701f0c",
+      "0x70afe5"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

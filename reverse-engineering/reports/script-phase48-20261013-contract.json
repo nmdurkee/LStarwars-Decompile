@@ -1,0 +1,54 @@
+{
+  "scope": "Complete original4f7df0 UTF16 token scanner own body with raw unsigned count return and exact word writes/cursor.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 885,
+    "nativeChecks": 1770,
+    "mismatches": 0,
+    "managedExecution": false,
+    "compiledCoreInputs": 286,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase48-20261013-compile.dll",
+    "sourceSha256": "afcaa76a2141e010e2722eb5d126b09fd53a6fe980c321a8374e8f61909b1c13",
+    "harnessSha256": "d1cd3c6be80996c9bf63e99d46b890ead198224e6a49ec7675c340d7b8f08c91",
+    "nativeOracleSha256": "77294372a196bb079a3d8d662d40b02928dfdd7c50426fe2ddb885294885771d",
+    "compileSha256": "4142ec001265f85dbd4fd11a01fcfa0f66da1623e5438bbdde7053e9024649d3"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4057-script48-binarytoken.result.json",
+      "evidenceId": "ev_41fe2697ed46e4eaac312f88e7f7e9cb518b8d5adf276cc552caf49bc1dc81ad",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f7df0",
+            "end": "0x4f7e34"
+          },
+          {
+            "start": "0x4f7e40",
+            "end": "0x4f7fa1"
+          }
+        ],
+        "total_bytes": 423,
+        "span_bytes": 434,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "16-bit input/output characters stored little-endian; byte delimiter strings compare LOW8 of input word, allowingU+0120/U+012c/U+0109 to split as whitespace.",
+    "Full word quotation compares0034 only, retainsU+0122; doubledfull-word quotes insidequotedtoken emitonequote andskipsecond. Emptyquotes do notcause earlyzero-tokenreturn; trailingtext continues.",
+    "Capacity fields are byte counts; ringmask uses signedSAR1 minus1, preserving literal nonpoweroftwo masks; unmaskedinputreads retain native cursor behavior.",
+    "Global88ab4c saves inputcursor, outputcount returnsunwrappedcount, trailingdelimitercursor remainsfor nextscan; punctuation-single consumesonlyif tokenempty.",
+    "885 native cases/1770 groups zero mismatches; UTF16 Greek/CJK/ffff, quotes/doubled/unterminated,lowbyte delimiter aliases,count255/256/511,and nonpoweroftwo capacities."
+  ],
+  "limitations": [
+    "Prepared disjoint nonwrapping readable parser/line/token/delimiter buffers and valid capacity >=2; no malformed pointer/negativecapacity claim.",
+    "286 core+harness compiled library; managed replay UNEXECUTED.",
+    "Binary line producer4fc390 stillpending, no broader full binary catalog credit.",
+    "No finalIOports required in scanner. No Git/sharedmanifest writes."
+  ]
+}

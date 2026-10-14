@@ -1,0 +1,37 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase29-20261013-ptl-snapshot-cleanup.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x655730",
+      "method": "PtlPhysicalSnapshotCleanup.Cleanup",
+      "sourceFile": "gameplay/world-phase29-20261013-ptl-snapshot-cleanup.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "655730 acquires lock even when signed packet capacity sum is nonpositive, then scans owner-zero packets whose physical pointer equals supplied argument. No first-chunk zero guard. Cached packet scan base survives skipped rows. Matching row captures chunk before actual655250 cancellation; following queued chunk and packet routes use fresh global base. Fresh physical type emits tag2/9, auxiliaryC clears, selected clock copies and original inline timed insertion executes. Clock bank is captured before clock store; signed priority bank is read again afterwards. Original inline priority unlink executes then live packet header/physical clear. Counter and scan limits reload exactly at mutation boundaries. Cancellation free-array store may retarget packet base to a returned node; queue writes, priority unlink and clears then operate through that new base. A packet clear can change the live capacity sum and stop scanning. Native655250 child executes unchanged; source reuses sealed list helpers for inline memory semantics without separate native helper-call credit.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase29-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase29-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase29-20261013-rea-evidence.json"
+      ]
+    }
+  ],
+  "dependsOn": [
+    "gameplay/world-phase24-20261013-ptl-particle-links.cs",
+    "gameplay/world-phase26-20261013-ptl-particle-unlinks.cs"
+  ],
+  "evidence": [
+    "reports/world-phase29-20261013-contract.json",
+    "reports/world-phase29-20261013-native-tests.json",
+    "reports/world-phase29-20261013-rea-evidence.json"
+  ],
+  "harnessFile": "../tools/world-phase29-20261013-portable-verify.cs",
+  "verifierModule": "world-phase29-20261013",
+  "verifierClass": "WorldPhase2920261013Verify",
+  "fixture": "reports/world-phase29-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase29-20261013-managed-tests.json",
+  "nativeCases": 584,
+  "nativeMismatches": 0,
+  "expectedManagedAssertions": 584
+}

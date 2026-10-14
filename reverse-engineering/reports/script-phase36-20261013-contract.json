@@ -1,0 +1,134 @@
+{
+  "scope": "Complete prepared actionlookup512f00, bytebank512e60, deepactioncopy513b30, actionregistration512f60 andpredicatesetter512fb0.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "rea": [
+    {
+      "path": "reports/rea-continuous/4034-script36-actionlookup.result.json",
+      "evidenceId": "ev_0a7e89f059e0d327aa27e26d7a395c6800bd5906aa9853ba0e63ce4c0cdd2953",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x512f00",
+            "end": "0x512f56"
+          }
+        ],
+        "total_bytes": 87,
+        "span_bytes": 87,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 36
+    },
+    {
+      "path": "reports/rea-continuous/4035-script36-array.result.json",
+      "evidenceId": "ev_52da7c530a9baf592235bb82a7c986cefba6f7312376fde28b94eb0be36f111a",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x512e60",
+            "end": "0x512e96"
+          }
+        ],
+        "total_bytes": 55,
+        "span_bytes": 55,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 27
+    },
+    {
+      "path": "reports/rea-continuous/4036-script36-copyactions.result.json",
+      "evidenceId": "ev_14e0a2346d491a116ef8fd5667181cc332f49c5d315417a3654aca6382beb1bc",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x513b30",
+            "end": "0x513cb3"
+          }
+        ],
+        "total_bytes": 388,
+        "span_bytes": 388,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 138
+    },
+    {
+      "path": "reports/rea-continuous/4037-script36-setactions.result.json",
+      "evidenceId": "ev_83eee04bb132fbb239e3088121023f6a92929bd3f1691fec8a62c9a12468985e",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x512f60",
+            "end": "0x512fa6"
+          }
+        ],
+        "total_bytes": 71,
+        "span_bytes": 71,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 24
+    },
+    {
+      "path": "reports/rea-continuous/4038-script36-setpredicates.result.json",
+      "evidenceId": "ev_8aba9cb828f5a02f81ec409bf29450d19b49c003b1f72b4d8e639369de977163",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x512fb0",
+            "end": "0x512fb9"
+          }
+        ],
+        "total_bytes": 10,
+        "span_bytes": 10,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 3
+    }
+  ],
+  "providerLimitations": [],
+  "native": {
+    "nativeCases": 360,
+    "nativeChecks": 1440,
+    "mismatches": 0,
+    "faultCases": 24,
+    "managedExecution": false,
+    "compiledCoreInputs": 274,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase36-20261013-compile.dll",
+    "sourceSha256": "51213b79692a01533965297e1fb6cceb9b810f8043a5e98a00aeee7428a83005",
+    "harnessSha256": "f13f580421d12af5c8133409c9ec28fd5818cf7c7288d3e584572e63c044dbdc",
+    "nativeOracleSha256": "18a16fd0879b1a17c7814601c0a2970bacfabb1a56f161b020b23602397c385f",
+    "compileSha256": "3ce1ffe101b8050037fb0537f2cde2f024bfbc9b6f0c4a841332e7b4f1e66aad"
+  },
+  "semantics": [
+    "Lookup custom92222812-byte rows precedes8019c0 native54builtinrows, firstbytefoldmatch; meaningfulnullname handledwithtabletraversal.",
+    "AllocateBytes customEDI=top/EAX=bottom/ECX=size strictunaligned top+size<bottom thenalign16/zero; zero-size admits/aligns iftop<bottom.",
+    "SetActions writesglobalfirst, requiresreadablecustomtableevenNULLfault; eachcustomrow BYTE9=1/WORDa sequentialID, thenbuiltinrows BYTE9=0/WORDa independentsequentialIDs. BYTE8 untouched.",
+    "SetPredicates512fb0 simplywritesglobal922224, includingNULL/opaquevalues.",
+    "CopyActions cdecl(sourceList,destinationList,top,bottom) clears20-byterecord, allocatescount*4 array, countassigneddespitearrayfailure, deepcopiesnonnull/nonemptystrings toarray, shallowdescriptor10, appends.",
+    "Failedrecordadmission diagnosticandcontinuesnextsource; failedarray maystillappendzero-countrecord orfaultpositivecountafterpartialallocation; failedstringcopydiagnosticfollowedNULLstrcpyfault.",
+    "Native54builtinlookup rows andrawregistrationmetadata, empty/one/twoactions, tokensnull/empty/extendedbytes,strictbankfrontiers/alignment andexistingdestination tested."
+  ],
+  "limitations": [
+    "Boundedterminatedtables/disjointacyclic source/destinationlists andvalidmappedbank backing; testedcopycounts0..3, finitebytearrays<=4096; hugecount/size arithmeticfaultdomains notcredited.",
+    "Diagnostic observers representactualRETnoops anddo notmutate; compiledC#replayunexecuted. No Git/checkpoint/sharedmanifestwrites."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "status": "sealed qualified complete particle vector arithmetic",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase36-20261013-ptl-particle-math.cs",
+    "sha256": "a9670982a5485f0fc16f6d04549367c30428686de43371da3e452519ce555b7d"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 1135,
+    "checks": 1135,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x5b3830": 570,
+      "0x5c11d0": 565
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 0.815,
+    "syntheticExcluded": 2,
+    "excluded": [
+      {
+        "case": 1124,
+        "reason": "nonfinite consumed operand"
+      },
+      {
+        "case": 1125,
+        "reason": "nonfinite consumed operand"
+      }
+    ]
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 276,
+    "harnessSourceFiles": 18,
+    "assemblySha256": "fd341f453fee12098dcb3bfc46ab971daa6cedd1207723f46ad84d6e72b55e6f",
+    "expectedManagedAssertions": 1135
+  },
+  "scope": [
+    "5b3830 caches its scalar and commits components in order, rereading source after each earlier store.",
+    "5c11d0 computes/spills Y then Z to private argument cells, computes X using the original first-product order, then commits X/Y/Z. Output may overlap matrix and point; no output mutation occurs until all consumed operands have been read.",
+    "Exact x87 64-bit significand arithmetic and signed-zero tracking; binary32 stores at original boundaries. Private value-array refinements support caller stack temporaries without new address credit."
+  ],
+  "domains": [
+    "Consumed operands finite, no overlap with private native stack; CW037F, original code immutable. Rounded terminal outputs may be infinite when not consumed again. FPU flags and unrelated registers excluded.",
+    "Two synthetic scale aliases are explicitly excluded because earlier stores produced nonfinite future consumed operands; no equivalence credit."
+  ],
+  "fixture": {
+    "path": "reports/world-phase36-20261013-vectors.json.gz",
+    "sha256": "88205336c8eeead7ddd3b5955286efa12a2650b9957d11416133a468ca087ffd",
+    "cases": 1135,
+    "nativeGroups": 1135
+  },
+  "reaEvidence": "reports/world-phase36-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

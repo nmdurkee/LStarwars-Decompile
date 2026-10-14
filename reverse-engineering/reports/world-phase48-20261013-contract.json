@@ -1,0 +1,55 @@
+{
+  "status": "sealed qualified complete quadratic roots own body",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase48-20261013-ptl-quadratic-roots.cs",
+    "sha256": "ebd64231050d5ff23b03188179409830feec37ef7071822f12dc4549d926cebf"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 2520,
+    "checks": 5040,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x653840": 2520,
+      "0x5c0240": 1515,
+      "0x6e9530": 1515
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 1.553,
+    "syntheticExcluded": 1,
+    "excluded": [
+      {
+        "case": 2520,
+        "reason": "nonfinite consumed square-root input"
+      }
+    ]
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 286,
+    "harnessSourceFiles": 30,
+    "assemblySha256": "b4416c40d4bea482b27acec943ef2923770786c0f07052c01a18b1beb3990a46",
+    "expectedManagedAssertions": 5040
+  },
+  "scope": [
+    "653840 complete243-byte body: zero-a linear and zero-b failure, unspilled64-bit4*a*c and b*b discriminant comparisons, no-real-root failure, repeated-root branch, stored binary32 discriminant and actual square root, distinct roots with original numerators/division.",
+    "Linear/repeated roots write second output then first after one shared spill; distinct roots write first then second. Shifted byte/word overlaps retain native order; failure leaves both output backing unchanged.",
+    "1515 original square-root/helper-library calls execute unchanged with no adapters; existing root source reused without duplicate credit. Return status and whole output image agree in2520 cases."
+  ],
+  "domains": [
+    "Finite consumed coefficients with finite stored positive discriminant input to reused square-root contract, CW037F and immutable original4.0 literal. Prepared readable/writable output backing, disjoint private stack.",
+    "Final roots may round signed infinity or signed underflowzero; outputs are stored raw without later arithmetic consumption. One synthetic huge positive discriminant spills infinity before root consumption and is excluded with zero equivalence credit.",
+    "Private stack/FPU status and unrelated registers excluded; meaningful EAX success flag and all output bytes retained. Private Values projection allows recovered callers to bind stack outputs without new entry credit."
+  ],
+  "fixture": {
+    "path": "reports/world-phase48-20261013-vectors.json.gz",
+    "sha256": "a0875d0d2c3982e948423933292ed30a24782579ae2c3bb93ce69aaee72ab24c",
+    "cases": 2520,
+    "nativeGroups": 5040
+  },
+  "reaEvidence": "reports/world-phase48-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

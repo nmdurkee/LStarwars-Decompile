@@ -1,0 +1,64 @@
+{
+  "scope": "Complete _LocaleUpdate constructor6EB53D, thiscall and sequential/live state semantics.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 171,
+    "nativeChecks": 684,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 3,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "6F040C thread getter",
+      "6FAE25 locale refresh",
+      "6FA67A multibyte refresh"
+    ],
+    "compiledCoreInputs": 364,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase154-20261013-compile.dll",
+    "sourceSha256": "799e6f1b4dd21fa3f83a73fb68fbe1b2df5340ff555781399030935bb43be4c9",
+    "harnessSha256": "c7cb36576f57eec70149ae81942b5ceb24d4fc9e1bfc29f0a3f3a8990a238bd3",
+    "nativeOracleSha256": "269338d18fe458600450e0fa0a16331d9d17c96bbb183950ad5235028b4c0ef2",
+    "compileSha256": "5c67d5d3aca4dc372908bb92cb47d66b5d3b63606602dec13671e8beeaf40d30"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4273-script154-locale-update.result.json",
+      "evidenceId": "ev_b544d7604165400feee9b6ffbf00bd20b34e42a48a2f2016ce5ad19909be1b0a",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eb53d",
+            "end": "0x6eb5be"
+          }
+        ],
+        "total_bytes": 130,
+        "span_bytes": 130,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "ECXinstance,one stacklocale argument,RET4,returnsinstance. ClearsinstanceC first. Explicitnonnull locale sequentially copieslocale0/4 intoinstance0/4 andleavesinstance8 untouched, permitting alias cascade.",
+    "Absentlocale calls threadgetter6F040C, capturesreturnedthread, writesinstance8 thenthread6C→instance0 andthread68→instance4. Locale mismatch comparesglobal82A678 andcapturethread70 againstLIVE82A594mask beforeoptional6FAE25refresh. Multibyte mismatch comparesglobal82A498 thenrereadsinstance8/thread70/currentmask beforeoptional6FA67Arefresh.",
+    "Finally rereadsinstance8. Ifthread70byte bit2 clear, ORfullthread70 wordbit2 andsetsinstanceC=1; already-setbit preservescurrentinstanceC, includingrefresh-child mutations.171nativecases/684comparisons matched,3 expectedbadthis/locale/threadfaults; explicit/sharednull locale paths, mismatch/mask matrices, highflagbits, instance/input/threadaliases, refreshchild pointer/mask/flagmutations."
+  ],
+  "limitations": [
+    "6F040C threadgetter and6FAE25/6FA67A refresh remainexplicit services, no childcredit. World owns actualthreadgetter prerequisites forlatercomposition.",
+    "364 cores and portable replay compiled as library; managed replay UNEXECUTED. No command-name/use, shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x6eb53d"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

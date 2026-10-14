@@ -1,0 +1,66 @@
+{
+  "scope": "Complete invalid-parameter dispatch6E9FC2 with live five original argument slots and exact tail target selection.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 124,
+    "nativeChecks": 496,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 0,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "6F01BC pointer decode",
+      "decoded user handler",
+      "6F8568 report",
+      "6E9E8E terminal fatal dispatch (return simulated)"
+    ],
+    "compiledCoreInputs": 367,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase157-20261013-compile.dll",
+    "sourceSha256": "d09f5323a75ed50b1bd4f4ccb73f2123c2972298a39361f3fae24477ee916057",
+    "harnessSha256": "6b63c70e133d88fb127d0a9ff28af15e89387f31227e9faace8e51f7545c1fa0",
+    "nativeOracleSha256": "01bb0a8254c0ff68b76bf5168c6f4197a581d12ccae550ceb8022362b28c6791",
+    "compileSha256": "ad974ee5c540a578ea3372d8d33bb6db257b64296357668c188ccb1969c8f46e"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4274-script154-invalid.result.json",
+      "evidenceId": "ev_998f0cb5473a1ecb20acaff8ad193aa59524cb5045e0a493da0b0dbbcb7361ac",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6e9fc2",
+            "end": "0x6e9fe5"
+          }
+        ],
+        "total_bytes": 36,
+        "span_bytes": 36,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "cdecl five originalwords. Reads encodedhandler297C19C, calls6F01BC DecodePointer, thennonnulldecodedtarget tailJMP receives the original live argument slots without copying. Decoder mutations toargument words are visible tohandler; handler result passes through.",
+    "Null decodedtarget calls6F8568 withreason2, pops itsargument/frame then tailJMP6E9E8E with original live fivewords. Report mutations are visible toterminal child. Source keepsboth child boundaries explicit.",
+    "124 original dispatcher cases/496 fault/return/image/event comparisons matched. Zero/extremeencodedwords,zero/pointer/signed argumentwords, fourhandler returnpatterns,normal/fallback selection anddecoder/report mutation to first/fifthword/global. Credited36byte dispatcher runsunchanged."
+  ],
+  "limitations": [
+    "6F01BC decode, userhandler,6F8568 report and6E9E8E fatal child remainexplicit services. World ownsactual6F01BC andcanbecomposedlater withzero duplicatecredit.",
+    "Fatal-child return is a sandbox fixture simulation forobserving tailarguments; the real terminal child is not run or claimed toreturn. No host security settings or processes are changed.",
+    "367 cores andportable replaycompiled aslibrary;managedreplayUNEXECUTED. No command-name/use,sharedcheckpoint/manifest orGit writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x6e9fc2"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

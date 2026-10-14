@@ -1,0 +1,29 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase151-20261013-ptl-runtime-allocation-cpu.cs"
+  ],
+  "mappings": [],
+  "evidence": [
+    "reports/world-phase151-20261013-native-tests.json"
+  ],
+  "harnessFile": "../tools/world-phase151-20261013-portable-verify.cs",
+  "verifierModule": "world-phase151-20261013",
+  "verifierClass": "WorldPhase15120261013Verify",
+  "fixture": "reports/world-phase151-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase151-20261013-managed-tests.json",
+  "nativeCases": 169,
+  "nativeMismatches": 0,
+  "registrationNote": "Harness/source composition or existing refinement only; no additional address credit assigned by this extraction.",
+  "domain": "actual CRT malloc/calloc/retry/free callers through real pool create/commit/allocate/free/coalesce/move, fill/new-handler/errno pointer/map; finite readable allocations, mixed modes0/1/3, overflow/failure/retries, shared/thread errno cells and normal no-exception void free",
+  "adapters": [
+    "Win32 heap/virtual/sleep/error endpoints",
+    "6f188a/6f179a mutex services",
+    "6f0395 no-exit acquisition",
+    "6f01bc/cdecl new-handler endpoint",
+    "invalid-parameter returning projection"
+  ],
+  "syntheticExcluded": 0,
+  "execution": "Compile-only; managed replay not established.",
+  "auditProvenance": "reports/checkpoint-20261014-world96-174-audit-candidates.json"
+}

@@ -1,0 +1,47 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase112-20261013-ReleaseFileStatus.cs",
+    "gameplay/script-phase130-20261013-ScriptMemoryWrite.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6dee90",
+      "method": "RecoveredActualReleaseCrtEndpoints.Seek",
+      "sourceFile": "gameplay/script-phase130-20261013-ScriptMemoryWrite.cs",
+      "coverage": "Release CRT-close and file-poll zero leaves; 100 native cases / 300 comparison groups, zero mismatches; see contract limitations; managed replay unexecuted."
+    },
+    {
+      "address": "0x6dee70",
+      "method": "RecoveredReleaseScriptFileStatus.CrtClose",
+      "sourceFile": "gameplay/script-phase112-20261013-ReleaseFileStatus.cs",
+      "coverage": "Release CRT-close and file-poll zero leaves; 100 native cases / 300 comparison groups, zero mismatches; see contract limitations; managed replay unexecuted."
+    }
+  ],
+  "zeroCreditRefinements": [],
+  "evidence": [
+    "reports/script-phase112-20261013-contract.json",
+    "reports/script-phase112-20261013-tests.json",
+    "reports/script-phase112-20261013-source-map.json",
+    "reports/rea-continuous/4226-script112-crtfree.result.json",
+    "reports/rea-continuous/4228-script112-crtclose.result.json",
+    "reports/script-phase112-20261013-validation.md"
+  ],
+  "harnessFile": "../tools/script-phase112-20261013-portable-verify.cs",
+  "verifierModule": "script-phase112-20261013",
+  "verifierClass": "ScriptPhase11220261013Verify",
+  "fixture": "reports/script-phase112-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase112-20261013-managed-check.json",
+  "commandCoverage": [],
+  "nativeCases": 100,
+  "nativeChecks": 300,
+  "managedExecution": false,
+  "newEntryCredit": 2,
+  "checkpointMetadataOnly": true,
+  "sealedSourceMap": "reports/script-phase112-20261013-source-map.json",
+  "integrationNotes": [
+    "Sealed source/proofs preserved. This descriptor supplies recovery-integrate.mjs schema only.",
+    "Composition/raw-consumer/domain credits remain as stated in native contract; no new authored command use credit.",
+    "Endpoint semantic labels normalized to proved phase130 correction:6DEE90 seek,6DEE60 write. Earlier sealed source/report labels preserved."
+  ]
+}

@@ -1,0 +1,2 @@
+// CRT free composed with original errno mapping table; no additional address credit. Normal no-exception void ABI.
+using System;namespace Recovered.Gameplay {public static class PtlRuntimeFreeMappedCPU {public static void Release(SoundSetupImage m,uint pointer,Func<SoundSetupImage,uint,uint[],uint> leaf){PtlRuntimeFree.Release(m,pointer,delegate(SoundSetupImage image,uint address,uint[] args){return address==0x6ead24?PtlErrorMapping.Map(image,args[0]):leaf(image,address,args);});}}}

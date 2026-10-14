@@ -1,0 +1,133 @@
+{
+  "scope": "Actual game-origin callback43c3a0 and closure of three existing script origin-range predicates.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 451,
+    "nativeChecks": 902,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "actual43c3a0→5b3620/5b37d0; real515360/5153c0/515450→43c3a0→actual distance/sqrt",
+    "compiledCoreInputs": 339,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase110-20261013-compile.dll",
+    "sourceSha256": "0e3bfe2cd71492cb2e33e6c337ef676995c848d61e4250dc7f763957158cab4d",
+    "harnessSha256": "281a03da689c64197e141ba4074fc118afff23a8ae6b7f9e590f089b0d852771",
+    "nativeOracleSha256": "bac4ea7a39b163e024d0385946156645a6344e10e6213e804cd4eca459f6c0e8",
+    "compileSha256": "1064b693ceb9b26ae2aba7e4d919e0f7adaafda664259910478bf4414f9d59dd"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4190-script110-origin-resolver.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x43c3a0"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4191-script110-rotate-prerequisite.result.json",
+      "evidenceId": "ev_b757fc6166d4b1321c0b438b917a5f3f6e62a41391b818b7a33fadb09549e484",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5b3620",
+            "end": "0x5b368e"
+          }
+        ],
+        "total_bytes": 111,
+        "span_bytes": 111,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    },
+    {
+      "path": "reports/rea-continuous/4192-script110-add-prerequisite.result.json",
+      "evidenceId": "ev_809a463ead868fe7db951d3a5fb5a3689b510d9dcfee1dd2ab74f4a6f610283c",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5b37d0",
+            "end": "0x5b37f4"
+          }
+        ],
+        "total_bytes": 37,
+        "span_bytes": 37,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    },
+    {
+      "path": "reports/rea-continuous/4193-script110-origin-setter.result.json",
+      "evidenceId": "ev_e7ad4992a8d1315bb6bc89988ef575a6838485080e6231daa62e31e697a57f12",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x520470",
+            "end": "0x520479"
+          }
+        ],
+        "total_bytes": 10,
+        "span_bytes": 10,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    }
+  ],
+  "registrationEvidence": "reports/gameplay-symbol-registration-audit.json",
+  "semantics": [
+    "cdecl(system,actor) returns0 when system0, actor0 or unsigned selector138=255; those guards precede cached flag1ec bit8. Cached return actor+F8 never recomputes even if selector, grid, spacing or record origin changes until bit8 cleared.",
+    "Uncached record=LIVEsystem18+unsignedselector*A4. LocalX=float32(((unsignedcolumn149+1)/2)*record5C), oddcolumn flips sign. LocalY=+0. LocalZ=float32(unsignedrow14A*(-record60)). Rotate with LIVE signed32 headingrecord2C and table29899A0 indexed modulo32768: cosine((heading+4000)>>1), sine(heading>>1). Products and sums retain x87 64-bit significands until each binary32 vector store.",
+    "Actual5b37d0 adds local vector to LIVErecord20/24/28 one component at a time and stores actorF8/FC/100, preserving supplied output/record aliases; finally OR8 into LIVEactor1EC DWORD and return actorF8.",
+    "451 cases/902 comparisons zero: unsignedselectors0/1/254/255, all representative column/row boundaries, signed/overflowing headings, positive/negative/zero coefficients, 80 random finite inputs, cache reuse/invalidation, prepared record/output alias and actual515360/5153c0/515450 composition through native distance/sqrt. Native has no value-port adapters.",
+    "Startup43c830 original-byte registration evidence passes43c3a0 to520470, whose actual body stores923908. Callback itself absent from current Ghidra FunctionManager; retained diagnostic is qualified, original immutable bytes define complete214-byte body including both returns."
+  ],
+  "limitations": [
+    "Finite prepared arithmetic and mapped object/record/table addresses; supplied table entries are explicit fixtures, not a claim of full sine-table initialization recovery. Existing distance/sqrt finite-domain qualification remains.",
+    "339 core inputs and portable fixture replay compiled as a library; managed replayUNEXECUTED. No game/managed executable launch, shared checkpoint/manifest writes or Git writes.",
+    "Existing5b3620/5b37d0 helpers and existing515360/5153c0/515450 receive no additional address credit. Other optional custom origin callbacks remain explicit services."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x43c3a0"
+    ],
+    "reusedPrerequisites": [
+      "0x5b3620",
+      "0x5b37d0",
+      "0x515360",
+      "0x5153c0",
+      "0x515450"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

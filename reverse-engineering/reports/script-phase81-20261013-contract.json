@@ -1,0 +1,90 @@
+{
+  "scope": "Whole bit collector and decoder-to-output wrapper; block decoder remains explicit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 637,
+    "nativeChecks": 1911,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "blockDecoder4fa320"
+    ],
+    "closure": "Original4f5d00 bit collector and4faea0 wrapper through original collector/memcpy, only block decoder normalized",
+    "compiledCoreInputs": 319,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase81-20261013-compile.dll",
+    "sourceSha256": "dcc61632e4ea01a916d3f75b7aae267fcab3bbe5c04d87bfd209ea2b46bae7e3",
+    "harnessSha256": "039410365c9402af075be57f953e99de7a9e51b0ae5b26a6e07179d0c268d4f9",
+    "nativeOracleSha256": "d064c98e74672b4b7a8b99997c2ee683823ff563a38ccae4a2b4412039cfd815",
+    "compileSha256": "6a214d2c8696227756a64f4ba41c040f882e733022b810f4a8e1caa9bddf47a8"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4129-script81-bit-init.result.json",
+      "evidenceId": "ev_d41f71c0407f5e39cbb854e1e67f1e707dbd9959e0f1cdcb68940c3a8ce954ef",
+      "address": "0x4f5d00",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f5d00",
+            "end": "0x4f5d28"
+          },
+          {
+            "start": "0x4f5d30",
+            "end": "0x4f5d7b"
+          }
+        ],
+        "total_bytes": 117,
+        "span_bytes": 124,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4125-script79-decode.result.json",
+      "evidenceId": "ev_e6fd211d2e69702fdd274066c5c67bb75d0e58c3763bc2e94d7ac203fa28e53e",
+      "address": "0x4faea0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4faea0",
+            "end": "0x4faf08"
+          },
+          {
+            "start": "0x4faf10",
+            "end": "0x4faf5a"
+          }
+        ],
+        "total_bytes": 180,
+        "span_bytes": 187,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Bit collector advances the shared32-bit accumulator297e024 using x86 modulo32 shifts. Consumes available bits from8cf394/90f79c, then sequential bytes from297dc50 while decrementing2982724; exhausted packed input supplies zero bytes. Return is the final shifted byte contribution, rather than accumulated word.",
+    "Decoder gate800544 zero returns0 before mutation. Otherwise initializes source/destination/length globals, consumes32 bits, resets block/match counts, then invokes block decoder with customEDI=91ce80 and count=min(unsigned remaining,8192). Original memcpy copies ring to LIVE destination, then LIVE remaining/destination globals are advanced; return is total copied count.",
+    "637 native cases /1911 return, complete-image and event groups zero: bit counts0..32, available0/1/7/8, packed lengths0/1/4/16, accumulator89ABCDEF and currentbyteD3; gate0/1/FFFFFFFF, packed0/1/3/4/17, output0/1/17/8191/8192/8193/16384 and changed remaining counts. Only block decoder is normalized; real bit and memcpy children execute."
+  ],
+  "limitations": [
+    "Prepared bit counts0..32, available0..8, mapped sequential byte input, positive progressing output blocks, and disjoint output/ring. Malformed or nonprogressing block callbacks excluded.",
+    "Bit collector and wrapper Ghidra body address sets are noncontiguous; assembly evidence retains spans124/187 while contracts record actual117/180 byte body sets.",
+    "319 core inputs plus portable harness compiled; managed replay UNEXECUTED. No game/managed launch, Git/shared manifest writes or checkpoints."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4f5d00",
+      "0x4faea0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

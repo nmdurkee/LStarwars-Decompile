@@ -1,0 +1,168 @@
+{
+  "scope": "Whole container slot/critical-section/lazy-parent/base-offset helpers with final synchronization and open ports.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 331,
+    "nativeChecks": 981,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 6,
+    "ports": [
+      "EnterCriticalSectionIAT7510b8",
+      "LeaveCriticalSectionIAT7510b4",
+      "gameOpen4fa3f0"
+    ],
+    "closure": "Original record/parent allocators→actual4ffaa0/4ffac0→final critical-section ports; actual lazy parent and64bit base helper",
+    "compiledCoreInputs": 330,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase92-20261013-compile.dll",
+    "sourceSha256": "94ecb5ad61a383e8bef602e33f21be93c3f30c5047be95cd1aa1e61a351cb53c",
+    "harnessSha256": "1b1d041d86003c2e04ce50889aac4160cabcc430555ed99c589daf6d823afc63",
+    "nativeOracleSha256": "caaeb432389f0665e51937e35603f413ae005a812e404756628f4fcc8934540e",
+    "compileSha256": "ad37649eb149bdb77f9c58a0ffec84470b36266ab48e350e1934cec4a918bc9b"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4154-script92-mutex-enter.result.json",
+      "evidenceId": "ev_5f1f726a503459ad017acae4cc21e203f107d5b957f292db86bbc740609eabef",
+      "address": "0x4ffaa0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ffaa0",
+            "end": "0x4ffabd"
+          }
+        ],
+        "total_bytes": 30,
+        "span_bytes": 30,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4155-script92-mutex-leave.result.json",
+      "evidenceId": "ev_b098504411024829ab84a877f158076511eb3299eabdb728c077381cf7747dc0",
+      "address": "0x4ffac0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ffac0",
+            "end": "0x4ffadd"
+          }
+        ],
+        "total_bytes": 30,
+        "span_bytes": 30,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4150-script92-record-slot.result.json",
+      "evidenceId": "ev_3d56d9cf59d4d9f4064aabcea419e8e86a2a77c11d530ddd1deb2d0989d0ad1f",
+      "address": "0x4f0bd0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0bd0",
+            "end": "0x4f0c3a"
+          }
+        ],
+        "total_bytes": 107,
+        "span_bytes": 107,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4151-script92-parent-slot.result.json",
+      "evidenceId": "ev_602ddaa878c71dce36e9e07e155ece287787b6ac39c1ee17c8965f70f6d55d99",
+      "address": "0x4f0c40",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0c40",
+            "end": "0x4f0c5c"
+          },
+          {
+            "start": "0x4f0c60",
+            "end": "0x4f0ca4"
+          }
+        ],
+        "total_bytes": 98,
+        "span_bytes": 101,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4152-script92-parent-release.result.json",
+      "evidenceId": "ev_6121121bfaf56a5dde7497ccd5c3007b8e0ab1fcb34b7a5af7faa12c40a0c659",
+      "address": "0x4f0cb0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0cb0",
+            "end": "0x4f0cf0"
+          }
+        ],
+        "total_bytes": 65,
+        "span_bytes": 65,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4153-script92-container-offset.result.json",
+      "evidenceId": "ev_29ae8a759f4abb86180377b8f5c1c412f9686a428f0f648f95b8b282cead8144",
+      "address": "0x4f0a80",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0a80",
+            "end": "0x4f0aa5"
+          }
+        ],
+        "total_bytes": 38,
+        "span_bytes": 38,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Critical-section wrappers accept IDs1..12 inclusive and invoke final Enter/Leave at91ef70+id*24; invalid IDs no-op. Allocators enter using live88ab48, scan and claim first free slot, then reread live88ab48 for leave.20 compressed records use48-byte stride and live+24 zero→1; eight parent16-byte slots atcontainer+34 marker exactFFFFFFFF→recordIndex. Exhaustion returnsFFFFFFFF.",
+    "Lazy parent helper captures descriptor=container+(index+3)*16. Existing nonzero handle, includingFFFFFFFF, returns unchanged without position stores. Otherwise reads signed16mode atB2 and pathB8, calls gameOpen(path,mode,0,0), stores returned handle even0 and zeroes descriptor8/C while preserving marker4.",
+    "Offset helper signextends32entry offset; signed container marker<=-2 shifts full64 by8, then adds signextended32global91ee9c with full carry/wrap. Other markers keep byte units.",
+    "331cases/981 return, whole-image and event groups zero: valid/invalid critical IDs, pool first/free-last/full/multiple and live marker values, parent allocation indices0/19/FFFFFFFF, lazy cached/uncached handles0/1/FFFFFFFF and signed modes0/1/-1/-32768, offset signs/extremes/global base/marker classification. Callback mutations of lock IDs/free markers/claimed markers and parent output positions verified. Actual lock wrappers execute; only final Enter/Leave and gameOpen normalized."
+  ],
+  "limitations": [
+    "Prepared mapped pools and parent indices0..7, externally serialized final critical-section semantics represented as ports. Source void lock methods omit incidental EAX, as all recovered allocator callers ignore it.",
+    "Parent allocator Ghidra set98bytes/span101 recorded explicitly.330core inputs plus harness compiled; managed replayUNEXECUTED. Six new entries, no script command use, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 6,
+    "addresses": [
+      "0x4ffaa0",
+      "0x4ffac0",
+      "0x4f0bd0",
+      "0x4f0c40",
+      "0x4f0cb0",
+      "0x4f0a80"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

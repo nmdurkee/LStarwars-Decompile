@@ -1,0 +1,97 @@
+{
+  "status": "sealed qualified full particle attribute callbacks and CRT rand own body",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase38-20261013-ptl-particle-attributes.cs",
+    "sha256": "a0bd37b05facfe3d6a65cf392c4bc8c66c54b42f16c39271b5c34dd895a06155"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 1097,
+    "checks": 2450,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x654950": 128,
+      "0x654970": 128,
+      "0x6549a0": 128,
+      "0x6549c0": 128,
+      "0x6549e0": 128,
+      "0x654a00": 201,
+      "0x5c0240": 201,
+      "0x6e9530": 201,
+      "0x6e8e1e": 457
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": [
+      "0x6f040c TLS-context pointer acquisition"
+    ],
+    "seconds": 0.644,
+    "syntheticExcluded": 0,
+    "excluded": []
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 278,
+    "harnessSourceFiles": 20,
+    "assemblySha256": "b0f752c73454de03bace01aef337e636c3ca3aeff247b3d393ff294e4d48ea13",
+    "expectedManagedAssertions": 2450
+  },
+  "scope": [
+    "Complete six attribute bodies: radial velocities from exact binary64 constants, horizontal negation, drag, stored horizontal square/root, cached Y displacement, CRT-random reciprocal lifetime. Original store order and physically aliased lifetime/TLS state are preserved.",
+    "6e8e1e complete CRT rand own body: acquired context+14 state, wrapping LCG214013/2531011, high16 masked to15 bits; only 6f040c context acquisition is explicit and mutable.",
+    "201 actual original SquareRoot5c0240 and CRT sqrt6e9530 calls, 457 original rand6e8e1e calls. Source reuses existing BuildEffectSound.SquareRoot; no additional square-root or CRT sqrt entry credit."
+  ],
+  "domains": [
+    "Finite consumed arithmetic and finite stored horizontal squared input to existing SquareRoot; original binary64 literal cells are immutable and disjoint from output/stack. Lifetime signed zero retains masked reciprocal signed infinity. Private FPU status, stack/control-word scratch and unrelated registers excluded.",
+    "TLS acquisition returns readable context backing and may mutate image before fresh lifetime/state reads. Raw context state supports arbitrary uint words and physical output aliases. All 1097 fixtures retained; no synthetic exclusions.",
+    "Five original table callbacks are not recognized by Ghidra; raw diagnostics and exact native-byte evidence are retained without inferred EvidenceIds."
+  ],
+  "fixture": {
+    "path": "reports/world-phase38-20261013-vectors.json.gz",
+    "sha256": "740b703f3bc61215000cb5896d119000fd412cd904a04dce380d18b26f2ce7b7",
+    "cases": 1097,
+    "nativeGroups": 2450
+  },
+  "reaEvidence": "reports/world-phase38-20261013-rea-evidence.json",
+  "reaLimitations": [
+    {
+      "resultPath": "reports/rea-continuous/2065-world38-attribute-one.result.json",
+      "resultSha256": "d746a0328f663576a64b1a52f80cccd84be8035afba890fcb6901f182d4cc297",
+      "diagnostic": "No procedure exists at the requested address: 0x654950",
+      "evidenceId": null,
+      "note": "Original function not identified by Ghidra. Exact bytes and isolated native own-body runs retained; no Ghidra-bound credit."
+    },
+    {
+      "resultPath": "reports/rea-continuous/2066-world38-attribute-six.result.json",
+      "resultSha256": "892a4f2d74ec62ab02dfb9f407f426941d11dfb8e6677eb1340fb825dc42eede",
+      "diagnostic": "No procedure exists at the requested address: 0x654970",
+      "evidenceId": null,
+      "note": "Original function not identified by Ghidra. Exact bytes and isolated native own-body runs retained; no Ghidra-bound credit."
+    },
+    {
+      "resultPath": "reports/rea-continuous/2067-world38-attribute-two.result.json",
+      "resultSha256": "b42acabffb59ea3f257cf8dc18f5d0fc8cc19ab3e7e3e46a7816bc9faa14798b",
+      "diagnostic": "No procedure exists at the requested address: 0x6549a0",
+      "evidenceId": null,
+      "note": "Original function not identified by Ghidra. Exact bytes and isolated native own-body runs retained; no Ghidra-bound credit."
+    },
+    {
+      "resultPath": "reports/rea-continuous/2068-world38-attribute-three.result.json",
+      "resultSha256": "c1fdf372c193cbb040835a59079bd096893863a15bde2bd114ca976c93a0ecaa",
+      "diagnostic": "No procedure exists at the requested address: 0x6549c0",
+      "evidenceId": null,
+      "note": "Original function not identified by Ghidra. Exact bytes and isolated native own-body runs retained; no Ghidra-bound credit."
+    },
+    {
+      "resultPath": "reports/rea-continuous/2069-world38-attribute-four.result.json",
+      "resultSha256": "4632466545ce2ac7b4847d97bf8d31287302190a7df53dd26a4f66a384ba66a2",
+      "diagnostic": "No procedure exists at the requested address: 0x6549e0",
+      "evidenceId": null,
+      "note": "Original function not identified by Ghidra. Exact bytes and isolated native own-body runs retained; no Ghidra-bound credit."
+    }
+  ],
+  "remainingPorts": [
+    "6f040c TLS-context acquisition; own thread/context mechanism remains separate."
+  ]
+}

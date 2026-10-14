@@ -1,0 +1,86 @@
+{
+  "scope": "Complete locale tolower_l70138E279bytes and isdigit_l700F2179bytes through actual locale constructor and lead-byte helper.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 546,
+    "nativeChecks": 2184,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 3,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "6FC355 locale classification",
+      "6FC0AB CRT locale mapping",
+      "6F040C/6FAE25/6FA67A locale runtime",
+      "6EAD5F errno"
+    ],
+    "closure": "actual70138E/700F21→actual6EB53D/6FC0EE, live original argument SAR8 and packed byte mapping",
+    "compiledCoreInputs": 383,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase172-20261013-compile.dll",
+    "sourceSha256": "330b3fe77b1ee70282d80c221eccd0799648ce01bde12681c9f9adecd68324a2",
+    "harnessSha256": "484cb36ce8f4e4dcfbcabc25a25e2fb014fc13eae626ec300778c9447058a673",
+    "nativeOracleSha256": "3d9631afbf3a71fab6ba000a04fa005edac857247a3cd674c854c8c49291170a",
+    "compileSha256": "fff5c89760de1bdaa6fa358ce37c38908e0d5616fcca698662cdb2d462af6eed"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4299-script172-locale-lower.result.json",
+      "evidenceId": "ev_9c77dc24f7519c0b75326a7c40c16c1d236ccf0eba80a9692d0d9d50a13a5810",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x70138e",
+            "end": "0x7014a4"
+          }
+        ],
+        "total_bytes": 279,
+        "span_bytes": 279,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4300-script172-locale-digit.result.json",
+      "evidenceId": "ev_96859c8155fedb80139cce5e23aacb8ebd585b24036064a6b9d521e6cb5b739f",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x700f21",
+            "end": "0x700f6f"
+          }
+        ],
+        "total_bytes": 79,
+        "span_bytes": 79,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Both constructors run before reading live original character slot. Digit signedlocaleAC<=1 uses raw wrapped uint index at localeC8 and lowbyte&4; otherwise returns opaque classification mask4 result. Preserves captured return across owned thread bit2 cleanup.",
+    "Lower captures original full word after ctor. Unsignedword<256: signedlocaleAC<=1 uses lowbyte table&1; otherwise calls mask1 classifier and reloads LIVE context locale after it. Nonzero classification reads byte localeCC[originalCharacter], else returns originalword.",
+    "For word>=256 and multibyte width>1, overwrites original caller character slot with signed arithmetic shift8, tests its lowbyte through actual6FC0EE, and forms high/low bytes when lead. Otherwise writes errno42 and builds one lowbyte. Calls opaque6FC0AB with current context/language14,flags100,input1or2,capacity3,codepage4,strict1. Return0 preserves captured originalword; return1 yields first outputbyte; every other nonzero result yields outputbytes big-endian pair. Cleanup preserves result.",
+    "546native cases/2184comparisons zero with3 expected bad locale/classification faults. Negative/zero/one/multibyte widths, unsigned/negative/high words, all map result branches, arbitrary classifier results, all lead status paths, implicit/owned/high threadflags, original argument SAR8, callback mutation of character and live context locale/table, and actual nested lead-byte construction."
+  ],
+  "limitations": [
+    "6FC355 locale classifier and6FC0AB CRT mapping, errno and thread/locale refresh remain explicit. No Windows locale mapping implementation credit. Private child/context frames mapped and disjoint from input data; listed original caller/context mutations are retained.",
+    "383core inputs and portable replay compile as library; managed replay UNEXECUTED. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "newMappedAddresses": [
+      "0x70138e",
+      "0x700f21"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

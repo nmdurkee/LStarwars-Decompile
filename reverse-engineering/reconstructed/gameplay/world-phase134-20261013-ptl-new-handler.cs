@@ -1,0 +1,2 @@
+// Original6f2905 new-handler dispatch34bytes. Live REA ev_925150a769fa69bb08781e52b4b77cd49a5d7578242ceac8ecb73a53d0aeb91c. Decode child explicit; handler is cdecl and normalized to0/1.
+using System;namespace Recovered.Gameplay {public static class PtlNewHandler {public static uint Invoke(SoundSetupImage m,uint size,Func<SoundSetupImage,uint,uint[],uint> call){uint handler=call(m,0x6f01bc,new uint[]{m.Word(0x297cacc)});return handler!=0&&call(m,handler,new uint[]{size})!=0?1u:0u;}}}

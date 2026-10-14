@@ -1,0 +1,66 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "existingEntryRefinements": {
+    "0x513230": "PreparedScriptExpressionLoading.ResolveOutputs cdecl(text,floatOutput,integerOutput), EAX0",
+    "0x5132a0": "PreparedScriptExpressionLoading.Evaluate cdecl(text), ST0 raw32 stored result"
+  },
+  "semantics": [
+    "5132a0 resets Seen92224c, LastUnresolved922250 and RequiresRuntime922254 in order, always usesfullgrammar (no numericfastpath); storesresultF32, thenrereadsLastUnresolved and writesRequiresRuntime1 onlyifnonzero. Callback-writtenRequires survives whenLastUnresolved zero. Runtimecreature/packet globals untouched.",
+    "Each513230 symbol writesSeen1 thenLastUnresolved1 beforecallback. Callback9238c0 receiveszero creature/packet andcopiedlexername; callbackfloatoutput survivesFALSEhandledreturn. Nonzerohandled overwritesLastUnresolved0 aftercallback. Itdoesnotadd runtimeRand/true/false/max keywords orpacketfallback.",
+    "LastUnresolved tracks LASTsymbol, not an OR ofearlier unresolvedsymbols. Mixed handled sequences prove alpha(false)+beta(true) leavesRequires0 whereas reversehandling Requires1.",
+    "Livelexer preservesnativewhitespace byteincrements andlookahead replacingpreviousfloatvalue; callbacks canmutate remainingtext/flags/callbackglobal. Directsymbolflags precedetextdereference, includingtextpointer aliasedSeen.",
+    "Optionalfloat output stored beforeintegeroutput; callbacks/readlocalfloat capturedbeforealiasedflags/outputstores. Nullcallback directtext0 avoidsdereference andyieldszero. FTOL64low32 overflow0."
+  ],
+  "domains": [
+    "Finite stored math/callbackresult; boundedNULtext, identifier<=255, terminatinggrammar; uninitializedinitialtokens/nonprogress/nonfinite arithmetic/x87status/partialfaults excluded.",
+    "Callback game-symbol body remainsservice; fullgrammar originalbyteparser andrawglobals nowavailabletoload-condition materialization.",
+    "Fresh REA Ghidra12.1.4 body instruction addresses match raw-byte disassembly within reported body ranges; skipped alignment qualified, same target SHA confirmed."
+  ],
+  "validation": {
+    "nativeCases": 869,
+    "nativeChecks": 2607,
+    "mismatches": 0,
+    "managedExecution": false,
+    "compiledCoreInputs": 261,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase23-20261013-compile.dll"
+  },
+  "credit": {
+    "newEntries": 0,
+    "newCommandNames": 0,
+    "newCommandUses": 0,
+    "existingRefinements": [
+      "0x513230",
+      "0x5132a0"
+    ]
+  },
+  "freshReaEvidence": [
+    {
+      "path": "reports/rea-continuous/4006-script23-loadwrapper.result.json",
+      "evidenceId": "ev_6bed5de6cfe63207e06ea5e01de48af7174ae3c1cbbdfbf25cc251bc16c732cb",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5132a0",
+            "end": "0x5132ed"
+          }
+        ],
+        "total_bytes": 78,
+        "span_bytes": 78,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 16,
+      "instructionLocationsMatch": true,
+      "rawDecodedInstructionsOutsideGhidraBody": [],
+      "qualification": "Ghidra excludes jump-over alignment instructions from its non-contiguous body; raw span disassembly retains them."
+    }
+  ]
+}

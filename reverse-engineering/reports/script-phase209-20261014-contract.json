@@ -1,0 +1,41 @@
+{
+  "scope": "Complete raw application allocation-list canary scan",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 984,
+    "nativeChecks": 1968,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 0,
+    "bodyExecutions": {
+      "0x4ef450": 984,
+      "0x4eedc0": 964
+    },
+    "ports": [],
+    "closure": "Whole356-byte scan through allpreviousallocation links andboth12-byte guards; returns first corruptprefix block base orsuffix pointer, actualreleaseRETdiagnostic",
+    "compiledCoreInputs": 382,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase209-20261014-compile.dll",
+    "sourceSha256": "df3c49ac12c6c5c2df3a7fd703ea1e58749d5f2a39e4eeeb5cf2a76fc343c12a",
+    "harnessSha256": "392c333c7b1c80a9b2d5a1ea60184eb9bb168e075f7ccd308831d6286911c76f",
+    "nativeOracleSha256": "7932f568a76f200c315f51c0654ec6bc072f328e1d700d56892f4260381787b2",
+    "compileSha256": "21becd195d9c015fbe3e3c13318255c05ac1efbbfac1a6793059c12d6d821579"
+  },
+  "semantics": [
+    "Follows allocation chain at offset0 from global88AB18. Each record checks12-byte prefix against800444 then12-byte suffix at block+size+32 against800454. Returns0 for intact/empty list.",
+    "First bad prefix executes original release diagnosticRET and returns block base. First bad suffix returns suffix address. It stops at the first corrupt node/guard in traversal order; normal nodes remain unchanged.",
+    "984 native cases cover0..4 nodes, sizes0/1/16/256, every byte of both guards at every node, and multi-corruption ordering. Original full356-byte body and actual diagnostic RET execute with no adapters."
+  ],
+  "limitations": [
+    "Prepared finite acyclic allocation lists with readable complete metadata/canaries; no mutation during scan. Diagnostic data/flags/private caller stack outside portable projection.",
+    "382 core inputs plus harness compiled library only; managed replay UNEXECUTED. Exact entry unregistered in REA; raw consumer has zero global address credit."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "addresses": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "scope": "Actual whole GoToNode/MoveAwayFromNode/GoToNodeRandom through recovered full formation scheduler and row update.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 114,
+    "nativeChecks": 456,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 0,
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [
+      "optional9238C4 movement-step callback only"
+    ],
+    "closure": "actual535FC0/536FC0/536190→51AD80/51A7C0/RNG/conversion/distance→52FCB0→actual51D130/51CBC0/fullmath→52FDA0",
+    "sharedTableSha256": "3b6bef2e592c8481c080f322c432c6a3452c9a057ffd342e4fc8ce5bae5bbec5",
+    "sharedTableUnchanged": true,
+    "compiledCoreInputs": 356,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase146-20261013-compile.dll",
+    "sourceSha256": "bdfcafef0f7894aa39363f364b41506962733ce8f96212432cecad573605e34c",
+    "harnessSha256": "82b7fd7acc7553637d9533fc65ea7b36f7e233f603ac90b0753e3a5183b7dcc3",
+    "nativeOracleSha256": "e2c27a055637daa97c6f0384472e09de453a42195fc00dc0f12b02963c1da4c3",
+    "compileSha256": "178ccf5f7ac5309f42f0ecdb3fe84dc6df89edef49029bbc8fad465f566e15f7"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4256-script142-535fc0.result.json",
+      "evidenceId": "ev_7f61bd8d34f0f32c040779592b98caf3c4daf18debf4bf203638a5755babac33",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x535fc0",
+            "end": "0x53618e"
+          }
+        ],
+        "total_bytes": 463,
+        "span_bytes": 463,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4259-script142-536fc0.result.json",
+      "evidenceId": "ev_887369c32ca1ad2640535fe486f743274300a6eceefa19ad3c261bf3d63b4a97",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x536fc0",
+            "end": "0x53719d"
+          }
+        ],
+        "total_bytes": 478,
+        "span_bytes": 478,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4257-script142-536190.result.json",
+      "diagnostic": "Ghidra FunctionManager has no procedure at registered address; invalid_request retained. Complete original415-byte body decoded from immutable target and bounded registered action table."
+    }
+  ],
+  "semantics": [
+    "Fresh NativeX86 instance excludes all scheduler, row, lookup, RNG, converter, distance and intent adapters. The only optional value port is9238C4 step callback; actual ST0 and guest return execute from the prepared float-load stub.",
+    "Each registered caller executes through actual lookup/bind/RNG/conversion/distance and52FCB0. Go and Random mode1 execute actual51D130→51CBC0→full route/math→52FDA0; Away mode2 retains its normal intent branch. Formation expansion uses live owner, row and direction state after scheduling.",
+    "114 whole-call cases and456 full fault/return/image/event comparisons matched. Covers first and continuation calls, forward/reverse formation order, blocked flags, inactive rows, optional step callbacks, existing-next crossing, missing owner, disabled formation, exact arrival, owner mutation and live actor144 mutation to a second formation. Shared32768-word finite sine table unchanged."
+  ],
+  "limitations": [
+    "Qualified first-call one-token node name and count1 for whole formation fixtures. Multi-token/numeric/parameter/native movement callback behavior independently proven in143; full random signed-count selection in144; nullable node names in145.",
+    "Finite prepared positions and source math/sqrt qualifications inherited from125–129.356 cores and portable replay compiled as library; managed replay UNEXECUTED.",
+    "Composition adds no address/name/use credit; no shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

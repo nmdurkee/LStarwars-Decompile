@@ -1,0 +1,48 @@
+{
+  "scope": "Reversed file-type registry lookup and type4 filename conversion",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 2228,
+    "nativeChecks": 4456,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 3,
+    "rawEntryConsumers": [
+      "0x4f7cd0",
+      "0x4f7d90"
+    ],
+    "ports": [],
+    "closure": "Original4f78b0 all63 registry rows→4f7c70→4f77d0; conversion4f7cf0 and raw byte-entry slot/strip callers execute entire bodies with no hooks",
+    "compiledCoreInputs": 348,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase111-20261013-compile.dll",
+    "sourceSha256": "bca5e42342aac62ac638709c3ad5b5611b5822a0a5a40fcf0809434011b1341b",
+    "harnessSha256": "9a90f7deb3d3c31c7d96651a3e102c65b0109da1671815cfcf7776770f0b749d",
+    "nativeOracleSha256": "8d239a1acfddab87107438c5ccb9ed60fb5656369f834f3a4aaf4d13f9e66e8a",
+    "compileSha256": "e4b64042983d2e6cc55db249736bd7469053ac5c2f8c9cb328f8e11d418ded5b"
+  },
+  "semantics": [
+    "Suffix match traverses reversed registry bytes against filename backwards; folds only filename ASCIIA-Z and bytesC0-DF by+20hex. Empty pattern succeeds at zero length.",
+    "Find length0 computes byte strlen, ignores global registry count, chooses first match until first empty row. Signed slots/lengths are retained.",
+    "Conversion copies byte filename live forward, returns0 on no match; type4 match returns1 unchanged. Otherwise replaces suffix with first type4 counterpart of the same signed slot. Strip copies then truncates suffix and returns signed slot.",
+    "2,228 native cases /4,456 comparisons zero over all63 actual initializer rows, both conditional variants, casing/prefix/supplied length, signed slots/overlappingcopies/customsuffixes. No application/helper/platform hooks."
+  ],
+  "limitations": [
+    "Mapped strings <=4096 and prepared registry backing <=96rows; native oracle fixtures use<=1024. Conversion requires a type4 counterpart; missing counterpart native search has no sentinel stop. Null source copies terminator then native faults, excluded from portable defined domain.",
+    "348 core files plus replay harness compiled as portable library; managed replay UNEXECUTED.",
+    "Unregistered slot4f7cd0 andstrip4f7d90 receive0new function credit."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "addresses": [
+      "0x4f7c70",
+      "0x4f77d0",
+      "0x4f7cf0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  },
+  "artifactIncident": "Initial compile reused unchanged109rsp and regenerated109compile.dll; sealed109 sources/rsp/contracts/fixtures remain unchanged, but its prior contract compileSha256 no longer matches. Correct111compile succeeded; no generated executable or managed replay ran."
+}

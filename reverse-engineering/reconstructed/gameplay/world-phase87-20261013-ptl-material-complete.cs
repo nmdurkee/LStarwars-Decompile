@@ -1,0 +1,1 @@
+using System;namespace Recovered.Gameplay {public static class PtlMaterialComplete {public static void Refresh(SoundSetupImage m,uint material,Func<SoundSetupImage,uint,uint[],uint> external){PtlMaterialServices.Refresh(m,material,external);}}}

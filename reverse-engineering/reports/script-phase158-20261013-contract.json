@@ -1,0 +1,83 @@
+{
+  "scope": "Complete __isleadbyte_l 6FC0EE with actual locale constructor and owned thread flag cleanup.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 573,
+    "nativeChecks": 2292,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 2,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "6F040C thread getter",
+      "6FAE25 locale refresh",
+      "6FA67A multibyte refresh"
+    ],
+    "closure": "actual6FC0EE→actual6EB53D constructor, wordclassification andthreadbitcleanup",
+    "compiledCoreInputs": 368,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase158-20261013-compile.dll",
+    "sourceSha256": "09f8f9551276425c409d0f28f863fce8c4e004303428fc5dd7ca42f06e79658d",
+    "harnessSha256": "253a2ca23b8e08136877c756b70152a25ca237e701941ada382da7f2d3066c63",
+    "nativeOracleSha256": "85a7556024f1354c19d60b7c9b29465180f7629a5a7b81a4ef476d732501e6e5",
+    "compileSha256": "7f440e99c944af00693de5addec4999583368e3b817dc733bd7af3ad883cdb97"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4276-script158-leadbyte.result.json",
+      "evidenceId": "ev_37d856530e89da86b1a35b11605f741f47683b73d83ac50a0844a28aab928d23",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6fc0ee",
+            "end": "0x6fc123"
+          }
+        ],
+        "total_bytes": 54,
+        "span_bytes": 54,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4273-script154-locale-update.result.json",
+      "evidenceId": "ev_b544d7604165400feee9b6ffbf00bd20b34e42a48a2f2016ce5ad19909be1b0a",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eb53d",
+            "end": "0x6eb5be"
+          }
+        ],
+        "total_bytes": 130,
+        "span_bytes": 130,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Calls actual 6EB53D with a private 16-byte locale context and the captured locale argument. Character byte is read from its original caller slot after constructor callbacks, so callback mutations remain visible.",
+    "Reads classification table at context.localePointer+C8 and the ushort indexed by the low character byte. Returns word&8000 as 0 or32768, not Boolean1. When context.C owns the thread flag, clears only bit2 of LIVE thread70 after capturing classification result.",
+    "573 original cases and2292 comparisons matched with2 expected invalid locale/thread faults. All256 byte values through explicit and implicit locales, negative/high character words, arbitrary classification flags, pre-owned thread flags, refresh callbacks, private-context input aliases and character-slot mutations. Real constructor executes unchanged."
+  ],
+  "limitations": [
+    "Thread getter and locale/multibyte refresh children remain explicit services. No duplicate credit for constructor154 or world thread prerequisites.",
+    "Prepared private context and mapped classification words;368 cores and portable replay compiled as library. Managed replay UNEXECUTED. No command-name/use, shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x6fc0ee"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

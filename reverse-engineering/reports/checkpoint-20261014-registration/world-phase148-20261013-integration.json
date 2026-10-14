@@ -1,0 +1,38 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase148-20261013-ptl-small-pool-free.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6f19d1",
+      "method": "PtlSmallPoolFree.Release",
+      "sourceFile": "gameplay/world-phase148-20261013-ptl-small-pool-free.cs",
+      "coverage": "Qualified function-local prepared-domain native proof; source comment/native verifier dispatch+body hash evidence",
+      "qualification": "coherent raw allocator-produced boundary tags and bins; bidirectional coalescing, reused double-free early return, full257/258 page exhaustion across two pools, deferred decommit/release and row move; void ABI and readable mutable Win32 endpoints",
+      "nativeEvidence": [
+        "reports/world-phase148-20261013-native-tests.json"
+      ]
+    }
+  ],
+  "evidence": [
+    "reports/world-phase148-20261013-native-tests.json"
+  ],
+  "harnessFile": "../tools/world-phase148-20261013-portable-verify.cs",
+  "verifierModule": "world-phase148-20261013",
+  "verifierClass": "WorldPhase14820261013Verify",
+  "fixture": "reports/world-phase148-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase148-20261013-managed-tests.json",
+  "nativeCases": 193,
+  "nativeMismatches": 0,
+  "registrationNote": "Address-to-method proof from source headers/methods and verifier native entry dispatch; deduplicate against complete checkpoint inventory. Nested entries never establish credit.",
+  "domain": "coherent raw allocator-produced boundary tags and bins; bidirectional coalescing, reused double-free early return, full257/258 page exhaustion across two pools, deferred decommit/release and row move; void ABI and readable mutable Win32 endpoints",
+  "adapters": [
+    "HeapReAlloc/HeapAlloc/HeapFree",
+    "VirtualAlloc/VirtualFree",
+    "6eb0f0 row memmove"
+  ],
+  "syntheticExcluded": 0,
+  "execution": "Compile-only; managed replay not established.",
+  "auditProvenance": "reports/checkpoint-20261014-world96-174-audit-candidates.json"
+}

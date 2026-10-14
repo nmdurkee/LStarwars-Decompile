@@ -1,0 +1,232 @@
+{
+  "status": "sealed bounded per-function evidence",
+  "mappings": [
+    {
+      "address": "0x64ff80",
+      "method": "PtlEmitterOrientation.Copy",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Ordered16 binary32 load/store matrix copy; finite/quietNaN/Infinity words and no signaling NaNs consumed. Preserves raw negativezero/subnormal/quiet payloads, shifted/un-aligned overlap propagation and unmodified backing. A separate consumed-word domain check finds0signaling NaNs in all paired copy cases. FPU flags and hardware signaling-NaN quieting are excluded.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x64ffe0",
+      "method": "PtlEmitterOrientation.RotateX",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "4x4 row-vector X rotation for finite used coordinates and finite supplied32768 sine entries; caches first-column participatingY words for all4 rows before stores, uses exactx8764-bit multiply/add/subtract and binary32 output rounding including signed zero/subnormal underflow.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x6500c0",
+      "method": "PtlEmitterOrientation.RotateY",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "4x4 row-vector Y rotation, finite used coordinates. Full signed32 angle wraps/adds4000 then shifts/masks15-bit table slots; original table supplied unchanged. Four cachedX words and freshZ reads retain native store order and unmodified cells. Finite unspilled arithmetic can round standalone outputs toInfinity; nested calls require their consumed intermediates finite.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x6501a0",
+      "method": "PtlEmitterOrientation.RotateZ",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "4x4 row-vector Z rotation, finite used coordinates with cachedX, freshY and exactx8764-bit operation/store boundaries. Generic managed double approximations are not used; negative zero and tiny signed underflow are preserved.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x684640",
+      "method": "PtlEmitterOrientation.Primary",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Prepared signed-index emitter backing; exactFFFFFFFF sentinel guard only. Copies supplied8065c0 runtime template to+40, signextends each low16 angle, then actual Z/Y matrix operations and positivezero+300 reset. Global emitter base is reread between bodies; copy can alias/mutate that global and change later routing. All math executes original unchanged in native oracle.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x6846a0",
+      "method": "PtlEmitterOrientation.Secondary",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Prepared signed-index emitter backing; copies template+80 then signextendedlow16 Z/Y/X in that order and positivezero+300 reset, with live emitter-base rereads and exactmatrix primitives.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    },
+    {
+      "address": "0x684720",
+      "method": "PtlEmitterOrientation.Mode",
+      "sourceFile": "gameplay/world-phase20-20261013-ptl-emitter-orientation.cs",
+      "coverage": "complete prepared original own-body memory projection",
+      "qualification": "Prepared signed-index emitter backing; mode lowbyte publishes before template+ C0 copy, then signextendedlow16 X/Y matrix bodies, including native tail jump. This path does not clear+300. All256mode bytes, negativeindices, mode-byte aliasing emitter pointer and prior copy-pointer aliases retained.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase20-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-composed-tests.json",
+        "reverse-engineering/reports/world-phase20-20261013-rea-evidence.json",
+        "reverse-engineering/reports/world-phase20-20261013-assembly.json"
+      ]
+    }
+  ],
+  "nativeDirect": {
+    "status": "sealed bounded",
+    "cases": 1512,
+    "checks": 1512,
+    "mismatches": 0,
+    "errors": [],
+    "entryCounts": {
+      "0x64ff80": 870,
+      "0x64ffe0": 760,
+      "0x6500c0": 905,
+      "0x6501a0": 500,
+      "0x684640": 149,
+      "0x6846a0": 149,
+      "0x684720": 409
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "seconds": 3.777,
+    "sineSha256": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b",
+    "templateSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+    "nativeAdapters": 0
+  },
+  "nativeComposed": {
+    "status": "sealed bounded",
+    "cases": 229,
+    "checks": 1145,
+    "mismatches": 0,
+    "errors": [],
+    "activationEntries": {
+      "0x68e4f0": 229,
+      "0x658330": 3277,
+      "0x655f30": 3258,
+      "0x661f60": 229,
+      "0x5b3800": 3258
+    },
+    "orientationEntries": {
+      "0x684640": 3258,
+      "0x64ff80": 9774,
+      "0x6501a0": 6516,
+      "0x6500c0": 9774,
+      "0x6846a0": 3258,
+      "0x64ffe0": 6516,
+      "0x684720": 3258
+    },
+    "authoredDeclarations": 3277,
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "seconds": 115.426,
+    "producerWasFreshNativeExecution": false,
+    "producerSeedVerifiedAgainstPreviousFullNativeImage": true,
+    "fullImageBytes": 1163560,
+    "reaReads": "queued2003..2009 independently; not a managed/game execution"
+  },
+  "immutableHashes": {
+    "reconstructed/gameplay/world-phase20-20261013-ptl-emitter-orientation.cs": "1fe8ce450b0372e2c064c73b35ebe8cf4fb3b3855df2e443ee9b01d11b7205cc",
+    "tools/world-phase20-20261013-verify.py": "a22a7d88bb74be019abef6f55ace34dfbebf8df3b146f5aaa09c777595fdd416",
+    "tools/world-phase20-20261013-composed-verify.py": "2e80a23d43174dbaeb6e1bce0f0b0fd9d7cddf39e971bc99bb6d046875b93b16",
+    "tools/world-phase20-20261013-inspect.py": "712ed58362fae20e02edff87d9de8788b968649f56e714a933d52a5e1892c679",
+    "tools/world-phase20-20261013-domain-check.py": "acfe9f058478563bbd5c6cea2dbf12a6d38c967dbc384a3f09d8abe8d7005c8b",
+    "tools/world-phase20-20261013-portable-verify.cs": "e7ef94dc0415cae4d8cb1d44f68e500c6f32b3d96f56613d5533b3c607d571c3",
+    "reports/world-phase20-20261013-vectors.json.gz": "235b65e42b479a12889589ad27df9b33990755175f2856dd521fd33165654665",
+    "reports/world-phase20-20261013-composed-vectors.json.gz": "afd0837b03a26ac65f55ef7e36b957d807d99ac7473affb1ba3a125c612de97d",
+    "reports/world-phase20-20261013-assembly.json": "16791d7faef7a2fba1dfd7d9d0ae2b804366c4e1c4ef2315a0378d3b7776e1da",
+    "reports/world-phase20-20261013-rea-evidence.json": "2be720c3675c545f4cc701eda4435f25dd1720c03b41040a5cdd93fa489079ec",
+    "reports/world-phase19-20261013-composed-vectors.json.gz": "f30b27495d40a3e2e6b2cc2bd805a8c2db786620775f5d78a2aba7fcd55c60cd",
+    "references/native-animation-sine-table.f32": "8daf7a6f0fe07a15e813f802ba564bfb2ee2540de287edfd9d9f28e7325b024b"
+  },
+  "compiledCoreInputs": 260,
+  "compiledHarnessFiles": 2,
+  "ownPortableEntryPoints": 2,
+  "librarySha256": "327e75cc66b630a7a0a6db10fcdfdf2b97a5bdceb6b9f034f01bf7d9ac17245d",
+  "preparedManagedAssertions": 2657,
+  "managedReplay": "pending; compiler-only, no generated/game executable launch",
+  "rea": {
+    "successfulNativeRead": true,
+    "provider": "local Ghidra12.1.4 via installedREA6.4.0",
+    "binaryDigestVerified": true,
+    "evidence": "reports/world-phase20-20261013-rea-evidence.json",
+    "originalInstructionStartMatches": true,
+    "records": [
+      {
+        "address": "0x684640",
+        "evidenceId": "ev_4d85701aab5981269eec707b5ba7f38e36a54aab7c276979ae71afcba13fd13f",
+        "report": "reports/rea-continuous/2003-world20-orientation-yaw.result.json"
+      },
+      {
+        "address": "0x6846a0",
+        "evidenceId": "ev_a82ac0eb4bf79ba9095056414f11f5923688a95716063e10e0b8a2ae27f1180d",
+        "report": "reports/rea-continuous/2004-world20-orientation-basis.result.json"
+      },
+      {
+        "address": "0x684720",
+        "evidenceId": "ev_17779fc10d9e51d491b2c00a93b4cc91dc427254dae8d062bed24dcfe97e5250",
+        "report": "reports/rea-continuous/2005-world20-orientation-mode.result.json"
+      },
+      {
+        "address": "0x64ff80",
+        "evidenceId": "ev_4e1a0319b24fa87c4399f790f701ae005390fa2d3d268c7070282222d0ef952c",
+        "report": "reports/rea-continuous/2006-world20-copy-floats.result.json"
+      },
+      {
+        "address": "0x64ffe0",
+        "evidenceId": "ev_6e912aaf6a32664d12729f417bc44ac75a3c7c8d7f9a3c91a2af24013356e70d",
+        "report": "reports/rea-continuous/2007-world20-rotate-x.result.json"
+      },
+      {
+        "address": "0x6500c0",
+        "evidenceId": "ev_c94dd7e92be754914d5f4b0e65288f3fe7a77a294252ab86b5aa1d23d514cde8",
+        "report": "reports/rea-continuous/2008-world20-rotate-y.result.json"
+      },
+      {
+        "address": "0x6501a0",
+        "evidenceId": "ev_4b4ded5f2e8f4bbea0eda8079d41f92a0dfbefbf24fcfa744a46979de9471611",
+        "report": "reports/rea-continuous/2009-world20-rotate-z.result.json"
+      }
+    ]
+  },
+  "composition": {
+    "authoredFiles": 229,
+    "authoredDeclarations": 3277,
+    "sourceProducerOutputSeeded": true,
+    "producerWasFreshNativeExecution": false,
+    "previousProducerFullNativeImageHashesVerified": 229,
+    "activationAndOrientationOriginalsFresh": true,
+    "remainingPorts": [
+      "684ee0 constructor",
+      "655c30 timing",
+      "5d92b0 scene query"
+    ],
+    "description": "The source producer prepares each exact retained phase18 input. Its full publication image hash is verified against previous original execution before seeding isolated native memory. Fresh68e4f0/general658330/655f30/661f60 and all7 orientation/matrix originals then execute. Parent port service traces retain only constructor/timer/query adaptation; original geometry is no longer adapted. All229 exact authored declarations/3277rows remain unchanged."
+  },
+  "limitations": [
+    "SignalingNaN load/store behavior, nonfinite arithmetic operands, FPU/status/register effects and partial-memory faults are not claimed.",
+    "Standalone matrix rotations may produce IEEEInfinity from finite oversized sums; later consuming those values is outside nested finite domain.",
+    "Original constructor/timing/scene geometry remain external; no live emission/rendering or whole-game equivalence."
+  ],
+  "continuousWork": true,
+  "sharedManifestOrCheckpointUpdated": false
+}

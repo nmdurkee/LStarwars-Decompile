@@ -1,0 +1,48 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase54-20261013-ptl-material-wrappers.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x5e4d40",
+      "method": "PtlMaterialWrappers.Allocate",
+      "sourceFile": "gameplay/world-phase54-20261013-ptl-material-wrappers.cs",
+      "coverage": "complete qualified own body with mutable material child service",
+      "qualification": "Complete 20-byte 5e4d40 wrapper reads live global973ff4 into EAX and caller count into ECX, then invokes5e4b20 with registered stack argument1. Raw forwarded count/type and returned pointer retain the child service boundary. Complete24-byte5e4b00 wrapper caches material pointer, invokes601030, then increments freshly read16-bit counter2c0 with wrapping. Its EAX is not a meaningful return and earns no assertion credit. Composes complete654a90 through both original wrappers into mutable allocation/refresh child services.862 cases/2574 meaningful pointer-image-service groups zero mismatches/exclusions. Existing geometry pool/refresh implementations retain prior credit and qualified domains; this phase does not re-credit them.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase54-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase54-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase54-20261013-rea-evidence.json"
+      ]
+    },
+    {
+      "address": "0x5e4b00",
+      "method": "PtlMaterialWrappers.Finalize",
+      "sourceFile": "gameplay/world-phase54-20261013-ptl-material-wrappers.cs",
+      "coverage": "complete qualified own body with mutable material child service",
+      "qualification": "Complete 20-byte 5e4d40 wrapper reads live global973ff4 into EAX and caller count into ECX, then invokes5e4b20 with registered stack argument1. Raw forwarded count/type and returned pointer retain the child service boundary. Complete24-byte5e4b00 wrapper caches material pointer, invokes601030, then increments freshly read16-bit counter2c0 with wrapping. Its EAX is not a meaningful return and earns no assertion credit. Composes complete654a90 through both original wrappers into mutable allocation/refresh child services.862 cases/2574 meaningful pointer-image-service groups zero mismatches/exclusions. Existing geometry pool/refresh implementations retain prior credit and qualified domains; this phase does not re-credit them.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase54-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase54-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase54-20261013-rea-evidence.json"
+      ]
+    }
+  ],
+  "dependsOn": [
+    "gameplay/world-phase53-20261013-ptl-material-construction.cs"
+  ],
+  "evidence": [
+    "reports/world-phase54-20261013-contract.json",
+    "reports/world-phase54-20261013-native-tests.json",
+    "reports/world-phase54-20261013-rea-evidence.json"
+  ],
+  "harnessFile": "../tools/world-phase54-20261013-portable-verify.cs",
+  "verifierModule": "world-phase54-20261013",
+  "verifierClass": "WorldPhase5420261013Verify",
+  "fixture": "reports/world-phase54-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase54-20261013-managed-tests.json",
+  "nativeCases": 862,
+  "nativeMismatches": 0,
+  "expectedManagedAssertions": 2574
+}

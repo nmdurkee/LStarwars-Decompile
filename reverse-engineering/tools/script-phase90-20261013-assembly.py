@@ -1,0 +1,10 @@
+import importlib.util,json
+from pathlib import Path
+s=importlib.util.spec_from_file_location('n',Path(__file__).with_name('native-x86.py'));nm=importlib.util.module_from_spec(s);s.loader.exec_module(nm);n=nm.NativeX86()
+from capstone import Cs,CS_ARCH_X86,CS_MODE_32
+cs=Cs(CS_ARCH_X86,CS_MODE_32);functions=[]
+for address,size in[(0x4efdf0,112),(0x4f76f0,214),(0x4f98c0,113)]:
+ data=n.read(address,size);functions.append(dict(address=hex(address),size=size,bytes=data.hex(),instructions=[dict(address=hex(i.address),mnemonic=i.mnemonic,operands=i.op_str)for i in cs.disasm(data,address)]))
+literals=[dict(address=hex(a),bytes=n.read(a,z).hex())for a,z in[(0x4efe60,12),(0x4efe6c,76)]]
+(nm.BASE/'reports/script-phase90-20261013-assembly.json').write_text(json.dumps(dict(binarySha256=n.sha256,functions=functions,literals=literals),indent=2))
+print(json.dumps(dict(functions=len(functions),binarySha256=n.sha256)))

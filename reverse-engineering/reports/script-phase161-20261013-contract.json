@@ -1,0 +1,85 @@
+{
+  "scope": "Complete wctomb_s701EA2 and __wctomb_s_l701D43 through actual locale constructor and existing world133 memset/SSE zero helpers.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 612,
+    "nativeChecks": 2448,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 6,
+    "managedExecution": false,
+    "newEntries": 2,
+    "imports": {
+      "wide": 270534912,
+      "lastError": 270534928
+    },
+    "closure": "actual701EA2→actual701D43→actual6EB53D and6E6950/SSEzero; Windows conversion/errors and locale/runtime services explicit",
+    "compiledCoreInputs": 372,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase161-20261013-compile.dll",
+    "sourceSha256": "da1ad8aa33421ae0d7a0d14925fe1f45d17977aefa46d7ae82b21fa20f2726f8",
+    "harnessSha256": "850d05bd7915949b6f5843274c945ab4e944f3713adc8eafee50909731136754",
+    "nativeOracleSha256": "76a4dd21e603e69999cdc214216d02787dc1a4f2c4522d8e09fe4c6ec4382d9d",
+    "compileSha256": "8b1cf71d93a38a4da147101cc6af128a97bedfe25ba44cfe677329507e25305f"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4279-script161-wide-wrapper.result.json",
+      "evidenceId": "ev_310aaaaec0fce0ff4b099ee8069359c3f2b7691b0de353f414ae019cd28f308d",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701ea2",
+            "end": "0x701ebc"
+          }
+        ],
+        "total_bytes": 27,
+        "span_bytes": 27,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4281-script162-wide-core.result.json",
+      "evidenceId": "ev_000e5ca14ab98d62da876d63fe06416dbe7cb8846417d2481c009e46e70414d4",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701d43",
+            "end": "0x701ea1"
+          }
+        ],
+        "total_bytes": 351,
+        "span_bytes": 351,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "27-byte wrapper copies four caller words right-to-left into five-argument call with locale0.351-byte core captures buffer/capacity before result writes, null-buffer/nonzero-size early success sets result0 without locale acquisition, else resultFFFFFFFF and unsignedcapacity>7FFFFFFF validation22.",
+    "Actual locale constructor precedes character read. C-locale character<=255 writes one byte and result1, even wchar0; nonnull buffer/capacity0 is range34. C-locale character>255 zeroes full prepared output capacity then stores errno42 and reads errno through a second getter call.",
+    "Non-C locale overwrites its own original buffer argument slot with0, then uses it as usedDefault BOOL output. Calls Win32 conversion with live locale codepage, pointer to original wchar slot, captured output/capacity. Nonzero count with usedDefault0 succeeds and writes LIVE result pointer; used-default conversion or unrelated failure returns second errno read42. Win32 last error122 zeroes prepared output, dispatches invalid range34.",
+    "Owned thread bit2 cleanup on all post-constructor exits; validation22 before constructor performs no cleanup. Actual memset/SSE-zero source is world133 prerequisite with zero duplicate credit. Native code executes original helper bodies unchanged; two unresolved physical imports are rebound only inside isolated guest IAT slots to value/memory service stubs.",
+    "612 native cases/2448 checks matched, including6 expected bad pointer/locale faults, all null result/buffer combinations, size0/1/4/256/80000000, C-locale byte extremes, Win32 statuses/default/last-error outcomes, implicit/owned locales, original result/argument aliases, callback result/wchar mutations, alternate errno pointer on second getter, and512-byte vector zero."
+  ],
+  "limitations": [
+    "Windows WideCharToMultiByte and GetLastError remain explicit value/memory services; no Windows conversion implementation claim. Thread/locale refresh, errno and invalid dispatch remain services. Prepared private locale/child frame is mapped and disjoint from external data except explicit original argument/result aliases in fixtures.",
+    "372 core inputs and portable replay compile as library; managed replay UNEXECUTED. Guest IAT bindings are sandbox fixture state, with no host/security changes. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "newMappedAddresses": [
+      "0x701ea2",
+      "0x701d43"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

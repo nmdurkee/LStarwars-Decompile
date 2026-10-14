@@ -1,0 +1,83 @@
+{
+  "scope": "Existing4f8a70 substring and51ac10 locator lookup refined to raw memory and complete byte folding.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1096,
+    "nativeChecks": 2192,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 0,
+    "refinements": [
+      "4f8a70",
+      "51ac10"
+    ],
+    "ports": [],
+    "compiledCoreInputs": 341,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase121-20261013-compile.dll",
+    "sourceSha256": "187a0caeaea16a874bd99d7075d7beaf7478d44fbe1b003f801810583b373fc3",
+    "harnessSha256": "d9d8cc3bd6e6eb2f50c2ec9c4da411ffd5ab5c1fe71a2eb35a3cfb97ff5517a0",
+    "nativeOracleSha256": "975680c6ffed741a2be965b363481c0278db9061359bba8e6cf6242a471731c0",
+    "compileSha256": "cb7bdd075b3ca98f4474685d38d46f813b9b7694d696135b62896f2eb6ba2655"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4202-script121-substring.result.json",
+      "evidenceId": "ev_abd81eeb89eacfaa0195941685333f7eb79bdb67cbf6c025afe046f45a54eb54",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f8a70",
+            "end": "0x4f8ae7"
+          }
+        ],
+        "total_bytes": 120,
+        "span_bytes": 120,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4203-script121-locator.result.json",
+      "evidenceId": "ev_dff5948b03711df2c303263dec8f86e3d8e6548d6a6749fd094e26e7d5952346",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x51ac10",
+            "end": "0x51ac66"
+          }
+        ],
+        "total_bytes": 87,
+        "span_bytes": 87,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "4f8a70 empty haystack returns0 even for empty needle, otherwise emptyneedle returns firsttextpointer. Match returns first byte address. Fold ASCII a–z and every E0–FF byte by subtracting32; otherbytes unchanged; no Unicode folding.",
+    "51ac10 system0 or signedcountsystem24<=0 returns0 before query/name dereference; rows=LIVE*(system28)+index*3C. First4f8b10 byte-folded equality returns LIVEbase+index*3C; signedcount and base are reread during traversal/return.",
+    "1096 native cases/2192 return/full-image groups zero: every nonzero byte across matching/nonmatchingsubstringpositions and duplicate locator rows, empty needles/text/names, repeatedpatterns, signednegative/zero/positivecounts, nullsystem. Actuallookup comparer4f8b10 runs unchanged, no adapters."
+  ],
+  "limitations": [
+    "Prepared mapped terminated byte text length<4096 and signed locatorcount<65536; malformed/unmapped pointers follow caller bounds, not a wide Unicode API.",
+    "341core inputs plus replay harness compile as library; managed replayUNEXECUTED. Existingworld8 substring address and existingLocatorWorld.Find51ac10 receive no new address credit.",
+    "No Git/sharedcheckpoint/manifest writes or game/managed executable launch."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [
+      "0x4f8a70",
+      "0x51ac10"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

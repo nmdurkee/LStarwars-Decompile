@@ -1,0 +1,1 @@
+768 native cases / 1,536 memory/event comparisons zero. Original Configure/Release→full application allocator/release→diagnostics/memset/SSE, all debug/table/accounting effects. Only final heap mechanisms remain explicit.379-core library compiled; managed replay unexecuted; zero new address credit.

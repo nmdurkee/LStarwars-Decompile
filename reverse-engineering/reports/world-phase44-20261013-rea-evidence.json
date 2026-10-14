@@ -1,0 +1,39 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "evidence": [
+    {
+      "evidenceId": "ev_1d0eabb6bc11ad5127b90c1399475efc0d1480b64ae7943e961321a84040be1e",
+      "operation": "read_function_instructions",
+      "procedure": "0x64fe20",
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "resultPath": "reports/rea-continuous/2081-world44-inverse-angle.result.json",
+      "resultSha256": "2330b2a24d45b02e8b1d551029e473f0dabfb0370f25c0a1ff94b7299d7efc9d",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x64fe20",
+            "end": "0x64ff5f"
+          }
+        ],
+        "total_bytes": 320,
+        "span_bytes": 320,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidenceId": "ev_fbfd01349db297eaced67988ea88103b8d3f1bebc7a3ab706a802742ee00c89f",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x64fe20",
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "resultPath": "reports/rea-continuous/2082-world44-inverse-angle-pseudocode.result.json",
+      "resultSha256": "3f298866334b0335ae78f0634e65afe55d8cc79355a93fff32c8c18e9f4817f2"
+    }
+  ],
+  "notes": [
+    "Actual64ff5b opcode is JMP6e6b90, tail conversion, not CALL. The complete320-byte original body ends64ff5f;64ff60 is unrelated next function.",
+    "Capstone original bytes distinguish64fe7e FMUL ST1,ST0 from other FMUL ST0,ST1 operations. Ghidra shorthand/decompiler omit this normalization/polynomial information; exact operands ground the port."
+  ]
+}

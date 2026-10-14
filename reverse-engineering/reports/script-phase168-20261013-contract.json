@@ -1,0 +1,57 @@
+{
+  "scope": "Complete96-byte __cfltcvt_init6E68AC raw pointer bindings.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 318,
+    "nativeChecks": 2226,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "compiledCoreInputs": 379,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase168-20261013-compile.dll",
+    "sourceSha256": "8992a9c81dfb80985ce8998be47d6e2b737cdb5c7b33d7e8149844f57e0c42a3",
+    "harnessSha256": "789499bba9110a199709aee74558cdafc0dd2f9df824544365de265c0285852c",
+    "nativeOracleSha256": "a5266df4392125c572a1c2eb4d657c627b1b753aa4937d3bffb4e3a973e1972c",
+    "compileSha256": "0cdf11a5c4ccdfbaf4cb8e7445b063532895f505e4f11dd4c81b0f12686ac311"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4289-script168-floating-init.result.json",
+      "evidenceId": "ev_9f8cc83427bc7d509da384a76ebed21454679b7f5a764eaafc77b64bfa6c6b73",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6e68ac",
+            "end": "0x6e690b"
+          }
+        ],
+        "total_bytes": 96,
+        "span_bytes": 96,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Ten ordered raw pointer stores829A80–829AA4, with6EE9F9 duplicatedatfirstand sixthslot; primarylocale conversion6EE973, assignment6EE01C, cropzeros6EDF86, forcedecpoint6EDF15. ReturnsEAX6EE9F9 and leaves other sampled registers unchanged.",
+    "318native calls/2226checks zero across randomized old pointer words, preserved neighboring bytes and initial registers. No children/ports/adapters."
+  ],
+  "limitations": [
+    "Raw initialization is separate from any later EncodePointer caller. No implementation credit for assigned conversion handlers.379core inputs and portable replay compile as library; managed replay UNEXECUTED. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x6e68ac"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

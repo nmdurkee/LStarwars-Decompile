@@ -1,0 +1,81 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "addresses": {
+    "0x60f190": "PreparedScriptPacketPublication.Publish thiscall(publisher,mode,buffer,start,end,channel), ret20",
+    "0x60e590": "PreparedScriptPacketPublication.Statistics same thiscall args, ret20",
+    "0x60ee80": "PreparedScriptPacketPublication.Clone thiscall(packet*), ret0"
+  },
+  "semantics": [
+    "Publish returns immediately for nullbuffer. Positive SIGNED wrapped(end-start) prepends LOWBYTEchannel at start-1, increments bufferref then executes statistics. Zero/negative length skips all publication and only releasescurrentbuffer.",
+    "Statistics scans publisher+4 chain using node.next0, first channelBYTE atC match. Adds wrapped(end-start) tobytes38 ifbuffernonnull, otherwiseadds0; incrementscount40; thenreleaseslivebuffercounter. Bothstats stores canaffectlaterreads ifaliases, withpreparedmappedvalidbacking.",
+    "Afterstatistics Publish readsglobal28fec04 statepointer thenlistenerhead94. Eachlistener: clone currentLOCAL packet, incrementnewbuffercounter orsetfallbackglobalflags, resolvevtableC callback, passpacketBYVALUE andtwozeros; thenrereadCURRENTlistener.next4. Globalheadmutation afterfirstcallback isignored.",
+    "Clone picksfirstfree512poolrecord andsetsreference1 BEFOREreadingoldpacketbuffer. Ifold andnew nonnull copy end-start bytes atSAME startoffset. Otherwisewritesfallbackflag atglobal28572e0ptr+34. ItreleasesOLD livecounter, thenreplaces packet.buffer; mode/start/end preserved.",
+    "Allocationexhaustion cannull currentbuffer; oldbufferrelease maymakea recordfree fornextlistener. Ifoldnull butnewavailable, Clone stillallocatesnewbuffer andsetsfallback withoutcopying payload; callbackthenreceivesnewbuffer witholdrange andunchangedpayload.",
+    "Publish finalrelease applies tothecurrentlocalbuffer fromLASTclone, notoriginalbuffer. Listenercallback ownsretention/release ofincremented delivery reference; no automaticcallee cleanup inferred.",
+    "RecoveredPacketRecordingServices replacesphase21 Publishport; 36actual53db30→53d940→53d5d0→60f190→60e590→60ee80 pipelines withonlygate,actorIDandfinalvirtualdelivery supplied."
+  ],
+  "domains": [
+    "Fixed512pool andvalidmapped packet/listener/statistics data; source packetstruct disjoint frompayload. Boundedcopyrange<=4b0, noout-of-recordpayloadstores; acyclicboundedlists.",
+    "Rawintegercounters/channels/mode/start/end, signedwrappedlength gates. Finalvirtualdelivery explicit; network/session listenerbodies remainopen.",
+    "FullpoolSHA, all512counters andselectedrecordpayloadimages compared. Standalone direct andpipeline fixtures remainseparate.",
+    "Fresh REA Ghidra12.1.4 body instruction addresses match raw-byte disassembly within reported body ranges; skipped alignment qualified, same target SHA confirmed."
+  ],
+  "validation": {
+    "nativeCases": 1006,
+    "nativeChecks": 3018,
+    "mismatches": 0,
+    "standalone": {
+      "cases": 970,
+      "checks": 2910
+    },
+    "recordingPipeline": {
+      "cases": 36,
+      "checks": 108
+    },
+    "managedExecution": false,
+    "compiledCoreInputs": 260,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase22-20261013-compile.dll"
+  },
+  "fixtureCorrection": "First unsealed composed probe used host test publisher10100100 for model while original recorder passes28572e8. Corrected fixture publisher/state mapping; sourceunchanged. Only final36cases/108groups credited, previous18image mismatches notcredited.",
+  "credit": {
+    "newEntries": 3,
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  },
+  "freshReaEvidence": [
+    {
+      "path": "reports/rea-continuous/4003-script22-publication.result.json",
+      "evidenceId": "ev_3b86059df839d1d7b8db36fb993d55d9d386a5e45a1527cb2b448f85194083a7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x60f190",
+            "end": "0x60f20c"
+          },
+          {
+            "start": "0x60f210",
+            "end": "0x60f293"
+          }
+        ],
+        "total_bytes": 257,
+        "span_bytes": 260,
+        "non_contiguous": true,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 87,
+      "instructionLocationsMatch": true,
+      "rawDecodedInstructionsOutsideGhidraBody": [
+        "0x60f20d"
+      ],
+      "qualification": "Ghidra excludes jump-over alignment instructions from its non-contiguous body; raw span disassembly retains them."
+    }
+  ]
+}

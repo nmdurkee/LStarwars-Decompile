@@ -1,0 +1,70 @@
+{
+  "scope": "Whole container entry open through concrete index/pool/lazy-parent/base/public-memory-seek children.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 401,
+    "nativeChecks": 1203,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "EnterCriticalSectionIAT7510b8",
+      "LeaveCriticalSectionIAT7510b4",
+      "parentGameOpen4fa3f0",
+      "diagnostic4ef7b0"
+    ],
+    "closure": "Whole4f9bd0→original4f9aa0/4f76f0/4efdf0/record+parent allocators/lock wrappers/lazy parent/base/memory seek; final lock/open/diagnostic leaves only",
+    "compiledCoreInputs": 331,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase93-20261013-compile.dll",
+    "sourceSha256": "925b5a4cc89ebc1380ed4a8991025689ef411230201f3da37b72a3325f6a2871",
+    "harnessSha256": "6efca3a774cef80d424170b60d352116bbdc00e5aa9970e4b66ef092fee6277e",
+    "nativeOracleSha256": "0599a4a1f66c14dfe6b75aedc8ea03f62c37a391d73c61ebca6655cb462f63b1",
+    "compileSha256": "e75c555e18b615976b3b9510d07f35d4323779c78fed2b1a6fce22a148d0a949"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4144-script89-container-open.result.json",
+      "evidenceId": "ev_e6f5f73b9c57f9a92a886912175ca593528517ca62076eedba8114edc7038ca9",
+      "address": "0x4f9bd0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f9bd0",
+            "end": "0x4f9d78"
+          }
+        ],
+        "total_bytes": 425,
+        "span_bytes": 425,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase78-20261013-contract.json",
+    "reports/script-phase91-20261013-contract.json",
+    "reports/script-phase92-20261013-contract.json"
+  ],
+  "semantics": [
+    "Nonzero mode returns0 before memory operations. mode0 resolves concrete normalized index; negative index or row4zero emits diagnostic(path), then0. Claims compressed record and parent slot; record exhaustion diagnostic(no args), parent exhaustion clears only newly claimed record24 before0.",
+    "Captures parent descriptor and lazily ensures host handle. Stores container pointer, signed/shifted entry offset as both base8/C and current10/14, then LIVErow packedlength4→record18, plainlength8→1C, modeC→28 and parent slot20. Publishes current to parent8/C. Does not zero or otherwise reconstruct untouched record fields.",
+    "Repeatedly seeks parent to LIVEbase64 using public4f6de0. Native success test is signed HIGH>=0: TEST EAX clears carry so high0 always succeeds. Negative high emits diagnostic and retries; fixture repairs base through diagnostic and compares next attempt. Mode2 publishes active record91ce60, parent917844, rawbase88ab40/44 and clears global decoded available90FBA4, preserving other decode cache fields.",
+    "401cases/1203 return/image/event groups zero: first/interior/last/full20record pool; first/last/full8parent pool; cached/uncached memory400 parent; flags0/1/2/3, marker0/-2, base0/17, mode0/1/2/FFFFFFFF, indexfound/missing, packedlength0/17 and negative seek retry. Actual lookup/normalize/allocators/locks/base/lazy-parent/memory seek execute; final synchronization, parent gameOpen and diagnostic alone normalized."
+  ],
+  "limitations": [
+    "Prepared valid mapped entries, positive allocated/cached parent400 and progressing seek diagnostics. Native malformed zero parent handle does not receive invented success behavior; this is outside source memory specialization.",
+    "331core inputs plus portable harness compiled; managed replayUNEXECUTED. One new entry4f9bd0, no script command use, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4f9bd0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

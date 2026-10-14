@@ -1,0 +1,8 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Recovered.Gameplay;
+public class WorldPhase3220261013Verify {
+ public static int Main(string[] args){var json=new JavaScriptSerializer();json.MaxJsonLength=256*1024*1024;var data=World19Support.Obj(json.DeserializeObject(World19Support.Input(args[0])));var regions=World19Support.Arr(data["regions"]);int cases=0,checks=0,failures=0;var errors=new List<object>();foreach(object v in World19Support.Arr(data["cases"])){var row=World19Support.Obj(v);var expected=World19Support.Obj(row["expected"]);var bad=new List<string>();try{var m=World19Support.Setup(regions,row);string kind=(string)row["kind"];if(kind=="recycle")PtlResourceLifecycle.RecycleDescriptors(m);else if(kind=="mask")PtlResourceLifecycle.EmitterMask(m,World19Support.U(row["id"]),World19Support.U(row["value"]));else if(kind=="prepend")PtlResourceLifecycle.PrependEmitter(m,World19Support.U(row["emitter"]));else PtlResourceLifecycle.UnlinkEmitter(m,World19Support.U(row["emitter"]));++checks;if(World19Support.Hash(m,regions)!=(string)expected["sha256"])bad.Add("complete resource/emitter chain image");}catch(Exception e){bad.Add(e.ToString());}if(bad.Count!=0){failures++;if(errors.Count<12)errors.Add(new{cases,bad});}cases++;}string report=json.Serialize(new{cases,checks,mismatches=failures,errors,binarySha256=data["binarySha256"]});File.WriteAllText(args[1],report);Console.WriteLine(report);return failures==0?0:1;}
+}

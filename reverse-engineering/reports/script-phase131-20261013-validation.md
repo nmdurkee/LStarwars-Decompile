@@ -1,0 +1,1 @@
+352 original x86 cases; 1,408 comparisons; zero mismatches. Two full139/68byteposition functions. Final Win32 seek port only. 358 core files plus harness compiled library only. Managed replay unexecuted.

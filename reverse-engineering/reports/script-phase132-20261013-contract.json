@@ -1,0 +1,40 @@
+{
+  "scope": "Whole block-close serialization on bounded memory/CRT handles",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1554,
+    "nativeChecks": 3108,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "Whole4f6f60 block-close→wholeposition4f6d10/4f6c20→memory4f0380 orreleaseCRTwrite6dee60→wholepublicseek4f6de0/6dee90; exactpost-adjustment localpadding spill up11bytes, nohooks",
+    "compiledCoreInputs": 359,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase132-20261013-compile.dll",
+    "sourceSha256": "cbfaf292d827fae390f7c0a55a096fc60b292caf72db1deeb94cb62898246e45",
+    "harnessSha256": "e95cb18cd3c33de90f12aa3a2683d03c4353e12ccc2a39604a03d8ed8f3a13c5",
+    "nativeOracleSha256": "1191533b2fbe06dbb94224bb88e5ca613c4d81260faac12716a33a40af6467ff",
+    "compileSha256": "cdc00651d64c4f927d0a475d8ca9b5c73f8a88f716737627af34b50984344415"
+  },
+  "semantics": [
+    "Globalblockdepth800468 decrements. Wholeposition obtainscurrent64bitposition; low32payloadlength=currentlow-savedbeginlow, signedIDIValignment determinespadding. Negativeblockmarker flipsalignedlength. PatchDWORDat savedbegin+4; finalseekrestorescomputedpost-paddingcurrentposition.",
+    "PaddingcopieszeroDWORD followedbyUPDATED64bitcurrentposition locals whenpad>4. Bounded1..12alignment preservesup11byte nativeframeprefix. Memorywriterclampsactualpadding/headerbytes butcomputedrestorationposition remainsfullpad-adjusted, evenbeyondEOF.",
+    "1,554nativecases3,108comparisons zero:memoryslots400/403/413, depths1/2/64, align1/2/4/8/12, begin/current/marker/modevariants, truncated17byte backingandCRTzeroendpoints withsignedpayloadremainders. No hooks."
+  ],
+  "limitations": [
+    "Memoryhandles400..413 withnonnegativepayload,beginHigh0,pad<=11, validnonnegativecopyavailabilityforpadding/header; CRT1000..7FFFFFFF. OtherWin32/compressedbranches of originalbody excluded.",
+    "Caller stackargument isoverwrittennativelywithcomputedlength; portablecall-stackABI/incidentalstackregisterstate outsideprojection. Private12bytepad representationrestored viaexistingcompilerlocal abstraction.",
+    "359core plusfixtureharnesscompiledlibraryonly;managedreplayUNEXECUTED. No newcommandnames/uses."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4f6f60"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

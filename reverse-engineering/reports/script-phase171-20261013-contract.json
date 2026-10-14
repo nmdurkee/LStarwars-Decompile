@@ -1,0 +1,118 @@
+{
+  "scope": "Actual decimal insertion/cropping→actual tolower/isdigit fast paths and locale dispatch.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 497,
+    "nativeChecks": 1988,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 3,
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [
+      "70138E locale lower",
+      "700F21 locale digit",
+      "6F040C thread",
+      "6FAE25 locale refresh",
+      "6FA67A multibyte refresh"
+    ],
+    "closure": "actual6EDF15/6EDF86→actual7014A5/700F70 and6EB53D with original returnEAX/overlap byte moves; ctype/locale runtime services explicit",
+    "compiledCoreInputs": 382,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase171-20261013-compile.dll",
+    "sourceSha256": "b6a8a5c164ae6ab2ae3985c6cd6e03ac481a05f1eeb170a7636775855f48f019",
+    "harnessSha256": "71efd9d7ba7de2270c9b65055588ab38213d91ec54af2ad4b08d3572813283bd",
+    "nativeOracleSha256": "272bbc573e9d919adbaa6747e30fcbae519df15b09e227e019fafec6f7eb1114",
+    "compileSha256": "fa124b398ec6661a2ef2eab47792b40228e5d0241d0b39400e3207d9a3acfd52"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4291-script169-force-decimal.result.json",
+      "evidenceId": "ev_86acfbf51ac03dc1023bd6a8d3c288176147288f9b4185a0fb6546504e278de2",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6edf15",
+            "end": "0x6edf85"
+          }
+        ],
+        "total_bytes": 113,
+        "span_bytes": 113,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4292-script169-crop-zeros.result.json",
+      "evidenceId": "ev_517a1b5a97c696b2df7e3be4613af2f63c81c5bb322058e75ca9d8336f725e75",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6edf86",
+            "end": "0x6ee005"
+          }
+        ],
+        "total_bytes": 128,
+        "span_bytes": 128,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4295-script170-tolower.result.json",
+      "evidenceId": "ev_16120a6e9e152f2e795da8ac8fb0a9b2884c8bd2fa81c86ffe3090f810b0efda",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x7014a5",
+            "end": "0x7014cb"
+          }
+        ],
+        "total_bytes": 39,
+        "span_bytes": 39,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4296-script170-isdigit.result.json",
+      "evidenceId": "ev_c8a20ab988f825b1b4a6a5bc2f5ffdc9e04f86c85d93da91a74b26dd4a3d9b7f",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x700f70",
+            "end": "0x700f98"
+          }
+        ],
+        "total_bytes": 41,
+        "span_bytes": 41,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "6EDF15/6EDF86 execute unchanged through actual7014A5/700F70, without intercepting either ctype wrapper. Zero-mode uses original raw tablemask and unsigned ASCII range; locale-mode forwards original word/locale0 to explicit70138E/700F21 services.",
+    "497native cases/1988checks zero,3 expected pointer faults, preserving all decimal buffer shifts, crop overlap moves, incidental EAX, original caller mutations and thread cleanup. Locale backend override/patch cases are routed into actual nonzero-mode wrapper branches."
+  ],
+  "limitations": [
+    "Locale-aware lower/digit backend and locale/thread refresh remain explicit; native ctype fast bodies themselves run without adapters.169 prepared private-context and spare writable-byte qualifications retained.",
+    "382core inputs and portable replay compile as library; managed replay UNEXECUTED. Zero new mapped addresses; no shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

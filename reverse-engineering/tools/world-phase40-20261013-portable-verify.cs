@@ -1,0 +1,8 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Recovered.Gameplay;
+public class WorldPhase4020261013Verify {
+ public static int Main(string[] args){var json=new JavaScriptSerializer();json.MaxJsonLength=256*1024*1024;var data=World19Support.Obj(json.DeserializeObject(World19Support.Input(args[0])));var regions=World19Support.Arr(data["regions"]);int cases=0,checks=0,failures=0;var errors=new List<object>();foreach(object v in World19Support.Arr(data["cases"])){var row=World19Support.Obj(v);var expected=World19Support.Obj(row["expected"]);var bad=new List<string>();try{var m=World19Support.Setup(regions,row);foreach(object patch in World19Support.Arr(data["common"])){var p=World19Support.Obj(patch);uint at=World19Support.U(p["address"]);byte[] b=Convert.FromBase64String((string)p["data"]);for(int i=0;i<b.Length;i++)m.Byte(at+(uint)i,b[i]);}var trace=new List<object>();Func<SoundSetupImage,uint,uint[],uint> service=delegate(SoundSetupImage image,uint address,uint[] values){if(address!=0x5f74a0)throw new Exception("Unbound failure service");trace.Add(new object[]{address,values});return 0;};PtlParticleDescriptor.Produce(m,World19Support.U(row["record"]),service);++checks;if(!World19Support.Equal(trace,expected["trace"]))bad.Add("capacity failure tail service");++checks;if(World19Support.Hash(m,regions)!=(string)expected["sha256"])bad.Add("complete descriptor image");}catch(Exception e){bad.Add(e.ToString());}if(bad.Count!=0){failures++;if(errors.Count<12)errors.Add(new{cases,bad});}cases++;}string report=json.Serialize(new{cases,checks,mismatches=failures,errors,binarySha256=data["binarySha256"]});File.WriteAllText(args[1],report);Console.WriteLine(report);return failures==0?0:1;}
+}

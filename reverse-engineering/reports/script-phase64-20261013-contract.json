@@ -1,0 +1,81 @@
+{
+  "scope": "Rawnew PlayerToLocator5155c0 andNearestPlayerToLocator515620 pointer/controlflow refinement.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 158,
+    "nativeChecks": 474,
+    "mismatches": 0,
+    "faultCases": 3,
+    "managedExecution": false,
+    "compiledCoreInputs": 302,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase64-20261013-compile.dll",
+    "sourceSha256": "f99ce8f09c559943855aa383e5bcc552b87b5117a54c49acfc68ae63f2044cff",
+    "harnessSha256": "e594437c2bd433ef2a8f4184a12046b48166a8494ac60f929f9e8efb6d4ab915",
+    "nativeOracleSha256": "49988059bf7a1ef5ab9073430738e811fa74d5b712cb7a812350bb0fa19895d9",
+    "compileSha256": "fc522547b567db5c40db0503d4ece95088bdea99ef53fe10d28897aed36ee21c"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4103-script64-playerloc.result.json",
+      "evidenceId": "ev_2d1dbd9d0adf5aa274e11ea9851b713b1d3e8b00fd761406e34153944f6e7bf1",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5155c0",
+            "end": "0x515613"
+          }
+        ],
+        "total_bytes": 84,
+        "span_bytes": 84,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    },
+    {
+      "path": "reports/rea-continuous/4104-script64-nearestloc.result.json",
+      "evidenceId": "ev_8e936533e1bce1c869ac139d941b451c62bd8fc7a682d238fb01e295cf734e9d",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x515620",
+            "end": "0x5156ed"
+          }
+        ],
+        "total_bytes": 206,
+        "span_bytes": 206,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    }
+  ],
+  "semantics": [
+    "Bothcallbacks onlyactorARGPOINTERnonzero gate, neverdereferenceactor orD0: DEADBEEFactorvalid. system0fallback75ecf0. Coordinatesrawplayerreference138c/13905c vs bound/selectedlocator10.",
+    "SinglePlayer138cnullguardprecedespacketselectedread, nearestselectedtargetreadPRECEDESbothplayerreferences: noPlayers/nullpacket returnsmaxforSingle butfaultforNearest. Explicitboundnonnull avoids packetread.",
+    "Neareststoresfirstplayerfloat32square, strictorderedsecondmin, DOUBLE760008maxsentinelequalityskipssqrt; absentselected/playerspreservesmax. Invalidboundnotdereferencedwhen bothplayersabsent, matchingnativecontrolflow.",
+    "Wholeoriginaldistance5becc0/squaredistance5b3c50→5c0240/6e9530sqrt executed withprivatecompilerlocals excludedheapprojection.",
+    "158cases474groupszero mismatches/3faults:6vectorcrosspairs,32randomtriples percallback,nearest/tie/first/second ordering,allnullguards/explicitbound, rawactorinvalidpresence, unusedboundinvalid/noplayers,noPlayers/nullpacket divergence."
+  ],
+  "limitations": [
+    "Finitecompletecoordinatesandfinite storedsquaredsum required;nonfinite/overflow/x87status outsidepaireddomain. HostMath.Sqrt binary32return qualified, notgeneral64sqrt.",
+    "302cores+harnesslibrarycompiled;managedreplayUNEXECUTED; noOS/game launch/Git/sharedmanifest writes.",
+    "5155c0onlynewentry;515620preexistingstructuredmapping rawrefined."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x5155c0"
+    ],
+    "existingRefinements": [
+      "0x515620"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

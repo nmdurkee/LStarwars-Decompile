@@ -1,0 +1,47 @@
+{
+  "scope": "Existing UTF16 line/token producers composed with real BOM filesystem parser and complete game I/O.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 60,
+    "nativeChecks": 240,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [
+      "CreateFile",
+      "SetFilePointerEx",
+      "ReadFile",
+      "CloseHandle"
+    ],
+    "closure": "Whole4fc860/BOM attach/default formatter/fileIO→4fc5b0→actual4fc390/4fc360/4fc2d0/refill/buffer→4f7fb0→actual4f7df0, finalOS APIs only",
+    "compiledCoreInputs": 338,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase100-20261013-compile.dll",
+    "sourceSha256": "494d76b3b12e362081a0d40a390461663294b010ec54642610be809286702143",
+    "harnessSha256": "b9fac5ff1a523eb22423e348bd4e414239ef5b38719ba9cff77b57cabf6b838a",
+    "nativeOracleSha256": "55b6ec08a0f07e618d2ea598c3c64fff0e9ae4103ef0d9add44fe4db9208246d",
+    "compileSha256": "efcb9108f69d0bbf179d559f17a673bcc3ace20e954685624e37caf5211fd95c"
+  },
+  "reaReferences": [
+    "reports/script-phase48-20261013-contract.json",
+    "reports/script-phase49-20261013-contract.json",
+    "reports/script-phase50-20261013-contract.json",
+    "reports/script-phase98-20261013-contract.json"
+  ],
+  "semantics": [
+    "RecoveredFilesystemWideScripts binds50decoded file services to concrete95/98game file transport. Actual4fc860 detects UTF16BOM, then4fc5b0 dispatches actual4fc390/4fc360 word/line producers and4f7fb0 dispatches actual4f7df0 tokenizer; underlying4fc2d0 refills through real read/cache/OS wrappers.",
+    "60cases/240 return sequences, full-image, events and host-state groups zero: five quote/comment/CRLF/Greek/CJK/plain texts, both little/big endian payloads/BOMs, physical chunks1/3/17 and buffered/unbuffered transport, two lines andfive tokens perline plus optionalclose. Actual default formatter and alltransport/producer bodies execute, only finalOS APIs normalized.",
+    "Faithfully retains native word helper unconditional little-endian assembly: big-endian BOM flag changes dispatcher classification but does not byte-swap input words. Fixture compares resulting original word/token images; it does not claim meaningful big-endian text interpretation."
+  ],
+  "limitations": [
+    "Prepared bounded finite mapped words/lines/tokens. UTF16 command dispatch/body/catalog interpretation is outside this producer-only composition; byte command consumers have not been granted invented wide support.",
+    "338core inputs plus portable harness compiled; managed replayUNEXECUTED. No new entries/commands, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "addresses": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

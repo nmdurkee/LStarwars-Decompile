@@ -1,0 +1,2 @@
+// Original6ead5f errno getter19bytes. Live REA ev_6acd32f09a94b3a2f80016a2dce6dcb284ede1cf78d753db12c26b7f04b1cc6a. Calls no-exit thread acquisition directly; null uses shared829a48; otherwise wraps pointer+8.
+using System;namespace Recovered.Gameplay {public static class PtlErrnoPointer {public static uint Get(SoundSetupImage m,Func<SoundSetupImage,uint,uint[],uint> call){uint thread=call(m,0x6f0395,new uint[0]);return thread==0?0x829a48u:unchecked(thread+8);}}}

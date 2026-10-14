@@ -1,0 +1,1 @@
+1,040 original native cases / 2,080 comparisons zero. Whole raw directory/stem/getter entries, actual reverse search and padded copy children, no hooks. Backslash-only delimiter and whole-path last-dot semantics preserved; underflowing span excluded.373-core library compile, managed replay unexecuted; zero new address credit.

@@ -1,0 +1,46 @@
+{
+  "status": "sealed qualified complete sequential vector subtraction",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase50-20261013-ptl-vector-subtract.cs",
+    "sha256": "392a60b8287534c8b2521db788ad6b782bcb65c5e813cbaa64d3a33a137bfa2a"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 785,
+    "checks": 785,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x5b3800": 785
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 0.548,
+    "syntheticExcluded": 0,
+    "excluded": []
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 288,
+    "harnessSourceFiles": 32,
+    "assemblySha256": "ee867464e30fcaa132354e21b0a2fbfc260b43d3685b54a3378a827f1025b124",
+    "expectedManagedAssertions": 785
+  },
+  "scope": [
+    "5b3800 complete37-byte body: first-minus-second components computed with original exact64 subtraction and committed binary32 in order. Both input pointers are reread after earlier writes, including shifted/unaligned/full aliases.",
+    "Explicit signed-zero subtraction and terminal overflow/underflow stores. Private array projection supports disjoint caller stack temporaries without new entry credit. Whole image agrees for785 original calls with zero adapters/exclusions."
+  ],
+  "domains": [
+    "Each actually consumed operand finite at read boundary, CW037F, prepared writable/readable backing disjoint from private argument stack. Rounded terminal output may be infinite if not consumed again.",
+    "FPU status and unrelated return registers excluded; all caller-visible output/source/alias backing retained."
+  ],
+  "fixture": {
+    "path": "reports/world-phase50-20261013-vectors.json.gz",
+    "sha256": "c00cbad98b5eb90f7caa4d4b5b3f7bb90cebf23f2e5955074fab0a5322744f1e",
+    "cases": 785,
+    "nativeGroups": 785
+  },
+  "reaEvidence": "reports/world-phase50-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

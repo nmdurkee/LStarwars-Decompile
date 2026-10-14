@@ -1,0 +1,84 @@
+{
+  "scope": "Whole registered Circle5350e0 action with original token, locator, expression, origin and distance children.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 542,
+    "nativeChecks": 2168,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 4,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "optional custom movement-token callback only"
+    ],
+    "closure": "actual5350e0→4f8b10/4f8a70/51ac10/514920/43c3a0/5bed80 and actual arithmetic/sqrt",
+    "compiledCoreInputs": 342,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase122-20261013-compile.dll",
+    "sourceSha256": "cd7845745eb4e398e651a435dd51d0de9555e84944bc0c8f470bccac9112ddae",
+    "harnessSha256": "599eac4301425e79f3914fdd60b5577928ce785720397175890ea863e258cb2c",
+    "nativeOracleSha256": "3584428ad2d03b470a0e2c991da1c4ffdecf17aafe57af71b63e5b25b62184b6",
+    "compileSha256": "bcc07092a56f52ae929c885d23c7b0078472447b14614acbc2a51f1f84c4dd98"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4201-script121-origin-orbit.result.json",
+      "evidenceId": "ev_55c9539ac84163ae65b866a95a7817791f067e795d66521ab7287c0a43b24b47",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5350e0",
+            "end": "0x53512c"
+          },
+          {
+            "start": "0x535130",
+            "end": "0x535414"
+          }
+        ],
+        "total_bytes": 818,
+        "span_bytes": 821,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "registrationEvidence": {
+    "path": "reports/gameplay-native-dispatch/tables.json",
+    "table": "0x801a20",
+    "index": 8,
+    "name": "Circle",
+    "callback": "0x5350e0"
+  },
+  "semantics": [
+    "cdecl(system,packet,actor,args,signedCount,first); actor0/system0/system138Cplayer0 return1 before tokens. Otherwise return0 including no target bits. First phase walks signedpositive argument count in order; optional9238B0 movement-token callback can consume or mutate current/remaining arguments and actor flag byte13F.",
+    "Exact byte-folded ANTICLOCKWISE clearsactor1E8 bit200; CLOCKWISE sets it; REVERSE toggles; facing ORpacket68 bit1; currentdist ORbit4. Substring locator= lookup uses found+8 and storespacket6C even on failure, ORbit10 only on success; current_position substring ORbit8 and sequentially copiesactor14C vector to packet78; origin exactmatch ORbit20 only if selector!=255. Other token evaluates full recovered514920 intoactor180. No target bits after first parsing defaults bit8/current actor position.",
+    "Target priority bit8 capturedpacketposition/actor158words, thenbit10 storedlocator+10/+20, thenbit20 unsignedselectorrecord origin and six words. Optional923908 actual game origin43C3A0 can override point, while captured spawn-record words retain identity. Actual currentdist child5BED80 uses float32 spilled XZ deltas, wide squaredsum and finite sqrt to actor180.",
+    "Final point copy is three sequentialDWORDs; radius is captured before pointcopy, five words copied before capturedsixth; writesactor1C0=0,1C4=capturedradius,1E0=sixth and1E8=(flags&~4)|3. LIVEpacket68 facingbit finally writesactor1E4=chosenpoint. No host world object normalization or invented completion.",
+    "542 native cases/2168 return/full-image/events/fault groups zero with4 expected faults:19 ordered token sets acrossmode0/1/4/8/10/20, actualgame versusnull origin,selectors0/255;13mode combinations acrossfirst0/1/7; null actor/system/player and negativesignedcount; customtokenconsumption andpointer/flag/selector mutations. Failedlocator with preexistingbit10 leavesnull storedlocator andfaults at chosenpoint10. Real children execute without adapters except explicit customtoken value port."
+  ],
+  "limitations": [
+    "Prepared mapped terminated byte args, finite distance/expressions/radius and original caller object layouts; x87/status/nonfinite and callback-written native stack state excluded. Existing finite sqrt/table-input qualifications apply.",
+    "342core inputs plus portable replay compile as library; managed replayUNEXECUTED. Existing Circle name/row and reused string/lookup/math/expression addresses receive no duplicate credit.",
+    "No shared checkpoint/manifest/Git writes or game/managed executable launch. Custom movement-token callback remains a caller-supplied mutable service."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x5350e0"
+    ],
+    "reusedPrerequisites": [
+      "0x4f8b10",
+      "0x4f8a70",
+      "0x51ac10",
+      "0x514920",
+      "0x43c3a0",
+      "0x5bed80"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

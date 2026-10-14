@@ -1,0 +1,109 @@
+{
+  "scope": "Whole registered CirclePlayer535420 and CircleOpponent5356b0 with actual random/expression/distance children.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 327,
+    "nativeChecks": 1308,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 2,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "optional custom movement-token callback only"
+    ],
+    "closure": "actual535420/5356b0→4f8b10/514920/5b9dd0/5bed80; actual full math/sqrt",
+    "compiledCoreInputs": 343,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase123-20261013-compile.dll",
+    "sourceSha256": "74cf6a6f8aed2193e7ba23edc84610ca0903bbf3a402bb02e8131fc11da81d73",
+    "harnessSha256": "d2277792a728f9b17adbfee10a60650b202f1db253048d1e55c1555a968bbbbe",
+    "nativeOracleSha256": "4d48d217b2007d3a5215e24d90bd7481c0e95d3b007a91181427f6e749d0bb87",
+    "compileSha256": "2ea3e089aa8e89acf60b5b75f22c51a0e193f2900e8cfa65536bc757fd9807be"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4204-script123-circle-player.result.json",
+      "evidenceId": "ev_85efc19fe481d5f992cad333032fba5a0df996abeea5477905f6b2f058cf53d8",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x535420",
+            "end": "0x53546c"
+          },
+          {
+            "start": "0x535470",
+            "end": "0x5356a7"
+          }
+        ],
+        "total_bytes": 645,
+        "span_bytes": 648,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4205-script123-circle-opponent.result.json",
+      "evidenceId": "ev_abfd5fed66bc5bad60f924bfa84fe99fd6f66029b786c8fbac3431e7d9c28f29",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5356b0",
+            "end": "0x53593b"
+          }
+        ],
+        "total_bytes": 652,
+        "span_bytes": 652,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "registrationEvidence": {
+    "path": "reports/gameplay-native-dispatch/tables.json",
+    "entries": [
+      {
+        "index": 10,
+        "name": "CirclePlayer",
+        "callback": "0x535420"
+      },
+      {
+        "index": 9,
+        "name": "CircleOpponent",
+        "callback": "0x5356b0"
+      }
+    ]
+  },
+  "semantics": [
+    "Six cdecl args system/packet/actor/args/signedcount/first. Player guardsactor/system/playerreference before tokens; Opponent guardsactor only and parses even when opponent absent or system0. Both return1 for initial guard, otherwise0.",
+    "First phase exactbyte matches anticlockwise/clockwise/reverse updateactor1E8 bit200; facing/offpath/currentdist setpacket68 bits1/2/4. Optional9238B0 callback can consume or mutate live token/actor/reference pointers. Unknown tokens execute real514920. Only Opponent recognizes RANDOM: actual5B9DD0 advances95E5D4 LCG once per token and setsbit200 forfraction>=0.5, clears otherwise.",
+    "Aftertokens Player rereadsLIVEsystem138C and exits0 if now0; Opponent rereadsLIVEactorE4 and reference4 and exits0 if missing. Player does not guardreference4=0 and preserves its nativefault at target120 or distance170.",
+    "Currentdist always measuresactor14C versus target170 using real5BED80/XZ spilled deltas/square/sqrt. Offpath bit2 separately chooses target14C rather than170 for copied destination, so distance and chosen destination can differ. Rereadreference4 captures target120float radius, actor180goal and target158sixwords before rawcopy; point copy threeDWORDs and words sixDWORDs remain sequential for aliases. Thenradius→actor1C0,goal→1C4,modeflags=(flags&~4)|3, LIVEfacingbit→1E4 chosenpoint.",
+    "327 native cases/1308 groups zero with2 expected player null-target faults:14 ordered token sets, mode0/1/2/4/7,first0/1,guard/count cases, optionaltoken mutations/consumption, target/outputaliases-1C/0/+40, RANDOM seed0/1/FFFFFFFF/80000000/123456789 including repeated draws. Native only customtoken callback is a valueport."
+  ],
+  "limitations": [
+    "Finite prepared radius/goal/distance and mapped target/reference/args; arbitrary raw six-word payloads are preserved. Existing finite x87/sqrt qualifications apply; nativeFPUstatus/nonfinite radius loads excluded.",
+    "343core inputs plus portable replay harness compile as library; managed replayUNEXECUTED. Existingregistered commandnames/rows and reused helpers receive no duplicate credit.",
+    "No shared checkpoint/manifest/Git writes or game/managed executable launch."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "newMappedAddresses": [
+      "0x535420",
+      "0x5356b0"
+    ],
+    "reusedPrerequisites": [
+      "0x4f8b10",
+      "0x514920",
+      "0x5b9dd0",
+      "0x5bed80"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

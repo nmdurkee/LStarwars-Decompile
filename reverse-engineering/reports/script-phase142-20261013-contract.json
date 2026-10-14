@@ -1,0 +1,87 @@
+{
+  "scope": "Raw existing path lookup51AD80 and bind51A7C0 refinements, including default path selection and prepared record aliases.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 596,
+    "nativeChecks": 1788,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 0,
+    "managedExecution": false,
+    "newEntries": 0,
+    "refinements": [
+      "51ad80",
+      "51a7c0"
+    ],
+    "ports": [],
+    "compiledCoreInputs": 352,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase142-20261013-compile.dll",
+    "sourceSha256": "33d71f234c182a5e68e468fbcec29ceb0a1146f2266876bb8f2d5e9ddce9f220",
+    "harnessSha256": "4d50d16a7f48e3f535715370003cd2a300a77edc07a07363aa9fd73ebcbdb78c",
+    "nativeOracleSha256": "bcfb95841dfdf7d33dae62fe8bd3e5a69ddc8bc1146b5b454cedddf268000d5e",
+    "compileSha256": "57d606673b3a6a79f1ba307cddb18c85bbf387db12c2bcf2b33346d3e52a3227"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4260-script142-51ad80.result.json",
+      "evidenceId": "ev_f7ac0c7b723a9a5c26233d71c21f94251cff8c49452613dd738b6fb4f53170da",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x51ad80",
+            "end": "0x51adee"
+          }
+        ],
+        "total_bytes": 111,
+        "span_bytes": 111,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4261-script142-51a7c0.result.json",
+      "evidenceId": "ev_350ec3f221f064128d5f239e4c15f688043cdea759495d7c8d3405dc0794d2d8",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x51a7c0",
+            "end": "0x51a836"
+          },
+          {
+            "start": "0x51a840",
+            "end": "0x51a885"
+          }
+        ],
+        "total_bytes": 189,
+        "span_bytes": 198,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Lookup takes cdecl(system,path,name). Explicit path wins; absent path resolves system10 reference only when its first byte is nonzero, then reference8. Unsigned byte count path10 and rows pointer path7C are reread each iteration. Null row names are skipped; first full-byte-folded equal name returns live base plus index*5C.",
+    "Binding returns immediately for equal identity. Otherwise sequentially clears actor15C/160/164/168/16C, stores158, sets161=FF,13A=0,124=FFFF,13C=FF,13D=0,17C=0. Path14 unsigned count and88 mask-row base are read live. Matching paired32-bit masks OR the low16 bits of original64-bit shifted1; indices16+ add no low16 bit.",
+    "596 original cases and1788 fault/return/image comparisons matched with actual4F8B10 and6E69D0 executing without adapters; counts0..255, default-path guards, equal/null/changed bindings, high/low membership masks, aliases, mixed/extended bytes."
+  ],
+  "limitations": [
+    "Prepared mapped terminated input strings and accessible records. Void bind residual EAX is unspecified and not credited as return behavior.",
+    "352 cores and portable harness compiled as library; managed replay UNEXECUTED. Existing mapped addresses add zero credit. No shared manifest/checkpoint or Git writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [
+      "0x51ad80",
+      "0x51a7c0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

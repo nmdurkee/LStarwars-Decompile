@@ -1,0 +1,102 @@
+{
+  "scope": "Complete printf byte6EEE39/repeat6EEE6C/span6EEE90 output helpers, register ABI and live caller argument slots.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 768,
+    "nativeChecks": 3072,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 10,
+    "managedExecution": false,
+    "newEntries": 3,
+    "ports": [
+      "6EECD9 flush",
+      "6EAD5F errno getter"
+    ],
+    "compiledCoreInputs": 363,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase153-20261013-compile.dll",
+    "sourceSha256": "d0b483e1bc72a351d97fa3bfa4aba4af4385a8beec19e186c8554b2277406214",
+    "harnessSha256": "dff6cb186832731a3bcf49531b79eb73ae11ed802d4ec3142bcdc2817b6ddb35",
+    "nativeOracleSha256": "3dc0eaaa85c6b59cb5401d57e0a0ae8016c795a4a6bcebd2fbbf7a4ed9727696",
+    "compileSha256": "8cbe2a76fd93a062fd79a5862f698b3229c3aaea99ab3bb0ae7e40d658d2f36f"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4269-script153-6eee39.result.json",
+      "evidenceId": "ev_ebce028391baac107ec6812165d1b5a3ad319be5adcce305cd78275e0530d10f",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eee39",
+            "end": "0x6eee6b"
+          }
+        ],
+        "total_bytes": 51,
+        "span_bytes": 51,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4270-script153-6eee6c.result.json",
+      "evidenceId": "ev_de2230f43fb9c59a258033e571c685d961048adaba0c8de37cedfa3bff6afc7c",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eee6c",
+            "end": "0x6eee8f"
+          }
+        ],
+        "total_bytes": 36,
+        "span_bytes": 36,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4271-script153-6eee90.result.json",
+      "evidenceId": "ev_9c89e4a433d812b72a1eda0fd2bafc7896244ea4a48d9725a0cae6fcab03008e",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eee90",
+            "end": "0x6eeed9"
+          }
+        ],
+        "total_bytes": 74,
+        "span_bytes": 74,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Byte helper takesECXfile/ESIcounter/fullEAXwithALbyte. Count-only flags40/base0 incrementscounter andpreserves fullEAX without touchingstream. Otherwise decrementscount; nonnegativewritesAL, incrementsLIVEptrafterwrite andzero-extendsAL intoEAX. Negativecount callsflush withSIGNEDAL. FlushFFFFFFFF ORs counter toFFFFFFFF; otherstatuses incrementLIVEcounter.",
+    "Repeat takes EAXcounter andcdecl character/count/file argument slots. Readsfile andcharacter beforedecrementingLIVEcaller countslot each iteration, callsactualByte, stops oncounterFFFFFFFF. Initial signednonpositivecount returnsoriginalcounterEAX.",
+    "Span takes EAXcounter/ECXsource/EDIfile andmutablecdecl countslot. Count-onlystream adds unsigned countword evennegative count tocounter withoutsource read andreturns thatword. Normalbyte loop capturesAL, decrementscount, callsactualByte, increments source. Counterfailure calls errno; value42 emitsliteral? andcontinues, otherwise returnscurrenterrno-pointerEAX. Replacement emission has no extra count decrement.",
+    "768 original cases/3072 full fault/return/image/event comparisons matched,10 expected unmapped faults. Nullbase, flags0/40/42, signedbyteFF, capacities/sign-wrap boundaries, positive/zero/negative lengths, counter aliases intoFILE/errno, source-output overlap, flushsuccess/failure chains, errno42 replacement, fullEAX preservation and caller-slot mutation. No adapter intercepts creditedhelpers; real nestedByte executes."
+  ],
+  "limitations": [
+    "6EECD9 flush and6EAD5F errno remain explicit child services, no credit for those. Prepared mapped fields and progressing bounded emission inputs; largepositivecount fixture aborts onfirstflush failure.",
+    "363 cores and portable replay compiled as library; managed replay UNEXECUTED. No command-name/use, shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "newMappedAddresses": [
+      "0x6eee39",
+      "0x6eee6c",
+      "0x6eee90"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

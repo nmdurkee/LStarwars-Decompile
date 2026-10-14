@@ -1,0 +1,107 @@
+{
+  "scope": "Whole byte path normalizer and flat container lookup; provider routing with registered ASCII comparator projection.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 349,
+    "nativeChecks": 661,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 3,
+    "ports": [],
+    "closure": "Original4efdf0 jump-table normalizer,4f76f0 signed-byte hash/packed names,4f98c0→actual4f8b80/4f1ff0 provider routing; no adapters",
+    "compiledCoreInputs": 328,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase90-20261013-compile.dll",
+    "sourceSha256": "275563016021056c991d40c60eb0080451c32048fb9d7190ab05565f94094a13",
+    "harnessSha256": "88c93a626a885a15b0d41eacf9a5375e9d357549b293c502412ff52277652c9d",
+    "nativeOracleSha256": "0b7764c02b767f929638496e23125c9b1e34457acf157d660fd3ea677c34b5f0",
+    "compileSha256": "843b3bc94f39fce3345c31c1f0242498e00bf43e18f80c0c085869aa851b69bf"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4146-script90-path-normalize.result.json",
+      "evidenceId": "ev_a9510761d75c8c27fe6f5091032f37e920ebd7f2a765acd37ddf3ceef61b7f8c",
+      "address": "0x4efdf0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4efdf0",
+            "end": "0x4efe5f"
+          }
+        ],
+        "total_bytes": 112,
+        "span_bytes": 112,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4147-script90-index-flat.result.json",
+      "evidenceId": "ev_7ed5ec3af5beb691a10bf9559624bac4cf37cf9b9d49f423dad200659a3e899c",
+      "address": "0x4f76f0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f76f0",
+            "end": "0x4f77c5"
+          }
+        ],
+        "total_bytes": 214,
+        "span_bytes": 214,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4143-script89-path-provider.result.json",
+      "evidenceId": "ev_2b4e88ee5d822eff1007d203a4bd6a502859ada84ee28adf62d372e6a15f33c9",
+      "address": "0x4f98c0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f98c0",
+            "end": "0x4f9930"
+          }
+        ],
+        "total_bytes": 113,
+        "span_bytes": 113,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "registeredPrerequisite": {
+    "address": "0x4f8b80",
+    "method": "RandomSplineSelection.Compare",
+    "sourceFile": "gameplay/movement-phase9-20261013-RandomSpline.cs",
+    "credit": 0,
+    "evidence": "reports/rea-continuous/4148-script90-prefix-compare.result.json"
+  },
+  "semantics": [
+    "Normalizer snapshots context+10 separator or default backslash, then91ee84 preserve flag. Both slashes map to separator; when flag0 lowercaseASCII maps to uppercase, extended bytes remain unchanged. Literal jump table4efe60/4efe6c verified and retained. Inserting separator0 still continues past changed byte, matching native next-byte loop.",
+    "Flat index hashes zero-terminated path using start811C9DC5, signextended signedbyte XOR, multiplier199933 with wrap32. Signed positive container4 count scans cached hashes at1C and returns first hash match without name verification. Otherwise signed additional20 count reads packed byte-exact names28; records align index WORD to2 and nextname to2, returning signed16index. No matchFFFFFFFF.",
+    "Provider scans exactly first8 bytes for colon, ignoring earlier terminators. Colon found snapshots signed297e064 count; per234-byte provider name at2980414 and live prefixlength+10 compared using canonical registered ASCII4f8b80 projection. First match returns provider base29803e0+i*234. Negative/zero counts return0.",
+    "349cases/661 return and complete-image groups zero, no adapters: normalizer empty/path/all255nonzero bytes, flag0/1/FFFFFFFF, separator0/2F/5C/FF and defaultcontext; flat ASCII/extended paths, cached0/3hit/miss with signed count, packed matching negative/positive indices; provider colonpositions7/8/afterNUL, mixedcase/pathprefixes, counts0/1/4/FFFFFFFF, lengths0/1/3/FFFFFFFF/FFFFFFFE/FFFFFFFD. Original4f8b80 andstrlen4f1ff0 execute."
+  ],
+  "limitations": [
+    "Mapped bounded byte strings and disjoint records. Provider names/path projection is ASCII per existing comparator scope; extended provider folding remains outside that reused prerequisite, with no duplicate address credit.",
+    "328core inputs plus harness compiled; replayUNEXECUTED. Three new entries, no command use, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "addresses": [
+      "0x4efdf0",
+      "0x4f76f0",
+      "0x4f98c0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

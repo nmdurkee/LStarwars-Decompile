@@ -1,0 +1,1 @@
+727 original native cases / 1,425 comparisons zero. Whole four raw container metadata/comparison/hash/invalidation leaves; signed tiers,64-bit borrow, nonstandard signed-byte hash and owner/record write aliases. No hooks.374-core library compiled, managed replay unexecuted; zero address credit.

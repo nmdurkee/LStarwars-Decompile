@@ -1,0 +1,60 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "address": "0x52c320",
+  "method": "PreparedScriptFileProgram.Parse",
+  "abi": "Custom EAX = archive, ECX = context; cdecl(fileName, topPointer, bottomPointer); EAX returns script pointer.",
+  "semantics": [
+    "The wrapper publishes archive at 92223c and context at 922240 before calling 52bcb0 with six arguments: out-script local, context, file name, archive, top pointer and bottom pointer. The zero-initialized output local is represented by the portable Parse service return value.",
+    "On normal child return the wrapper clears both context globals, even if the returned script is null or later fails. A null result returns zero; otherwise the same script pointer is returned after finalization.",
+    "Each state condition resolves its target-name word20 against the owning script states and stores the state pointer at24. The name is read again before this store and diagnostic check. Nonnull unresolved targets emit a mode-dependent 512850/512860 diagnostic with target name, script name and current state name.",
+    "For each state the wrapper scans every later state and reports all duplicate names. It neither removes duplicates nor aborts; case folding preserves native ASCII and extended-byte behavior.",
+    "The low-level per-file parser remains explicit here; this wrapper closes condition goto-target pointers needed between raw production, initialization and runtime evaluation."
+  ],
+  "validation": {
+    "nativeCases": 89,
+    "nativeChecks": 356,
+    "mismatches": 0,
+    "faultCases": 1,
+    "managedExecution": false,
+    "compiledCoreInputs": 267,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase29-20261013-compile.dll"
+  },
+  "freshReaEvidence": [
+    {
+      "path": "reports/rea-continuous/4023-script29-file-wrapper.result.json",
+      "evidenceId": "ev_3bd1222f897a03e6c6e704b3219d1c9053d8c26e12f6963a900acb54dac2816a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x52c320",
+            "end": "0x52c467"
+          }
+        ],
+        "total_bytes": 328,
+        "span_bytes": 328,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 131,
+      "instructionLocationsMatch": true
+    }
+  ],
+  "domains": [
+    "Mapped bounded script/state/condition graphs and NUL byte names; acyclic lists. The child output local is caller-disjoint scratch and normalized into an explicit pointer result.",
+    "Native diagnostics are observed RET no-ops; no mutation or messaging is implied. One invalid child script pointer fault preserves cleared context globals. Machine fault registers and exception type are excluded.",
+    "The native wrapper, state lookup and comparison children execute actual original bytes. Only 52bcb0 parser output is supplied. Managed replay is compiled and unexecuted."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

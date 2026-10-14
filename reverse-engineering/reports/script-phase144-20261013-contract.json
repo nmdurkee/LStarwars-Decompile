@@ -1,0 +1,50 @@
+{
+  "scope": "Complete registered GoToNodeRandom536190, exact RNG/count truncation and nullable path-name traversal.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 231,
+    "nativeChecks": 924,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 2,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "actual536190→5B9DD0/6E6B90/51AD80/5B3CF0/52FCB0, no callee adapters",
+    "compiledCoreInputs": 354,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase144-20261013-compile.dll",
+    "sourceSha256": "7ce353220155463b508e8e69d5c0c48c662b8da4e2ac2b47f3919a35a2745178",
+    "harnessSha256": "1375bc5d722421ee051b3071eb5343027c39c57a70f798c0279c94dcf9e5dee6",
+    "nativeOracleSha256": "8c7bffff65f71e418e0d746a0068617d2e6f13c24dc7d8289cc9d6ff0ad23e14",
+    "compileSha256": "6385c830e356908704515227c8e9d5186a373571363053478a0f2561c5177e35"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4257-script142-536190.result.json",
+      "diagnostic": "Ghidra FunctionManager has no procedure at registered address; invalid_request retained. Complete original415-byte body decoded from immutable target and bounded registered action table."
+    }
+  ],
+  "semantics": [
+    "Same early actor/controller/path/current-node guards as GoToNode. First count0 returns0 without RNG update. No expression or movement-token parsing: every supplied token is a candidate node name.",
+    "Actual5B9DD0 updates seed by1664525*seed+1013904223, masks23 bits for fraction numerator. FIMUL signed count is exact within64 x87 significand bits. Native6E6B90 truncates toward zero; source computes signed64 numerator*count/8388608 exactly, then signed choice>=count clamps count-1. Negative counts are preserved, including pointer wrap/fault after seed mutation.",
+    "Selected name uses full51AD80 lookup. Null query preserves actual row traversal but never equals a nonnull row name, because4F8B10 returns1 for null second pointer. Result stored packet6C before connection-count test; success writes path/first-edge/orientation packet and calls actual52FCB0 mode1/radius0/livegoal.",
+    "Continuation delegates the independently recovered exact GoToNode continuation; original5B3CF0 XZ square and intent execute unchanged.231 cases/924 comparisons matched, including negative/extreme counts, RNG extremes/random seeds, missing/null/valid names, early guards, aliases and2 expected out-of-range argument/edge faults."
+  ],
+  "limitations": [
+    "Finite prepared positions/radius/goal and accessible record domains. Normal intent fixtures compose actual52FCB0; formation behavior remains full existing source and independent129 native proof.",
+    "354 cores and portable replay compiled as library; managed replay UNEXECUTED. No extra command-name/use or helper-address credit, shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x536190"
+    ],
+    "existingRefinements": [
+      "0x51ad80 nullable-query extension"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

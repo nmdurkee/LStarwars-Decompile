@@ -1,0 +1,51 @@
+{
+  "scope": "Entire private-pool allocation/free/split/unlink graph",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 520,
+    "nativeChecks": 1040,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 5,
+    "bodyExecutions": {
+      "0x4f6740": 336,
+      "0x4efa40": 504,
+      "0x4ef8a0": 216,
+      "0x4efb00": 88,
+      "0x4ef870": 84
+    },
+    "ports": [],
+    "closure": "Whole wrapper26/core179/split177/free227/unlink27 bytes, allocationfromtail withalignment, strictcapacitycomparison, exact freelistlinks/counters/boundarytags and both-neighborcoalescing; no ports",
+    "compiledCoreInputs": 380,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase207-20261014-compile.dll",
+    "sourceSha256": "e55eef271bb57d0683d47ba7e136779ba6cec71bf0a333b2dd89f747f7a2eeaf",
+    "harnessSha256": "c2eec34be569453c2b27a06750e6ce0f19222a4753c260f11b6a012e10a96f75",
+    "nativeOracleSha256": "f83576d06b42815bd1ba8223b155b031afa467820de67548eb272ebc933094b4",
+    "compileSha256": "108072fcb17a00fd13fa343ecfdc9a3bda75edf8ad883c41cb3aed385c528fbc"
+  },
+  "semantics": [
+    "Wrapper supplies reserved0 to core. Core first reads pool base/root, zero-size returns0, otherwise adds alignment and finds first free-list record with unsigned masked size STRICTLY greater than total+16. Exact-fit capacity is rejected.",
+    "Split allocates at the tail of the chosen block. It aligns user address(header+12) with the native mask, reduces stored allocated size by the shift and expands front remainder. Busy flags, both linked fields and physical predecessor boundary tags are written in native order. Core inserts remainder at free-list head and updates pool allocation/byte counters. Reserved core fourth argument is unused.",
+    "Free checks pointer0/belowbase/aboveinclusiveend and otherwise clears busyflag, decrements count/accounting, inserts at head, coalesces with following free block then preceding free block through actual27-byte unlink helper. Both-neighbor cases and unsigned counter wrap retained.",
+    "All five exact registered bodies execute without child adapters or OS ports; nonintercepting execution counts included."
+  ],
+  "limitations": [
+    "Prepared finite acyclic free lists and backed boundary/sentinel tags; valid in-range allocation pointers. Source/destination/list metadata disjoint except intentional same-node reads; no double-free or arbitrary in-range invalid-pointer claim. Power-of-two alignment0/1/2/4/8/16/32/64, sizes0..511, capacities32/64/512, no wrapping request sums in oracle.",
+    "CPU artifacts, by-value caller size-slot modification and split private output slots outside portable logical memory/return projection.380 core sources plus fixture harness compiled library only; managed replay UNEXECUTED."
+  ],
+  "credit": {
+    "newEntries": 5,
+    "addresses": [
+      "0x4f6740",
+      "0x4efb00",
+      "0x4efa40",
+      "0x4ef870",
+      "0x4ef8a0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

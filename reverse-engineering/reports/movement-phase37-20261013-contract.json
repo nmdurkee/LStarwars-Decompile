@@ -1,0 +1,89 @@
+{
+  "scope": "Whole prepared64a740 projectile axis/angle and64a7c0 integer random offset producers; all original random and conversion children execute unchanged. Two new entries.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "validation": {
+    "nativeCases": 1138,
+    "nativeAssertionGroups": 2276,
+    "mismatches": 0,
+    "nativeAdapters": 0,
+    "preparedManagedAssertions": 1138,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 259,
+    "dll": "reconstructed/bin/movement-phase37-20261013.dll",
+    "dllSha256": "7ab023e94c6f2350bdf56a65523b62b82a1145f84697bd9bf3c5cc1a0f1a3bc8",
+    "execution": false
+  },
+  "constants": [
+    {
+      "address": "0x751698",
+      "type": "float64",
+      "value": 1,
+      "bits": "000000000000f03f"
+    },
+    {
+      "address": "0x7516b0",
+      "type": "float64",
+      "value": 65536,
+      "bits": "000000000000f040"
+    }
+  ],
+  "boundaries": [
+    "Shared RNG is a raw memory word; aliases with axis/angle, amplitude, base and output words are included. Native advances integer5b9e10 and fraction5b9d90 with uint32 LCG wrap.",
+    "Axis selects1..3 from unsigned modulo65535/division21845. Rejected second selector advances only the integer helper; accepted selectors also advance fraction RNG and truncate(2*fraction-1)*65536 into32-bit angle fields. Alias writes may alter prior selectors; no invariant is imposed on alias cases.",
+    "Offsets use FIMUL signed32 amplitudes118/11c/120 after RNG advance, truncation then wrapped addition of base10c/110/114. Signed fraction numerator is exact dyadic arithmetic; signed64 integer multiplication/division produces the same x8764 result and low32 integer word.",
+    "Finite exact RNG fractions and constants avoid arbitrary IEEE operands. All signed amplitude/base words are supported; native CRT low32 result is retained. Prepared terminating selector loops only; source guard10000 lies outside retained domain.",
+    "Live REA body64a740 has121 covered bytes over127-byte span with jump-over alignment gap; 64a7c0 is133 bytes. Historical pseudocode omits scaling and signed integer amplitudes, so native instructions govern this recovery.",
+    "Original helper call counts and whole-image bytes are independently compared. Portable harness prepares only whole-image assertions; no generated managed execution or game launch."
+  ],
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/1016-root-projectile-flag80.result.json",
+      "evidenceId": "ev_3dcb31bb8a192dc29ec80b798da7d82d62d160eefc913609f1da6a6ea501568f",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x64a740",
+            "end": "0x64a749"
+          },
+          {
+            "start": "0x64a750",
+            "end": "0x64a7be"
+          }
+        ],
+        "total_bytes": 121,
+        "span_bytes": 127,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/1017-root-projectile-flag100000.result.json",
+      "evidenceId": "ev_c0a0996ec9736b86824014cd88fa850d75927b5ceb76d95fd5e3169877080baf",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x64a7c0",
+            "end": "0x64a844"
+          }
+        ],
+        "total_bytes": 133,
+        "span_bytes": 133,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "hashes": {
+    "reconstructed/gameplay/movement-phase37-20261013-ProjectileRandomFields.cs": "036ade7ee78d58fd348fb3ac6357f6e1fca771a8ec66b3bc62e4ded4b0da46aa",
+    "tools/movement-phase37-20261013-native.py": "8c9ce02be8312a617dee379ecacdd8792a2190670fca2909a61285f297951a38",
+    "tools/movement-phase37-20261013-portable-verify.cs": "b5a6062f72f7fe9e7c24334c0cbf382b0ebca13f910f8b6db5ad82245d881ddf",
+    "reports/movement-phase37-20261013-fixtures.json.gz": "5910a953624b195d78e88d99b978ab815d2ba4feca1f229e8acd7f5ae74b5d36",
+    "reports/movement-phase37-20261013-assembly.json": "486935a5130ae10e95c01caa7d550f8444574213217653605df62419a9f29377"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "scope": "Whole sprintf wrapper through actual recovered string-stream flush and fileno, eliminating the generic flush adapter.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 89,
+    "nativeChecks": 356,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 10,
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [
+      "6EEF05 output parser",
+      "6EAD5F errno getter",
+      "6E9FC2 invalid-parameter dispatch"
+    ],
+    "closure": "actual6E69EF→actual6EECD9→actual6F3C74 string-stream error paths",
+    "compiledCoreInputs": 366,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase156-20261013-compile.dll",
+    "sourceSha256": "976210924c6455b56d20a84650cbad68296c631c8f410d28127fa9444599349d",
+    "harnessSha256": "ffc11ac1f3ab8c0273657a28d50869645f6882879132bf2fb98b92a25a42f180",
+    "nativeOracleSha256": "73264ebecb67ded92b22e97d1b260ac0f87aef0bd780a49ba742db393b30feb5",
+    "compileSha256": "1bc7b572661a8c421d68d9651435cf936770d9f236a9c7d989016df43090696c"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4266-script152-sprintf.result.json",
+      "evidenceId": "ev_f44bacdf6ecaec4b8329a7e8fe627f7e8f6ced1a396f177149f602d6b80e2648",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6e69ef",
+            "end": "0x6e6a69"
+          }
+        ],
+        "total_bytes": 123,
+        "span_bytes": 123,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4272-script154-flush.result.json",
+      "evidenceId": "ev_22283b0a5277ebb2b7aae5714f830e9aa48da2b3da93ba164f2bead5aff4ddb5",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eecd9",
+            "end": "0x6eee38"
+          }
+        ],
+        "total_bytes": 352,
+        "span_bytes": 352,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4275-script155-fileno.result.json",
+      "evidenceId": "ev_8db0c124c77413559d7614afac49f021f8cb60e9cc3b0265d3515917ce039faf",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6f3c74",
+            "end": "0x6f3ca0"
+          }
+        ],
+        "total_bytes": 45,
+        "span_bytes": 45,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "FreshNativeX86 excludes6EECD9flushadapter. Actual6E69EF executes6EECD9→6F3C74 fornegative decrementedcount. The real string-streamflags42 errorpath writeserrno34 andORsFILEflags20; parent stillreturns capturedoutputresult.",
+    "RecoveredScriptSprintfFlushServices scopes8private argument bytes foractual155Flush anddelegatesonlyremainingCRT output/errorchildren. Nativeguest privatecallee argument-slot changes neveraliaspreparedcaller records inthiscomposition.",
+    "89 whole cases/356comparisons matched,10 expectedunmappedfaults: outputstatuses/bytes/countsignwrap,nullableparameters,aliasoutputpointers,liveFILEcount/ptr/flags andcapturedreturn despiteflushfailure. PrivateFILE andoriginalvarargsimages arecomparedcompletely."
+  ],
+  "limitations": [
+    "6EEF05outputparser,6EAD5Ferrno and6E9FC2invaliddispatchremainexplicit. Qualified actualsprintf string-streamcontext; generalbuffered/unbufferedflush independentlyproven155.",
+    "366cores andportable replaycompiled aslibrary;managedreplayUNEXECUTED. No address/name/usecredit, sharedcheckpoint/manifest orGit writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

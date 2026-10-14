@@ -1,0 +1,63 @@
+{
+  "scope": "Complete149-byte __aulldvrm701F40 nonzero prepared unsigned64 quotient/remainder ABI.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 6106,
+    "nativeChecks": 48848,
+    "mismatches": 0,
+    "errors": [],
+    "zeroDivisorFaults": 18,
+    "lowDivisorPathCases": 1380,
+    "highDivisorPathCases": 4726,
+    "approximationCorrections": 804,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "compiledCoreInputs": 375,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase164-20261013-compile.dll",
+    "sourceSha256": "13eb910f1e7ca48c717bee5daa3057fe1729892888513bbc310b88416424e2bc",
+    "harnessSha256": "5b2bcff48adf558a12005067d9a9251e1cedd01d0a9a1afe5452fde2e187d5aa",
+    "nativeOracleSha256": "9092d0315f4dc1016004ab8ecf23e46d42e402a5b5fc0ec443536abb5bf8adf1",
+    "compileSha256": "63673fed2e4f1cba0c6871b1f42c7cacc80a4fe416a99b1d949da2bb7f66507a"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4283-script164-u64div.result.json",
+      "evidenceId": "ev_093242faf6b7c6d6f078ff32eff83768c1dfd9d3a227893fe84b02eb3472f70a",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701f40",
+            "end": "0x701fd4"
+          }
+        ],
+        "total_bytes": 149,
+        "span_bytes": 149,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Four original stack DWORDs numeratorlow/high anddivisorlow/high. Quotient low/high returned EAX/EDX; remainder high/low EBX/ECX. Original RET16, ESI/EDI preservation and unchanged caller argument bytes verified.",
+    "Exact UInt64 quotient and remainder replace low-divisor two-stage32-bit divides and high-divisor normalization/approximation/correction without changing prepared observable results. No adapters or child ports.",
+    "6106 original calls/48848 checks zero:1380 low-divisor calls,4726 high-divisor calls,804 actual correction-branch executions, near multiples and word/bit boundaries.18 independent zero-divisor original guest faults confirmed outside normal return domain."
+  ],
+  "limitations": [
+    "Divisor0 has no prepared return; source may throw DivideByZeroException rather than reproduce partial guest registers at processor fault. Private pushed stack bytes and condition flags are not observable source output.",
+    "375 core inputs and portable quotient/remainder replay compile as library; managed replay UNEXECUTED. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x701f40"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

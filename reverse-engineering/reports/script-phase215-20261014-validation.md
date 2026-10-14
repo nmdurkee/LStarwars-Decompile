@@ -1,0 +1,1 @@
+560 native graph cases / 1,120 result-vector/full-memory comparisons zero. Actual initializer→full table/application/privatepool/memset graph and actual queries/canary scan, no manually prepared pool headers, zero ports. Capacity-driven failures and optional full cleanup.388-core library compiled; managed replay unexecuted; zero new credit.

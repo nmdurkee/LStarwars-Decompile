@@ -1,0 +1,50 @@
+{
+  "status": "sealed qualified complete inverse-angle polynomial own body",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase44-20261013-ptl-inverse-angle.cs",
+    "sha256": "c592706fadde268afe503eb51a64131fcbb1e6f3236a65a5ef3e47c1a328b010"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 1590,
+    "checks": 3180,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x64fe20": 1590,
+      "0x5c0240": 1590,
+      "0x6e9530": 1241,
+      "0x6e6b90": 1590
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 2.543,
+    "syntheticExcluded": 0,
+    "excluded": []
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 282,
+    "harnessSourceFiles": 26,
+    "assemblySha256": "581e0fe84ceb4e75a279ec3ae841b4ce70664df922f3d76d9152b56e97b96a4c",
+    "expectedManagedAssertions": 3180
+  },
+  "scope": [
+    "64fe20 complete320-byte body: stored1-x*x and real clamped square root, absolute input/min-root selection, exact64 huge-factor normalization/clamps and binary32 spills, odd-power polynomial with original multiplication/add order and literal coefficients, angular scale then original CRT tail jump.",
+    "1590 actual original square-root entries,1241 CRT square-root executions and1590 CRT conversion tail entries execute unchanged, no adapters. Source reuses existing BuildEffectSound.SquareRoot and locally projects CRT selector semantics with no duplicate child credit.",
+    "Meaningful EAX signed32 return and readonly retained memory agree for both selector paths, thresholds around±sqrt(1/2),±unit endpoints, signed zero/subnormals and broad finite inputs."
+  ],
+  "domains": [
+    "Finite input for which original stored1-x*x remains finite, prepared immutable literal cells, nativeCW037F. Negative stored root input clamps through original5c0240 to positivezero; this includes finite inputs outside[-1,1]. No synthetic exclusions.",
+    "Conversion selector supplied explicitly: zero exact64 signed truncation, nonzero binary64 spill followed by truncation, invalid sentinel projection preserved. Private native stack/argument-cell rewrites, FPU status and unrelated registers excluded."
+  ],
+  "fixture": {
+    "path": "reports/world-phase44-20261013-vectors.json.gz",
+    "sha256": "8501873336c007e08193d357220e6ed68ea32f012295b40a67733510b16a357d",
+    "cases": 1590,
+    "nativeGroups": 3180
+  },
+  "reaEvidence": "reports/world-phase44-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

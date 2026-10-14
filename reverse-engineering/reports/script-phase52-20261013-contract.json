@@ -1,0 +1,89 @@
+{
+  "scope": "Cached opponent range515250 raw-memory refinement and nearest-opponent range515270 completebody.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 704,
+    "nativeChecks": 2112,
+    "mismatches": 0,
+    "managedExecution": false,
+    "compiledCoreInputs": 290,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase52-20261013-compile.dll",
+    "sourceSha256": "77858d2b4857ea9a6e273fcc238e8906f16a7385574a425ed3f671fe59528992",
+    "harnessSha256": "7d2cf89ce38811d242fd130e3bb82096de04dd89f9c987abed2efa76d7262091",
+    "nativeOracleSha256": "8daea2e67f9f3067c5f505046d8fef4bc7d5bc28777449e1672ae43273fa96d3",
+    "compileSha256": "e3e528667b4f0d79ceda9db91dfaf55c172b3f38e8964293364d37354ac2d01c"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4066-script52-opponentrange.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x515250"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4067-script52-nearestrange.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x515270"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "semantics": [
+    "515250: nonnullactor andactorE4nonzero→actorE8cachedfloat; elseoriginal75ecf0float.515270 samewithactorD4presence/D8float.",
+    "Presencevalues0/1/ffffffff/80000000never dereferenced; rawscalarwords passedthroughx87 FLD/FSTP with finite/Inf/quietNaN/signedzero/subnormal qualification.",
+    "704 cases/2112groups zero mismatches:32 deterministicrandomfinitefloatbitpatterns+12edges ×2callbacks ×4presencevalues ×null/nonnullactor."
+  ],
+  "limitations": [
+    "Both freshREA calls retain qualified missingprocedure; exactshippeddescriptor/rawbytes/nativebodyproof supportrecovery, nofreshinstruction EvidenceIds claimed.",
+    "SignalingNaN/status/unmappedactor outsidepaired domain.",
+    "290core+harness librarycompiled; managedreplayUNEXECUTED.",
+    "No OS/game launch orGit/sharedmanifest writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x515270"
+    ],
+    "existingRefinements": [
+      "0x515250"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

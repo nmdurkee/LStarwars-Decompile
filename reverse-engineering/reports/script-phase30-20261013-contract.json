@@ -1,0 +1,75 @@
+{
+  "scope": "Complete prepared own bodies52bcb0 and5137a0 with raw bank/output aliases and explicit transport/parser/dispatch leaves.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "abi": "52bcb0 cdecl(output,context,fileName,archive,top,bottom);5137a0 EAXtop ECXbottom ESIparser cdecl(script)",
+  "rea": [
+    {
+      "path": "reports/rea-continuous/4024-script30-file.result.json",
+      "evidenceId": "ev_6daf97c13fec35b7fd7c61d192cb30fdf748759e9fe9eeee4a918e0dc661b793",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x52bcb0",
+            "end": "0x52bde3"
+          }
+        ],
+        "total_bytes": 308,
+        "span_bytes": 308,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 109
+    },
+    {
+      "path": "reports/rea-continuous/4025-script30-populate.result.json",
+      "evidenceId": "ev_356dd692e15cb64219d5bdb37855678c531e7a27c0c0763afd166771e62c85e8",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5137a0",
+            "end": "0x513819"
+          }
+        ],
+        "total_bytes": 122,
+        "span_bytes": 122,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 37
+    }
+  ],
+  "native": {
+    "nativeCases": 176,
+    "nativeChecks": 528,
+    "mismatches": 0,
+    "faultCases": 13,
+    "managedExecution": false,
+    "compiledCoreInputs": 268,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase30-20261013-compile.dll",
+    "sourceSha256": "15b952d4e439508d61a239317e2c4fba3ec63d680276b6d9a1269e3d2296048a",
+    "harnessSha256": "de493e6cab7bb1c204d16b3ba9d80722a33c07e97641ed5e9bdfb4e6f83be90c",
+    "nativeOracleSha256": "e8fdca194591c29d4f77bba7b9607906e6b13a7c41af3e19283a2523fe523e28",
+    "compileSha256": "c60cbbe97e69207531d3806674958f7f8629ab0ef405a3c45b9f2b4237e34a53"
+  },
+  "behavior": [
+    "Open custom EDI=context/ESI=fileName/cdeclarchive; captured parser closed only on normal successful open.",
+    "Newscript88-byte strict unaligned admission then align16, clear twice, caller outpointer written even allocationfailure; insufficient name storage faults via strcpyNULL.",
+    "Native64-byte filename scratch snapshot, first casefold .scp substring truncates; only newly allocated scripts acquire name.",
+    "Populate null script returns without touching globals; otherwise set top/bottom/script/constantcount, push801720, NextLine→NextToken→refdestscript+40→Dispatch repeated.",
+    "Normal exit clears fourglobals922214/18/1c/2c; count922244 and otherglobals survive.",
+    "No managed execution, host launch, shared manifest, checkpoint or Git writes."
+  ],
+  "limitations": [
+    "Valid terminated filename fits original64-byte stack local; overflow domain excluded.",
+    "52bcb0 incidental EAX ignored; native return is void projection.",
+    "Transport513400/4fa300 and PushTable/NextLine/NextToken/Dispatch supplied; nextphasecloses existing reader/table/dispatch helpers.",
+    "Callbacks maintain native callee-saved register contract; cookie/global controlflow corruption outside prepared caller domain."
+  ]
+}

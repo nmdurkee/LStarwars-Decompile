@@ -1,0 +1,28 @@
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Recovered.Gameplay;
+public static class MovementPhase3920261013Verify
+{
+ static Dictionary<string,object>M(object o){return(Dictionary<string,object>)o;}
+ static int I(Dictionary<string,object>o,string k,int d){return o.ContainsKey(k)?Convert.ToInt32(o[k]):d;}
+ static byte[]Image(object o){using(var s=new MemoryStream(Convert.FromBase64String((string)o)))using(var z=new GZipStream(s,CompressionMode.Decompress))using(var r=new MemoryStream()){z.CopyTo(r);return r.ToArray();}}
+ static bool Equal(byte[]a,byte[]b){if(a.Length<b.Length)return false;for(int j=0;j<b.Length;j++)if(a[j]!=b[j])return false;return true;}
+ static string Position(OriginPathMemory m,uint p){byte[]bytes=new byte[12];for(uint j=0;j<12;j++)bytes[j]=m.U8(p+j);return BitConverter.ToString(bytes).Replace("-","").ToLowerInvariant();}
+ static bool Events(List<Dictionary<string,object>>a,object[]b){if(a.Count!=b.Length)return false;for(int j=0;j<a.Count;j++){var expected=M(b[j]);foreach(string k in new string[]{"port","position"})if(expected.ContainsKey(k)&&(!a[j].ContainsKey(k)||!Equals(a[j][k],expected[k])))return false;foreach(string k in new string[]{"address","outputBefore"})if(expected.ContainsKey(k)&&(!a[j].ContainsKey(k)||Convert.ToUInt32(a[j][k])!=Convert.ToUInt32(expected[k])))return false;var aa=(object[])a[j]["args"];var bb=(object[])expected["args"];if(aa.Length!=bb.Length)return false;for(int k=0;k<aa.Length;k++)if(Convert.ToInt64(aa[k])!=Convert.ToInt64(bb[k]))return false;}return true;}
+ public static int Main(string[]args)
+ {
+  if(args.Length!=2)throw new ArgumentException("Fixture/output required.");var json=new JavaScriptSerializer{MaxJsonLength=Int32.MaxValue};Dictionary<string,object>data;using(var f=File.OpenRead(args[0]))using(var z=new GZipStream(f,CompressionMode.Decompress))using(var r=new StreamReader(z))data=M(json.DeserializeObject(r.ReadToEnd()));int cases=0,checks=0,failed=0;var errors=new List<object>();
+  foreach(object item in(object[])data["vectors"])
+  {
+   var row=M(item);var input=M(row["input"]);cases++;try
+   {
+    const uint D=0x10100000,P=D+0x2000,SLOT2=D+0x8010,SLOT3=D+0x8020,SCR=D+0xf0000,CB2=0x10200500;byte[]bytes=new byte[0x100000];Array.Copy(Image(row["before"]),bytes,0x10000);var memory=new OriginPathMemory(D,bytes);var events=new List<Dictionary<string,object>>();Action<string>mutate=delegate(string port){int mode=I(input,"linkMode",0);if(port=="emitter"&&mode==4){memory.Set32(P+0x1dc,SLOT2);memory.Set32(P+0x1c0,CB2);memory.Set32(P+0x1f4,19);}if(port=="link"&&(mode==1||mode==4))memory.Set32(P+0x1dc,mode==4?SLOT3:SLOT2);if(port=="callback"){if(mode==2)memory.Set32(P+0x1f4,0xffffffff);if(mode==3||mode==4){memory.Set32(P+0x1f4,0x1234ffff);memory.Set32(P+0x1fc,0x7fc12345);memory.Set32(P+0x30,0x41200000);}}};var w=new ProjectileCleanupWorld{Memory=memory};
+    w.ReleaseEmitter=delegate(uint handle){events.Add(new Dictionary<string,object>{{"port","emitter"},{"args",new object[]{handle}}});mutate("emitter");};w.ReleaseLink=delegate(uint handle){events.Add(new Dictionary<string,object>{{"port","link"},{"args",new object[]{handle}}});mutate("link");};var effectWorld=new PodProjectileEffectWorld{Memory=memory,World=D+0x9000,ParticleId=(short)I(input,"particle",0),SoundId=I(input,"effectSound",0)};Action<string,object[],uint>effect=delegate(string port,object[]arguments,uint position){events.Add(new Dictionary<string,object>{{"port",port},{"args",arguments},{"position",Position(memory,position)}});int mode=I(input,"effectMode",0);if(port=="particle"){if(mode==1||mode==4)effectWorld.SoundId=0x1234ffff;if(mode==2||mode==4){memory.Set32(P+0x1f4,0);memory.Set32(P+0x1fc,0x80000000);memory.Set32(P+0x30,0x3f400000);effectWorld.World=D+0x9200;}}if(port=="sound"&&(mode==3||mode==4)){memory.Set32(P+0x1f4,0x1234ffff);memory.Set32(P+0x1fc,0x7fc12345);memory.Set32(P+0x34,0x41200000);effectWorld.ParticleId=-1;}};effectWorld.Particle=delegate(uint system,int id,uint position){effect("particle",new object[]{system,id,position},position);};effectWorld.Sound=delegate(int id,uint position,int flag){effect("sound",new object[]{id,position,flag},position);};w.Callback=delegate(uint address,uint projectile,int reason){events.Add(new Dictionary<string,object>{{"port","callback"},{"args",new object[]{projectile,reason}},{"address",address}});if(address!=0x4d9710)throw new InvalidOperationException("Unbound callback outside prepared composition.");PodProjectileEffects.Publish(effectWorld,projectile);};w.Audio=delegate(uint output,int sound,uint position,uint a,uint b,uint one,uint gain){events.Add(new Dictionary<string,object>{{"port","audio"},{"args",new object[]{0u,sound,position,a,b,one,gain}},{"outputBefore",memory.U32(output)},{"position",Position(memory,position)}});memory.Set32(output,0x24681357);};ProjectileCleanup.Release(w,P,I(input,"reason",0),SCR);var state=M(row["afterState"]);bool image=Equal(memory.Bytes,Image(row["after"])),trace=Events(events,(object[])row["events"]),globals=effectWorld.ParticleId==Convert.ToInt32(state["particle"])&&effectWorld.SoundId==Convert.ToInt32(state["sound"])&&effectWorld.World==Convert.ToUInt32(state["world"]);checks+=3;if(!image||!trace||!globals){failed++;if(errors.Count<10)errors.Add(new{input=input,image=image,trace=trace,globals=globals});}
+   }catch(Exception e){failed++;if(errors.Count<10)errors.Add(new{input=input,error=e.Message});}
+  }
+  File.WriteAllText(args[1],json.Serialize(new{cases=cases,assertionGroups=checks,failures=failed,examples=errors}));return failed==0?0:1;
+ }
+}

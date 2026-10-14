@@ -1,0 +1,17 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "mappings": [
+    {
+      "address": "0x5d4380",
+      "method": "PtlNormalizedBox.Prepare",
+      "sourceFile": "gameplay/world-phase69-20261013-ptl-normalized-box.cs",
+      "coverage": "complete qualified own body",
+      "qualification": "Complete773-byte5d4380 normalized-box preparation: optional forward16-dword view matrix copy, cached three raw size words read afterward, retained matrix*size products, all eight authenticated corner rows transformed in actual x87 order: X product then translation, Y addition then Z addition. Every corner is spilled binary32 before strict min/max updates. Global size words commit late in reverse Z/Y/X order, then center offset=(maximum+minimum)*exact0.5−size*0.5 is stored per component. Fresh terminal reciprocal outputs preserve signedzero masked infinity and finite subnormal overflow; no additional consumption of those infinities occurs in own body. Matrix*size double locals are exact48-bit products of two float32 operands, so private53-bit spills preserve their values. 406 complete prepared images zero mismatches/adapters/exclusions, including optional view gates, shifted/matrix/input-global/center aliases, signedzeros/subnormals, negative sizes and random matrices. Source follows live instructions rather than misleading early-global-write pseudocode ordering.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase69-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase69-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase69-20261013-rea-evidence.json"
+      ]
+    }
+  ]
+}

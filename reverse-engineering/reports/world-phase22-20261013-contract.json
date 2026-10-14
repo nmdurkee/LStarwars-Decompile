@@ -1,0 +1,52 @@
+{
+  "status": "sealed qualified finite timing own-body memory projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase22-20261013-ptl-emitter-timing.cs",
+    "sha256": "ee3c32f198a6c4ebb5c69f9aeaca5161bf67fe5dd185d4e1eacbb42c63f3e584"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 1745,
+    "checks": 1745,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x655c30": 1745,
+      "0x6e6b90": 2451,
+      "0x5b9d90": 1735
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 3.751
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 262,
+    "harnessSourceFiles": 4,
+    "assemblySha256": "0124678e9444d9615f528409bf3aa413ebab1be256d30090d193cbc8b53b3e54"
+  },
+  "scope": [
+    "655c30 complete finite original own-body stores and RNG state; actual6e6b90 conversion helpers and actual5b9d90 RNG execute unchanged with zero adapters. Return-register/FPU-stack/status side effects are excluded.",
+    "Converts time*60 before pointer-null guard; signed16 physical emitter link; physical byte2f1 exactly4 chooses clockB otherwise clockA.",
+    "Phase cycling occurs only if both spread fields20/28 compare equal zero, including negativezero. Stored binary32 period, exact64-bit division and conversion, stored boundary, type7 pause-zero counters, repeated stored-float subtraction preserve instruction order.",
+    "Type7 counter products use binary32-spilled integerticks and fresh physical50/54 reads; first low16 counter store may alias the second coefficient.",
+    "Final RNG state writes precede fresh spread/base/emitter-start reads. The timer-start store can alias a physical field or the RNG state; native fixtures retain these aliases.",
+    "Existing SoundPlayback.RandomFraction is reused without duplicate RNG mapping/credit."
+  ],
+  "domains": [
+    "Readable prepared backing and disjoint call scratch; native x87 control037F and supplied conversion selector29a9c48=0 or nonzero.",
+    "Every consumed float finite, except final timing output may round toInfinity; finite conversion inputs have signed32 integral result, both x87 fallback and binary64/SSE routes retained. NaN/Infinity input conversions, exception status and wider-than-signed32 CRT returns excluded.",
+    "Zero-spread branch requires finite positive stored period, finite consumed intermediate and a native subtraction loop that terminates; no artificial iteration clamp in portable source. Zero/negative period and stalled native subtraction are excluded.",
+    "Signed16 physical IDs and selectors require valid readable table backing, no capacity validation added.",
+    "Null emitter consumes conversion before returning; no RNG mutation."
+  ],
+  "fixture": {
+    "path": "reports/world-phase22-20261013-vectors.json.gz",
+    "sha256": "f8f31785ef24c4bd92699dadc0242367508544db4cacbaeb944dd326a569be26",
+    "cases": 1745,
+    "assertions": 1745
+  },
+  "reaEvidence": "reports/world-phase22-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

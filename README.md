@@ -5,7 +5,7 @@ Reverse-engineering research for the PC x86 game, with an eventual Unity / Quest
 ## Current checkpoint
 
 - 14,704 native entries cataloged from retained decompiler profiles and independently verified callback boundaries.
-- 840 native entries mapped to bounded portable implementations in 257 C# core files, across combat, animation, gameplay, geometry, frame transitions, controller input, and navigation.
+- 1291 native entries mapped to bounded portable implementations in 604 C# core files, across combat, animation, gameplay, geometry, frame transitions, controller input, and navigation.
 - 19,579 of 20,836 cataloged script-command uses have bounded native contracts (94.0%). This does not imply equivalent whole-game behavior.
 - The integrated C# library and verifier compile. Every core source hash matches the recorded build.
 - Original-function tests run in isolated x86 emulation with each suite's adapters documented. These are separate from executing the reconstructed C#.
@@ -16,6 +16,7 @@ Counts measure recorded work, **not a percentage of game completion**. Many mapp
 
 ## Start here
 
+- [2026-10-14 checkpoint: 8.78% catalog mapping coverage](reverse-engineering/reports/checkpoint-20261014-progress.txt)
 - [Stopping checkpoint and progress report](reverse-engineering/reports/reverse-stop-20261013-progress.txt)
 - [Latest integrated batch and independent audit](reverse-engineering/reports/reverse-phase15-20261013-summary.txt)
 - [Earlier 2026-10-13 recovery batch](reverse-engineering/reports/reverse-engineering-20261013-summary.txt)

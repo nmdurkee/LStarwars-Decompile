@@ -1,0 +1,1 @@
+288 original x86 single/nested lifecycle cases; 1,152 comparisons; zero mismatches. Wholeactualbegin/U32payload/close bodies, exactmixedtag-endian/LElength bytes. Finalseek/writeOSports only.363core plusfixtureharness compiledlibraryonly; managedreplayunexecuted.

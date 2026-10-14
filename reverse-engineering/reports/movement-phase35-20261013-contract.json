@@ -1,0 +1,35 @@
+{
+  "scope": "Complete prepared 4d9710 projectile particle/sound callback own body; particle62c560 and sound64b370 remain explicit effect lifecycle services.",
+  "entry": "0x4d9710",
+  "endExclusive": "0x4d9758",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "validation": {
+    "nativeCases": 476,
+    "nativeAssertionGroups": 1428,
+    "mismatches": 0,
+    "preparedManagedAssertions": 1428,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 259,
+    "dll": "reconstructed/bin/movement-phase35-20261013.dll",
+    "dllSha256": "2d2bf6a9f3d5b1efdd10fb322ea25bff4dff140ddb47844fcffeaa9d497fbe86",
+    "execution": false
+  },
+  "boundaries": [
+    "Particle selector882406 is signed16 with exact -1 sentinel; sound selector882408 is independent signed32 with exact -1 sentinel. Low16ffff sound values are valid when full word differs from -1.",
+    "First particle call captures current world134 system pointer, signed particle ID and projectile30 position. Sound ID is read freshly after particle callback, with position pointer and flag1.",
+    "Publication services preserve exact ordering and are permitted to mutate position bytes and world/selector globals; no effect renderer, sound device or effect pool equivalence claim.",
+    "Null world is supported when particle sentinel skips its only world read. Active particle requires readable current world backing. Raw position words are never used in CPU arithmetic.",
+    "Default current REA profile has no procedure at4d9710 (1013 retained negative result); prior seeded Ghidra pseudocode and independently disassembled original bytes support boundary, then isolated original callback comparisons verify it. Undefined native EAX return is not credited."
+  ],
+  "retainedGhidraEvidenceId": "ev_39fbc79f0f4753fe71d498de82ca90498367aadd8f8860e7e5955d3b79e5f355",
+  "reaNegativeEvidence": "reports/rea-continuous/1013-root-projectile-effect-callback.result.json",
+  "hashes": {
+    "reconstructed/gameplay/movement-phase35-20261013-PodProjectileEffects.cs": "f53e3191f786c38b7a1eed95e24ab436f54229a256d2416e4a909f0a7955235f",
+    "tools/movement-phase35-20261013-native.py": "bedc9a81230797bb92cedc7762ea65d7280c3b0e22bd6f3b3f1ef4d84a2b6b92",
+    "tools/movement-phase35-20261013-portable-verify.cs": "e18218486a611c595964d5a1bbe089baac3e1c360fc68c8d2e6ec53e685bdfe2",
+    "reports/movement-phase35-20261013-fixtures.json.gz": "8942d242816f2cc3ff93b582888b18175ebf2e97172182a929a093aa304f9f1b",
+    "reports/movement-phase35-20261013-assembly.json": "8a4613f0176a93cde986627a0fbe777eb980c5e3c69a329c3589d0815dab61e0"
+  }
+}

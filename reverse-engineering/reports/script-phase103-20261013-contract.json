@@ -1,0 +1,83 @@
+{
+  "scope": "Actual provider enumeration and opaque global getter with complete original callback bodies",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 202,
+    "enumerationCases": 196,
+    "getterCases": 6,
+    "nativeChecks": 404,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [],
+    "closure": "Actual4effb0 provider callback/fullrecord copy→actual4eff30 getter and102release RET bodies; no hooks",
+    "compiledCoreInputs": 341,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase103-20261013-compile.dll",
+    "sourceSha256": "0d582f11ad0f6229b1220e7720274f93497b46a457ef3508745111e72a694030",
+    "harnessSha256": "348643268ee5c1e097580fd142ff929c8a76ce083bfe7980ee1bca975ce87be8",
+    "nativeOracleSha256": "d7bf08023610ac57d7383fe8ce97dcba832cd06a620b951c55d766c1dc29f95c",
+    "compileSha256": "c26d15d8871bf69e70ccf84f3350d09ba247a8776ffaf743e7364b121b66c36b"
+  },
+  "reaEvidence": [
+    {
+      "address": "0x4effb0",
+      "evidenceId": "ev_b1ff702df636ace2b54d9eea0ad1c4f960c41601f3e63eeca8b91c02e35fb8e8",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4effb0",
+            "end": "0x4f002b"
+          }
+        ],
+        "total_bytes": 124,
+        "span_bytes": 124,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4176-script103-provider.result.json"
+    },
+    {
+      "address": "0x4eff30",
+      "evidenceId": "ev_17c1343be93126509b94618bd03bffe4268236a1119ee70f65393a05d3d0cf14",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4eff30",
+            "end": "0x4eff35"
+          }
+        ],
+        "total_bytes": 6,
+        "span_bytes": 6,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4184-script103-providerstatus.result.json"
+    }
+  ],
+  "semantics": [
+    "4effb0 scans signed provider count297e064, calls each provider+230 callback, tests only AL bit1. Accepted entries copy all8d DWORDs forward into297e080; caller output receives297e080 and29838d0 receives accepted count.",
+    "4eff30 directly returns opaque91eea4 word. 196enumeration cases exercise negative/zero/1/2/4/16counts, low/high flag bits and getter/release-RET mixed callback patterns;6gettercases preserve image. Native202cases404groupszero with no hooks/adapters.",
+    "Release RET callback return in enumeration is the entry pointer already loaded into EAX by4effb0. OriginalStatus retains that native register detail for the five previously recovered release diagnostic entries."
+  ],
+  "limitations": [
+    "Prepared maximum16rows, readable nonnull output, normal ABI DFclear, stable callback domain of4eff30 and102release RET bodies. General device-specific status callbacks remain outside this concrete service.",
+    "341core sources+portable harness compiled library only; managed replayUNEXECUTED.",
+    "No authored command uses, game/generated executable launches, Git/shared manifest/checkpoint writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4effb0",
+      "0x4eff30"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

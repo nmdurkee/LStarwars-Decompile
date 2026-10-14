@@ -1,0 +1,2 @@
+// Original6ead24 Win32 error to errno59bytes. Live REA ev_33e3bcd309202109b7ebb628f82b04eefa94b16df4d6e9423ca3aab6717d8b75. First of45 table rows wins, then unsigned13..24hex and bC..Cahex ranges.
+namespace Recovered.Gameplay {public static class PtlErrorMapping {public static uint Map(SoundSetupImage m,uint code){unchecked{for(uint i=0;i<45;i++){uint row=0x8298e0+i*8;if(m.Word(row)==code)return m.Word(row+4);}if(code-19<=17)return 13;return code-188>14?22u:8u;}}}}

@@ -1,0 +1,13 @@
+using System;using Recovered.Animation;namespace Recovered.Gameplay {public static class PtlTimeRebase {
+  struct N {
+   PlaybackWide v;bool neg;bool Zero{get{return v.StoreDouble()==0;}}
+   N(PlaybackWide x,bool sign){v=x;double d=x.StoreDouble();neg=d<0||(d==0&&sign);}
+   public static N Word(uint w){return new N(PlaybackWide.From(F(w)),(w&0x80000000)!=0);}
+   public static N Integer(int i){return new N(PlaybackWide.FromDouble(i),i<0);}
+   public static N Add(N a,N b){return new N(PlaybackWide.Add(a.v,b.v),a.Zero&&b.Zero&&a.neg&&b.neg);}
+   public static N Sub(N a,N b){return Add(a,new N(PlaybackWide.Multiply(b.v,PlaybackWide.FromDouble(-1)),!b.neg));}
+   public static N Mul(N a,N b){return new N(PlaybackWide.Multiply(a.v,b.v),a.neg!=b.neg);}
+   public uint Store(){uint w=BitConverter.ToUInt32(BitConverter.GetBytes(v.Store()),0);return Zero&&neg?w|0x80000000:w;}
+  }
+  static float F(uint w){return BitConverter.ToSingle(BitConverter.GetBytes(w),0);}
+static void Subtract(SoundSetupImage m,uint at){m.Word(at,N.Sub(N.Word(m.Word(at)),N.Integer(800)).Store());}static bool Selected(SoundSetupImage m,uint record,int bank){return m.Byte(record+0x2f1)==4?bank==1:bank==0;}public static void Rebase(SoundSetupImage m,int bank){unchecked{if(bank==0||bank==1){uint head=bank==0?0x292fbfcU:0x292fc00U,clock=bank==0?0x296205cU:0x2962060U,backup=bank==0?0x2962064U:0x2962068U;uint node=m.Word(head);m.Word(clock,m.Word(backup));while(node!=0){Subtract(m,node+4);node=m.Word(node+16);}}uint table=m.Word(0x296209c);int index=0;uint offset=0,emitterBase=0;if(unchecked((int)m.Word(0x2962094))>0)emitterBase=m.Word(0x29620a4);while(index<unchecked((int)m.Word(0x2962094))){int physical=unchecked((short)m.Half(emitterBase+offset+0x182));uint record=m.Word(table+unchecked((uint)physical)*4);if(Selected(m,record,bank)){bool alternate=m.Byte(record+0x2e)==7;Subtract(m,emitterBase+offset+0x320);foreach(uint field in new uint[]{0x324,0x1e0,0x1dc,0x1e4}){emitterBase=m.Word(0x29620a4);Subtract(m,emitterBase+offset+field);}emitterBase=m.Word(0x29620a4);for(uint j=0;j<32;j++){uint slot=offset+0x100+j*4;if(m.Word(emitterBase+slot)!=0){for(uint k=0;k<(alternate?12U:32U);k++){uint chunk=m.Word(emitterBase+slot);Subtract(m,chunk+0x2c+k*32);emitterBase=m.Word(0x29620a4);}}}table=m.Word(0x296209c);}index++;offset+=0x330;}for(int i=1;i<unchecked((int)m.Word(0x2962098));i++){uint record=m.Word(table+(uint)i*4);if(record!=0&&Selected(m,record,bank)){Subtract(m,record+0x2ac);table=m.Word(0x296209c);record=m.Word(table+(uint)i*4);uint descriptor=m.Word(record+0x2a8);if(descriptor!=0){Subtract(m,descriptor+0x14);table=m.Word(0x296209c);}}}}}}}

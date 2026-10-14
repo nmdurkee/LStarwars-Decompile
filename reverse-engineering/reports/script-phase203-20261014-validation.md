@@ -1,0 +1,1 @@
+728 original native cases / 3,640 comparisons zero;436 mismatch cases stop at real6EEAC7 target. Whole15-byte security-cookie gate, live global read and GPR/EAX preservation. Failure reporting remains an explicit nonreturning boundary.375-core library compiled; managed replay unexecuted. One new address.

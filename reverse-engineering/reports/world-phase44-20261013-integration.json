@@ -1,0 +1,37 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase44-20261013-ptl-inverse-angle.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x64fe20",
+      "method": "PtlInverseAngle.FromSine",
+      "sourceFile": "gameplay/world-phase44-20261013-ptl-inverse-angle.cs",
+      "coverage": "complete qualified original own-body scalar return projection",
+      "qualification": "64fe20 complete320-byte body: stored1-x*x and real clamped square root, absolute input/min-root selection, exact64 huge-factor normalization/clamps and binary32 spills, odd-power polynomial with original multiplication/add order and literal coefficients, angular scale then original CRT tail jump. 1590 actual original square-root entries,1241 CRT square-root executions and1590 CRT conversion tail entries execute unchanged, no adapters. Source reuses existing BuildEffectSound.SquareRoot and locally projects CRT selector semantics with no duplicate child credit. Meaningful EAX signed32 return and readonly retained memory agree for both selector paths, thresholds around±sqrt(1/2),±unit endpoints, signed zero/subnormals and broad finite inputs.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase44-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase44-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase44-20261013-rea-evidence.json"
+      ]
+    }
+  ],
+  "dependsOn": [
+    "animation/AnimationPlayback.cs",
+    "gameplay/BuildEffectSound.cs"
+  ],
+  "evidence": [
+    "reports/world-phase44-20261013-contract.json",
+    "reports/world-phase44-20261013-native-tests.json",
+    "reports/world-phase44-20261013-rea-evidence.json"
+  ],
+  "harnessFile": "../tools/world-phase44-20261013-portable-verify.cs",
+  "verifierModule": "world-phase44-20261013",
+  "verifierClass": "WorldPhase4420261013Verify",
+  "fixture": "reports/world-phase44-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase44-20261013-managed-tests.json",
+  "nativeCases": 1590,
+  "nativeMismatches": 0,
+  "expectedManagedAssertions": 3180
+}

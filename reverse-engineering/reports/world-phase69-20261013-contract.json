@@ -1,0 +1,55 @@
+{
+  "status": "sealed qualified original own bodies",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase69-20261013-ptl-normalized-box.cs",
+    "sha256": "baa86f1486dc3cf8bec098d76f36e0e1f953ef9ea84d5ccc87a9f7821e0f1fde"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 406,
+    "checks": 406,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x5d4380": 406
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 2.19,
+    "syntheticExcluded": 0,
+    "excluded": []
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 307,
+    "harnessSourceFiles": 51,
+    "assemblySha256": "107627223bf30685d1f9a814bec2ef35b865d4a5026617e268a82eb7f8630a95",
+    "expectedManagedAssertions": 406
+  },
+  "scope": [
+    "Complete773-byte5d4380 normalized-box preparation: optional forward16-dword view matrix copy, cached three raw size words read afterward, retained matrix*size products, all eight authenticated corner rows transformed in actual x87 order: X product then translation, Y addition then Z addition. Every corner is spilled binary32 before strict min/max updates.",
+    "Global size words commit late in reverse Z/Y/X order, then center offset=(maximum+minimum)*exact0.5−size*0.5 is stored per component. Fresh terminal reciprocal outputs preserve signedzero masked infinity and finite subnormal overflow; no additional consumption of those infinities occurs in own body. Matrix*size double locals are exact48-bit products of two float32 operands, so private53-bit spills preserve their values.",
+    "406 complete prepared images zero mismatches/adapters/exclusions, including optional view gates, shifted/matrix/input-global/center aliases, signedzeros/subnormals, negative sizes and random matrices. Source follows live instructions rather than misleading early-global-write pseudocode ordering."
+  ],
+  "domains": [
+    "Prepared readable finite size/matrix/corner operands, finite actually consumed/spilled corner and center arithmetic; nativeCW037F and original96-byte corner table SHA76e8f369635dd158b83db27074aa82a91c3514696c9f61cd489137373d846c3c. Size signedzero and tiny finite values permit terminal reciprocal infinities.",
+    "Meaningful return undefined. Complete prepared globals/view copy/image retained; private corner arrays/double locals/FPU status/incidental registers excluded. No device execution is part of this CPU function."
+  ],
+  "fixture": {
+    "path": "reports/world-phase69-20261013-vectors.json.gz",
+    "sha256": "b3ba75d93d0e28d3dfa0299779678e5e3e76c798c74bc72dc32b30830c61e5c9",
+    "cases": 406,
+    "nativeGroups": 406
+  },
+  "reaEvidence": "reports/world-phase69-20261013-rea-evidence.json",
+  "remainingPorts": [],
+  "literalBindings": [
+    {
+      "address": "0x80bfa8",
+      "length": 96,
+      "sha256": "76e8f369635dd158b83db27074aa82a91c3514696c9f61cd489137373d846c3c",
+      "type": "eight XYZ binary32 corner rows"
+    }
+  ]
+}

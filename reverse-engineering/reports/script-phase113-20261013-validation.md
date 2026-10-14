@@ -1,0 +1,1 @@
+277 original x86 cases; 554 comparisons; zero mismatches. Two REA entries and one raw registration entry with zero extra credit. No hooks. 350 core files plus harness compiled library only. Managed replay unexecuted.

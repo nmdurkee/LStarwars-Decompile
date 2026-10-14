@@ -1,0 +1,65 @@
+{
+  "status": "sealed qualified own-body memory projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase21-20261013-ptl-emitter-construction.cs",
+    "sha256": "5f4bdff9d215a196fe5e5f8bb8eb343a67ceb447829c072ce1331de3761a84a7"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 509,
+    "checks": 2036,
+    "mismatches": 0,
+    "errors": [],
+    "entryCounts": {
+      "0x6550b0": 394,
+      "0x655940": 393,
+      "0x655ba0": 393,
+      "0x655da0": 393,
+      "0x684ee0": 435,
+      "0x6846a0": 383,
+      "0x64ff80": 766,
+      "0x6501a0": 766,
+      "0x6500c0": 766,
+      "0x64ffe0": 383,
+      "0x684640": 383
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "seconds": 2.347,
+    "explicitAdapters": [
+      "0x655c30 timing only"
+    ]
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed because prior host EPERM remains",
+    "coreSourceFiles": 261,
+    "harnessSourceFiles": 3,
+    "entrypoints": [
+      "WorldPhase2120261013Verify"
+    ],
+    "assemblySha256": "5ba9c72c479afea0927828ac167bec5f6e3ede4d3662b1bdb9e41f304b7f152b"
+  },
+  "scope": [
+    "Complete prepared own-body stores and meaningful allocator return for 684ee0 / 6550b0 / 655940 / 655ba0 / 655da0. Original orientation and allocator children execute unchanged in native tests.",
+    "Physical record capacity comparison is signed; only 0/FFFFFFFF/null/disabled records are explicit guards. Other signed IDs and selectors require readable backing, tested with adjusted base.",
+    "Per-store live emitter base reloads, original record cached across timing callback, fresh per-sound count/table reads, cached clock, unsigned output sentinel, and final linked-list head reread preserved.",
+    "Timer callback may retarget base, record table, record fields, clocks, or output ID; constructor cached ID and allocation flag survive. Alias cases include head next-store aliasing head and sound-count aliasing first sound store."
+  ],
+  "domains": [
+    "Readable prepared disjoint image backing and disjoint call scratch; no exception/fault or ABI register/FPU-status projection.",
+    "Finite XYZ/field arguments, finite cached clocks and initial schedule time; timer-written duration supports finite, signed zero, infinity and quiet NaN branch behavior. Signaling NaNs excluded.",
+    "Signed sound count byte, including positive127 and negative128..255; safe writable backing covers actual native accesses.",
+    "Runtime function-pointer tables are supplied unchanged bytes as opaque pointer values; pointed-to procedures are not invoked by this body.",
+    "Sealed phase20 exact geometry domain applies."
+  ],
+  "remainingPorts": [
+    "655c30 timing service only; no full timer equivalence credit"
+  ],
+  "fixture": {
+    "path": "reports/world-phase21-20261013-vectors.json.gz",
+    "sha256": "432ba2ae1ec2b4252441a3520e1b4f2a74313d11ec4371416627232fffd8c60f",
+    "cases": 509,
+    "assertions": 2036
+  },
+  "reaEvidence": "reports/world-phase21-20261013-rea-evidence.json"
+}

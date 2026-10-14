@@ -1,0 +1,1 @@
+153 native cases / 306 return/image comparisons zero. Whole raw148-byte initializer, cursor consumption/header aliases, unaligned backing, root/sentinels/free block/tags/counters, under80 actual null/unmapped cursor early return. No ports.387-core library compile; managed replay unexecuted; zero raw credit.

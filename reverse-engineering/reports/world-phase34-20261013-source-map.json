@@ -1,0 +1,29 @@
+{
+  "sourceSha256": "dae733ba32749f84b49bd0459b45d29b4af150d222ce331ea179bcb5331ab12f",
+  "mappings": [
+    {
+      "address": "0x64fde0",
+      "method": "PtlBurstMath.SafeDivide",
+      "sourceFile": "gameplay/world-phase34-20261013-ptl-burst-math.cs",
+      "coverage": "complete qualified original own-body memory/meaningful float return projection",
+      "qualification": "64fde0 returns positivezero when either argument is signedzero; otherwise finite exactx8764 numerator/denominator divide, explicit nativebinary32 spill/reload and meaningful ST0 float return. Post-returnFSTP observer shim captures original result without adapting child/body code. 5b3860 computes base+delta*scale in original ordered binary32 component stores. Scale remains unspilled64-bit value across all components, while operands reread after earlier stores preserve shifted/unaligned aliases. 685native divide and627native vector calls retained;2synthetic alias fixtures excluded because earlier stores made later consumed operands nonfinite, no equivalence credit. Whole retained backing and explicit scalar return agree.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase34-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase34-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase34-20261013-rea-evidence.json"
+      ]
+    },
+    {
+      "address": "0x5b3860",
+      "method": "PtlBurstMath.ScaledAdd",
+      "sourceFile": "gameplay/world-phase34-20261013-ptl-burst-math.cs",
+      "coverage": "complete qualified original own-body memory/meaningful float return projection",
+      "qualification": "64fde0 returns positivezero when either argument is signedzero; otherwise finite exactx8764 numerator/denominator divide, explicit nativebinary32 spill/reload and meaningful ST0 float return. Post-returnFSTP observer shim captures original result without adapting child/body code. 5b3860 computes base+delta*scale in original ordered binary32 component stores. Scale remains unspilled64-bit value across all components, while operands reread after earlier stores preserve shifted/unaligned aliases. 685native divide and627native vector calls retained;2synthetic alias fixtures excluded because earlier stores made later consumed operands nonfinite, no equivalence credit. Whole retained backing and explicit scalar return agree.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase34-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase34-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase34-20261013-rea-evidence.json"
+      ]
+    }
+  ]
+}

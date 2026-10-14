@@ -1,0 +1,83 @@
+{
+  "scope": "Existing GoToNode and MoveAwayFromNode extended to nullable query names while preserving live row dereferences.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 56,
+    "nativeChecks": 224,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 8,
+    "managedExecution": false,
+    "newEntries": 0,
+    "refinements": [
+      "535FC0",
+      "536FC0",
+      "51AD80 nullable query"
+    ],
+    "ports": [],
+    "compiledCoreInputs": 355,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase145-20261013-compile.dll",
+    "sourceSha256": "6264bf460769a6ed3f8da36337b7f4e8b8fb615adfc5882c7385e79ce7dfa92a",
+    "harnessSha256": "a8fd8d44f3c52306cf68a1a34e462c63c1b4198dd92d2b60b8cb2b8515d23a45",
+    "nativeOracleSha256": "0a43a79763fa047959cc5f99f30fc269a34c9c3cb62e86520a5728b94156299c",
+    "compileSha256": "30d9fa5b63cafa4b91c1186379f36a38aa9689bc83b3b6139fe43de83bbed283"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4256-script142-535fc0.result.json",
+      "evidenceId": "ev_7f61bd8d34f0f32c040779592b98caf3c4daf18debf4bf203638a5755babac33",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x535fc0",
+            "end": "0x53618e"
+          }
+        ],
+        "total_bytes": 463,
+        "span_bytes": 463,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4259-script142-536fc0.result.json",
+      "evidenceId": "ev_887369c32ca1ad2640535fe486f743274300a6eceefa19ad3c261bf3d63b4a97",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x536fc0",
+            "end": "0x53719d"
+          }
+        ],
+        "total_bytes": 478,
+        "span_bytes": 478,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Full143 bodies now call144 nullable51AD80 projection. Null query never matches, but unsigned count and row-pointer reads still occur; a null or unmapped row table still faults before packet6C is updated. Nonnull query behavior is identical to143.",
+    "56 original cases/224 comparisons matched with8 expected bad-row-table faults. Covers first and continuation calls, counts negative/zero/positive, nullable node name with normal second expressions, connection flags and orientation. No callee adapters."
+  ],
+  "limitations": [
+    "Finite prepared positions/radius/goal and normal intent fixtures; full formation-aware intent remains existing source and independent129 proof.",
+    "355 cores and portable replay compiled as library; managed replay UNEXECUTED. Sealed143 preserves its nonnull query contract. Zero new address/name/use credit; no shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [
+      "0x535fc0",
+      "0x536fc0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

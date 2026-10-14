@@ -1,0 +1,61 @@
+{
+  "scope": "LZ2K header fields and whole chunk loader through original memory reader and copy bodies.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 580,
+    "nativeChecks": 1160,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 3,
+    "ports": [],
+    "closure": "Original4f6760→4fb550/4fb4f0/6e6d90 plus both original header getters and original cookie checks; no adapters",
+    "compiledCoreInputs": 318,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase80-20261013-compile.dll",
+    "sourceSha256": "b0636bbe79ba21b3e72c44061b5e486ca5100489af699a8aa400297383dfbfa6",
+    "harnessSha256": "b8a984cde4cd38f5c9173c5e22e85fc77a900364151159b1399bb45c3ac66ba9",
+    "nativeOracleSha256": "00ae91c362435661e0bf5d04aefbbd0e5db7b637b6dab3a50a41b9d149e0cfc1",
+    "compileSha256": "abe92650e7acc669567d64824a2e64154283d6546bdeed6c9cfa21d63e6f9141"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4126-script79-chunk.result.json",
+      "evidenceId": "ev_5ff071954e9d3425bb7378e0eed9ca1c011854da9467bd92d64b074c95ffb6d9",
+      "address": "0x4f6760",
+      "bodyBytes": 177
+    },
+    {
+      "file": "reports/rea-continuous/4127-script80-plain-count.result.json",
+      "evidenceId": "ev_35b03d80b8cacbb55bd4cafd5d916116980c7e2e2ed2dcd75e4c818775499af9",
+      "address": "0x4f5e30",
+      "bodyBytes": 119
+    },
+    {
+      "file": "reports/rea-continuous/4128-script80-packed-count.result.json",
+      "evidenceId": "ev_fe41bbe45a76f68fd1d6397b5463998328cca3d7863c9662c11afc3de687c26e",
+      "address": "0x4f5eb0",
+      "bodyBytes": 125
+    }
+  ],
+  "semantics": [
+    "Header signature equals four static bytes LZ2K at75ea44, case sensitive. Plain length is little-endian DWORD+4 AND live800540 mask. Block length is masked DWORD+8, nonzero adds12 with wrapped32 arithmetic, zero stays0. Mismatched signature returns0 before field reads.",
+    "Loader reads full12-byte compiler private header through actual4fb550, stores plain91784c and blockLength-minus12 payload917840, rereads live parent pointer917844 and handle before payload read to88ab50. Payload read return is ignored; short reads preserve untouched destination bytes.",
+    "Active record pointer91ce60 supplies live current low/high at10/14; adds signextended32 declared payload-plus12 with carry. Stores low/high to captured active record, then reads low from that record/high from live active pointer before publishing parent8/C.",
+    "580 cases /1160 return and whole-image groups zero; both getter fields cover exact/mismatched signatures, masks0/FFFFFFFF/7FFFFFFF/00FFFFFF, zero/positive/high/wrapped counts; loader payload1/17/1024, plain1/17/4096, low32 carry, high64 wrap, file offsets0/7 and full/short payload. No adapters, original cookie checks execute."
+  ],
+  "limitations": [
+    "Chunk prepared domain requires complete12-byte header, matching signature with positive payload fitting backing, allocated memory parent400 and unaliased private local. Original ignores header read return; source rejects incomplete header because original private uninitialized bytes are not reconstructed.",
+    "Decoder remains explicit; this adds no codec or script command use credit. Portable library318core inputs plus harness compiled; managed replay UNEXECUTED. No game/managed launch, Git/shared manifest writes."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "addresses": [
+      "0x4f6760",
+      "0x4f5e30",
+      "0x4f5eb0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

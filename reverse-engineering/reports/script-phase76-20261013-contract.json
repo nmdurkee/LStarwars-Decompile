@@ -1,0 +1,105 @@
+{
+  "scope": "Complete signed-stamp stream buffer assignment andWin32 read/seek wrappers; finalhostAPI services explicit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1368,
+    "nativeChecks": 5472,
+    "mismatches": 0,
+    "faultCases": 3,
+    "managedExecution": false,
+    "newEntries": 3,
+    "ports": [
+      "ReadFileIAT7510e4",
+      "SetFilePointerExIAT7510ec"
+    ],
+    "closure": "Original4f0230 signedstamp selection/owner eviction→4ff430/4ff3b0→finalWin32 callbacks only; wrappers execute originalbytes",
+    "compiledCoreInputs": 314,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase76-20261013-compile.dll",
+    "sourceSha256": "3f55dc1169535c8d2409dbc1412a17426f88a4122f4562e11d6c201b1036c47b",
+    "harnessSha256": "1da61643a4058b376069593c9bdfee1d5c92ffaa92409b701da29979bff14f3a",
+    "nativeOracleSha256": "bba01705d4611223a8e27ac3548b22a7276100f7e9ba9c3454cc18414e4bd149",
+    "compileSha256": "d6fafcf2eae6932b497258af68f46ef73c2eb3058f345c4e69a15dc8030dd75c"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4121-script76-file-buffer.result.json",
+      "evidenceId": "ev_8752d64feb9bf286a821a42271fe2ddc0ec34d772b784a2f23b0dd4bf173f4c7",
+      "address": "0x4f0230",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0230",
+            "end": "0x4f02cb"
+          }
+        ],
+        "total_bytes": 156,
+        "span_bytes": 156,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4122-script76-stream-read.result.json",
+      "evidenceId": "ev_cb6680697d60678122b5c91d8951c5839fc6f218cdca7ae6c87f67ea1d379321",
+      "address": "0x4ff3b0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ff3b0",
+            "end": "0x4ff3e0"
+          }
+        ],
+        "total_bytes": 49,
+        "span_bytes": 49,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4123-script76-stream-seek.result.json",
+      "evidenceId": "ev_4fec655c62c75bed35925310b5ab3b03bbeb5611d484c92a30fc9155c5bd9dfc",
+      "address": "0x4ff430",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ff430",
+            "end": "0x4ff491"
+          }
+        ],
+        "total_bytes": 98,
+        "span_bytes": 98,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "4f0230 customEDIstream scans four408-byte buffers at915fb0. Defaultindex0/minimum=global91ee8c; stamps compareSIGNEDstrictlyless inindexorder, tiesretained, wrapmaychoosebuffer0 despiteotherpositive stamps. Evictsold owner+38, writesselectedstamp=currentcounter andowner=stream, readsstream28cachedcount, incrementscounterwrap32, storesstream38=selected.",
+    "Zero cachedcount returns0. Nonzero initialcount negated32/signextended andseeks underlyingstream0 indexrelativeorigin1; then rereadsLIVEstream0/indexandstream28/count aftercallback, reads into heldselectedbuffer+8. Returnisreadcount, notbufferpointer. Callbackchangingstream38 doesnotchangeheldread destination.",
+    "4ff3b0 indexesnativeHANDLE table8007a0, zeroesprivatebyte-count local, callsReadFile(handle,destination,count,outcount,NULL), ignoresBooleanreturn andreturns survivingcount. 4ff430 mapsorigin0→0,1→1,allother→2, zeroesprivate64position, callsSetFilePointerEx withfull low/high; nonzeroBOOL returnsposition,zero returnsFFFFFFFFFFFFFFFF.",
+    "1368cases/5472fault+return+image+event groups0,3faults:readBoolean0/1/2 andwritten/unwritten arbitrary32counts;seekhighbits/offsets/origins/status/output;buffer signed/wrappedcounter/stamps,ownersnull/other/same,cached0/1/17/1024/FFFFFFFF/80000000;livecallback changescount/index/handlemap/buffer/counter andinvalidincoming/oldowner partial effects. Only finalWin32 API callbacks supplied; actualallocator and49/98byte wrappers execute."
+  ],
+  "limitations": [
+    "Preparedmapped handle table, four-buffer pool/stream/owners andbounded callbackpayloads. Callbackoutput values normalized fromzero-initialized private locals; not a claim of actualOS file behavior. Invalidpointer fixtures preserve originalpartialwrites only forprepared complete unmappedtargets.",
+    "Nonzero arbitrarycached/count bits allowed in isolatedallocator/wrapper proof withbounded API services; fullbufferedconsumer imposes further progress/copy bounds in nextphase. No source4fb550body credited here.",
+    "314core sources+portable replay library compile;managed replayUNEXECUTED. No game/managed launch,security/hostsettings changes,Git/sharedmanifest writes orcheckpoint."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "addresses": [
+      "0x4f0230",
+      "0x4ff3b0",
+      "0x4ff430"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

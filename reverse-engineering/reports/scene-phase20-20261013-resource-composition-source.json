@@ -1,0 +1,92 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase20-20261013-resource-composition.cs"
+  ],
+  "mappings": [],
+  "refinements": [
+    {
+      "address": "0x6e2d20",
+      "method": "RendererResourceComposition.Build",
+      "coverage": "Single-backend resource caller now composes real texture free/allocation/initializer CPU bodies; only final services remain."
+    },
+    {
+      "address": "0x6e2170",
+      "method": "RendererResourceComposition.Release",
+      "coverage": "Actual backend release caller now composes real texture owner cleanup/accounting CPU."
+    }
+  ],
+  "newNativeEntryCount": 0,
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase20-20261013-resource-composition.cs",
+      "sha256": "9a18e54b9ead6ea96d4c927917f1648b6d0202f537137bce95162d262c93554c"
+    }
+  ],
+  "limitations": [
+    "Whole original6e2d20 caller,6e2610 feature selection and six buffer helpers run unchanged, including original memcpy and settings writer until fopen failure.",
+    "Resolved fixed backend29765c8, settings826070 and32 records of48 bytes at986f00. Borrowed lock buffers are stable, disjoint, writable, capacity sufficient; lock output lifetime supplied explicitly.",
+    "Initial row conversion finite, fitting rows1..128. Grid row/column values remain within1..128 with sufficient allocated capacity and stable while each CPU loop executes; target owner count6e4 is stable during texture creation/surface callbacks.",
+    "48-byte packet uses unsigned backend dimensions times exact original3.0 and is captured before buffer creation callbacks. Grid row conversion uses signed live screen ratio after the two quad unlocks. Wide UV ratios remain unspilled for positions.",
+    "Callback mutations to ownership/dimensions/screen, negative HRESULTs with resolved buffers, global LastResult after create/lock and unchanged LastResult at unlock are retained. No uninitialized fourth-word or later stack lifetime equivalence inferred.",
+    "Native/Python differential passed with guarded buffer bytes and full ordered boundary states; source library compile is separate. No managed/game launch or live settings writes.",
+    "Original texture ownership free/factory/initializer CPU bodies now execute unchanged in the same backend/pool capture; no intermediate texture CPU graph hooks. Only final COM and original fopen failure boundary remain.",
+    "256 build calls each followed by an actual same-image release; source ownership globals share the exact same pool array as the resource state.",
+    "Default texture format is supplied by backend140 and remains outside owner depth format4 for surface-producing build. Separate scene19 verifies both depth and generic initializer branches.",
+    "Actual entry-visit evidence lists only16 original CPU entries executed in this composition; no coverage credit inferred from referenced but unvisited depth helpers.",
+    "Incoming EAX for texture-free is owner token because both original resource callers load owner into EAX before pushing it. Null free therefore returns0 in this composition; standalone scene18 keeps arbitrary incoming EAX explicit."
+  ],
+  "evidence": [
+    "reports/scene-phase20-20261013-resource-composition-native-validation.json",
+    "reports/scene-phase20-20261013-resource-composition-library-build.json"
+  ],
+  "nativeTool": "tools/scene-phase20-20261013-resource-composition-native.py",
+  "nativeToolSha256": "1919df85007a627d791164004a1f44909dc002556215876f325ba936f9ebfecd",
+  "fixture": "reports/scene-phase20-20261013-resource-composition-native-fixtures.json.gz",
+  "fixtureSha256": "b807f9c5a81eaa37ffa7108878e1d24f785505af081db2ad250a85bab0cf7222",
+  "fixtureCoverage": {
+    "calls": 512,
+    "buildThenReleaseSequences": 256,
+    "checks": 2048,
+    "finalBoundaryEvents": 8099,
+    "executedOriginalCPUEntries": 16
+  },
+  "compiled": true,
+  "executed": false,
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase16-20261013-resource-mesh.cs",
+      "sha256": "a07ba78a181225b77be3f79d778eb3401b55a9bdbef86b82f4e89879db60f9dd"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase17-20261013-resource-release.cs",
+      "sha256": "5f3dfa78037707f6c45b4bde4f82ba6ade77ba4f136a70fa874a37cec8051bc8"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase18-20261013-texture-ownership.cs",
+      "sha256": "6b010b518be7c7ea55658948535ddb2895a72dd877627d76b64589eeb6d9438e"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase19-20261013-texture-allocation.cs",
+      "sha256": "2f47ff6d66f8ca4994ebe905b8607ada3b307909eb50ed1eba3c06773506a32e"
+    },
+    {
+      "path": "tools/scene-phase18-20261013-texture-ownership-native.py",
+      "sha256": "d99d86979d834a48b6746fe484f27ba3a6f877a704f9440cdf5dd55ca51c2768"
+    },
+    {
+      "path": "tools/scene-phase19-20261013-texture-allocation-native.py",
+      "sha256": "8e35f0deea199745b6299454d444de8202e65e493a3622ddbfd8c47d8f59c27c"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    }
+  ],
+  "harnessFiles": [],
+  "managedReplay": "Not prepared in this source-only step; native/model evidence and library compile retained."
+}

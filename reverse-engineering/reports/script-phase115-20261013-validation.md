@@ -1,0 +1,1 @@
+283 original x86 provider-selection composition cases; 1,132 comparisons; zero mismatches. No hooks. Full99byte rawselector credited0. 352 core files plus harness compiled library only. Managed replay unexecuted.

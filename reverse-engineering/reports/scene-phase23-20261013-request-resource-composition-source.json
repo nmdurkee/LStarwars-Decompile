@@ -1,0 +1,127 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase23-20261013-request-resource-composition.cs"
+  ],
+  "mappings": [],
+  "refinements": [
+    {
+      "address": "0x6df1a0",
+      "method": "DeviceRequestResourceComposition.Apply",
+      "coverage": "Actual request caller and bootstrap now compose real resource/texture/buffer/mesh CPU on the same backend/pool."
+    },
+    {
+      "address": "0x6e3940",
+      "method": "DeviceRequestResourceComposition.Apply",
+      "coverage": "Resource edge inside actual bootstrap is replaced with real recovered CPU; release/rebuild orchestration stays explicit."
+    },
+    {
+      "address": "0x6e2d20",
+      "method": "RendererResourceComposition.Build",
+      "coverage": "Original populated resource caller runs in actual nested bootstrap frame; lock/output lifetimes retained."
+    }
+  ],
+  "newNativeEntryCount": 0,
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase23-20261013-request-resource-composition.cs",
+      "sha256": "ec74446074948f77f1e8641af823bf0d0b50b2a04a6df5751aec1a934804d5c7"
+    }
+  ],
+  "limitations": [
+    "Original6df1a0 request,6e2ce0 selector producer,6e3940 bootstrap and6e2d20 resource/texture/buffer/mesh CPU run unchanged on one backend/pool in isolated native capture.",
+    "Intermediate resources6e2d20, texture free5f7b40, allocation605800/605890 and initializer5f81f0 are real CPU bodies; only final COM and fopen-failure services remain within that resource chain.",
+    "Large release6df0e0 and rebuild6dfe20 orchestration graphs still remain explicit adapters in bootstrap paths; no full lifecycle or authored runtime initialization claim.",
+    "Finite positive dimensions, stable resolved mode image, available pool slots, bounded grid rows1..128 and fitting mode0 viewport arithmetic. Texture surface-producing default format stays outside depth owner format4; separate scene19 covers depth creation.",
+    "Shared exact backend/pool arrays, stable disjoint borrowed lock buffers with sufficient capacity; target count6e4 stable through allocation/surface COM callbacks. Raw packet/dimension/accounting/last-result/counter callback mutations retained.",
+    "Native source-global numeric viewport inputs stable at viewport COM; raw viewport source packet mutations and later sampler/settings-open Screen changes retained.",
+    "Caller entrySP1000e000, bootstrap entrySP1000dff8, resource entrySP1000dfdc and lock output1000df48. All752 retained lock output pointers match the source diagnostic calculation; no managed physical stack or later predicate residue claim.",
+    "Controlled error continuation installs resolved fake device; sleep/window/message/critical/COM operations are recorded only. Original settings writer runs until fopen returns0; no settings writes or original fatal behavior claim.",
+    "256 requests including128 persistent second calls and64 actual constructor setups,188 nested resource builds,76 texture initializations,752 locks; full caller/global/pool/guarded buffer states and ordered13,199 boundary events match.",
+    "Native/Python differential and source library compile passed; no managed/game/OS/settings execution."
+  ],
+  "evidence": [
+    "reports/scene-phase23-20261013-request-resource-composition-contract.json",
+    "reports/scene-phase23-20261013-request-resource-composition-native-validation.json",
+    "reports/scene-phase23-20261013-request-resource-composition-library-build.json"
+  ],
+  "nativeTool": "tools/scene-phase23-20261013-request-resource-composition-native.py",
+  "nativeToolSha256": "2d3fabf7389b63963e05adb1d9b9e421dedcf827f81cfdebf98d22af4673419b",
+  "fixture": "reports/scene-phase23-20261013-request-resource-composition-native-fixtures.json.gz",
+  "fixtureSha256": "bc1f59f929e6043d53c43a8ea5cef366077f16cbeea042062153d09957a69d52",
+  "fixtureCoverage": {
+    "requestCalls": 256,
+    "persistentSecondRequests": 128,
+    "actualResourceBuilds": 188,
+    "actualTextureInitializations": 76,
+    "bufferLockCalls": 752,
+    "lockOutputPointers": [
+      268492616
+    ],
+    "finalOrchestrationEvents": 13199,
+    "checks": 1024,
+    "originalConstructorSetupCases": 64
+  },
+  "compiled": true,
+  "executed": false,
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase22-20261013-device-request-caller.cs",
+      "sha256": "193925d8371de6449e2c96bb32c57681c6a2c09d4b46ed8d42b9a4138761f425"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase21-20261013-device-request.cs",
+      "sha256": "182b3ea2c39ccb978c8d0d4d06228c0e103d646d859f0cc6bb86c3a1a08e22a9"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase15-20261013-device-bootstrap.cs",
+      "sha256": "8508df6e8c02f8a4c6ba836f525a40319877a9842b4851adf21ab5586ced4b6f"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase20-20261013-resource-composition.cs",
+      "sha256": "9a18e54b9ead6ea96d4c927917f1648b6d0202f537137bce95162d262c93554c"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase19-20261013-texture-allocation.cs",
+      "sha256": "2f47ff6d66f8ca4994ebe905b8607ada3b307909eb50ed1eba3c06773506a32e"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase18-20261013-texture-ownership.cs",
+      "sha256": "6b010b518be7c7ea55658948535ddb2895a72dd877627d76b64589eeb6d9438e"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase17-20261013-resource-release.cs",
+      "sha256": "5f3dfa78037707f6c45b4bde4f82ba6ade77ba4f136a70fa874a37cec8051bc8"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase16-20261013-resource-mesh.cs",
+      "sha256": "a07ba78a181225b77be3f79d778eb3401b55a9bdbef86b82f4e89879db60f9dd"
+    },
+    {
+      "path": "tools/scene-phase16-20261013-resource-mesh-native.py",
+      "sha256": "5a35e5c11fb521cb4aecaa314854b07e7759eda59265a5464f5aaa06b0aeb830"
+    },
+    {
+      "path": "tools/scene-phase18-20261013-texture-ownership-native.py",
+      "sha256": "d99d86979d834a48b6746fe484f27ba3a6f877a704f9440cdf5dd55ca51c2768"
+    },
+    {
+      "path": "tools/scene-phase19-20261013-texture-allocation-native.py",
+      "sha256": "8e35f0deea199745b6299454d444de8202e65e493a3622ddbfd8c47d8f59c27c"
+    },
+    {
+      "path": "tools/scene-phase15-20261013-device-bootstrap-native.py",
+      "sha256": "0190d9bbcf82968113ccda535d6a91c0f3d5d425e34567e356e4f4500d4eafc5"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    }
+  ],
+  "harnessFiles": [],
+  "managedReplay": "Not prepared in this source-only step; native/model evidence and library compile retained."
+}

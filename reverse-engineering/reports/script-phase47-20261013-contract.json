@@ -1,0 +1,74 @@
+{
+  "scope": "Single byte helper raw return semantics and EAX parser marker-only release.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 302,
+    "nativeChecks": 906,
+    "mismatches": 0,
+    "faultCases": 1,
+    "managedExecution": false,
+    "compiledCoreInputs": 285,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase47-20261013-compile.dll",
+    "sourceSha256": "b01a9c7502c2d6ac1e3b99aca5488e0fb76329ee3a6453e2d0010336530aada6",
+    "harnessSha256": "8676c2eaa9e7f0b2e7e49c94a2a5330b104b126e921862f13dd40660cedbb138",
+    "nativeOracleSha256": "5e2fcd56f1c393ae4b20a0160de1b0d4a82f20a6aefb7425dde0393c139ce621",
+    "compileSha256": "e4a98857e1e4699c4788d6c7ff7505d078c4e5d938836adcda377c86e650ae9c"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4054-script47-byte.result.json",
+      "evidenceId": "ev_8a8ecfda26454d943fdab7f0a9ef103a98127462f0a8d38eb85af68aaceff568",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fb7f0",
+            "end": "0x4fb80e"
+          }
+        ],
+        "total_bytes": 31,
+        "span_bytes": 31,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    },
+    {
+      "path": "reports/rea-continuous/4055-script47-freereg.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x4f12d0"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "semantics": [
+    "4fb7f0 cdecl(handle) explicitly zeroes one-byte compilerlocal before4fb550(handle,&local,1); failed read leaves byte zero independent of incomingECX.",
+    "After4fb550, MOV AL,[local] retains read EAX high24bits; normalized service provides rawEAX and surviving initializedlocal byte.",
+    "4f12d0 customEAXparser writes DWORDmarker0 only; memory fault atnullparser, noClose/handle read.",
+    "302 cases/906 groups: rawreadEAX0/1/100/ffffff00/12345678, allsignbyte boundaries, write/no-write, incomingECXhighbyte, handles0/archive/general andnullfree."
+  ],
+  "limitations": [
+    "Normalized compiler-owned local storage excluded fromheap projection; no register preservation claims.",
+    "285 core plus replay library compiled, managed execution UNEXECUTED.",
+    "No final OS read implementation, Git or shared manifest writes."
+  ]
+}

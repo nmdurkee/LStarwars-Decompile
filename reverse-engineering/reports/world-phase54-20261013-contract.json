@@ -1,0 +1,49 @@
+{
+  "status": "sealed qualified material wrappers and constructor composition",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase54-20261013-ptl-material-wrappers.cs",
+    "sha256": "3875da2369dc7f3eb79d8b71353dd18becd1eb55f07b104c46e480a6e2e78449"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 862,
+    "checks": 2574,
+    "mismatches": 0,
+    "errors": [],
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": [
+      "0x5e4b20 mutable material pool allocation with raw ECX/EAX",
+      "0x601030 mutable material refresh"
+    ],
+    "seconds": 0.158,
+    "syntheticExcluded": 0
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 292,
+    "harnessSourceFiles": 36,
+    "assemblySha256": "d7650755fbf82a81284a4b72608d1451ade8c5c3cdf1285ea883bb6b86f1d994",
+    "expectedManagedAssertions": 2574
+  },
+  "scope": [
+    "Complete 20-byte 5e4d40 wrapper reads live global973ff4 into EAX and caller count into ECX, then invokes5e4b20 with registered stack argument1. Raw forwarded count/type and returned pointer retain the child service boundary.",
+    "Complete24-byte5e4b00 wrapper caches material pointer, invokes601030, then increments freshly read16-bit counter2c0 with wrapping. Its EAX is not a meaningful return and earns no assertion credit.",
+    "Composes complete654a90 through both original wrappers into mutable allocation/refresh child services.862 cases/2574 meaningful pointer-image-service groups zero mismatches/exclusions. Existing geometry pool/refresh implementations retain prior credit and qualified domains; this phase does not re-credit them."
+  ],
+  "domains": [
+    "Prepared readable material pointer, arbitrary forwarded count/global type word, wrapping16-bit counter, shifted parent/destination aliases and mutable allocation/refresh callbacks. Complete wrapper own bodies only; child allocator/factory success/failure domains remain explicit.",
+    "5e4b00 incidental EAX excluded; allocation and constructor pointer returns retained. Complete prepared images/ordered service traces retained; stack/FPU status/unrelated registers excluded."
+  ],
+  "fixture": {
+    "path": "reports/world-phase54-20261013-vectors.json.gz",
+    "sha256": "9bfa40c6651abf83bb9802014517c4edbd1e064cddcd6ea91d257248cdaf5bed",
+    "cases": 862,
+    "nativeGroups": 2574
+  },
+  "reaEvidence": "reports/world-phase54-20261013-rea-evidence.json",
+  "remainingPorts": [
+    "0x5e4b20 mutable material pool allocation with raw ECX/EAX",
+    "0x601030 mutable material refresh"
+  ]
+}

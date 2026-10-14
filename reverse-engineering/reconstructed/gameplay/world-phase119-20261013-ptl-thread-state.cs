@@ -1,0 +1,2 @@
+// Original6f040c __getptd, live REA ev_a8a01d8436a1680428e488ab7a20680f466feddc44c58ebf651a68568f552ce6. Caches pointer across the conditional fatal child.
+using System;namespace Recovered.Gameplay {public static class PtlThreadState {public static uint Get(SoundSetupImage m,Func<SoundSetupImage,uint,uint[],uint> services){uint pointer=services(m,0x6f0395,new uint[0]);if(pointer==0)services(m,0x6ebd99,new uint[]{16});return pointer;}}}

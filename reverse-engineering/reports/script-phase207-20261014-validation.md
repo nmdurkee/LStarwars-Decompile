@@ -1,0 +1,1 @@
+520 original native cases / 1,040 comparisons zero. Whole five registered private-pool bodies(636 bytes) execute without adapters. Allocation tail split/alignment/strict capacity, freelists/counters/tags and both-neighbor coalescing verified.380-core library compile; managed replay unexecuted. Five new addresses.

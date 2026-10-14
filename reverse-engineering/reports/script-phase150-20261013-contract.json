@@ -1,0 +1,62 @@
+{
+  "scope": "Existing locator integer RNG5B9E90 refined to raw global/local/unaligned memory state.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1315,
+    "nativeChecks": 3945,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 263,
+    "managedExecution": false,
+    "newEntries": 0,
+    "refinements": [
+      "5B9E90"
+    ],
+    "ports": [],
+    "compiledCoreInputs": 360,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase150-20261013-compile.dll",
+    "sourceSha256": "06c97a3e54c0ec3834c158b6befd90539d873f81c755bcce90d013b641d2f35e",
+    "harnessSha256": "8a23fb9a3739c259a499115e060c92c76e3d36b3096c4898bc9c17717cc42856",
+    "nativeOracleSha256": "f258a682b278237691e5c6360b6d5a414175d3ba370642ac03134d4c35f7690d",
+    "compileSha256": "8def67f95a943d627fa058222c70a761aec02fe3a07bbdcd8748734c59a6b565"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4265-script150-locator-integer-rng.result.json",
+      "evidenceId": "ev_fa587f96295cf0d267867df9dd194d4d051149d706dbbdad65cf42a6d820ee02",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5b9e90",
+            "end": "0x5b9ee9"
+          }
+        ],
+        "total_bytes": 90,
+        "span_bytes": 90,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "cdecl(statePointer) returns full updateduint32. Null pointer chooses global8066C0 without zero normalization; explicit nonnull zero state first becomes1, including explicitly supplying the global address. XOR075BD924, signed32 quotient by127773 truncated towardzero, wrapped x*16807 - quotient*7FFFFFFF, add7FFFFFFF when signed wrapped result negative, finalXOR075BD924 andreturn. Intermediate state writes preserve original order.",
+    "1315 original cases/3945 fault/return/image comparisons matched; all signed/extreme/XOR boundaries plus256 deterministicrandomstates, null/local/explicitglobal/unaligned state pointers and263 expected unmapped-state faults. No adapters or external ports."
+  ],
+  "limitations": [
+    "Prepared mapped state storage and expected unmapped fault behavior.360 cores and portable replay compiled as library; managed replay UNEXECUTED.",
+    "Existing movement-phase6 RNG mapping receives zero duplicate address credit. No extra command-name/use, shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [
+      "0x5b9e90"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

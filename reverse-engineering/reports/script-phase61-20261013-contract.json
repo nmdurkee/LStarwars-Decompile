@@ -1,0 +1,111 @@
+{
+  "scope": "RawPlayerRange514c30/NearestPlayerRange514c80 refinements andnewNearestPlayerXZRange514d50 fullfinite body projection.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 225,
+    "nativeChecks": 675,
+    "mismatches": 0,
+    "faultCases": 3,
+    "managedExecution": false,
+    "compiledCoreInputs": 299,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase61-20261013-compile.dll",
+    "sourceSha256": "aa1c5f20da9720461daa7474e24410594d2ade58fedf83323a94d91e02029cc2",
+    "harnessSha256": "ad52b34963b982b7e44b8b5da3bc626d0ab74393538529dc2e91091529875417",
+    "nativeOracleSha256": "ce11a84227a317e0ff30cd7758b0a18eadd3607c358355ad1ed57541cb3e32c8",
+    "compileSha256": "84a6137822e6a66b5dcfc9936f93ba5d479f3725d98381a4f3eec509215fc230"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4092-script61-playerrange.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514c30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4093-script61-nearestplayer.result.json",
+      "evidenceId": "ev_096ab3eaecf263af5426719ca301bc272e4a8642055032705e2e02bf2f6a7794",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x514c80",
+            "end": "0x514d4f"
+          }
+        ],
+        "total_bytes": 208,
+        "span_bytes": 208,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "error": null
+    },
+    {
+      "path": "reports/rea-continuous/4094-script61-nearestxz.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514d50"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "semantics": [
+    "PlayerRange guardsactor,D0controller,system,system138cplayer;distance(player5c,controller5c); actor14cworldpositionirrelevant. Allguardsfallbackraw75ecf0.",
+    "Nearest3D/XZ initialbest75ecf0float32,sameactor/controller/system guards; player138cfirstsquaredistance updatesbestunconditionally;player1390nextsquaredistanceusesLIVErereadactorD0 andonlyreplacesifstrictorderedother<best.",
+    "Comparesbest againstDOUBLE760008sentinel (sameoriginalmaxfinite); equalityskipssqrt;otherwiseactual5c0240/6e9530sqrt afterfloat32square spill. Bothplayersabsent maxsentinel retained, xzusesonlyX/Zmath.",
+    "Original5b3c50/5b3cf0nonzeroscratch helperdifferences/squaredsum and5becc0math executewholeunchangednativebytes; no math/pointer services supplied.",
+    "225cases675groupszero mismatches/3invalidcontrollerfaults:6vectorcrosspairs,32random triples percallback, nearestfirst/second/tie cases, 3D/XZorderingdivergence, everynullplayer/actor/system/controllerguard."
+  ],
+  "limitations": [
+    "Finitecompletevectorsandfinite storedsquaredsum required; signalingNaN/nonfinite/overflow/FPUstatus outsidepaired domain. HostMath.Sqrt float32projection observed, no general64bitrootclaim.",
+    "299cores+harnesslibrarycompiled;managedreplayUNEXECUTED; noOS/game launch orGit/sharedmanifest writes.",
+    "Newcredit514d50only;514c30/514c80 alreadystructuredmapped,rawpointer refinement."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x514d50"
+    ],
+    "existingRefinements": [
+      "0x514c30",
+      "0x514c80"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

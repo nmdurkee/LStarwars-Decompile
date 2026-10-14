@@ -1,0 +1,113 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "addresses": {
+    "0x512ea0": "PreparedConditionLoading.FindPredicate customEDI=name, no stackargs, EAX descriptor",
+    "0x513100": "PreparedConditionLoading.CopyString customEDI=bankTopPointer, cdecl(text,bankBottomPointer), EAX copy",
+    "0x5132f0": "PreparedConditionLoading.Finish customESI=parser, cdecl(condition), void"
+  },
+  "semantics": [
+    "Predicate lookup searches custom922224 twelvebyte rows before original49row801768 builtin table; first duplicate wins, nullnameword terminates. Namesuse actualbytefold ASCII lowercase andE0..FF minus32.",
+    "String copier null/emptyinput returns0. Nonempty size strlen+1 checks UNALIGNED currentTop+size strictly BELOWbottom beforealigningup16, updatestop thenmemsetsdestination thenstrcpyreads sourceagain. Itcallsstrcpy(NULL,source) whenallocationfailed;35partialnative faults retained. No inventedgracefulfailure return.",
+    "Finish readsnexttoken viaexplicit4f7fb0port. goto clearsflag2 BEFOREnexttargettoken, executesactualstringallocator andpublishescondition20, thenconsumesoptionalKeepBlockedMessages tosetflag2. andsetsflag1. Otherwords onlydiagnoseif922238zero;mode922248exactly1 chooses512860 else512850, scriptName8/stateName18 orliteral?/line50c supplied.",
+    "Rawdata/callbackmutation cases include topalignment changesaftertoken callback, flags mutation beforetailOR, mode/state/allowInvalid changes. Source strings/allocatedbytebacking overlap examples proveclearingallocation happensbeforecopyrereads."
+  ],
+  "validation": {
+    "nativeCases": 657,
+    "nativeChecks": 2628,
+    "mismatches": 0,
+    "faultCases": 35,
+    "builtinPredicateRows": 49,
+    "managedExecution": false,
+    "compiledCoreInputs": 262,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase24-20261013-compile.dll"
+  },
+  "domains": [
+    "MappedboundedNULbytetext anddescriptor tables; customtable sentinel, actual49rowbuiltin catalog hydratedfromoriginalbinary.",
+    "Recordedallocationfailure faults comparefaultstatus andretainedmemory, notmachineEIP/register/faulttype equivalence. Validcopybranches includeall16alignments, strictboundaryadmission, null/emptyinputs andsourceoverlap.",
+    "Tokenfiletransport anddiagnosticport remainexplicit here. Native512850/512860 areRET noops; observations areinstrumentation, not externalmessages.",
+    "Full52b3f0 loader queuedREAproof in4007, implementationnextphase."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  },
+  "freshReaEvidence": [
+    {
+      "path": "reports/rea-continuous/4008-script24-predicate-lookup.result.json",
+      "evidenceId": "ev_05002fde55148a0695e59dc173589901cfccd104e6d9544ef267f95bb82360fa",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x512ea0",
+            "end": "0x512ef5"
+          }
+        ],
+        "total_bytes": 86,
+        "span_bytes": 86,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 35,
+      "instructionLocationsMatch": true
+    },
+    {
+      "path": "reports/rea-continuous/4009-script24-string-allocator.result.json",
+      "evidenceId": "ev_bbabae5f8103e54e18781b56b77ae1ae0173e4549ab511de4185d8b5c8c4d0dd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x513100",
+            "end": "0x51315c"
+          }
+        ],
+        "total_bytes": 93,
+        "span_bytes": 93,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 42,
+      "instructionLocationsMatch": true
+    },
+    {
+      "path": "reports/rea-continuous/4010-script24-condition-tail.result.json",
+      "evidenceId": "ev_0cc7a76958250f9afe46a338e48c027b6fb16b253127a60f32564a48daa6d775",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5132f0",
+            "end": "0x5133ed"
+          }
+        ],
+        "total_bytes": 254,
+        "span_bytes": 254,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 80,
+      "instructionLocationsMatch": true
+    }
+  ]
+}

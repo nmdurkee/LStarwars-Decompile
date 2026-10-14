@@ -1,0 +1,67 @@
+{
+  "scope": "Whole canonical16-bit Huffman table builder on prepared complete prefix lengths.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 154,
+    "nativeChecks": 154,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "Whole original4f6000 canonical builder with real memory stores and cookie check; no adapters",
+    "compiledCoreInputs": 321,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase83-20261013-compile.dll",
+    "sourceSha256": "8291509ce9def74d26f8e36a461807463c7f07fbee06467cd0f324349b02692b",
+    "harnessSha256": "1c03d71f9ac8e58ba4ec4243448b8bbc7cf73cdf3f7fc4bce95ad99c4397a593",
+    "nativeOracleSha256": "793d1632bbfa6eda35182e02b793a4208fafaf126d92061dd4a684a049cd6455",
+    "compileSha256": "c38716721ba71537173cd27bb1e6e56b6c7da66dabf14c75447b61ee8dfcd8cf"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4135-script83-table-builder.result.json",
+      "evidenceId": "ev_5b1f082b3937b80845138cf56bc9900c199c01b28b1ebed9359f1a6dc85fdbab",
+      "address": "0x4f6000",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f6000",
+            "end": "0x4f6077"
+          },
+          {
+            "start": "0x4f6080",
+            "end": "0x4f610c"
+          },
+          {
+            "start": "0x4f6110",
+            "end": "0x4f628d"
+          }
+        ],
+        "total_bytes": 643,
+        "span_bytes": 654,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Counts each live input byte length. Accumulates code starts with wrapped16-bit arithmetic; complete Kraft sum wraps terminalstart17to0, else native diagnostic4f5c10 is outside prepared domain. Short code starts are shifted to direct lookup width; weights use direct repeat counts for short codes and16-bit increment for long codes.",
+    "Nonzero start at lookupBits+1 clears remaining direct table words. Long codes resolve or allocate zero-marked internal nodes starting at symbol count, clearing shared left/right children2982740/2982f40. Each symbol rereads its live length and updates its canonical start16; direct lookup fills are word stores.",
+    "154 native complete-image comparisons zero: empty0/14/19/510 symbols, uniform depths1..8, full depth16 unbalanced chains and128 deterministic shuffled complete trees with random leaf counts2..199, roots8/12. Original cookie helper executes and no adapters."
+  ],
+  "limitations": [
+    "Prepared entries0..510, lengths0..16 with complete or empty code distribution, zero initialized direct roots wherever long nodes allocate and disjoint length/output backing. General malformed code diagnostics remain outside source domain.",
+    "Return EAX is incidental compiler scratch; source Build is void and fixtures compare all public memory.321core inputs plus harness compiled; replay UNEXECUTED. No command use, Git/shared manifest writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4f6000"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

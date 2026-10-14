@@ -1,0 +1,46 @@
+{
+  "status": "sealed qualified original own bodies",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase58-20261013-ptl-descriptor-eviction.cs",
+    "sha256": "e2bf9afa383b26b663e9ba368db561855d9efbbb05cc979460bb0884f80d5d37"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 635,
+    "checks": 635,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x657e70": 373,
+      "0x6579f0": 262
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 1.529,
+    "syntheticExcluded": 0
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 296,
+    "harnessSourceFiles": 40,
+    "assemblySha256": "bf13a608a58daeb6ca7b6c4ba1d32b93124005671f846764622f2e990a9818ac",
+    "expectedManagedAssertions": 635
+  },
+  "scope": [
+    "Complete10-byte6579f0 writes raw caller bits to8108e4 without float interpretation. Complete575-byte657e70 caches both clocks, record-table base and count, scans from1 in original order, computes exact64 clock-birth then binary32 age, and selects the first strictly positive maximum. Null/unpublished records skip; ties retain first.",
+    "Decrements live descriptor count, reads selected record through cached table, publishes descriptor through live free table then clears selected publication through freshly reloaded global table.635 prepared images zero mismatches/adapters/exclusions; finite-extreme stored age overflow, signedzero, underflowing free counters and table/free-write aliases retained."
+  ],
+  "domains": [
+    "Readable prepared record/free tables, counts -1..64, finite consumed cached clock/birth operands; binary32 stored age infinity permitted. The original unrolled scan is projected in equivalent linear order in this bounded count domain.",
+    "Raw setter admits arbitrary32-bit payloads. Meaningful return undefined; full prepared memory included, private stack/FPU status/incidental registers excluded."
+  ],
+  "fixture": {
+    "path": "reports/world-phase58-20261013-vectors.json.gz",
+    "sha256": "957a66969aa8a9555a7a4308ac499402a4dd09b7ef6450cf3e61e1cab8ab3ed9",
+    "cases": 635,
+    "nativeGroups": 635
+  },
+  "reaEvidence": "reports/world-phase58-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

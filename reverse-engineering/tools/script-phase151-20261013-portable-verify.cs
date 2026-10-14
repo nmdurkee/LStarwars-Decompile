@@ -1,0 +1,32 @@
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Recovered.Gameplay;
+public static class ScriptPhase15120261013Verify
+{
+ static Dictionary<string,object> O(object x){return (Dictionary<string,object>)x;}static object[] A(object x){return (object[])x;}static uint U(object x){return Convert.ToUInt32(x);}static byte[] Unhex(string s){byte[] b=new byte[s.Length/2];for(int i=0;i<b.Length;i++)b[i]=Convert.ToByte(s.Substring(i*2,2),16);return b;}static string Hex(byte[] b){return BitConverter.ToString(b).Replace("-","").ToLowerInvariant();}
+ static bool Equal(object a,object b){if(a==null||b==null)return a==b;IDictionary ad=a as IDictionary,bd=b as IDictionary;if(ad!=null&&bd!=null){if(ad.Count!=bd.Count)return false;foreach(object k in ad.Keys)if(!bd.Contains(k)||!Equal(ad[k],bd[k]))return false;return true;}IList al=a as IList,bl=b as IList;if(al!=null&&bl!=null){if(al.Count!=bl.Count)return false;for(int i=0;i<al.Count;i++)if(!Equal(al[i],bl[i]))return false;return true;}if(a is string||b is string||a is bool||b is bool)return Object.Equals(a,b);return Convert.ToDecimal(a)==Convert.ToDecimal(b);}
+ sealed class Memory:TakeoverReleaseMemory
+ {public readonly SoundSetupImage Image=new SoundSetupImage();public readonly ConditionParserMemory Shared;public Memory(object rows){foreach(object item in A(rows)){var r=O(item);Image.Regions[U(r["address"])]=Unhex((string)r["bytes"]);}Shared=new ConditionParserMemory(Image);}public override byte Read8(uint p){return Image.Byte(p);}public override void Write8(uint p,byte b){Image.Byte(p,b);}public object State(object rows){var result=new List<object>();foreach(object item in A(rows)){var r=O(item);uint p=U(r["address"]);int z=((string)r["bytes"]).Length/2;byte[] b=new byte[z];for(int i=0;i<z;i++)b[i]=Read8(p+(uint)i);result.Add(new Dictionary<string,object>{{"address",p},{"bytes",Hex(b)}});}return result.ToArray();}}
+
+
+ sealed class StepPort:ScriptFormationStepServices{readonly Dictionary<string,object> c;readonly List<object> events;int ordinal;public StepPort(Dictionary<string,object> x,List<object> e){c=x;events=e;}public override uint Step(TakeoverReleaseMemory m,uint callback,uint owner){ordinal++;events.Add(new Dictionary<string,object>{{"callback",callback},{"args",new uint[]{owner}}});object all,value;if(c.TryGetValue("patches",out all)&&O(all).TryGetValue(ordinal.ToString(),out value))foreach(object patch in A(value)){object[] p=A(patch);uint at=U(p[0]),word=U(p[2]);for(uint i=0;i<U(p[1]);i++)m.Write8(at+i,(byte)(word>>(int)(i*8)));}return c.ContainsKey("stepBits")?U(c["stepBits"]):0x3fa00000;}}
+
+ sealed class Symbols:ScriptExpressionServices{public override uint Symbol(TakeoverReleaseMemory m,uint callback,uint actor,uint packet,string name,out uint value){value=0;throw new InvalidOperationException("Unprepared custom symbol.");}}
+ sealed class Tokens:ScriptCircleServices{public override uint Token(TakeoverReleaseMemory m,uint callback,uint token,uint flags){throw new InvalidOperationException("Unprepared custom movement token.");}}
+ sealed class LocatorPort:ScriptLocatorServices
+ {
+  readonly Dictionary<string,object> c;readonly List<object> events;public LocatorPort(Dictionary<string,object> config,List<object> log){c=config;events=log;}
+  static byte[] Bytes(TakeoverReleaseMemory m,uint p){var b=new List<byte>();while(m.Read8(p)!=0){b.Add(m.Read8(p));p++;if(b.Count>4096)throw new ArgumentException("Prepared byte text required.");}return b.ToArray();}
+  static string Text(TakeoverReleaseMemory m,uint p){return System.Text.Encoding.GetEncoding(28591).GetString(Bytes(m,p));}
+  public override byte[] Format(TakeoverReleaseMemory m,uint format,uint first,uint second,int arguments)
+  {
+   string value;if(arguments==2&&format==0x7577d4)value=Text(m,first)+"_"+unchecked((int)second).ToString(System.Globalization.CultureInfo.InvariantCulture);else if(arguments==2&&format==0x7577cc)value=Text(m,first)+"_"+(second==0?"(null)":Text(m,second));else{value=Text(m,format);if(value.Replace("%%","").IndexOf('%')>=0)throw new ArgumentException("Unprepared variadic format.");value=value.Replace("%%","%");}byte[] result=System.Text.Encoding.GetEncoding(28591).GetBytes(value);if(result.Length>63)throw new ArgumentException("Prepared64byte formatter buffer.");events.Add(new Dictionary<string,object>{{"service","sprintf"},{"format",format},{"first",first},{"second",second},{"arguments",arguments},{"bytes",result}});return result;
+  }
+  public override uint Complete(TakeoverReleaseMemory m,uint callback,uint controller,uint point){events.Add(new Dictionary<string,object>{{"callback",callback},{"args",new uint[]{controller,point}}});return c.ContainsKey("completeResult")?U(c["completeResult"]):0;}
+ }
+ public static int Run(string root){var json=new JavaScriptSerializer{MaxJsonLength=Int32.MaxValue};var data=O(json.DeserializeObject(File.ReadAllText(Path.Combine(root,"reports/script-phase151-20261013-native-fixtures.json"))));int checks=0;foreach(object item in A(data["cases"])){var row=O(item);var c=O(row["context"]);var input=O(row["inputs"]);var m=new Memory(row["initial"]);foreach(object shared in A(data["shared"])){var r=O(shared);m.Image.Regions[U(r["address"])]=Unhex((string)r["bytes"]);}var events=new List<object>();var rows=new RecoveredActualFormationRows(new StepPort(c,events),null);uint actor=U(input["actor"]);var follow=RecoveredFormationFollowServices.Create(new StepPort(c,events),null,delegate(TakeoverReleaseMemory memory){return memory.Read32(actor+0x144);});uint result=0;bool fault=false;try{result=PreparedScriptGoToLocator.Execute(m,follow,new RecoveredScriptMovementTokens(null),new Symbols(),new LocatorPort(c,events),U(input["system"]),U(input["packet"]),actor,U(input["args"]),Convert.ToInt32(input["count"]),U(input["first"]),U(input["delta"]));}catch(Exception){fault=true;result=0;}m.Write32(U(input["result"]),result);object[] a={fault,result,m.State(row["initial"]),events.ToArray()},b={row["fault"],row["returnValue"],row["final"],row["nativeEvents"]};for(int i=0;i<4;i++){checks++;if(!Equal(a[i],b[i]))throw new InvalidOperationException("Whole node formation mismatch group "+i);}}Console.WriteLine(checks+" whole node formation comparisons passed.");return 0;}
+ public static int Main(string[] args){return Run(args.Length==0?"reverse-engineering":args[0]);}
+}

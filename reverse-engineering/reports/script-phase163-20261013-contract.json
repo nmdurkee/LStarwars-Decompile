@@ -1,0 +1,124 @@
+{
+  "scope": "Actual sprintf6E69EF→full formatting core159→actual count160 and wide161/162→locale/memset/output children.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 550,
+    "nativeChecks": 2200,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 0,
+    "managedExecution": false,
+    "newEntries": 0,
+    "imports": {
+      "wide": 270535424,
+      "lastError": 270535440
+    },
+    "closure": "actual6E69EF sprintf pluswide701EA2/701D43 plus6E7A93 predicate plus6EEF05 full ownbody plus actual6EEE39/6EEE6C/6EEE90,6EB53D,6FC0EE,6F3C74,6EDD80,701F40 children; conversion, allocator, locale runtime and flush explicit",
+    "compiledCoreInputs": 374,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase163-20261013-compile.dll",
+    "sourceSha256": "5e0b9a1c164cc96410a8e2ef2c6a3853ccd56a1f74743f6bb01397eafb45364c",
+    "harnessSha256": "fe1cadcc274d24ab96657d67557bd212f3ccd0930391179bca6fc6377e5cb00b",
+    "nativeOracleSha256": "565bed40ed6b82099da8e2827ab24f4d6c871fba1bd0c276a57345724a7b98e1",
+    "compileSha256": "a5b1f877f7c9ada2155fa71219be74029089d7f3d76382275d7b02ebcaa44b09"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4266-script152-sprintf.result.json",
+      "evidenceId": "ev_f44bacdf6ecaec4b8329a7e8fe627f7e8f6ced1a396f177149f602d6b80e2648"
+    },
+    {
+      "path": "reports/rea-continuous/4279-script161-wide-wrapper.result.json",
+      "evidenceId": "ev_310aaaaec0fce0ff4b099ee8069359c3f2b7691b0de353f414ae019cd28f308d",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701ea2",
+            "end": "0x701ebc"
+          }
+        ],
+        "total_bytes": 27,
+        "span_bytes": 27,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4281-script162-wide-core.result.json",
+      "evidenceId": "ev_000e5ca14ab98d62da876d63fe06416dbe7cb8846417d2481c009e46e70414d4",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x701d43",
+            "end": "0x701ea1"
+          }
+        ],
+        "total_bytes": 351,
+        "span_bytes": 351,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4267-script152-printf-output.result.json",
+      "evidenceId": "ev_982d81c228a5f175b639b37937e68c53985c1698921f0e604108c4436c5d37c0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eef05",
+            "end": "0x6ef878"
+          }
+        ],
+        "total_bytes": 2420,
+        "span_bytes": 2420,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4268-script153-output-pseudocode.result.json",
+      "evidenceId": "ev_756a26cdfffb4391cb0a2e0160a76933c026f8b2ba9b6fe7b1d5336dd85a8f83"
+    },
+    {
+      "path": "reports/rea-continuous/4277-script160-count-policy.result.json",
+      "evidenceId": "ev_7f2aefc0e1d85b3b62b68fad0fbfe6d113eb1b91c5f626fba8c111e8a2c43fde",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6e7a93",
+            "end": "0x6e7aa8"
+          }
+        ],
+        "total_bytes": 22,
+        "span_bytes": 22,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Original sprintf initializes its private32-byte FILE, supplies locale0 and the actual original stack vararg pointer to original6EEF05. Prepared adapter supplies full recovered parser and actual count/wide composition with its actual nested EBP1000DDC4 rather than standalone parser EBP1000DE04.",
+    "After parser returns, sprintf decrements live FILEcount and stores a trailing NUL at its current pointer in the bounded output domain. Returns original parser value even on wide-conversion/n validation failure; partially emitted prefix is terminated and preserved.",
+    "550 original whole-call cases/2200 comparisons matched across integer/string/float callback/mixed/width/precision/n/lead and wide error paths. Original own body, parser, count, byte/repeat/span, locale constructor, leadbyte, wide wrapper/core, memset and integer-division children execute without graph adapters. Private outer FILE bytes are also compared."
+  ],
+  "limitations": [
+    "Bounded emitted output<=1024 and prepared disjoint frames/caller/vararg/output data. No huge-count exhaustion, arbitrary callback mutation or caller-private-frame alias claim. The original flush path is unreachable under this bounded sprintf graph; complete direct flush behavior remains in155/156.",
+    "Floating handlers/decode/allocation/free, errno/invalid dispatch, thread/locale refresh and Win32 conversion/error imports retain explicit services.374 core inputs plus portable replay compile as library; managed replay UNEXECUTED. Zero new address credit. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "newMappedAddresses": [],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

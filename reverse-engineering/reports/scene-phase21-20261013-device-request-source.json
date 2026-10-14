@@ -1,0 +1,60 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase21-20261013-device-request.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e2ce0",
+      "method": "DeviceModeRequest.Apply",
+      "coverage": "Whole CPU mode request producer with real mode selector.",
+      "sourceFile": "geometry/scene-phase21-20261013-device-request.cs",
+      "evidence": "reports/scene-phase21-20261013-device-request-native-validation.json",
+      "limitations": [
+        "Whole original6e2ce0 and6e1b70 run unchanged in isolated native memory; no instruction/CPU/host adapters.",
+        "Stable disjoint resolved mode records with valid pointer61c; count0..32. Count0 mutable path still writes physical record0, then wrapper falls back to current620.",
+        "All raw signed request words, wrapped distances and late equal ties retained; count comparison unsigned and final requested mode written to660.",
+        "Caller6df1a0 and actual runtime request/global initialization are separate next work; no arbitrary current-mode index lifetime or device initialization claim.",
+        "Native/Python differential and source library compile; no managed/game/OS/settings execution."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase21-20261013-device-request.cs",
+      "sha256": "182b3ea2c39ccb978c8d0d4d06228c0e103d646d859f0cc6bb86c3a1a08e22a9"
+    }
+  ],
+  "evidence": [
+    "reports/scene-phase21-20261013-device-request-assembly.json",
+    "reports/scene-phase21-20261013-device-request-native-validation.json",
+    "reports/scene-phase21-20261013-device-request-library-build.json"
+  ],
+  "nativeTool": "tools/scene-phase21-20261013-device-request-native.py",
+  "nativeToolSha256": "436dec2294ccea1152bfe7dc203c2d4df926310eac627ca9b5f7cb3ca05c195b",
+  "fixture": "reports/scene-phase21-20261013-device-request-native-fixtures.json.gz",
+  "fixtureSha256": "49647bef897757903cf51d188150bf3159fcd3c2b6ddf35aef6d86da3d4084a5",
+  "fixtureCoverage": {
+    "calls": 8192,
+    "checks": 32768
+  },
+  "compiled": true,
+  "executed": false,
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase14-20261013-mode-selection.cs",
+      "sha256": "400d61306506528145c4be9f91d5d67f69a6d3ebcc4363232a715bee39219286"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/scene-phase14-20261013-mode-selection-native.py",
+      "sha256": "d008cabaf9773811aa3a7bd2e8cd356b0b3687e58aa740f433f5d62d29da0b1e"
+    }
+  ],
+  "harnessFiles": [],
+  "managedReplay": "Not prepared in this source-only step; native/model evidence and library compile retained."
+}

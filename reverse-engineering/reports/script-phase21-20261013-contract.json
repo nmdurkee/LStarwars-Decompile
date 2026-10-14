@@ -1,0 +1,107 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "addresses": {
+    "0x53d5d0": "PreparedScriptRecording.Allocate thiscall(output,start), ret4; source returns hostpacketobject",
+    "0x53d940": "PreparedScriptRecording.Record thiscall(recorder,action,actor), ret8",
+    "0x53db30": "PreparedScriptRecording.Emit cdecl(action,actor)"
+  },
+  "layouts": {
+    "pool": {
+      "first": "0x28683e0",
+      "end": "0x28febe0",
+      "slots": 512,
+      "stride": "0x4b4",
+      "referenceCounter": "0x4b0"
+    },
+    "packet": {
+      "mode": 0,
+      "buffer": 4,
+      "start": 8,
+      "end": 12
+    },
+    "action": {
+      "tokenPointerTable": 8,
+      "signedCount": 12,
+      "descriptor": 16
+    },
+    "descriptor": {
+      "typeByte": 9,
+      "codeWord": 10
+    },
+    "globals": {
+      "recorder": "0x9242c0",
+      "allowCallback": "0x876d88",
+      "fallbackStatePointer": "0x28572e0",
+      "publisher": "0x28572e8"
+    }
+  },
+  "orderedSemantics": [
+    "53d5d0 scans512fixedrecords for firstunsignedcounterzero, writescounter1 before returning lease {mode1,buffer,start,start}. Exhaustion still returnsmode1/nullbuffer/start/start. Existingnonzerocounter values are busy, includingnegative-bit values.",
+    "53db30 capturesrecorderglobal beforechildren, skipsallwork ifnull. 53d940 leasespacket BEFOREoptionalallowcallback; false releaseslivecounter andskipsvirtual/serialization/publication. Callbackmaymutaterecorderglobal withoutreplacingcapturedrecorder.",
+    "Allowed path invokesrecorder vtable30(actor), keepsLOW16identifier, thenreadsactiondescriptor/count afterward. Writes sevenbytes atbuffer+32:1,typebyte,bigendianCode16,bigendianIdentifier16,countLOWBYTE. Reads actualsignedfullcount freshly eachloop andtokentablefreshly. Negative count yieldsno tokens butheader countbyte remainslowbyte.",
+    "Eachwritten token is byteLength followed byFULLstrlenbytes (noNUL); lengths>=256 wrapstoredbyte while copyingfulltext. No leasecapacity checks exist in ownnativebody; pairedfixtures restrictcopiestowithinrecord payload. Nullbuffer stillreads eachtokenpointer butdoesnotdereferencetext.",
+    "Beforepublication, nonnullbuffercounter incrementswrapping thenPublish(lease,channel10) through28572e8. Nullbuffer executesactual60f2d0 writea0001000 atglobal28572e0pointer+34. Finalrelease rereadscounter:unsigned>1 decrements,elsewriteszero. Transport callbackmaychangecounter beforecleanup.",
+    "Phase18 provisional Animationport identifies53db30edge but actualbodyrecordsaction metadata/tokens; RecoveredRecordingDispatcherServices suppliesactualrecorderbehavior withouteditingsealedphase18."
+  ],
+  "ports": [
+    "Optional876d88 gate",
+    "Recorder vtable30 actor identifier",
+    "60f190 packet transport"
+  ],
+  "domains": [
+    "Validmapped boundedNULtokens, boundedtokenscount; destinationpacket payload disjoint frommetadata/strings/source table. Integer/rawbytepacket fields nofloatconstraints.",
+    "Fullpoolsha protectsunusedbytes; all512counters andselectedrecordfullbytes saved asfixtures. Selectedpayload begins5a.",
+    "Callbackgate, virtualactorIDand60f190transport explicitservice; actualchildren memcpy4ef660,strlen4f1ff0,swap16 621180andfallback60f2d0 executeoriginalnativebytes. Transportbody/networknotrecoveredhere.",
+    "No generatedgame/managedexecutables launched; warning-freecsc librarycompile259cores+harness.",
+    "Fresh REA Ghidra12.1.4 body instruction addresses match raw-byte disassembly within reported body ranges; skipped alignment qualified, same target SHA confirmed."
+  ],
+  "validation": {
+    "nativeCases": 675,
+    "nativeChecks": 2025,
+    "mismatches": 0,
+    "managedExecution": false,
+    "compiledCoreInputs": 259,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase21-20261013-compile.dll"
+  },
+  "credit": {
+    "newEntries": 3,
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  },
+  "freshReaEvidence": [
+    {
+      "path": "reports/rea-continuous/4002-script21-recorder.result.json",
+      "evidenceId": "ev_c96910856259cbaef0dccf7f7e6527cbae7a0187872baecef39bfc5a10afeaf2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x53d940",
+            "end": "0x53da7c"
+          },
+          {
+            "start": "0x53da80",
+            "end": "0x53db28"
+          }
+        ],
+        "total_bytes": 486,
+        "span_bytes": 489,
+        "non_contiguous": true,
+        "contains_entry": true
+      },
+      "instructionLocationsCompared": 168,
+      "instructionLocationsMatch": true,
+      "rawDecodedInstructionsOutsideGhidraBody": [
+        "0x53da7d"
+      ],
+      "qualification": "Ghidra excludes jump-over alignment instructions from its non-contiguous body; raw span disassembly retains them."
+    }
+  ]
+}

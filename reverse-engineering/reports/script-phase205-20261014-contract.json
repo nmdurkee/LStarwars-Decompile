@@ -1,0 +1,60 @@
+{
+  "scope": "Complete application allocator/release own bodies and release diagnostics",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 648,
+    "nativeChecks": 1748,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 4,
+    "bodyExecutions": {
+      "0x4eef40": 452,
+      "0x4eeda0": 302,
+      "0x4eedc0": 356,
+      "0x6e6950": 216,
+      "0x6eec22": 36,
+      "0x6eebcb": 36,
+      "0x4ef280": 196
+    },
+    "ports": [
+      "6E7570 CRT allocation",
+      "6E7633 CRT free",
+      "4F6740 private pool allocation",
+      "4EFB00 private pool free"
+    ],
+    "closure": "Complete allocation471/free450+two release diagnosticRET bodies; actual world memset/SSE children; arena/bump/debug-header/canary/list/high-water branches, heap mechanisms explicit",
+    "compiledCoreInputs": 378,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase205-20261014-compile.dll",
+    "sourceSha256": "22873de24b5bfcb68abd216a7bf268ba240f00130d28d4b3032e37af9ffa0688",
+    "harnessSha256": "b7b49320fce7a60838c0eff1487e7ea36b313b74cefed0d232b3da09ad04bb19",
+    "nativeOracleSha256": "0f28f891d59659835c06469a99cb8063f7842b81fdddfc0345707c50e68176b5",
+    "compileSha256": "470474e891b3e57b7b260b74bf148f741f898258410c0b38e2c3141fe6dcfd3e",
+    "memsetSource": "reconstructed/gameplay/world-phase133-20261013-ptl-runtime-memory.cs",
+    "memsetSourceSha256": "4e61c05ae81388099974c7b0db1e705819fdb88e2d8f31579b634ad3f6b684e8"
+  },
+  "semantics": [
+    "Arena aligns stored cursor to16, uses unsigned wrapped available>=size and updates cursor. Bump mode aligns size, uses signed STRICT remaining>aligned and updates stored cursor/remaining. Nonpositive requested size invokes a release RET diagnostic and continues. Neither early branch updates debug headers or high-water globals.",
+    "General allocation reserves filename length+size+45. CRT branch zeroes twice; private-pool branch once, through existing world133 memset and actual SSE bodies. Successful blocks retain32-byte header,12-byte prefix/suffix canaries, filename, line, sequence, linked debug head, byte accounting and signed high-water comparisons. Failure returns0 yet can update high-water globals using requested size.",
+    "Release checks both canaries but diagnostics are release RETs, so corrupted canaries continue unlink/free. Previous/next records and global head are updated in native order; accounting subtracts stored size with wrap, links cleared before final heap service. Null release is diagnostic-only.",
+    "Nonintercepting counters confirm actual main bodies, both new diagnostic RETs and reused memset/vector/loop bodies execute. Four heap mechanism services are explicit; no claim that this closes CRT/private-pool internals."
+  ],
+  "limitations": [
+    "Prepared disjoint filename, allocator metadata, positive general size0..256 and heap backing; heap services return prepared opaque/fresh buffers without modifying unrelated globals. Arena/bump branch covers wrapped/high/negative-bit sizes without dereferencing cursor output. List neighbors prepared, callback-mutable metadata/heap allocation aliasing excluded.",
+    "Void free EAX, CPU flags and private stack mutations outside portable projection. Existing world133 memory entries reused with zero duplicate credit.",
+    "378 core sources plus fixture harness compiled library only; managed replay UNEXECUTED."
+  ],
+  "credit": {
+    "newEntries": 4,
+    "addresses": [
+      "0x4eef40",
+      "0x4ef280",
+      "0x4eeda0",
+      "0x4eedc0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

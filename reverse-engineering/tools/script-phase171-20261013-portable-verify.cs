@@ -1,0 +1,26 @@
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Recovered.Gameplay;
+public static class ScriptPhase17120261013Verify
+{
+ static Dictionary<string,object> O(object x){return (Dictionary<string,object>)x;}static object[] A(object x){return (object[])x;}static uint U(object x){return Convert.ToUInt32(x);}static byte[] Unhex(string s){byte[] b=new byte[s.Length/2];for(int i=0;i<b.Length;i++)b[i]=Convert.ToByte(s.Substring(i*2,2),16);return b;}static string Hex(byte[] b){return BitConverter.ToString(b).Replace("-","").ToLowerInvariant();}
+ static bool Equal(object a,object b){if(a==null||b==null)return a==b;IDictionary ad=a as IDictionary,bd=b as IDictionary;if(ad!=null&&bd!=null){if(ad.Count!=bd.Count)return false;foreach(object k in ad.Keys)if(!bd.Contains(k)||!Equal(ad[k],bd[k]))return false;return true;}IList al=a as IList,bl=b as IList;if(al!=null&&bl!=null){if(al.Count!=bl.Count)return false;for(int i=0;i<al.Count;i++)if(!Equal(al[i],bl[i]))return false;return true;}if(a is string||b is string||a is bool||b is bool)return Object.Equals(a,b);return Convert.ToDecimal(a)==Convert.ToDecimal(b);}
+ sealed class Memory:TakeoverReleaseMemory
+ {public readonly SoundSetupImage Image=new SoundSetupImage();public readonly ConditionParserMemory Shared;public Memory(object rows){foreach(object item in A(rows)){var r=O(item);Image.Regions[U(r["address"])]=Unhex((string)r["bytes"]);}Shared=new ConditionParserMemory(Image);}public override byte Read8(uint p){return Image.Byte(p);}public override void Write8(uint p,byte b){Image.Byte(p,b);}public object State(object rows){var result=new List<object>();foreach(object item in A(rows)){var r=O(item);uint p=U(r["address"]);int z=((string)r["bytes"]).Length/2;byte[] b=new byte[z];for(int i=0;i<z;i++)b[i]=Read8(p+(uint)i);result.Add(new Dictionary<string,object>{{"address",p},{"bytes",Hex(b)}});}return result.ToArray();}}
+
+
+
+ sealed class Services:ScriptDecimalFormattingServices
+ {
+  readonly Dictionary<string,object> c;readonly List<object> events;public Services(Dictionary<string,object> config,List<object> log){c=config;events=log;}
+  public uint Port(TakeoverReleaseMemory m,uint callback,uint[] args){events.Add(new Dictionary<string,object>{{"callback",callback},{"args",args}});object all,value;if(c.TryGetValue("patches",out all)&&O(all).TryGetValue(callback==0x70138e?"0x7014a5":callback==0x700f21?"0x700f70":"0x"+callback.ToString("x"),out value))foreach(object item in A(value)){object[] p=A(item);uint address=U(p[0]),word=U(p[2]);for(uint i=0;i<U(p[1]);i++)m.Write8(address+i,(byte)(word>>(int)(i*8)));}if(callback==0x6f040c)return 0x10100e00;if(callback==0x6fae25)return 0x10100a00;if(callback==0x6fa67a)return 0x10100c00;string key=callback==0x70138e?"lower":"digit";if(c.TryGetValue(key,out all)&&O(all).TryGetValue(args[0].ToString(System.Globalization.CultureInfo.InvariantCulture),out value))return U(value);if(callback==0x700f21)return args[0]>=48&&args[0]<=57?4u:0u;int signed=unchecked((int)args[0]);return signed>=65&&signed<=90?unchecked((uint)(signed+32)):args[0];}
+  public override uint Thread(TakeoverReleaseMemory m){return Port(m,0x6f040c,new uint[0]);}public override uint Locale(TakeoverReleaseMemory m){return Port(m,0x6fae25,new uint[0]);}public override uint Multibyte(TakeoverReleaseMemory m){return Port(m,0x6fa67a,new uint[0]);}public override uint Lower(TakeoverReleaseMemory m,uint c){return Port(m,0x7014a5,new uint[]{c});}public override uint Digit(TakeoverReleaseMemory m,uint c){return Port(m,0x700f70,new uint[]{c});}
+ }
+
+ sealed class Ctype:ScriptCtypeServices
+ {readonly Services raw;public Ctype(Services s){raw=s;}public override uint LocaleLower(TakeoverReleaseMemory m,uint c,uint l){return raw.Port(m,0x70138e,new uint[]{c,l});}public override uint LocaleDigit(TakeoverReleaseMemory m,uint c,uint l){return raw.Port(m,0x700f21,new uint[]{c,l});}}
+ public static int Run(string root){var json=new JavaScriptSerializer{MaxJsonLength=Int32.MaxValue};var data=O(json.DeserializeObject(File.ReadAllText(Path.Combine(root,"reports/script-phase171-20261013-native-fixtures.json"))));int checks=0;foreach(object item in A(data["cases"])){var row=O(item);var input=O(row["inputs"]);var m=new Memory(row["initial"]);var events=new List<object>();var raw=new Services(O(row["context"]),events);var services=new RecoveredScriptDecimalCtypeServices(raw,new Ctype(raw));uint result=0;bool fault=false;try{result=(string)input["method"]=="Force"?PreparedScriptDecimalEditing.Force(m,services,U(input["bufferSlot"]),U(input["localeSlot"]),U(input["context"])):PreparedScriptDecimalEditing.Crop(m,services,U(input["bufferSlot"]),U(input["localeSlot"]),U(input["context"]));}catch(Exception){fault=true;result=0;}object[] a={fault,result,m.State(row["final"]),events.ToArray()},b={row["fault"],row["returnValue"],row["final"],row["nativeEvents"]};for(int i=0;i<4;i++){checks++;if(!Equal(a[i],b[i]))throw new InvalidOperationException("Decimal helper mismatch group "+i);}}Console.WriteLine(checks+" decimal helper comparisons passed.");return 0;}public static int Main(string[] args){return Run(args.Length==0?"reverse-engineering":args[0]);}
+}

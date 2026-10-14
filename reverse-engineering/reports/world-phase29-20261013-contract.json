@@ -1,0 +1,48 @@
+{
+  "status": "sealed qualified physical snapshot cleanup memory projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase29-20261013-ptl-snapshot-cleanup.cs",
+    "sha256": "0214e6eea494e928b0d31baa09083db09f2bdbb5c922bf15f234c767947a257b"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 584,
+    "checks": 584,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x655730": 584,
+      "0x655250": 577
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 7.895
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 269,
+    "harnessSourceFiles": 11,
+    "assemblySha256": "5b4682e72a13ac6ee991f7b1c18004f74e341d8f40b3badceecb48f54afab48a"
+  },
+  "scope": [
+    "655730 acquires lock even when signed packet capacity sum is nonpositive, then scans owner-zero packets whose physical pointer equals supplied argument. No first-chunk zero guard.",
+    "Cached packet scan base survives skipped rows. Matching row captures chunk before actual655250 cancellation; following queued chunk and packet routes use fresh global base. Fresh physical type emits tag2/9, auxiliaryC clears, selected clock copies and original inline timed insertion executes.",
+    "Clock bank is captured before clock store; signed priority bank is read again afterwards. Original inline priority unlink executes then live packet header/physical clear. Counter and scan limits reload exactly at mutation boundaries.",
+    "Cancellation free-array store may retarget packet base to a returned node; queue writes, priority unlink and clears then operate through that new base. A packet clear can change the live capacity sum and stop scanning.",
+    "Native655250 child executes unchanged; source reuses sealed list helpers for inline memory semantics without separate native helper-call credit."
+  ],
+  "domains": [
+    "Readable prepared physical/packet/return/list backing with terminating scans and disjoint call scratch. Spin lock initially free; no unbounded wait, concurrent mutation, fault or register/FPU-status projection.",
+    "Clock/time words finite, signedzero, Infinity or quietNaN; signaling NaNs excluded. Physical argument needs readable type/bank fields only when a snapshot predicate matches; no null/capacity guard is added.",
+    "Return count/storage and matching zero-chunk behavior follow original unchecked accesses; prepared backing must cover actual writes. Scene/game allocation lifecycle beyond the function is not claimed."
+  ],
+  "fixture": {
+    "path": "reports/world-phase29-20261013-vectors.json.gz",
+    "sha256": "cfc35c28fc366f1b8463f1ed99957ef5f2ac1e5101038806c8b3a3a127a7449b",
+    "cases": 584,
+    "assertions": 584
+  },
+  "reaEvidence": "reports/world-phase29-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

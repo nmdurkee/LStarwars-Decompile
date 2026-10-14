@@ -1,0 +1,101 @@
+{
+  "status": "bound live read-only Ghidra evidence for query/containment/RET child",
+  "evidence": [
+    {
+      "path": "reports/rea-continuous/2020-world23-scene-query.result.json",
+      "sha256": "1d75b04a7745b66a3a5a3ca03c1c10db60f25ad79edb661a047424704b791c95",
+      "evidenceId": "ev_eb642e91395b6b9c4aca9f3cd9be5c1dc7dc9159ed731a3872df7a358e4d86ae",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5d92b0",
+            "end": "0x5d9493"
+          }
+        ],
+        "total_bytes": 484,
+        "span_bytes": 484,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionAddressesNotInByteDecode": []
+    },
+    {
+      "path": "reports/rea-continuous/2021-world23-containment.result.json",
+      "sha256": "ffbdb50662c3715684d62935d901ddff048b01674f02607538a0afe71e0845e4",
+      "evidenceId": "ev_a8240bf8791782c988a90e1f1d036f73c827133047c3fd6806507c3e9ae8d0ae",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5d9220",
+            "end": "0x5d9289"
+          }
+        ],
+        "total_bytes": 106,
+        "span_bytes": 106,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionAddressesNotInByteDecode": []
+    },
+    {
+      "path": "reports/rea-continuous/2022-world23-assertion.result.json",
+      "sha256": "4afe70bad2f7723e1a4a5c986b24eb77e4295d9ebf216a7e46756739b79e7029",
+      "evidenceId": "ev_ff831b2371b3981fe84fef65b7b9dd6c15eab19367da6d751ed8302a578f79e7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x5c12e0",
+            "end": "0x5c12e0"
+          }
+        ],
+        "total_bytes": 1,
+        "span_bytes": 1,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionAddressesNotInByteDecode": []
+    }
+  ],
+  "diagnostics": [
+    {
+      "path": "reports/rea-continuous/2023-world23-scene-count.result.json",
+      "sha256": "e187dba547d8302314ff58219749b4885bbe429beec775456004241f9527af54",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"invalid_request\",\"category\":\"invalid_input\",\"message\":\"Analysis input is invalid. Check the arguments and try again.\",\"retryable\":true,\"remediation\":{\"action\":\"Correct the listed arguments and retry.\"},\"details\":{\"operation\":\"read_function_instructions\",\"issues\":[{\"path\":[],\"reason\":\"invalid_value\",\"message\":\"No procedure exists at the requested address: 0x5d9290\"}]}}}"
+          }
+        ],
+        "isError": true
+      }
+    }
+  ],
+  "limitations": [
+    "Ghidra has no identified procedure at5d9290. The count accessor is decoded from original immutable bytes and executed natively8times; no Ghidra function-bound evidence or inferred EvidenceId is claimed for that accessor."
+  ]
+}

@@ -1,0 +1,1 @@
+1,102 original native cases / 2,204 comparisons zero. Complete scaled-block fill/move wrappers and zero/arena leaves; actual world memset/SSE/memmove, no adapters. Wrapping block count, byte truncation, overlaps andCPU backing aliases.389-core library compiled; managed replay unexecuted. One new address4EF6E0; child credits deduplicated.

@@ -1,0 +1,38 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase60-20261013-ptl-timed-returns.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x657110",
+      "method": "PtlTimedReturns.Process",
+      "sourceFile": "gameplay/world-phase60-20261013-ptl-timed-returns.cs",
+      "coverage": "qualified original staged cleanup branches; inline tag1/5/6 remain explicit",
+      "qualification": "657110 own-body qualified staged-cleanup slice: caches selected bank clock/head, acquires polling lock, pops deadlines<=clock, and retains unknown-tag removal with cleared next but no recycling. Covers tags0/2/3/7/8/9 plus unrecognized tags; tags1/5/6 are explicit remaining inline branches and earn no equivalence credit in this phase. Tags0/7 scan cached packet capacity/base/chunk, unlink priority packet via real654ea0, then freshly clear packet tag/record/state and inspect live node tag before deadline+exact double0.1 and staged reinsert. Tags2/9 execute real5ffea0 command termination before advancing to3/8. Tags3/8 recycle ordinary/alternate chunks, reset32/12 timestamp/rate pairs with fresh chunk tag reads, recycle return node and clear tag. 452 complete images agree without native adapters/exclusions. Actual priority unlink123/timed insertion322/command termination199. Clock NaN and infinities are comparison-only in retained raw expiry routes; finite deadlines are required when advanced. Packet/node-tag and command/tag aliases retained.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase60-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase60-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase60-20261013-rea-evidence.json"
+      ]
+    }
+  ],
+  "dependsOn": [
+    "animation/AnimationPlayback.cs",
+    "gameplay/world-phase24-20261013-ptl-particle-links.cs",
+    "gameplay/world-phase26-20261013-ptl-particle-unlinks.cs"
+  ],
+  "evidence": [
+    "reports/world-phase60-20261013-contract.json",
+    "reports/world-phase60-20261013-native-tests.json",
+    "reports/world-phase60-20261013-rea-evidence.json"
+  ],
+  "harnessFile": "../tools/world-phase60-20261013-portable-verify.cs",
+  "verifierModule": "world-phase60-20261013",
+  "verifierClass": "WorldPhase6020261013Verify",
+  "fixture": "reports/world-phase60-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase60-20261013-managed-tests.json",
+  "nativeCases": 452,
+  "nativeMismatches": 0,
+  "expectedManagedAssertions": 452
+}

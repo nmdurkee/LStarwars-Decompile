@@ -1,0 +1,40 @@
+{
+  "scope": "Complete literal raw legacy pool relocation body",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 963,
+    "nativeChecks": 1926,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [],
+    "rawEntryConsumers": [
+      "0x4efc60"
+    ],
+    "closure": "Whole201-byte raw relocation, backwardsbytecopy andliteral metadata/boundary/free-list offsets; busy/null earlyreturn no pool read; noports, no corrected interpretation",
+    "compiledCoreInputs": 385,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase212-20261014-compile.dll",
+    "sourceSha256": "9c270f690b5157859d39178d6e73048d14715a5253c306c8f1b3bafbe2c5976b",
+    "harnessSha256": "b5114fa496535bc7d19345267fb0d6c0079aef464cbb924252554ee2816e3766",
+    "nativeOracleSha256": "3de4b2e7ff67f1caf8e9bc4415c76191c4fd1ea5c0f546912b0e4b2baa04106d",
+    "compileSha256": "e9eb4a6af8308c0d7f6692fc12a953b43006448602c913a94ef387f8bb7317aa"
+  },
+  "semantics": [
+    "Null input returns0; a high-bit following marker returns input pointer, without reading pool descriptor. Otherwise reads size at pointer-12 and following marker at pointer+size+4, unlinks following list metadata and copies original size bytes backwards to pointer+freeSize+28.",
+    "Original body writes new allocated header at pointer+freeSize+16 and free header at the original INPUT POINTER, not pointer-12. It updates both boundary tags and inserts that literal free header into root list. Exact offsets and existing earlier preheader bytes are preserved; no repaired private-pool interpretation is claimed.",
+    "963 cases cover size0..128, freeSize0..128, alignments0..3, overlapping payload movement, both list-neighbor combinations and null/unmapped pool early-return paths."
+  ],
+  "limitations": [
+    "Prepared readable/writable literal byte records and finite bounded copies; this raw legacy layout is not asserted to maintain207 current-pool invariants or used as a current-pool compaction API. Allocated/used counters remain untouched.",
+    "385 core inputs plus harness compiled library only; managed replay UNEXECUTED. Entry is unregistered; zero global address credit."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "addresses": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

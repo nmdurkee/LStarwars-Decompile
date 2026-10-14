@@ -1,0 +1,1 @@
+618 native cases / 1,236 comparisons zero. Whole raw swap16/32 and endian exchange/get, unaligned/state-field aliases and opaque DWORD values. Plain load/store semantics.386-core library compiled; managed replay unexecuted; zero address credit.

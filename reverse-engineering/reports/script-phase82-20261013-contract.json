@@ -1,0 +1,103 @@
+{
+  "scope": "Whole ring block decoder, symbol lookup and match distance through recovered bit collector; table readers remain explicit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 291,
+    "nativeChecks": 726,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 3,
+    "ports": [
+      "smallLengthReader4f9570",
+      "symbolLengthReader4f96b0"
+    ],
+    "closure": "Original4fa320 block→original4f9820/4f5f30→original4f5d00; only table setup readers normalized",
+    "compiledCoreInputs": 320,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase82-20261013-compile.dll",
+    "sourceSha256": "014fc5bd270de55572878135441a0ef709f1668a61407f95cf08ab6992a808f6",
+    "harnessSha256": "96b200fb0560fd63a0fd9dfec60e7ed565f45525112158162629ef327e9c349b",
+    "nativeOracleSha256": "89d72e92d78821660450cd1869862cf0569c396fa521bf2f027f599587fb7f6c",
+    "compileSha256": "e0023779af743d54665bbe0bec514465f64a972f4560de1d116a64e1f973fa1d"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4130-script81-block-decode.result.json",
+      "evidenceId": "ev_dd3ace3da52728f1ed9ec8f444443640b8dd2efe8d6fe895f350ed00340909c1",
+      "address": "0x4fa320",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fa320",
+            "end": "0x4fa3e9"
+          }
+        ],
+        "total_bytes": 202,
+        "span_bytes": 202,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4131-script82-symbol.result.json",
+      "evidenceId": "ev_97b96e4c6356996f779cc951b81e116b505f344eb25c023eb9fa9b1f4d3a1251",
+      "address": "0x4f9820",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f9820",
+            "end": "0x4f98b6"
+          }
+        ],
+        "total_bytes": 151,
+        "span_bytes": 151,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4132-script82-offset.result.json",
+      "evidenceId": "ev_97a4c6892529957b822c2223f0f6fb90965b59585a2e8358c01ae9c1564b8ca1",
+      "address": "0x4f5f30",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f5f30",
+            "end": "0x4f5fc4"
+          }
+        ],
+        "total_bytes": 149,
+        "span_bytes": 149,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Symbol block counter915fac0 extracts accumulator upper16, consumes16 bits, stores count, invokes small19/5/special3, symbol reader, then small14/4/specialFFFFFFFF. Decrements live counter and resolves top12 bits through4096-entry word table913fa8; nodes>=510 traverse shared word children2982740/2982f40 using masks80000 downward. Consumes decoded length byte90f598+leaf and returns leaf.",
+    "Distance top8 bits index256-entry table8cf398; nodes>=14 traverse children with masks800000 downward. Consumes length91ce68+leaf; category0returns0, category1returns1, highercategories extract/consume category-minus1 extra bits and return2^extra plus tail.",
+    "Block initial pending88ab3c decremented first, then copies existing match bytes from91ef34 into customEDI ring while wrapping source at1FFF. New literals<=FF copy directly. Higher symbols form pending length=symbol-minus254 and source=(output-distance-1)&1FFF; sequential byte copy preserves overlap. Pending decrement/store differs when output boundary terminates initial versus newly decoded match, preserving continuation across calls.",
+    "291 native cases /726 return, full-image and event groups zero; fixed and two-level symbol/distance trees, categories0..13, bit patterns0/12345678/FFFFFFFF, lazy table initialization, literals17/matches256/257/509, output1/17/257, pending0/3 and source0/8191. Actual original bit collector executes; only two table readers normalized."
+  ],
+  "limitations": [
+    "Prepared acyclic bounded trees with mapped nodes, valid leaf lengths0..32, valid8192-byte ring, positive output count1..8192. Guards for malformed cycles/invalid count do not claim native failure behavior.",
+    "Table readers4f9570/4f96b0 remain explicit.320core inputs plus harness compiled; managed replay UNEXECUTED; no command use credit, Git/shared manifest writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "addresses": [
+      "0x4fa320",
+      "0x4f9820",
+      "0x4f5f30"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

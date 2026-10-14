@@ -1,0 +1,42 @@
+{
+  "scope": "Full memory-file writer and corrected release CRT seek/write endpoint provenance",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 794,
+    "nativeChecks": 1588,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "Wholememory writer4f0380→actual6e6d90 memcpy withlivecursorreload; allocator/publicmemoryseek preparation. CorrectactualpublicCRTseek child6dee90, while6dee60 is CRTwrite endpoint, nohooks",
+    "compiledCoreInputs": 357,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase130-20261013-compile.dll",
+    "sourceSha256": "d0c497dd31965266cd7542f3422c09ace0116ae4d4b4b8f6c8403586c686cc71",
+    "harnessSha256": "6f00205ede96582a210e097fb8b7f12581b209261f07a4c3a0888442ea866633",
+    "nativeOracleSha256": "97c3267bf474cc26e3f442092a2c292ce481a5927185252a198e04bd99e129f5",
+    "compileSha256": "caa7e2fc8adb74dbd977ae436366c63857e39c87de5d1387f8194db8dcb3ea8b"
+  },
+  "semantics": [
+    "Whole77byte4f0380 clamps signedrequestedcount toinclusiveend remaining, copiesbytes viaactualmemcpy andrereadscursorfield aftercopybeforeincrement. Ignoresmemoryallocationmode0/1. NativeEOF0doesnotreadsource.",
+    "794nativecases1,588comparisons zero over all20slotrange endpoints, length1/17/128, cursor0/1, count0/1/16/17/128, mode0/1, varyingpointeralignments, identicalsrc/dst andcursor-metadata destinationalias.",
+    "Actual4f6de0 calls6dee90 forCRTseek;6dee60 isCRTwrite, evidencedbymultipleactualwritecallers including4f6f60. Bothexistingbodies zero; no extraaddresscredit. Nativecaller CRTseekcaseprojection remains0."
+  ],
+  "corrections": [
+    "1126dee90 Pollname and1166dee60 Seekname were semanticrolemislabels. 130 suppliescorrectedendpoint/service names withoutchangingsealedsource/evidence. Theiractualbody/zero behavior proofsandglobaladdresscreditremainvalid. 116–118 resultsremainvalidbutthe publicCRTseek child is1126dee90, not1166dee60."
+  ],
+  "limitations": [
+    "Preparedmemoryhandles400..413 withmappedinclusiveend/cursor andnonnegativeboundedcount<=16384, disjointoridentical copybacking. Partialoverlap andnegative memcpycountexcluded. Nativefixturelargestcount128.",
+    "357core plusfixtureharnesscompiledlibraryonly;managedreplayUNEXECUTED. No newcommandnames/uses."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4f0380"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

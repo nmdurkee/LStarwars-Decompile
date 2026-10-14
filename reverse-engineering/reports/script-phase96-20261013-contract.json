@@ -1,0 +1,145 @@
+{
+  "scope": "Whole byte primitives, live in-place parent-path compactor and catalog-open wrapper.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 127,
+    "nativeChecks": 508,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 5,
+    "ports": [
+      "catalogOnlyProviderFormat/finalOS/CRT/critical/diagnostic"
+    ],
+    "closure": "Original4f1ff0/4f1f10/4f1e80/4efec0 bodies no adapters; original4fa5f0→real4fa3f0/provider/container/open/seek/poll children",
+    "compiledCoreInputs": 334,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase96-20261013-compile.dll",
+    "sourceSha256": "8add91bbb8dceb2201d3e9e7cf46b8857635b674f77d51b6f8f656853910f766",
+    "harnessSha256": "3d87205461d1d1dbee07a30a23105d77b0b7278b3ab56e040ab43741872bac87",
+    "nativeOracleSha256": "f299e05b56ad30c80bc8a462797c1f60b9aaf831665c87478d186aab9c7a481f",
+    "compileSha256": "a0bc7a16ea7c404875153d5b4de6b4cb00e79ed2a97f8eb6f0c502c98a740a1b"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4162-script96-byte-length.result.json",
+      "evidenceId": "ev_df4da0f8f7d03d2b0d36f16e15e63b64aa07924b4a6904bc71b1ca2c125269c4",
+      "address": "0x4f1ff0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f1ff0",
+            "end": "0x4f200b"
+          }
+        ],
+        "total_bytes": 28,
+        "span_bytes": 28,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4161-script96-byte-copy.result.json",
+      "evidenceId": "ev_dff1af52a76d20af0dc4054ab44b0edd3fc5191aaf11c7d4eacf8388a9bc5eff",
+      "address": "0x4f1f10",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f1f10",
+            "end": "0x4f1f39"
+          }
+        ],
+        "total_bytes": 42,
+        "span_bytes": 42,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4160-script96-byte-concat.result.json",
+      "evidenceId": "ev_58b3816151b0405fcb01063d7a325e31aefcac4d71f0699a16b8ce6fe26ffff4",
+      "address": "0x4f1e80",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f1e80",
+            "end": "0x4f1eb2"
+          }
+        ],
+        "total_bytes": 51,
+        "span_bytes": 51,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4159-script96-canonical-path.result.json",
+      "evidenceId": "ev_b3c2316bcfcb98f06ac8a0a1b9ff6a583ec518557152580368b877bd85b8000a",
+      "address": "0x4efec0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4efec0",
+            "end": "0x4eff29"
+          }
+        ],
+        "total_bytes": 106,
+        "span_bytes": 106,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4157-script96-catalog-open.result.json",
+      "evidenceId": "ev_7a51fe0407ee094cd4f69b70153a70991529e2933f5b3c6426a07ce3e560d0db",
+      "address": "0x4fa5f0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fa5f0",
+            "end": "0x4fa60a"
+          }
+        ],
+        "total_bytes": 27,
+        "span_bytes": 27,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase94-20261013-contract.json"
+  ],
+  "semantics": [
+    "Length counts zero-terminated bytes, no null-pointer special case. Copy null source clears one destination byte and returns0; other copy returns copied length, reading next source after each live byte store. Append scans destination end, nullsource returns end pointer untouched; other source copies includingNUL and returns one past NUL, rereading source byte AFTER destination store for loop decision.",
+    "Compactor keeps separate live input/output pointers. Onseparator-dot-dot-separator, resets output=input and backtracks live bytes to priorseparator orcolon. Priorseparator skips3input bytes; priorcolon advances output and skips4; missing predecessor retains pattern with rewritten prefix. Reads context separator at10 per iteration. Writes terminating0 at finaloutput and returns output pointer. Empty path requires no context read.",
+    "Catalog-open convenience4fa5f0 snapshots current container91ee88 before calling concrete94gameOpen(path,mode,container,quiet0). No open wrapper or game body adapter.",
+    "127cases/508 return,image,event,seek ordinal groups zero: empty/ASCII/extended length-copy-append, nullsources, safe copy aliases0/1/3 and appendterminatoralias; parent paths with separators/colons/multiple reductions/default unchanged patterns and separator2F/5C; catalog modes0/1/2/3/FFFFFFFF, container0/hit/miss and providers0/1/2. Byte/path bodies no adapters; catalog only final formatter/platform/diagnostic leaves."
+  ],
+  "limitations": [
+    "Prepared bounded mapped terminated strings and progressing safe overlaps; native nonprogressing strcat overlaps are excluded. Path input has readable zero padding for original skip4/post-NUL next-byte load, reproducing defined prepared storage rather than inventing uninitialized scratch.",
+    "334core inputs plus harness compiled, managed replayUNEXECUTED. Five new entries, no script command use, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 5,
+    "addresses": [
+      "0x4f1ff0",
+      "0x4f1f10",
+      "0x4f1e80",
+      "0x4efec0",
+      "0x4fa5f0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

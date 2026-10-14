@@ -1,0 +1,55 @@
+{
+  "scope": "Complete4f6de0 publicseek handle dispatch through actualmemory/Win32children andbuffered64bit arithmetic; finalCRT/compressed/Win32 ports explicit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1440,
+    "nativeChecks": 5760,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "CRTseek6dee90",
+      "compressedSeek4f0ae0",
+      "SetFilePointerExIAT7510ec"
+    ],
+    "closure": "Actual4f6de0 allbranches→4f6c70memory/4ff430Win32/buffered64bitcursor; highoffset drops forCRTandcompressed/memory children preserved",
+    "compiledCoreInputs": 316,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase78-20261013-compile.dll",
+    "sourceSha256": "d7c7e54e223d62ef7702811dce1029ed5ec03b0897332c419869d432e1cd6e90",
+    "harnessSha256": "a56f729b22220b2c2703f6df8b7b0dcb477645b89b7177981886add6c5887c4b",
+    "nativeOracleSha256": "1acf588bdfec8a924764128c4d74cdd92858b7fc7cb4e86921bdd572f90d7d6d",
+    "compileSha256": "46cac334a1a1421dd5d4bc76b48cf7ff488bc3b1a9ca5096c0774c239250f59b"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4113-script72-seek.result.json",
+      "evidenceId": "ev_2ebd827d7fa84cf5f2e8eaa75614cd85640ce16fb64b30735a4b4082583cf3d3",
+      "address": "0x4f6de0",
+      "bodyBytes": 190
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase72-20261013-contract.json",
+    "reports/script-phase76-20261013-contract.json"
+  ],
+  "semantics": [
+    "Signedhandle>=1000 CRT6dee90(handle-1000,offsetLOW,origin,0) ignorescallerhigh andsignextends32return.>=400 calls4f6c70 withsignextensionofLOW, replacingcallerhigh; actualmemorychild ignoreshigh andcompressed4f0ae0 receivesLOW/signHIGH.",
+    "Lowerhandle bufferedflag2c nonzero updatesrecord64position:origin1addsfulllow/high64offset withcarry,origin2subtractsfulloffsetfromdeclared64length,allotheroriginsassignoffsetabsolute. Lowerunbufferedtail callsactual4ff430(handle-1,LOW,HIGH,origin), preservinghigh andusingits0/1/other→2 Win32normalization.",
+    "Thusendseekbuffered/memory paths subtractoffset, whileunbufferedWin32path receivesordinaryend+offset; unknownorigins areabsolute forbuffered butend forWin32.1440cases/5760return/image/event/hostcursor groups0 acrossalltaxonomybranches,origins0/1/2/3/FFFFFFFF,low0/1/FFFFFFFF/80000000,high0/FFFFFFFF/12345678 andbufferflags0/1.",
+    "Native190byte dispatcher,148byte memorychild and98byteWin32wrapper executeactualbytes; onlyfinalCRTseek/compressedseek/SetFilePointerEx servicevalues normalized."
+  ],
+  "limitations": [
+    "Preparedmappedlowstreamrecords/64bitfields/handlemap orallocatedmemory400..413; compressedseek4f0ae0 andCRT6dee90 remainexplicit. Hostcoordinates followpreparedservicevalues,notactualOSfile behavior.",
+    "316core sources+portable replay librarycompiled; managedreplayUNEXECUTED. No game/managed execution,Git/sharedmanifest writes orcheckpoint."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4f6de0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

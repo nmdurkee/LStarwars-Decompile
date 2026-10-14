@@ -1,0 +1,165 @@
+{
+  "scope": "Complete recovered file bootstrap, critical slots, CRT byte and reversed literal-name registry",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 201,
+    "nativeChecks": 603,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 6,
+    "ports": [
+      "InitializeCriticalSection"
+    ],
+    "closure": "Actual4f9940→4ff4a0 RET/4ffa60 criticalslots/6db910 CRTbyte/4f78b0 all63literalrows→4f7830/release diagnostics; finalOS critical initialization only",
+    "compiledCoreInputs": 342,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase104-20261013-compile.dll",
+    "sourceSha256": "0cd01ec182947fa18fbc2b4e83b7fb76fec5243f1c779eb07fd5e25f272010d9",
+    "harnessSha256": "79c78d39d983f0031dd99f29a7d1c04c8927181a9aa936e17cb020c6c2947224",
+    "nativeOracleSha256": "93bcc741e565db0d22240b5d2ac02ca21fe1d641b44f3d9640417379740c06e7",
+    "compileSha256": "5f6bc04dd0d3c41ce986a33f8d27a6fd7e145b4e5d6c40628245ddc7295e78c0"
+  },
+  "reaEvidence": [
+    {
+      "address": "0x4f9940",
+      "evidenceId": "ev_48c4a7eebcbd0e10e43c9d571edccf5ca8daf0c6407ec919f22354072b846e49",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f9940",
+            "end": "0x4f99ba"
+          }
+        ],
+        "total_bytes": 123,
+        "span_bytes": 123,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4186-script104-bootstrap.result.json"
+    },
+    {
+      "address": "0x4ff4a0",
+      "evidenceId": "ev_8f1692dcf13de474cfa2de3134e798fdb225b793c13ec034c500b06b674b60db",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ff4a0",
+            "end": "0x4ff4a0"
+          }
+        ],
+        "total_bytes": 1,
+        "span_bytes": 1,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4187-script104-bootstrap.result.json"
+    },
+    {
+      "address": "0x4ffa60",
+      "evidenceId": "ev_ee1619becc0da41aa44229e694d58810125a6856b23c3d0300fe7f72abda97af",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ffa60",
+            "end": "0x4ffa8f"
+          }
+        ],
+        "total_bytes": 48,
+        "span_bytes": 48,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4189-script104-mutexcreate.result.json"
+    },
+    {
+      "address": "0x6db910",
+      "evidenceId": "ev_a1e9c9d728dffd094fa679ce642f78c193e1bd28723cc61347a558098e843302",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6db910",
+            "end": "0x6db917"
+          }
+        ],
+        "total_bytes": 8,
+        "span_bytes": 8,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4195-script104-console.result.json"
+    },
+    {
+      "address": "0x4f78b0",
+      "evidenceId": "ev_d2c957d8af5460f4dd401527e908db408c57f8c72c0dd6cbc1f739e8df8ef90c",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f78b0",
+            "end": "0x4f7c69"
+          }
+        ],
+        "total_bytes": 954,
+        "span_bytes": 954,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4194-script104-flagsetter.result.json"
+    },
+    {
+      "address": "0x4f7830",
+      "evidenceId": "ev_035e18e762d1eb406bafe84d97f718a40738abcc92ac6f11304aeb3191c08022",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f7830",
+            "end": "0x4f78a0"
+          }
+        ],
+        "total_bytes": 113,
+        "span_bytes": 113,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "reference": "reports/rea-continuous/4196-script104-extensionrow.result.json"
+    }
+  ],
+  "semantics": [
+    "4f9940 clears190memoryfile slots/3c0compressed slots, calls original4ff4a0 releaseRET,4ffa60/CRTbyte6db910/all63registryrows4f78b0 then resetsglobals and returns firstargument.",
+    "4ffa60 admits signed oldcount<=12, increments before final InitializeCriticalSection on91ef70+24*newcount, reloads count after callback. Positivecount13returns0; count12 produces13.",
+    "4f7830 stores full reversed name bytes and metadata at offsetsd/e/f. Warnings atcount>=64 andlength>=13 call original102RET and continue; preparedmappedoverrun backing fixtures preserve writes.",
+    "4f78b0 registers63literal rows in original order; inputnonzero selects75eadc instead75ead4 for type4/slot2. Bootstrap derives selection from actual CRTbyte6db910 global8264c7.",
+    "Native201cases603groupszero:120bootstrap combinations,24criticalcounter/OSpatch cases,4initializer arguments,48row/name/capacity boundaries,5CRTbytevalues. Only final OS InitializeCriticalSection is a port."
+  ],
+  "limitations": [
+    "Bounded mapped source/destination fields, names<=16 in fixtures, preparedOS critical callback. Literal row registration has no authored command credit.",
+    "342core sources+portable harness compiled library only; managed replayUNEXECUTED.",
+    "No actual host critical sections/settings changed; original bytes run solely within isolated NativeX86. No game/generated launches, Git/shared manifests/checkpoints."
+  ],
+  "credit": {
+    "newEntries": 6,
+    "addresses": [
+      "0x4f9940",
+      "0x4ff4a0",
+      "0x4ffa60",
+      "0x6db910",
+      "0x4f78b0",
+      "0x4f7830"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

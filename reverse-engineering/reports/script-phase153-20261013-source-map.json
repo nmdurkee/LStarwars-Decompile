@@ -1,0 +1,37 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/script-phase153-20261013-ScriptPrintfOutput.cs"
+  ],
+  "dependsOn": [
+    "gameplay/script-phase152-20261013-ScriptSprintf.cs"
+  ],
+  "functions": [
+    {
+      "address": "0x6eee39",
+      "method": "PreparedScriptPrintfOutput.Byte",
+      "coverage": "complete register-ABI byte emission"
+    },
+    {
+      "address": "0x6eee6c",
+      "method": "PreparedScriptPrintfOutput.Repeat",
+      "coverage": "complete live caller-slot repetition through actual byte helper"
+    },
+    {
+      "address": "0x6eee90",
+      "method": "PreparedScriptPrintfOutput.Span",
+      "coverage": "complete count-only/span/error replacement through actual byte helper"
+    }
+  ],
+  "evidence": [
+    "reports/script-phase153-20261013-contract.json",
+    "reports/script-phase153-20261013-tests.json",
+    "reports/script-phase153-20261013-validation.json"
+  ],
+  "harnessFile": "../tools/script-phase153-20261013-portable-verify.cs",
+  "verifierModule": "script-phase153-20261013",
+  "verifierClass": "ScriptPhase15320261013Verify",
+  "fixture": "reports/script-phase153-20261013-native-fixtures.json",
+  "managedReport": "reports/script-phase153-20261013-managed-check.json",
+  "commandCoverage": []
+}

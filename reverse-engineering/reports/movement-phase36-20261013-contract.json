@@ -1,0 +1,35 @@
+{
+  "scope": "Refines previously mapped 4d9760 with independent caller world and live current-world binding, preserving historical equal-world phase32/34 source and evidence. No new entry credit.",
+  "validation": {
+    "nativeCases": 303,
+    "nativeAssertionGroups": 1515,
+    "mismatches": 0,
+    "preparedManagedAssertions": 1515,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 262,
+    "dll": "reconstructed/bin/movement-phase36-20261013.dll",
+    "dllSha256": "28718bb640a9c19c714cc2794fce5f1ff7dfec1ac315c77e964faf99ffa59793",
+    "execution": false
+  },
+  "boundaries": [
+    "CurrentWorld is the binding of native PTR802c54, used only by the special speed selection. World is the independent cdecl parameter used by the projectile gate. Neither pointer is inferred from the other.",
+    "Cross-product covers differing zero/normal/other game IDs, mode -1/0/1/2, two phases and projectile-global identities, including simultaneous speed and projectile decisions. Negative mode is supplied with its raw DWORD bits in native setup.",
+    "Null current-world binding is permitted only on frozen or phase>=1 paths where original makes no current-world read. Caller world remains readable for projectile selection.",
+    "All phase32/33/34 finite memory/arithmetic, exact-table and declared-stack-word restrictions remain; 64d270 lifecycle construction is still the sole native boundary adapter.",
+    "Historical phase32/34 use one World binding for both contexts; their retained suite/domain requires passed world equal current world. This refinement removes that composition assumption without altering prior sealed source.",
+    "Managed replay is compiled only; whole-game and actor creation equivalence remain outside this evidence."
+  ],
+  "evidence": [
+    "reports/movement-phase34-20261013-contract.json",
+    "reports/movement-phase33-20261013-contract.json",
+    "reports/rea-continuous/1007-root-pod-instructions.result.json"
+  ],
+  "hashes": {
+    "reconstructed/gameplay/movement-phase36-20261013-PodFrameGlobals.cs": "52e912cced1de3c65aa76b657b530d312e90a3c723147d0675b4c3394733ec9e",
+    "tools/movement-phase36-20261013-native.py": "c57033b938454391e43792bd1fca77adabd1d6e441a7f03116ba6858c769d962",
+    "tools/movement-phase36-20261013-portable-verify.cs": "13c42170039095f77aefbff5c6ae62343a5b2ad4ee67798a3f4f9ad93982e6fd",
+    "reports/movement-phase36-20261013-fixtures.json.gz": "1c1c9ddc6fd7c3319987727328e2e3d750b3582022a804ef2fac055b6078d7ee"
+  }
+}

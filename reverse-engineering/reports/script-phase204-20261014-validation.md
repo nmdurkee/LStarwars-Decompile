@@ -1,0 +1,1 @@
+322 original native cases / 644 memory/event comparisons zero. Whole raw configuration153 and release79 bodies, live callback-mutated globals and wrapping allocation sizes. Application allocation/release remain explicit services.376-core library compile; managed replay unexecuted; zero new credit.

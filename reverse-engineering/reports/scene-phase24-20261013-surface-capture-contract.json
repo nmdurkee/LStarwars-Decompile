@@ -1,0 +1,36 @@
+{
+  "originalSHA256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "body": {
+    "available": true,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "start": "0x6e28e0",
+        "end": "0x6e2ad4"
+      }
+    ],
+    "total_bytes": 501,
+    "span_bytes": 501,
+    "non_contiguous": false,
+    "contains_entry": true
+  },
+  "scope": [
+    "Whole original6e28e0 and actual integer memcpy4ef660 run unchanged in isolated native memory. Final device/surface/buffer COM are explicit.",
+    "D3DX save-to-memory71572a and debug allocator4eef40 remain explicit external SDK/intermediate allocation policies. Source does not claim their CPU implementation, file behavior or physical device/GPU equivalence.",
+    "Width0 loads backend138. Height0 uses original aspect override0/1/2/3/default float constants or backend630, unsigned width x87 divide, FISTP64 truncation and low32. Source bounded to finite nonzero aspect and fitting Int32 conversion; explicit nonzero height is raw forwarded uint.",
+    "Buffer local at entrySP-8 is supplied incoming residue when requested height!=0. Height0 conversion overwrites it with the computed height low word; D3DX stage later zeroes it. Early cleanup requires that word be0 or a resolved object, never invented initialization.",
+    "Three separate original invalid continuations retained: computed479/1439 and explicit residuebad00bad dereference at6e2ac2 after failed initial creation. These are evidence outside the resolved source equivalence policy, not repaired behavior.",
+    "Stable disjoint destination-output word and internal stack boxes; successful SDK buffer/borrowed data pointers resolved. Allocated destination/source data buffers disjoint with sufficient capacity for the SECOND GetBufferSize, bounded0..65536. Zero length needs no pointer resolution.",
+    "First GetBufferSize determines debug allocator request, second determines actual memcpy length, third determines raw return EAX. Failures return initial0, not HRESULT. No implicit LastResult cache writes; fresh backend/device/active surface after callbacks retained.",
+    "Width/height argument words become render/offscreen handle boxes, cleared after callback Release; buffer word is retained even after cleanup. Caller third pointer and final COM output views stay stable across services; no later physical stack lifetime claim.",
+    "All1024 calls compare full raw/guarded bytes; every case/edge retains SHA256,23 representative cases retain complete raw buffers and deterministic source/tool seed. Signaling NaN source payloads copied as integer bytes, not FLD/FSTP values.",
+    "Native/Python differential and source library compile passed; no device/SDK/OS/game/managed launch or settings write."
+  ],
+  "stack": {
+    "argument1": "entrySP+4 renderTarget handle box",
+    "argument2": "entrySP+8 offscreen handle box",
+    "buffer": "entrySP-8 incoming residue OR FISTP64 height low word, then D3DX output box",
+    "thirdArgument": "stable destinationOut pointer"
+  },
+  "negativeEvidence": "reports/scene-phase24-20261013-surface-capture-invalid-continuations.json"
+}

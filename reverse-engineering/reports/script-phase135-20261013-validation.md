@@ -1,0 +1,1 @@
+493 original x86 cases; 1,972 comparisons; zero mismatches. Whole126byteU32writer plus94byterawbegin0credit. Finalwrite/seekOSports only.362core plusfixtureharnesscompiledlibraryonly. Managedreplayunexecuted.

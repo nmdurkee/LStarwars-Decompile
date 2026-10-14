@@ -1,0 +1,42 @@
+{
+  "scope": "Canonical515320 fullfinite rawfloat comparison via64-significand exact subtraction and ordering, superseding54 algebraic projection.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 500,
+    "nativeChecks": 1500,
+    "mismatches": 0,
+    "faultCases": 1,
+    "managedExecution": false,
+    "compiledCoreInputs": 293,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase55-20261013-compile.dll",
+    "sourceSha256": "9485114fa0a4368098a9e1e01498c4d9a8316d0794232b86a171bc2b1ab5732d",
+    "harnessSha256": "00f149264c3835576c10a94a64dab75e0c9d9a8d0f5ffbfbc932d4683a815c6d",
+    "nativeOracleSha256": "738a00dca508c5390a0a9c000ba8e3657500fc32ee1f478d661abae7eecd5723",
+    "compileSha256": "b7c6be5681663140c4dec3ecccf53de166d770cc85ada0d46991dd2f659a14c3"
+  },
+  "reaReferences": [
+    "reports/script-phase54-20261013-contract.json",
+    "reports/script-phase54-20261013-assembly.json"
+  ],
+  "semantics": [
+    "OriginalFSUBqword computedwith64-significandnearest-even rounding, thenoriginalFCOMPP orderedcompare; exactfloat32 inputs andoriginaldoublethreshold0x3fb99999a0000000.",
+    "PortableWide normalizesraw32/64 inputs, aligns intointegerlimbs, adds/subtracts withcarry/borrow, rounds64nearest-even once, comparesnormalizedsign/exponent/significand withoutfloat32store.",
+    "Fixes54reassociation atactorYthreshold/opponentYnegativesubnormal andactorYpositive-tiny/opponentYnegative-threshold: retainnativeoperandorder atallfinite rawfloatinputs.",
+    "500 nativecases1500groupszero mismatches/1unguardedcontrollerfault:13rawedgescrosspair,200explicitthreshold/minuscule-exponent cancellationcases,128random32bitpairs (finitefilter),nullguards,Inf/quietNaN."
+  ],
+  "limitations": [
+    "Originalthresholdrequired; signalingNaN/floatingpointstatus notclaimed. Inf/quietNaN resultordering matchedbutpayloadstatus notreturned.",
+    "Native model+originalbody differential proved;293cores+harnesslibrarycompile, managedreplayUNEXECUTED.",
+    "Phase54source keptforreproducibility of484fixtures only; runtime515320 callers shouldusePreparedExactOpponentBelow.Evaluate.",
+    "No newaddress/commandcredit, Git/sharedmanifest writes."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "existingRefinements": [
+      "0x515320"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

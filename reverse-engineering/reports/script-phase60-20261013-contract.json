@@ -1,0 +1,116 @@
+{
+  "scope": "RawLocatorRange3D/XZ refines514a00/514a50 andnewNodeRange514f50 withoriginaldistance/sqrtchildren.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "nativeCases": 222,
+    "nativeChecks": 666,
+    "mismatches": 0,
+    "faultCases": 1,
+    "managedExecution": false,
+    "compiledCoreInputs": 298,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase60-20261013-compile.dll",
+    "sourceSha256": "0bfedc328726bd5631e23e1982c60f22805c545eb4262c5a02debfe56baf34d6",
+    "harnessSha256": "a139e6d4663fdfd967b68ec06e27aded6d6604979a13f662da363bee2ff54bf5",
+    "nativeOracleSha256": "676a081ca10b8b2bf19c9cd31ede21ec19a8532566ba255ae1406d413feaca8d",
+    "compileSha256": "4ccb9c17e91899ff08b5414961734ea49f41d4b77c5a9da20083b5e2de9777d6"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4089-script60-locatorrange.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514a00"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4090-script60-locatorxz.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514a50"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4091-script60-noderange.result.json",
+      "evidenceId": null,
+      "body": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x514f50"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "semantics": [
+    "Locator3D/XZ guardsactor thenactorD0presence only; D0 neverdereferenced soDEADBEEFpresencevalid. Explicitlocatorarg18bypassespacketread;elsepacketA4nullable;fallbackoriginal75ecf0. Coordinates actor14c,locator10; controllerpositiondeliberatelydifferent inrandomtests.",
+    "NodeRange actor0/controllerD00/bound0→fallback75ecf0;otherwise distance(bound4,controller5c), controllerpointerdereferenced. Invalidnonnullcontrollerfaults onlyNodeRange.",
+    "Originalactual5becc0/5bed80 writesprivatecompilerlocalscratchdifferences andfloat32squaredsum before5c0240→6e9530sqrt; privatecompilerstack excludedheapprojection, whole childarithmetic executesunmodifiednativebytes.",
+    "PortableusessealedLocatorCommands finitefloat32differences andFiniteX87 squaredsum, thenMath.Sqrt double→float32 forpreparedfinitefloat-squares. No newlycreditedhelperentries.",
+    "222cases666groupszero mismatches/1fault:zero/equal/3-4-12/different3DvsXZ/subnormal-scale/mixed-sign coords,32randomvectorpairs percallback, allnullguards/explicitfallback/invalidpresencepointers."
+  ],
+  "limitations": [
+    "Finiteall3coordinatesandfinite squaredsum required; XZYcomponentnotusednativebutpreparedsourceassumescompletefinitevectors. Nonfinite/overflowhelpers/status outsidepaired domain.",
+    "298cores+harnesslibrary compiled,managedreplayUNEXECUTED.",
+    "NativeMathchildrenwholebodyproof retained, no platform/game executable launches orGit/sharedmanifest writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x514f50"
+    ],
+    "existingRefinements": [
+      "0x514a00",
+      "0x514a50"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

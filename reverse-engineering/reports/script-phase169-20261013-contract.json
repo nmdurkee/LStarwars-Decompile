@@ -1,0 +1,87 @@
+{
+  "scope": "Complete forcdecpt_l6EDF15113bytes and cropzeros_l6EDF86128bytes, actual locale constructor.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 497,
+    "nativeChecks": 1988,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 3,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "7014A5 tolower",
+      "700F70 isdigit",
+      "6F040C thread",
+      "6FAE25 locale refresh",
+      "6FA67A multibyte refresh"
+    ],
+    "closure": "actual6EDF15/6EDF86→actual6EB53D with original returnEAX/overlap byte moves; ctype/locale runtime services explicit",
+    "compiledCoreInputs": 380,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase169-20261013-compile.dll",
+    "sourceSha256": "7283f33bafeb92b776eef33c679405821f3fe02db9cce3ead43ace21da2a3017",
+    "harnessSha256": "0417f52c7c4e682cd032062285de7fd05da4846fdd24661243d3d217202e17d5",
+    "nativeOracleSha256": "f80a7818b44cd51ef61e6808d000e6f2979c3abbd1f9d914fb358a22408a7f65",
+    "compileSha256": "ed9d078984d708360d4188b320d6a96a8917c9ee1cb80bb28a0e8cf81bb08080"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4291-script169-force-decimal.result.json",
+      "evidenceId": "ev_86acfbf51ac03dc1023bd6a8d3c288176147288f9b4185a0fb6546504e278de2",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6edf15",
+            "end": "0x6edf85"
+          }
+        ],
+        "total_bytes": 113,
+        "span_bytes": 113,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4292-script169-crop-zeros.result.json",
+      "evidenceId": "ev_517a1b5a97c696b2df7e3be4613af2f63c81c5bb322058e75ca9d8336f725e75",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6edf86",
+            "end": "0x6ee005"
+          }
+        ],
+        "total_bytes": 128,
+        "span_bytes": 128,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Constructs locale before reading live original buffer slot. Force uses signed byte lower and unsigned byte digit callbacks; initially e/E skipsdigit loop, otherwise advances at least one byte and scans digit-nonzero. If final lower is x advances2, reads live locale decimal byte via localeBC→pointer→byte, inserts it and shifts all original suffix bytes includingNUL with sequential stores.",
+    "Crop captures locale and scans for its initial decimal byte, then finds NUL/e/E suffix, moves backward across0bytes, removes decimal when no fraction remains, and copies suffix/NUL forward sequentially. No decimal or empty string still advances return pointer to one past original NUL.",
+    "Native C void incidental EAX preserved:Force retains upper24bits from last lower and lowbyteoriginalpadding beyondNUL;Crop retains final moved NUL pointer or one-past original NUL. Owned context cleanup overwrites EAX with thread pointer in bothhelpers before clearing bit2.",
+    "497native cases/1988 checks zero with3 expected bad buffer/locale faults:empty/nonnumeric/decimal/hex/exponent/zero/case matrices, arbitrary decimal0/dot/comma/zero, spare padding0/CD/AB, high lower return bits, digit overrides, original live buffer-slot and decimal/text callback mutations, implicit/owned/highthreadflags."
+  ],
+  "limitations": [
+    "Ctype7014A5/700F70 and locale runtime remain explicit. Prepared writable terminated buffers with spare output byte; private context mapped/disjoint. Full callback ordering covered for listed mutations, not arbitrary failures or private frame aliases.",
+    "380core inputs and portable replay compile as library; managed replay UNEXECUTED. No shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "newMappedAddresses": [
+      "0x6edf15",
+      "0x6edf86"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

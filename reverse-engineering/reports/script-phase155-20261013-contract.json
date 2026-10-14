@@ -1,0 +1,88 @@
+{
+  "scope": "Complete CRT flsbuf6EECD9 and actual fileno6F3C74, buffered/unbuffered/error paths and live caller slots.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 353,
+    "nativeChecks": 1412,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 3,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "6EAD5F errno",
+      "6E9FC2 invalid",
+      "6E81D7 standardstreams",
+      "701CE5 isatty",
+      "701CA1 getbuf",
+      "6F6461 write",
+      "701B88 seek"
+    ],
+    "compiledCoreInputs": 365,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase155-20261013-compile.dll",
+    "sourceSha256": "d4db4907090f645a308425280bc1ebe4aec2994ad98f3bd1710e74aede8bb3d4",
+    "harnessSha256": "b85280b58469827c8bb6adf81a756c6167577ed49f741d8efa04f93d94225803",
+    "nativeOracleSha256": "601509b153750d5ee25c2818084a2f22fc50467078310f3780143dd8fc6a57d1",
+    "compileSha256": "8be8cb0bba00cd3a9c41e5e220d5fc7fd9a0ccd9b8a92f084ed283569a249af2"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4272-script154-flush.result.json",
+      "evidenceId": "ev_22283b0a5277ebb2b7aae5714f830e9aa48da2b3da93ba164f2bead5aff4ddb5",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6eecd9",
+            "end": "0x6eee38"
+          }
+        ],
+        "total_bytes": 352,
+        "span_bytes": 352,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "path": "reports/rea-continuous/4275-script155-fileno.result.json",
+      "evidenceId": "ev_8db0c124c77413559d7614afac49f021f8cb60e9cc3b0265d3515917ce039faf",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6f3c74",
+            "end": "0x6f3ca0"
+          }
+        ],
+        "total_bytes": 45,
+        "span_bytes": 45,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Fileno cdecl(file):nonnull returnsfile10; null calls errno,writes22,dispatches five-zero invalid parameter,returnsFFFFFFFF when handler returns. Flush capturesfile pointer, calls actualfileno andOVERWRITES originalcaller fileargument slot withdescriptor beforeflags tests.",
+    "Flags82absent writeserrno9,flags40 writeserrno34; both ORLIVEerrorflag20 andreturnFFFFFFFF. Readingbit1 clearscount and requiresflag10,elseerror; transition clearsreadbit then clears10/sets2,count0. Missingbufferflags10C consultsstandardstreams twice asneeded,stdout/stderrterminalcheck thenoptionalgetbuf. Subsequentbufferedtest readsLIVEflags108.",
+    "Buffered path captures oldptr-base as signedwrapped amount,sets ptr=base+1,count=bufsize-1. Positivepending bytes callwrite; nonpositive usesrawdescriptorblock29A9B40 or sentinel829C00 andflag20 toseek(fd,offset0,origin2). Seek failure requiresbothEAXandEDXFFFFFFFF; success writesLIVEbase byte fromLIVEcharacter slot. Unbufferedwrites one byte throughoriginalcharacter argument pointer. Returns low8LIVEcharacter onlywhen written==amount,elseORLIVEerrorflag20. Negativeamount skipswrite butstillwritesbase thenfailscountcomparison.",
+    "353 original cases/1412 comparisons matched,3 expectednull/errno faults. Realfileno child executes unchanged; flags/read/write/string/buffering matrices, signedpendingamounts, descriptors-2/-1/0/31/32, append/seek failure,stdout/stderrterminal, partialwrites, getbuf, callbackmutations ofbase/descriptor/character, caller-file-slot alias andindependentfileno cases. Writeport recordsactual bytes observed beforemutation."
+  ],
+  "limitations": [
+    "Errno/invalid/stdstreams/isatty/getbuf/write/seek remainexplicit childservices; no childcredit. World owns errno/threadprerequisites and canbecomposedlater. All creditedoriginalbody bytes execute unchanged.",
+    "Preparedmappedstream/descriptortable/caller slots.365cores andportable replaycompiled aslibrary;managedreplayUNEXECUTED. No command-name/use,sharedcheckpoint/manifest orGit writes."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "newMappedAddresses": [
+      "0x6eecd9",
+      "0x6f3c74"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

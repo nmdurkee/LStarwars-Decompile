@@ -1,0 +1,44 @@
+{
+  "scope": "Entire raw container-table configure and release bodies",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 322,
+    "nativeChecks": 644,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 0,
+    "ports": [
+      "4EEF40 allocation",
+      "4EF280 release"
+    ],
+    "rawEntryConsumers": [
+      "0x4f0930",
+      "0x4f09d0"
+    ],
+    "closure": "Whole configuration/release bodies withexact allocation/free events, uintsizewrap, equalityskip, liveglobalreloads and boundedcallbackpatches; allocator children explicit",
+    "compiledCoreInputs": 376,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase204-20261014-compile.dll",
+    "sourceSha256": "4ac201a9d3eb7ac064d238d3153bddeb9daccb53bb835d908d945b102fcbbb57",
+    "harnessSha256": "4e8c72f73d812fa734e18d7b12116f370667d77bfcb42650773a3fa0dda81c96",
+    "nativeOracleSha256": "5666f1f1ab153edbe1df9bc670694cbeaa641bc55342561442e70ba045fef797",
+    "compileSha256": "c53f8ac85768d747c6e5f5d1fc76955a6da3bde4eed43e5251bbdfa9dc1e489b"
+  },
+  "semantics": [
+    "Configure skips free/allocation when count equals current global, but always clears91CE64 and91EE80. Changed count releases both currently live table pointers, stores requested count and allocates count*16 twice. First size uses frozen requested count; second size reloads the global after first allocation callback. Shift wraps32 bits even for high/negative-bit counts.",
+    "Release clears each pointer only after its callback. It reloads the second pointer after first release, so bounded callback mutation can cause a newly supplied pointer to be released. It always clears count, preserving unrelated state/global values.",
+    "Exact source filename/line arguments and callback global snapshots are retained. Callback mutations verify write/reload ordering; opaque/null allocation returns and equality skip preserved. Void native EAX not projected."
+  ],
+  "limitations": [
+    "4EEF40 allocation/4EF280 release are explicit application child services; allocation implementation is not closed by this ownbody proof. Pointers are opaque callback values, no dereference.",
+    "376 core sources and fixture harness compiled library only; managed replay UNEXECUTED; both unregistered raw entries zero credit."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "addresses": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

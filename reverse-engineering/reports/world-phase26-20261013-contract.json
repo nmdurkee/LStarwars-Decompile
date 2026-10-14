@@ -1,0 +1,48 @@
+{
+  "status": "sealed qualified particle unlink/cancellation memory projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase26-20261013-ptl-particle-unlinks.cs",
+    "sha256": "1f4b2ab0b2f5cbed56e983d5a9f262f7115579b63da7978f4285f9094b13742c"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 792,
+    "checks": 792,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x654ea0": 236,
+      "0x655210": 232,
+      "0x655250": 324
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 1.743
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 266,
+    "harnessSourceFiles": 8,
+    "assemblySha256": "2ab85bee400b58eed889d6decad47c35e5cf030497dbf344dea4a5191b413934"
+  },
+  "scope": [
+    "654ea0 removes priority packet with head special case, fresh next/previous reload after splice, then unconditional own links clear. No ownership validation.",
+    "655210 searches singly linked time list; always clears requested node.next even when absent or head null. Exact cursor store before own link clear preserves aliases.",
+    "655250 scans both fixed clock banks, captures next before inline unlink and counter/free-array/tag-clear writes. Uses live count, captured array base, original unchecked decrement and final tag clear, with no added count guard.",
+    "Capturing next permits later free-array write to change its tag before next comparison. Aliases include count/table globals, duplicate bank heads, matching self-linked zero tags and mutation that creates a later matching candidate."
+  ],
+  "domains": [
+    "Readable prepared nodes/head/free-table backing and terminating original traversals with disjoint call scratch. No concurrency, fault, register return or unbounded-cycle projection.",
+    "Input traversal may temporarily contain a cycle when native mutation guarantees termination; resulting remaining heads or orphan links follow original stores rather than repaired list semantics.",
+    "Counter underflow/wrap remains supported when resulting free-array address is readable; no source bounds or ownership guard added."
+  ],
+  "fixture": {
+    "path": "reports/world-phase26-20261013-vectors.json.gz",
+    "sha256": "970d620d5585675d525dd3b8f4c09a4fddda20530cd46818275d15803f72efbc",
+    "cases": 792,
+    "assertions": 792
+  },
+  "reaEvidence": "reports/world-phase26-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

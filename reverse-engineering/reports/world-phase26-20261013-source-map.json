@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "1f4b2ab0b2f5cbed56e983d5a9f262f7115579b63da7978f4285f9094b13742c",
+  "mappings": [
+    {
+      "address": "0x654ea0",
+      "method": "PtlParticleUnlinks.Priority",
+      "sourceFile": "gameplay/world-phase26-20261013-ptl-particle-unlinks.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "654ea0 removes priority packet with head special case, fresh next/previous reload after splice, then unconditional own links clear. No ownership validation. 655210 searches singly linked time list; always clears requested node.next even when absent or head null. Exact cursor store before own link clear preserves aliases. 655250 scans both fixed clock banks, captures next before inline unlink and counter/free-array/tag-clear writes. Uses live count, captured array base, original unchecked decrement and final tag clear, with no added count guard. Capturing next permits later free-array write to change its tag before next comparison. Aliases include count/table globals, duplicate bank heads, matching self-linked zero tags and mutation that creates a later matching candidate.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase26-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase26-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase26-20261013-rea-evidence.json"
+      ]
+    },
+    {
+      "address": "0x655210",
+      "method": "PtlParticleUnlinks.Timed",
+      "sourceFile": "gameplay/world-phase26-20261013-ptl-particle-unlinks.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "654ea0 removes priority packet with head special case, fresh next/previous reload after splice, then unconditional own links clear. No ownership validation. 655210 searches singly linked time list; always clears requested node.next even when absent or head null. Exact cursor store before own link clear preserves aliases. 655250 scans both fixed clock banks, captures next before inline unlink and counter/free-array/tag-clear writes. Uses live count, captured array base, original unchecked decrement and final tag clear, with no added count guard. Capturing next permits later free-array write to change its tag before next comparison. Aliases include count/table globals, duplicate bank heads, matching self-linked zero tags and mutation that creates a later matching candidate.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase26-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase26-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase26-20261013-rea-evidence.json"
+      ]
+    },
+    {
+      "address": "0x655250",
+      "method": "PtlParticleUnlinks.CancelReturns",
+      "sourceFile": "gameplay/world-phase26-20261013-ptl-particle-unlinks.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "654ea0 removes priority packet with head special case, fresh next/previous reload after splice, then unconditional own links clear. No ownership validation. 655210 searches singly linked time list; always clears requested node.next even when absent or head null. Exact cursor store before own link clear preserves aliases. 655250 scans both fixed clock banks, captures next before inline unlink and counter/free-array/tag-clear writes. Uses live count, captured array base, original unchecked decrement and final tag clear, with no added count guard. Capturing next permits later free-array write to change its tag before next comparison. Aliases include count/table globals, duplicate bank heads, matching self-linked zero tags and mutation that creates a later matching candidate.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase26-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase26-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase26-20261013-rea-evidence.json"
+      ]
+    }
+  ]
+}

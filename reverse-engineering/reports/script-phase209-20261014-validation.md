@@ -1,0 +1,1 @@
+984 original native cases / 1,968 return/image comparisons zero. Whole raw356-byte allocation-list scan, original diagnostic RET, every guard byte/node and multi-corruption order. No adapters.382-core library compiled; managed replay unexecuted; zero raw address credit.

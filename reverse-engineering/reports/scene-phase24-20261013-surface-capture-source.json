@@ -1,0 +1,80 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase24-20261013-surface-capture.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e28e0",
+      "method": "SurfaceCaptureCpu.Apply",
+      "coverage": "Whole bounded surface capture CPU caller and raw byte copy; original stack local producer/residue retained; final SDK/allocator services explicit.",
+      "sourceFile": "geometry/scene-phase24-20261013-surface-capture.cs",
+      "evidence": "reports/scene-phase24-20261013-surface-capture-native-validation.json",
+      "limitations": [
+        "Whole original6e28e0 and actual integer memcpy4ef660 run unchanged in isolated native memory. Final device/surface/buffer COM are explicit.",
+        "D3DX save-to-memory71572a and debug allocator4eef40 remain explicit external SDK/intermediate allocation policies. Source does not claim their CPU implementation, file behavior or physical device/GPU equivalence.",
+        "Width0 loads backend138. Height0 uses original aspect override0/1/2/3/default float constants or backend630, unsigned width x87 divide, FISTP64 truncation and low32. Source bounded to finite nonzero aspect and fitting Int32 conversion; explicit nonzero height is raw forwarded uint.",
+        "Buffer local at entrySP-8 is supplied incoming residue when requested height!=0. Height0 conversion overwrites it with the computed height low word; D3DX stage later zeroes it. Early cleanup requires that word be0 or a resolved object, never invented initialization.",
+        "Three separate original invalid continuations retained: computed479/1439 and explicit residuebad00bad dereference at6e2ac2 after failed initial creation. These are evidence outside the resolved source equivalence policy, not repaired behavior.",
+        "Stable disjoint destination-output word and internal stack boxes; successful SDK buffer/borrowed data pointers resolved. Allocated destination/source data buffers disjoint with sufficient capacity for the SECOND GetBufferSize, bounded0..65536. Zero length needs no pointer resolution.",
+        "First GetBufferSize determines debug allocator request, second determines actual memcpy length, third determines raw return EAX. Failures return initial0, not HRESULT. No implicit LastResult cache writes; fresh backend/device/active surface after callbacks retained.",
+        "Width/height argument words become render/offscreen handle boxes, cleared after callback Release; buffer word is retained even after cleanup. Caller third pointer and final COM output views stay stable across services; no later physical stack lifetime claim.",
+        "All1024 calls compare full raw/guarded bytes; every case/edge retains SHA256,23 representative cases retain complete raw buffers and deterministic source/tool seed. Signaling NaN source payloads copied as integer bytes, not FLD/FSTP values.",
+        "Native/Python differential and source library compile passed; no device/SDK/OS/game/managed launch or settings write."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 1,
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase24-20261013-surface-capture.cs",
+      "sha256": "8ba5faabe4e531e6ab5c313876a1b0e957dfb894a5cff78e180d481f2ed5951f"
+    }
+  ],
+  "evidence": [
+    "reports/scene-phase24-20261013-surface-capture-assembly.json",
+    "reports/scene-phase24-20261013-surface-capture-constants.json",
+    "reports/scene-phase24-20261013-surface-capture-rea-binding.json",
+    "reports/scene-phase24-20261013-surface-capture-contract.json",
+    "reports/scene-phase24-20261013-surface-capture-invalid-continuations.json",
+    "reports/scene-phase24-20261013-surface-capture-native-validation.json",
+    "reports/scene-phase24-20261013-surface-capture-library-build.json"
+  ],
+  "nativeTool": "tools/scene-phase24-20261013-surface-capture-native.py",
+  "nativeToolSha256": "00ac7d9ef486dbcf9c05d7db27729d094fb0453eb75b4fbe56067ef20212a24e",
+  "fixture": "reports/scene-phase24-20261013-surface-capture-native-fixtures.json.gz",
+  "fixtureSha256": "a13624b12471604ca7e9b89aa723051e80bd754ca015c8873368769e790b7383",
+  "fixtureCoverage": {
+    "calls": 1024,
+    "checks": 5120,
+    "boundaryEvents": 7747,
+    "fullRawBufferCases": 23,
+    "invalidContinuationProbes": 3
+  },
+  "compiled": true,
+  "executed": false,
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase16-20261013-resource-mesh.cs",
+      "sha256": "a07ba78a181225b77be3f79d778eb3401b55a9bdbef86b82f4e89879db60f9dd"
+    },
+    {
+      "path": "reconstructed/geometry/Clipping.cs",
+      "sha256": "326c3019a8790eacb2b5cf0b8962d82f302d78bcd78d9ef4666e304d5739d9d8"
+    },
+    {
+      "path": "reconstructed/animation/AnimationPlayback.cs",
+      "sha256": "9b43c9a6a1793e5d4d62c360d6c3919fa5706b186f58c934de00774bfc54a686"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    },
+    {
+      "path": "tools/animation-x87.py",
+      "sha256": "aa0638971f7f3c7641db8c996a4a836433dda29c6754d40e2b29fff58663fcc8"
+    }
+  ],
+  "harnessFiles": [],
+  "managedReplay": "Not prepared in this source-only step; native/model evidence and library compile retained."
+}

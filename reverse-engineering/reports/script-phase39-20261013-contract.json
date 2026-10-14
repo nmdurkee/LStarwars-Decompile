@@ -1,0 +1,72 @@
+{
+  "scope": "Complete parserSuspend4fa2c0/Resume4fa810 ownbodies, explicit Errorregisters/Open/Close/Seek leaves; includeadapter bindsactual52bcb0 phase30body.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "rea": [
+    {
+      "path": "reports/rea-continuous/4043-script39-suspend.result.json",
+      "evidenceId": "ev_edf8150b8f49c42bc59a91c7417533b00465a9be274e5b5ba738d11a22fd7e65",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fa2c0",
+            "end": "0x4fa2f6"
+          }
+        ],
+        "total_bytes": 55,
+        "span_bytes": 55,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 18
+    },
+    {
+      "path": "reports/rea-continuous/4044-script39-resume.result.json",
+      "evidenceId": "ev_7da4b3e3ef2503bcf5090fc15abb5b258a871fd579ccd144b0daf49218224943",
+      "sha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fa810",
+            "end": "0x4fa87a"
+          }
+        ],
+        "total_bytes": 107,
+        "span_bytes": 107,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "instructionLocations": 36
+    }
+  ],
+  "native": {
+    "nativeCases": 134,
+    "nativeChecks": 402,
+    "mismatches": 0,
+    "faultCases": 0,
+    "managedExecution": false,
+    "compiledCoreInputs": 277,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase39-20261013-compile.dll",
+    "sourceSha256": "fa43bbd035c88e693e7602e84349a2eb35cb190d8493f957ed3c65bd2e58c7da",
+    "harnessSha256": "d69853a1812ef52863eb918bb7bb951df493827364c1e7e5bdfd4e1582d523cc",
+    "nativeOracleSha256": "c41dabc53ab365c0ebff3c64585d5a5cb0da02ce82db37832aae674c31e7c930",
+    "compileSha256": "2ea267e5b8a698e9ee636b4b6d0479ed7d4d77d622cf21a0ae6d51da10c06fd2"
+  },
+  "semantics": [
+    "Signedhandle0x400..0x7ff isarchive andSuspend/Resume donoadditionalreads/callbacks/stores. Negative/highbit handles outsidearchive range.",
+    "Suspend outsidearchive captureshandle, emptyfilename orzero handle callsError4ef790, usesits EAX asClose4f99e0 argument, thenstoresparser4=0 aftercallback.",
+    "Resume emptyfilename usesError EAX asfilenamepointer; callsOpen4fa3f0(name,0,global91ee88,0),stores returnedhandleatparser4 BEFOREzero-handleError.",
+    "IfOpen0, subsequentErrorECX becomesSeekhandle, parser4remains0; ErrorEAX ignored onthatcontinuation.",
+    "Seek4f6de0(handle,position524,signextension524,0); normalexit end52c=LIVEposition524-1, allowingSeekmutation.",
+    "RecoveredScriptIncludeLifecycle Suspend/Resume closeownbodies; Parse forwardsactualphase30filebody ratherthanopaqueport, bindable tosharedouterprogramparser. Adapterclosure compiledbut notnativeparent-testeduntilnextphase."
+  ],
+  "limitations": [
+    "Error/Open/Close/Seek explicitservices onpreparedparsermemory, noOS/gameexecutables launched. Errorreturncontinuations modeled byexplicitEAX/ECX contract, notproofactualfatalfunctionreturns.",
+    "134nativecases/402groups/0mismatches;277core+harnesslibrarycompileonly. No managedexecution/Git/sharedmanifest/checkpointwrites."
+  ]
+}

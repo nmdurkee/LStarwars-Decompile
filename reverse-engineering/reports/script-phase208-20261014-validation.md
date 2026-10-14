@@ -1,0 +1,1 @@
+720 native lifecycle cases / 720 full-memory comparisons zero. Entire table→application allocator/release→privatepool five bodies+diagnostics/memset/SSE. Fresh native discarded all earlier heap hooks; zero ports, actual capacity-driven failures. Prepared success size8192 and realfailed16384 requests.381-core library compile; managed replay unexecuted; zero new credit.

@@ -1,0 +1,108 @@
+{
+  "module": "geometry",
+  "files": [
+    "geometry/scene-phase17-20261013-resource-release.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e2170",
+      "method": "RendererResourceRelease.Apply",
+      "coverage": "Whole bounded CPU body with final ownership/COM boundary explicit.",
+      "sourceFile": "geometry/scene-phase17-20261013-resource-release.cs",
+      "evidence": "reports/scene-phase17-20261013-resource-release-native-validation.json",
+      "limitations": [
+        "Whole original CPU bodies execute unchanged in native capture; only final COM and texture-free graph5f7b40 are adapted.",
+        "Resolved caller/backend/cache byte images and supplied opaque device/object tokens; raw unsigned inputs and negative HRESULT values retained.",
+        "Texture stage cache covers unsigned stage<5; Stream uses one global four-word cache including stream number. Cache hits preserve incoming EAX explicitly; do not infer a deterministic return outside that residue input.",
+        "CPU ownership clears happen after callbacks; coherent callback mutations, fresh later handles, cache publication before COM and LastResult after COM are retained.",
+        "Texture-free internals, broader6df0e0 resource release call graph, final GPU/COM behavior and authored runtime initialization remain open.",
+        "Native/Python differential plus source library compile; no managed/game launch or settings writes."
+      ]
+    },
+    {
+      "address": "0x6e45a0",
+      "method": "RendererResourceRelease.DeviceMissing",
+      "coverage": "Whole bounded CPU body with final ownership/COM boundary explicit.",
+      "sourceFile": "geometry/scene-phase17-20261013-resource-release.cs",
+      "evidence": "reports/scene-phase17-20261013-resource-release-native-validation.json",
+      "limitations": [
+        "Whole original CPU bodies execute unchanged in native capture; only final COM and texture-free graph5f7b40 are adapted.",
+        "Resolved caller/backend/cache byte images and supplied opaque device/object tokens; raw unsigned inputs and negative HRESULT values retained.",
+        "Texture stage cache covers unsigned stage<5; Stream uses one global four-word cache including stream number. Cache hits preserve incoming EAX explicitly; do not infer a deterministic return outside that residue input.",
+        "CPU ownership clears happen after callbacks; coherent callback mutations, fresh later handles, cache publication before COM and LastResult after COM are retained.",
+        "Texture-free internals, broader6df0e0 resource release call graph, final GPU/COM behavior and authored runtime initialization remain open.",
+        "Native/Python differential plus source library compile; no managed/game launch or settings writes."
+      ]
+    },
+    {
+      "address": "0x6e5630",
+      "method": "RendererResourceRelease.Texture",
+      "coverage": "Whole bounded CPU body with final ownership/COM boundary explicit.",
+      "sourceFile": "geometry/scene-phase17-20261013-resource-release.cs",
+      "evidence": "reports/scene-phase17-20261013-resource-release-native-validation.json",
+      "limitations": [
+        "Whole original CPU bodies execute unchanged in native capture; only final COM and texture-free graph5f7b40 are adapted.",
+        "Resolved caller/backend/cache byte images and supplied opaque device/object tokens; raw unsigned inputs and negative HRESULT values retained.",
+        "Texture stage cache covers unsigned stage<5; Stream uses one global four-word cache including stream number. Cache hits preserve incoming EAX explicitly; do not infer a deterministic return outside that residue input.",
+        "CPU ownership clears happen after callbacks; coherent callback mutations, fresh later handles, cache publication before COM and LastResult after COM are retained.",
+        "Texture-free internals, broader6df0e0 resource release call graph, final GPU/COM behavior and authored runtime initialization remain open.",
+        "Native/Python differential plus source library compile; no managed/game launch or settings writes."
+      ]
+    },
+    {
+      "address": "0x6e5590",
+      "method": "RendererResourceRelease.Stream",
+      "coverage": "Whole bounded CPU body with final ownership/COM boundary explicit.",
+      "sourceFile": "geometry/scene-phase17-20261013-resource-release.cs",
+      "evidence": "reports/scene-phase17-20261013-resource-release-native-validation.json",
+      "limitations": [
+        "Whole original CPU bodies execute unchanged in native capture; only final COM and texture-free graph5f7b40 are adapted.",
+        "Resolved caller/backend/cache byte images and supplied opaque device/object tokens; raw unsigned inputs and negative HRESULT values retained.",
+        "Texture stage cache covers unsigned stage<5; Stream uses one global four-word cache including stream number. Cache hits preserve incoming EAX explicitly; do not infer a deterministic return outside that residue input.",
+        "CPU ownership clears happen after callbacks; coherent callback mutations, fresh later handles, cache publication before COM and LastResult after COM are retained.",
+        "Texture-free internals, broader6df0e0 resource release call graph, final GPU/COM behavior and authored runtime initialization remain open.",
+        "Native/Python differential plus source library compile; no managed/game launch or settings writes."
+      ]
+    }
+  ],
+  "newNativeEntryCount": 4,
+  "sources": [
+    {
+      "path": "reconstructed/geometry/scene-phase17-20261013-resource-release.cs",
+      "sha256": "5f3dfa78037707f6c45b4bde4f82ba6ade77ba4f136a70fa874a37cec8051bc8"
+    }
+  ],
+  "evidence": [
+    "reports/scene-phase17-20261013-resource-release-helpers-assembly.json",
+    "reports/scene-phase17-20261013-resource-release-assembly.json",
+    "reports/scene-phase17-20261013-resource-release-native-validation.json",
+    "reports/scene-phase17-20261013-resource-release-library-build.json"
+  ],
+  "nativeTool": "tools/scene-phase17-20261013-resource-release-native.py",
+  "nativeToolSha256": "24ac7c60f857c914423fc5c1531f20eba83fe158ebd31852bc7e2e4025dd2630",
+  "fixture": "reports/scene-phase17-20261013-resource-release-native-fixtures.json.gz",
+  "fixtureSha256": "7cd921778c9512dafc64bc329244fb8bf5d0eedcd79cae603d442b35f6925837",
+  "fixtureCoverage": {
+    "calls": 8192,
+    "checks": 32768,
+    "explicitBoundaryEvents": 25601
+  },
+  "compiled": true,
+  "executed": false,
+  "dependencies": [
+    {
+      "path": "reconstructed/geometry/scene-phase15-20261013-backend-services.cs",
+      "sha256": "3803b0acc906c8d4a2ddedba73cc8a1253684c86bd52d8c37ee3c1fc863d9c5e"
+    },
+    {
+      "path": "reconstructed/geometry/scene-phase16-20261013-resource-mesh.cs",
+      "sha256": "a07ba78a181225b77be3f79d778eb3401b55a9bdbef86b82f4e89879db60f9dd"
+    },
+    {
+      "path": "tools/native-x86.py",
+      "sha256": "ac46f6d867958c815005c118859427b3d63aa3749c490e01139089b85826c315"
+    }
+  ],
+  "harnessFiles": [],
+  "managedReplay": "Not prepared in this source-only step; native/model evidence and library compile retained."
+}

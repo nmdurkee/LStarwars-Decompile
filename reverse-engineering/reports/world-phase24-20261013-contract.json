@@ -1,0 +1,48 @@
+{
+  "status": "sealed qualified particle link memory projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase24-20261013-ptl-particle-links.cs",
+    "sha256": "55501d89521d09ee0b8a3f3777c608a979a624132239236508961c7138be15eb"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 932,
+    "checks": 932,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x5ffea0": 17,
+      "0x654e00": 651,
+      "0x6551d0": 264
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 1.218
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 264,
+    "harnessSourceFiles": 6,
+    "assemblySha256": "f4a68602f0b772ce42ec8f3e965760b7c6d17b360788202a580783467fe21d18"
+  },
+  "scope": [
+    "5ffea0 command linker: final52/link0 then reverse preceding4e/next stores with fresh pointer reads. No count<=0 guard; zero/negative count still writes the preceding entry. Repeated node pointers and pointer-table byte aliases retained.",
+    "654e00 priority insertion: initialnext/previous clears before head read; descending unsigned16priority, ties by ascending signedbyte physical type, exact ties prepend. Cached neighbor pointers and original store order preserved.",
+    "6551d0 timed insertion: ascending stored float time; equality or unordered comparison inserts before current. Original final node.next then cursor-node stores preserve aliasing and self-link outputs."
+  ],
+  "domains": [
+    "Readable prepared pointer tables and terminating linked-list traversal with disjoint call scratch. Register return/FPU-status/exception/fault projection excluded.",
+    "Timed fields finite, signedzero, Infinity or quietNaN; signaling NaNs excluded. Priority physical pointers readable for every needed tie comparison.",
+    "Command count has readable last/preceding entries and bounded reverse scan; Int32 wrap cases that induce unbounded scanning are excluded. No added count clamp.",
+    "Aliases may produce self/cyclic output after return; initial traversal must terminate. Input lists need not already be sorted, matching original local insertion behavior."
+  ],
+  "fixture": {
+    "path": "reports/world-phase24-20261013-vectors.json.gz",
+    "sha256": "13b80d31897c7995bb350e64706bf360dd5e2c9ef542d1fc2f8ff49d704376fb",
+    "cases": 932,
+    "assertions": 932
+  },
+  "reaEvidence": "reports/world-phase24-20261013-rea-evidence.json",
+  "remainingPorts": []
+}

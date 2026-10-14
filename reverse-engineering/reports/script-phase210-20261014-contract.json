@@ -1,0 +1,53 @@
+{
+  "scope": "Complete raw bump storage creation/destruction through closed private-pool graph",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 432,
+    "nativeChecks": 864,
+    "mismatches": 0,
+    "errors": [],
+    "managedExecution": false,
+    "newEntries": 0,
+    "bodyExecutions": {
+      "0x4ef720": 432,
+      "0x4eef40": 1104,
+      "0x4f6740": 432,
+      "0x4efa40": 432,
+      "0x4ef8a0": 336,
+      "0x6e6950": 336,
+      "0x4eedc0": 384,
+      "0x4eeda0": 320,
+      "0x6eec22": 72,
+      "0x6eebcb": 36,
+      "0x4ef770": 288,
+      "0x4ef280": 288,
+      "0x4efb00": 224,
+      "0x4ef870": 224
+    },
+    "ports": [],
+    "closure": "Whole raw65-byte bumpcreate/24-bytedestroy→actual application/privatepool/diagnostic/memset/SSE bodies, savedactivebump restored, individualbumpallocs anddangling-globalnativepreservation; zeroports",
+    "compiledCoreInputs": 383,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase210-20261014-compile.dll",
+    "sourceSha256": "90fcb7b99605587c720afc277e46c3481dbaa1cb60091c4e13b9995c2e32be16",
+    "harnessSha256": "15a1b32877d597c1948072f5a80ee5ce81d67720fca8e7982c70045e824a6f16",
+    "nativeOracleSha256": "a0330b406f3cfb0c12eef9252bc80f81d88c340e01f4acb8f11a49f7490e90ce",
+    "compileSha256": "773e3da62d17952da4a38703434e68b59c405c429370a5ca7e64961476ceaede"
+  },
+  "semantics": [
+    "Create saves active bump pointer88AB20, clears it while allocating capacity+16 through full application allocator, restores old pointer and initializes returned record capacity/remaining/cursor(record+16). Failure returns0 and still restores saved pointer.",
+    "Destroy calls full application release with original filename/line. It leaves active pointer88AB20 unchanged, even if that pointer refers into released backing. Prepared caller controls whether to restore active pointer before destruction; native dangling-global preservation is intentional.",
+    "432 cases execute both raw bodies and every real allocator/privatepool/memset child without ports. Includes capacities0..8192, old active bump0/nonzero, real private-pool capacity failures, CPU0/1 and individual bump allocations0/1/15/16/17/FFFFFFFF. Strict remaining>aligned and nonpositive release warning continuation retained."
+  ],
+  "limitations": [
+    "Prepared actual private pool with well-formed lists/tags; arena inactive. Individual allocations use prepared created bump record; stale active pointer is preserved in final state but not subsequently dereferenced. No callback ports or synthetic allocation responses.",
+    "383 core inputs plus harness compiled library only; managed replay UNEXECUTED. Both exact raw entries unregistered, zero address credit."
+  ],
+  "credit": {
+    "newEntries": 0,
+    "addresses": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

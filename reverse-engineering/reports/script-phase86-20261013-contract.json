@@ -1,0 +1,65 @@
+{
+  "scope": "Whole compressed record seek through actual memory/buffered public children and existing compressed release branch.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 498,
+    "nativeChecks": 996,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [],
+    "closure": "Original4f0ae0→4f6de0→actual memory4f6c70 or buffered64bit seek; original4f6bc0 compressed close branch, no adapters",
+    "compiledCoreInputs": 324,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase86-20261013-compile.dll",
+    "sourceSha256": "3c329cb1394e48aa6d13e1e9d191f8558cb1f2b9623d08362a8036fa8560a2a0",
+    "harnessSha256": "2e6e3554572618ae8a562cca46a6c48be6ecf7575e9957f0e7b891008f600286",
+    "nativeOracleSha256": "ce944b696cdd093be16d320e143594f79497b324063c8e3abd19eb3cfafafae0",
+    "compileSha256": "b3864a49def175a9936f47f3b689a66df35f758230e9f659a163854897522642"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4136-script86-compressed-seek.result.json",
+      "evidenceId": "ev_0e91e6dd6fa25e54b93ff2040dd00dd49c4d7aee5bbbefd796e4798f74d8ceaa",
+      "address": "0x4f0ae0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0ae0",
+            "end": "0x4f0b61"
+          }
+        ],
+        "total_bytes": 130,
+        "span_bytes": 130,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase72-20261013-contract.json",
+    "reports/script-phase78-20261013-contract.json",
+    "reports/rea-continuous/4117-script72-memory-close.result.json"
+  ],
+  "semantics": [
+    "Record297dc60+(handle-800)*48 and parent=(record0+(record20+3)*16) are captured before child call. origin1 adds full64 offset to current10/14; origin2 computes base8/C plus signed32length18 minus full64 offset; all other origins add offset to base. Calls public4f6de0(parentHandle,targetLow,targetHigh,origin0).",
+    "Stores returned high to record14 before low to record10, writes parent8 low, rereads LIVErecord14 for parentC, then returns LIVErecord10/14. Aliased parent/current backing preserves original store order. Public4f6de0 first replaces callerHIGH with sign(LOW) before this child, while direct4f0ae0 preserves callerHIGH.",
+    "Existing4f6bc0 compressed release branch nonnegative record20 index writes FFFFFFFF to parent slot+34 then record24=0, returns record pointer. No extra address credit for72registered entry.",
+    "498cases/996 return and complete images zero, no adapters: direct/public methods, actual memory400 and buffered1 parent, origins0/1/2/3/FFFFFFFF, low0/1/80000000/FFFFFFFF/high0/FFFFFFFF/12345678, record0/3, base/curr64wrap, signed length80000000 and31, twelve parent/current alias cases, six close record/slot cases."
+  ],
+  "limitations": [
+    "Prepared allocated memory or buffered parent, mapped compressed record and nonnegative release slot. Recursive/host/CRT seek service paths remain configured ports outside native fixtures. Negative close slot enters4ef790 and uses its returnedEAX; this failure path is explicitly outside source specialization.",
+    "324core inputs plus harness compiled, managed replayUNEXECUTED. One new address4f0ae0; no command credit, Git/shared manifest writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "addresses": [
+      "0x4f0ae0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

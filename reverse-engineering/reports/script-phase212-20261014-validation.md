@@ -1,0 +1,1 @@
+963 native cases / 1,926 return/image comparisons zero. Entire raw201-byte legacy relocation, literal header/boundary/free-list offsets and backwards overlap copy. No corrected current-pool layout claim, no ports.385-core library compiled; managed replay unexecuted; zero raw credit.

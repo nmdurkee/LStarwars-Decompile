@@ -1,0 +1,21 @@
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Recovered.Gameplay;
+public static class ScriptPhase6820261013Verify
+{
+ static Dictionary<string,object> O(object x){return (Dictionary<string,object>)x;}static object[] A(object x){return (object[])x;}static uint U(object x){return Convert.ToUInt32(x);}static byte[] Unhex(string s){byte[] b=new byte[s.Length/2];for(int i=0;i<b.Length;i++)b[i]=Convert.ToByte(s.Substring(i*2,2),16);return b;}static string Hex(byte[] b){return BitConverter.ToString(b).Replace("-","").ToLowerInvariant();}
+ static bool Equal(object a,object b){if(a==null||b==null)return a==b;IDictionary ad=a as IDictionary,bd=b as IDictionary;if(ad!=null&&bd!=null){if(ad.Count!=bd.Count)return false;foreach(object k in ad.Keys)if(!bd.Contains(k)||!Equal(ad[k],bd[k]))return false;return true;}IList al=a as IList,bl=b as IList;if(al!=null&&bl!=null){if(al.Count!=bl.Count)return false;for(int i=0;i<al.Count;i++)if(!Equal(al[i],bl[i]))return false;return true;}if(a is string||b is string||a is bool||b is bool)return Object.Equals(a,b);return Convert.ToDecimal(a)==Convert.ToDecimal(b);}
+ sealed class Memory:TakeoverReleaseMemory
+ {public readonly SoundSetupImage Image=new SoundSetupImage();public readonly ConditionParserMemory Shared;public Memory(object rows){foreach(object item in A(rows)){var r=O(item);Image.Regions[U(r["address"])]=Unhex((string)r["bytes"]);}Shared=new ConditionParserMemory(Image);}public override byte Read8(uint p){return Image.Byte(p);}public override void Write8(uint p,byte b){Image.Byte(p,b);}public object State(object rows){var result=new List<object>();foreach(object item in A(rows)){var r=O(item);uint p=U(r["address"]);int z=((string)r["bytes"]).Length/2;byte[] b=new byte[z];for(int i=0;i<z;i++)b[i]=Read8(p+(uint)i);result.Add(new Dictionary<string,object>{{"address",p},{"bytes",Hex(b)}});}return result.ToArray();}}
+ sealed class Symbols:ScriptExpressionServices
+ {readonly Dictionary<string,object> c;readonly List<object> events;public Symbols(Dictionary<string,object> context,List<object> trace){c=context;events=trace;}public override void Error(TakeoverReleaseMemory m){events.Add(new Dictionary<string,object>{{"error",true}});}public override uint Symbol(TakeoverReleaseMemory m,uint callback,uint creature,uint packet,string name,out uint value){events.Add(new Dictionary<string,object>{{"name","Symbol"},{"symbol",name},{"flags",new uint[]{m.Read32(0x92224c),m.Read32(0x922250),m.Read32(0x922254)}},{"top",m.Read32(0x10105000)}});value=c.ContainsKey("symbolBits")?U(c["symbolBits"]):0x40400000;object names,result;if(c.TryGetValue("handledNames",out names)&&O(names).TryGetValue(name,out result))return U(result);return c.ContainsKey("handled")?U(c["handled"]):0;}}
+
+
+
+ sealed class NoIdentity:ScriptIdentityBindingServices{public override uint Resolve(TakeoverReleaseMemory m,uint callback,uint system,uint name){throw new NotSupportedException("Identity callback disabled in initializer witnesses.");}}
+ public static int Run(string root){var json=new JavaScriptSerializer{MaxJsonLength=Int32.MaxValue,RecursionLimit=200};var data=O(json.DeserializeObject(File.ReadAllText(Path.Combine(root,"reports/script-phase68-20261013-native-fixtures.json"))));int checks=0;foreach(object x in A(data["cases"])){var row=O(x);var m=new Memory(row["initial"]);var input=O(row["inputs"]);PreparedScriptGraphBinding.BindSystem(m,new RecoveredAllBuiltinGraphBindings(new NoIdentity(),null),U(input["system"]));if(!Equal(m.State(row["initial"]),row["final"]))throw new InvalidOperationException("Allbuiltin initializer caller mismatch: "+row["callback"]);checks++;}Console.WriteLine(checks+" allbuiltin initializer checks passed.");return 0;}
+ public static int Main(string[] args){return Run(args.Length==0?"reverse-engineering":args[0]);}
+}

@@ -1,0 +1,53 @@
+{
+  "scope": "Whole prepared64ac90 projectile cleanup CPU body with ordered emitter/link/callback/audio lifecycle services. One new entry.",
+  "entry": "0x64ac90",
+  "endExclusive": "0x64ad3f",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "validation": {
+    "nativeCases": 1576,
+    "nativeAssertionGroups": 4728,
+    "mismatches": 0,
+    "preparedManagedAssertions": 3152,
+    "managedExecution": false
+  },
+  "compilation": {
+    "inputs": 259,
+    "dll": "reconstructed/bin/movement-phase38-20261013.dll",
+    "dllSha256": "7871d17c825174270b71b816125e20fc3e87a3e153b8c209aed2c6f66f351a82",
+    "execution": false
+  },
+  "boundaries": [
+    "Inactive bit0 returns immediately. Active cleanup clears bit0 before any service, then optionally releases emitter according to flag20000 and nonzero emitter handle.",
+    "Linked-handle pointer is read after emitter service and reloaded after link release before writingffffffff. Prepared fresh slot must remain readable; null/invalid retarget is outside native prepared domain, not silently ignored. Link aliases with object fields and mutable service retargets are covered.",
+    "Callback address and reason are captured at call; callback receives original physical object pointer and reason. Readable caller argument backing remains stable across supplied services. Sound code and gain are read freshly after callback; reason6 or full32 code-1 skips sound.",
+    "Audio output slot is caller-owned disjoint scratch initializedffffffff. Native local pointer is normalized in traces; lifecycle service receives sound, raw position,0,0,1 and gain bits. Returned handle is unused by own body.",
+    "Native gain path FLD/FSTP supports prepared nonsignaling finite/zero/infinite/quiet-NaN backing; source preserves observed raw gain bits. Signaling gain payloads are excluded, while position bytes are unconsumed raw words.",
+    "Emitter684400, link635750, indirect callback and audio690490 remain explicit lifecycle services; actual particles, renderer, ownership engine and audio backend are not claimed. Undefined EAX return is not part of portable API.",
+    "Native original body count and images/events are compared. Portable harness prepares image/event assertions only, compiles without executing generated managed code."
+  ],
+  "reaEvidence": {
+    "report": "reports/rea-continuous/1015-root-projectile-cleanup.result.json",
+    "evidenceId": "ev_b1a7bef0569008b597c10b10cc95cf809ae82cbb261f2a07cc14a88f95cb6d86",
+    "body": {
+      "available": true,
+      "provenance": "ghidra-function-body-address-set",
+      "ranges": [
+        {
+          "start": "0x64ac90",
+          "end": "0x64ad3e"
+        }
+      ],
+      "total_bytes": 175,
+      "span_bytes": 175,
+      "non_contiguous": false,
+      "contains_entry": true
+    }
+  },
+  "hashes": {
+    "reconstructed/gameplay/movement-phase38-20261013-ProjectileCleanup.cs": "d2141279fc8e26dae41e86276f2dfd7aa58ea24c031f0a1e64badbce95457b9a",
+    "tools/movement-phase38-20261013-native.py": "df7b9665b8346b5f5d0565d65f4ff665d90bdcde2a23f7942a8717f831469898",
+    "tools/movement-phase38-20261013-portable-verify.cs": "990e47a8e5e1d1621ca3eb75f8ab637eed9e174c84200a146c03ffcad753ee9a",
+    "reports/movement-phase38-20261013-fixtures.json.gz": "d597b72f7ff104c2eba59c91bb66414174acd41c1b9fc9461ffb5747b62b4b08",
+    "reports/movement-phase38-20261013-assembly.json": "aa2693f31936a6f1bb8f25d0ab34a11b37c65b8d0a139a1a043c25c7b888ab94"
+  }
+}

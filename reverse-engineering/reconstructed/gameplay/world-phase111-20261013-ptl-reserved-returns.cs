@@ -1,0 +1,3 @@
+// Original5f7490 and5f74a0 are single RET bodies, preserving caller registers and memory.
+// Live REA ev_225a6809b9573823be8cecad9817163d47914081e79a11149c6371fae48c7f65 and ev_9f348ac24f8b48913b484ca1d5979ba0066e1db3d71c5d3469ea20886dab21f8.
+using System;namespace Recovered.Gameplay {public static class PtlReservedReturns {public static void Signal(){}public static uint Preserve(uint eax){return eax;}public static uint Refill(SoundSetupImage m,Func<SoundSetupImage,uint,uint[],uint> external){return PtlBufferRelease.Refill(m,delegate(SoundSetupImage image,uint address,uint[] values){if(address==0x5f7490){Signal();return 0;}return external(image,address,values);});}}}

@@ -1,0 +1,1 @@
+240 original x86 cases; 720 comparisons; zero mismatches. No hooks. Four actual zero leaves and full public CRT lifecycle branches. 353 core files plus harness compiled library only. Managed replay unexecuted.

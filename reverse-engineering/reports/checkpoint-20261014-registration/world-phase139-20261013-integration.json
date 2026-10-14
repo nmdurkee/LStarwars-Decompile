@@ -1,0 +1,38 @@
+{
+  "module": "gameplay",
+  "files": [
+    "gameplay/world-phase139-20261013-ptl-malloc-core.cs"
+  ],
+  "mappings": [
+    {
+      "address": "0x6e7570",
+      "method": "PtlMallocCore.Allocate",
+      "sourceFile": "gameplay/world-phase139-20261013-ptl-malloc-core.cs",
+      "coverage": "Qualified function-local prepared-domain native proof; source comment/native verifier dispatch+body hash evidence",
+      "qualification": "bounded returning allocation/new-handler sequences; captured HeapAlloc target with fresh heap/mode per retry; overflow invokes handler even disabled; distinct errno pointers; zero heap termination child suspension",
+      "nativeEvidence": [
+        "reports/world-phase139-20261013-native-tests.json"
+      ]
+    }
+  ],
+  "evidence": [
+    "reports/world-phase139-20261013-native-tests.json"
+  ],
+  "harnessFile": "../tools/world-phase139-20261013-portable-verify.cs",
+  "verifierModule": "world-phase139-20261013",
+  "verifierClass": "WorldPhase13920261013Verify",
+  "fixture": "reports/world-phase139-20261013-vectors.json.gz",
+  "managedOutput": "reports/world-phase139-20261013-managed-tests.json",
+  "nativeCases": 455,
+  "nativeMismatches": 0,
+  "registrationNote": "Address-to-method proof from source headers/methods and verifier native entry dispatch; deduplicate against complete checkpoint inventory. Nested entries never establish credit.",
+  "domain": "bounded returning allocation/new-handler sequences; captured HeapAlloc target with fresh heap/mode per retry; overflow invokes handler even disabled; distinct errno pointers; zero heap termination child suspension",
+  "adapters": [
+    "6e74ac small malloc child",
+    "HeapAlloc endpoint",
+    "new handler/errno and termination children"
+  ],
+  "syntheticExcluded": 0,
+  "execution": "Compile-only; managed replay not established.",
+  "auditProvenance": "reports/checkpoint-20261014-world96-174-audit-candidates.json"
+}

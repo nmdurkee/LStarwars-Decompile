@@ -1,0 +1,3 @@
+// Raw5c0500 refinement of registered CharacterLayerSubmission.Concatenate; zero duplicate entry credit.
+// Live REA ev_654195f858af5e866348eb944014723bdc16ad55bc5dd6dcaa11be1cf6faba51. Original delegates3 untouched arguments to imported715718 with stdcall cleanup.
+using System;namespace Recovered.Gameplay {public static class PtlCameraMultiplyRaw {public delegate uint MatrixPort(SoundSetupImage m,uint[] output,uint[] left,uint right);public static uint Multiply(SoundSetupImage m,uint output,uint left,uint right,Func<SoundSetupImage,uint,uint[],uint> imported){return imported(m,0x715718,new uint[]{output,left,right});}public static uint MultiplyValues(SoundSetupImage m,uint[] matrix,uint right,MatrixPort imported){return imported(m,matrix,matrix,right);}}}

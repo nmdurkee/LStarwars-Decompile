@@ -1,0 +1,1 @@
+488 native cases / 1,952 comparisons; zero mismatches and20 matching fault cases. Entire23-byte vsprintf wrapper and124-byte locale-aware child. Four child services remain explicit; no full formatting closure claim. 366-core library compiled, managed replay unexecuted.

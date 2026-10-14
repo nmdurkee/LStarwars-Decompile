@@ -1,0 +1,61 @@
+{
+  "status": "sealed qualified burst scalar/vector own-body projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase34-20261013-ptl-burst-math.cs",
+    "sha256": "dae733ba32749f84b49bd0459b45d29b4af150d222ce331ea179bcb5331ab12f"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 1312,
+    "checks": 1312,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x64fde0": 685,
+      "0x5b3860": 627
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 0.562,
+    "syntheticExcluded": 2,
+    "excluded": [
+      {
+        "case": 1307,
+        "reason": "nonfinite consumed after alias propagation"
+      },
+      {
+        "case": 1308,
+        "reason": "nonfinite consumed after alias propagation"
+      }
+    ],
+    "returnObservationShim": "post-returnFSTPf32, not a child adapter"
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 274,
+    "harnessSourceFiles": 16,
+    "assemblySha256": "7938f5e7e9435957fbd5854577aa4e95e613070801cd06290c57be088d1eb1ff",
+    "expectedManagedAssertions": 1997
+  },
+  "scope": [
+    "64fde0 returns positivezero when either argument is signedzero; otherwise finite exactx8764 numerator/denominator divide, explicit nativebinary32 spill/reload and meaningful ST0 float return. Post-returnFSTP observer shim captures original result without adapting child/body code.",
+    "5b3860 computes base+delta*scale in original ordered binary32 component stores. Scale remains unspilled64-bit value across all components, while operands reread after earlier stores preserve shifted/unaligned aliases.",
+    "685native divide and627native vector calls retained;2synthetic alias fixtures excluded because earlier stores made later consumed operands nonfinite, no equivalence credit. Whole retained backing and explicit scalar return agree."
+  ],
+  "domains": [
+    "Safe divide: both nonzero operands finite; zero-short-circuit admits arbitrary other argument bits because arithmetic result is originalpositivezero. Finite quotient may spill signedInfinity or signed underflowzero.",
+    "Scaled add: scale and each actually consumed component finite at read boundary, disjoint call scratch and readable destination/source backing. Terminal output may roundInfinity when not consumed by a later component.",
+    "NativeCW037F, original code immutable; private stack/observer-shim bytes, FPU status and unrelated register return excluded. No source double approximation of unspilled arithmetic."
+  ],
+  "fixture": {
+    "path": "reports/world-phase34-20261013-vectors.json.gz",
+    "sha256": "2d2b881e68d5af4e6b29657c08557c6714f6157ef008dd09d27a3f14ebf36a89",
+    "cases": 1312,
+    "nativeGroups": 1312,
+    "managedAssertions": 1997
+  },
+  "reaEvidence": "reports/world-phase34-20261013-rea-evidence.json",
+  "reaLimitations": [],
+  "remainingPorts": []
+}

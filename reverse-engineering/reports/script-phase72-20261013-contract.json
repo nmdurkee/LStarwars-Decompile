@@ -1,0 +1,141 @@
+{
+  "scope": "Complete4f6b40 size dispatch plus allocated-memory seek4f6c70 and close4f6bc0, with public memory caller proof.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1536,
+    "nativeChecks": 4608,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 3,
+    "ports": [
+      "CRTsize6dee40"
+    ],
+    "closure": "Actual4f6b40 allsizebranches;4f6c70 memoryseek;4f6bc0 memoryclose; original4f6de0/4f99e0 memorycallerbranches",
+    "compiledCoreInputs": 310,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase72-20261013-compile.dll",
+    "sourceSha256": "54e91402df78f63992fbefa633632c7746db8dd832087e89a7cb58b132daf846",
+    "harnessSha256": "892efb1dcde738a310b337a4efc349b0b8e74961741b99468956d208ce04b330",
+    "nativeOracleSha256": "e0fac280050a320e76d3363de264fc7e22618e9cadf4a974db86483f2a8bb26e",
+    "compileSha256": "175ed985125d1aec4cc85b065ec6ab26aa8236e9c4067bce2753ad441b82fe75"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4113-script72-seek.result.json",
+      "evidenceId": "ev_2ebd827d7fa84cf5f2e8eaa75614cd85640ce16fb64b30735a4b4082583cf3d3",
+      "address": "0x4f6de0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f6de0",
+            "end": "0x4f6e9d"
+          }
+        ],
+        "total_bytes": 190,
+        "span_bytes": 190,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4114-script72-size.result.json",
+      "evidenceId": "ev_04e7563a679da8fae8366c6cb66774d0af73544a3dab2fc469acff25610d261b",
+      "address": "0x4f6b40",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f6b40",
+            "end": "0x4f6bb3"
+          }
+        ],
+        "total_bytes": 116,
+        "span_bytes": 116,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4115-script72-close.result.json",
+      "evidenceId": "ev_d1aa0515712501554c8e3c9cd09dc59e24b45fc01ad987de048e5f0a10ef9f98",
+      "address": "0x4f99e0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f99e0",
+            "end": "0x4f9a59"
+          }
+        ],
+        "total_bytes": 122,
+        "span_bytes": 122,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4116-script72-memory-seek.result.json",
+      "evidenceId": "ev_d7a0193ed45913a310841e8e78d0117fd83ad9d78152581a14c8c01788594971",
+      "address": "0x4f6c70",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f6c70",
+            "end": "0x4f6d03"
+          }
+        ],
+        "total_bytes": 148,
+        "span_bytes": 148,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4117-script72-memory-close.result.json",
+      "evidenceId": "ev_77cf612c686cda96c83993509d1a0e0679b3aa805b27ebd3312051072627908c",
+      "address": "0x4f6bc0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f6bc0",
+            "end": "0x4f6c15"
+          }
+        ],
+        "total_bytes": 86,
+        "span_bytes": 86,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "4f6b40 signed-handle taxonomy:>=1000 CRT6dee40(handle-1000), sign-extend32 result;>=800 compressed48byte records at297dc60 choose1c ifflag28nonzero else18 and sign-extend;>=400 memory20byte records2983740 inclusiveend-base, sign-extend;lower signedhandles raw64bit pair at8ceb28+(handle<<6), including prepared negative handle alias.",
+    "Memory allocated size equals allocationLength-1, because stored end is inclusive and size omits+1. MemorySeek4f6c70 ignores offsetHigh: origin1 adds offsetLow to cursor, origin2 sets inclusiveEnd-offsetLow, anyother origin sets base+offsetLow. Stores wrapped32 cursor and returns signed32(cursor-base) sign-extended EDX:EAX. Public4f6de0 signextendslow before child, but child ignores high.",
+    "MemoryClose4f6bc0 clears only live+10 and returns5*slotIndex; public4f99e0 preserves returnedEAX. Base/end/cursor/mode remain. Compressed close/seek remain explicit outside allocated-memory specialization.",
+    "1536cases/4608return+whole-image+callback groups0 mismatches:1350 direct/public seeks withlow0/1/FFFFFFFF/80000000/7FFFFFFF, high0/FFFFFFFF/12345678, origins0/1/2/3/FFFFFFFF, wrappedcursors atslots0/7/19; allsizebranches includingsignednegativehandle/64bitstream fields/CRT results;36direct/public closes overlive0/1/FFFFFFFF andmode0/1. Only finalCRTsize routine6dee40 supplied; all other exercised bytes unchanged."
+  ],
+  "limitations": [
+    "Seek/close prepared allocated memoryhandles400..413 and mapped20slot table; no validity/live/mode gate exists in originalchildren. Size inputs require mapped selectedstream/compressed/memory fields or suppliedCRTsize service.",
+    "Lower-handle buffered/OSseek/close and compressedseek/close remain outside newmemory specialization. No4f6de0/4f99e0unique-entry credit for selected caller branches.",
+    "310core sources+portable harness compile only; managed replayUNEXECUTED. No game/managed executable launch, Git/sharedmanifest writes or broad checkpoint."
+  ],
+  "credit": {
+    "newEntries": 3,
+    "addresses": [
+      "0x4f6b40",
+      "0x4f6c70",
+      "0x4f6bc0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

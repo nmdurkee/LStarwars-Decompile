@@ -1,0 +1,35 @@
+{
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "files": [
+    {
+      "path": "reconstructed/gameplay/world-phase36-20261013-ptl-particle-math.cs",
+      "sha256": "a9670982a5485f0fc16f6d04549367c30428686de43371da3e452519ce555b7d"
+    }
+  ],
+  "mappings": [
+    {
+      "address": "0x5b3830",
+      "method": "PtlParticleMath.Scale",
+      "sourceFile": "gameplay/world-phase36-20261013-ptl-particle-math.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "5b3830 caches its scalar and commits components in order, rereading source after each earlier store. 5c11d0 computes/spills Y then Z to private argument cells, computes X using the original first-product order, then commits X/Y/Z. Output may overlap matrix and point; no output mutation occurs until all consumed operands have been read. Exact x87 64-bit significand arithmetic and signed-zero tracking; binary32 stores at original boundaries. Private value-array refinements support caller stack temporaries without new address credit.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase36-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase36-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase36-20261013-rea-evidence.json"
+      ]
+    },
+    {
+      "address": "0x5c11d0",
+      "method": "PtlParticleMath.Transform",
+      "sourceFile": "gameplay/world-phase36-20261013-ptl-particle-math.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "5b3830 caches its scalar and commits components in order, rereading source after each earlier store. 5c11d0 computes/spills Y then Z to private argument cells, computes X using the original first-product order, then commits X/Y/Z. Output may overlap matrix and point; no output mutation occurs until all consumed operands have been read. Exact x87 64-bit significand arithmetic and signed-zero tracking; binary32 stores at original boundaries. Private value-array refinements support caller stack temporaries without new address credit.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase36-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase36-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase36-20261013-rea-evidence.json"
+      ]
+    }
+  ]
+}

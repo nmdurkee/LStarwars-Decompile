@@ -1,0 +1,101 @@
+{
+  "scope": "Complete raw archive Find and Information bodies with original byte comparator, relative layouts, first-match flags and sequential output aliases.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 1712,
+    "nativeChecks": 5136,
+    "mismatches": 0,
+    "faultCases": 10,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [],
+    "closure": "Actual4f9de0→4f8b10 names,4f0f30 relative metadata and output aliases; error91eeb8 reset/order preserved",
+    "compiledCoreInputs": 312,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase74-20261013-compile.dll",
+    "sourceSha256": "5a5bac64c5ef961b7e2ba0f38c5b74692cfef7832383beb484d198219d8cfaa6",
+    "harnessSha256": "081f3500ebe928c3379df96214b44074b2b7f47baeb168f5554d3e97afa13d16",
+    "nativeOracleSha256": "8cdb24cdd0122b7839335a374a09a6214cb9537d653251c8360ff15c7eceabfb",
+    "compileSha256": "a223b561e487c5fc77bacc81cbbb8a546f4ade1bf3c65c6572eb55f1ba9653d0"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4118-script74-archive-find.result.json",
+      "evidenceId": "ev_f135de4afa877b04090e3bbf6e38c36d61f0c9be381700b0fe7423deada5b7ce",
+      "address": "0x4f9de0",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f9de0",
+            "end": "0x4f9e65"
+          }
+        ],
+        "total_bytes": 134,
+        "span_bytes": 134,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4119-script74-archive-info.result.json",
+      "evidenceId": "ev_d3ad91027b1b39240b297a7bc8b3d0072e077a9e2c3f47e1510a3ab8294ffd59",
+      "address": "0x4f0f30",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f0f30",
+            "end": "0x4f0fa1"
+          }
+        ],
+        "total_bytes": 114,
+        "span_bytes": 114,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4120-script74-name-compare.result.json",
+      "evidenceId": "ev_a2a6bbf368fba2d672668cd0c2f0b9903c2a4108ccb95b7eadc569ca411427d0",
+      "address": "0x4f8b10",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4f8b10",
+            "end": "0x4f8b73"
+          }
+        ],
+        "total_bytes": 100,
+        "span_bytes": 100,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "Archiveheader DWORD0 selects28-byte records:magic12345678 atarchive+0c;1234567a at+18;allother magic at+14. DWORD+4 is unsignedcount. Record+0=name relativeoffset,+4=data relativeoffset,+8=length,+10 bytebit2 makes matching entry unavailable.",
+    "4f9de0 reads magic beforeclear91eeb8, snapshots count, compares archive+nameOffset againstrequested via actual4f8b10. First matching flagged record returns0 immediately, even iflater duplicateisavailable. Otherwise one-basedindex or0. Nullrequested/candidate handledbyregistered comparator;ASCII ande0..ff fold retained.",
+    "4f0f30 firstclears91eeb8, computesentry-1 wrapped32 and rejectssignednegative orunsigned>=count beforemagic/recordread. Flagbit2 rejectswithoutoutputs. Optional dataoutput written archive+row4, thenoptional lengthoutput readsLIVErow8. Aliasingdataoutput withrow8 changeslater length result; sameoutputpointer anderror/count/rowdata aliases retainorderedwrites.",
+    "1712cases/5136fault+return+whole-image groups0,10faults paired:3layouts/count0/1/3,casefoldhighbytes/nullname/nullcandidate/unavailableflags/duplicatefirstmatch;entry0/valid/outofrange/80000000/80000001/FFFFFFFF;optional/same/row/length/count/error outputs andinvalidarchive/output pointers. NativeFind/Info/comparator rununchanged, no adapters."
+  ],
+  "limitations": [
+    "Prepared mapped28-byte rows, bounded count andterminating byte names;relative pointerarithmetic wraps32. Faultfixtures retainpartial globalreset effects, no broad arbitrary-pointer/overlapping-string claim.",
+    "Comparator4f8b10 alreadyregistered TextParserDispatch.Compare;freshREA andnativecallee execution provideprerequisite confirmation only, no duplicateentrycredit. Archive magic variants retained as raw values; flagbit2 semanticlabel beyondunavailable is not established.",
+    "312core sources+portable harness compileonly;managed replayUNEXECUTED. No game/managed executable launch,Git/sharedmanifest writes or checkpoint."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4f9de0",
+      "0x4f0f30"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

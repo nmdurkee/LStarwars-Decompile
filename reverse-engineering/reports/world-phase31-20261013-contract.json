@@ -1,0 +1,53 @@
+{
+  "status": "sealed qualified vector and raw-matrix own-body memory projection",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase31-20261013-ptl-emitter-transforms.cs",
+    "sha256": "1e26281f4558a373dd343e85bad87e22387b47c96649ae710ab190a0bde1997a"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 2289,
+    "checks": 2289,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x6559a0": 861,
+      "0x6559f0": 861,
+      "0x655a40": 189,
+      "0x655ad0": 189,
+      "0x655b30": 189
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": 0,
+    "seconds": 1.565,
+    "syntheticExcluded": 0,
+    "excluded": []
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 271,
+    "harnessSourceFiles": 13,
+    "assemblySha256": "3554c6480b4b59ca930452d995632908d40bed9c629a85b62dcd3b8db7b806a9"
+  },
+  "scope": [
+    "6559a0/6559f0 copy three non-signaling binary32 arguments to1b4/1a8 with exactFFFFFFFFguard, cached unsigned ID*330 and fresh base per store.",
+    "655a40/655ad0/655b30 use actual forward REP MOVSD16raw words to40/40/80; arbitrary matrix bit patterns including signaling NaNs are permitted for raw copy. Position exporter reads source translation30/34/38 after copy and stores emitter190/194/198, then fresh-base copied translation and300 clear.",
+    "Primary/secondary matrix-only paths clear copied translation and300 while preserving position. Forward shifted/unaligned overlap and copy-alias emitter-base mutation retain original routing.",
+    "Dynamic consumed-word check covers floating argument/position reads after overlap propagation: zero signaling NaNs consumed across2289retained fixtures; syntheticExcluded0. No float-copy signaling-NaN equivalence credit."
+  ],
+  "domains": [
+    "Readable prepared emitter/matrix/global backing, originalDFclear, disjoint call scratch. Signed/wrapping unsigned IDs except exactFFFFFFFF require valid backing, no additional index guard.",
+    "Consumed floating copies accept finite, signedzero, Infinity and quietNaN; signaling NaNs and FPU status excluded. Raw matrix-only copying retains all32-bit words; exporter applies consumed-word qualification after native-order propagation.",
+    "Fault, register-return/temporary ABI and concurrent external mutation projections excluded."
+  ],
+  "fixture": {
+    "path": "reports/world-phase31-20261013-vectors.json.gz",
+    "sha256": "3697d6eb13086ccffdaa218935cfca14693199ba5e19e935d4c99bfc9f53524e",
+    "cases": 2289,
+    "assertions": 2289
+  },
+  "reaEvidence": "reports/world-phase31-20261013-rea-evidence.json",
+  "reaLimitations": [],
+  "remainingPorts": []
+}

@@ -1,0 +1,48 @@
+{
+  "status": "sealed qualified full material constructor with mutable allocation/finalization services",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase53-20261013-ptl-material-construction.cs",
+    "sha256": "6fb7c04d07b71aa4cadcfed027a25b6a4ab5c5991a0e3a3570f34dbbf37f72d4"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 802,
+    "checks": 2406,
+    "mismatches": 0,
+    "errors": [],
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": [
+      "0x5e4d40 mutable material allocation",
+      "0x5e4b00 mutable finalization"
+    ],
+    "seconds": 0.139,
+    "syntheticExcluded": 0
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 291,
+    "harnessSourceFiles": 35,
+    "assemblySha256": "2b411898f9176c1ab2880f6e31ea3d7bbc35d90e943e82296accbda869bd0a82",
+    "expectedManagedAssertions": 2406
+  },
+  "scope": [
+    "Complete 162-byte 654a90 material constructor. Null parent returns zero without services; allocation receives one, and returned pointer is cached through later stores/finalization. Unit scale and literal opacity stores precede cached original flags combined with masked group/channel/variant arguments.",
+    "Optional flag update precedes cached flags44; flags40 are rewritten from cached intermediate. Parent halfwords are freshly read in sequence before committing cached flags44. Finalizer return is ignored; readable shifted aliases and mutable allocation/finalization writes are retained."
+  ],
+  "domains": [
+    "Prepared readable nonzero allocated material/parent routes, arbitrary 32-bit arguments, overlapping parent/destination byte shifts -128..128, mutable allocation/finalization callbacks. Native allocation-failure and invalid-pointer behavior excluded.",
+    "Cached pointer return, complete prepared image and ordered service trace included. Private stack/FPU status/unrelated registers excluded."
+  ],
+  "fixture": {
+    "path": "reports/world-phase53-20261013-vectors.json.gz",
+    "sha256": "b9805882037be720662c8ce3133c615172c5fe5f3fd99605ac8347f5b85cc0f4",
+    "cases": 802,
+    "nativeGroups": 2406
+  },
+  "reaEvidence": "reports/world-phase53-20261013-rea-evidence.json",
+  "remainingPorts": [
+    "0x5e4d40 mutable material allocation",
+    "0x5e4b00 mutable finalization"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scope": "Complete CRT sprintf6E69EF own body, preserving privateFILEheader, varargs identity, error dispatch and terminator/flush branches.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 89,
+    "nativeChecks": 356,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 10,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "6EEF05 output parser",
+      "6EAD5F errno getter",
+      "6E9FC2 invalid-parameter dispatch",
+      "6EECD9 flush"
+    ],
+    "compiledCoreInputs": 362,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase152-20261013-compile.dll",
+    "sourceSha256": "e0794c9fd48452e48c9c880bcce93a4cc4d444145a469488ff0abb03d94656f6",
+    "harnessSha256": "02e4b745b0aecfc4dfc13ab29ac1a4e962e042c80663265762f59faab0cd67b2",
+    "nativeOracleSha256": "c54058b22b15eac6067626fe0d15e989efd082baf077c093478d56486dfb4cff",
+    "compileSha256": "5b586977a11323ebce5e2680eea8b0bf8c9ddc77d57013d5ba47d6e052dd88a6"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4266-script152-sprintf.result.json",
+      "evidenceId": "ev_f44bacdf6ecaec4b8329a7e8fe627f7e8f6ced1a396f177149f602d6b80e2648",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x6e69ef",
+            "end": "0x6e6a69"
+          }
+        ],
+        "total_bytes": 123,
+        "span_bytes": 123,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "semantics": [
+    "cdecl(destination,format,...). Null format or destination calls errno getter, writes22 before five-zero invalid-parameter dispatch, returnsFFFFFFFF if dispatch returns. Nonnull writes private32byteFILE base8=dest first,ptr0=dest,count4=7FFFFFFF,flagsC=42; otherFILEbytes retain prior prepared stack content.",
+    "Calls6EEF05(file,format,locale0,varargsPointer) and captures its return. Decrements LIVEfilecount modulo32; sign of decremented result selects6EECD9(0,file) whennegative, otherwise writesNUL at LIVEfileptr. Return preserves capturedoutput result regardlessflush result. Count80000000 decrements7FFFFFFF and therefore takes directNUL branch.",
+    "89 original cases/356 comparisons matched with10 expected unmapped errno/output pointer faults. Includes arbitrary output statuses andbytes, counts0/1/2/7FFFFFFF/80000000/FFFFFFFF, nullable parameters, output pointers aliased toFILE/errno, invalid handler mutations and untouchedFILE/varargs preservation. Credited6E69EF body executes unchanged with no wrapper adapter."
+  ],
+  "limitations": [
+    "6EEF05 output parser,6EAD5F errno,6E9FC2 invalid-parameter dispatch and6EECD9 flush remain explicit child services; these are not counted as recovered152 addresses. Errno source exists in world scope and can be composed later.",
+    "Prepared privateFILE and first vararg-pointer identities; guest frame prolog/epilog run normally.362 cores and portable replay compiled as library; managed replay UNEXECUTED. No command-name/use, shared checkpoint/manifest or Git writes."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x6e69ef"
+    ],
+    "existingRefinements": [],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

@@ -1,0 +1,1 @@
+868 original native cases / 1,736 comparisons zero. Four raw accounting/query bodies, root-inclusive node count and masked/wrapped sum, wrapped root0 short-circuit. No ports.384-core library compiled; managed replay unexecuted; zero address credit.

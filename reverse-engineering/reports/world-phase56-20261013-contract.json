@@ -1,0 +1,53 @@
+{
+  "status": "sealed qualified backing constructors and setup wrapper",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "source": {
+    "path": "reconstructed/gameplay/world-phase56-20261013-ptl-pool-backing.cs",
+    "sha256": "1b5c8500e0481f8751acbd5f81cd46451304b15ee78cf0bf9a3ecc2908aa7bf0"
+  },
+  "native": {
+    "status": "sealed bounded",
+    "cases": 2630,
+    "checks": 5260,
+    "mismatches": 0,
+    "errors": [],
+    "entries": {
+      "0x5ffdc0": 2208,
+      "0x5ffe70": 1104,
+      "0x5ffe80": 294,
+      "0x683530": 128
+    },
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeAdapters": [
+      "0x682b10 mutable pool setup service"
+    ],
+    "seconds": 2.339,
+    "syntheticExcluded": 0
+  },
+  "portable": {
+    "status": "library compilation passed; managed replay not executed",
+    "coreSourceFiles": 294,
+    "harnessSourceFiles": 38,
+    "assemblySha256": "de2fd49a7a95bc9c9dd224abf4624bd1400381c01c3972f0bbca72e5ade48509",
+    "expectedManagedAssertions": 5260
+  },
+  "scope": [
+    "Complete173-byte5ffdc0 constructor stores one-byte header52 and selective zero header words, then32 original eight-word particle defaults in native store order, trailing zero and size424. It preserves unspecified header bytes; overlapping byte-shifted size output commits after all initialization. EAX returns the original destination.",
+    "Complete5-byte5ffe70 tail thunk reuses the same chunk constructor, with no distinct12-particle backing defaults. Complete21-byte5ffe80 descriptor allocator computes wrapping(cursor+15)&fffffff0, writes sizea4c and returns cached alignment without touching the block itself.",
+    "Complete43-byte683530 wrapper forwards six raw caller values as nine setup arguments: ordinary,alternate,ordinary,alternate,descriptorCount,emitterCount,32,option,arena. Setup remains mutable; incidental EAX excluded.2630 fixtures5260 image/pointer-or-service checks agree, no exclusions."
+  ],
+  "domains": [
+    "Prepared readable chunk and size-output byte routes. All immutable source literal bindings retained: default particle words1,2,3,-1,4,5,6,128. Every overlapping size-output offset -8..1063 and all32 destination alignment offsets retained.",
+    "Descriptor cursor accepts alluint values with wrapping arithmetic; only size-output must be readable. Wrapper forwards arbitrary raw arguments into an explicit mutable setup service. Complete memory/pointer or trace groups retained; stack, FPU status and unrelated registers excluded."
+  ],
+  "fixture": {
+    "path": "reports/world-phase56-20261013-vectors.json.gz",
+    "sha256": "a648f26f2cb3ec1284b827fcad5e8d3c6eeabcd7a69959a8347b4eaecc65423e",
+    "cases": 2630,
+    "nativeGroups": 5260
+  },
+  "reaEvidence": "reports/world-phase56-20261013-rea-evidence.json",
+  "remainingPorts": [
+    "682b10 pool setup"
+  ]
+}

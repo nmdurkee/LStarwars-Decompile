@@ -1,0 +1,87 @@
+{
+  "scope": "Whole existence thunk/body with actual close children; container index/open services explicit.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 244,
+    "nativeChecks": 732,
+    "mismatches": 0,
+    "managedExecution": false,
+    "newEntries": 2,
+    "ports": [
+      "containerIndex4f9aa0",
+      "gameOpen4fa3f0",
+      "CloseHandleIAT7510e0",
+      "CRTclose6dee70"
+    ],
+    "closure": "Whole4ff120→4fa610, actual4f99e0 close and memory/compressed/stream children; container search/open and final OS/CRT close explicit",
+    "compiledCoreInputs": 326,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase88-20261013-compile.dll",
+    "sourceSha256": "b1d715a7c11be61b73bd86e7a004a2b9ed540d38ec9b7ddd150f6811c1a06f9d",
+    "harnessSha256": "579d711c439c9d0a49ea775bffc4f6e519affe37f3133692a77bcd4846a3909c",
+    "nativeOracleSha256": "1a8b048947f173346730df90c3fce3008ad324d6199c3328d507ace30153392c",
+    "compileSha256": "55e24afde104c3008a53eb276b529b382d5848845e834cf780cb1dae645762de"
+  },
+  "reaEvidence": [
+    {
+      "file": "reports/rea-continuous/4139-script88-exists.result.json",
+      "evidenceId": "ev_9d042dd07f395b40be2f98f8d651bfed5e2de1b00fe9980a9f85f009c2a38db8",
+      "address": "0x4ff120",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4ff120",
+            "end": "0x4ff124"
+          }
+        ],
+        "total_bytes": 5,
+        "span_bytes": 5,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "file": "reports/rea-continuous/4141-script88-exists-body.result.json",
+      "evidenceId": "ev_20968c0d9b684b95f5b5a1e28cb46177fb014ce3e1a32c26f4374afddb37e749",
+      "address": "0x4fa610",
+      "body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x4fa610",
+            "end": "0x4fa68d"
+          }
+        ],
+        "total_bytes": 126,
+        "span_bytes": 126,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    }
+  ],
+  "reaReferences": [
+    "reports/script-phase87-20261013-contract.json"
+  ],
+  "semantics": [
+    "Null path or zero first byte returns0 before global flag reads/writes. Otherwise saves91ee90 and snapshots container91ee88, then clears91ee90. Nonzero container searches4f9aa0; nonnegative index restores saved flag BEFORE rereading container8 rows, and returns row16-byte-offset+8 value directly rather than Boolean.",
+    "Search miss or absent container opens4fa3f0(path,mode0,snapshottedContainer,reserved1), closes nonzero handle with actual4f99e0, then restores saved91ee90 and returns handle!=0 Boolean.4ff120 is exact five-byte tail jump to4fa610.",
+    "244cases/732 return, image and event groups zero: thunk/body, container0/nonzero, indices0/3/FFFFFFFF, handles0/1/400/800/1000, saved flag0/FFFFFFFF, metadata0/17, null/empty paths, search mutations of flag/rows and open mutation of flag. Actual memory/container/stream close children execute; only search/open and final OS/CRT close ports normalized."
+  ],
+  "limitations": [
+    "Prepared valid row indices, allocated close handles and mapped path/container records. Search/open implementation remains explicit pending focused child recovery.326core inputs plus harness compiled; managed replay UNEXECUTED.",
+    "No script command use, Git/shared manifest/checkpoint writes or game/managed launch."
+  ],
+  "credit": {
+    "newEntries": 2,
+    "addresses": [
+      "0x4ff120",
+      "0x4fa610"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

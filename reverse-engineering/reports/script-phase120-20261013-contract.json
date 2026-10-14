@@ -1,0 +1,82 @@
+{
+  "scope": "Whole registered ResetToOrigin action516ac0 with real game-origin callback110 and raw fallback/copy behavior.",
+  "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+  "native": {
+    "binarySha256": "6c9c2b35aa9452ba36c4f816a4ae50e3e8de133971ae1899a20de102d7e20adb",
+    "nativeCases": 286,
+    "nativeChecks": 1144,
+    "mismatches": 0,
+    "errors": [],
+    "faultCases": 15,
+    "managedExecution": false,
+    "newEntries": 1,
+    "ports": [
+      "custom origin callback only when explicitly supplied"
+    ],
+    "closure": "actual516ac0→registered43c3a0→rotation/addition; absent-callback fallback is raw DWORD copy",
+    "compiledCoreInputs": 340,
+    "harnessCompiled": true,
+    "compile": "reports/script-phase120-20261013-compile.dll",
+    "sourceSha256": "c77d4a0f19c4af54287d1b50c7b8a3d3ecd5c7ec321756c7743bc0e048f2a9dc",
+    "harnessSha256": "2f09261c61cd04953e500a29ad43f1aa9cd83130aa4756a5eb9413dad773d8b8",
+    "nativeOracleSha256": "7b0865ab870a6884fb4d834461f35eee2da25003e1c4ff0474b6a06868b0c0d5",
+    "compileSha256": "cfab2048926941bf2f9436e6423c274c9590fab2f97c7f6f80172aec6dc80a24"
+  },
+  "reaEvidence": [
+    {
+      "path": "reports/rea-continuous/4200-script120-origin-position.result.json",
+      "evidenceId": null,
+      "error": {
+        "code": "invalid_request",
+        "category": "invalid_input",
+        "message": "Analysis input is invalid. Check the arguments and try again.",
+        "retryable": true,
+        "remediation": {
+          "action": "Correct the listed arguments and retry."
+        },
+        "details": {
+          "operation": "read_function_instructions",
+          "issues": [
+            {
+              "path": [],
+              "reason": "invalid_value",
+              "message": "No procedure exists at the requested address: 0x516ac0"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "registrationEvidence": {
+    "path": "reports/gameplay-native-dispatch/tables.json",
+    "table": "0x801bdc",
+    "index": 45,
+    "name": "ResetToOrigin",
+    "callback": "0x516ac0"
+  },
+  "semantics": [
+    "cdecl(system,unusedPacket,actor) returns integer1; actor0/system0 are early guarded no-ops before optional923908 callback. Optional callback called(system,actor), source captured, then LIVEactorD0 reread.",
+    "When callback absent or result0, controller0 or controller1F8 bit400 clear is no-op; unsignedactor138=255 is no-op; otherwise source=LIVE*(system18)+unsignedselector*A4+20. Successful callback bypasses those fallback guards, including controller0 and flags.",
+    "Copy three raw DWORDs from chosen source to captured controller+5C/+60/+64 in read/store order. Shifted source/output overlaps cascade exactly; all payload bits, including NaNs and signed zeros, survive. Successful callback with null controller faults at write5C; preserved rather than silently guarded.",
+    "286 native cases/1144 groups zero with15 expected fault cases: game/custom/no callback, selectors0/1/254/255, controller null/flags, actor/system guards, custom callback patches to controller/selector/record base, null result fallback, overlapping copies offsets-8/-4/0/+4/+8,80 random raw DWORDvectors. Real43c3a0 and its rotation/addition children execute for game callback cases."
+  ],
+  "limitations": [
+    "Caller supplies mapped actor/system/controller/records. Only actual43c3a0 branch uses phase110 finite origin arithmetic; fallback and custom callback copies accept arbitrary DWORD payloads.",
+    "Ghidra FunctionManager does not contain516ac0; retained invalid_request diagnostic plus complete121-byte immutable PE decode and existing bounded registration table evidence establish body.",
+    "340core inputs and replay harness compile as library; managed replayUNEXECUTED. Custom optional callback is an explicit mutable value port; registered game callback requires no adapter.",
+    "No shared checkpoint/manifest/Git writes or game/managed launch. Existing ResetToOrigin name/row and reused43c3a0/math receive no duplicate credit."
+  ],
+  "credit": {
+    "newEntries": 1,
+    "newMappedAddresses": [
+      "0x516ac0"
+    ],
+    "reusedPrerequisites": [
+      "0x43c3a0",
+      "0x5b3620",
+      "0x5b37d0"
+    ],
+    "newCommandNames": 0,
+    "newCommandUses": 0
+  }
+}

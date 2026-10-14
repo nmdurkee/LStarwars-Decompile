@@ -1,0 +1,29 @@
+{
+  "sourceSha256": "41d85352bc119ed6365e0aafd6cb1c5eb32247ce210640d2657a3020d124968f",
+  "mappings": [
+    {
+      "address": "0x654ef0",
+      "method": "PtlPacketPriorityMaintenance.Repair",
+      "sourceFile": "gameplay/world-phase28-20261013-ptl-priority-maintenance.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "654ef0 decrements wrapping signed countdown, returns while positive, otherwise resets6 and rotates over5banks only if current bank is empty. Finds first unsigned-priority/signed-subtype adjacent inversion, executes actual654ea0remove and654e00insert, then returns after one repair. 654fa0 maintains independent countdown and update cursor but traverses the original separate repair cursor29620bc after selecting update cursor29620c0. This original mismatch is retained, not corrected. Owner-zero packet priorities remain unchanged. Inactive owner copies unsignedsize328; active owner computes exactx8764 size+25*distance31c, spillsbinary32, upperclamps65535, switches nativeRC to truncation for signed32FISTP and stores low16. Invalid numeric conversion produces low16zero. All32occupied-bank masks crossed with both5cursor positions, all256signed types/active flags, signed countdown wrap, unsigned size boundaries and negative distances, NaN/Infinity and invalid conversion boundaries are paired. Aliases prove countdown reset modifies packet priority before comparison and recomputed priority can alter a later node.next route. No native adapters.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase28-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase28-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase28-20261013-rea-evidence.json"
+      ]
+    },
+    {
+      "address": "0x654fa0",
+      "method": "PtlPacketPriorityMaintenance.Recompute",
+      "sourceFile": "gameplay/world-phase28-20261013-ptl-priority-maintenance.cs",
+      "coverage": "complete qualified original own-body memory projection",
+      "qualification": "654ef0 decrements wrapping signed countdown, returns while positive, otherwise resets6 and rotates over5banks only if current bank is empty. Finds first unsigned-priority/signed-subtype adjacent inversion, executes actual654ea0remove and654e00insert, then returns after one repair. 654fa0 maintains independent countdown and update cursor but traverses the original separate repair cursor29620bc after selecting update cursor29620c0. This original mismatch is retained, not corrected. Owner-zero packet priorities remain unchanged. Inactive owner copies unsignedsize328; active owner computes exactx8764 size+25*distance31c, spillsbinary32, upperclamps65535, switches nativeRC to truncation for signed32FISTP and stores low16. Invalid numeric conversion produces low16zero. All32occupied-bank masks crossed with both5cursor positions, all256signed types/active flags, signed countdown wrap, unsigned size boundaries and negative distances, NaN/Infinity and invalid conversion boundaries are paired. Aliases prove countdown reset modifies packet priority before comparison and recomputed priority can alter a later node.next route. No native adapters.",
+      "nativeEvidence": [
+        "reverse-engineering/reports/world-phase28-20261013-native-tests.json",
+        "reverse-engineering/reports/world-phase28-20261013-assembly.json",
+        "reverse-engineering/reports/world-phase28-20261013-rea-evidence.json"
+      ]
+    }
+  ]
+}
